@@ -1,0 +1,251 @@
+                                                 In Proceedings of Eurospeech ’97. pp. 561-564. Rhodes, Greece.
+
+                                            TEXT-TO-SPEECH CONVERSION WITH NEURAL NETWORKS:
+                                                       A RECURRENT TDNN APPROACH
+                                                               O. Karaali, G. Corrigan, I. Gerson, and N. Massey
+                                                                         Speech Processing Laboratory
+                                                                                Motorola, Inc.
+                                                             1301 E. Algonquin Rd., Schaumburg, IL 60196, U.S.A.
+
+
+                                                 ABSTRACT
+                                                                                          This paper describes the phonetic component of a text-
+                            This paper describes the design of a neural network that      to-speech system which uses a recurrent time-delay
+                            performs the phonetic-to-acoustic mapping in a speech         neural network (TDNN) approach to generate high-
+                            synthesis system. The use of a time-domain neural             quality speech.
+                            network architecture limits discontinuities that occur at
+                            phone boundaries. Recurrent data input also helps                         2. SYSTEM OVERVIEW
+cs.NE/9811032 24 Nov 1998
+
+
+
+
+                            smooth the output parameter tracks. Independent testing
+                            has demonstrated that the voice quality produced by this      The complete system is shown in Figure 1. The text-to-
+                            system compares favorably with speech from existing           speech system includes a text-to-linguistic description
+                            commercial text-to-speech systems.                            subsystem, a neural network used to assign a duration to
+                                                                                          each phonetic segment, a neural network used to convert
+                                            1. INTRODUCTION                               the linguistic description into a series of coder parameter
+                                                                                          vectors, and the synthesis section of a speech coder.
+                            The notion of using a neural network, or other machine
+                            learning system, to implement components in a text-to-        The text-to-linguistic description subsystem produces a
+                            speech system is an attractive one. A system trained on       description of the speech to be generated that includes a
+                            actual speech may learn subtler nuances of variation in       sequence of phones along with prosodic and syntactic
+                            speech than can presently be incorporated into rule-based     annotations. The details of this subsystem will not be
+                            or concatenation text-to-speech systems. The data             described here, except to note that it generates the same
+                            storage requirements are also an order of magnitude           marks that are used to label the database, described
+                            smaller for a well-designed neural network than for a         below, and that the timing of the marked events is
+                            concatenation system. It should also be easier to train a     established relative to the timing of the phonetic
+                            neural network on a new language than to determine a          segments, so that determining the segment durations
+                            rule set for that language. Training the network might        determines the timing of the other marked events.
+                            even be easier than identifying and extracting the
+                            concatenation units necessary for a new language.             The segment durations are also computed using a neural
+                                                                                          network. This is described in [6]. The speech coder
+                            Several attempts have been made to implement various          parameter set is described in the discussion of training
+                            components of a text-to-speech system with neural             data below.
+                            networks, including several that implemented the
+                            phonetic component [1], [2], [3], [4], [5]. This is the                       3. TRAINING DATA
+                            component that converts a phonetic description of an
+                            utterance, including segment durations for each phone,        In order to train a neural network to perform the
+                            into a series of acoustic descriptions of frames of speech.   phonetic-to-acoustic mapping, it was necessary to
+                            Most of these prior attempts to use neural networks for       prepare an appropriate database.          This database,
+                            phonetic components described the phonetic context of         consisting of a set of recordings of speech from a single
+                            each speech frame using input sets that represented the       speaker, was then labeled phonetically, syntactically, and
+                            current phoneme, and one or more preceding or                 prosodically. The recordings were processed by the
+                            following phonemes, and extra inputs indicating the           analysis portion of a parametric vocoder, to produce a
+                            position of the current acoustic frame in the current         series of coder parameter vectors describing the acoustic
+                            phoneme. When two adjacent acoustic frames are in             characteristics of 5 ms. frames of speech. The speech
+                            different phonetic segments, all of the phoneme               labels were also processed to generate neural network
+                            representations change between the two frames. These          input vectors describing the phonetic and prosodic
+                            input discontinuities are reflected with large                context of the 5ms. speech frames. The neural network
+                            discontinuities in the output data, which are heard as        was trained to generate an appropriate coder parameter
+                            warbling in the generated speech.                             vector in response to each neural network input vector.
+
+
+    Input                  Linguistic    Phoneme        Segment                       Acoustic                     Speech
+    Text                     Data        Duration       Durations        Phonetic      Data       Parametric       Output
+              Text to                     Neural                          Neural                   Speech
+            Linguistics                  Network                         Network                    Coder
+
+
+
+                                             Figure 1: Text-to-speech system
+
+The steps in generating these training vectors is                   excitation consists of a low-frequency band of periodic
+described in more detail below.                                     excitation and a high-frequency band of aperiodic
+                                                                    excitation. The parameters used to describe the source
+3.1. Speech Recordings                                              were the energy of the speech signal, the pitch of the
+                                                                    periodic excitation, and the boundary frequency between
+In order to make it feasible for the network to learn the           the bands.
+phonetic-to acoustic mapping, a single speaker was used
+for all of the speech recordings. This speaker is a male            3.4. Input Processing
+speaker from the Chicago area. The principle portion of
+the database, a collection of 480 sentences from the                The purpose of the input processing is to provide the
+Harvard sentence lists, was recorded when the speaker               information contained in the speech labels to the neural
+was 36 years old. Additional recordings were made two               network in an appropriate format. Previous attempts to
+years later in order to increase the prosodic variety of the        use neural networks in speech synthesis have represented
+recorded speech. These recordings included questions,               the phonetic context for each frame by having input
+isolated words, paragraph-length materials, and                     representing the phonetic segment containing the frame,
+selections from dramatic works. The recordings were                 the surrounding segments, and the position of the frame
+made in a soundproof room with a close-talking                      within the segment. The problem with this representation
+microphone.                                                         is that all of the input changes at one time at each
+                                                                    segment boundary. This can produce significant
+3.2. Speech Labeling                                                discontinuities in the neural network output at these
+                                                                    points. These discontinuities result in audible artifacts in
+The speech was phonetically labeled in the same manner              the generated speech.
+as the TIMIT database. In order to allow the neural
+network to learn the phonetic-to-acoustic mapping,                  A Time-Delay Neural Network (TDNN) does not have
+additional information was provided by marking syllable,            this problem. Figure 2 illustrates the TDNN input
+word, phrase, and clause boundaries, tagging each word              structure. For each 5 ms. frame of speech, there is an
+as a content or function word, and marking syllables with           input identifying the phone to be produced during the
+primary or secondary stress.                                        phonetic segment containing the frame. The input to the
+                                                                    neural network includes inputs describing the phonetic
+3.3. Voice Coder                                                    segment associated with a number of surrounding frames.
+                                                                    Only a few of these inputs should change between any
+Much of the current research in speech coding uses a                two frames, so the size of discontinuities in the output is
+source-filter model, and models the source using a                  reduced.
+codebook of excitation vectors. These codebook
+approaches are inappropriate for use in neural network              The TDNN window introduces some new problems. The
+speech synthesis. The codebooks are typically quite                 amount of context used in computing the coder
+large, and would require individual outputs to select each          parameters for a frame is determined by the width of the
+codebook entry. This would make the neural network                  TDNN window. Increasing number of frames sampled in
+unwieldy. Binary target values of any kind may also lead            the TDNN window, however, increases the network size;
+to problems when mixed with continuous targets. A                   a wide enough TDNN window may make the network
+coder that uses continuous parameter vectors is,                    unwieldy. This problem can be alleviated by non-uniform
+therefore, desirable.                                               sampling of the TDNN window. Near the center of the
+                                                                    window, every frame is sampled to provide an input to
+The coder design used for this system uses a source-filter          the neural network. Near the edges, the phonetic data is
+model. The filter is an autoregressive filter, using line           sampled less often.
+spectral frequencies to describe the filter. A mixed-
+source excitation model [7] was used. In this model,
+
+
+                                              Speech Parameters
+                                       Neural
+                                      Network
+
+                                                                                                Phoneme Data:
+                                                                                                hh, 50 ms.
+                                                                                                eh, 80 ms.
+          hh             eh                   l                   ow                            l, 95 ms
+                                                                                                ow, 95 ms
+                                              Figure 2: TDNN Input Structure
+
+
+
+
+                                           Figure 3: Neural Network Architecture
+In addition to the 5 ms. TDNN coding of the phoneme
+labels and phoneme features, the duration and distance            In order to generate intonation, the labeled syntax and
+from the current frame of the current phonetic segment,           stress information was also provided to the neural
+the four preceding segments, and the four following               network. Syllable and word characteristics were encoded
+segments are coded into the network. This coding                  using a TDNN representation, while duration and
+provides more context information and becomes                     distance coding was used to mark the boundaries of
+especially useful when a string of long phonemes                  syntactic elements such as phrases and clauses.
+occupies the TDNN window. The TDNN window is 300
+ms. wide, and if there are a few very long phonemes, the                  4. NETWORK ARCHITECTURE
+TDNN window will not be able to cover much context
+outside of these long phonemes. The duration and                  The phonetic neural network system is composed of
+distance coding of nine phonemes insures that a context           multiple neural network subsystems as shown in Figure
+of this size is always available to the network.                  3, where all the rectangles are neural network blocks.
+                                                                  The blocks 1, 2, and 14 are the I/O blocks and provide an
+In order to provide some domain-specific knowledge to             interface to data streams 2, 1, and 3. Blocks 3 and 4
+the neural network, the phonemes were encoded not only            convert phoneme labels to phoneme features. Blocks 15
+as a one-of-n binary vector, but as a vector of articulatory      and 16 provide the recurrent buffers for feedback paths.
+features. This redundant information enhances the                 Blocks 17, 18, and 19 transform the feedback
+network’s ability to learn similarities between phonemes.         information to a form more acceptable to their target
+
+
+     5                                                                    90
+   4.5                                                                    80
+     4                                                                    70
+   3.5
+                                                                          60
+     3
+                                                                          50
+   2.5
+     2                                                                    40
+   1.5                                                                    30
+     1                                                                    20
+   0.5                                                                    10
+     0                                                                     0
+                        DECTalk
+           PlainTalk
+
+
+
+
+                                  TrueTalk
+
+
+
+                                             Motorola 1
+
+
+
+                                                          Motorola 2
+
+
+
+
+                                                                                                                 Motorola 1
+
+
+                                                                                                                              Motorola 2
+                                                                                PlainTalk
+
+
+
+
+                                                                                                                                           Speech
+                                                                                                      TrueTalk
+                                                                                            DECTalk
+
+
+
+
+                                                                                                                                           Natural
+                 Figure 4: Mean Opinion Scores                                 Figure 5: Percent of Words Recognized
+
+blocks. Block 5 works on TDNN phoneme labels.                          competitively with existing commercial text-to-speech
+Block 6 works on TDNN phoneme features. Block 7                        systems, as demonstrated in independent tests.
+works on duration and distance of phoneme labels.
+Block 8 works on duration and distance of phoneme                                           7. REFERENCES
+features. Blocks 9, 10, 11, 12, and 13 provide higher
+level neural network processing. Blocks 20, 21, 22, 23,                [1]      J. Burniston and K. M. Curtis “A Hybrid Neural
+and 24 generate 10 bands of power spectrum where the                   Network/Rule Based Architecture for Diphone Speech
+band boundary frequencies are chosen according to the                  Synthesis”, Proc. International Symposium on Speech,
+formant boundaries of the speaker.                                     Image Processing, and Neural Networks, pp. 323-326,
+                                                                       Hong Kong, April 1994.
+         5. EXPERIMENTAL RESULTS                                       [2]      G. C. Cawley and P. D. Noakes, “LSP Speech
+                                                                       Synthesis Using Backpropagation Networks”, Proc.
+The performance of this neural network based system                    Third International Conference on Artificial Neural
+was compared to existing systems by an independent                     Networks, pp. 291-294, Brighton, May 1993.
+tester [8]. Two evaluations were performed. The first                  [3]      A. J. Cohen and M. J. Bishop, “Self-organizing
+provided sentence-length materials to listeners, who                   Maps in Synthetic Speech”, Proc. WCNN ’94, San
+judged the acceptability of the speech on a scale of one               Diego, Junk 1994.
+to seven, with seven being most acceptable and one least                [4]     C. Tuerk and T. Robinson, “Speech Synthesis
+acceptable. The results of this evaluation are shown in                using Artificial Neural Networks Trained on Cepstral
+Figure 4. Motorola 1 used phone durations generated by                 Coefficients”, Proc. Eurospeech ’93, pp. 1713-1716,
+a neural network, as described in [6], while Motorola 2                Berlin, September 1993.
+used durations from natural speech. Both Motorola                      [5]      T. Weijters and J. Thole, “Speech Synthesis
+systems performed significantly better than the other                  with Artificial Neural Networks”, Proc. ICNN ’93 pp.
+systems.                                                               1764-1769, San Francisco, March 1993.
+                                                                       [6]      G. Corrigan, N. Massey, and O. Karaali,
+Figure 5 shows the results of a segmental intelligibility              “Generating Segment Durations in a Text-to-speech
+experiment. In this experiment, subjects were asked to                 system: A Hybrid Rule-based/Neural Network
+identify isolated monosyllabic words from the tested                   Approach”, Proc. Eurospeech ’97, Rhodes, September
+systems. Figure 4 illustrates the percent of the words the             1997.
+subjects identified correctly. In this experiment, the                 [7]      J. Makhoul, R. Viswanathan, R. Schwartz, and
+Motorola systems, which had not yet been trained on                    A. W. F. Huggins, “A Mixed-Source Model for
+isolated words, did not perform as well as some other                  Excitation and Synthesis”, Proc. ICASSP ’78, pp. 163-
+systems.                                                               166, Tulsa, April 1978.
+                                                                       [8]      H. Nusbaum, A Francis, and T. Luks,
+                       6. CONCLUSION                                   “Comparative Evaluation of the Quality of Synthetic
+                                                                       Speech Produced at Motorola”, Technical Report 1,
+This paper presents the design of a recurrent TDNN                     University of Chicago, 1995.
+which performs the phonetic-to-acoustic mapping in a
+text-to-speech system. A complete system using this
+neural network has been implemented on a personal
+computer and runs in real time. The system performs
+

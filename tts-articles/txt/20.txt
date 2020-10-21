@@ -1,0 +1,466 @@
+                                                                                                         ISCA Archive
+                                                                                                http://www.isca-speech.org/archive
+                                8th ISCA Speech Synthesis Workshop • August 31 – September 2, 2013 • Barcelona, Spain
+
+
+  Unsupervised and lightly-supervised learning for rapid construction of TTS
+   systems in multiple languages from ‘found’ data: evaluation and analysis
+             O. Watts1 , A. Stan2 , R. Clark1 , Y. Mamiya1 , M. Giurgiu2 , J. Yamagishi13 , S. King1
+                   1
+                    The Centre for Speech Technology Research, University of Edinburgh, UK
+               2
+                   Communications Department, Technical University of Cluj-Napoca, Romania
+                                    3
+                                      National Institute of Informatics, Japan
+                       {adriana.stan, mircea.giurgiu}@com.utcluj.ro, Simon.King@ed.ac.uk,
+                            {owatts, Yoshitaka.Mamiya, robert, jyamagis}@inf.ed.ac.uk
+
+
+
+                            Abstract                                 input text are either made up of hand-written rules or statisti-
+                                                                     cal modules; acquiring the expert knowledge required either to
+This paper presents techniques for building text-to-speech front-
+                                                                     manually specify those rules, or to annotate a learning sample
+ends in a way that avoids the need for language-specific ex-
+                                                                     on which to train the statistical models, represents a major ob-
+pert knowledge, but instead relies on universal resources (such
+                                                                     stacle to creating a TTS system for a new target language and re-
+as the Unicode character database) and unsupervised learning
+                                                                     quires highly specialised knowledge. Such non-trivial tasks in-
+from unannotated data to ease system development. The acqui-
+                                                                     clude, for example, specifying a phoneme-set or part of speech
+sition of expert language-specific knowledge and expert anno-
+                                                                     (POS) tag-set for a language where one has not already been de-
+tated data is a major bottleneck in the development of corpus-
+                                                                     fined; annotating plain text with POS tags, as required to train
+based TTS systems in new languages. The methods presented
+                                                                     a POS tagger and annotating the surface forms of words with
+here side-step the need for such resources as pronunciation lex-
+                                                                     phonemes to build a pronunciation lexicon.
+icons, phonetic feature sets, part of speech tagged data, etc. The
+paper explains how the techniques introduced are applied to the           The toolkit we are developing in Simple4All includes tools
+14 languages of a corpus of ‘found’ audiobook data. Results of       for constructing TTS front-ends which make as few implicit as-
+an evaluation of the intelligibility of the systems resulting from   sumptions about the target language as possible, and which can
+applying these novel techniques to this data are presented.          be configured with minimal effort and expert knowledge to suit
+Index Terms: multilingual speech synthesis, unsupervised             arbitrary new target languages. To this end, the modules rely on
+learning, vector space model, text-to-speech, audiobook data         resources which are intended to be universal, such as the Uni-
+                                                                     code character database, and employ unsupervised learning so
+                        1. Introduction                              that unlabelled text resources can be exploited without the need
+                                                                     for costly annotation. The current paper presents these tools
+Collecting and annotating the data necessary for training a          and explains how they were applied to the data of the Tundra
+corpus-based text-to-speech (TTS) conversion system in a new         corpus to produce TTS systems in 14 languages. We present
+language requires considerable time and expert knowledge.            the results of a listening test of the intelligibility of those sys-
+Conventionally, audio data for training a synthesiser back-end       tems, and thus evaluate the entire pipeline implemented by our
+(or waveform generator) will be gathered during a specially-         toolkit, which begins with raw found data and ends with trained
+arranged recording session. For this, a recording script must be     TTS systems. An initial public version of tools for this whole
+prepared, a suitable studio must be found, a voice talent must       pipeline (for segmenting and aligning found data and for pro-
+be recruited and speech recording must be carefully supervised.      ducing TTS systems with minimal expert knowledge) is due to
+One of the primary goals of the Simple4All1 project is to reduce     be released in November 2013.
+the time and expert knowledge needed to produce new TTS sys-
+tems. In [1] we presented a toolkit – developed as part of this           In prior work addressing the bottleneck in TTS system con-
+project – for segmenting and aligning existing freely-available      struction represented by the front-end, unified systems aimed at
+recordings (audiobooks), circumventing to some extent the need       producing complete systems have generally taken the strategy
+to engineer purpose-recorded speech corpora. The outcome of          of providing infrastructure to ease the collection by non-experts
+applying those tools to audiobooks in 14 languages is what we        of the conventional resources necessary for system construc-
+have released under the name of the Tundra corpus.                   tion. This infrastructure might take the form of user-friendly de-
+     However, the problems associated with TTS data-collection       velopment environments [2], or training and on-going support
+do not stop when we have obtained transcribed speech data for        [3]. Prior work has also presented unsupervised methods for
+training a synthesiser back-end. TTS systems also require a          building systems based on letters rather than phonemes [4, 5],
+front-end (or text analysis module), which accepts input text        induction of phone-sets [6, 7], syllable-like units [8, 9], or lexi-
+and outputs a representation of an utterance suitable for input      cons [10]. However, this work has not been presented as an inte-
+into the back-end. TTS systems generally represent utterances        grated framework for producing end-to-end TTS systems. Fur-
+in terms of units and features based on linguistic knowledge,        thermore, despite the significant work on unsupervised learning
+such as phonemes, syllables, lexical stress, phrase boundaries       in Natural Language Processing [11, 12] and Information Re-
+etc. The components of the front-end that predict these from         trieval [13, 14], potentially useful techniques developed in those
+                                                                     fields have not been applied to the problem of TTS front-end in-
+   1 www.simple4all.org/                                             duction.
+
+
+                                                                                                                                        101
+
+
+O. Watts, A. Stan, R. Clark, Y. Mamiya, M. Giurgiu, J. Yamagishi, S. King
+
+                           2. Database                                   ergy and spectral tilt – approximated by 1st mel cepstral co-
+                                                                         efficient) are obtained, from which utterance-level features are
+   The Tundra corpus [1] is a standardised multilingual corpus de-
+                                                                         computed. The fact that no thresholds need to be manually
+   signed for text-to-speech research with imperfect or found data.
+                                                                         tuned means that we can afford to use a great many more fea-
+   It consists of 14 audiobooks in 14 different languages (Bulgar-
+                                                                         tures than the 9 employed in [18]. Our feature set is based on
+   ian, Danish, Dutch, English, Finnish, French, German, Hungar-
+                                                                         the one described in [20]: we compute mean, standard devia-
+   ian, Italian, Polish, Portuguese, Romanian, Russian and Span-
+                                                                         tion, range, slope, minimum and maximum (6-level factor) for
+   ish) and amounts to approximately 60 hours of speech. A com-
+                                                                         F 0, spectral tilt, and energy (3-level factor) in the following
+   plete list of the audiobooks with their sources and durations can
+                                                                         sub-segments of each utterance: entire utterance, 1st and 2nd
+   be found here http://tundra.simple4all.org.
+                                                                         halfs, all 4 quarters, first and last 100ms, first and last 200ms
+        The corpus provides utterance-level alignments obtained
+                                                                         (11-level factor), giving a total of 198 features.
+   with a lightly supervised process described in [15] and [16].
+                                                                              2) Initial labelling The user is presented with the audio
+   The accuracy of the alignment method, as described in [16] is of
+                                                                         of s randomly-selected seed utterances from the whole corpus
+   7% SER and 0.8% WER, therefore some light post-processing
+                                                                         (via a text-based user interface) and asked to label them keep or
+   is required in order to eliminate some of the erroneous utter-
+                                                                         discard – utterances are labelled with the user’s decision.
+   ances. Initial segmentation of the audiobooks into utterance-
+                                                                              3) Classifier training A classifier is trained on the labelled
+   size chunks was performed using the lightly supervised GMM-
+                                                                         examples. Our choice of classifier is a bagged ensemble of deci-
+   based VAD described in [17]. As most of the used audiobooks
+                                                                         sion trees [21] because it can be trained quickly (allowing online
+   are recorded in non-specialised environments, the speech data
+                                                                         active learning in real time), is robust against noisy features and
+   underwent a light cleaning process: normalising the DC offset,
+                                                                         able to accept unnormalised input variables, and mixtures of
+   applying a multi-band noise gate removal and an RMS-based
+                                                                         discrete and continuous input variables (allowing a great many
+   deverberation method, as described in [1].
+                                                                         different acoustic features to be used, and different types of fea-
+                                                                         tures), allows the space of utterances to be partitioned recur-
+                  3. System Construction                                 sively (enabling complex interactions between features to be
+   For each of the 14 languages of the Tundra corpus, a TTS sys-         detected), and provides robust estimates of class probabilities
+   tem was trained with no reliance of language-specific expertise.      (important for step 4).
+   Although speaker and recording differences mean that mean-                 4) Uncertainty sampling The set of u uncertain examples
+   ingful comparison between languages is difficult, we wished to        (utterances about which the classifier is most uncertain – in the
+   make the training conditions for the 14 voices as uniform as          present case, the utterances which have closest to 0.5 keep prob-
+   possible. Therefore, we selected a 1 hour subset of each of the       ability). The utterances in this set are presented to the user for
+   languages’ data on which to train voices for this evaluation: the     labelling.
+   method of data selection we used is explained in Section 3.1.              5) Steps 3 and 4 are repeated as many times as time allows.
+   Then text analysis and waveform generation components were                 6) The set of utterances either labelled keep by the user are
+   trained on that selected data as explained in Sections 3.2 and        kept for training, as well as enough of the utterances to which
+   3.3, respectively.                                                    the trained classifier gives the highest keep probability to, to
+                                                                         make up the desired quantity of training data.
+   3.1. Lightly-supervised data selection                                     For the work presented here, s was set to 15 and u was set
+                                                                         to 1. That is, the user was asked to provide 15 labels at the
+   Our principal current interest in audiobook data is that it           outset, and presented with a single uncertain example at each
+   presents a source of ‘found’ data from which TTS training             iteration. The stopping criterion we used in this work was to
+   databases can be harvested without the need to construct a            limit the number of iterations to 15 – in the present, utterance
+   recording script, recruit a native speaker of the target language,    selection time was limited to approximately 20 minutes per lan-
+   and supervise the recording of a script from scratch. In the          guage, and 15 was found to be a reasonable number of itera-
+   present work, therefore, we ignore the other possible advan-          tions in that time. Informal comparison suggested the approach
+   tage of using audiobook data: that harnessing the variety of          outlined is beneficial for this task, but in ongoing work we are
+   speaking styles present in audiobooks might enable us to pro-         testing this rigorously and comparing uncertainty sampling with
+   duce less ‘mechanical’-sounding TTS systems. Although this            random sampling, as well as applying our active learning tool
+   is a longer-term goal, we here follow an approach similar to the      to other TTS tasks.
+   one presented in [18], which aims to select a neutral subset of a
+   database containing diverse speech. In that paper, 9 utterance-
+                                                                         3.2. Front-end construction with unsupervised learning
+   level acoustic features are used along with several textual cues
+   to exclude diverse speech from the training set. Thresholds over      The TTS front-end building tools used for this work are based
+   these features are set manually by the system builder to exclude      on ideas outlined in [22] and applied to Spanish TTS in [23].
+   non-neutral utterances.                                               Input to the system consists of the audio of utterances selected
+        For the current work we perform utterance selection using        as described in Section 3.1, together with their text transcrip-
+   an active learning approach, with uncertainty sampling [19].          tion (aligned at the utterance level): in the present case, these
+   Rather than being required to tune thresholds manually, the sys-      are taken from the Tundra corpus, and had been obtained as
+   tem builder is presented with example utterances and asked to         summarised in Section 2. As an additional input, 5 million
+   indicate whether or not they are spoken in a neutral style. The       words of running text data were obtained from Wikipedia in
+   interface therefore insulates the user from the details of the fea-   the target languages for construction of the word- and letter-
+   tures used, and lets the user focus on what should be key: their      representations described below.
+   intuitive response to hearing speech samples. The procedure we            Text which is input to the system is assumed to be UTF-8
+   used is as follows:                                                   encoded: given UTF-8 text, text processing is fully automatic
+        1) Feature extraction First, frame-level features (F0 , en-      and makes use of a theoretically universal resource: the Uni-
+
+
+102
+
+
+                                 8th ISCA Speech Synthesis Workshop • August 31 – September 2, 2013 • Barcelona, Spain
+
+
+
+
+                                                                                      Letter < -0.03 in
+                                                                                     VSM dimension 3?
+
+
+
+
+Figure 1: Use of a letter space to replace phonetic knowledge in decision-tree based state-tying. Shown here are 2 dimensions of the
+actual letter space induced in training the Romanian system described in the paper. The 3 lines bisecting the space represent the 3
+questions actually asked in the uppermost fragment (first three ‘generations’) of the state-tying decision tree for the central state of the
+model for spectral envelope features. Letters shown in black are ‘heard’ by the system (i.e. are present in the transcriptions of the audio
+training data) but ones shown in grey are only ‘seen’ (i.e. appear only in textual training data) and are mainly foreign language letters.
+
+
+code database. Unicode character properties are used to to-               occurrence counts by the application of slim singular value de-
+kenise the text and characterise tokens as words, whitespace,             composition. This distributional analysis places textual objects
+punctuation etc. Our modules have so far been successfully                in a continuous-valued space, which is then partitioned by de-
+applied to a variety of alphabetic (Latin-based, Cyrillic) and            cision tree questions during the training of TTS system compo-
+alphasyllabic (Brahmic) scripts. Our front-ends currently ex-             nents such as acoustic models for synthesis or decision trees for
+pect text without abbreviations, numerals, and symbols (e.g. for          pause prediction. For the present voices, a VSM of letters was
+currency) which require expansion; however, the lightly super-            constructed by producing a matrix of counts of immediate left
+vised learning of modules to expand such non-standard words               and right co-occurrences of each letter type, and from this ma-
+is an active topic of research [24], and we hope to integrate such        trix a 5-dimensional space was produced to characterise letters.
+modules into our toolkit in the near future.                              Token co-occurrence was counted with the nearest left and right
+     A letter-based approach is used, in which the names of let-          neighbour tokens (excluding whitespace tokens); co-occurrence
+ters are used directly as the names of speech modelling units (in         was counted with the most frequent 250 tokens in the corpus. A
+place of the phonemes of a conventional front-end). This has              10-dimensional space was produced to characterise tokens.
+given good results for languages with transparent alphabetic or-               Two dimensions of the letter space induced in training the
+thographies such as Romanian, Spanish and Finnish, and can                Romanian system are shown in Figure 1. It can be seen that
+give acceptable results even for languages with less transparent          in these dimensions of the space, vowel and consonant symbols
+orthographies, such as English [22, 4, 5, 7].                             are clearly separable. When a decision tree for clustering acous-
+     The induced front-ends make use of no expert-specified cat-          tic model states is built and allowed to query items’ positions in
+egories of letter and word, such as phonetic categories (vowel,           these 2 dimensions, it can use all partitions of the space orthog-
+nasal, approximant, etc.) and part of speech categories (noun,            onal to its axes. A decision tree question such as Is the letter’s
+verb, adjective, etc.). Instead, features that are designed to stand      value in VSM dimension 3 < -0.03? is very nearly equivalent
+in for such expert knowledge but which are derived fully auto-            to a question based on linguistic knowledge such as Is the letter
+matically from the distributional analysis of unannotated text            a consonant? The categories of vowel and consonant are use-
+(speech transcriptions and Wikipedia text) are used. The distri-          ful for clustering acoustic models, and so decision trees actually
+butional analysis is conducted via vector space models (VSMs);            built using this space use such partitions of the space: the 3 lines
+the VSM was originally applied to the characterisation of doc-            shown bisecting the space in the figure represent the 3 questions
+uments for purposes of Information Retrieval. VSMs are ap-                actually asked in the uppermost fragment (first three ‘genera-
+plied to TTS in [22], where models are built at various levels            tions’) of the state-tying decision tree for the central state of the
+of analysis (letter, word and utterance) from large bodies of             model for spectral envelope features.
+unlabelled text. To build these models, co-occurrence statis-                  Distributional analysis places linguistic or textual units in
+tics are gathered in matrix form to produce high-dimensional              a continuous space which is then partitioned on acoustic evi-
+representations of the distributional behaviour of e.g. word and          dence. The space constrains the possible groupings of objects
+letter types in the corpus. Lower-dimensional representations             that can be considered during decision tree growing. Distribu-
+are obtained by approximately factorising the matrix of raw co-           tional analysis also allows splits made to generalise to items
+
+
+                                                                                                                                              103
+
+
+O. Watts, A. Stan, R. Clark, Y. Mamiya, M. Giurgiu, J. Yamagishi, S. King
+
+   that are ‘seen’ by the system in text data but not ‘heard’ in the
+   audio data. This is most obviously useful where units such as
+   words are concerned, where many items not present in the train-
+   ing speech corpus are likely to occur at run-time. It can, how-
+   ever, also be useful where letters are concerned, and some ex-
+   amples that illustrate our models’ ability to generalise beyond
+   what is heard can be seen in the letter space shown in Figure
+   1. There, letters shown in black are ‘heard’ by the system but
+   ones shown in grey are only ‘seen’ – these are mainly due to
+   foreign language words within Romanian Wikipedia entries. It
+   can be seen that unheard foreign vowels such as á and ö are
+   suitably placed near the Romanian vowels, and unheard conso-
+   nants such as ß and q are placed near the consonants that are
+   actually heard. Splits such as those shown – made only on the
+   basis of the heard items – therefore generalise to unheard items.
+   In the case of letters, this allows rare and foreign letters to be
+   handled despite their absence in the transcriptions of acoustic
+   training data. It can also allow better handling of non-standard
+   spellings: in the case of the vowel î (i with circumflex), there        Figure 2: Demo screenshot: this geographical interface to
+   is a variant (with inverted breve instead of circumflex) which is       voices can be found at http://tundra.simple4all.
+   not present in any of the speech transcriptions but which is used       org/demo.
+   in a few Wikipedia articles. From Figure 1 it can be seen that al-
+   most identical representations are learned for these two letters,
+   meaning a decision tree built using those representations will
+   be able to handle the variant form correctly at run-time, even
+                                                                                           4. System Evaluation
+   though no instances of that variant were seen in the transcrip-         4.1. Procedure
+   tion of the speech training corpus.
+                                                                           We are primarily interested in having our systems produce intel-
+        The front ends make use of decision trees to predict pauses        ligible speech; evaluation therefore focused on the intelligibil-
+   at the junctures between words. Data for training these trees           ity of TTS output as measured by the word and letter error rates
+   are acquired automatically by force-aligning the training data          of listeners’ transcriptions of those outputs. Conventionally in
+   with their transcriptions, and allowing the optional insertion of       TTS evaluation, listeners are asked to transcribe semantically
+   silence between words. The independent variables used by the            unpredictable sentences (SUS) [28]. However, such SUS are
+   trees are whether words are separated by punctuation or space,          not currently available in all the Tundra languages and it is not
+   and the VSM features of the tokens preceding and following the          trivial to construct new SUS, and so we resorted to using short
+   juncture.                                                               natural sentences from the held-out test sets of the Tundra cor-
+                                                                           pus.
+        A rich set of contexts is created using the results of the anal-
+   ysis described here for each letter token in the database. Fea-              For all 14 Tundra languages, 40 sentences were manually
+   tures include the identity of the letter and the identities of its      segmented from the held-out chapters of the relevant audio-
+   neighbours (within a 5-letter window), the VSM values of each           book. Note that these test sets are distributed with the Tundra
+   of those letters, and the distance from and until a word bound-         corpus, and so the results presented below can be considered
+   ary, pause, and utterance boundary. In the current systems, word        benchmarks for future work. An attempt was made to select
+   VSM features are not included directly in the letter contexts, but      sentences of 6–8 words in order to make the inherent difficulty
+   are used by the decision tree for predicting pauses at runtime.         of transcription as uniform as possible. However, in some lan-
+                                                                           guages these thresholds had to be relaxed; Table 1 gives statis-
+                                                                           tics of test-sentence lengths in all languages.
+   3.3. Back-end construction                                                   Subjects for the evaluation were recruited through a web-
+                                                                           based crowdsourcing service. The advert for the evaluation
+   For training the waveform generation modules for the 14 voices,         specified that native speakers of the relevant language were re-
+   the waveforms of the training corpora were parameterised al-            quired; in addition, participation in each part of the evaluation
+   most as described in [25]. The one difference is that instead           was restricted to users registered in countries where the relevant
+   of the committee of different pitch-trackers used in the earlier        language is an official or majority language. We attempted to
+   work, pitch tracks obtained from a glottal source signal esti-          recruit listeners to evaluate all 14 systems built. However, as
+   mated by glottal inverse filtering [26] were used for their greater     the option to restrict participation to workers registered in Den-
+   accuracy.                                                               mark, Finland and Hungary was not available in the service we
+                                                                           used, listening test for only 11 of the systems were publicised.
+       For all systems, speaker-dependent acoustic models were
+                                                                           The number of responses from participants varied greatly be-
+   built from this parameterised speech data and the annotation
+                                                                           tween languages. At the time of writing, responses from a suf-
+   described in Section 3.2, using the speaker-dependent model-
+                                                                           ficient number of listeners (25+) had been collected in only 5
+   building recipe described in [27].
+                                                                           of the languages (Bulgarian, English, Italian, Polish and Ro-
+       Static and interactive demos of the resulting voices are            manian) . Results for these five languages are presented here;
+   available at http://tundra.simple4all.org/demo.                         evaluation of the remaining voices is left for future work.
+   A screen shot of the geographically-organised demo page is                   In all languages, two conditions were evaluated: the nat-
+   shown in Figure 2.                                                      ural speech of the natural sentences from the test set, and the
+
+
+104
+
+
+                                8th ISCA Speech Synthesis Workshop • August 31 – September 2, 2013 • Barcelona, Spain
+
+Table 1: Statistics of Tundra test-sentence lengths (number of
+                                                                                                                   51.9                         Natural speech
+words)                                                                                     50                                                   Synthetic speech
+            Language Mean Standard deviation
+            German       6.63           0.87
+            Finnish      6.8            0.91
+                                                                                           40
+
+
+
+
+                                                                     Word error rate (%)
+            Bulgarian 6.85              0.83
+            English      6.88           0.94
+                                                                                           30
+            Italian      6.9            0.87
+            Polish       6.95           0.88
+            Hungarian 7.05              0.81
+                                                                                           20                                    18.2
+            Russian      7.13           1.18
+            Danish       7.4            1.19
+                                                                                                     14.8
+                                                                                                            11.7          10.8                 10.6          12.0
+            Portuguese 8.08             1.47
+                                                                                           10 9.59                                      8.24          8.72
+            Dutch        8.1            2.15
+            Romanian 8.55               1.97
+            French       8.58           1.96                                                    Bulgarian    English       Italian       Polish       Romanian
+                                                                                                                            Language
+            Spanish      8.8            1.65
+                                                                            Figure 3: Word error rates for TTS systems and natural speech
+                                                                            for 5 of the 14 systems built from the Tundra corpus.
+TTS system reading the same text. In the four languages of
+the Simple4All consortium members (including two of the lan-
+guages for which results are presented here: Romanian and En-               than those for natural sentences: 24.8% and 69.4% for Roma-
+glish), however, SUS were available, and so for those languages             nian and English, respectively.
+a third condition was evaluated: the TTS system producing SUS
+texts. This is designed to provide a way of broadly gauging the
+relative difficulty of transcribing natural and SUS sentences, al-                                                 5. Conclusions
+though language and text differences mean it is obviously not               We have presented tools for building TTS front-ends in a way
+advisable to treat extrapolation of the differences to the remain-          that exploits unsupervised learning techniques to side-step the
+ing languages with any great confidence.                                    need for language-specific expert knowledge and resources such
+     The evaluation was run as a set of webpages where partici-             as pronunciation lexicons, phoneme inventories and part of
+pants were asked – using headphones – to listen to the samples              speech taggers. We have shown how the tools were applied
+and to type in what they heard. Multiple listens were allowed               to the languages of the Tundra corpus to produce TTS sys-
+as some of the the natural sentences were longer than the short             tems in 14 languages. As we had previously built the Tun-
+SUS we would typically use. For the first two conditions, a bal-            dra corpus from found data using minimal supervision and lan-
+anced design was used so that each listener heard each utterance            guage specific knowledge, these TTS systems represent the out-
+text only once, while each text was heard an equal number of                put of our entire pipeline of tools, and show the type of voice
+times in both conditions over the whole evaluation. Each lis-               which any interested developer should be able to build using
+tener heard 20 sentences spoken in each condition. For English              our toolkit (which will be made freely available) despite a lack
+and Romanian where the SUS condition was also included, lis-                of language-specific or speech technology expertise, if a source
+teners heard a further set of 20 SUS sentences.                             of speech and text data can be found. Five of the voices were
+                                                                            evaluated in a listening test for intelligibility, which we con-
+                                                                            sider to show that systems of reasonable quality can be built by
+                                                                            applying our tools to publicly available audiobook data, assum-
+4.2. Results
+                                                                            ing orthographies of similar transparency to those of Bulgarian,
+Word error rates for the first 2 conditions are shown in Figure 3.          Italian, Polish and Romanian. While evaluation of the remain-
+For all languages besides English, a similar pattern can be ob-             ing systems that can be heard in the demo is still ongoing, the
+served: listeners’ transcriptions of natural speech attain a WER            results for five languages published here – having been obtained
+of 8–12%, and in all cases the TTS system attain WERs approx-               from a standardised, publicly available corpus – are intended to
+imately 1.5 times worse. This is consistent with the difference             be useful benchmarks against which future work can be com-
+between WERs for natural speech and decent benchmark sys-                   pared.
+tems in larger scale evaluations on standard corpora. For exam-
+ple, natural speech and the Festival benchmark system attained                                              6. Acknowledgements
+WERs of 17% and 25% respectively in the 2011 Blizzard Chal-
+lenge evaluation [29]. The results for English are the exception            The research leading to these results has received funding from
+to the general pattern: the WER for synthetic speech is over 4              the European Community’s Seventh Framework Programme
+times worse than that of natural speech. From prior knowledge               (FP7/2007-2013) under grant agreement No 287678.
+and from looking at listeners’ transcriptions, it seems clear that               The research presented here has made use of the resources
+this is due to the fact that TTS is based on letters in a language          provided by the Edinburgh Compute and Data Facility (ECDF:
+with such an opaque letter-to-sound relationship. In all lan-               http://www.ecdf.ed.ac.uk). The ECDF is partially
+guages except Polish, the difference between the first two con-             supported by the eDIKT initiative (http://www.edikt.
+ditions (natural speech and TTS) found to be statistically signif-          org.uk).
+icant (with α = 0.05) using the bootstrap procedure of [30].                     Thanks to Vasilis Karaiskos for setting up the webpages for
+     As expected, WERs for the SUS sentences are much higher                the listening test.
+
+
+                                                                                                                                                                    105
+
+
+O. Watts, A. Stan, R. Clark, Y. Mamiya, M. Giurgiu, J. Yamagishi, S. King
+
+                             7. References                                     [21] L. Breiman, “Bagging predictors,” Machine Learning, vol. 24, pp.
+                                                                                    123–140, 1996.
+      [1] A. Stan, O. Watts, Y. Mamiya, M. Giurgiu, R. A. J. Clark, J. Yam-
+          agishi, and S. King, “TUNDRA: A Multilingual Corpus of Found         [22] O. Watts, “Unsupervised learning for text-to-speech synthesis,”
+          Data for TTS Research Created with Light Supervision,” in Proc.           Ph.D. dissertation, University of Edinburgh, 2012.
+          of Interspeech (accepted), 2013.                                     [23] J. Lorenzo-Trueba, O. Watts, R. Barra-Chicote, J. Yamagishi,
+      [2] J. Kominek, T. Schultz, and A. W. Black, “Voice building from in-         S. King, and J. M. Montero, “Simple4All proposals for the Al-
+          sufficient data – classroom experiences with web-based language           bayzin Evaluations in Speech Synthesis,” in Proc. Iberspeech
+          development tools,” in Proc. 6th ISCA Speech Synthesis Work-              2012, 2012.
+          shop, Bonn, Germany, 2007, pp. 322–327.                              [24] R. San-Segundo, J. M. Montero, V. Lopez-Ludeña, and S. King,
+      [3] R. Tucker and K. Shalonova, “Supporting the creation of TTS for           “Detecting acronyms from capital letter sequences in Spanish,” in
+          local language voice information systems,” in Proc. Interspeech           Proc. Interspeech, Portland, Oregon, USA, Sep. 2012.
+          2005, Lisbon, Portugal, Sep. 2005, pp. 453–456.
+                                                                               [25] J. Yamagishi and O. Watts, “The CSTR/EMIME HTS System
+      [4] A. Black and A. Font Llitjos, “Unit selection without a phoneme           for Blizzard Challenge,” in Proc. Blizzard Challenge 2010, Sep.
+          set,” in IEEE TTS Workshop 2002, 2002.                                    2010.
+      [5] G. Anumanchipalli, K. Prahallad, and A. Black, “Significance of      [26] T. Raitio, A. Suni, J. Yamagishi, H. Pulakka, J. Nurminen,
+          early tagged contextual graphemes in grapheme based speech syn-           M. Vainio, and P. Alku, “HMM-based speech synthesis utilizing
+          thesis and recognition systems,” in Acoustics, Speech and Signal          glottal inverse filtering,” IEEE Transactions on Audio, Speech and
+          Processing, 2008. ICASSP 2008. IEEE International Conference              Language Processing, vol. 19, no. 1, pp. 153–165, Jan. 2011.
+          on, 31 2008-April 4 2008, pp. 4645–4648.
+                                                                               [27] H. Zen, T. Toda, M. Nakamura, and K. Tokuda, “Details of Nitech
+      [6] J. Černocký, “Speech processing using automatically derived seg-         HMM-based speech synthesis system for the Blizzard Challenge
+          mental units: Applications to very low rate coding and speaker            2005,” IEICE Trans. Inf. & Syst., vol. E90-D, no. 1, pp. 325–333,
+          verification,” Ph.D. dissertation, Universite Paris-Sud, Dec 1998.        Jan. 2007.
+      [7] M. P. Aylett, S. King, and J. Yamagishi, “Speech synthesis without   [28] C. Benoit, M. Grice, and V. Hazan, “The SUS test: A method
+          a phone inventory,” in Interspeech, 2009, pp. 2087–2090.                  for the assessment of text-to-speech synthesis intelligibility using
+      [8] P. Mermelstein, “Automatic segmentation of speech into syllabic           Semantically Unpredictable Sentences,” Speech Communication,
+          units,” The Journal of the Acoustical Society of America, vol. 58,        vol. 18, no. 4, pp. 381 – 392, 1996.
+          no. 4, pp. 880–883, 1975.                                            [29] S. King and V. Karaiskos, “The blizzard challenge 2011,” in Proc.
+      [9] Z. Xie and P. Niyogi, “Robust acoustic-based syllable detection,”         Blizzard Challenge 2011, sep 2011.
+          in Proceedings of the ICSLP, International Conference on Spoken      [30] M. Bisani and H. Ney, “Bootstrap estimates for confidence inter-
+          Language Processing, 2006.                                                vals in ASR performance evaluation,” in Proc. ICASSP ’04, vol. 1,
+   [10] J. Kominek, “Tts from zero: Building synthetic voices for new               2004, pp. 409–12.
+        languages,” Ph.D. dissertation, Carnegie Mellon University, 2009.
+   [11] M. Creutz and K. Lagus, “Unsupervised models for morpheme
+        segmentation and morphology learning,” ACM Trans. Speech
+        Lang. Process., vol. 4, no. 1, pp. 3:1–3:34, Feb. 2007.
+   [12] C. Christodoulopoulos, S. Goldwater, and M. Steedman, “Two
+        decades of unsupervised POS induction: How far have we come?”
+        in Proceedings of the 2010 Conference on Empirical Methods in
+        Natural Language Processing, October 2010, pp. 575–584.
+   [13] D. M. Blei, A. Y. Ng, and M. I. Jordan, “Latent Dirichlet alloca-
+        tion,” J. Mach. Learn. Res., vol. 3, pp. 993–1022, March 2003.
+   [14] S. Deerwester, S. T. Dumais, G. W. Furnas, T. K. Landauer, and
+        R. Harshman, “Indexing by latent semantic analysis,” Journal of
+        the American Society for Information Science, vol. 41, pp. 391–
+        407, 1990.
+   [15] A. Stan, P. Bell, and S. King, “A grapheme-based method for auto-
+        matic alignment of speech and text data,” in Proc. IEEE Workshop
+        on Spoken Language Technology, Miami, Florida, USA, 2012.
+   [16] A. Stan, P. Bell, J. Yamagishi, and S. King, “Lightly Super-
+        vised Discriminative Training of Grapheme Models for Improved
+        Sentence-level Alignment of Speech and Text Data,” in Proc. of
+        Interspeech (accepted), 2013.
+   [17] Y. Mamiya, J. Yamagishi, O. Watts, R. A. Clark, S. King, and
+        A. Stan, “Lightly Supervised GMM VAD to use Audiobook for
+        Speech Synthesiser,” in Proc. ICASSP, 2013.
+   [18] N. Braunschweiler and S. Buchholz, “Automatic sentence selec-
+        tion from speech corpora including diverse speech for improved
+        HMM-TTS synthesis quality,” in Proc. Interspeech, Florence,
+        Italy, Aug. 2011, pp. 1821–1824.
+   [19] D. D. Lewis and W. A. Gale, “A sequential algorithm for training
+        text classifiers,” in Proceedings of the 17th annual international
+        ACM SIGIR conference on Research and development in informa-
+        tion retrieval.
+   [20] G. Murray, S. Renals, and M. Taboada, “Prosodic correlates of
+        rhetorical relations,” in Proceedings of HLT/NAACL ACTS Work-
+        shop, 2006, New York City, USA, Jun. 2006.
+
+
+106
+

@@ -1,0 +1,445 @@
+                             Multilingual Text Analysis for Text-to-Speech Synthesis
+                                                                                            Richard Sproat1
+
+
+                       Abstract. We present a model of text analysis for text-to-speech                     One problem with this approach is that in many cases the selection
+                       (TTS) synthesis based on (weighted) finite-state transducers, which              of the correct linguistic form for a ‘normalized’ item cannot be chosen
+                       serves as the text-analysis module of the multilingual Bell Labs                 before one has done a certain amount of linguistic analysis. Consider
+                       TTS system. The transducers are constructed using a lexical toolkit              an example that is problematic for the Bell Laboratories American
+                       that allows declarative descriptions of lexicons, morphological rules,           English TTS system, a system that treats text normalization prior to,
+                       numeral-expansion rules, and phonological rules, inter alia. To date,            and separately from, the rest of linguistic analysis. If one encounters
+                       the model has been applied to eight languages: Spanish, Italian, Ro-             the string $5 in an English text, the normal expansion would be five
+                       manian, French, German, Russian, Mandarin and Japanese.                          dollars. But this expansion is not always correct: when functioning as
+                                                                                                        a prenominal modifier, as in the phrase $5 bill, the correct expansion
+cmp-lg/9608012 19 Aug 1996
+
+
+
+
+                                                                                                        is five dollar, since in general plural noun forms cannot function as
+                       1     Introduction                                                               modifiers in English. The analysis of complex noun phrases in the
+                       The first task faced by any text-to-speech (TTS) system is the con-              American English system (cf. [14]) comes later than the preprocessing
+                       version of input text into an internal linguistic representation. This is        phase, and since a hard decision has been made in the earlier phase,
+                       in general a complex task since the written form of any language is at           the system produces an incorrect result.
+                       best an imperfect representation of the corresponding spoken forms.                  An even more compelling example can be found in Russian. While
+                       Among the problems that one faces in handling ordinary text are the              in English the percentage symbol ‘%’, when denoting a percentage, is
+                       following:                                                                       always read as percent, in Russian selecting the correct form depends
+                                                                                                        on complex contextual factors. The first decision that needs to be
+                    1. While a large number of languages delimit words using whites-                    made is whether or not the number-percent string is modifying a fol-
+                       pace or some other device, some languages, such as Chinese and                   lowing noun. Russian in general disallows noun-noun modification:
+                       Japanese do not. One is therefore required to ‘reconstruct’ word                 in constructions equivalent to noun-noun compounds in English, the
+                       boundaries in TTS systems for these languages.                                   first noun must be converted into an adjective: thus rog ‘rye’, but
+                    2. Digit sequences need to be expanded into words, and more gen-                    rzhanoj xleb (rye+adj bread) ‘rye bread’. This general constraint ap-
+                       erally into well-formed number names: so 243 in English would                    plies equally to procent ‘percent’, so that the correct rendition of
+                       generally be expanded as two hundred and forty three.                            20% skidka ‘twenty percent discount’ is dvadcati-procentnaja skidka
+                    3. Abbreviations need to be expanded into full words. In general this               (twenty[gen] -percent+adj[nom;sg;fem] discount[nom;sg;fem] ). Note that not
+                       can involve some amount of contextual disambiguation: so kg. can                 only does procent have to be in the adjectival form, but as with any
+                       be either kilogram or kilograms, depending upon the context.                     Russian adjective it must also agree in number, case and gender with
+                    4. Ordinary words and names need to pronounced. In many lan-                        the following noun. Observe also that the word for ‘twenty’ must oc-
+                       guages, this requires morphological analysis: even in languages                  cur in the genitive case. In general, numbers which modify adjectives
+                       with fairly ‘regular’ spelling, morphological structure is often cru-            in Russian must occur in the genitive case: consider, for example,
+                       cial in determining the pronunciation of a word.                                 etazh ‘storey’, and dvux-etazhnyj (two[gen] -storey+adj[nom;sg;masc] ). If
+                    5. Prosodic phrasing is only sporadically indicated (by punctuation                 the percentage expression is not modifying a following noun, then the
+                       marks) in the input, and phrasal accentuation is almost never indi-              nominal form procent is used. However this form appears in different
+                       cated. At a minimum, some amount of lexical analyis (in order to                 cases depending upon the number it occurs with. With numbers end-
+                       determine, e.g. grammatical part of speech) is necessary in order                ing in one (including compound numbers like twenty one), procent
+                       to predict which words to make prominent, and where to place                     occurs in the nominative singular. After so-called paucal numbers —
+                       prosodic boundaries.                                                             two, three, four and their compounds — the genitive singular procenta
+                                                                                                        is used. After all other numbers one finds the genitive plural procen-
+                          In many TTS systems the first three tasks — word segmentation,                tov. So we have odin procent (one percent[nom;sg] ), dva procenta (two
+                       and digit and abbreviation expansion — would be classed under the                percent[gen;sg] ), and pyat’ procentov (five percent[gen;pl] ). All of this,
+                       rubric of text normalization and would generally be handled prior to,            however, presumes that the percentage expression as a whole is in a
+                       and often in a quite differerent fashion from the last two problems,             non-oblique case. If the expression is in an oblique case, then both
+                       which fall more squarely within the domain of linguistic analysis2               the number and procent show up in that case, with procent being in
+                                                                                                        the singular if the number ends in one, and the plural otherwise: s
+                       1 Speech Synthesis Research Department, Bell Laboratories, Lucent Tech-          odnym procentom (with one[instr;sg;masc] percent[instr;sg]) ‘with one per-
+                         nologies, 700 Mountain Avenue, Room 2d-451, Murray Hill, NJ, USA,
+                         07974–0636, rws@bell-labs.com                                                  cent’; s pjat’ju procentami (with five[instr;pl] percent[instr;pl] ) ‘with five
+                       2 But see [17], which treats numeral expansion as an instance of morphological   percent’. As with the adjectival forms, there is nothing peculiar about
+                         analysis, and also the work of van Leeuwen [19], which uses cascaded           the behavior of the noun procent: all nouns exhibit similar behavior in
+                         rewrite rules within his TooL iP system towards the same ends.
+
+                        c 1996 R. Sproat
+                       ECAI 96. 12th European Conference on Artificial Intelligence
+                       Edited by W. Wahlster
+                       Published in 1996 by John Wiley & Sons, Ltd.
+
+
+combination with numbers (cf. [2]). The complexity, of course, arises                    minimal morphologically-motivated annotation (MMA) necessary to
+because the written form ‘%’ gives no indication of what linguistic                      pronounce the word. In this case, something like kostr0a would be
+form it corresponds to. Furthermore, there is no way to correctly ex-                    appropriate. Call this lexical-to-MMA transducer Lword ; such a trans-
+pand this form without doing a substantial amount of analysis of the                     ducer can be constructed by composing the lexical acceptor D with
+context, including some analysis of the morphological properties of                      M so that Lword = D  M . A transducer that maps from the MMA
+the surrounding words, as well as an analysis of the relationship of                     to the standard spelling kostra (kostra) would, among other things,
+the percentage expression to those words.                                                simply delete the stress marks: call this transducer S . The composition
+    The obvious solution to this problem is to delay the decision on                     Lword S , then computes the mapping from the lexical level to the sur-
+how exactly to transduce symbols like ‘$’ in English or ‘%’ in Russian                   face orthographic level, and its inverse (Lword  S ) 1 = S 1  Lword1
+
+until one has enough information to make the decision in an informed                     computes the mapping from the surface to all possible lexical repre-
+manner. This suggests a model where, say, an expression like ‘20%’                       sentations for the text word. A set of pronunciation rules compiled
+in Russian is transduced into all possible renditions, and the correct                   into a transducer (cf. [5] and below) P , maps from the MMA to the
+form selected from the lattice of possibilities by filtering out the illegal             (surface) phonological representation; note that by starting with the
+forms. An obvious computational mechanism for accomplishing this                         MMA, rather than with the more abstract lexical representation, the
+is the finite-state transducer(FST). Indeed, since it is well-known that                 pronunciation rules do not need to duplicate information that is con-
+FSTs can also be used to model (most) morphology and phonology                           tained in Lword anyway. Mapping from a single orthographic word to
+[9, 8, 13], as well as to segment words in Chinese text [16], and (as                    its pronunciation thus involves composing the acceptor representing
+                                                                                                                                        Lword  P (or more fully
+                                                                                                                                   1
+we shall argue below) for performing other text-analysis operations                      the word with the transducer S 1  Lword
+such as numeral expansion, this suggests a model of text-analysis                        as S 1  M 1  D  M  P ).
+that is entirely based on regular relations. We present such a model                         For textual elements such as numbers, abbreviations, and special
+below. More specifically we present a model of text analysis for                         symbols such as ‘%’, the model just presented seems less persuasive,
+TTS based on weighted FSTs (WFSTs) [12, 11], which serves as the                         because there is no aspect of a string, such as ‘25%’ that indicates
+text-analysis module of the multilingual Bell Labs TTS system. To                        its pronunciation: such strings are purely logographic — some might
+date, the model has been applied to eight languages: Spanish, Italian,                   even argue ideographic — representing nothing about the phonology
+Romanian, French, German, Russian, Mandarin and Japanese. One                            of the words involved.4 For these cases we presume a direct mapping
+property of this model which distinguishes it from most text-analyzers                   between all possible forms of procent, and the symbol ‘%’: call this
+used in TTS systems is that there is no sense in which such tasks as                     transducer Lperc , a subset of Lspecial symbol. Then Lperc 1
+                                                                                                                                                       maps from
+numeral expansion or word-segmentation are logically prior to other                      the symbol ‘%’ to the various forms of procent. In the same way, the
+aspects of linguistic analysis, and there is therefore no distinguished                                  1
+                                                                                         transducer Lnumbers      _ Lperc
+                                                                                                                       1
+                                                                                                                           maps from numbers followed by the
+‘text-normalization’ phase.                                                              sign for percent, into various possible (and some impossible) lexical
+                                                                                         renditions of that string — the various forms to be disambiguated
+                                                                                         using contextual information, as we shall show later on. Abbreviations
+2      Overall Architecture                                                              are handled in a similar manner: note that abbreviations such as kg
+Let us start with the example of the lexical analysis and pronunciation                  (kg) in Russian show the same complexity of behavior as procent.
+of ordinary words, taking again an example from Russian. Russian                             So far we have been discussing the mapping of single text words
+orthography is often described as ‘morphological’ [1], meaning that                      into their lexical renditions. The construction of an analyzer to han-
+the orthography represents not a surface phonemic level of represen-                     dle a whole text is based on the observation that a text is simply
+tation, but a more abstract level. This is description is correct, but from              constructed out of zero or more instances of a text word coming from
+the point of view of predicting word pronunciation, it is noteworthy                     one of the models described above — i.e., either an ordinary word,
+that Russian, with a well-defined set of lexical exceptions, is almost                   an abbreviation, a number, a special symbol, or possibly some com-
+completely phonemic in that one can predict the pronunciation of most                    bination of numbers with a special symbol; with each of these tokens
+words in Russian based on the spelling of those words — provided one                     separated by some combination of whitespace or punctuation. The
+knows the placement of word stress, since several Russian vowels un-                     structure of this model of lexical analysis is summarized in Figure 1.
+dergo reduction to varying degrees depending upon their position rela-                       We presume two models for space and punctuation. The model
+tive to stressed syllables. The catch is that word stress usually depends                Lspace
+                                                                                             1
+                                                                                                    , maps between interword space and its potential lexical
+upon knowing lexical properties of the word, including morphologi-                       realizations, usually a word boundary, but in some cases a higher-
+cal class information. To take a concrete example, consider the word                     level prosodic phrase boundary. Interword space is parameterized
+kostra (Cyrillic kostra) (bonfire+genitive.singular). This word be-                      so that in European languages, for example, it corresponds to actual
+longs to a class of masculine nouns where the word stress is placed                      whitespace, whereas in Chinese or Japanese,it corresponds to . Sim-
+on the inflectional ending, where there is one. Thus the stress pattern                  ilarly, the model Lpunc1
+                                                                                                                    maps between punctuation marks (possibly
+is kostr0a, and the pronunciation is /kstr0 /, with the first /o/ reduced              with flanking whitespace) and the lexical realization of those marks:
+to //. Let us assume that the morphological representation for this                     in many, though not all, cases the punctuation mark may correspond
+word is something like kostrfnoungfmascgfinang+0afsggfgeng,                              to a prosodic phrase boundary.
+where for convenience we represent phonological and morphosyn-                               The output of the lexical analysis WFST diagramed in Figure 1
+tactic information as part of the same string.3 Assuming a finite-state                  is a lattice of all possible lexical analyses of all words in the input
+model of lexical structure [9, 8], we can easily imagine a set of                        sentence. Obviously in general we want to remove contextually inap-
+transducers M that map from that level into a level that gives the                       popriate analyses, and to pick the ‘best’ analysis in cases where one
+                                                                                         cannot make a categorical decision. This is accomplished by a set of
+3   Conversion between a ‘flattened’ representation of this kind and a hierarchi-
+    cal representation more in line with standard linguistic models of morphol-          4   This is certainly not completely true in all such cases, as ‘mixed’ represen-
+    ogy and phonology is straightforward and we will not dwell on this issue                 tations such as 1st and 2nd suggest. But such cases are most easily treated
+    here.                                                                                    as also being logographic, at least in the present architecture.
+
+
+                                                                                    76                                                                       R. Sproat
+
+
+                                                            S   1
+                                                                    
+                                                                               1
+                                                                             Lword    _         Lpunc
+                                                                                                  1          
+
+                                                                    [                             [
+
+                                                                1
+                                                            Lspecial symbol                   Lspace
+                                                                                                  1
+
+
+                                                                    [
+
+                                                                  1
+                                                                Lnumbers
+                                                                        ..
+                                                                         .
+
+Figure 1. Overall structure of the lexical analysis portion. Note that space corresponds to whitespace in German or Russian, but  in Chinese or Japanese.
+
+
+
+
+one or more language model transducers — henceforth Λ — which are                         expressions into finite-state lexicons; a tool (paradigm) to construct
+derived from rules and other linguistic descriptions that apply to con-                   inflected morphological forms out of inflectional paradigm descrip-
+texts wider than the lexical word. Phrasal accentuation and prosodic                      tions and lexicons that mark the paradigm affiliation of stems; a tool
+phrasing are also handled by the language model transducers.5 The                         for constructing finite-state word grammars (arclist — the name be-
+output of composing the lexical analysis WFST with Λ is a lattice                         ing inspired by [18]); and a rewrite rule compiler [5], based on the
+of contextually disambiguated lexical analyses. The best-path of this                     algorithm described in [10].
+                                                                                                                                                   1
+lattice is then selected, using a Viterbi best path algorithm. Costs on                      The tool numbuilder constructs the transducer Lnumbers        , which
+the lattice may be costs hand-selected to disfavor certain lexical anal-                  converts strings of digits up to a user-defined length into number-
+yses — see the Russian percentage example detailed in a subsequent                        names appropriate for that string. The construction factors the prob-
+section; or they may be genuine data-derived cost estimates, as in the                    lem of numeral expansion into two subproblems. The first of these
+case of the Chinese lexical analysis WFST, where the costs corre-                         involves expanding the numeral sequence into a representation in
+spond to the negative log (unigram) probability of a particular lexical                   terms of sums of products of powers of the base — usually ten;
+entry [16]. Given the best lexical analysis, one can then proceed to                      call this the Factorization transducer. The second maps from this
+apply the phonological transducer (or set of transducers) P to the                        representation into number names using a lexicon that describes the
+lexical analysis, or more properly to the lexical analysis composed                       mapping between basic number words and their semantic value in
+with the lexical-to-MMA map M , as we saw above. Although the                             terms of sums of products of powers of the base; call this the Number
+lexical-to-MMA map M was introduced as mapping from the lexical                           Lexicon transducer. A sample Number Lexicon fragment for German
+analyses of ordinary words to their MMA, if the map is constructed                        is shown in Figure 2. The first stage of the expansion is language-
+with sufficient care it can serve as the transducer for lexical analyses                  or at least language-area dependent since languages differ on which
+coming from any of the text-word models.                                                  powers of the base have separate words (see [4], inter alia): so Chinese
+                                                                                          and Japanese have a separate word for 104 , whereas most European
+                                                                                          languages lack such a word. The full numeral expansion transducer
+3    The Tools                                                                            is constructed by composing the Factorization transducer with the
+The construction of the WFSTs depends upon a lexical toolkit —                            transitive closure of the Number Lexicon transducer. In some lan-
+lextools — that allows one to describe linguistic generalizations in                      guages, additional manipulations are necessary, and these involve the
+linguistically sensible human-readable form. The toolkit has more or                      insertion of a special ‘filter’ transducer between the Factorization and
+less the same descriptive power as the Xerox tools [7, 6], though the                     Number Lexicon transducers. In German, for example, the words for
+current version of lextools lacks some of the debugging capabilities                      decades come after the words for units: so 34 = 3  101 + 4 becomes
+of the Xerox system, and the Xerox tools do not allow costs in the                        vierunddreißig (four+and+thirty), thus suggesting the order 4 +3 101.
+descriptions whereas lextools does.6                                                      This reversal can be accomplished by a filter transducer, which for
+   Some of the tools do not require much comment for readers famil-                       lack of a better name we will call Decade Flop. The construction of
+iar with previous work on finite-state phonology and morphology. In                       the numeral expander for German is shown schematically in Figure 3.
+addition to some basic tools to deal with machine labels, there is a                      (Note that the insertion of und in examples like vierunddreißig ‘thirty
+tool (compwl) that compiles lists of strings or more general regular                      four’ is not actually accomplished by numbuilder: such ‘clean up’
+                                                                                          operations can be handled using rewrite rules.)
+5 To date our multilingual systems have rather rudimentary lexical-class based               One tool that has so far not been applied in the system is the
+   accentuation rules, and punctuation-based phrasing. Thus these components              decision tree compiler, described in [15]. We are hoping to apply this
+   of the systems are not as sophisticated as the equivalent components of our
+   English system [20, 3, 14]. This is largely because the relevant research              in the future for, among other things, phrasing models of the kind
+   has not been done for most of the languages in question, rather than for               discussed in [20].
+   technical problems in fitting the results of that research into the model.
+6 The work is also similar to the Too iP toolkit for linguistic rules for TTS dis-
+                                      L
+   cussed in [19]. However, the latter does not compile the rules into (W)FSTs.           4   Russian Percentages
+   Instead, the right and left contexts are compiled into an FSM-like format,
+   which is then used to match these contexts for the rules at runtime. Note              Let us return to the example of Russian percentage terms. Assume
+   also that, unlike the current system which compiles linguistic descriptions            that we start with a fragment of text such as s 5% skidkoĭ s 5%
+   into WFSTs that allow multiple outputs, TooL iP functions in a completely
+   deterministic fashion, in that for any given input there can only be one               skidkoj (with 5% discount) ‘with a five-percent discount’. This is first
+   output.                                                                                composed with the lexical analysis WFST to produce a set of possible
+
+                                                                                     77                                                               R. Sproat
+
+
+                                     /f1g                            :      (’einsfnumg(fmascgjfneutg)fsggf##g)/
+                                     /f1g                            :      (’einefnumgffemigfsgg<1.0>f##g)/
+                                     /f2g                            :      (zw’eifnumgf##g)/
+                                     /f3g                            :      (dr’eifnumgf##g)/
+                                                                       ..
+                                                                        .
+                                     /(f0gf+++gf1gf10^1g)            :      (z’ehnfnumgf##g)/
+                                     /(f1gf+++gf1gf10^1g)            :      (’elffnumgf##g)/
+                                     /(f2gf+++gf1gf10^1g)            :      (zw’ölffnumgf##g)/
+                                     /(f3gf+++gf1gf10^1g)            :      (dr’eif++gzehnfnumgf##g)/
+                                                                     ..
+                                                                      .
+                                     /(f2gf10^1g)                    :      (zw’anf++gzigfnumgf##g)/
+                                     /(f3gf10^1g)                    :      (dr’eif++gßigfnumgf##g)/
+                                                                      ..
+                                                                       .
+                                     /(f10^2g)                       :      (h’undertfnumgf##g)/
+                                     /(f10^3g)                       :      (t’ausendfnumgfneutgf##g)/
+
+
+ Figure 2. German number lexicon. The cost of 1:0 on the feminine form eine effectively disfavors this form, so that it will only be selected in appropriate
+                                                                predefined contexts.
+
+
+
+
+                                            234          Factorization             )      2  102 + 3  101 + 4
+
+                                                         DecadeFlop                )      2  102 + 4 + 3  101
+
+                                                         NumberLexicon
+                                                                              
+                                                                                    +
+                                                            zwei+hundert+vier+und+dreißig
+
+                                                  Figure 3. Expansion of 234 in German using numbuilder.
+
+
+
+
+lexical forms; see Figure 4. By default the lexical analyzer marks the             5    Size and Speed Issues
+adjectival readings of ‘%’ with ‘?’, meaning that they will be filtered
+out by the language-model WFSTs, if contextual information does                    Table 1 gives the sizes of the lexical analysis WFSTs for the languages
+not save them. Costs on analyses (here represented as subscripted                  German, Spanish, Russian and Mandarin. To a large extent, these sizes
+floating-point numbers) mark constructions — usually oblique case                  accord with our intuitions of the difficulties of lexical processing in
+forms — that are not in principle ill-formed but are disfavored ex-                the various languages. So Russian is very large, correlating with the
+cept in certain well-defined contexts. The correct analysis (boxed in              complexity of the morphology in that language. German is somewhat
+Figure 4), for example, has a cost of 2:0 which is an arbitrary cost               smaller. Mandarin has a small number of states, correlating with the
+assigned to the oblique instrumental adjectival case form: the pre-                fact that Mandarin words tend to be simple in terms of morphemic
+ferred form of the adjectival rendition ‘%’ is masculine, nominative,              structure; but there are a relatively large number of arcs, due to the
+singular if no constraints apply to rule it out.                                   large character set involved. Sizes for the Spanish transducer are
+   Next the language model WFSTs Λ are composed with the lexical                   misleading since the current Spanish system includes only minimal
+analysis lattice. The WFSTs Λ include transducers compiled from                    morphological analysis: note, though, that morphological analysis is
+rewrite rules that ensure that the adjectival rendition of ‘%’ is selected         mostly unnecessary in Spanish for correct word pronunciation.
+whenever there is a noun following the percent expression, and rules                  While the transducers can be large, the performance (on an SGI
+that ensure the correct case, number and gender of the adjectival form             Indy or Indigo) is acceptably fast for a TTS application. Slower per-
+given the form of the following noun. In addition, a filter expressable            formance is certainly observed, however, when the system is required
+as :(Σ ? Σ ) removes any analyses containing the tag ‘?’. See                    to explore certain areas of the network, as for example in the case of
+Figure 5. The best-cost analysis among the remaining analyses is                   expanding and disambiguating Russian number expressions.
+then selected. Finally, the lexical analysis is composed with M  P                   To date, no formal evaluations have been performed on the correct-
+to produce the phonemic transcription; see Figure 6.                               ness of word-pronunciation in the various languages we are working
+                                                                                   on, largely because there is still work to be done before the systems
+                                                                                   can be called complete. An evaluation of the correctness of word
+                                                                                   segmentation in the Mandarin Chinese system is reported in [16].
+
+                                                                              78                                                                 R. Sproat
+
+
+                                                                         s 5% skidkoĭ
+                                                                                   
+
+
+                                                                    Lexical Analysis WFST
+
+                                                                                   +
+
+
+                                             sprep pjat’num nom -procentnadj ? +ajafem+sg+nom skidkfem ojsg+instr       [
+
+                                            sprep pjatnum igen -procentnadj ? +ojfem+sg+instr skidkfem ojsg+instr 2:0       [
+
+                                              sprep pjatnum ’juinstr -procentnoun +amipl+instr skidkfemojsg+instr 4:0   [
+                                                                                   ..
+                                                                                    .
+
+      Figure 4. Composition of s 5% skidkoĭ s 5% skidkoj ‘with a 5% discount’ with the lexical analysis WFST to produce a range of possible lexical
+     renditions for the phrase. By default the adjectival readings of ‘%’ are marked with ‘?’, which means that they will be filtered out by the language-model
+    WFSTs; see Figure 5. The boxed analysis is the correct one. Costs on analyses mark constructions — usually oblique case forms — that are not in principle
+                                                ill-formed but are disfavored except in certain well-defined contexts.
+
+
+
+
+                                                                                   Λ:
+                                                      ! ? = procentnoun (Σ \ :#) #                      
+                                                                                                  (Σ \ :#)noun
+                                                                                  
+                                                      ? !  = procentnadj (Σ \ :#) #
+                                                                                                          
+                                                                                                  (Σ \ :#)noun
+                                                                                   
+
+                                                  ! ? = procentn (Σ \ :#) Case\:instr# (Σ \ :#)instr
+                                                                          
+                                                  ! ? = procentn (Σ \ :#) sg+Case # (Σ \ :#)pl
+                                                                                               
+                                                                                   
+
+                                                                                   ..
+                                                                                    .
+
+                                                                            :(   Σ ? Σ )
+                                                                            +    BestPath
+                                                             s pjatigen -procentnadj ojsg+instr skidkoj
+
+
+
+Figure 5. A subset of the language model WFSTs related to the rendition of percentages. The first block of rules ensures that adjectival forms are used before
+ nouns, by switching the tag ‘?’ on the adjectival and nominal forms. The second block of rules deals with adjectival agreement with the adjectival forms. The
+           final block is a filter ruling out the forms tagged with ‘?’. The (correct) output of this sequence of transductions is shown at the bottom.
+
+
+                                                                                        the point of view of previous research on linguistic applications finite-
+                                     States     Arcs                                    state transducers, some aspects of this work are familiar, some less
+                        German       77295      207859                                  so. Familiar, of course, are applications to morphology, phonology,
+                        Russian      139592     495847                                  and syntax, though most previous work in these areas has not made
+                        Mandarin     48015      278905                                  use of weighted automata. More novel are the applications to text
+                        Spanish      8602       17236                                   ‘preprocessing’, in particular numeral expansion and word segmen-
+                                                                                        tation.
+                                                                                            From the point of view of text-analysis models for text-to-speech
+       Table 1.   Sizes of lexical analysis WFSTs for selected languages.               the approach is quite novel since, as described in the introduction,
+                                                                                        most previous work treats certain operations, such as word segmen-
+                                                                                        tation or numeral expansion in a preprocessing phase that is logically
+6      Summary and Future Work                                                          prior to the linguistic analysis phase; we have argued here against this
+                                                                                        view.
+The system for text analysis presented in this paper is a complete                          Two areas of future work both depend upon an important property
+working system that has been used in the development of working                         of the FSM toolkit on top of which the lextools toolkit is built.
+text-analysis systems for several languages. In addition to German,                     Underlying the notion of an FSM is the more general notion of a
+Spanish, Russian and Mandarin, a system for Romanian has been                           generalized state machine (GSM). An important property of GSMs
+built, and work on French, Japanese and Italian is underway. From                       is that it is not necessary to know beforehand which arcs leave a
+
+                                                                                  79                                                                 R. Sproat
+
+
+                                                                       s 5% skidkoĭ
+                                                                                 +
+
+
+                                                           s pjatigen -procentnadj ojsg+instr skidkoj
+                                                                                 
+
+
+                                                                            M        P
+
+                                                                                 +
+                                                    s # PiT"!pr@c"Entn&y # sK"!tk&y
+
+
+
+                              Figure 6.   Mapping the selected lexical analysis to a phonetic rendition via composition with P .
+
+
+given state; rather one can construct just the arcs one needs ‘on the                  [4] James Hurford, The Linguistic Theory of Numerals, Cambridge Univer-
+fly’ as one is using the machine, for example in a composition with                        sity Press, Cambridge, 1975.
+another machine. This has two important consequences. First of all,                    [5] Ronald Kaplan and Martin Kay, ‘Regular models of phonological rule
+for a strictly finite state machine, it is not necessary to explicitly                     systems’, Computational Linguistics, 20, 331–378, (1994).
+                                                                                       [6] Lauri Karttunen, ‘Finite-state lexicon compiler’, Technical Report P93–
+construct the machine beforehand, and this in turn implies that one
+                                                                                           00077, Xerox Palo Alto Research Center, (1993).
+can avoid precompiling very large FSMs, so long as one can provide                     [7] Lauri Karttunen and Kenneth Beesley, ‘Two-level rule compiler’, Tech-
+an algorithm for constructing the machine on the fly. One example                          nical Report P92–00149, Xerox Palo Alto Research Center, (1992).
+is in discourse analysis, where one wants to remember which words                      [8] Lauri Karttunen, Ronald Kaplan, and Annie Zaenen, ‘Two-level mor-
+or lemmata one has already seen; as previous work on accenting                             phology with composition’, in COLING-92, pp. 141–148. COLING,
+suggests [3], this kind of information is useful for TTS, and is in fact                   (1992).
+used in the American English version of the Bell Labs synthesizer. In                  [9] Kimmo Koskenniemi, Two-Level Morphology: a General Computa-
+theory, assuming the set of words or morphological stems is closed,                        tional Model for Word-Form Recognition and Production, Ph.D. disser-
+one could construct an FSM that would ‘remember’ when it had seen                          tation, University of Helsinki, Helsinki, 1983.
+a word; needlessto say, such a machine would be astronomical in size,                 [10] Mehryar Mohri and Richard Sproat, ‘An efficient compiler for weighted
+                                                                                           rewrite rules’, in 34rd Annual Meeting of the Association for Computa-
+and so the precompilation of this machine is out of the question; one
+                                                                                           tional Linguistics, Morristown, NJ, (1996). Association for Computa-
+could however envision dynamically building states that ‘remember’                         tional Linguistics.
+that a particular word has been seen. Secondly, one can in principle                  [11] Fernando Pereira and Michael Riley. Speech recognition by composition
+construct GSMs which have greater than finite-state power, again                           of weighted finite automata. CMP-LG archive paper 9603001, 1996.
+providing that one can specify an algorithm for constructing on the                   [12] Fernando Pereira, Michael Riley, and Richard Sproat, ‘Weighted ratio-
+fly the arcs leaving a given state. One obvious example is a ‘copy                         nal transductions and their application to human language processing’,
+machine’ which will recognize which strings from a lattice have                            in ARPA Workshop on Human Language Technology, pp. 249–254. Ad-
+the property that they are of the form ww, for some string w; this                         vanced Research Projects Agency, (March 8–11 1994).
+problem comes up in the analysis of morphological reduplication.                      [13] Richard Sproat, Morphology and Computation, MIT Press, Cambridge,
+Precompiling such a machine as an FSM for copies of unbounded                              MA, 1992.
+                                                                                      [14] Richard Sproat, ‘English noun-phrase accent prediction for text-to-
+length is of course impossible; however, it is possible to construct
+                                                                                           speech’, Computer Speech and Language, 8, 79–94, (1994).
+a GSM which can be composed with an arbitrary (acyclic) lattice                       [15] Richard Sproat and Michael Riley, ‘Compilation of weighted finite-
+and will find exactly those strings with the desired property. Future                      state transducers from decision trees’, in 34rd Annual Meeting of the
+work on the text analysis model presented here will focus in part                          Association for Computational Linguistics, Morristown, NJ, (1996).
+on the application of generalized state machines to various linguistic                     Association for Computational Linguistics.
+problems.                                                                             [16] Richard Sproat, Chilin Shih, William Gale, and Nancy Chang, ‘A
+                                                                                           stochastic finite-state word-segmentation algorithm for Chinese’, Com-
+                                                                                           putational Linguistics, 22(3), (1996).
+7   Acknowledgments                                                                   [17] Christof Traber, ‘SVOX: The implementation of a text-to-speech system
+I wish to acknowledge Michael Riley, Fernando Pereira and Mehryar                          for German’, Technical Report 7, Swiss Federal Institute of Technology,
+Mohri of AT&T Research, without whose underlying FSM toolkit the                           Zurich, (1995).
+                                                                                      [18] Evelyne Tzoukermann and Mark Liberman, ‘A finite-state morpholog-
+lexical toolkit and text-analysis work reported here would not have
+                                                                                           ical processor for Spanish’, in COLING-90, Volume 3, pp. 3: 277–286.
+been possible.
+                                                                                           COLING, (1990).
+                                                                                      [19] Hugo van Leeuwen, TooL iP: A Development Tool for Linguistic Rules,
+REFERENCES                                                                                 Ph.D. dissertation, Technical University Eindhoven, 1989.
+                                                                                      [20] Michelle Wang and Julia Hirschberg, ‘Automatic classification of into-
+[1] Peter Daniels and William Bright, The World’s Writing Systems, Oxford                  national phrase boundaries’, Computer Speech and Language, 6, 175–
+    University Press, New York, 1996.                                                      196, (1992).
+[2] Steven Franks, ‘Parametric properties of numeral phrases in Slavic’,
+    Natural Language and Linguistic Theory, 12(4), 597–674, (1994).
+[3] Julia Hirschberg, ‘Pitch accent in context: Predicting intonational promi-
+    nence from text’, Artificial Intelligence, 63, 305–340, (1993).
+
+
+                                                                                 80                                                                  R. Sproat
+

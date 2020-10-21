@@ -1,0 +1,442 @@
+             DIRECTLY MODELING SPEECH WAVEFORMS BY NEURAL NETWORKS
+                   FOR STATISTICAL PARAMETRIC SPEECH SYNTHESIS
+
+                                                  Keiichi Tokuda†‡            Heiga Zen†
+
+                                                           † Google
+                                       ‡ Nagoya Institute of Technology, Nagoya, Japan
+                                         tokuda@nitech.ac.jp              heigazen@google.com
+
+
+
+                            ABSTRACT                                      to acoustic ones [16].
+                                                                               This paper aims to fully integrate acoustic feature extraction into
+This paper proposes a novel approach for directly-modeling speech
+                                                                          acoustic model training and overcome the limitations of the exist-
+at the waveform level using a neural network. This approach uses the
+                                                                          ing frameworks, using the recently proposed neural network-based
+neural network-based statistical parametric speech synthesis frame-
+                                                                          speech synthesis framework [6] with a specially designed output
+work with a specially designed output layer. As acoustic feature
+                                                                          layer which includes inverse filtering of the speech to define the like-
+extraction is integrated to acoustic model training, it can overcome
+                                                                          lihood at the waveform level. An efficient training algorithm based
+the limitations of conventional approaches, such as two-step (feature
+                                                                          on this framework which can run sequentially in a sample-by-sample
+extraction and acoustic modeling) optimization, use of spectra rather
+                                                                          manner is also derived.
+than waveforms as targets, use of overlapping and shifting frames as
+                                                                               The rest of the paper is organized as follows. Section 2 defines
+unit, and fixed decision tree structure. Experimental results show
+                                                                          the waveform-level probability density function. Section 3 gives the
+that the proposed approach can directly maximize the likelihood de-
+                                                                          training algorithm. Preliminary experimental results are presented in
+fined at the waveform domain.
+                                                                          Section 4. Concluding remarks are given in the final section.
+    Index Terms— Statistical parametric speech synthesis; neural
+network; adaptive cepstral analysis.
+                                                                           2. WAVEFORM-LEVEL DEFINITION OF PROBABILITY
+                                                                                   DENSITY FUNCTION OF SPEECH
+                       1. INTRODUCTION
+                                                                          2.1. Cepstral representation
+While training an acoustic model for statistical parametric speech
+synthesis (SPSS) [1], a set of parametric representation of speech        A discrete-time speech signal x = [x(0), x(1), . . . , x(T − 1)]⊤
+(e.g. cepstra [2], line spectrum pairs [3], fundamental frequency, and    corresponding to an utterance or whole speech database is assumed
+aperiodicity [4].) at every 5 ms is first extracted then relationships    to be a zero-mean stationary Gaussian process [17]. The probability
+between linguistic features associated with the speech waveform and       density function of a zero-mean stationary Gaussian process can be
+the extracted parameters are modeled by an acoustic model (e.g. hid-      written as1
+den Markov models [5], neural networks [6]). Typically, a minimum                              p(x | c) = N (x; 0, Σc ) ,                 (1)
+mean squared error (MMSE) or a maximum likelihood (ML) crite-             where
+rion is used to estimate the model parameters [7, 8].                                                                               
+     Extracting a parametric representation of speech can also be                                 r(0)      r(1)     ···     r(T − 1)
+viewed as ML estimation of the model parameters given the wave-                                                      ..         ..  
+                                                                                             r(1)    r(0)               .        .  
+form [9, 10]. Linear predictive analysis assumes that the generative                 Σc = 
+                                                                                          
+                                                                                                                                     ,
+                                                                                                                                                (2)
+                                                                                               ..     ..             ..
+model of speech waveform is autoregressive (AR) then fit the model                               .        .              .     r(1) 
+to the waveform based on the ML criterion [9]. In this sense, training                      r(T − 1) · · ·           r(1)
+                                                                                                                    r(0)
+of an acoustic model can be viewed as a two-step optimization: ex-                            ∫ π
+                                                                                            1               2
+tract parametric representation of speech based on the ML criterion,                r(k) =         H(ejω ) ejωk dω,                              (3)
+then model trajectories of the extracted parameters with an acoustic                       2π −π
+model. Therefore, the current framework could be sub-optimal. It                         2
+is desirable to combine these two steps in a single one and jointly       and H(ejω ) is the power spectrum of the Gaussian process. This
+optimize both feature extraction and acoustic modeling.                   paper assumes that the corresponding minimum-phase system func-
+     There are a couple of attempts to integrate feature extraction and   tion H(ejω ) is parameterized by cepstral coefficients c as
+acoustic model training into a single framework, e.g. the log spectral
+distortion-version of minimum generation error training (MGE-                                                 ∑
+                                                                                                              M
+                                                                                             H(ejω ) = exp          c(m) e−jωm ,                 (4)
+LSD) [11], statistical vocoder (STAVOCO) [12], waveform-level
+                                                                                                              m=0
+statistical model [13], and mel-cepstral analysis-integrated hidden
+Markov models (HMMs) [14]. However, there are limitations in              where c = [c(0), c(1), c(2), . . . , c(M )]⊤ .
+these approaches, such as the use of spectra rather than waveforms,
+the use of overlapping and shifting frames as unit, and fixing deci-         1 Although x should be an infinite sequence, it is described as a finite
+sion trees [15], which represent the mapping from linguistic features     sequence for notation simplicity.
+
+
+    By assuming x is an infinite sequence, the covariance matrix Σc                                           3. TRAINING ALGORITHM
+can be decomposed as follows:
+                                                                                        3.1. Derivative of the log likelihood
+                               Σc = Hc Hc⊤ ,                                 (5)
+where                                                                                   With some elaboration,2 the partial derivative of Eq. (14) w.r.t. c(i)
+                                                              
+                      h(0)                0      ···       0                            can be derived as
+                                                 ..        ..                                                   [                                    ]⊤
+                    h(1)              h(0)          .       .                           ∂ log p(x | c)
+              Hc =                                            ,            (6)                         = d(i) = d(i) (0), d(i) (1), . . . , d(i) (M ) , (16)
+                       ..              ..        ..                                         ∂c (i)
+                        .                 .         .     0 
+                    h(T − 1)           ···       h(1)     h(0)                          where
+and h(n) is the impulse response of the system H(ejω ) as                                                 ∑
+                                                                                                          L−1
+                            ∫ π                                                            d(i) (m) =           e(i) (Li + k) e(i) (Li + k − m) − δ(m)L,
+                          1
+                 h(n) =          H(ejω ) ejωn dω.                            (7)                          k=0
+                         2π −π
+                                                                                                                                            m = 0, 1, . . . , M   (17)
+Furthermore, the inverse of Σc can be written as
+                              Σ−1   ⊤
+                               c = Ac Ac ,                                   (8)        and e(i) (t) is the output of the inverse system of H (i) (ejω ) repre-
+where                                                                                   sented by c(i) as in Eq. (4), whose input is x, i.e.
+                                                     
+                            a(0)         0···      0
+                                         ..       ..                                                  ∑
+                                                                                                        ∞
+                    a(1)        a(0)        .      .                                     e(i) (t) =         a(i) (n) x(t − n),
+            Ac =  
+                                                      ,
+                                                                (9)
+                         .
+                          ..      . ..    . ..        
+                                                                                                        n=0
+                                                   0                                                               t = Li − M, . . . , Li, . . . , Li + L − 1     (18)
+                    a(T − 1) · · ·       a(1) a(0)
+and a(n) is the impulse response of the inverse system given as                         and δ(m) is the unit impulse function.
+                             ∫ π
+                         1
+               a(n) =            H −1 (ejω ) ejωn dω,           (10)                    3.2. Sequential algorithm
+                       2π −π
+since                                                                                   For calculating the impulse response a(i) (n) using a recursive for-
+                            Hc Ac = I,                                      (11)        mula [18], O(M N ) operations are required at each segment i, even
+where I is an identity matrix.                                                          if it is truncated with a sufficiently large number of N . Furthermore,
+                                                                                        for calculating Eq. (18), O(N (M + L)) operations are required for
+2.2. Nonstationarity modeling                                                           each segment i.
+                                                                                              To reduce the computational burden, the following two approx-
+To model the nonstationary nature of the speech signal, x is assumed                    imations are applied;
+to be segment-by-segment piecewise-stationary, i.e. Ac in Eq. (9) is
+                                                                                            1. By assuming
+assumed to be
+                                                                             
+          ..     ..                                                                                    e(i) (t) ≃ e(i−1) (t),   t = Li − M, . . . , Li − 1        (19)
+        . (i−1).                                                             
+        a                          ···      ···      ···        ···     ··· 
+        ··· a(i) (1)(0)    0
+                                                                                              e(i) (t) can be calculated as the output of the inverse system
+                         (i)
+                         a (0)       0       ···      ···        ···     ··· 
+                                                                                
+        ···     ···     a(i) (1) a(i) (0)            ···        ···     ···  
+                                             0
+                                                                                               whose parameters change segment by segment as follows:
+Ac =                               ..       ..       ..                          L,
+                                      .        .        .                    
+                                                                                                                                  ∑
+                                                                                                                                    ∞
+        ···     ···       ···      ···    a(i) (1) a(i) (0)      0      ···                                   e(i) (t) = e(t) =         at (n) x(t − n),
+        ···                                                                                                                                                     (20)
+                ···       ···      ···      ···   a(i+1) (1) a(i+1) (0)                                                           n=0
+                                                                 ..      ..
+                                                                    .       .
+                                                                              (12)              where
+where i is the segment index, L is the size of each segment, and
+a(i) (n) is the impulse response of the inverse system of H (i) (ejω )                                  at (n) = a(i) (n),      t = Li, . . . , Li + L − 1        (21)
+represented by cepstral coefficients
+                        [                                    ]⊤                             2. As an approximation, inverse filtering in Eq. (20) can be
+               c(i) = c(i) (0), c(i) (1), . . . , c(i) (M ) ,                 (13)             efficiently calculated by the log magnitude approximation
+                                                                                               (LMA) filter3 [10] whose coefficients are given by
+as in Eq. (4) for the i-th segment. Here the logarithm of the proba-
+bility density function can be written as                                                                   −ct = −c(i) ,       t = Li, . . . , Li + L − 1        (22)
+                  T            1                    1 ⊤ ⊤
+ log p(x | c) = − log(2π) + log A⊤           c Ac −   x Ac Ac x,                             With these approximations, a simple structure for training a neu-
+                  2            2                    2
+                                                             (14)                       ral network-based acoustic model, which represents a mapping from
+where               {                            }                                      linguistic features to speech signals, can be derived. It can run in a
+                 c = c(0) , c(1) , . . . , c(I−1) ,          (15)                          2 Similarderivation can be found in Eqs. (14) and (16) in [10].
+and I is the number of segments in x corresponding to an utterance                         3 The LMA filter is a special type of digital filter which can approximate
+or whole speech database and thus T = L × I.                                            the system function of Eq. (4).
+
+
+                                         Inverse LMA filter                 Inverse filter output                                                                                                                    LMA filter
+                   x(t)                                                                                                                                                       e(t)                                                                      x(t)
+                                          (                        )                                                                                                                                                (                         )
+                                              M
+                                              X                               e(t)              e(t − 1)            e(t − 2)            e(t − 3)                                                                        M
+                                                                                                                                                                                                                        X
+                                     exp −          ct (m)z   −m
+                                                                                       z   −1
+                                                                                                           z   −1
+                                                                                                                               z   −1
+                                                                                                                                              M-th                                                            exp              ct (m)z   −m
+
+                                              m=0                                                                                             order                                                                     m=0
+                                                                                                                                              delay
+          Cepstrum                 ...           ct                ...                                                                                                    Cepstrum                       ...                ct                    ...
+                                                                             1−
+
+                                                                            ∂ log p(x | c) ∂ log p(x | c) ∂ log p(x | c) ∂ log p(x | c)
+
+
+
+
+                                                                                                                                                                            Forward propagation
+             Forward propagation
+
+
+
+
+                                                                                ∂ct (0)        ∂ct (1)        ∂ct (2)        ∂ct (3)
+
+
+
+
+                                                                                  }
+                                                                                                           dt                       Derivative
+                                                                                                                                    vector
+                                                                        Back propagation
+
+
+
+
+                                   ...           lt                    ... Sample-by-sample                                                         Sample-by-sample                                    ...                    lt                 ...
+                                                                            linguistic features
+                                                                                                                                                     linguistic features
+                                   Linguistic feature extraction                                                                                                                                         Linguistic feature extraction
+
+                                           Text analysis                                                                                                                                                            Text analysis
+
+                                               TEXT                                                                                                                                                                      TEXT
+                                                               (a) Training                                                                                                                             (b) Synthesis
+
+Fig. 1. Block diagram of the proposed waveform-based framework (L = 1, M = 3). For notation simplicity, here acoustic model is
+illustrated as a feed-forward neural network rather than LSTM-RNN.
+
+                                                                                                                                                                 -4
+sequential manner as shown in Fig. 1 (a). This neural network out-
+                                                                      4
+puts cepstral
+     {                   } c given linguistic feature vector sequence
+              coefficients
+                                                                                                                                         Log likelihood (x10 )
+
+
+
+
+                                                                                                                                                                 -5
+                                                                                                                                        6
+
+
+
+
+l = l(0) , . . . , l(I−1) , which in turn gives a probability density
+                                                                                                                                                                 -6
+function of speech signals x, which corresponds to an utterance or
+whole speech database, conditioned on l, p (x | l, M) as
+                                      (            )                                                                                                             -7
+                                                                                                                                                                                                                                         Train subset
+                    p(x | l, M) = N x; 0, Σc(l) ,                 (23)
+                                                                                                                                                                 -8
+                                                                                                                                                                                                                                          Dev subset
+where M denotes a set of network weights, c(l) is given by acti-
+                                                                                                                                                                      0                           50                     100                      150          200
+vations at the output layer of the network given input linguistic fea-
+                                                                                                                                                                                                       # of training samples (x106 )
+tures, and the RHS is given by Eq. (14). By back-propagating the
+derivative of the log likelihood function through the network, the
+network weights can be updated to maximize the log likelihood.                                                                 Fig. 2. Log likelihoods of trained LSTM-RNNs over both training
+     It should be noted that although the optimization problem at each                                                         and development subsets (60,000 samples). Note that the initializa-
+segment becomes an underdetermined problem when L < M , it                                                                     tion stage using the MMSE criterion was not included.
+is expected that the finite number of weights in the neural network
+can work as a regularizer for the optimization problem. Thus, L =
+1 (t = i, ct = c(i) , lt = l(i) ) is assumed in the figure and the                                                             3.3. Synthesis structure
+following discussion. As a result, the training algorithm can run
+                                                                                                                               The synthesis structure is given by Fig. 1 (b). The synthesized
+sequentially in a sample-by-sample manner, rather than conventional
+                                                                                                                               speech (x(t) in Fig. 1 (b)) can be generated by sampling x from
+frame-by-frame manner.
+                                                                                                                               the probability density function p(x | l, M). It can be done by ex-
+     The structure of the training algorithm is quite similar to that in
+                                                                                                                               citing the LMA filter using a zero-mean white Gaussian noise with
+the adaptive cepstral analysis algorithm [10]. The difference is that
+                                                                                                                               unity variance as source excitation signal (e(t) in Fig. 1 (b)). It is
+the adaptive cepstral analysis algorithm updates cepstral coefficients
+                                                                                                                               possible to substitute e(t) with the excitation signal used in standard
+directly whereas the training algorithm in Fig. 1 (a) updates weights
+                                                                                                                               statistical parametric speech synthesis systems, such as outputs from
+of the neural network which predicts the cepstral coefficients.
+                                                                                                                               pulse/noise [5] or mixed excitation generators [20].
+     It is also noted that the log likelihood can be calculated by
+
+                                          T           ∑
+                                                      T −1
+                                                                   1                                                                                                                               4. EXPERIMENTS
+      log p(x | c) = −                      log(2π) −      ct (0) − e⊤ e,                                  (24)
+                                          2           t=0
+                                                                   2
+                                                                                                                               4.1. Experimental conditions
+where e = [e(0), . . . , e(T − 1)]⊤ and the third term of Eq. (24)                                                             Speech data in US English from a female professional speaker was
+corresponds to the sum of squares of the inverse system output.                                                                used for the experiments. The training and development data sets
+   4 The definition of the linguistic feature vector used in this paper can be                                                 consisted of 34,632 and 100 utterances, respectively. A speaker-
+found in [6] and [19].                                                                                                         dependent unidirectional LSTM-RNN [19] was trained.
+
+
+                        10                                                                         10
+
+
+
+                        -10                                                                        -10
+                            0                                                                          0
+                         10                                                                         10
+
+
+
+                        -10                                                                        -10
+                         10                                                                         10
+          Amplitude
+
+
+
+
+                                                                                       Amplitude
+                        -10                                                                        -10
+                                                     0.5                                                                     0.5
+                         10                                                                         10
+
+
+
+                        -10                                                                        -10
+                         10                                                                         10
+
+
+
+                        -10                                                                        -10
+                                                                                 1.0                                                                      1.0
+                                                 Time (sec)                                                              Time (sec)
+
+                                                (a) Before                                                               (b) After
+
+  Fig. 3. Inverse system output for a sentence “Two elect only two” by cepstra predicted by LSTM-RNNs before (a) and after (b) training.
+            0
+      Frequency (kHz)
+         2 4 6 8
+
+
+
+
+                         Fig. 4. Synthesized speech spectra for a sentence “Two elect only two”. Note that spectra were sampled at every 5 ms.
+
+
+     From the speech data, its associated transcriptions, and automat-                        log likelihoods w.r.t. the development subset became better than the
+ically derived phonetic alignments, sample-level linguistic features                          training one. It may be due to the use of small subsets from both
+included 535 linguistic contexts, 50 numerical features for coarse-                           training and development sets. As discussed in [10], maximizing the
+coded position of the current sample in the current phoneme, and                              likelihood corresponds to minimizing prediction error [10]. Thus, it
+one numerical feature for duration of the current phoneme.                                    is expected that the proposed training algorithm reduces the energy
+     The speech data was downsampled from 48 kHz to 16 kHz, 24                                of the waveform-level prediction errors.
+cepstral coefficients were extracted at each sample using the adap-                                When the neural network predicts the true cepstral coefficients,
+tive cepstral analysis [10]. The output features of the LSTM-RNN                              the inverse filter output e becomes a zero-mean white Gaussian noise
+consisted of 24 cepstral coefficients. Both the input and output fea-                         with unity variance. Figure 3 shows inverse system outputs e from
+tures were normalized; the input features were normalized to have                             the LSTM-RNNs before and after updating the weights using the
+zero-mean unit-variance, whereas the output features were normal-                             proposed training algorithm. Note that the LSTM-RNN before up-
+ized to be within 0.01–0.99 based on their minimum and maximum                                dating was trained by the MMSE criterion using the sample-level
+values in the training data. The architecture of the LSTM-RNN was                             cepstra as targets. It can be seen from the figure that the energy of
+1 forward-directed hidden LSTM layer with 256 memory blocks.                                  the inverse filter outputs are reduced towards unity variance.
+     To reduce the training time and impact of having many silences,                               Figure 4 shows the predicted spectra for a sentence not included
+80% of silence regions were removed. After setting the network                                in the training data. It can be seen from the figure that smoothly
+weights randomly, they were first updated to minimize the mean                                varying speech spectra were generated. It indicates that the neu-
+squared error between the extracted and predicted cepstral coeffi-                            ral network structure could work as a regularizer and the proposed
+cients. Then they were used as initial values to start the proposed                           framework could be used for text-to-speech applications.
+training algorithm; the weights were further optimized to maximize
+the waveform-level log likelihood. A distributed CPU implementa-                                                     5. CONCLUSIONS
+tion of mini-batch ASGD [21]-based back propagation through time
+(BPTT) [22] algorithm was used [23].                                                          A new neural network structure with a specially designed output
+                                                                                              layer for directly modeling speech at the waveform level was pro-
+4.2. Experimental results                                                                     posed and its training algorithm which can run sequentially in a
+                                                                                              sample-by-sample manner was derived. Acoustic feature extraction
+First the proposed training algorithm was verified with the log likeli-                       can be fully integrated into training of neural network-based acoustic
+hoods. Figure 2 plots the log likelihoods of the trained LSTM-RNN                             model and can remove the limitations in the conventional approaches
+over training and development subsets against the number of train-                            such as two-stage optimization and the use of overlapping frames.
+ing samples. Both of them consisted of 60,000 samples. It can be                                  Future work includes introducing a model structure for generat-
+seen from the figure that the log likelihoods w.r.t. the training and                         ing periodic components and evaluating the performance in practical
+development subsets improved and converged after training. The                                conditions as a text-to-speech synthesis application.
+
+
+                        6. REFERENCES                                   [18] A.V. Oppenhem and R.W. Schafer, Descrete-Time Signal Pro-
+                                                                             cessing, Prentice Hall, 1989.
+ [1] H. Zen, K. Tokuda, and A. Black, “Statistical parametric
+                                                                        [19] H. Zen and H. Sak, “Unidirectional long short-term memory
+     speech synthesis,” Speech Commn., vol. 51, no. 11, pp. 1039–
+                                                                             recurrent neural network with recurrent output layer for low-
+     1064, 2009.
+                                                                             latency speech synthesis,” in Proc. ICASSP, 2015 (accepted).
+ [2] S. Imai and C. Furuichi, “Unbiased estimation of log spec-
+                                                                        [20] T. Yoshimura, K. Tokuda, T. Masuko, T. Kobayashi, and T. Ki-
+     trum,” in Proc. EURASIP, 1988, pp. pp.203–206.
+                                                                             tamura, “Incorporation of mixed excitation model and postfil-
+ [3] F. Itakura, “Line spectrum representation of linear predictor           ter into HMM-based text-to-speech synthesis,” IEICE Trans.
+     coefficients of speech signals,” The Journal of the Acoust. So-         Inf. Syst., vol. J87-D-II, no. 8, pp. 1563–1571, 2004.
+     ciety of America, vol. 57, no. S1, pp. S35–S35, 1975.
+                                                                        [21] J. Dean, G. Corrado, R. Monga, K. Chen, M. Devin, Q. Le,
+ [4] H. Kawahara, J. Estill, and O. Fujimura, “Aperiodicity extrac-          M. Mao, M. Ranzato, A. Senior, P. Tucker, K. Yang, and A. Ng,
+     tion and control using mixed mode excitation and group delay            “Large scale distributed deep networks,” in Proc. NIPS, 2012.
+     manipulation for a high quality speech analysis, modification
+     and synthesis system straight,” in Proc. MAVEBA, 2001, pp.         [22] R. Williams and J. Peng, “An efficient gradient-based algo-
+     13–15.                                                                  rithm for on-line training of recurrent network trajectories,”
+                                                                             Neural Comput., vol. 2, no. 4, pp. 490–501, 1990.
+ [5] T. Yoshimura, K. Tokuda, T. Masuko, T. Kobayashi, and T. Ki-
+     tamura, “Simultaneous modeling of spectrum, pitch and dura-        [23] H. Sak, A. Senior, and F. Beaufays, “Long short-term memory
+     tion in HMM-based speech synthesis,” in Proc. Eurospeech,               recurrent neural network architectures for large scale acoustic
+     1999, pp. 2347–2350.                                                    modeling,” in Proc. Interspeech, 2014.
+ [6] H. Zen, A. Senior, and M. Schuster, “Statistical paramet-
+     ric speech synthesis using deep neural networks,” in Proc.
+     ICASSP, 2013, pp. 7962–7966.
+ [7] Y.-J. Wu and R.-H. Wang, “Minimum generation error training
+     for HMM-based speech synthesis,” in Proc. ICASSP, 2006, pp.
+     89–92.
+ [8] H. Zen, K. Tokuda, and T. Kitamura, “Reformulating the
+     HMM as a trajectory model by imposing explicit relationships
+     between static and dynamic features,” Comput. Speech Lang.,
+     vol. 21, no. 1, pp. 153–173, 2007.
+ [9] F. Itakura and S. Saito, “A statistical method for estimation
+     of speech spectral density and formant frequencies,” IEICE
+     Trans. Fundamentals (Japanese Edition), vol. J53-A, no. 1, pp.
+     35–42, 1970.
+[10] K. Tokuda, T. Kobayashi, and S. Imai, “Adaptive cepstral anal-
+     ysis of speech,” IEEE Trans. Speech Audio Process., vol. 3, no.
+     6, pp. 481–489, 1995.
+[11] Y.-J. Wu and K. Tokuda, “Minimum generation error train-
+     ing with direct log spectral distortion on LSPs for HMM-based
+     speech synthesis,” in Proc. Interspeech, 2008, pp. 577–580.
+[12] T. Toda and K. Tokuda, “Statistical approach to vocal tract
+     transfer function estimation based on factor analyzed trajectory
+     hmm,” in Proc. ICASSP, 2008, pp. 3925–3928.
+[13] R. Maia, H. Zen, and M. Gales, “Statistical parametric speech
+     synthesis with joint estimation of acoustic and excitation model
+     parameters,” in Proc. ISCA SSW7, 2010, pp. 88–93.
+[14] K. Nakamura, K. Hashimoto, Y. Nankaku, and K. Tokuda,
+     “Integration of spectral feature extraction and modeling for
+     HMM-based speech synthesis,” IEICE Trans Inf. Syst., vol.
+     97, no. 6, pp. 1438–1448, 2014.
+[15] J. Odell, The use of context in large vocabulary speech recog-
+     nition, Ph.D. thesis, Cambridge University, 1995.
+[16] H. Zen, “Deep learning in speech synthesis,” in Keynote speech
+     given at ISCA SSW8, 2013, http://research.google.
+     com/pubs/archive/41539.pdf.
+[17] K. Dzhaparidze, Parameter estimation and hypothesis testing
+     in spectral analysis of stationary time series, Springer-Verlag,
+     1986.
+

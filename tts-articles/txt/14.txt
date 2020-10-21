@@ -1,0 +1,351 @@
+      GlobalPhone: A Multilingual Text & Speech Database in 20 Languages
+                                       Tanja Schultz, Ngoc Thang Vu, Tim Schlippe
+
+                 Cognitive Systems Lab, Karlsruhe Institute of Technology (KIT), Germany
+                                                     tanja.schultz@kit.edu
+
+
+
+                          Abstract
+                                                                          To date, the standard way of building speech applications
+This paper describes the advances in the multilingual text and
+                                                                     for an unsupported language is to collect a sizable training
+speech database GlobalPhone, a multilingual database of high-
+                                                                     corpus and to train statistical models for the new language
+quality read speech with corresponding transcriptions and pro-
+                                                                     from scratch. Considering the enormous number of languages
+nunciation dictionaries in 20 languages. GlobalPhone was de-
+                                                                     and dialects in the world, this is clearly a suboptimal strategy,
+signed to be uniform across languages with respect to the
+                                                                     which highlights the need for more sophisticated modeling
+amount of data, speech quality, the collection scenario, the tran-
+                                                                     techniques. It would be desirable to develop models that can
+scription and phone set conventions. With more than 400 hours
+                                                                     take advantage of similarities between dialects and languages
+of transcribed audio data from more than 2000 native speak-
+                                                                     of similar type and models that can share data across different
+ers GlobalPhone supplies an excellent basis for research in the
+                                                                     varieties. This would have two benefits, first leading to truly
+areas of multilingual speech recognition, rapid deployment of
+                                                                     multilingual speech processing which can handle common
+speech processing systems to yet unsupported languages, lan-
+                                                                     phenomenon such as code switching, and second providing
+guage identification tasks, speaker recognition in multiple lan-
+                                                                     models that are likely to be more robust toward dialectal and
+guages, multilingual speech synthesis, as well as monolingual
+                                                                     cross-lingual accent variations. These multilingual shared
+speech recognition in a large variety of languages.
+                                                                     models can then be used as seed models to jump-start a system
+Index Terms: Speech, Text, and Dictionary Resources for Mul-
+                                                                     in an unsupported language by efficiently adapting the seeds
+tilingual Speech Processing
+                                                                     using limited data from the language in questions. We refer to
+                                                                     this development strategy as rapid language adaptation.
+                     1. Introduction
+With more than 6900 languages in the world [1] and the                    Ten years ago we released a multilingual text and speech
+need to support multiple input and output languages, it is one       corpus GlobalPhone to address the lack of databases which are
+of the most pressing challenge for the speech and language           consistent across languages [4]. By that time the database con-
+community to develop and deploy speech processing systems            sisted of 15 languages but since then has been significantly ex-
+in yet unsupported languages rapidly and at reasonable costs         tended to cover more languages, more speakers, more word to-
+[2, 3]. Major bottlenecks are the sparseness of speech and           kens along with their pronunciations, and more text resources.
+text data with corresponding pronunciation dictionaries, the         In addition, GlobalPhone was adopted as a benchmark database
+lack of language conventions, and the gap between technology         for research and development of multilingual speech process-
+and language expertise. Data sparseness is a critical issue due      ing systems. Therefore, we believe the time is right to present
+to the fact that today’s speech technologies heavily rely on         the latest status of GlobalPhone. This paper summarizes the re-
+statistically based modeling schemes, such as Hidden Markov          sources and systems available in 20 languages, and describes
+Models and n-gram language modeling. Although statistical            speech recognition performances to provide a reference and
+modeling algorithms are mostly language independent and              benchmark for researchers and developers working with this
+proved to work well for a variety of languages, reliable             database.
+parameter estimation requires vast amounts of training data.
+Large-scale data resources for research are available for less                  2. The GlobalPhone Corpus
+than 100 languages and the costs for these collections are
+prohibitive to all but the most widely spoken and economically       GlobalPhone is a multilingual data corpus developed in col-
+viable languages. The lack of language conventions concerns          laboration with the Karlsruhe Institute of Technology (KIT).
+a surprisingly large number of languages and dialects. The           The complete data corpus comprises (1) audio/speech data,
+lack of a standardized writing system for example hinders            i.e. high-quality recordings of spoken utterances read by na-
+web harvesting of large text corpora and the construction of         tive speakers, (2) corresponding transcriptions, (3) pronuncia-
+pronunciation dictionaries and lexicons. Last but not least,         tion dictionaries covering the vocabulary of the transcripts, and
+despite the well-defined process of system building, it is cost-     (4) baseline n-gram language models. The first two are re-
+and time consuming to handle language-specific peculiarities,        ferred to as GlobalPhone Speech and Text Database (GP-ST),
+and requires substantial language expertise. Unfortunately, it       the third as GlobalPhone Dictionaries (GP-Dict), and the lat-
+is extremely difficult to find system developers who have both,      ter as GlobalPhone Language Models (GP-LM). GP-ST is dis-
+the necessary technical background and the native expertise of       tributed under a research or commercial license by two autho-
+a language in question. As a result, one of the pivotal issues for   rized distributors, the European Language Resources Associa-
+developing speech processing systems in multiple languages           tion (ELRA) [5] and Appen Butler Hill Pty Ltd. [6]. GP-Dict
+is the challenge of bridging the gap between language and            is distributed by ELRA, while the GP-LMs are freely available
+technology expertise [2].                                            for download from our website [7].
+
+
+     The entire GlobalPhone corpus provides a multilingual                The read texts were selected from national newspaper
+database of word-level transcribed high-quality speech for the       articles available from the web to cover a wide domain with
+development and evaluation of large vocabulary speech pro-           large vocabulary. The articles report national and international
+cessing systems in the most widespread languages of the world.       political news, as well as economic news, which makes it
+GlobalPhone is designed to be uniform across languages with          possible to compare the usage of proper names (Politicians,
+respect to the amount of data per language, the audio qual-          companies, etc.) across languages. We used the following
+ity (microphone, noise, channel), the collection scenario (task,     newspapers: Assabah for Arabic, Banker, Cash, and Sega for
+setup, speaking style), as well as the transcription and phone set   Bulgarian, Peoples Daily for Mandarin and Shanghai Chinese,
+conventions (IPA-based naming of phones in all pronunciation         HRT and Obzor Nacional for Croatian, Ceskomoravsky Profit
+dictionaries). Thus, GlobalPhone supplies an excellent basis for     Journal and Lidove Noviny newspaper for Czech, Le Monde
+research in the areas of (1) multilingual speech recognition, (2)    for French, Frankfurter Allgemeine und Sueddeutsche Zeitung
+rapid deployment of speech processing systems to yet unsup-          for German, CRI online and RFI for Hausa, Hankyoreh Daily
+ported languages, (3) language identification tasks, (4) speaker     News for Korean, Nikkei Shinbun for Japanese, Folha de Sao
+recognition in multiple languages, (5) multilingual speech syn-      Paulo for Portuguese, Dziennik Polski for Polish, Ogonyok
+thesis, as well as (6) monolingual speech recognition in a large     Gaseta and express-chronika for Russian, La Nacion for
+variety of languages.                                                Spanish, Goeteborgs-Posten for Swedish, Thinaboomi Tamil
+                                                                     Daily for Tamil, Bangkok Biz news and Daily News for Thai,
+2.1. Language Coverage                                               Zaman for Turkish, Pravda among 9 other online newspapers
+                                                                     for Ukrainian, and Tin Tuc among others for Vietnamese.
+To date, the GlobalPhone corpus covers 20 languages, i.e.
+Arabic (Modern Standard Arabic), Bulgarian, Chinese (Man-                 The speech data was recorded with a close-speaking mi-
+darin and Shanghai), Croatian, Czech, French, German, Hausa,         crophone and is available in identical characteristics for all lan-
+Japanese, Korean, Polish, Portuguese (Brazilian), Russian,           guages: PCM encoding, mono quality, 16bit quantization, and
+Spanish (Latin American), Swedish, Tamil, Thai, Turkish,             16kHz sampling rate. Most recordings were done in ordinary
+Ukrainian, and Vietnamese. This selection covers a broad             rooms, in the majority without background noise, so that the
+variety of language peculiarities relevant for Speech and            speakers were not distracted. The quality of noise level and
+Language research and development. It comprises wide-spread          recording room setup is reported for each session. The speak-
+languages (e.g. Arabic, Chinese, Spanish, Russian), con-             ers were given instructions about the equipment handling in ad-
+tains economically and politically important languages, and          vance. They were introduced to the projects goals and were al-
+spans wide geographical areas (Europe, Africa, America, Asia).       lowed to read the texts before recording. The transcriptions are
+                                                                     available in the original script of the corresponding language.
+     The spoken speech covers a broad selection of phonetic          In addition, all transcriptions have been romanized, i.e. trans-
+characteristics, e.g. tonal sounds (Mandarin, Shanghai, Thai,        formed into Roman script applying reversible character map-
+Vietnamese), pharyngeal sounds (Arabic), consonantal clusters        pings. The transcripts were internally validated and supple-
+(German), nasals (French, Portuguese), and palatized sounds          mented by special markers for spontaneous effects like stutter-
+(Russian). The written language contains all types of writing        ing, false starts, and non-verbal effects such as breathing, laugh-
+systems, i.e. logographic scripts (Chinese Hanzi and Japanese        ing, and hesitations. Speaker information, such as age, gender,
+Kanji), phonographic segmental scripts (Roman, Cyrillic),            place of birth, dialect, occupation, etc. as well as information
+phonographic consonantal scripts (Arabic), phonographic syl-         about the recording setup complement the database.
+labic scripts (Japanese Kana, Thai), and phonographic featu-
+ral scripts (Korean Hangul). The languages cover many mor-                       Table 1: GlobalPhone Corpus Statistics
+phological variations, e.g. agglutinative languages (Turkish,                               Training   Development     Evaluation
+                                                                           Language
+Korean), compounding languages (German), and also include                                  [hrs:min]      [hrs:min]     [hrs:min]
+scripts that completely lack word segmentation (Chinese, Thai).            Arabic              12:00           TBA           TBA
+2.2. Data Acquisition                                                      Bulgarian           16:47           2:16          1:56
+                                                                           Croatian            11:48           2:02          1:45
+The data acquisition was performed in countries where the lan-             Czech               26:49           2:22          2:41
+guage is officially spoken. In each language about 100 adult na-           French              24:55           TBA           2:01
+                                                                           German              14:54           1:57          1:28
+tive speakers were asked to read about 100 sentences. The first
+                                                                           Hausa                6:36           1:02          1:06
+batch of data collection was done from May 1996 to Novem-                  Japanese            21:51           1:26          1:40
+ber 1997, and a second batch between 2003 and 2012. Dur-                   Korean              16:34           2:09          2:04
+ing the first batch we collected Arabic speech in Tunis, Sfax              Mandarin            26:38           1:59          2:25
+and Djerba, Tunisia; Mandarin in Beijing, Wuhan and Hekou,                 Portuguese          22:45           1:38          1:47
+China; Shanghai in Shanghai, China; Croatian in Zagreb, Croa-              Polish              18:39           2:47          2:16
+tia, and parts of Bosnia; Czech in Prague, Czech Republic;                 Russian             21:08           2:41          2:36
+                                                                           Shanghai             9:50           TBA           TBA
+French in Grenoble, France; German in Karlsruhe, Germany;                  Spanish             17:35           1:40          2:03
+Japanese in Tokyo, Japan; Korean in Seoul, Korea; Portuguese               Swedish             17:39           2:03          1:58
+in Porto Velho and Sao Paulo, Brazil; Polish in Poland, Rus-               Tamil               15:50           1:04          1:00
+sian in Minsk, Belarus; Spanish in Heredia and San Jose, Costa             Thai                19:05           2:03          1:58
+Rica; Swedish in Stockholm and Vaernamo, Sweden; Tamil in                  Turkish             13:04           1:57          1:53
+India, and Turkish in Istanbul, Turkey. In the second batch                Ukrainian           11:32           1:13          1:07
+                                                                           Vietnamese          22:15           1:40          1:30
+we collected Bulgarian in Sofia, Hausa in Cameroon, Thai in
+                                                                           Total             368:14           33:59         35:14
+Bangkok, Ukrainian in Donezk, and Vietnamese in Hanoi and
+Ho Chi Minh City.
+
+
+2.3. Corpus Statistics                                                Results indicate that it is feasible to build end-to-end speech
+                                                                      processing systems in various languages (more than 15) for
+The entire GlobalPhone corpus contains over 400 hours of              small domains within the framework of a six-week hands-on
+speech spoken by more than 2000 native adult speakers. The            lab course. Our tools will hopefully revolutionize the system
+data are organized by languages and speakers and are di-              development process in the future. Archiving the data gathered
+vided into speaker disjoint sets for training (80%), development      on-the-fly from many cooperative native users will significantly
+(10%), and evaluation (10%). Table 1 summarizes the amount            increase the repository of languages and resources. Data and
+of transcribed speech data per language.                              components for under-supported languages will become avail-
+                                                                      able at large to let everyone participate in the information revo-
+   3. Rapid Language Adaptation Toolkit                               lution, improve the mutual understanding, bridge language bar-
+                 (RLAT)                                               riers, and thus foster educational and cultural exchange.
+
+The project SPICE (NSF, 2004-2008) performed at the Lan-
+guage Technologies Institute at Carnegie Mellon and the Rapid
+                                                                      4. GlobalPhone Pronunciation Dictionaries
+Language Adaptation project at the Cognitive Systems Lab              Phone-based pronunciation dictionaries are available for each
+(CSL) aim at bridging the gap between the language and tech-          GlobalPhone language. The dictionaries cover the words which
+nology expertise. For this purpose RLAT [8] provides innova-          appear in the transcriptions. The majority of the dictionaries
+tive methods and interactive web-based tools to enable users          were constructed in a rule-based manner using language spe-
+to develop speech processing models, to collect appropriate           cific phone sets. After this automatic creation process the dic-
+speech and text data to build these models, as well as to evaluate    tionaries were manually post-processed word-by-word by na-
+the results allowing for iterative improvements [9]. The toolkit      tive speakers, correcting errors in the automatic pronunciation
+significantly reduces the amount of time and effort involved in       generation and introducing pronunciation variants. To enable
+building speech processing systems for unsupported languages.         the development of multilingual speech processing, the phone
+In particular, the toolkit allows the user to (1) design databases    names are consistent across languages, leveraging the Interna-
+for new languages at low cost by enabling users to record appro-      tional Phonetic Alphabet (IPA) [11]. Table 2 gives an overview
+priate speech data along with transcriptions, (2) to continuously     of the size of the phone sets, amount of vocabulary words cov-
+harvest, normalize, and process massive amounts of text data          ered, and amount of pronunciation variants in the GlobalPhone
+from the web, (3) to select appropriate phone sets for new lan-       pronunciation dictionaries.
+guages efficiently, (4) to create vocabulary lists, (5) to automat-          Table 2: GlobalPhone Pronunciation Dictionaries
+ically generate pronunciation dictionaries, (6) to apply these re-
+sources by developing acoustic and language models for speech                 Languages      #Phones     #Words    #Dict entries
+recognition, (7) to develop models for text-to-speech synthesis,              Bulgarian           44       275k           275k
+and (8) to finally integrate the built components into an appli-              Croatian            32        21k             23k
+                                                                              Czech               41       277k           277k
+cation and evaluate the results using online speech recognition               French              39       122k           195k
+and synthesis in a talk-back function [9].                                    German              43        39k             41k
+     RLAT and SPICE leverage off the two projects                             Hausa               33        43k             48k
+GlobalPhone and FestVox [10] to implement bootstrap-                          Japanese            31          9k            13k
+ping techniques that are based on extensive knowledge and                     Korean              39        1.3k             3k
+                                                                              Mandarin            49        73k             73k
+data sharing across languages, as well as sharing across system
+                                                                              Portuguese          45        59k             59k
+components [9]. Examples for data sharing techniques are                      Polish              36        34k             34k
+the training of multilingual acoustic models across languages                 Russian             47        39k             40k
+based on the definition of global phone sets. Sharing across                  Spanish             42        31k             39k
+components happens on all levels between recognition and                      Swedish             48        25k             25k
+synthesis, including phone sets, pronunciation dictionaries,                  Tamil               41       288k           292k
+acoustic models, and text resources.                                          Thai                44        23k             25k
+                                                                              Turkish             31        34k             34k
+     RLAT [8] and SPICE are a freely available online service                 Ukrainian           51        40k             40k
+which provides an interface to the web-based tools and has                    Vietnamese          38        30k             39k
+been designed to accommodate all potential users, ranging from
+novices to experts. Novice users are able to read easy-to-follow,
+step-by-step guidelines as they build a speech processing sys-
+tem. Expert users can skip past these instructions. In addition,             5. GlobalPhone Language Models
+file-uploading routines allow for feeding the bootstrapping al-       We applied RLAT to crawl a massive amount of text data and
+gorithms with available data and thus shortcut the process. As        used the strategy presented in [12] to quickly and efficiently
+a result the tools collect information from the broadest array of     build the GlobalPhone language models for 19 languages. We
+people: a general audience of Internet users who may have little      crawled text data for several days, and each day one language
+experience with speech tools, and a specific audience of speech       model was built based on the daily crawled text data. The final
+and language experts, who can use data they already have. By          language model was then created by a linear interpolation of all
+keeping the users in the developmental loop, the RLAT and             daily language models. The interpolation weights were com-
+SPICE tools can learn from their expertise to constantly adapt        puted using the SRI Language Model Toolkit [13], optimized on
+and improve the resulting models and systems.                         the GlobalPhone development sets. The experimental results in
+     The tools are regularly used for training and teaching pur-      [12] indicated that the text data from the first few days are most
+poses at two universities (KIT and CMU). Students are asked           helpful and therefore receive the highest interpolation weights
+to rely solely on the tools when building speech processing sys-      in the final language model. Since the outcome of the crawling
+tems and report back on problems and limitations of the system.       process depends on the input websites, the starting pages have to
+
+
+be chosen carefully. In some cases (Croatian, Japanese, Korean,    Hidden-Markov-Model. The emission probabilities are mod-
+Thai) the crawling process finished prematurely. In those cases    eled by Gaussian Mixtures with diagonal covariances. For
+we selected additional websites to harvest more diverse text       context-dependent acoustic models, we trained a quintphone
+data. The final best language model were then built based on the   system and stopped the decision tree splitting process at a
+interpolation of the language models from a variety of websites.   specified language dependent threshold (varies between 500
+Since some scripts lack a segmentation into words or do not        and 3,000 leaves depending on the available amount of training
+provide a suitable definition of ’word units’ (Chinese, Korean,    data). After context clustering, a merge-and-split training was
+Japanese, Tamil, Thai, and Vietnamese) we defined syllables or     applied, which selects the number of Gaussians according
+characters as token units for the purpose of speech recognition.   to the amount of data. For all models, we used one global
+Table 3 gives an overview of the amount of crawled text data,      semi-tied covariance (STC) matrix after Linear Discriminant
+the trigram perplexities (PPL), out-of-vocabulary (OOV) rates,     Analysis (LDA).
+and the vocabulary sizes of the GlobalPhone language models,
+for both the full (LM) and the pruned benchmark language mod-           To model tonal languages such as Chinese, Hausa, Thai,
+els (LM-BM), which are available for download from our web-        and Vietnamese, we apply the ”Data-driven tone modeling“
+site [7]. The symbols in parantheses after the language name       approach, where all tonal variants of a phone share one base
+indicate the token units used, i.e. (w) for word-based, (s) for    model. The information about the tone is added to the dictio-
+syllable-based, and (c) for character-based token units.           nary in form of a tone tag. These tags are used as questions
+                                                                   to be asked in the context decision tree when building context-
+ Table 3: GlobalPhone Text Resources and Language Models           dependent acoustic models. This way, the data decide during
+ Language          3-gram PPL        OOV      #Vocab   #Tokens
+                                                                   model clustering whether different tonal variants of the same
+                  LM-BM     LM         [%]                         basic phone end up being represented by different models or
+ Bulgarian (w)       454    351         1.0    274k      405M      share the basic phone model. Figure 1 illustrates the recog-
+ Croatian (w)        721    647         3.6    362k      331M      nition performance for 19 GlobalPhone systems, tested on the
+ Czech (w)          1421 1361           4.0    267k      508M      evaluation set using both, the full language models (LM) and
+ French (w)          324    284         2.4     65k          -     the pruned benchmark language models (LM-BM).
+ German (w)          672    555         0.3     38k       20M
+ Hausa (w)            97      77        0.5     41k       15M
+ Japanese (s)         89      76        1.0     67k     1600M
+ Korean (c)           25      18          0     1.3k     500M
+ Mandarin (c)        262    163         0.8     13k      900M
+ Portuguese (w)       58      49        9.8     62k       11M
+ Polish (w)          951    904         0.8    243k      224M
+ Russian (w)        1310 1150           3.9    293k      334M
+ Spanish (w)         154    108         0.1     19k       12M
+ Swedish (w)         423    387         5.3     73k      211M
+ Tamil (s)           730    624         1.0    288k       91M
+ Thai (s)             70      65        0.1     22k       15M
+ Turkish (w)            -     45      13.2      29k        7M
+ Ukrainian (w)       594    373         0.5     40k       94M
+ Vietnamese (s)      218    176           0     30k       39M
+
+
+         6. Speech Recognition Systems
+In this section, we present the large vocabulary speech
+recognition systems trained and evaluated on 19 GlobalPhone
+languages, i.e. all languages but Arabic and Shanghai, for the
+latter no transcripts are available at this point. For training,
+development, and evaluation we used the audio data as              Figure 1:     Word/Syllable/Character Error rates of the
+described in Table 1, the dictionaries shown in Table 2, and       GlobalPhone speech recognition systems in 19 languages
+the language models listed in Table 3. All recognition systems
+were build in the same fashion. The systems use Bottle-Neck
+front-end features with a multilingual initialization scheme as                          7. Summary
+proposed in [14]. In this approach a multilingual multilayer
+                                                                   In this paper we presented the latest status of the GlobalPhone
+perceptron (ML-MLP) was trained using the training data from
+                                                                   speech and language resources in 20 different languages. We
+12 languages (Bulgarian, Chinese, English, French, German,
+                                                                   summarized the amount of speech data recordings, the num-
+Croatian, Japanese, Korean, Polish, Russian, Spanish, and
+                                                                   ber of entries covered in the pronunciation dictionaries and the
+Thai). To initialize MLP training for a system, we select the
+                                                                   amount of text data along with the characteristics of the lan-
+output from the ML-MLP based on the IPA phone set and
+                                                                   guage models. These resources are available to the community
+use it as a starting point for MLP training. All weights from
+                                                                   for research and development of multilingual speech process-
+the ML-MLP were taken and only the output biases from the
+                                                                   ing systems. We also described the Rapid Language Adaptation
+selected targets were used.
+                                                                   Toolkit which was used to crawl additional text resources for
+                                                                   language model building. Finally, we present the performance
+    To rapidly bootstrap the system, the phone models were
+                                                                   of our speech recognition systems based on the data described
+seeded by the closest matches of the multilingual phone inven-
+                                                                   to provide a reference and benchmark numbers for researchers
+tory MM7 [15] derived from an IPA-based phone mapping.
+                                                                   and developers who work with the GlobalPhone corpus.
+The acoustic model uses a fully-continuous 3-state left-to-right
+
+
+                      8. References
+ [1] R. Gordon, Ed., Ethnologue: Languages of the World.
+     Dallas: SIL International, 2005.
+ [2] T. Schultz, “Towards Rapid Language Portability of
+     Speech Processing Systems,” in Conference on Speech
+     and Language Systems for Human Communication
+     (SPLASH), vol. 1, Delhi, India, November 2004.
+ [3] T. Schultz and K. Kirchhoff, Multilingual Speech Process-
+     ing. Elsevier Academic Press, 2006.
+ [4] T. Schultz, “Globalphone: A Multilingual Speech and
+     Text Database Developed at Karlsruhe University,” in
+     Proceedings of the ICSLP, 2002, pp. 345–348.
+ [5] ELRA, “European language resources association
+     (ELRA),” ELRA catalogue. Retrieved November 30,
+     2012, from http://catalog.elra.info, 2012.
+ [6] Appen Butler Hill Pty Ltd, “Speech and Language Re-
+     sources 2012,” Appen Butler Hill Speech and Language
+     Resources 2012 - Product Catalogue, 2012.
+ [7] LM-BM,          “Benchmark     GlobalPhone Language
+     Models,” Retrieved November 30, 2012, from
+     http://csl.ira.uka.de/GlobalPhone, 2012.
+ [8] RLAT,        “Rapid     Language      Adaptation Toolkit
+     (RLAT),” Retrieved November 30 2012, from
+     http://csl.ira.uka.de/rlat-dev, 2012.
+ [9] T. Schultz, A. W. Black, S. Badaskar, M. Hornyak, and
+     J. Kominek, “Spice: Web-based tools for rapid language
+     adaptation in speech processing systems,” in Proceedings
+     of Interspeech, Antwerp, Belgium, August 2007.
+[10] A. W. Black and K. Lenzo, “Building Voices in the
+     Festival Speech Synthesis System,” Festvox. Retrieved
+     November 30 2012, from http://festvox.org/bsv/, 2000.
+[11] IPA, The principles of the International Phonetic Associa-
+     tion, 2nd ed. London, UK: University College of London,
+     1982.
+[12] N. T. Vu, T. Schlippe, F. Kraus, and T. Schultz, “Rapid
+     bootstrapping of five eastern european languages using
+     the rapid language adaptation toolkit,” in INTERSPEECH,
+     2010, pp. 865–868.
+[13] A. Stolcke, “SRILM - An Extensible Language Modeling
+     Toolkit,” in Intl. Conf. Spoken Language Processing (IC-
+     SLP), 2002.
+[14] N. T. Vu, W. Breiter, F. Metze, and T. Schultz, “Initializa-
+     tion schemes for multilayer perceptron training and their
+     impact on asr performance using multilingual data,” in IN-
+     TERSPEECH, 2012.
+[15] T. Schultz and A. Waibel, “Language independent and lan-
+     guage adaptive acoustic modeling for speech recognition,”
+     Speech Communication, vol. 35, pp. 31–51, 2001.
+
