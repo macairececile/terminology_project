@@ -298,37 +298,3 @@ We summarized the amount of speech data recordings, the number of entries covere
 These resources are available to the community for research and development of multilingual speech processing systems. 
 We also described the Rapid Language Adaptation Toolkit which was used to crawl additional text resources for language model building. 
 Finally, we present the performance of our speech recognition systems based on the data described to provide a reference and benchmark numbers for researchers and developers who work with the GlobalPhone corpus.
-
-8. References
-
-[1] R. Gordon, Ed., Ethnologue: Languages of the World.
-Dallas: SIL International, 2005.
-
-[2] T. Schultz, “Towards Rapid Language Portability of Speech Processing Systems,” in Conference on Speech and Language Systems for Human Communication (SPLASH), vol. 1, Delhi, India, November 2004.
-
-[3] T. Schultz and K. Kirchhoff, Multilingual Speech Processing. Elsevier Academic Press, 2006.
-
-[4] T. Schultz, “Globalphone: A Multilingual Speech and Text Database Developed at Karlsruhe University,” in Proceedings of the ICSLP, 2002, pp. 345–348.
-
-[5] ELRA, “European language resources association (ELRA),” ELRA catalogue. Retrieved November 30, 2012, from http://catalog.elra.info, 2012.
-
-[6] Appen Butler Hill Pty Ltd, “Speech and Language Resources 2012,” Appen Butler Hill Speech and Language Resources 2012 - Product Catalogue, 2012.
-
-[7] LM-BM, “Benchmark GlobalPhone Language Models,” Retrieved November 30, 2012, from http://csl.ira.uka.de/GlobalPhone, 2012.
-
-[8] RLAT, “Rapid Language Adaptation Toolkit (RLAT),” Retrieved November 30 2012, from http://csl.ira.uka.de/rlat-dev, 2012.
-
-[9] T. Schultz, A. W. Black, S. Badaskar, M. Hornyak, and J. Kominek, “Spice: Web-based tools for rapid language adaptation in speech processing systems,” in Proceedings of Interspeech, Antwerp, Belgium, August 2007.
-
-[10] A. W. Black and K. Lenzo, “Building Voices in the Festival Speech Synthesis System,” Festvox. Retrieved November 30 2012, from http://festvox.org/bsv/, 2000.
-
-[11] IPA, The principles of the International Phonetic Association, 2nd ed. London, UK: University College of London, 1982.
-
-[12] N. T. Vu, T. Schlippe, F. Kraus, and T. Schultz, “Rapid bootstrapping of five eastern european languages using the rapid language adaptation toolkit,” in INTERSPEECH, 2010, pp. 865–868.
-
-[13] A. Stolcke, “SRILM - An Extensible Language Modeling Toolkit,” in Intl. Conf. Spoken Language Processing (IC-SLP), 2002.
-
-[14] N. T. Vu, W. Breiter, F. Metze, and T. Schultz, “Initialization schemes for multilayer perceptron training and their impact on asr performance using multilingual data,” in INTERSPEECH, 2012.
-
-[15] T. Schultz and A. Waibel, “Language independent and language adaptive acoustic modeling for speech recognition,” Speech Communication, vol. 35, pp. 31–51, 2001.
-

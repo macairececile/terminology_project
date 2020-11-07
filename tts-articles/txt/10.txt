@@ -2,10 +2,12 @@
 13-15 Sep 2016, Sunnyvale, USA
 
 Merlin: An Open Source Neural Network Speech Synthesis System
-Zhizheng Wu                Oliver Watts              Simon King
+Zhizheng Wu                
+Oliver Watts              
+Simon King
 The Centre for Speech Technology Research, University of Edinburgh, United Kingdom
 
- Abstract
+Abstract
 We introduce the Merlin speech synthesis toolkit for neural network-based speech synthesis.
 The system takes linguistic features as input, and employs neural networks to predict acoustic features, which are then passed to a vocoder to produce the speech waveform.
 Various neural network architectures are implemented, including a standard feedforward neural network, mixture density neural network, recurrent neural network (RNN), long short-term memory (LSTM) recurrent neural network, amongst others.
@@ -21,7 +23,7 @@ Even though the naturalness of good waveform concatenation speech continues to b
 
 In SPSS, one of the most important factors that limits the naturalness of the synthesised speech [2, 3] is the so-called acoustic model, which learns the relationship between linguistic and acoustic features: this is a complex and non-linear regression problem.
 For the past decade, hidden Markov models (HMMs) have dominated acoustic modelling [4].
-The way that the HMMs are parametrised is critical, and almost universally this entails clustering (or ‘tying’) groups of models for acoustically- and linguistically-related contexts, using a regression tree.
+The way that the HMMs are parametrised is critical, and almost universally this entails clustering (or ‘tying’) groups of models for acoustically and linguistically-related contexts, using a regression tree.
 However, the necessary across-context averaging considerably degrades the quality of synthesised speech [3].
 One might reasonably say that HMM-based SPSS would be more accurately called regression tree-based SPSS, and then the obvious question to ask is: why not use a more powerful regression model than a tree?
 Recently, neural networks have been ‘rediscovered’ as acoustic models for SPSS [5, 6].
@@ -55,16 +57,6 @@ This paper will briefly introduce the design and implementation of the toolkit a
 In addition to the results here and in the above list of previously-published papers, Merlin is the DNN benchmark system for the 2016 Blizzard Challenge.
 There, it is used in combination with the Ossian front-end 2 and the WORLD vocoder [34], both of which are also Open Source and can be used without restriction, to provide an easily-reproducible system.
 
-                                                                     202                http://dx.doi.org/10.21437/SSW.2016-33
-
-Vocoder parameters
-          yt
-h4
-h3
-h2
-h1
-          xt
-Linguistic features
 Figure 1: An illustration of feedforward neural network with four hidden layers.
 
 2. Design and Implementation                                                        
@@ -167,29 +159,7 @@ For example, to implement a 4-layer feedforward neural network using hyperbolic 
 Similarly, a hybrid bidirectional LSTM-based RNN can be specified as:
 [TANH, TANH, TANH, BLSTM]
 in the configuration file. More details of the supported unit type can be found in the documentation of the system.
-                                                                                                        
-                        xt          ht −1                             xt            ht −1
-                                                                                                                  
-                      Input                                                        Output
-                       gate                                                         gate
-                                                                                                        
-                              it                                               ot
- xt
-                                                     Cell                                               
-                 zt                                                                                     
-                              x             +        ct                        x            ht
-        Block input                                                                                     
-ht −1                                                                                                   
-                                            x
-                                                                                                        
-                                                         Peep-holes
-                                            ft                                                          
-                                  Forget
-                                   gate
-                                                                                                        
-                                                                                                            
-                                   xt                                                                   
-                                                 ht −1                                                                                                      
+                                                                                                     
 Figure 2: An illustration of a long short-term memory unit. The inputs to the unit are the input signal and the hidden activation of the previous time instance.                                                                          
 
 3. Benchmarking performance
@@ -232,8 +202,8 @@ LSTM           4.52   0.35      9.51      11.02
 BLSTM          4.51   0.35      9.57      11.18
 BLSTM-S        4.70   0.36     10.01      11.66
      
-Before training, the input features were normalised using min-max to the range [0.01, 0.99] and output features were nor-malised to zero mean and unit variance.
-At synthesis time, Maximum likelihood parameter generation (MLPG) was applied to generate smooth parameter trajectories from the de-normalised neural network outputs, then spectral enhancement in the cepstral domain was applied to the MCCs to enhance naturalness.
+Before training, the input features were normalised using min-max to the range [0.01, 0.99] and output features were normalised to zero mean and unit variance.
+At synthesis time, Maximum likelihood parameter generation (MLPG) was applied to generate smooth parameter trajectories from the denormalised neural network outputs, then spectral enhancement in the cepstral domain was applied to the MCCs to enhance naturalness.
 Speech Signal Processing Toolkit (SPTK5 ) was used to implement the spectral enhancement.
                                                                            
     We report four benchmark systems here:                       
@@ -278,150 +248,7 @@ The toolkit, as released, includes the recipes necessary to reproduce all result
 The intention is that future results published (by ourselves or others) using this toolkit will also be accompanied by recipe.
                                                                       205
 
-Figure 3: MUSHRA scores for DNN, LSTM, BLSTM, and  BLSTM-S using the STRAIGHT vocoder. LSTM and BLSTM are both significantly better than DNN.  
+Figure 3: MUSHRA scores for DNN, LSTM, BLSTM, and BLSTM-S using the STRAIGHT vocoder. LSTM and BLSTM are both significantly better than DNN. 
 Figure 4: MUSHRA scores for DNN, LSTM, BLSTM, and BLSTM-S using the WORLD vocoder.
 
 Acknowledgement: This work was supported by EPSRC Programme Grant EP/I031022/1 (Natural Speech Technology).
-
-5. References
-
-[1] R. A. J. Clark, K. Richmond, and S. King, “Multisyn:
-    Open-domain unit selection for the Festival speech syn-
-    thesis system,” Speech Communication, vol. 49, no. 4, pp.
-    317–330, 2007.
-[2] H. Zen, K. Tokuda, and A. W. Black, “Statistical para-
-    metric speech synthesis,” Speech Communication, vol. 51,
-    no. 11, pp. 1039–1064, 2009.
-[3] T. Merritt, J. Latorre, and S. King, “Attributing mod-
-    elling errors in HMM synthesis by stepping gradually
-    from natural to modelled speech,” in Proc. IEEE Int. Conf.
-    on Acoustics, Speech, and Signal Processing (ICASSP),
-    2015, pp. 4220–4224.
-[4] K. Tokuda, Y. Nankaku, T. Toda, H. Zen, J. Yamagishi,
-    and K. Oura, “Speech synthesis based on hidden Markov
-    models,” Proceedings of the IEEE, vol. 101, no. 5, pp.
-    1234–1252, 2013.
-[5] Z.-H. Ling, S.-Y. Kang, H. Zen, A. Senior, M. Schus-
-    ter, X.-J. Qian, H. M. Meng, and L. Deng, “Deep learn-
-    ing for acoustic modeling in parametric speech genera-
-    tion: A systematic review of existing techniques and fu-
-    ture trends,” IEEE Signal Processing Magazine, vol. 32,
-    no. 3, pp. 35–52, 2015.
-[6] H. Zen, “Acoustic modeling in statistical parametric
-    speech synthesis - from HMM to LSTM-RNN,” in Proc.
-    MLSLP, 2015, invited paper.
-[7] T. Weijters and J. Thole, “Speech synthesis with artificial
-     neural networks,” in Proc. Int. Conf. on Neural Networks,
-    1993, pp. 1764–1769.
-[8] G. Cawley and P. Noakes, “LSP speech synthesis using
-    backpropagation networks,” in Proc. Third Int. Conf. on
-    Artificial Neural Networks, 1993, pp. 291–294.
-[9] C. Tuerk and T. Robinson, “Speech synthesis using ar-
-    tificial neural networks trained on cepstral coefficients.”
-in Proc. European Conference on Speech Communication
-    and Technology (Eurospeech), 1993, pp. 4–7.
-[10] M. Riedi, “A neural-network-based model of segmental
-    duration for speech synthesis,” in Proc. European Con-
-    erence on Speech Communication and Technology (Eu-
-    rospeech), 1995, pp. 599–602.
-[11] O. Karaali, G. Corrigan, N. Massey, C. Miller, O. Schnurr,
-    and A. Mackie, “A high quality text-to-speech system
-    composed of multiple neural networks,” in Proc. IEEE
-    Int. Conf. on Acoustics, Speech, and Signal Processing
-    (ICASSP), vol. 2, 1998, pp. 1237–1240.
-[12] Z.-H. Ling, L. Deng, and D. Yu, “Modeling spectral en-
-    velopes using Restricted Boltzmann Machines and Deep
-    Belief Networks for statistical parametric speech synthe-
-    sis,” IEEE Transactions on Audio, Speech, and Language
-    Processing, vol. 21, no. 10, pp. 2129–2139, 2013.
-[13] S. Kang, X. Qian, and H. Meng, “Multi-distribution
-    deep belief network for speech synthesis,” in Proc. IEEE
-    Int. Conf. on Acoustics, Speech, and Signal Processing
-    (ICASSP), 2013, pp. 8012–8016.
-[14] S. Kang and H. Meng, “Statistical parametric speech syn-
-     thesis using weighted multi-distribution deep belief net-
-    work,” in Proc. Interspeech, 2014, pp. 1959–1963.
-
-                                                         206
-
-[15] H. Zen and A. Senior, “Deep mixture density networks for                  on Acoustics, Speech, and Signal Processing (ICASSP),
-     acoustic modeling in statistical parametric speech synthe-                2016.
-     sis,” in Proc. IEEE Int. Conf. on Acoustics, Speech, and             [30] Z. Wu and S. King, “Investigating gated recurrent neural
-     Signal Processing (ICASSP), 2014, pp. 3844–3848.                          networks for speech synthesis,” in Proc. IEEE Int. Conf.
-[16] B. Uria, I. Murray, S. Renals, and C. Valentini, “Mod-                    on Acoustics, Speech, and Signal Processing (ICASSP),
-     elling acoustic feature dependencies with artificial neu-                 2016.
-     ral networks: Trajectory-rnade,” in Proc. IEEE Int. Conf.            [31] T. Merritt, J. Yamagishi, Z. Wu, O. Watts, and S. King,
-     on Acoustics, Speech, and Signal Processing (ICASSP),                     “Deep neural network context embeddings for model se-
-     2015, pp. 4465–4469.                                                      lection in rich-context HMM synthesis,” in Proc. Inter-
-[17] H. Zen, A. Senior, and M. Schuster, “Statistical paramet-                 speech, 2015.
-     ric speech synthesis using deep neural networks,” in Proc.           [32] T. Merritt, R. A. Clark, Z. Wu, J. Yamagishi, and S. King,
-     IEEE Int. Conf. on Acoustics, Speech, and Signal Process-                 “Deep neural network-guided unit selection synthesis,” in
-     ing (ICASSP), 2013, pp. 7962–7966.                                        Proc. IEEE Int. Conf. on Acoustics, Speech, and Signal
-[18] H. Lu, S. King, and O. Watts, “Combining a vector space                   Processing (ICASSP), 2016.
-     representation of linguistic context with a deep neural net-
-                                                                          [33] Q. Hu, Z. Wu, K. Richmond, J. Yamagishi, Y. Stylianou,
-     work for text-to-speech synthesis,” Proc. the 8th ISCA
-                                                                               and R. Maia, “Fusion of multiple parameterisations for
-     Speech Synthesis Workshop (SSW), pp. 281–285, 2013.
-                                                                               DNN-based sinusoidal speech synthesis with multi-task
-[19] Y. Qian, Y. Fan, W. Hu, and F. K. Soong, “On the training                 learning,” in Proc. Interspeech, 2015, pp. 854–858.
-     aspects of deep neural network (DNN) for parametric TTS
-                                                                          [34] M. MORISE, F. YOKOMORI, and K. OZAWA,
-     synthesis,” in Proc. IEEE Int. Conf. on Acoustics, Speech,
-                                                                               “WORLD: a vocoder-based high-quality speech synthe-
-     and Signal Processing (ICASSP), 2014, pp. 3829–3833.
-                                                                               sis system for real-time applications,” IEICE transactions
-[20] Z. Wu, C. Valentini-Botinhao, O. Watts, and S. King,                      on information and systems, 2016.
-     “Deep neural networks employing multi-task learning and
-                                                                          [35] H. Kawahara, I. Masuda-Katsuse, and A. de Cheveigné,
-     stacked bottleneck features for speech synthesis,” in Proc.
-                                                                               “Restructuring speech representations using a pitch-
-     IEEE Int. Conf. on Acoustics, Speech, and Signal Process-
-                                                                               adaptive time–frequency smoothing and an instantaneous-
-     ing (ICASSP), 2015, pp. 4460–4464.
-                                                                               frequency-based F0 extraction: Possible role of a repeti-
-[21] K. Hashimoto, K. Oura, Y. Nankaku, and K. Tokuda, “The                    tive structure in sounds,” Speech communication, vol. 27,
-     effect of neural networks in statistical parametric speech                no. 3, pp. 187–207, 1999.
-     synthesis,” in Proc. IEEE Int. Conf. on Acoustics, Speech,
-                                                                          [36] S. Hochreiter and J. Schmidhuber, “Long short-term
-     and Signal Processing (ICASSP), 2015, pp. 4455–4459.
-                                                                               memory,” Neural computation, vol. 9, no. 8, pp. 1735–
-[22] O. Watts, G. E. Henter, T. Merritt, Z. Wu, and S. King,                   1780, 1997.
-     “From HMMs to DNNs: where do the improvements
-                                                                          [37] A. Graves and J. Schmidhuber, “Framewise phoneme
-     come from?” in Proc. IEEE Int. Conf. on Acoustics,
-                                                                               classification with bidirectional LSTM and other neural
-     Speech, and Signal Processing (ICASSP), 2016.
-                                                                               network architectures,” Neural Networks, vol. 18, no. 5,
-[23] C. Valentini-Botinhao, Z. Wu, and S. King, “Towards                       pp. 602–610, 2005.
-     minimum perceptual error training for DNN-based speech
-     synthesis,” in Proc. Interspeech, 2015, pp. 869–873.                 [38] J. Chung, C. Gulcehre, K. Cho, and Y. Bengio, “Empirical
-                                                                               evaluation of gated recurrent neural networks on sequence
-[24] Z. Wu and S. King, “Minimum trajectory error training for                 modeling,” arXiv preprint arXiv:1412.3555, 2014.
-     deep neural networks, combined with stacked bottleneck
-     features,” in Proc. Interspeech, 2015, pp. 309–313.
-[25] Y. Fan, Y. Qian, F. K. Soong, and L. He, “Sequence gen-
-     eration error (SGE) minimization based deep neural net-
-     works training for text-to-speech synthesis,” in Proc. In-
-     terspeech, 2015, pp. 864–868.
-[26] Z. Wu and S. King, “Improving trajectory modelling for
-     dnn-based speech synthesis by using stacked bottleneck
-     features and minimum generation error training,” IEEE
-     Trans. Audio, Speech and Language Processing, 2016.
-[27] Y. Fan, Y. Qian, F. Xie, and F. K. Soong, “TTS synthe-
-     sis with bidirectional LSTM based recurrent neural net-
-     works,” in Proc. Interspeech, 2014, pp. 1964–1968.
-[28] H. Zen and H. Sak, “Unidirectional long short-term mem-
-     ory recurrent neural network with recurrent output layer
-     for low-latency speech synthesis,” in Proc. IEEE Int. Conf.
-     on Acoustics, Speech, and Signal Processing (ICASSP),
-     2015, pp. 4470–4474.
-[29] B. X. Wenfu Wang, Shuang Xu, “Gating recurrent mix-
-     ture density networks for acoustic modeling in statisti-
-     cal parametric speech synthesis,” in Proc. IEEE Int. Conf.
-
-
-
-
-                                                                    207
-

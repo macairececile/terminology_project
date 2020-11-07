@@ -1,8 +1,6 @@
 Multilingual Text Analysis for Text-to-Speech Synthesis
 Richard Sproat1
 
-cmp-lg/9608012 19 Aug 1996
-
 Abstract.
 We present a model of text analysis for text-to-speech (TTS) synthesis based on (weighted) finite-state transducers, which serves as the text-analysis module of the multilingual Bell Labs TTS system.
 The transducers are constructed using a lexical toolkit that allows declarative descriptions of lexicons, morphological rules, numeral-expansion rules, and phonological rules, inter alia.
@@ -45,11 +43,6 @@ As with the adjectival forms, there is nothing peculiar about the behavior of th
 1 Speech Synthesis Research Department, Bell Laboratories, Lucent Technologies, 700 Mountain Avenue, Room 2d-451, Murray Hill, NJ, USA, 07974–0636, rws@bell-labs.com
 2 But see [17], which treats numeral expansion as an instance of morphological analysis, and also the work of van Leeuwen [19], which uses cascaded rewrite rules within his TooL iP system towards the same ends.
 
-c 1996 R. Sproat
-ECAI 96. 12th European Conference on Artificial Intelligence
-Edited by W. Wahlster
-Published in 1996 by John Wiley & Sons, Ltd.
-
 The complexity, of course, arises because the written form ‘%’ gives no indication of what linguistic form it corresponds to.
 Furthermore, there is no way to correctly expand this form without doing a substantial amount of analysis of the context, including some analysis of the morphological properties of the surrounding words, as well as an analysis of the relationship of the percentage expression to those words.
 The obvious solution to this problem is to delay the decision on how exactly to transduce symbols like ‘$’ in English or ‘%’ in Russian until one has enough information to make the decision in an informed manner.
@@ -94,30 +87,7 @@ Obviously in general we want to remove contextually inappopriate analyses, and t
 
 4   This is certainly not completely true in all such cases, as ‘mixed’ representations such as 1st and 2nd suggest. But such cases are most easily treated as also being logographic, at least in the present architecture.
 
-                                                                                    76                                                                       R. Sproat
-
-                                                            S   1
-                                                                    
-                                                                               1
-                                                                             Lword    _         Lpunc
-                                                                                                  1          
-
-                                                                    [                             [
-
-                                                                1
-                                                            Lspecial symbol                   Lspace
-                                                                                                  1
-
-
-                                                                    [
-
-                                                                  1
-                                                                Lnumbers
-                                                                        ..
-                                                                         .
 Figure 1. Overall structure of the lexical analysis portion. Note that space corresponds to whitespace in German or Russian, but  in Chinese or Japanese.
-
-                                                                                                                                                   1
 
 This is accomplished by a set of one or more language model transducers — henceforth Λ — which are derived from rules and other linguistic descriptions that apply to contexts wider than the lexical word. Phrasal accentuation and prosodic phrasing are also handled by the language model transducers.5
 The output of composing the lexical analysis WFST with Λ is a lattice of contextually disambiguated lexical analyses.
@@ -131,13 +101,12 @@ The construction of the WFSTs depends upon a lexical toolkit — lextools — th
 Some of the tools do not require much comment for readers familiar with previous work on finite-state phonology and morphology.
 In addition to some basic tools to deal with machine labels, there is a tool (compwl) that compiles lists of strings or more general regular expressions into finite-state lexicons; a tool (paradigm) to construct inflected morphological forms out of inflectional paradigm descriptions and lexicons that mark the paradigm affiliation of stems; a tool for constructing finite-state word grammars (arclist — the name being inspired by [18]); and a rewrite rule compiler [5], based on the algorithm described in [10].
 
-
-The tool numbuilder constructs the transducer Lnumbers        , which converts strings of digits up to a user-defined length into number-names appropriate for that string.
+The tool numbuilder constructs the transducer Lnumbers, which converts strings of digits up to a user-defined length into number-names appropriate for that string.
 The construction factors the problem of numeral expansion into two subproblems.
 The first of these involves expanding the numeral sequence into a representation in terms of sums of products of powers of the base — usually ten; call this the Factorization transducer.
 The second maps from this representation into number names using a lexicon that describes the mapping between basic number words and their semantic value in terms of sums of products of powers of the base; call this the Number Lexicon transducer.
 A sample Number Lexicon fragment for German is shown in Figure 2.
-The first stage of the expansion is language- or at least language-area dependent since languages differ on which powers of the base have separate words (see [4], inter alia): so Chinese and Japanese have a separate word for 104 , whereas most European languages lack such a word.
+The first stage of the expansion is language or at least language-area dependent since languages differ on which powers of the base have separate words (see [4], inter alia): so Chinese and Japanese have a separate word for 104 , whereas most European languages lack such a word.
 The full numeral expansion transducer is constructed by composing the Factorization transducer with the transitive closure of the Number Lexicon transducer.
 In some languages, additional manipulations are necessary, and these involve the insertion of a special ‘filter’ transducer between the Factorization and Number Lexicon transducers.
 In German, for example, the words for decades come after the words for units: so 34 = 3  101 + 4 becomes vierunddreißig (four+and+thirty), thus suggesting the order 4 +3 101.
@@ -157,41 +126,9 @@ Instead, the right and left contexts are compiled into an FSM-like format, which
 Note also that, unlike the current system which compiles linguistic descriptions into WFSTs that allow multiple outputs, TooL iP functions in a completely deterministic fashion, in that for any given input there can only be one output.
 
 
-
 4   Russian Percentages
 Let us return to the example of Russian percentage terms. Assume that we start with a fragment of text such as s 5% skidkoĭ s 5% skidkoj (with 5% discount) ‘with a five-percent discount’.         
 
-                                                                                     77                                                               R. Sproat
-
-
-                                     /f1g                            :      (’einsfnumg(fmascgjfneutg)fsggf##g)/
-                                     /f1g                            :      (’einefnumgffemigfsgg<1.0>f##g)/
-                                     /f2g                            :      (zw’eifnumgf##g)/
-                                     /f3g                            :      (dr’eifnumgf##g)/
-                                                                       ..
-                                                                        .
-                                     /(f0gf+++gf1gf10^1g)            :      (z’ehnfnumgf##g)/
-                                     /(f1gf+++gf1gf10^1g)            :      (’elffnumgf##g)/
-                                     /(f2gf+++gf1gf10^1g)            :      (zw’ölffnumgf##g)/
-                                     /(f3gf+++gf1gf10^1g)            :      (dr’eif++gzehnfnumgf##g)/
-                                                                     ..
-                                                                      .
-                                     /(f2gf10^1g)                    :      (zw’anf++gzigfnumgf##g)/
-                                     /(f3gf10^1g)                    :      (dr’eif++gßigfnumgf##g)/
-                                                                      ..
-                                                                       .
-                                     /(f10^2g)                       :      (h’undertfnumgf##g)/
-                                     /(f10^3g)                       :      (t’ausendfnumgfneutgf##g)/
-Figure 2. German number lexicon. The cost of 1:0 on the feminine form eine effectively disfavors this form, so that it will only be selected in appropriate predefined contexts.
-
-                                            234          Factorization             )      2  102 + 3  101 + 4
-
-                                                         DecadeFlop                )      2  102 + 4 + 3  101
-
-                                                         NumberLexicon
-                                                                              
-                                                                                    +
-                                                            zwei+hundert+vier+und+dreißig
 Figure 3. Expansion of 234 in German using numbuilder.
 
 This is first composed with the lexical analysis WFST to produce a set of possible lexical forms; see Figure 4. By default the lexical analyzer marks the adjectival readings of ‘%’ with ‘?’, meaning that they will be filtered out by the language-model WFSTs, if contextual information does not save them.
@@ -213,50 +150,8 @@ Slower performance is certainly observed, however, when the system is required t
 To date, no formal evaluations have been performed on the correctness of word-pronunciation in the various languages we are working on, largely because there is still work to be done before the systems can be called complete.
 An evaluation of the correctness of word segmentation in the Mandarin Chinese system is reported in [16].
 
-                                                                              78                                                                 R. Sproat
-
-
-                                                                         s 5% skidkoĭ
-                                                                                   
-
-
-                                                                    Lexical Analysis WFST
-
-                                                                                   +
-
-
-                                             sprep pjat’num nom -procentnadj ? +ajafem+sg+nom skidkfem ojsg+instr       [
-
-                                            sprep pjatnum igen -procentnadj ? +ojfem+sg+instr skidkfem ojsg+instr 2:0       [
-
-                                              sprep pjatnum ’juinstr -procentnoun +amipl+instr skidkfemojsg+instr 4:0   [
-                                                                                   ..
-                                                                                    .
-
 Figure 4. Composition of s 5% skidkoĭ s 5% skidkoj ‘with a 5% discount’ with the lexical analysis WFST to produce a range of possible lexical renditions for the phrase. By default the adjectival readings of ‘%’ are marked with ‘?’, which means that they will be filtered out by the language-model WFSTs; see Figure 5.
 The boxed analysis is the correct one. Costs on analyses mark constructions — usually oblique case forms — that are not in principle ill-formed but are disfavored except in certain well-defined contexts.
-
-                                                                                   Λ:
-                                                      ! ? = procentnoun (Σ \ :#) #                      
-                                                                                                  (Σ \ :#)noun
-                                                                                  
-                                                      ? !  = procentnadj (Σ \ :#) #
-                                                                                                          
-                                                                                                  (Σ \ :#)noun
-                                                                                   
-
-                                                  ! ? = procentn (Σ \ :#) Case\:instr# (Σ \ :#)instr
-                                                                          
-                                                  ! ? = procentn (Σ \ :#) sg+Case # (Σ \ :#)pl
-                                                                                               
-                                                                                   
-
-                                                                                   ..
-                                                                                    .
-
-                                                                            :(   Σ ? Σ )
-                                                                            +    BestPath
-                                                             s pjatigen -procentnadj ojsg+instr skidkoj
 
 Figure 5. A subset of the language model WFSTs related to the rendition of percentages.
 The first block of rules ensures that adjectival forms are used before nouns, by switching the tag ‘?’ on the adjectival and nominal forms. The second block of rules deals with adjectival agreement with the adjectival forms.
@@ -280,24 +175,7 @@ Familiar, of course, are applications to morphology, phonology, and syntax, thou
 From the point of view of text-analysis models for text-to-speech the approach is quite novel since, as described in the introduction, most previous work treats certain operations, such as word segmentation or numeral expansion in a preprocessing phase that is logically prior to the linguistic analysis phase; we have argued here against this view.
 Two areas of future work both depend upon an important property of the FSM toolkit on top of which the lextools toolkit is built. Underlying the notion of an FSM is the more general notion of a generalized state machine (GSM).
 
-                                                                                  79                                                                 R. Sproat
-
-
-                                                                       s 5% skidkoĭ
-                                                                                 +
-
-
-                                                           s pjatigen -procentnadj ojsg+instr skidkoj
-                                                                                 
-
-
-                                                                            M        P
-
-                                                                                 +
-                                                    s # PiT"!pr@c"Entn&y # sK"!tk&y
-
-                              Figure 6.   Mapping the selected lexical analysis to a phonetic rendition via composition with P .
-
+Figure 6.   Mapping the selected lexical analysis to a phonetic rendition via composition with P .
 
 An important property of GSMs is that it is not necessary to know beforehand which arcs leave a given state; rather one can construct just the arcs one needs ‘on the fly’ as one is using the machine, for example in a composition with another machine.
 This has two important consequences.
@@ -311,66 +189,3 @@ Future work on the text analysis model presented here will focus in part on the 
 
 7   Acknowledgments
 I wish to acknowledge Michael Riley, Fernando Pereira and Mehryar  Mohri of AT&T Research, without whose underlying FSM toolkit the  lexical toolkit and text-analysis work reported here would not have been possible.
-
-REFERENCES
-                                                                                      [1] Peter Daniels and William Bright, The World’s Writing Systems, Oxford
-                                                                                           196, (1992).
-
-                                                                                      [2] Steven Franks, ‘Parametric properties of numeral phrases in Slavic’,
-                                                                                           Natural Language and Linguistic Theory, 12(4), 597–674, (1994).
-                                                                                      [3] Julia Hirschberg, ‘Pitch accent in context: Predicting intonational promi-
-                                                                                           nence from text’, Artificial Intelligence, 63, 305–340, (1993).
-                                                                                           University Press, New York, 1996. 
-
-                                                                                      [4] James Hurford, The Linguistic Theory of Numerals, Cambridge Univer-
-                                                                                           sity Press, Cambridge, 1975.
-                                                                                      [5] Ronald Kaplan and Martin Kay, ‘Regular models of phonological rule
-                                                                                           systems’, Computational Linguistics, 20, 331–378, (1994).
-                                                                                       [6] Lauri Karttunen, ‘Finite-state lexicon compiler’, Technical Report P93–
-
-                                                                                           00077, Xerox Palo Alto Research Center, (1993).
-                                                                                      [7] Lauri Karttunen and Kenneth Beesley, ‘Two-level rule compiler’, Tech-
-                                                                                           nical Report P92–00149, Xerox Palo Alto Research Center, (1992).
-                                                                                      [8] Lauri Karttunen, Ronald Kaplan, and Annie Zaenen, ‘Two-level mor-
-                                                                                           phology with composition’, in COLING-92, pp. 141–148. COLING,
-                                                                                           (1992).
-                                                                                      [9] Kimmo Koskenniemi, Two-Level Morphology: a General Computa-
-                                                                                           tional Model for Word-Form Recognition and Production, Ph.D. disser-
-                                                                                           tation, University of Helsinki, Helsinki, 1983.
-                                                                                      [10] Mehryar Mohri and Richard Sproat, ‘An efficient compiler for weighted
-                                                                                           rewrite rules’, in 34rd Annual Meeting of the Association for Computa-
-
-                                                                                           tional Linguistics, Morristown, NJ, (1996). Association for Computa-
-                                                                                           tional Linguistics.
-                                                                                      [11] Fernando Pereira and Michael Riley. Speech recognition by composition
-                                                                                           of weighted finite automata. CMP-LG archive paper 9603001, 1996.
-                                                                                      [12] Fernando Pereira, Michael Riley, and Richard Sproat, ‘Weighted ratio-
-                                                                                           nal transductions and their application to human language processing’,
-                                                                                           in ARPA Workshop on Human Language Technology, pp. 249–254. Ad-
-                                                                                           vanced Research Projects Agency, (March 8–11 1994).
-                                                                                      [13] Richard Sproat, Morphology and Computation, MIT Press, Cambridge,
-                                                                                           MA, 1992.
-                                                                                      [14] Richard Sproat, ‘English noun-phrase accent prediction for text-to-
-
-                                                                                           speech’, Computer Speech and Language, 8, 79–94, (1994).
-                                                                                      [15] Richard Sproat and Michael Riley, ‘Compilation of weighted finite-
-                                                                                           state transducers from decision trees’, in 34rd Annual Meeting of the
-                                                                                           Association for Computational Linguistics, Morristown, NJ, (1996).
-                                                                                           Association for Computational Linguistics.
-                                                                                      [16] Richard Sproat, Chilin Shih, William Gale, and Nancy Chang, ‘A
-                                                                                           stochastic finite-state word-segmentation algorithm for Chinese’, Com-
-                                                                                           putational Linguistics, 22(3), (1996).
-                                                                                      [17] Christof Traber, ‘SVOX: The implementation of a text-to-speech system
-                                                                                           for German’, Technical Report 7, Swiss Federal Institute of Technology,
-                                                                                           Zurich, (1995).
-                                                                                      [18] Evelyne Tzoukermann and Mark Liberman, ‘A finite-state morpholog-
-
-                                                                                           ical processor for Spanish’, in COLING-90, Volume 3, pp. 3: 277–286.
-
-                                                                                           COLING, (1990).
-                                                                                      [19] Hugo van Leeuwen, TooL iP: A Development Tool for Linguistic Rules,
-                                                                                           Ph.D. dissertation, Technical University Eindhoven, 1989.
-                                                                                      [20] Michelle Wang and Julia Hirschberg, ‘Automatic classification of into-
-                                                                                           national phrase boundaries’, Computer Speech and Language, 6, 175–
-                                                         
-                                                                                 80                                                                  R. Sproat

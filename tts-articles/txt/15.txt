@@ -93,7 +93,7 @@ where si is the speaker label i and ψ s are the parameters for speaker classifi
 To train the full model, we insert a gradient reversal layer [27] prior to this speaker classifier, which scales the gradient by −λ. 
 Following [28], we also explore inserting another adversarial layer on top of the variational autoencoder to encourage it to learn speaker-independent representations. 
 However, we found that this layer has no effect after decreasing the latent space dimension. 
-We impose this adversarial loss separately on each element of the encoded text sequence, in order to encourage the model to learn a speaker- and language-independent text embedding space. 
+We impose this adversarial loss separately on each element of the encoded text sequence, in order to encourage the model to learn a speaker and language-independent text embedding space. 
 In contrast to [28], which disentangled speaker identity from background noise, some input tokens are highly language-dependent which can lead to unstable adversarial classifier gradients. 
 We address this by clipping gradients computed at the reversal layer to limit the impact of such outliers.
 
@@ -136,7 +136,7 @@ We first build and evaluate models comparing the performance of different text i
 For all three languages, byte-based models always use a 256-dim softmax output. 
 Monolingual character and phoneme models each use a different input vocabulary corresponding to the training language. 
 Table 2 compares monolingual and multilingual model performance using different input representations. 
-For Mandarin, the phoneme-based model performs significantly better than char- or byte-based variants due to rare and OOV words. 
+For Mandarin, the phoneme-based model performs significantly better than char or byte-based variants due to rare and OOV words. 
 Compared to the monolingual system, multilingual phoneme-based systems have similar performance on ES and CN but are slightly worse on EN. 
 CN has a larger gap to ground truth (top) due to unseen word segmentation (for simplicity, we didn’t add word boundary during training). 
 The multispeaker model (bottom) performs about the same as the single speaker per-language variant (middle). 

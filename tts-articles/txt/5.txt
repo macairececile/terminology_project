@@ -13,10 +13,8 @@ Text-to-speech (TTS), also called speech synthesis, has long been a vital tool i
 Traditional TTS systems are based on multi-stage hand-engineered pipelines (Taylor, 2009).
 In recent years, deep neural networks based autoregressive models have attained state-of-the-art results, including high-fidelity audio synthesis (van den Oord et al., 2016), and much simpler seq2seq pipelines (Sotelo et al., 2017; Wang et al., 2017; Ping et al., 2018b).
 In particular, one of the most popular neural TTS pipeline (a.k.a. “end-to-end") consists of two components (Ping et al., 2018b; Shen et al., 2018): (i) an autoregressive seq2seq model that generates mel spectrogram from text, and (ii) an autoregressive neural vocoder (e.g., WaveNet) that synthesizes raw waveform from mel spectrogram.
-*
-Equal contribution . 1 Baidu Research, 1195 Bordeaux Dr, Sunnyvale, CA. Speech samples can be found in: https://parallel-neural-tts-demo.github.io/. Correspondence to: Wei Ping <weiping.thu@gmail.com>.
-Proceedings of the 37 th International Conference on Machine Learning, Vienna, Austria, PMLR 119, 2020. Copyright 2020 by Learning, Vienna, Austria, PMLR 119, 2020. Copyright 2020 by the author(s).
 
+Equal contribution . 1 Baidu Research, 1195 Bordeaux Dr, Sunnyvale, CA. Speech samples can be found in: https://parallel-neural-tts-demo.github.io/. Correspondence to: Wei Ping <weiping.thu@gmail.com>.
 
 This pipeline requires much less expert knowledge and only needs pairs of audio and transcript as training data.
 However, the autoregressive nature of these models makes them quite slow at synthesis, because they operate sequentially at a high temporal resolution of waveform samples and spectrogram.
@@ -33,8 +31,6 @@ It runs 254.6 times faster than real-time at synthesis on a 1080 Ti GPU, and bri
 It can produce more stable attentions than autoregressive Deep Voice 3 (Ping et al., 2018b) on the challenging test sentences, because it does not have the discrepancy between the teacher-forced training and autoregressive inference.
 3. We build the fully parallel neural TTS system by combining ParaNet with parallel neural vocoder, thus it can generate speech from text through a single feed-forward pass.
 We investigate several parallel vocoders, including the distilled IAF vocoder (Ping et al., 2018a) and Wave-Glow (Prenger et al., 2019). To explore the possibility of training IAF vocoder without distillation, we also propose an alternative approach, WaveVAE, which can be trained from scratch within the variational autoencoder (VAE) framework (Kingma & Welling, 2014).
-
-                                          Non-Autoregressive Neural Text-to-Speech
 
 We organize the rest of paper as follows. Section 2 discusses related work. We introduce the non-autoregressive ParaNet architecture in Section 3
 We discuss parallel neural vocoders in Section 4, and report experimental settings and  results in Section 5. We conclude the paper in Section 6.
@@ -55,7 +51,7 @@ RNN-based autoregressive models, such as Tacotron and WaveRNN (Kalchbrenner et a
 CNN-based autoregressive models, such as Deep Voice 3 and WaveNet, enable parallel processing at training, but they still operate sequentially at synthesis since each output element must be generated before it can be passed in as input at the next time-step.
 Recently, there are some non-autoregressive models proposed for neural machine translation. Gu et al. (2018) trains a feed-forward neural network conditioned on fertility values, which are obtained from an external alignment system.
 Kaiser et al. (2018) proposes a latent variable model for fast decoding, while it remains autoregressiveness between latent variables.
-Lee et al. (2018) iteratively refines the output sequence through a denoising autoencoder frame-work.
+Lee et al. (2018) iteratively refines the output sequence through a denoising autoencoder framework.
 Arguably, non-autoregressive model plays a more important role in text-to-speech, where the output speech spectrogram usually consists of hundreds of time-steps for a short text input with a few words.
 Our work is one of the first non-autoregressive seq2seq model for TTS and provides as much as 46.7 times speed-up at synthesis over its autoregressive counterpart (Ping et al., 2018b).
 There is a concurrent work (Ren et al., 2019), which is based on the autoregressive transformer TTS (Li et al., 2019) and can generate mel spectrogram in parallel.
@@ -86,47 +82,11 @@ The major difference between our model and DV3 is the decoder architecture.
 The decoder of DV3 has multiple attention-based layers, where each layer consists of a causal convolution block followed by an attention block.
 To simplify the attention distillation described in Section 3.3.1, our autoregressive decoder has only one attention block at its first layer.
 We find that reducing the number of attention blocks does not hurt the generated speech quality in general.
-
-
-                                                     Non-Autoregressive Neural Text-to-Speech
-
-                            Converter          Linear output
 
 
-                             Decoder           Mel output
-
-
-                             Attention
-
-
-                             Encoder
-
-                               Text
-
-                                         (a)                                        (b)
 Figure 1. (a) Autoregressive seq2seq model. The dashed line depicts the autoregressive decoding of mel spectrogram at inference.
 (b) Non-autoregressive ParaNet model, which distills the attention from a pretrained autoregressive model.
 
-                                                                                                                      Convolution Block
-
-                                                                                                                         Output
-
-                                                                                                                           ⨉
-
-
-                                                                                                                           +
-
-                                                                                                                          GLU
-
-                                                                                                                         Conv.
-
-                                                                                                                         Dropout
-
-
-                                                                                                                          Input
-
-
-                                                               (a)                                                         (b)
 Figure 2. (a) Architecture of ParaNet. Its encoder provides key and value as the textual representation. The first attention block in decoder
 gets positional encoding as the query and is followed by non-causal convolution blocks and attention blocks.
 (b) Convolution block appears in both encoder and decoder. It consists of a 1-D convolution with a gated linear unit (GLU) and a residual connection.
@@ -146,8 +106,6 @@ It is challenging for the feed-forward model to learn the accurate alignment bet
 In particular, we need the full parallelism within the attention mechanism.
 For example, the location-sensitive attention (Chorowski et al., 2015; Shen et al., 2018) improves attention stability, but it performs sequentially at both training and synthesis, because it uses the cumulative attention weights from previous decoder time steps as an additional feature for the next time step.
 Previous non-autoregressive decoders rely on an external alignment system (Gu et al.,2018), or an autoregressive latent variable model (Kaiseret al., 2018).
-
-                                             Non-Autoregressive Neural Text-to-Speech
 
 Figure 3. Our ParaNet iteratively refines the attention alignment in a layer-by-layer way. One can see the 1st layer attention is mostly
 dominated by the positional encoding prior. It becomes more and more confident about the alignment in the subsequent layers.
@@ -183,8 +141,6 @@ In all of our experiments, we simply set ωs to be 6.3/4 as in autoregressive mo
 
 Such a setup yields an initial attention in the form of a diagonal line and guides the non-autoregressive decoder to refine its attention layer by layer (see Figure 3).
 
-                                          Non-Autoregressive Neural Text-to-Speech
-
 3.3.3. ATTENTION MASKING
 Inspired by the attention masking in Deep Voice 3, we propose an attention masking scheme for the non-autoregressive ParaNet at synthesis:                                                      
 • For each query from decoder, instead of computing the softmax over the entire set of encoder key vectors, we compute the softmax only over a fixed window centered around the target position and going forward and backward several time-steps (e.g., 3).
@@ -210,7 +166,7 @@ In general, these bipartite flows require larger number of layers and hidden uni
 Given the advantage of IAF vocoder, it is interesting to investigate whether it can be trained without the density distillation.
 One related work trains IAF within an autoencoder (Huang et al., 2019).
 Our method uses the VAE framework, thus it is termed as WaveVAE.
-In contrast to van den Oord et al. (2018) and Ping et al. (2018a), Wave-VAE can be trained from scratch by jointly optimizing the encoder qφ (z|x, c) and decoder pθ (x|z, c), where z is latent variables and c is the mel spectrogram conditioner.
+In contrast to van den Oord et al. (2018) and Ping et al. (2018a), WaveVAE can be trained from scratch by jointly optimizing the encoder qφ (z|x, c) and decoder pθ (x|z, c), where z is latent variables and c is the mel spectrogram conditioner.
 We omit c for concise notation hereafter.
 
 4.2.1. ENCODER
@@ -246,9 +202,7 @@ Y                        X            Y
 i=0                      i=0          j>i
 
 Lastly, we set x =  · σ tot + µtot , where  ∼ N (0, I). Thus,pθ (x | z) = N (µtot , σ tot ). For the generative process, we use the standard Gaussian prior p(z) = N (0, I).
-
-                                                   Non-Autoregressive Neural Text-to-Speech
-
+                        
 4.2.3. T RAINING OBJECTIVE
 We maximize the evidence lower bound (ELBO) for observed x in VAE,
 max Eqφ (z|x) log pθ (x|z) − KL qφ (z|x) || p(z) , (4)                      
@@ -291,12 +245,7 @@ We apply two layers of convolution block to process the predicted mel spectrogra
 We use the Adam optimizer (Kingma & Ba, 2015) with a batch size of 8 and a learning rate of 0.001 at the beginning, which is annealed by half every 200K steps. We train the models for 1M steps.
 We use the same IAF architecture as ClariNet (Ping et al., 2018a).
 
-@
-
 1 https://github.com/xcmyz/FastSpeech
-
-                                           Non-Autoregressive Neural Text-to-Speech
-
 
 Table 1. Hyperparameters of autoregressive text-to-spectrogram model and non-autoregressive ParaNet in the experiment.
                        Hyperparameter                      Autoregressive Model        Non-autoregressive Model
@@ -350,8 +299,6 @@ Speech quality: We use the crowdMOS toolkit (Ribeiro et al., 2011) for subjectiv
 
 2 https://github.com/NVIDIA/waveglow
 
-                                             Non-Autoregressive Neural Text-to-Speech
-
 Table 3. Attention error counts for text-to-spectrogram models on the 100-sentence test set. One or more mispronunciations, skips, and repeats count as a single mistake per utterance.
 The non-autoregressive ParaNet (17-layer decoder) with attention mask obtains the fewest attention errors in total.
 For ablation study, we include the results for two additional ParaNet models. They have 6 and 12 decoder layers and are denoted as ParaNet-6 and ParaNet-12, respectively.
@@ -393,7 +340,7 @@ Although our ParaNet distills the (teacher-forced) attentions from an autoregres
 In previous work, attention masking was applied to enforce the monotonic attentions and reduce attention errors, and was demonstrated to be effective in Deep Voice 3 (Ping et al., 2018b).
 We find that our non-autoregressive ParaNet still can have fewer attention errors than autoregressive DV3 (6 vs. 8), when both of them use the attention masking.
 
- 5.3. Ablation study
+5.3. Ablation study
 We perform ablation studies to verify the effectiveness of several techniques used in ParaNet, including attention distillation, positional encoding, and stacking decoder layers to refine the attention alignment in a layer-by-layer manner.
 We evaluate the performance of a non-autoregressive ParaNet model trained without attention distillation and find that it fails to learn meaningful attention alignment.
 The synthesized audios are unintelligible and mostly pure noise.
@@ -408,288 +355,3 @@ In this work, we build a feed-forward neural TTS system by proposing a non-autor
 The proposed ParaNet obtains reasonably good speech quality and brings 46.7 times speed-up over its autoregressive counterpart at synthesis.
 We also compare various neural vocoders within the TTS system.
 Our results suggest that the parallel vocoder is generally less robust than WaveNet vocoder, when the front-end acoustic model is non-autoregressive. As a result, it is interesting to investigate small-footprint and robust parallel neural vocoder (e.g., WaveFlow) in future study.
-
-                                            Non-Autoregressive Neural Text-to-Speech
-
-                                                                    Bowman, S. R., Vilnis, L., Vinyals, O., Dai, A., Jozefow-
-                                                                      icz, R., and Bengio, S. Generating sentences from a
-                                                                      continuous space. In Proceedings of The 20th SIGNLL
-                                                                      Conference on Computational Natural Language Learn-
-                                                                      ing, 2016.
-
-                                                                    Chen, Y., Assael, Y., Shillingford, B., Budden, D., Reed, S.,
-                                                                      Zen, H., Wang, Q., Cobo, L. C., Trask, A., Laurie, B.,
-                                                                      et al. Sample efficient adaptive text-to-speech. In ICLR,
-                                                                      2019.
-
-                                                                    Chorowski, J. K., Bahdanau, D., Serdyuk, D., Cho, K., and
-                                                                      Bengio, Y. Attention-based models for speech recog-
-                                                                      nition. In Advances in neural information processing
-                                                                      systems, pp. 577–585, 2015.
-                                                                    Chung, J., Kastner, K., Dinh, L., Goel, K., Courville, A. C.,
-                                                                      and Bengio, Y. A recurrent latent variable model for
-                                                                      sequential data. In NIPS, 2015.
-                                                                    Dinh, L., Sohl-Dickstein, J., and Bengio, S. Density estima-
-                                                                      tion using real NVP. In ICLR, 2017.
-                                                                    Gu, J., Bradbury, J., Xiong, C., Li, V. O., and Socher, R.
-                                                                      Non-autoregressive neural machine translation. In ICLR,
-                                                                      2018.
-                                                                      Hsu, W.-N., Zhang, Y., Weiss, R. J., Zen, H., Wu, Y., Wang,
-                                                                      Y., Cao, Y., Jia, Y., Chen, Z., Shen, J., et al. Hierarchical
-References                                                            generative modeling for controllable speech synthesis. In
-                                                                      ICLR, 2019.
-Arık, S. O., Chrzanowski, M., Coates, A., Diamos, G.,
-  Gibiansky, A., Kang, Y., Li, X., Miller, J., Raiman, J.,          Huang, C.-W., Ahmed, F., Kumar, K., Lacoste, A., and
-  Sengupta, S., and Shoeybi, M. Deep Voice: Real-time                 Courville, A. Probability distillation: A caveat and alter-
-  neural text-to-speech. In ICML, 2017a.                              natives. In UAI, 2019.
-Arık, S. O., Diamos, G., Gibiansky, A., Miller, J., Peng,           Jia, Y., Zhang, Y., Weiss, R. J., Wang, Q., Shen, J., Ren, F.,
-  K., Ping, W., Raiman, J., and Zhou, Y. Deep Voice 2:                 Chen, Z., Nguyen, P., Pang, R., and Moreno, I. L. Transfer
-  Multi-speaker neural text-to-speech. In NIPS, 2017b.                 learning from speaker verification to multispeaker text-to-
-Arik, S. O., Chen, J., Peng, K., Ping, W., and Zhou, Y.                speech synthesis. In NIPS, 2018.
-  Neural voice cloning with a few samples. In NIPS, 2018.
-                                                                    Kaiser, Ł., Roy, A., Vaswani, A., Pamar, N., Bengio, S.,
-Arık, S. Ö., Jun, H., and Diamos, G. Fast spectrogram                 Uszkoreit, J., and Shazeer, N. Fast decoding in sequence
-  inversion using multi-head convolutional neural networks.           models using discrete latent variables. In ICML, 2018.
-  IEEE Signal Processing Letters, 2019.
-                                                                    Kalchbrenner, N., Elsen, E., Simonyan, K., Noury, S.,
-Bahdanau, D., Cho, K., and Bengio, Y. Neural machine                  Casagrande, N., Lockhart, E., Stimberg, F., Oord, A.
-  translation by jointly learning to align and translate. In          v. d., Dieleman, S., and Kavukcuoglu, K. Efficient neural
-  ICLR, 2015.                                                         audio synthesis. In ICML, 2018.
-Bengio, S., Vinyals, O., Jaitly, N., and Shazeer, N. Sched-         Kim, S., Lee, S.-g., Song, J., and Yoon, S. FloWaveNet: A
-  uled sampling for sequence prediction with recurrent neu-           generative flow for raw audio. In ICML, 2019.
-  ral networks. In NIPS, 2015.
-                                                                    Kingma, D. P. and Ba, J. Adam: A method for stochastic
-Bińkowski, M., Donahue, J., Dieleman, S., Clark, A., Elsen,          optimization. In ICLR, 2015.
-  E., Casagrande, N., Cobo, L. C., and Simonyan, K. High
-  fidelity speech synthesis with adversarial networks. In           Kingma, D. P. and Dhariwal, P. Glow: Generative flow with
-  ICLR, 2020.                                                         invertible 1x1 convolutions. In NIPS, 2018.
-
-
-                                         Non-Autoregressive Neural Text-to-Speech
-
-Kingma, D. P. and Welling, M. Auto-encoding variational         Shen, J., Pang, R., Weiss, R. J., Schuster, M., Jaitly, N.,
-  Bayes. In ICLR, 2014.                                           Yang, Z., Chen, Z., Zhang, Y., Wang, Y., Skerry-Ryan, R.,
-                                                                  et al. Natural TTS synthesis by conditioning WaveNet
-Kingma, D. P., Salimans, T., Jozefowicz, R., Chen, X.,            on mel spectrogram predictions. In ICASSP, 2018.
-  Sutskever, I., and Welling, M. Improving variational
-  inference with inverse autoregressive flow. In NIPS, 2016.    Sotelo, J., Mehri, S., Kumar, K., Santos, J. F., Kastner, K.,
-                                                                  Courville, A., and Bengio, Y. Char2wav: End-to-end
-Kumar, K., Kumar, R., de Boissiere, T., Gestin, L., Teoh,         speech synthesis. ICLR workshop, 2017.
- W. Z., Sotelo, J., de Brébisson, A., Bengio, Y., and
-  Courville, A. C. Melgan: Generative adversarial net-          Taigman, Y., Wolf, L., Polyak, A., and Nachmani, E.
- works for conditional waveform synthesis. In Advances            VoiceLoop: Voice fitting and synthesis via a phonological
-  in Neural Information Processing Systems, pp. 14910–            loop. In ICLR, 2018.
- 14921, 2019.                                                   Taylor, P. Text-to-Speech Synthesis. Cambridge University
-Lee, J., Mansimov, E., and Cho, K. Deterministic non-             Press, 2009.
-  autoregressive neural sequence modeling by iterative re-      van den Oord, A., Dieleman, S., Zen, H., Simonyan, K.,
-  finement. In EMNLP, 2018.                                       Vinyals, O., Graves, A., Kalchbrenner, N., Senior, A., and
-                                                                  Kavukcuoglu, K. WaveNet: A generative model for raw
-Li, N., Liu, S., Liu, Y., Zhao, S., Liu, M., and Zhou, M.
-                                                                  audio. arXiv preprint arXiv:1609.03499, 2016.
-  Neural speech synthesis with transformer network. AAAI,
-  2019.                                                         van den Oord, A., Vinyals, O., and Kavukcuoglu, K. Neural
-                                                                  discrete representation learning. In NIPS, 2017.
-Nachmani, E., Polyak, A., Taigman, Y., and Wolf, L. Fitting
-  new speakers based on a short untranscribed sample. In        van den Oord, A., Li, Y., Babuschkin, I., Simonyan, K.,
-  ICML, 2018.                                                     Vinyals, O., Kavukcuoglu, K., Driessche, G. v. d., Lock-
-                                                                  hart, E., Cobo, L. C., Stimberg, F., et al. Parallel WaveNet:
-Ping, W., Peng, K., and Chen, J. ClariNet: Parallel wave          Fast high-fidelity speech synthesis. In ICML, 2018.
-  generation in end-to-end text-to-speech. arXiv preprint
-  arXiv:1807.07281, 2018a.                                      Wang, X., Takaki, S., and Yamagishi, J. Neural source-filter-
-                                                                 based waveform model for statistical parametric speech
-Ping, W., Peng, K., Gibiansky, A., Arik, S. O., Kannan, A.,      synthesis. In ICASSP, 2019.
-  Narang, S., Raiman, J., and Miller, J. Deep Voice 3: Scal-
-  ing text-to-speech with convolutional sequence learning.      Wang, Y., Skerry-Ryan, R., Stanton, D., Wu, Y., Weiss,
-  In ICLR, 2018b.                                                R. J., Jaitly, N., Yang, Z., Xiao, Y., Chen, Z., Bengio, S.,
-                                                                 Le, Q., Agiomyrgiannakis, Y., Clark, R., and Saurous,
-Ping, W., Peng, K., Zhao, K., and Song, Z. WaveFlow: A           R. A. Tacotron: Towards end-to-end speech synthesis. In
-  compact flow-based model for raw audio. In ICML, 2020.         Interspeech, 2017.
-
-Prenger, R., Valle, R., and Catanzaro, B. WaveGlow: A           Yamamoto, R., Song, E., and Kim, J.-M. Probability density
-  flow-based generative network for speech synthesis. In          distillation with generative adversarial networks for high-
-  ICASSP, 2019.                                                   quality parallel waveform generation. arXiv preprint
-                                                                  arXiv:1904.04472, 2019.
-Ren, Y., Ruan, Y., Tan, X., Qin, T., Zhao, S., Zhao, Z., and
-  Liu, T.-Y. Fastspeech: Fast, robust and controllable text
-  to speech. In Advances in Neural Information Processing
-  Systems, pp. 3165–3174, 2019.
-
-Rezende, D. J. and Mohamed, S. Variational inference with
-  normalizing flows. In ICML, 2015.
-
-Rezende, D. J., Mohamed, S., and Wierstra, D. Stochas-
-  tic backpropagation and approximate inference in deep
-  generative models. In ICML, 2014.
-
-Ribeiro, F., Florêncio, D., Zhang, C., and Seltzer, M. Crowd-
-  MOS: An approach for crowdsourcing mean opinion
-  score studies. In ICASSP, 2011.
-
-
-                                        Non-Autoregressive Neural Text-to-Speech
-
-Appendix
-A. 15-Sentence Test Set
-The 15 sentences used to quantify the inference speed up in Table 2 are listed below (note that % corresponds to pause):
-1. WHEN THE SUNLIGHT STRIKES RAINDROPS IN THE AIR%THEY ACT AS A PRISM AND FORM A
-RAINBOW%.
-2. THESE TAKE THE SHAPE OF A LONG ROUND ARCH%WITH ITS PATH HIGH ABOVE%AND ITS TWO ENDS
-APPARENTLY BEYOND THE HORIZON%.
-3. WHEN A MAN LOOKS FOR SOMETHING BEYOND HIS REACH%HIS FRIENDS SAY HE IS LOOKING FOR
-THE POT OF GOLD AT THE END OF THE RAINBOW%.
-4. IF THE RED OF THE SECOND BOW FALLS UPON THE GREEN OF THE FIRST%THE RESULT IS TO GIVE A
-BOW WITH AN ABNORMALLY WIDE YELLOW BAND%.
-5. THE ACTUAL PRIMARY RAINBOW OBSERVED IS SAID TO BE THE EFFECT OF SUPER IMPOSITION OF A
-NUMBER OF BOWS%.
-6. THE DIFFERENCE IN THE RAINBOW DEPENDS CONSIDERABLY UPON THE SIZE OF THE DROPS%.
-7. IN THIS PERSPECTIVE%WE HAVE REVIEWED SOME OF THE MANY WAYS IN WHICH NEUROSCIENCE
-HAS MADE FUNDAMENTAL CONTRIBUTIONS%.
-8. IN ENHANCING AGENT CAPABILITIES%IT WILL BE IMPORTANT TO CONSIDER OTHER SALIENT
-PROPERTIES OF THIS PROCESS IN HUMANS%.
-9. IN A WAY THAT COULD SUPPORT DISCOVERY OF SUBGOALS AND HIERARCHICAL PLANNING%.
-10. DISTILLING INTELLIGENCE INTO AN ALGORITHMIC CONSTRUCT AND COMPARING IT TO THE HUMAN
-BRAIN MIGHT YIELD INSIGHTS%.
-11. THE VAULT THAT WAS SEARCHED HAD IN FACT BEEN EMPTIED EARLIER THAT SAME DAY%.
-12. ANT LIVES NEXT TO GRASSHOPPER%ANT SAYS%I LIKE TO WORK EVERY DAY%.
-13. YOUR MEANS OF TRANSPORT FULFIL ECONOMIC REQUIREMENTS IN YOUR CHOSEN COUNTRY%.
-14. SLEEP STILL FOGGED MY MIND AND ATTEMPTED TO FIGHT BACK THE PANIC%.
-15. SUDDENLY%I SAW TWO FAST AND FURIOUS FEET DRIBBLING THE BALL TOWARDS MY GOAL%.
-
-
-
-B. 100-Sentence Test Set
-The 100 sentences used to quantify the results in Table 3 are listed below (note that % corresponds to pause):
-1. A B C%.
-2. X Y Z%.
-3. HURRY%.
-4. WAREHOUSE%.
-5. REFERENDUM%.
-6. IS IT FREE%?
-7. JUSTIFIABLE%.
-8. ENVIRONMENT%.
-9. A DEBT RUNS%.
-10. GRAVITATIONAL%.
-11. CARDBOARD FILM%.
-12. PERSON THINKING%.
-13. PREPARED KILLER%.
-14. AIRCRAFT TORTURE%.
-15. ALLERGIC TROUSER%.
-16. STRATEGIC CONDUCT%.
-17. WORRYING LITERATURE%.
-18. CHRISTMAS IS COMING%.
-19. A PET DILEMMA THINKS%.
-20. HOW WAS THE MATH TEST%?
-
-
-                            Non-Autoregressive Neural Text-to-Speech
-
-21. GOOD TO THE LAST DROP%.
-22. AN M B A AGENT LISTENS%.
-23. A COMPROMISE DISAPPEARS%.
-24. AN AXIS OF X Y OR Z FREEZES%.
-25. SHE DID HER BEST TO HELP HIM%.
-26. A BACKBONE CONTESTS THE CHAOS%.
-27. TWO A GREATER THAN TWO N NINE%.
-28. DON’T STEP ON THE BROKEN GLASS%.
-29. A DAMNED FLIPS INTO THE PATIENT%.
-30. A TRADE PURGES WITHIN THE B B C%.
-31. I’D RATHER BE A BIRD THAN A FISH%.
-32. I HEAR THAT NANCY IS VERY PRETTY%.
-33. I WANT MORE DETAILED INFORMATION%.
-34. PLEASE WAIT OUTSIDE OF THE HOUSE%.
-35. N A S A EXPOSURE TUNES THE WAFFLE%.
-36. A MIST DICTATES WITHIN THE MONSTER%.
-37. A SKETCH ROPES THE MIDDLE CEREMONY%.
-38. EVERY FAREWELL EXPLODES THE CAREER%.
-39. SHE FOLDED HER HANDKERCHIEF NEATLY%.
-40. AGAINST THE STEAM CHOOSES THE STUDIO%.
-41. ROCK MUSIC APPROACHES AT HIGH VELOCITY%.
-42. NINE ADAM BAYE STUDY ON THE TWO PIECES%.
-43. AN UNFRIENDLY DECAY CONVEYS THE OUTCOME%.
-44. ABSTRACTION IS OFTEN ONE FLOOR ABOVE YOU%.
-45. A PLAYED LADY RANKS ANY PUBLICIZED PREVIEW%.
-46. HE TOLD US A VERY EXCITING ADVENTURE STORY%.
-47. ON AUGUST TWENTY EIGTH%MARY PLAYS THE PIANO%.
-48. INTO A CONTROLLER BEAMS A CONCRETE TERRORIST%.
-49. I OFTEN SEE THE TIME ELEVEN ELEVEN ON CLOCKS%.
-50. IT WAS GETTING DARK%AND WE WEREN’T THERE YET%.
-51. AGAINST EVERY RHYME STARVES A CHORAL APPARATUS%.
-52. EVERYONE WAS BUSY%SO I WENT TO THE MOVIE ALONE%.
-53. I CHECKED TO MAKE SURE THAT HE WAS STILL ALIVE%.
-54. A DOMINANT VEGETARIAN SHIES AWAY FROM THE G O P%.
-55. JOE MADE THE SUGAR COOKIES%SUSAN DECORATED THEM%.
-56. I WANT TO BUY A ONESIE%BUT KNOW IT WON’T SUIT ME%.
-57. A FORMER OVERRIDE OF Q W E R T Y OUTSIDE THE POPE%.
-58. F B I SAYS THAT C I A SAYS%I’LL STAY AWAY FROM IT%.
-59. ANY CLIMBING DISH LISTENS TO A CUMBERSOME FORMULA%.
-60. SHE WROTE HIM A LONG LETTER%BUT HE DIDN’T READ IT%.
-61. DEAR%BEAUTY IS IN THE HEAT NOT PHYSICAL%I LOVE YOU%.
-62. AN APPEAL ON JANUARY FIFTH DUPLICATES A SHARP QUEEN%.
-63. A FAREWELL SOLOS ON MARCH TWENTY THIRD SHAKES NORTH%.
-64. HE RAN OUT OF MONEY%SO HE HAD TO STOP PLAYING POKER%.
-65. FOR EXAMPLE%A NEWSPAPER HAS ONLY REGIONAL DISTRIBUTION T%.
-66. I CURRENTLY HAVE FOUR WINDOWS OPEN UP%AND I DON’T KNOW WHY%.
-67. NEXT TO MY INDIRECT VOCAL DECLINES EVERY UNBEARABLE ACADEMIC%.
-68. OPPOSITE HER SOUNDING BAG IS A M C’S CONFIGURED THOROUGHFARE%.
-69. FROM APRIL EIGHTH TO THE PRESENT%I ONLY SMOKE FOUR CIGARETTES%.
-70. I WILL NEVER BE THIS YOUNG AGAIN%EVER%OH DAMN%I JUST GOT OLDER%.
-71. A GENEROUS CONTINUUM OF AMAZON DOT COM IS THE CONFLICTING WORKER%.
-72. SHE ADVISED HIM TO COME BACK AT ONCE%THE WIFE LECTURES THE BLAST%.
-73. A SONG CAN MAKE OR RUIN A PERSON’S DAY IF THEY LET IT GET TO THEM%.
-74. SHE DID NOT CHEAT ON THE TEST%FOR IT WAS NOT THE RIGHT THING TO DO%.
-
-
-                               Non-Autoregressive Neural Text-to-Speech
-
-75. HE SAID HE WAS NOT THERE YESTERDAY%HOWEVER%MANY PEOPLE SAW HIM THERE%.
-76. SHOULD WE START CLASS NOW%OR SHOULD WE WAIT FOR EVERYONE TO GET HERE%?
-77. IF PURPLE PEOPLE EATERS ARE REAL%WHERE DO THEY FIND PURPLE PEOPLE TO EAT%?
-78. ON NOVEMBER EIGHTEENTH EIGHTEEN TWENTY ONE%A GLITTERING GEM IS NOT ENOUGH%.
-79. A ROCKET FROM SPACE X INTERACTS WITH THE INDIVIDUAL BENEATH THE SOFT FLAW%.
-80. MALLS ARE GREAT PLACES TO SHOP%I CAN FIND EVERYTHING I NEED UNDER ONE ROOF%.
-81. I THINK I WILL BUY THE RED CAR%OR I WILL LEASE THE BLUE ONE%THE FAITH NESTS%.
-82. ITALY IS MY FAVORITE COUNTRY%IN FACT%I PLAN TO SPEND TWO WEEKS THERE NEXT YEAR%.
-83. I WOULD HAVE GOTTEN W W W DOT GOOGLE DOT COM%BUT MY ATTENDANCE WASN’T GOOD
-ENOUGH%.
-84. NINETEEN TWENTY IS WHEN WE ARE UNIQUE TOGETHER UNTIL WE REALISE%WE ARE ALL THE
-SAME%.
-85. MY MUM TRIES TO BE COOL BY SAYING H T T P COLON SLASH SLASH W W W B A I D U DOT COM%.
-86. HE TURNED IN THE RESEARCH PAPER ON FRIDAY%OTHERWISE%HE EMAILED A S D F AT YAHOO DOT
-ORG%.
-87. SHE WORKS TWO JOBS TO MAKE ENDS MEET%AT LEAST%THAT WAS HER REASON FOR NOT HAVING
-TIME TO JOIN US%.
-88. A REMARKABLE WELL PROMOTES THE ALPHABET INTO THE ADJUSTED LUCK%THE DRESS DODGES
-ACROSS MY ASSAULT%.
-89. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ONE TWO THREE FOUR FIVE SIX SEVEN EIGHT
-NINE TEN%.
-90. ACROSS THE WASTE PERSISTS THE WRONG PACIFIER%THE WASHED PASSENGER PARADES UNDER
-THE INCORRECT COMPUTER%.
-91. IF THE EASTER BUNNY AND THE TOOTH FAIRY HAD BABIES WOULD THEY TAKE YOUR TEETH AND
-LEAVE CHOCOLATE FOR YOU%?
-92. SOMETIMES%ALL YOU NEED TO DO IS COMPLETELY MAKE AN ASS OF YOURSELF AND LAUGH IT OFF
-TO REALISE THAT LIFE ISN’T SO BAD AFTER ALL%.
-93. SHE BORROWED THE BOOK FROM HIM MANY YEARS AGO AND HASN’T YET RETURNED IT%WHY
-WON’T THE DISTINGUISHING LOVE JUMP WITH THE JUVENILE%?
-94. LAST FRIDAY IN THREE WEEK’S TIME I SAW A SPOTTED STRIPED BLUE WORM SHAKE HANDS WITH A
-LEGLESS LIZARD%THE LAKE IS A LONG WAY FROM HERE%.
-95. I WAS VERY PROUD OF MY NICKNAME THROUGHOUT HIGH SCHOOL BUT TODAY%I COULDN’T BE
-ANY DIFFERENT TO WHAT MY NICKNAME WAS%THE METAL LUSTS%THE RANGING CAPTAIN CHARTERS
-THE LINK%.
-96. I AM HAPPY TO TAKE YOUR DONATION%ANY AMOUNT WILL BE GREATLY APPRECIATED%THE WAVES
-WERE CRASHING ON THE SHORE%IT WAS A LOVELY SIGHT%THE PARADOX STICKS THIS BOWL ON TOP
-OF A SPONTANEOUS TEA%.
-97. A PURPLE PIG AND A GREEN DONKEY FLEW A KITE IN THE MIDDLE OF THE NIGHT AND ENDED UP
-SUNBURNT%THE CONTAINED ERROR POSES AS A LOGICAL TARGET%THE DIVORCE ATTACKS NEAR A
-MISSING DOOM%THE OPERA FINES THE DAILY EXAMINER INTO A MURDERER%.
-98. AS THE MOST FAMOUS SINGLER-SONGWRITER%JAY CHOU GAVE A PERFECT PERFORMANCE IN
-BEIJING ON MAY TWENTY FOURTH%TWENTY FIFTH%AND TWENTY SIXTH TWENTY THREE ALL THE
-FANS THOUGHT HIGHLY OF HIM AND TOOK PRIDE IN HIM ALL THE TICKETS WERE SOLD OUT%.
-99. IF YOU LIKE TUNA AND TOMATO SAUCE%TRY COMBINING THE TWO%IT’S REALLY NOT AS BAD AS
-IT SOUNDS%THE BODY MAY PERHAPS COMPENSATES FOR THE LOSS OF A TRUE METAPHYSICS%THE
-CLOCK WITHIN THIS BLOG AND THE CLOCK ON MY LAPTOP ARE ONE HOUR DIFFERENT FROM EACH
-OTHER%.
-100. SOMEONE I KNOW RECENTLY COMBINED MAPLE SYRUP AND BUTTERED POPCORN THINKING IT
-WOULD TASTE LIKE CARAMEL POPCORN%IT DIDN’T AND THEY DON’T RECOMMEND ANYONE ELSE
-DO IT EITHER%THE GENTLEMAN MARCHES AROUND THE PRINCIPAL%THE DIVORCE ATTACKS NEAR A
-MISSING DOOM%THE COLOR MISPRINTS A CIRCULAR WORRY ACROSS THE CONTROVERSY%.
-

@@ -100,7 +100,7 @@ The goal of the encoder is to extract robust sequential representations of text.
 The input to the encoder is a character sequence, where each character is represented as a one-hot vector and embedded into a continuous vector.
 We then apply a set of non-linear transformations, collectively called a “pre-net”, to each embedding.
 We use a bottleneck layer with dropout as the pre-net in this work, which helps convergence and improves generalization.
-A CBHG module transforms the pre- net outputs into the final encoder representation used by the attention module.
+A CBHG module transforms the pre-net outputs into the final encoder representation used by the attention module.
 We found that this CBHG-based encoder not only reduces overfitting, but also makes fewer mispronunciations than a standard multi-layer RNN encoder (see our linked page of audio samples).
 
 Table 1: Hyper-parameters and network architectures. “conv-k-c-ReLU” denotes 1-D convolution
@@ -255,72 +255,3 @@ We are currently working on fast and high-quality neural-network-based spectrogr
 ACKNOWLEDGMENTS
 
 The authors would like to thank Heiga Zen and Ziang Xie for constructive discussions and feedback.
-
-REFERENCES
-
-Martı́n Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, Craig Citro, Greg S
- Corrado, Andy Davis, Jeffrey Dean, Matthieu Devin, et al. TensorFlow: Large-scale machine
- learning on heterogeneous distributed systems. arXiv preprint arXiv:1603.04467, 2016.
-Yannis Agiomyrgiannakis. Vocaine the vocoder and applications in speech synthesis. In Acoustics,
-  Speech and Signal Processing (ICASSP), 2015 IEEE International Conference on, pp. 4230–
-  4234. IEEE, 2015.
-Sercan Arik, Mike Chrzanowski, Adam Coates, Gregory Diamos, Andrew Gibiansky, Yongguo
-  Kang, Xian Li, John Miller, Jonathan Raiman, Shubho Sengupta, and Mohammad Shoeybi. Deep
-  voice: Real-time neural text-to-speech. arXiv preprint arXiv:1702.07825, 2017.
-Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly
-  learning to align and translate. arXiv preprint arXiv:1409.0473, 2014.
-Samy Bengio, Oriol Vinyals, Navdeep Jaitly, and Noam Shazeer. Scheduled sampling for sequence
-  prediction with recurrent neural networks. In Advances in Neural Information Processing Sys-
-  tems, pp. 1171–1179, 2015.
-William Chan, Navdeep Jaitly, Quoc Le, and Oriol Vinyals. Listen, attend and spell: A neural
- network for large vocabulary conversational speech recognition. In Acoustics, Speech and Signal
- Processing (ICASSP), 2016 IEEE International Conference on, pp. 4960–4964. IEEE, 2016.
-Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Bengio. Empirical evaluation of
-  gated recurrent neural networks on sequence modeling. arXiv preprint arXiv:1412.3555, 2014.
-Xavi Gonzalvo, Siamak Tazari, Chun-an Chan, Markus Becker, Alexander Gutkin, and Hanna Silen.
-  Recent advances in Google real-time HMM-driven unit selection synthesizer. In Proc. Inter-
-  speech, pp. 2238–2242, 2016.
-Daniel Griffin and Jae Lim. Signal estimation from modified short-time fourier transform. IEEE
-  Transactions on Acoustics, Speech, and Signal Processing, 32(2):236–243, 1984.
-Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recog-
-  nition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp.
-  770–778, 2016.
-Sergey Ioffe and Christian Szegedy. Batch normalization: Accelerating deep network training by
-  reducing internal covariate shift. arXiv preprint arXiv:1502.03167, 2015.
-Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. Proceedings of the
-  3rd International Conference on Learning Representations (ICLR), 2015.
-Jason Lee, Kyunghyun Cho, and Thomas Hofmann. Fully character-level neural machine translation
-  without explicit segmentation. arXiv preprint arXiv:1610.03017, 2016.
-Soroush Mehri, Kundan Kumar, Ishaan Gulrajani, Rithesh Kumar, Shubham Jain, Jose Sotelo,
-  Aaron Courville, and Yoshua Bengio. SampleRNN: An unconditional end-to-end neural audio
-  generation model. arXiv preprint arXiv:1612.07837, 2016.
-Jose Sotelo, Soroush Mehri, Kundan Kumar, João Felipe Santos, Kyle Kastner, Aaron Courville, and
-  Yoshua Bengio. Char2Wav: End-to-end speech synthesis. In ICLR2017 workshop submission,
-  2017.
-Richard Sproat and Navdeep Jaitly. RNN approaches to text normalization: A challenge. arXiv
-  preprint arXiv:1611.00068, 2016.
-Rupesh Kumar Srivastava, Klaus Greff, and Jürgen Schmidhuber. Highway networks. arXiv preprint
-  arXiv:1505.00387, 2015.
-Ilya Sutskever, Oriol Vinyals, and Quoc V Le. Sequence to sequence learning with neural networks.
-   In Advances in neural information processing systems, pp. 3104–3112, 2014.
-Paul Taylor. Text-to-speech synthesis. Cambridge university press, 2009.
-Lucas Theis, Aäron van den Oord, and Matthias Bethge. A note on the evaluation of generative
-  models. arXiv preprint arXiv:1511.01844, 2015.
-Aäron van den Oord, Sander Dieleman, Heiga Zen, Karen Simonyan, Oriol Vinyals, Alex Graves,
-  Nal Kalchbrenner, Andrew Senior, and Koray Kavukcuoglu. WaveNet: A generative model for
-  raw audio. arXiv preprint arXiv:1609.03499, 2016.
-Oriol Vinyals, Łukasz Kaiser, Terry Koo, Slav Petrov, Ilya Sutskever, and Geoffrey Hinton. Gram-
-  mar as a foreign language. In Advances in Neural Information Processing Systems, pp. 2773–
-  2781, 2015.
-Wenfu Wang, Shuang Xu, and Bo Xu. First step towards end-to-end parametric TTS synthesis:
- Generating spectral parameters with neural attention. In Proceedings Interspeech, pp. 2243–2247,
- 2016.
-Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang Macherey,
-  Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google’s neural machine trans-
-  lation system: Bridging the gap between human and machine translation. arXiv preprint
-  arXiv:1609.08144, 2016.
-Heiga Zen, Keiichi Tokuda, and Alan W Black. Statistical parametric speech synthesis. Speech
-  Communication, 51(11):1039–1064, 2009.
-Heiga Zen, Yannis Agiomyrgiannakis, Niels Egberts, Fergus Henderson, and Przemysław Szczepa-
-  niak. Fast, compact, and high quality LSTM-RNN based statistical parametric speech synthesizers
-  for mobile devices. Proceedings Interspeech, 2016.

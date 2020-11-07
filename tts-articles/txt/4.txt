@@ -50,7 +50,7 @@ Nachmani and Wolf [15] extended Voice Loop [16] and enabled voice conversion for
 This is useful for foreign names in navigation systems or news readers. In view of that, Cao et al. [19] modified Tacotron; their model uses language-specific encoders.
 Code-switching itself is done by combining of their outputs.
 Overall, all recent multilingual text-to-speech systems were only tested in 2-3 languages simultaneously, or required vast amounts of data to be trained.
-
+
 3. Model Architecture
 We base our experiments on Tacotron 2 [1]. We focus on the spectrogram generation part here; for vocoding, we use WaveRNN [3, 20] in all our configurations.
 We first explain our new model that uses meta-learning for multilingual knowledge sharing in Sec. 3.1, then describe contrastive baseline models which are based on recent multilingual TTS architectures (Sec. 3.2). 
@@ -188,7 +188,7 @@ Other models sometimes do unnatural pauses when reaching a punctuation mark.
 Right after the pauses, they often skip a few words. G EN is noticeably better on French and Russian, others produce obvious mispronunciations.
 
 Data-stress training: To further test the models in data-stress situations, we chose random subsets of 600 and 900 examples per language from the training set (i.e., about 80 or 120 minutes of recordings, respectively).
-We trained all models on both re- duced datasets, but accomplished training just for S HA and G EN.
+We trained all models on both reduced datasets, but accomplished training just for S HA and G EN.
 While training on the bigger and smaller dataset, we decayed the learning rate every 7.5k and 5k training steps, respectively.
 The right half of Table 2 shows that G EN can work better even in data-stress situations. GEN models have, compared to SHA models, significantly better CER values on six languages.
 
@@ -245,7 +245,7 @@ The accuracy ratings are overall slightly higher than the fluency ratings; this 
 5 Based on preliminary experiments on validation data, we set λ=1 and weighted the loss of the classifier by 0.125 and 0.5 for G EN and S HA, respectively. The classifiers include a hidden layer of size 256.                       
 6 https://www.prolific.co; 4 participants who reported as Chinese native speakers on Prolific only reported non-native fluency in our survey.   
 7 In 3 sentences, a random model output was distorted and used as sanity check (expected to be rated lowest). All participants passed.
-
+
 Figure 4: Graphs showing distributions of fluency and accuracy ratings grouped by the dominant language of rated sentences.
 
 Manual error analysis: We found that the models sometimes skip words, especially when reaching foreign words in Chinese sentences.
@@ -259,78 +259,3 @@ Our code is available on GitHub.1 For future work, we consider changes to our mo
 
 7. Acknowledgements
 This research was supported by the Charles University grant PRIMUS/19/SCI/10.
-
-                                                            8. References
-
-                                                                    [13] A. Prakash, A. Leela Thomas, S. Umesh, and H. A Murthy,
-                                                                         “Building Multilingual End-to-End Speech Synthesisers
- [1] J. Shen, R. Pang, R. Weiss, M. Schuster, N. Jaitly, Z. Yang,
-                                                                         for Indian Languages,” in 10th ISCA Speech Synthesis
-     Z. Chen, Y. Zhang, Y. Wang, R. J. Skerrv-Ryan, R. Saurous,
-                                                                         Workshop, Vienna, Austria, Sep. 2019, pp. 194–199.
-     Y. Agiomvrgiannakis, and Y. Wu, “Natural TTS Synthe-
-     sis by Conditioning WaveNet on Mel Spectrogram Pre-            [14] Y. Zhang, R. Weiss, H. Zen, Y. Wu, Z. Chen, R. Skerry-
-     dictions,” in IEEE International Conference on Acoustics,           Ryan, Y. Jia, A. Rosenberg, and B. Ramabhadran, “Learn-
-     Speech and Signal Processing (ICASSP), Calgary, AB,                 ing to Speak Fluently in a Foreign Language: Multilingual
-     Canada, Apr. 2018, pp. 4779–4783.                                   Speech Synthesis and Cross-Language Voice Cloning,” in
-                                                                         Interspeech, Graz, Austria, Sep. 2019, pp. 2080–2084.
- [2] A. van den Oord, S. Dieleman, H. Zen, K. Simonyan,
-     O. Vinyals, A. Graves, N. Kalchbrenner, A. Senior, and         [15] E. Nachmani and L. Wolf, “Unsupervised Polyglot Text-to-
-     K. Kavukcuoglu, “WaveNet: A Generative Model for Raw                speech,” in IEEE International Conference on Acoustics,
-     Audio,” arXiv, vol. abs/1609.03499, Sep. 2016.                      Speech and Signal Processing (ICASSP), Brighton, UK,
- [3] N. Kalchbrenner, E. Elsen, K. Simonyan, S. Noury,                   May 2019.
-     N. Casagrande, E. Lockhart, F. Stimberg, A. van den Oord,      [16] Y. Taigman, L. Wolf, A. Polyak, and E. Nachmani,
-     S. Dieleman, and K. Kavukcuoglu, “Efficient Neural Audio            “VoiceLoop: Voice Fitting and Synthesis via a Phonological
-     Synthesis,” in 35th International Conference on Machine             Loop,” in International Conference on Learning Represen-
-     Learning (ICML), Jul. 2018, pp. 2410–2419.                          tations (ICLR), Vancouver, BC, Canada, Apr. 2018.
- [4] K. Kumar, R. Kumar, T. de Boissiere, L. Gestin, W. Z.          [17] M. Chen, M. Chen, S. Liang, J. Ma, L. Chen, S. Wang, and
-     Teoh, J. Sotelo, A. de Brébisson, Y. Bengio, and A. C.              J. Xiao, “Cross-Lingual, Multi-Speaker Text-To-Speech
-     Courville, “MelGAN: Generative Adversarial Networks for             Synthesis Using Neural Speaker Embedding,” in Inter-
-     Conditional Waveform Synthesis,” in Advances in Neural              speech, Graz, Austria, Sep. 2019, pp. 2105–2109.
-     Information Processing Systems 32 (NeurIPS), Vancouver,
-                                                                    [18] C. Li, X. Ma, B. Jiang, X. Li, X. Zhang, X. Liu,
-     BC, Canada, Dec. 2019, pp. 14 910–14 921.
-                                                                         Y. Cao, A. Kannan, and Z. Zhu, “Deep speaker: an
- [5] Y. Wang, D. Stanton, Y. Zhang, R.-S. Ryan, E. Battenberg,           end-to-end neural speaker embedding system,” arXiv, vol.
-     J. Shor, Y. Xiao, Y. Jia, F. Ren, and R. A. Saurous, “Style         abs/1705.02304, May 2017.
-     tokens: Unsupervised style modeling, control and transfer
-                                                                    [19] Y. Cao, X. Wu, S. Liu, J. Yu, X. Li, Z. Wu, X. Liu, and
-     in end-to-end speech synthesis,” in 35th International Con-
-                                                                         H. M. Meng, “End-to-end Code-switched TTS with Mix of
-     ference on Machine Learning (ICML), Stockholm, Sweden,
-                                                                         Monolingual Recordings,” IEEE International Conference
-     Jul. 2018, pp. 5180–5189.
-                                                                         on Acoustics, Speech and Signal Processing (ICASSP), pp.
- [6] W. Hsu, Y. Zhang, R. J. Weiss, H. Zen, Y. Wu, Y. Cao, and           6935–6939, May 2019.
-     Y. Wang, “Hierarchical Generative Modeling for Control-
-     lable Speech Synthesis,” in International Conference on        [20] Fatchord, “WaveRNN Vocoder + TTS,” https://github.com/
-     Learning Representations (ICLR), May 2019.                          fatchord/WaveRNN, 2019.
-
- [7] Y. Jia, Y. Zhang, R. Weiss, Q. Wang, J. Shen, F. Ren,          [21] H. Tachibana, K. Uenoyama, and S. Aihara, “Efficiently
-     Z. Chen, P. Nguyen, R. Pang, I. L. Moreno, and Y. Wu,               Trainable Text-to-Speech System Based on Deep Convo-
-     “Transfer Learning from Speaker Verification to Multi-              lutional Networks with Guided Attention,” IEEE Interna-
-     speaker Text-To-Speech Synthesis,” in Advances in Neural            tional Conference on Acoustics, Speech and Signal Pro-
-     Information Processing Systems 31 (NeurIPS), Montréal,              cessing (ICASSP), pp. 4784–4788, Apr. 2018.
-     QC, Canada, Dec. 2018, pp. 4480–4490.                          [22] Y. Ganin, E. Ustinova, H. Ajakan, P. Germain,
- [8] E. A. Platanios, M. Sachan, G. Neubig, and T. M. Mitchell,          H. Larochelle, F. Laviolette, M. Marchand, and V. Lempit-
-     “Contextual Parameter Generation for Universal Neural               sky, “Domain-Adversarial Training of Neural Networks,”
-     Machine Translation,” in 2018 Conference on Empirical               J. Mach. Learn. Res., p. 2096–2030, Jan 2016.
-     Methods in Natural Language Processing (EMNLP), Brus-          [23] K. Park and T. Mulc, “CSS10: A Collection of Single
-     sels, Belgium, Oct. 2018, pp. 425–435.                              Speaker Speech Datasets for 10 Languages,” in Interspeech,
- [9] R. Ardila, M. Branson, K. Davis, M. Henretty, M. Kohler,            Graz, Austria, Sep. 2019, pp. 1566–1570.
-     J. Meyer, R. Morais, L. Saunders, F. M. Tyers, and G. We-      [24] T. Kudo, “MeCab: Yet Another Part-of-Speech and
-     ber, “Common Voice: A Massively-Multilingual Speech                 Morphological Analyzer,” https://github.com/soimort/
-     Corpus,” in 12th Language Resources and Evaluation Con-             python-romkan, 2013.
-     ference (LREC), Marseille, France, 2020.
-                                                                    [25] M. Yao, “A Romaji/Kana conversion library for Python,”
-[10] D. Sachan and G. Neubig, “Parameter Sharing Methods for             https://taku910.github.io/mecab/, 2015.
-     Multilingual Self-Attentional Translation Models,” in Third
-     Conference on Machine Translation (WMT): Research Pa-          [26] L. Yu, “Pinyin,” https://github.com/lxyu/pinyin, 2016.
-     pers, Brussels, Belgium, Oct. 2018, pp. 261–271.               [27] R. W. Soukoreff and I. S. MacKenzie, “Measuring errors
-[11] Y.-J. Chen, T. Tu, C. chieh Yeh, and H.-Y. Lee, “End-               in text entry tasks: an application of the Levenshtein string
-     to-End Text-to-Speech for Low-Resource Languages by                 distance statistic,” in CHI ’01 Extended Abstracts on Hu-
-     Cross-Lingual Transfer Learning,” in Interspeech, Graz,             man Factors in Computing Systems, Seattle, USA, 2001.
-     Austria, Sep. 2019, pp. 2075–2079.                             [28] “Method for the subjective assessment of intermediate qual-
-[12] Y. Lee, S. Shon, and T. Kim, “Learning pronunciation from           ity levels of coding systems,” International Telecommuni-
-     a foreign language in speech synthesis networks,” arXiv,            cation Union, Geneva, Recommendation BS.1534, Oct.
-     vol. abs/1811.09364, Nov. 2018.                                     2015.
