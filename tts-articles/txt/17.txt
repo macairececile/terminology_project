@@ -106,7 +106,7 @@ Although it is possible to get a voice in a new language in as little as a few d
 But this is only one of the problems. 
 We would like to build voices that are capable of multiple languages.
 Individual voices that cover multiple languages can be built by recording speakers who are (reasonably) fluent in multiple languages. 
-In the simple case where the speaker is not fully bi-lingual the resulting synthesizers are accented.
+In the simple case where the speaker is not fully bilingual the resulting synthesizers are accented.
 This is also true whenever we build voices in a language other than the speaker’s native language. 
 It is worth pointing out that accented speech is not necessarily a bad thing in speech synthesis. We have run simple tests with US English synthesizers built from a Scottish English speaker and a Chinese English speaker. 
 US listeners are more accepting of errors in the accented voices even when there are unit selection errors.

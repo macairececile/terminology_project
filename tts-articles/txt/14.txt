@@ -21,7 +21,7 @@ Although statistical modeling algorithms are mostly language independent and pro
 Large-scale data resources for research are available for less than 100 languages and the costs for these collections are prohibitive to all but the most widely spoken and economically viable languages. 
 The lack of language conventions concerns a surprisingly large number of languages and dialects. 
 The lack of a standardized writing system for example hinders web harvesting of large text corpora and the construction of pronunciation dictionaries and lexicons. 
-Last but not least, despite the well-defined process of system building, it is cost- and time consuming to handle language-specific peculiarities, and requires substantial language expertise. 
+Last but not least, despite the well-defined process of system building, it is cost and time consuming to handle language-specific peculiarities, and requires substantial language expertise. 
 Unfortunately, it is extremely difficult to find system developers who have both, the necessary technical background and the native expertise of a language in question. 
 As a result, one of the pivotal issues for developing speech processing systems in multiple languages is the challenge of bridging the gap between language and technology expertise [2].
 

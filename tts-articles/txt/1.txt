@@ -23,18 +23,18 @@ Using data-driven methods to build, for example, a statistical parametric wavefo
 Even then, however, a recording script must be prepared, a voice talent recruited and high-quality speech recording carefully supervised.
 Also problematic is the text-processing component of the system, i.e. the TTS front-end, if none is available for the target language.
 A front-end is made up of rule-based or statistical modules; acquiring the expert knowledge required either to manually specify those rules, or to annotate a learning sample on which to train the statistical models, represents a major obstacle to creating a TTS system for a new target language and requires highly specialised knowledge.
-Such non- trivial tasks include, for example, specifying a phoneme-set or part of speech (POS) tag-set for a language where one has not already been defined; annotating plain text with POS tags, as required to train a POS tagger and annotating the surface forms of words with phonemes to build a pronunciation lexicon.
+Such non-trivial tasks include, for example, specifying a phoneme-set or part of speech (POS) tag-set for a language where one has not already been defined; annotating plain text with POS tags, as required to train a POS tagger and annotating the surface forms of words with phonemes to build a pronunciation lexicon.
 One of the primary goals of the project Simple4All1 is to produce freely available tools for building TTS systems with little or no expert supervision from freely available existing data.
 These tools enable us to sidestep the expense associated with engineering a speech corpus in each new target language from scratch, in the case where data is not readily available.
-Our toolkit includes modules for handling imperfect recording conditions, segmenting audio into manageable chunks, and aligning those chunks with a chapter- or book-level text transcription.
+Our toolkit includes modules for handling imperfect recording conditions, segmenting audio into manageable chunks, and aligning those chunks with a chapter or book-level text transcription.
 We here explain how these tools have been applied to existing audiobook data in 14 languages, most of it freely available, to create a multilingual corpus with minimal manual intervention and language-specific expert knowledge.
 The result of this processing is a standardised multilingual database of ‘found’ data, which we release under the name Tundra.
-There has been much recent interest in in using found data to produce TTS systems, in particular, speech data from audio-book recordings [1, 2, 3, 4, 5, 6, 7].
+There has been much recent interest in in using found data to produce TTS systems, in particular, speech data from audiobook recordings [1, 2, 3, 4, 5, 6, 7].
 We note that the Arctic databases [8] have provided a valuable resource for research into TTS using conventional purpose-recorded databases, in that they are freely available and serve as a common point of reference for benchmarking.
 In view of this significant and growing interest in building TTS systems from found data, we feel there is a need for a similarly standardised and freely-available corpus of found data. We present Tundra to the TTS researchommunity in the hope that it can start to fill that need.
 Our toolkit also includes modules for selecting a subset of utterances with a uniform speaking style, and constructing TTS systems from text and speech data without reliance on language-specific expert knowledge or on conventional linguistic resources such as lexicons, phonesets, part-of-speech taggersetc.
 In order to show that it is feasible to build voices on corpora built with such minimal expert supervision, we also present a demonstration of TTS systems that we have built by applying these tools to Tundra.
-We do not present detailed explanation, evaluation and analysis of these demo systems here due to space limitations, and refer interested readers to [9], where such de- tails will be given.
+We do not present detailed explanation, evaluation and analysis of these demo systems here due to space limitations, and refer interested readers to [9], where such details will be given.
 An initial public version of the Simple4All tools used to compile the corpus and build the demo voices is due to be released in November 2013.
 
 1 www.simple4all.org/    
@@ -45,17 +45,15 @@ All the steps presented in the following subsections are based solely on found s
 As regards language dependency, the only step which requires familiarity with at least the script of the target language is the first step of matching 10 minutes of speech with an orthographic transcript.
 All the other processes can be performed by the users with little or no training in speech processing and without relying on any target language knowledge.
 
-Copyright © 2013 ISCA                                                    2331                                 25 - 29 August 2013, Lyon, France
-
 2.1. Speech Pre-processing
 Conventional TTS corpora deliver speech recorded in noise-free non-reverberant environments, and thus lead to high-quality synthetic speech.
 Found data, on the other hand are usually recorded in sub-optimal conditions, and without professional recording equipment.
 Therefore, when building TTS systems on this type of data, some pre-processing steps are in order.
 For Tundra, recordings which casual listening suggested were sub-optimal went through the following pre-processing steps, applied to each recording session individually,2 so that variations in between them can be normalised:
-1) Noise reduction - uses a multi-band noise gate removal with a 20dB noise reduction threshold, a frequency smoothing of 150 Hz and 0.15 second decay time.
+1) Noise reduction: uses a multi-band noise gate removal with a 20dB noise reduction threshold, a frequency smoothing of 150 Hz and 0.15 second decay time.
 The noise profile was selected from the initial silence segments of each speech file.
-2) Normalisation - DC offset was removed, and the recordings were normalised to a maximum amplitude of -0.1 dB, so that the average energy level is the same across different recording sessions.
-3) Deverberation - was performed using a RMS based algorithm, with a smoothing of 40 ms and a release of 400ms.
+2) Normalisation: DC offset was removed, and the recordings were normalised to a maximum amplitude of -0.1 dB, so that the average energy level is the same across different recording sessions.
+3) Deverberation: was performed using a RMS based algorithm, with a smoothing of 40 ms and a release of 400ms.
 
 2.2. Lightly-supervised Audio Segmentation
 Current parametric TTS systems generally use training data which is segmented into sentence-length chunks, and rarely make use of contexts beyond the current sentence.
@@ -83,7 +81,7 @@ To overcome the lack of good acoustic models, the ASR decoding network is limite
 This sequence is called a skip network.
 The confidence of the alignment is ranked based on the acoustic scores obtained in the decoding process with different degrees of freedom included in the skip network.
 Manual intervention is limited to matching the first 10 minutes of speech with the correct text transcription, to provide data for training the initial acoustic models, similar to [15].
-This feature makes the method easily applicable in any language em-ploying an alphabetic writing system, and enables the use of found data without the hassle of manually transcribing its entirety.
+This feature makes the method easily applicable in any language employing an alphabetic writing system, and enables the use of found data without the hassle of manually transcribing its entirety.
 Initial results on the English audiobook A Tramp Abroad by Mark Twain3 showed an average 55% confident data, with a WER of 1% and SER of 8%.
 Since then, the acoustic model training has been extended to tri-grapheme and lightly supervised discriminative training [16], which led to an average of75% confident data with similar word and sentence error rates.
 One major loss in sentence accuracy rates is due to utterance initial and final word deletions and insertions, which cannot be correctly detected by the current confidence measure. However, previous studies [17] showed that phone errors less than 1% do not degrade the quality of the synthetic speech.
@@ -99,8 +97,6 @@ The standard TTS corpora are: a subset of the database called ‘Nina’ in [18]
 
 3 http://librivox.org/a-tramp-abroad-by-mark-twain/
 
-                                                                        2332
-
 
                                                  Table 1: Simple4All Tundra Corpus overview
   Language           Code Author                 Title                        Speaker Total SNR #Utts #Utts Aligned Percent
@@ -119,47 +115,6 @@ The standard TTS corpora are: a subset of the database called ‘Nina’ in [18]
   Romanian           RM     Ioan Slavici         Mara                            F       11.1  56 5563 6285    7     63.06
   Russian            RU     Leo Tolstoy          Ucheniye Khrista                M        2.1  52 1113 1426   1.6    76.19
   Spanish            ES     Miguel de Cervantes Don Quijote de la Mancha         M       12.1  54 7902 5569    8     66.11
-
-
-        9.0                                                                          9.0
-
-
-
-
-        8.5                                                                          8.5
-
-
-
-
-        8.0                                                                          8.0
-logF0
-
-
-
-
-logF0
-
-
-
-
-        7.5                                                                          7.5
-
-
-
-
-        7.0                                                                          7.0
-
-
-
-
-        6.5                                                                          6.5
-
-
-
-
-        6.0                                                                          6.0
-              EN_A   EN_S   ES_A   ES_S   FI_A   FI_S   RM_A   RM_S                        BG DA DE EN ES FI   FR HU IT      NL PL PT RM RU
-
 
 
 Figure 1: logF0 comparison of conventional TTS corpora versus audiobook data in four languages: English (EN), Spanish (ES), Finnish (FI) and Romanian (RM).
@@ -189,10 +144,8 @@ Data was then segmented using the VAD algorithm, and the resulting number of spe
 5 For example, the Spanish and Romanian data are professional recordings which did not require any pre-processing.
 We currently decide whether to pre-process recordings based on informal listening, but aim to automate this with an objective measure of speech quality in future versions of our toolkit.               
 
-                                                                      2333
-
-The difference between the number of VAD and text utterances results from the writing style of the book (i.e. mostly dialogue, or mostly descriptive) and the fact that in the alignment process, in order to obtain the most data from the audio-book, segmented utterances which are shorter than a specified threshold (5 seconds for these data) are concatenated.
-After the alignment process, an average of 68% of the datawere considered confident and included in the final corpus.
+The difference between the number of VAD and text utterances results from the writing style of the book (i.e. mostly dialogue, or mostly descriptive) and the fact that in the alignment process, in order to obtain the most data from the audiobook, segmented utterances which are shorter than a specified threshold (5 seconds for these data) are concatenated.
+After the alignment process, an average of 68% of the data were considered confident and included in the final corpus.
 Table 1 presents the duration of the aligned data and its percentage from the total duration. This percentage appears to be highly dependent on:
 a) the total amount of data available: see the low percentage of the Danish audiobook which has only 2.1 hours;
 b) speaker gender: female voices seem to have a lower alignment percentage;
@@ -202,34 +155,13 @@ SER and WER values for the aligned audiobooks could not be exactly determined, a
 However, one chapter from each audiobook in the languages spoken by the authors was evaluated, and the errors tend to be similar to those in [13], meaning a less than 1% WER and a 8% SER.
 Higher error rates were reported for the noisier speech data (see Table 1 for general signal-to-noise ratios).
 To be useful as a standardised TTS corpus, Tundra is also partitioned into training and test sets.
-To ensure a satisfactory amount of testing data even for the shortest audiobook, the test data were selected from the final chapters/parts of the audio-books, so that they amount to at least 10% of the aligned duration of it.
+To ensure a satisfactory amount of testing data even for the shortest audiobook, the test data were selected from the final chapters/parts of the audiobooks, so that they amount to at least 10% of the aligned duration of it.
 The entire segmented and aligned corpus, along with the chapter-wise time alignment and training/test set division of can be downloaded from http://tundra.simple4all.org 
 
 6 Spanish and Romanian also have very simple G2P rules, but the speakers’ greater expressivity limits the alignner’s performance.
 7 This being a subjective measure, we encourage readers to listen to samples of the audiobooks.
-
-     Audiobook                                                                                             
-     speech files                                                                
-                                                                                 
-                                                                                 
-    Data cleaning                                                                
-                                                                                 
-                                                                                 
-       Speech                                      Wikipedia text                
-    segmentation                                                                 
-                                                                                 
-                                                                                 
-   Speech and text                                   Front-end                   
-                           Data selection
-     alignment                                      construction
-                                                                                 
-                                                                                 
-     Audiobook                                                                   
-                                                    TTS training                 
-      text files
-                                                                                 
-                                                                                 
- Figure 3: Outline of corpus construction and voice building
+         
+Figure 3: Outline of corpus construction and voice building
 
 4. Demo
 To show the feasibility of using a corpus that has been compiled with such minimal intervention and language-specific expertise, we have used it to build demo TTS voices in the corpuslanguages.
@@ -256,79 +188,3 @@ The research leading to these results has received funding from the European Com
 The research presented here has made use of the resources provided by the Edinburgh Compute and Data Facility (ECDF: http://www.ecdf.ed.ac.uk).
 The ECDF is partially supported by the eDIKT initiative (http://www.edikt.org.uk).
 We would like to thank Mihai Nae from Cartea Sonora for releasing the Romanian data, as well as to all the volunteers at Librivox and Gutenberg for dedicating their time to distribute this wide variety of data.
-
-                                                                          2334
-
-                        7. References                                             [20] A. Stan, J. Yamagishi, S. King, and M. Aylett, “The Romanian
-                                                                                       speech synthesis (RSS) corpus: Building a high quality HMM-
- [1] É. Székely, J. P. Cabral, P. Cahill, and J. Carson-Berndsen, “Clus-
-                                                                                       based speech synthesis system using a high sampling rate,” Speech
-     tering Expressive Speech Styles in Audiobooks Using Glottal
-                                                                                       Communication, vol. 53, no. 3, pp. 442–450, 2011.
-     Source Parameters,” in Proc. Interspeech, Florence, Italy, Aug.
-     2011, pp. 1821–1824.                                                         [21] O. Watts, “Unsupervised Learning for Text-to-Speech Synthesis,”
-                                                                                       Ph.D. dissertation, University of Edinburgh, 2012.
- [2] N. Braunschweiler and S. Buchholz, “Automatic sentence selec-
-     tion from speech corpora including diverse speech for improved               [22] A. Black and A. Font Llitjos, “Unit selection without a phoneme
-     HMM-TTS synthesis quality,” in Proc. Interspeech, Florence,                       set,” in IEEE TTS Workshop 2002, 2002.
-     Italy, Aug. 2011, pp. 1821–1824.                                             [23] G. Anumanchipalli, K. Prahallad, and A. Black, “Significance of
- [3] O. Boeffard, L. Charonnat, S. L. Maguer, and D. Lolive, “To-                      early tagged contextual graphemes in grapheme based speech syn-
-     wards Fully Automatic Annotation of Audio Books for TTS,” in                      thesis and recognition systems,” in Acoustics, Speech and Signal
-     Proceedings of LREC’12, Istanbul, Turkey, may 2012.                               Processing, 2008. ICASSP 2008. IEEE International Conference
-                                                                                       on, 31 2008-April 4 2008, pp. 4645–4648.
- [4] K. Prahallad, A. R. Toth, and A. W. Black, “Automatic building
-     of synthetic voices from large multi-paragraph speech databases,”            [24] M. P. Aylett, S. King, and J. Yamagishi, “Speech Synthesis With-
-     in INTERSPEECH, 2007, pp. 2901–2904.                                              out a Phone Inventory,” in Interspeech, 2009, pp. 2087–2090.
-
- [5] K. Prahallad and A. Black, “Segmentation of Monologues in Au-                [25] J. Lorenzo-Trueba, O. Watts, R. Barra-Chicote, J. Yamagishi,
-     dio Books for Building Synthetic Voices,” IEEE Transactions on                    S. King, and J. M. Montero, “Simple4All proposals for the Al-
-     Audio, Speech & Language Processing, vol. 19, no. 5, pp. 1444–                    bayzin Evaluations in Speech Synthesis,” in Proc. Iberspeech
-     1449, 2011.                                                                       2012, 2012.
-
- [6] X. Anguera, N. Perez, A. Urruela, and N. Oliver, “Automatic syn-
-     chronization of electronic and audio books via TTS alignment and
-     silence filtering,” in ICME, 2011, pp. 1–6.
- [7] N. Braunschweiler, M. Gales, and S. Buchholz, “Lightly su-
-     pervised recognition for automatic alignment of large coherent
-     speech recordings,” in Proc. of Interspeech, 2010, pp. 2222–2225.
- [8] J. Kominek, A. W. Black, and V. Ver, “CMU Arctic Databases for
-     Speech Synthesis,” Tech. Rep., 2003.
- [9] O. Watts, A. Stan, Y. Mamiya, M. Giurgiu, R. Clark, J. Yamag-
-     ishi, and S. King, “Unsupervised and lightly-supervised learning
-     for rapid construction of TTS systems in multiple languages from
-     ‘found’ data: evaluation and analysis,” 2013, in preparation.
-[10] G. Bordel, M. Peñagarikano, L. J. Rodríguez-Fuentes, and
-     A. Varona, “A simple and efficient method to align very long
-     speech signals to acoustically imperfect transcriptions,” in IN-
-     TERSPEECH, 2012.
-[11] P. J. Moreno, C. F. Joerg, J.-M. V. Thong, and O. Glickman, “A
-     recursive algorithm for the forced alignment of very long audio
-     segments,” in ICSLP, 1998.
-[12] Y. Mamiya, J. Yamagishi, O. Watts, R. A. Clark, S. King, and
-     A. Stan, “Lightly Supervised GMM VAD to use Audiobook for
-     Speech Synthesiser,” in Proc. ICASSP (accepted), 2013.
-[13] A. Stan, P. Bell, and S. King, “A Grapheme-based Method for Au-
-     tomatic Alignment of Speech and Text Data,” in Proc. IEEE Work-
-     shop on Spoken Language Technology, Miami, Florida, USA,
-     2012.
-[14] P. Moreno and C. Alberti, “A factor automaton approach for the
-     forced alignment of long speech recordings,” in Proc. of ICASSP,
-     2009, pp. 4869–4872.
-[15] S. Novotney and R. M. Schwartz, “Analysis of low-resource
-     acoustic model self-training,” in INTERSPEECH, 2009, pp. 244–
-     247.
-[16] A. Stan, P. Bell, J. Yamagishi, and S. King, “Lightly Super-
-     vised Discriminative Training of Grapheme Models for Improved
-     Sentence-level Alignment of Speech and Text Data ,” in Proc. of
-     Interspeech (submitted), 2013.
-[17] J. Ni and H. Kawai, “An Investigation of the Impact of Speech
-     Transcript Errors on HMM Voices,” in Proc. of 7th ISCA Work-
-     shop on Speech Synthesis, 2010, pp. 246–251.
-[18] R. A. J. Clark, K. Richmond, and S. King, “Multisyn: Open-
-     domain unit selection for the Festival speech synthesis system,”
-     Speech Communication, vol. 49, no. 4, pp. 317–330, 2007.
-[19] J. M. Montero and R. Barra-Chicote, “The Albayzin 2012 Speech
-     Synthesis Evaluation (Albayzin 2012 SS) ,” in Proc. Iberspeech
-     2012, 2012.
-
-                                                                           2335

@@ -196,7 +196,7 @@ We divide the utterances in our audio dataset into one second chunks with a quar
 We filter out chunks that are predominantly silence and end up with 74,348 total chunks.
 We trained models with varying depth, including 10, 20, 30, and 40 layers in the residual layer stack.
 We find that models below 20 layers result in poor quality audio.
-The 20, 30, and 40 layer models all produce high quality recognizable speech, but the 40 layer models have less noise than the 20 layer models, which can be detected with highquality over-ear headphones.
+The 20, 30, and 40 layer models all produce high quality recognizable speech, but the 40 layer models have less noise than the 20 layer models, which can be detected with high quality over-ear headphones.
 Previous work has emphasized the importance of receptive field size in determining model quality.
 Indeed, the 20 layer models have half the receptive field as the 40 layer models.
 However, when run at 48 kHz, models with 40 layers have only 83 milliseconds of receptive field, but still generate high quality audio.
