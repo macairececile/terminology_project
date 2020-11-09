@@ -150,8 +150,6 @@ http://dx.doi.org/10.7488/ds/140
 
 The modified version mentioned earlier, and included in the Merlin distribution.
 
-
-
 Table: Comparison of objective results using the STRAIGHT vocoder.
 MCD: Mel-Cepstral Distortion. BAP: distortion of band aperiodicities. F0 RMSE is calculated on a linear scale. V/UV: voiced/unvoiced error.                                                
                      

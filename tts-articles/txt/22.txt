@@ -1,16 +1,6 @@
 TACOTRON : TOWARDS END-TO-END SPEECH SYNTHESIS
 
-Yuxuan Wang∗ , RJ Skerry-Ryan∗ , Daisy Stanton, Yonghui Wu, Ron J. Weiss† , Navdeep Jaitly,
-
-Zongheng Yang, Ying Xiao∗ , Zhifeng Chen, Samy Bengio† , Quoc Le, Yannis Agiomyrgiannakis,
-
-Rob Clark, Rif A. Saurous∗
-
-Google, Inc.
-
-{yxwang,rjryan,rif}@google.com
-
-                                                                                    ABSTRACT
+ABSTRACT
 
 A text-to-speech synthesis system typically consists of multiple stages, such as a text analysis frontend, an acoustic model and an audio synthesis module.
 Building these components often requires extensive domain expertise and may contain brittle design choices.
@@ -21,7 +11,7 @@ Tacotron achieves a 3.82 subjective 5-scale mean opinion score on US English, ou
 In addition, since Tacotron generates speech at the frame level, it’s substantially faster than sample-level autoregressive methods.                                                     
 
 
-1 INTRODUCTION
+INTRODUCTION
 
 Modern text-to-speech (TTS) pipelines are complex (Taylor, 2009).
 For example, it is common for statistical parametric TTS to have a text frontend extracting various linguistic features, a duration model, an acoustic feature prediction model and a complex signal-processing-based vocoder (Zen et al., 2009; Agiomyrgiannakis, 2015).
@@ -46,11 +36,11 @@ It does not require phoneme-level alignment, so it can easily scale to using lar
 With a simple waveform synthesis technique, Tacotron produces a 3.82 mean opinion score (MOS) on an US English eval set, outperforming a production parametric system in terms of naturalness 1.                                        
                                             
                                                                                              
-Figure 1: Model architecture. 
+Figure: Model architecture. 
 The model takes characters as input and outputs the corresponding raw spectrogram, which is then fed to the Griffin-Lim reconstruction algorithm to synthesize speech.
 
 
-2 RELATED WORK
+RELATED WORK
 
 WaveNet (van den Oord et al., 2016) is a powerful generative model of audio.
 It works well for TTS, but is slow due to its sample-level autoregressive nature.
@@ -69,16 +59,16 @@ Also, their seq2seq and SampleRNN models need to be separately pre-trained, but 
 Finally, we made several key modifications to the vanilla seq2seq paradigm.
 As shown later, a vanilla seq2seq model does not work well for character-level inputs.
 
-3 MODEL ARCHITECTURE
+MODEL ARCHITECTURE
 
 The backbone of Tacotron is a seq2seq model with attention (Bahdanau et al., 2014; Vinyals et al., 2015).
 Figure 1 depicts the model, which includes an encoder, an attention-based decoder, and a post-processing net.
 At a high-level, our model takes characters as input and produces spectrogram frames, which are then converted to waveforms.
 We describe these components below.
 
-Figure 2: The CBHG (1-D convolution bank + highway network + bidirectional GRU) module adapted from Lee et al. (2016).
+Figure: The CBHG (1-D convolution bank + highway network + bidirectional GRU) module adapted from Lee et al. (2016).
 
-3.1 CBHG MODULE
+CBHG MODULE
 
 We first describe a building block dubbed CBHG, illustrated in Figure 2.
 CBHG consists of a bank of 1-D convolutional filters, followed by highway networks (Srivastava et al., 2015) and a bidirectional gated recurrent unit (GRU) (Chung et al., 2014) recurrent neural net (RNN).
@@ -94,7 +84,7 @@ Finally, we stack a bidirectional GRU RNN on top to extract sequential features 
 CBHG is inspired from work in machine translation (Lee et al., 2016), where the main differences from Lee et al. (2016) include using non-causal convolutions, batch normalization, residual connections, and stride=1 max pooling.
 We found that these modifications improved generalization.
 
-3.2 ENCODER
+ENCODER
 
 The goal of the encoder is to extract robust sequential representations of text.
 The input to the encoder is a character sequence, where each character is represented as a one-hot vector and embedded into a continuous vector.
@@ -103,33 +93,10 @@ We use a bottleneck layer with dropout as the pre-net in this work, which helps 
 A CBHG module transforms the pre-net outputs into the final encoder representation used by the attention module.
 We found that this CBHG-based encoder not only reduces overfitting, but also makes fewer mispronunciations than a standard multi-layer RNN encoder (see our linked page of audio samples).
 
-Table 1: Hyper-parameters and network architectures. “conv-k-c-ReLU” denotes 1-D convolution
+Table: Hyper-parameters and network architectures. “conv-k-c-ReLU” denotes 1-D convolution
 with width k and c output channels with ReLU activation. FC stands for fully-connected.
 
-                Spectral analysis       pre-emphasis: 0.97; frame length: 50 ms;
-                                        frame shift: 12.5 ms; window type: Hann
-                Character embedding 256-D
-                Encoder CBHG            Conv1D bank: K=16, conv-k-128-ReLU
-                                        Max pooling: stride=1, width=2
-                                        Conv1D projections: conv-3-128-ReLU
-                                        → conv-3-128-Linear
-                                        Highway net: 4 layers of FC-128-ReLU
-                                        Bidirectional GRU: 128 cells
-                Encoder pre-net         FC-256-ReLU → Dropout(0.5) →
-                                        FC-128-ReLU → Dropout(0.5)
-                Decoder pre-net         FC-256-ReLU → Dropout(0.5)→
-                                        FC-128-ReLU → Dropout(0.5)
-                Decoder RNN             2-layer residual GRU (256 cells)
-                Attention RNN           1-layer GRU (256 cells)
-                Post-processing net     Conv1D bank: K=8, conv-k-128-ReLU
-                CBHG                    Max pooling: stride=1, width=2
-                                        Conv1D projections: conv-3-256-ReLU
-                                        → conv-3-80-Linear
-                                        Highway net: 4 layers of FC-128-ReLU
-                                        Bidirectional GRU: 128 cells
-                Reduction factor (r)    2
-
-3.3 DECODER
+DECODER
 
 We use a content-based tanh attention decoder (see e.g. Vinyals et al. (2015)), where a stateful recurrent layer produces the attention query at each decoder time step.
 We concatenate the context vector and the attention RNN cell output to form the input to the decoder RNNs.
@@ -155,7 +122,7 @@ During training, we always feed every r-th ground truth frame to the decoder.
 The input frame is passed to a pre-net as is done in the encoder.
 Since we do not use techniques such as scheduled sampling (Bengio et al., 2015) (we found it to hurt audio quality), the dropout in the pre-net is critical for the model to generalize, as it provides a noise source to resolve the multiple modalities in the output distribution.
 
-3.4 POST-PROCESSING NET AND WAVEFORM SYNTHESIS
+POST-PROCESSING NET AND WAVEFORM SYNTHESIS
 
 As mentioned above, the post-processing net’s task is to convert the seq2seq target to a target that can be synthesized into waveforms.
 Since we use Griffin-Lim as the synthesizer, the post-processing net learns to predict spectral magnitude sampled on a linear-frequency scale.
@@ -171,7 +138,7 @@ We implemented Griffin-Lim in TensorFlow (Abadi et al., 2016) hence it’s also 
 While Griffin-Lim is differentiable (it does not have trainable weights), we do not impose any loss on it in this work.
 We emphasize that our choice of Griffin-Lim is for simplicity; while it already yields strong results, developing a fast and high-quality trainable spectrogram to waveform inverter is ongoing work.
 
-4 MODEL DETAILS
+MODEL DETAILS
 
 Table 1 lists the hyper-parameters and network architectures.
 We use log magnitude spectrogram with Hann windowing, 50 ms frame length, 12.5 ms frame shift, and 2048-point Fourier transform.
@@ -186,16 +153,16 @@ It’s a common practice to train sequence models with a loss mask, which masks 
 However, we found that models trained this way don’t know when to stop emitting outputs, causing repeated sounds towards the end.
 One simple trick to get around this problem is to also reconstruct the zero-padded frames.
 
-5 EXPERIMENTS
+EXPERIMENTS
 
 We train Tacotron on an internal North American English dataset, which contains about 24.6 hours of speech data spoken by a professional female speaker.
 The phrases are text normalized, e.g. “16” is converted to “sixteen”.
 
-Figure 3: Attention alignments on a test phrase. 
+Figure: Attention alignments on a test phrase. 
 The decoder length in Tacotron is shorter due to the use of the output reduction factor r=5.
 
 
-5.1 ABLATION ANALYSIS
+ABLATION ANALYSIS
 
 We conduct a few ablation studies to understand the key components in our model.
 As is common for generative models, it’s hard to compare models based on objective metrics, which often do not correlate well with perception (Theis et al., 2015).
@@ -219,9 +186,9 @@ Figures 4(a) and 4(b) demonstrate the benefit of using the post-processing net.
 We trained a model without the post-processing net while keeping all the other components untouched (except that the decoder RNN predicts linear-scale spectrogram).
 With more contextual information, the prediction from the post-processing net contains better resolved harmonics (e.g. higher harmonics between bins 100 and 400) and high frequency formant structure, which reduces synthesis artifacts.
 
-Figure 4: Predicted spectrograms with and without using the post-processing net.
+Figure: Predicted spectrograms with and without using the post-processing net.
 
-5.2 MEAN OPINION SCORE TESTS
+MEAN OPINION SCORE TESTS
 
 We conduct mean opinion score tests, where the subjects were asked to rate the naturalness of the stimuli in a 5-point Likert scale score.
 The MOS tests were crowdsourced from native speakers.
@@ -231,15 +198,9 @@ We compare our model with a parametric (based on LSTM (Zen et al., 2016)) and a 
 As shown in Table 2, Tacotron achieves an MOS of 3.82, which outperforms the parametric system.
 Given the strong baselines and the artifacts introduced by the Griffin-Lim synthesis, this represents a very promising result.
 
-                         Table 2: 5-scale mean opinion score evaluation.
-                                               mean opinion score
-                                 Tacotron         3.82 ± 0.085
-                                Parametric        3.69 ± 0.109
-                              Concatenative       4.09 ± 0.119
+Table: 5-scale mean opinion score evaluation.                                        
 
-
-6 DISCUSSIONS
-
+DISCUSSIONS
 
 We have proposed Tacotron, an integrated end-to-end generative TTS model that takes a character sequence as input and outputs the corresponding spectrogram.
 With a very simple waveform synthesis module, it achieves a 3.82 MOS score on US English, outperforming a production parametric system in terms of naturalness.
@@ -251,7 +212,3 @@ We have yet to investigate many aspects of our model; many early design decision
 Our output layer, attention module, loss function, and Griffin-Lim-based waveform synthesizer are all ripe for improvement.
 For example, it’s well known that Griffin-Lim outputs may have audible artifacts.
 We are currently working on fast and high-quality neural-network-based spectrogram inversion.
-
-ACKNOWLEDGMENTS
-
-The authors would like to thank Heiga Zen and Ziang Xie for constructive discussions and feedback.

@@ -1,11 +1,5 @@
 Learning to Speak Fluently in a Foreign Language: Multilingual Speech Synthesis and Cross-Language Voice Cloning
 
-Yu Zhang, Ron J. Weiss, Heiga Zen, Yonghui Wu, Zhifeng Chen, RJ Skerry-Ryan, Ye Jia, Andrew Rosenberg, Bhuvana Ramabhadran
-
-Google
-{ngyuzh, ronw}@google.com
-
-
 Abstract
 
 We present a multispeaker, multilingual text-to-speech (TTS) synthesis model based on Tacotron that is able to produce high quality speech in multiple languages. 
@@ -15,9 +9,9 @@ Critical to achieving this result are: 1. using a phonemic input representation 
 Further scaling up the model by training on multiple speakers of each language, and incorporating an autoencoding input to help stabilize attention during training, results in a model which can be used to consistently synthesize intelligible speech for training speakers in all languages seen during training, and in native or foreign accents.
 Index Terms: speech synthesis, end-to-end, adversarial loss
 
-1. Introduction
+Introduction
 
-Recent end-to-end neural TTS models [1–3] have been extended to enable control of speaker identity [4–7] as well as unlabelled speech attributes, e.g. prosody, by conditioning synthesis on latent representations [8–12] in addition to text. 
+Recent end-to-end neural TTS models have been extended to enable control of speaker identity as well as unlabelled speech attributes, e.g. prosody, by conditioning synthesis on latent representations in addition to text. 
 Extending such models to support multiple, unrelated languages is nontrivial when using language-dependent input representations or model components, especially when the amount of training data per language is imbalanced. 
 For example, there is no overlap in the text representation between languages like Mandarin and English. 
 Furthermore, recordings from bilingual speakers are expensive to collect. 
@@ -25,14 +19,14 @@ It is therefore most common for each speaker in the training set to speak only o
 This makes it difficult to transfer voices across different languages, a desirable feature when the number of available training voices for a particular language is small. 
 Moreover, for languages with borrowed or shared words, such as proper nouns in Spanish (ES) and English (EN), pronunciations of the same text might be different. 
 This adds more ambiguity when a naively trained model sometimes generates accented speech for a particular speaker. 
-Zen et al. proposed a speaker and language factorization for HMM-based parametric TTS system [13], aiming to transfer a voice from one language to others. 
-[14] proposed a multilingual parametric neural TTS system, which used a unified input representation and shared parameters across languages, however the voices used for each language were disjoint. 
-[15] described a similar bilingual Chinese and English neural TTS system trained on speech from a bilingual speaker, allowing it to synthesize speech in both languages using the same voice. 
-[16] studied learning pronunciation from a bilingual TTS model. 
-Most recently, [17] presented a multilingual neural TTS model which supports voice cloning across English, Spanish, and German. 
+Zen et al. proposed a speaker and language factorization for HMM-based parametric TTS system, aiming to transfer a voice from one language to others. 
+proposed a multilingual parametric neural TTS system, which used a unified input representation and shared parameters across languages, however the voices used for each language were disjoint. 
+described a similar bilingual Chinese and English neural TTS system trained on speech from a bilingual speaker, allowing it to synthesize speech in both languages using the same voice. 
+studied learning pronunciation from a bilingual TTS model. 
+Most recently, presented a multilingual neural TTS model which supports voice cloning across English, Spanish, and German. 
 It used language-specific text and speaker encoders, and incorporated a secondary fine-tuning step to optimize a speaker identity-preserving loss, ensuring that the model could output a consistent voice regardless of language. 
-We also note that the sound quality is not on par with recent neural TTS systems, potentially because of its use of the WORLD vocoder [18] for waveform synthesis. 
-Our work is most similar to [19], which describes a multilingual TTS model based on Tacotron 2 [20] which uses a Unicode encoding “byte” input representation to train a model on one speaker of each of English, Spanish, and Mandarin. 
+We also note that the sound quality is not on par with recent neural TTS systems, potentially because of its use of the WORLD vocoder for waveform synthesis. 
+Our work is most similar to, which describes a multilingual TTS model based on Tacotron 2 which uses a Unicode encoding “byte” input representation to train a model on one speaker of each of English, Spanish, and Mandarin. 
 In this paper, we evaluate different input representations, scale up the number of training speakers for each language, and extend the model to support cross-lingual voice cloning. 
 The model is trained in a single stage, with no language-specific components, and obtains naturalness on par with baseline monolingual models. 
 Our contributions include: (1) Evaluating the effect of using different text input representations in a multilingual TTS model. 
@@ -40,34 +34,34 @@ Our contributions include: (1) Evaluating the effect of using different text inp
 (3) Incorporating an explicit language embedding to the input, which enables moderate control of speech accent, independent of speaker identity, when the training data contains multiple speakers per language. 
 We evaluate the contribution of each component, and demonstrate the proposed model’s ability to disentangle speakers from languages and consistently synthesize high quality speech for all speakers, despite the perfect correlation to the original language in the training data.
 
-2. Model Structure
+Model Structure
 
-We base our multilingual TTS model on Tacotron 2 [20], which uses an attention-based sequence-to-sequence model to generate a sequence of log-mel spectrogram frames based on an input text sequence. The architecture is illustrated in Figure 1. 
+We base our multilingual TTS model on Tacotron 2 , which uses an attention-based sequence-to-sequence model to generate a sequence of log-mel spectrogram frames based on an input text sequence. The architecture is illustrated in Figure 1. 
 It augments the base Tacotron 2 model with additional speaker and, optionally, language embedding inputs (bottom right), an adversarially-trained speaker classifier (top right), and a variational autoencoder-style residual encoder (top left) which conditions the decoder on a latent embedding computed from the target spectrogram during training (top left). 
-Finally, similar to Tacotron 2, we separately train a WaveRNN [22] neural vocoder.
+Finally, similar to Tacotron 2, we separately train a WaveRNN neural vocoder.
 
-2.1. Input representations
+Input representations
 
-End-to-end TTS models have typically used character [2] or phoneme [8, 23] input representations, or hybrids between them [24, 25]. 
-Recently, [19] proposed using inputs derived from the UTF-8 byte encoding in multilingual settings. 
+End-to-end TTS models have typically used character or phoneme input representations, or hybrids between them. 
+Recently, proposed using inputs derived from the UTF-8 byte encoding in multilingual settings. 
 We evaluate the effects of using these representations for multilingual TTS.
 
-2.1.1. Characters / Graphemes
+Characters / Graphemes
 
-Embeddings corresponding to each character or grapheme are the default inputs for end-to-end TTS models [2, 20, 23], requiring the model to implicitly learn how to pronounce input words (i.e. grapheme-to-phoneme conversion [26]) as part of the synthesis task. 
+Embeddings corresponding to each character or grapheme are the default inputs for end-to-end TTS models, requiring the model to implicitly learn how to pronounce input words (i.e. grapheme-to-phoneme conversion) as part of the synthesis task. 
 Extending a grapheme-based input vocabulary to a multilingual setting is straightforward, by simply concatenating grapheme sets in the training corpus for each language. 
 This can grow quickly for languages with large alphabets, e.g. our Mandarin vocabulary contains over 4.5k tokens. We simply concatenate all graphemes appearing in the training corpus, leading to a total of 4,619 tokens. 
 Equivalent graphemes are shared across languages. 
 During inference all previously unseen characters are mapped to a special out-of-vocabulary (OOV) symbol.
 
-2.1.2. UTF-8 Encoded Bytes
+UTF-8 Encoded Bytes
 
-Following [19] we experiment with an input representation based on the UTF-8 text encoding, which uses 256 possible values as each input token where the mapping from graphemes to bytes is language-dependent. 
+Following we experiment with an input representation based on the UTF-8 text encoding, which uses 256 possible values as each input token where the mapping from graphemes to bytes is language-dependent. 
 For languages with single-byte characters (e.g., English), this representation is equivalent to the grapheme representation. 
 However, for languages with multi-byte characters (such as Mandarin) the TTS model must learn to attend to a consistent sequence of bytes to correctly generate the corresponding speech.
 On the other hand, using a UTF-8 byte representation may promote sharing of representations between languages due to the smaller number of input tokens.
 
-2.1.3. Phonemes
+Phonemes
 
 Using phoneme inputs simplifies the TTS task, as the model no longer needs to learn complicated pronunciation rules for languages such as English. 
 Similar to our grapheme-based model, equivalent phonemes are shared across languages. 
@@ -76,61 +70,61 @@ To support Mandarin, we include tone information by learning phoneme-independent
 For English and Spanish, tone embeddings are replaced by stress embeddings which include primary and secondary stresses. 
 A special symbol is used when there is no tone or stress.
 
-2.2. Residual encoder
+Residual encoder
 
-Following [12], we augment the TTS model by incorporating a variational autoencoder-like residual encoder which encodes the latent factors in the training audio, e.g. prosody or background noise, which is not well-explained by the conditioning inputs: the text representation, speaker, and language embeddings. 
-We follow the structure from [12], except we use a standard single Gaussian prior distribution and reduce the latent dimension to 16. 
+Following, we augment the TTS model by incorporating a variational autoencoder-like residual encoder which encodes the latent factors in the training audio, e.g. prosody or background noise, which is not well-explained by the conditioning inputs: the text representation, speaker, and language embeddings. 
+We follow the structure from, except we use a standard single Gaussian prior distribution and reduce the latent dimension to 16. 
 In our experiments, we observe that feeding in the prior mean (all zeros) during inference, significantly improves stability of cross-lingual speaker transfer and leads to improved naturalness as shown by MOS evaluations in Section 3.4.
 
-2.3. Adversarial training
+Adversarial training
 
 One of the challenges for multilingual TTS is data sparsity, where some languages may only have training data for a few speakers. 
 In the extreme case where there is only one speaker per language in the training data, the speaker identity is essentially the same as the language ID. 
 To encourage the model to learn disentangled representations of the text and speaker identity, we proactively discourage the text encoding t s from also capturing speaker information.
-We employ domain adversarial training [27] to encourage t i to encode text in a speaker-independent manner by introducing a speaker classifier based on the text encoding and a gradient reversal layer. 
+We employ domain adversarial training to encourage t i to encode text in a speaker-independent manner by introducing a speaker classifier based on the text encoding and a gradient reversal layer. 
 Note that the speaker classifier is optimized with a different objective than the rest of the model:
 where si is the speaker label i and ψ s are the parameters for speaker classifier. 
-To train the full model, we insert a gradient reversal layer [27] prior to this speaker classifier, which scales the gradient by −λ. 
-Following [28], we also explore inserting another adversarial layer on top of the variational autoencoder to encourage it to learn speaker-independent representations. 
+To train the full model, we insert a gradient reversal layer prior to this speaker classifier, which scales the gradient by −λ. 
+Following, we also explore inserting another adversarial layer on top of the variational autoencoder to encourage it to learn speaker-independent representations. 
 However, we found that this layer has no effect after decreasing the latent space dimension. 
 We impose this adversarial loss separately on each element of the encoded text sequence, in order to encourage the model to learn a speaker and language-independent text embedding space. 
-In contrast to [28], which disentangled speaker identity from background noise, some input tokens are highly language-dependent which can lead to unstable adversarial classifier gradients. 
+In contrast to, which disentangled speaker identity from background noise, some input tokens are highly language-dependent which can lead to unstable adversarial classifier gradients. 
 We address this by clipping gradients computed at the reversal layer to limit the impact of such outliers.
 
-3. Experiments
+Experiments
 
 We train models using a proprietary dataset composed of high quality speech in three languages: (1) 385 hours of English (EN) from 84 professional voice actors with accents from the United States, Great Britain, Australia, and Singapore; (2) 97 hours of Spanish (ES) from 3 female speakers include Castilian and US Spanish; (3) 68 hours of Mandarin (CN) from 5 speakers.
 
-3.1. Model and training setup
+Model and training setup
 
-The synthesizer network uses the Tacotron 2 architecture [20], with additional inputs consisting of learned speaker (64-dim) and language embeddings (3-dim), concatenated and passed to the decoder at each step. 
+The synthesizer network uses the Tacotron 2 architecture, with additional inputs consisting of learned speaker (64-dim) and language embeddings (3-dim), concatenated and passed to the decoder at each step. 
 The generated speech is represented as a sequence of 128-dim log-mel spectrogram frames, computed from 50ms windows shifted by 12.5ms. 
-The variational residual encoder architecture closely follows the attribute encoder in [12]. 
+The variational residual encoder architecture closely follows the attribute encoder in. 
 It maps a variable length mel spectrogram to two vectors parameterizing the mean and log variance of the Gaussian posterior. 
 The speaker classifiers are fully-connected networks with one 256 unit hidden layer followed by a softmax predicting the speaker identity. 
 The synthesizer and speaker classifier are trained with weight 1.0 and 0.02 respectively. 
 As described in the previous section we apply gradient clipping with factor 0.5 to the gradient reversal layer. 
 The entire model is trained jointly with a batch size of 256, using the Adam optimizer configured with an initial learning rate of 10 −3 , and an exponential decay that halves the learning rate every 12.5k steps, starting at 50k steps. 
-Waveforms are synthesized using a WaveRNN [22] vocoder which generates 16-bit signals sampled at 24 kHz conditioned on spectrograms predicted by the TTS model. 
+Waveforms are synthesized using a WaveRNN vocoder which generates 16-bit signals sampled at 24 kHz conditioned on spectrograms predicted by the TTS model. 
 We synthesize 100 samples per model, and have each one rated by 6 raters.
 
-3.2. Evaluation
+Evaluation
 
 To evaluate synthesized speech, we rely on crowdsourced Mean Opinion Score (MOS) evaluations of speech naturalness via subjective listening tests. 
 Ratings follow the Absolute Category Rating scale, with scores from 1 to 5 in 0.5 point increments. 
-For cross-language voice cloning, we also evaluate whether the synthesized speech resembles the identity of the reference speaker by pairing each synthesized utterance with a reference utterance from the same speaker for subjective MOS evaluation of speaker similarity, as in [5]. 
-Although rater instructions explicitly asked for the content to be ignored, note that this similarity evaluation is more challenging than the one in [5] because the reference and target examples are spoken in different languages, and raters are not bilingual. 
+For cross-language voice cloning, we also evaluate whether the synthesized speech resembles the identity of the reference speaker by pairing each synthesized utterance with a reference utterance from the same speaker for subjective MOS evaluation of speaker similarity, as in. 
+Although rater instructions explicitly asked for the content to be ignored, note that this similarity evaluation is more challenging than the one in because the reference and target examples are spoken in different languages, and raters are not bilingual. 
 We found that low fidelity audio tended to result in high variance similarity MOS so we always use WaveRNN outputs. 
 For each language, we chose one speaker to use for similarity tests. 
 As shown in Table 1, the EN speaker is found to be dissimilar to the ES and CN speakers (MOS below 2.0), while the ES and CN speakers are slightly similar (MOS around 2.0). 
 The CN speaker has more natural variability compared to EN and ES, leading to a lower self similarity. 
 The scores are consistent when EN and CN raters evaluate the same EN and CN test set. 
-The observation is consistent with [29]: raters are able to discriminate between speakers across languages. 
+The observation is consistent with: raters are able to discriminate between speakers across languages. 
 However, when rating synthetic speech, we observed that English speaking raters often considered “heavy accented” synthetic CN speech to sound more similar to the target EN speaker, compared to more fluent speech from the same speaker. 
 This indicates that accent and speaker identity are not fully disentangled. 
 We encourage readers to listen to samples on the companion webpage.
 
-3.3. Comparing input representations
+Comparing input representations
 
 We first build and evaluate models comparing the performance of different text input representations. 
 For all three languages, byte-based models always use a 256-dim softmax output. 
@@ -142,7 +136,7 @@ CN has a larger gap to ground truth (top) due to unseen word segmentation (for s
 The multispeaker model (bottom) performs about the same as the single speaker per-language variant (middle). 
 Overall, when using phoneme inputs all the languages obtain MOS scores above 4.0.
 
-3.4. Cross-language voice cloning
+Cross-language voice cloning
 
 We evaluate how well the multispeaker models can be used to clone a speaker’s voice into a new language by simply passing in speaker embeddings corresponding to a different language from the input text. 
 Table 3 shows voice cloning performance from an EN speaker in the most data-poor scenario (129 hours), where only a single speaker is available for each training language (1EN 1ES 1CN) without using the speaker-adversarial loss. 
@@ -169,18 +163,14 @@ Naturalness MOS decreases by 0.4 points for EN-to-CN cloning without the residua
 In informal comparisons of the outputs of the two models we find that the model without the residual encoder tends to skip rare words or inserts unnatural pauses in the output speech.
 This indicates the VAE prior learns a mode which helps stabilize attention.
 
-1-Some raters gave low fidelity audio lower scores, treating "blurriness" as a property of the speaker. 
+Some raters gave low fidelity audio lower scores, treating "blurriness" as a property of the speaker. 
 Others gave higher scores because they recognized such audio as synthetic and had lower expectations.
-2-http://google.github.io/tacotron/publications/multilingual
-3-Using character or byte inputs led to similar results.
-4-We didn’t run listening tests because it was clear that synthesizing EN text using the CN speaker embedding didn’t affect the model output.
+http://google.github.io/tacotron/publications/multilingual
+Using character or byte inputs led to similar results.
+We didn’t run listening tests because it was clear that synthesizing EN text using the CN speaker embedding didn’t affect the model output.
 
-4. Conclusions
+Conclusions
 
 We describe extensions to the Tacotron 2 neural TTS model which allow training of a multilingual model trained only on monolingual speakers, which is able to synthesize high quality speech in three languages, and transfer training voices across languages. 
 Furthermore, the model learns to speak foreign languages with moderate control of accent, and, as demonstrated on the companion webpage, has rudimentary support for code switching. 
 In future work we plan to investigate methods for scaling up to leverage large amounts of low quality training data, and support many more speakers and languages.
-
-5. Acknowledgements
-
-We thank Ami Patel, Amanda Ritchart-Scott, Ryan Li, Siamak Tazari, Yutian Chen, Paul McCartney, Eric Battenberg, Toby Hawker, and Rob Clark for discussions and helpful feedback.

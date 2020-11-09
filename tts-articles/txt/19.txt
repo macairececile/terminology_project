@@ -1,16 +1,11 @@
 Text Preprocessing for Speech Synthesis
 
-Uwe D. Reichel, Hartmut R. Pfitzinger
-Department of Phonetics and Speech Communication
-University of Munich, Schellingstr. 3, 80799 Munich, Germany
-{reichelu|hpt}@phonetik.uni-muenchen.de
-
 Abstract
 
 In this paper we describe our text preprocessing modules for English text-to-speech synthesis. 
 These modules comprise rule-based text normalization subsuming sentence segmentation and normalization of non-standard words, statistical part-of-speech tagging, and statistical syllabification, grapheme-to-phoneme conversion, and word stress assignment relying in parts on rule-based morphological analysis.
 
-1. Introduction
+Introduction
 
 Text preprocessing for English text-to-speech (TTS) synthesis in general consists of the following steps: Text Normalization This first step subsumes sentence segmentation, tokenizing, and normalization of nonstandard words.
 For sentence segmentation the main problem is the ambiguity of the period, marking sentence boundaries or abbreviations, sometimes even simultaneously (it is 5 p.m.).
@@ -44,9 +39,9 @@ Metrical phonology (Liberman and Prince, 1977) accounts for lots of these factor
 Among the data-driven approaches are neural networks (Gupta and Touretzky, 1994) predicting stress patterns given syllable weight patterns and instance-based learning (Daelemans and van den Bosch, 1997) which matches new words against words with an already known stress pattern.
 In the following sections our TTS text preprocessing modules are presented.
 
-2. Text Normalization
+Text Normalization
 
-2.1. Identification of Proper Names, Acronyms and Abbreviations
+Identification of Proper Names, Acronyms and Abbreviations
 
 Since retrieval of proper names, acronyms and abbreviations is crucial for appropriate sentence segmentation and normalization of non-standard words, this task is carried out prior to text normalization.
 Due to the high productivity of these word classes simple table lookup is insufficient and has to be augmented by following procedures.
@@ -68,13 +63,13 @@ A letter sequence of a token indicates a violation of phonotactics if 1) the fir
 For word beginnings vowel letters are associated with syllable nuclei, for word endings also < m >, < n >; < l > is not treated as a nucleus associate since syllabic /l/ is represented by le in English orthography.
 Examples: incl. is identified as an abbreviation while wrists. and fascism. are treated as standard words followed by a period.
 
-2.2. Sentence Segmentation
+Sentence Segmentation
 
 The hand-crafted binary decision tree in Figure 1 guides the decision whether or not token t i is followed by a sentence boundary.
 i is ranging over the tokens of the present tokenization of the text at white spaces and unambiguous punctuation.
 The sentence segmentation completes the tokenization process.
 
-2.3. Normalization of non-standard words
+Normalization of non-standard words
 
 For space reasons we present just a selection of our normalization procedures here.
 Numbers In general the following number transformations are carried out: roman numbers are converted to arabic numbers by calculation and arabic numbers are converted to letters by finite state transducers for cardinal and ordinal numbers.
@@ -87,19 +82,17 @@ Unknown acronyms are spelled if indicated by a preceding indefinite article or b
 Otherwise they are pronounced as standard words.
 This acronym examination also takes place for each part of a hyphenated compound (CD-Rom) and within URLs and email addresses.
 
-3. Part-of-Speech Tagging
+Part-of-Speech Tagging
 
 Our approach for POS tagging described in more detail in Reichel (2005) is statistical and can be seen as a generalization of the classical Markov tagger presented by Jelinek (1985).
 The P (w|t) emission probabilities of word w given tag t are replaced by a linear interpolation of tag emission probabilities given a list of representations of w, that are connected to automatically derived word suffixes.
 Since in English language suffixes also store word class information and are observed in the training data with a high probability, the OOV problem can be reduced this way.
 However, no linguistic knowledge is needed, hence our approach is language independent.
 
-3.1. Basic Form of a Markov POS Tagger
+Basic Form of a Markov POS Tagger
 
 The aim is to estimate the probable tag sequence T̂ given word sequence W :
-T̂ = arg max P (T |W ) (1)
 To estimate P (T |W ) first a reformulation is needed by applying Bayes Formula, which leads to:
-T̂ = arg max P (T )P (W |T ) (2)
 given that the denominator P (W ) is constant. 
 Further two simplifying assumptions are to be made to get reliable
 counts for the probability estimations:
@@ -109,7 +102,7 @@ The resulting formula is thus:
 T̂ = arg max t 1 ...t n n h Y i=1 P (t i |t-history i )P (w i |t i ) i (3)
 T̂ is retrieved using the Viterbi algorithm (Viterbi, 1967).
 
-3.2. Generalizations of the basic model
+Generalizations of the basic model
 
 First P (t i |t-history i ) is replaced by a linearly interpolated trigram model
 Xju j P (t i |t-history ij ), j ranging from unigram to trigram tag history. Further w i is replaced by a list of word representations leading to a reformulation of P (w i |t i ):
@@ -122,7 +115,7 @@ In order to reduce calculation effort in application, just for unknown words the
 For known words just the POS tags co-occurring with them in the training corpus are taken into consideration.
 Our training data comprises 620000 tokens (including punctuation) taken from prose of the 20th century and pretagged by the TnT tagger (Brants, 2000) using the Penn tag set (Marcus et al., 1995).
 
-3.3. Word representations
+Word representations
 
 The representation of words seen in the training data is simply the word form.
 For OOV cases the representation is given by two string suffixes which are determined by Normalized Backward Successor Variety (NBSV).
@@ -135,14 +128,14 @@ The lexicon of reversed words is represented in the form of a trie (cf. Figure 2
 NBSV peaks are treated as morpheme boundaries.
 Since this method is knowledge free, of course not all of the obtained segments necessarily correspond to linguistic meaningful entities as might be suggested by Figure 2.
 
-4. Grapheme-to-Phoneme Conversion
+Grapheme-to-Phoneme Conversion
 
 Our G2P approach is data-driven; as a classifier we use the C4.5 decision tree (Quinlan, 1993).
 We treat the conversion as a one-to-one mapping from the set of graphemes to the set of phonemes (UK SAMPA).
 To cope with any n-to-n relation the phoneme set also comprises the empty phoneme as well as phoneme clusters.
 A canonical pronunciation dictionary containing 61340 entries is used for training and lookup at application time.
 
-4.1. Alignment
+Alignment
 
 The first step for creating the grapheme-to-phoneme converter was to align the phoneme string and the orthographic string of each pronunciation dictionary entry.
 Inspired by the work of Daelemans and van den Bosch (1997) an initial co-occurrence matrix between letters and phonemes was estimated.
@@ -152,7 +145,7 @@ The values of the initial co-occurrence matrix are converted into probabilities 
 The DP algorithm is designed to align either the empty phoneme, ore one phoneme, or a phoneme cluster to each letter.
 In order to get a left-aligned phoneme string which is necessary for its alignment with morphologic segments (see below), heuristic post-processing was applied.
 
-4.2. Syllable Segmentation
+Syllable Segmentation
 
 Since syllable structure influences G2P conversion and is furthermore needed for word stress assignment (see below), syllable segmentation is carried out in advance.
 Also for syllable segmentation a C4.5 decision tree is trained deciding for each letter whether or not a syllable boundary follows.
@@ -160,7 +153,7 @@ The current letter as well as the surrounding letters within a window of length 
 For model development the same dictionary is used as above, 80% of the entries taken for training and 20% for testing.
 The resulting decision tree yields a letter error rate of 1.2% and a word error rate of 8.6% on the test data.
 
-4.3. Features
+Features
 
 To map a grapheme g on the corresponding phoneme, the decision tree is supplied with 24 features: 
 • graphemes within a window of length 9 centered at g 
@@ -169,41 +162,28 @@ To map a grapheme g on the corresponding phoneme, the decision tree is supplied 
 • type of the current syllable (onset/null onset, open/closed) 
 • relative position of g within the word • phoneme history of length 3.
 
-5. Word stress assignment
+Word stress assignment
 
 In our approach word stress is assigned again by a C4.5 decision tree deciding for each syllable whether or not being stressed.
 Since English word stress is governed by phonology, morphology, and word class (see above) the classifier should be provided by features of all three domains.
 The phonological features are derived from syllabification and G2P conversion, word class features from POS tagging.
 To obtain morphologic features some morphologic analysis has to be carried out.
 
-5.1. Morphologic segmentation
+Morphologic segmentation
 
 The segmentation algorithm we used here is a simplified version of the procedure presented in Reichel and Weilhammer (2004).
 It consists of two stages: lexicon construction and segmentation.
 Since it requires some knowledge about affixation it is applicable for different languages just in combination with language dependent stemmers and affix lexica.
 
-5.1.1. Lexicon construction
+Lexicon construction
 
 The lexicon initially comprises English prefixes and suffixes and the linking morpheme ‘-’.
 It is then augmented by stems and prefix-stem concatenations of nouns, verbs, adjectives, and adverbs resulting from the application of a slightly modified Porter stemmer (Porter, 1980) for suffix separation.
 Table 1 shows the morpheme classes of the lexicon entries.
 
-+------------------+--------+
-| morpheme class   | symbol |
-+------------------+--------+
-| prefix           | prfx   |
-+------------------+--------+
-| suffix           | sfx    |
-+------------------+--------+
-| linking morpheme | lm     |
-+------------------+--------+
-| unstemmed word   | w      |
-+------------------+--------+
-| stem             | s      |
-+------------------+--------+
-Table 1: Morpheme classes. w: word left unchanged by the Porter stemmer.
+Table: Morpheme classes. w: word left unchanged by the Porter stemmer.
 
-5.1.2. Segmentation
+Segmentation
 
 Each word w is stemmed by the Porter stemmer. 
 Then the stem and the suffix string are further segmented by the function segmentation (see Figure 4) the following way:
@@ -212,7 +192,7 @@ In the course of the recursion, a boundary dividing the current string into pref
 On a random test sample of 1000 word types our system yields a word accuracy of 79.6% for completely correct morphologic analysis.
 Future improvements can be achieved by modifying the Porter stemmer in order to cope with short ly-adverbs and comparative adjectives.
 
-5.2. Features
+Features
 
 For each syllable s the following features are used for word stress assignment: 
 • word class 
@@ -228,19 +208,19 @@ Prefixes and suffixes are further divided into stressed and unstressed affixes (
 – only stressable syllable (binary; nucleus in stressed affix or in only stressable morpheme) 
 Syllable weight is extracted within a 5 syllable window centered on s, morpheme class within a 3 morpheme window centered on the morpheme containing the nucleus of s.
 
-6. Results
+Results
 
 Evaluation data taken from the “European Parliament Plenary Session” (EPPS) corpus was provided by ELDA.
 ELDA also carried out the evaluations, but due to some convention differences (see below) we had to revise the results.
 
-6.1. Text Normalization
+Text Normalization
 
 Sentence Segmentation End-of-sentence detection was evaluated for 500 sentences.
 Given two errors the error rate amounts to 0.4%.
 Word Normalization The normalization of non-standard words was evaluated for acronyms, for number, time, date, year, and money expressions, as well as for hybrid word forms like e.g. letter-digit combinations.
 The word error rate for non-standard words adds up to 28.9%.
 
-6.2. Part-of-Speech Tagging
+Part-of-Speech Tagging
 
 The evaluation data comprises 10000 words extracted randomly from 100000 running words.
 Tagset Mapping Different tagsets were used for training and evaluation.
@@ -251,32 +231,15 @@ Note that disambiguation was not possible in some cases.
 Results After POS mapping and removal of further systematic tagset differences the word error rate amounts 6.5%.
 Since more tagset inconsistencies are likely, this result has to be taken preliminarily.
 
-6.3. Grapheme-to-Phoneme Conversion
+Grapheme-to-Phoneme Conversion
 
 Evaluation was carried out for common words (3808 types), geographic locations (1870 types), and English proper names (2237 types).
 Due to different treatment of syllabic consonants (marked by “=” by ELDA) we recalculated the error rates after having marked the syllabic consonants from our G2P output accordingly, which is allowed due to the redundancy of this marking.
 The overall results including syllable segmentation and word stress placement can be found in Table 2.
 
-+-------------------------------------+------------+
-| Task                                | Error Rate |
-+-------------------------------------+------------+
-| Sentence Segmentation               | 0.4%       |
-+-------------------------------------+------------+
-| Normalization of Non-Standard Words | 28.9%      |
-+-------------------------------------+------------+
-| POS Tagging                         | 6.2%       |
-+-------------------------------------+------------+
-| G2P Conversion                      |            |
-+-------------------------------------+------------+
-| Common Words                        | 6.5%       |
-+-------------------------------------+------------+
-| Geographic Locations                | 21.1%      |
-+-------------------------------------+------------+
-| Proper Names                        | 17.9%      |
-+-------------------------------------+------------+
-Table 2: Error rates for the text processing tasks; sentence error rate for sentence segmentation, word error rate otherwise.
+Table: Error rates for the text processing tasks; sentence error rate for sentence segmentation, word error rate otherwise.
 
-7. Discussion
+Discussion
 
 Our submodules for TTS text preprocessing presented here are partly data-driven as for POS tagging, syllable segmentation, and grapheme-to-phoneme conversion and partly rule-based as for text normalization.
 For word stress assignment we have chosen a hybrid approach using a statistical classifier fed by features partially derived by a rulebased morphologic analysis.
@@ -286,7 +249,3 @@ Furthermore it is to investigate if this morphologic analysis could be helpful n
 Special effort is to be invested in the conversion of geographic location and proper names, for which the results are far away from satisfying.
 Due to the tagset inconsistencies, the POS tagging results should be regarded rather as preliminary and recalculated given a unique tagset used for both training and testing.
 For G2P conversion it should also be tested if training and test material are created following the same conventions, which is not clear per se due to their different origins.
-
-8. Acknowledgments
-
-We thank Marie-Neige Garcia and Nicolas Moreau at ELDA for the evaluation, and the partners in the ECESS consortium for fruitful discussions.

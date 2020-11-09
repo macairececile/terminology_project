@@ -396,9 +396,7 @@ In other words, a system trained with standard cepstral features concatenated wi
 It has to be noted that while multilingual ASR systems aim to use the feature set that is most language-independent, this feature set may not be the best set for an individual language, i.e., there may be features that are more specific to a language or more specifically applicable to a language.
 For instance, Mandarin is a tonal language; in this case, it has been observed that using pitch frequency features in addition to cepstral feature usually leads to better performance.
 
-In, the baseline system was trained with 42-dimensional feature vector consisting of 39-
-  dimensional MFCC features and log pitch frequency and its approximate first and second-time derivatives. We
-  dropped the log pitch frequency features as English study did not use these features.
+In, the baseline system was trained with 42-dimensional feature vector consisting of 39-dimensional MFCC features and log pitch frequency and its approximate first and second-time derivatives. We dropped the log pitch frequency features as English study did not use these features.
 
 Cross-lingual MLP features
 
