@@ -1,13 +1,5 @@
-Article
-
 Grapheme-to-Phoneme Conversion with Convolutional Neural Networks
-
-Sevinj Yolchuyeva *, Géza Németh and Bálint Gyires-Tóth
-
-Department of Telecommunications and Media Informatics, University of Budapest Technology and Economics, 1111 Budapest, Hungary; nemeth@tmit.bme.hu (G.N.); toth.b@tmit.bme.hu (B.G.-T.)
-* Correspondence: syolchuyeva@tmit.bme.hu
-                                                                                       
-Received: 14 January 2019; Accepted: 12 March 2019; Published: 18 March 2019                      
+          
 
 
 Abstract: Grapheme-to-phoneme (G2P) conversion is the process of generating pronunciation  for words based on their written form.
@@ -22,7 +14,7 @@ Keywords: grapheme-to-phoneme (G2P); encoder-decoder; LSTM; 1D convolution; Bi-L
 
 
 
-1. Introduction
+Introduction
      
 The process of grapheme-to-phoneme (G2P) conversion generates a phonetic transcription from the written form of words.
 The spelling of a word is called a grapheme sequence (or graphemes), the phonetic form is called a phoneme sequence (or phonemes).
@@ -37,73 +29,72 @@ For example, the G2P conversion of word ‘speaker’ is ‘S P IY K ER’.
 In TTS systems, a high-quality G2P model is also an essential part and has a great influence on the overall quality.
 Inaccurate G2P conversion results in unnatural pronunciation or even incomprehensible synthetic speech.
 
-2. Previous Works
+Previous Works
 
 G2P conversion has been studied for a long time.
-Rule-based G2P systems use a wide set of grapheme-to-phoneme rules [1,2].
+Rule-based G2P systems use a wide set of grapheme-to-phoneme rules.
 Developing such a G2P system requires linguistic expertise.
 Additionally, some languages (such as Chinese and Japanese) have complex writing systems, and building the rules is labor-intensive and it is extremely difficult to cover most possible situations.
 Furthermore, these systems are sensitive to out of vocabulary (OOV) events.
-Other previous solutions used joint sequence models [3,4].
+Other previous solutions used joint sequence models.
 These models create an initial grapheme-phoneme sequence alignment, and by using this alignment, it calculates a joint n-gram language model over sequences.
-The method proposed by [3] is implemented in the publicly available tool Sequitur (https://www-i6.informatik.rwth-aachen.de/web/Software/g2p.html, Access date: 9th August 2018).
+The method proposed by is implemented in the publicly available tool Sequitur (https://www-i6.informatik.rwth-aachen.de/web/Software/g2p.html, Access date: 9th August 2018).
 In one-to-one alignment, each grapheme corresponds to only one phoneme, and vice versa.
 An “empty” symbol is introduced to match grapheme and phoneme sequences.
 For example, the grapheme sequence of ‘CAKE’ matches the phoneme sequence of ‘K EY K’, and one-to-one alignment of these sequences is C → K, A → EY, K → K, and the last grapheme ‘E’ matches the “empty” symbol.
-Conditional and joint maximum entropy models use this approach [5].
-Later, Hidden Conditional Random Field (HCRF) models were introduced in which the alignment between grapheme and phoneme sequence is modelled with hidden variables [6,7].
+Conditional and joint maximum entropy models use this approach.
+Later, Hidden Conditional Random Field (HCRF) models were introduced in which the alignment between grapheme and phoneme sequence is modelled with hidden variables.
 The HCRF models usually lead to very competitive results; however, the training of such models is very memory and computationally intensive.
-A further approach utilizes conditional random fields (CRF) and Segmentation/Tagging models (such as linear finite-state automata or transducers, FSTs), then use them in two different compositions [8].
+A further approach utilizes conditional random fields (CRF) and Segmentation/Tagging models (such as linear finite-state automata or transducers, FSTs), then use them in two different compositions.
 The first composition is a joint-multigram combined with CRF; the second one is a joint-multigram combined with Segmentation/Tagging.
 The first approach achieved 5.5% phoneme error rate (PER) on CMUDict.
 Recently, neural networks have been applied for G2P conversion.
 Neural network-based G2P conversion is robust against spelling mistakes and OOV words; it generalizes well.
-Also, it can be seamlessly integrated into end-to-end TTS/ASR systems (that are constructed entirely of deep neural networks) [9].
+Also, it can be seamlessly integrated into end-to-end TTS/ASR systems (that are constructed entirely of deep neural networks).
 In this paper, a TTS system (Deep Voice) is presented which was constructed entirely from deep neural networks.
 Deep Voice lays the groundwork for truly end-to-end neural speech synthesis.
 Thus, the G2P model is jointly trained with further essential parts of the speech synthesizer and recognizer, which increase the overall quality of the system.
-LSTM has shown competitive performance in various fields, like acoustic modelling [10] and language understanding [11].
+LSTM has shown competitive performance in various fields, like acoustic modelling and language understanding.
 One of the early neural approaches investigates unidirectional Long Short-Term Memory (ULSTM) with full output delays, which achieved 9.
-1% phoneme error rate [12].
-In the same paper, a deep bidirectional LSTM (DBLSTM) was combined with connectionist temporal classification (CTC) and joint n-gram models for better accuracy (21.
-3% word error rate).
-Please note that CTC objective function was introduced to infer speech-label alignments automatically without any intermediate process, leading to an end-to-end approach for ASR [13].
-CTC technique has combined with CNN, LSTM for the various speech-related tasks [14].
-Due to utilizing an encoder-decoder approach for the G2P task, a separate alignment between grapheme sequences and phoneme sequences became unnecessary [15,16].
-Alignment-based models of unidirectional LSTM with one layer and bi-directional LSTM (Bi-LSTM) with one, two and three layers have also previously been investigated [16].
+1% phoneme error rate.
+In the same paper, a deep bidirectional LSTM (DBLSTM) was combined with connectionist temporal classification (CTC) and joint n-gram models for better accuracy (21.3% word error rate).
+Please note that CTC objective function was introduced to infer speech-label alignments automatically without any intermediate process, leading to an end-to-end approach for ASR.
+CTC technique has combined with CNN, LSTM for the various speech-related tasks.
+Due to utilizing an encoder-decoder approach for the G2P task, a separate alignment between grapheme sequences and phoneme sequences became unnecessary.
+Alignment-based models of unidirectional LSTM with one layer and bi-directional LSTM (Bi-LSTM) with one, two and three layers have also previously been investigated.
 In this work, alignment was explicitly modelled in the G2P conversion process by the context of the grapheme.
-A further work, which applies deep bi-directional LSTM with hyperparameter optimization (including the number of hidden layers, optional linear projection layers, optional splicing window at the input) considered various alignment schemes [17].
+A further work, which applies deep bi-directional LSTM with hyperparameter optimization (including the number of hidden layers, optional linear projection layers, optional splicing window at the input) considered various alignment schemes.
 The best model with hyperparameter optimization achieved a 5.37% phoneme error rate (PER) and a 23.23% word error rate (WER).
-Multi-layer bidirectional encoder with gated recurrent units (GRU) and deep unidirectional GRU as a decoder achieved 5.8% PER and 28.7% WER on CMUDict [9].
-Convolutional neural networks have achieved superior performance compared to previous methods in large-scale image recognition [18,19].
+Multi-layer bidirectional encoder with gated recurrent units (GRU) and deep unidirectional GRU as a decoder achieved 5.8% PER and 28.7% WER on CMUDict.
+Convolutional neural networks have achieved superior performance compared to previous methods in large-scale image recognition.
 Recently, these architectures were also applied to Natural Language Processing (NLP) tasks, including sentence classifications and neural machine translation.
-Nowadays, completely convolutional neural networks may achieve superior results compared to recurrent solutions [20,21].
-Sequence-to-sequence (seq2seq) learning, or encoder-decoder type neural networks have achieved remarkable success in various tasks, such as speech recognition, text-to-speech synthesis, machine translation [22–25].
-This type of network is used for several tasks, and its performance has also been enhanced with attention mechanisms [21,25–28].
+Nowadays, completely convolutional neural networks may achieve superior results compared to recurrent solutions.
+Sequence-to-sequence (seq2seq) learning, or encoder-decoder type neural networks have achieved remarkable success in various tasks, such as speech recognition, text-to-speech synthesis, machine translation.
+This type of network is used for several tasks, and its performance has also been enhanced with attention mechanisms.
 In this structure, the encoder computes a representation of each input sequence, and the decoder generates an output sequence based on the learned representation.
 In [28], bidirectional multi-layer recurrent neural network-based seq2seq learning was investigated in two architectures: a single Bi-LSTM/Bidirectional Gated Recurrent Unit (Bi-GRU) layer and two Bi-LSTM/Bi-GRU layers.
 Both Bi-LSTM and Bi-GRU uses both past and future contexts.
-Moreover, a bidirectional decoder was proposed for neural machine translation (NMT) in [29].
+Moreover, a bidirectional decoder was proposed for neural machine translation (NMT) in .
 Both encoder and decoder are Bi-GRU, but this model is applicable to other RNNs, such as LSTM.
 By introducing a backward decoder, the purpose of which is to exploit reverse target-side contexts, the results of NMT task was improved.
-For speech recognition, several sequence-to-sequence models, including connectionist temporal classification (CTC), the recurrent neural network (RNN) transducer, and an attention-based model [30], have been analyzed.
-The basics of sequence modelling with convolutional networks are summarized in [31].
+For speech recognition, several sequence-to-sequence models, including connectionist temporal classification (CTC), the recurrent neural network (RNN) transducer, and an attention-based model, have been analyzed.
+The basics of sequence modelling with convolutional networks are summarized in .
 Furthermore, the key components of the temporal convolution network (TCN) have also been introduced, and some vital advantages and disadvantages of using TCN for sequence predictions instead of RNNs were analyzed as well.
-The encoder-decoder structure has been studied for the G2P task [9,16,32] before, but usually, LSTM and GRU networks have been involved.
-For example, Baidu’s end-to-end text-to-speech synthesizer, called Deep Voice, uses the multi-layer bidirectional encoder with GRU’s non-linearity and an equally deep unidirectional GRU decoder [9].
-Until now, the best result for G2P conversion was introduced by [32], which applied an attention-enabled encoder-decoder model and achieved 4.69% PER and 20.24% WER on CMUDict.
+The encoder-decoder structure has been studied for the G2P task  before, but usually, LSTM and GRU networks have been involved.
+For example, Baidu’s end-to-end text-to-speech synthesizer, called Deep Voice, uses the multi-layer bidirectional encoder with GRU’s non-linearity and an equally deep unidirectional GRU decoder.
+Until now, the best result for G2P conversion was introduced by, which applied an attention-enabled encoder-decoder model and achieved 4.69% PER and 20.24% WER on CMUDict.
 Furthermore, G2P-seq2seq (https://github.com/cmusphinx/g2p-seq2seq, Access date: 9th August 2018) is based on neural networks implemented in the TensorFlow framework with 20.6% WER.
 To the best of our knowledge, our approach is the first that uses convolutional neural networks for G2P conversion.
 In this paper, we present one general sequence-to-sequence and four encoder-decoder models.
-These are introduced in Section 3.
+These are introduced in Section.
 Our goal was to achieve and surpass (if possible) the accuracy of previous models and to reduce the training times (which is quite high in the case of LSTM/GRU).
-The remaining parts of this paper are structured as follows: Section 3 discusses the possibility of applying convolutional neural networks for sequence-to-sequence-based grapheme-to-phoneme conversion.
-Datasets, training processes, and evaluation of the proposed models are presented in Section 4.
-Section 5 analyzes the results of the models, and finally, the conclusion is drawn in Section 6.
+The remaining parts of this paper are structured as follows: Section discusses the possibility of applying convolutional neural networks for sequence-to-sequence-based grapheme-to-phoneme conversion.
+Datasets, training processes, and evaluation of the proposed models are presented in Section.
+Section analyzes the results of the models, and finally, the conclusion is drawn in Section.
 
-3. Convolutional Neural Networks for Grapheme to Phoneme Conversion
+Convolutional Neural Networks for Grapheme to Phoneme Conversion
 
-Convolutional neural networks are used in various fields, including image [33,34], object [18,35,36] and handwriting recognition [36,37], face verification [38], natural language processing [39,40] and machine translation [21].
+Convolutional neural networks are used in various fields, including image , object  and handwriting recognition , face verification, natural language processing and machine translation .
 The architecture of an ordinary CNN is composed of many layer types (such as the convolutional layers, pooling layers, fully connecting layers, etc.), where each layer carries out a specific function.
 The convolutional and pooling layers are for representation learning, while the fully connected layers on the top of the network are for modelling a classification or regression problem.
 One of the main reasons that make convolutional neural networks superior to previous methods is that CNNs perform representation learning and modelling jointly; thus, a quasi-optimal representation is extracted from the input data for the machine learning model.
@@ -113,12 +104,12 @@ Deep Learning refers to the increased depth of neural networks.
 Intuitively, it is expected that neural networks with many hidden layers are more powerful than shallow ones with a single hidden layer.
 However, as the number of layers increases, the training may become surprisingly hard, partly because the gradients are unstable.
 Batch normalization is a technique to overcome this problem; it reduces internal covariance shift and helps to smooth learning.
-The main idea of batch normalization is to bring back the benefits of normalization at each layer [41].
+The main idea of batch normalization is to bring back the benefits of normalization at each layer .
 Batch normalization results in faster convergence as well.
-For example, with batch normalization, 7% of the training steps were enough to achieve similar accuracy in an image classification task [41].
-Moreover, an additional advantage of batch normalization is that it regularizes the training and thus reduces the need for dropout and other regularization techniques [41].
+For example, with batch normalization, 7% of the training steps were enough to achieve similar accuracy in an image classification task .
+Moreover, an additional advantage of batch normalization is that it regularizes the training and thus reduces the need for dropout and other regularization techniques.
 However, batch normalization and dropout are often simultaneously applied.
-Convolutional neural networks have been successfully applied to various NLP tasks [21,31,39,40].
+Convolutional neural networks have been successfully applied to various NLP tasks .
 These results suggest investigating the possibility of applying CNN-based sequence-to-sequence models for G2P.
 We expected that the advantage of convolutional neural networks enhances the performance of G2P conversion.
 As is known, LSTMs read input sequentially, and the output for further inputs depends on the previous ones.
@@ -126,20 +117,20 @@ Thus, we cannot parallelize these networks.
 Applying CNN also reduces computational load by using large receptive fields.
 Deep neural networks with a sequential architecture have many typical building blocks, such as convolutional or fully connected layers, stacked on each other.
 Increasing the number of layers in these kinds of networks does not implicitly mean improved accuracy (in our case PER or WER), and some issues, such as vanishing gradient and degradation problems, can arise as well.
-Introducing residual and highway connections can improve performance significantly [42,43].
+Introducing residual and highway connections can improve performance significantly .
 These connection alternatives allow the information to flow more into the deeper layers, increase the convergence speed and decrease the vanishing gradient problem.
 
-3.1. Models
+Models
 
-Encoder-decoder structures have shown state-of-the-art results in different NLP tasks [16,23].
+Encoder-decoder structures have shown state-of-the-art results in different NLP tasks .
 The main idea of these approaches has two steps: the first step is mapping the input sequence to a vector; the second step is to generate the output sequence based on the learned vector representation.
 Encoder-decoder models generate an output after the complete input sequence is processed by the encoder, which enables the decoder to learn from any part of the input without being limited to fixed context windows.
-Figure 1 shows an example of an encoder-decoder architecture [15].
+Figure shows an example of an encoder-decoder architecture .
 
-Figure 1. The input of the encoder is the “CAKE” grapheme sequence, and the decoder produces “KEY K” as the phoneme sequences.
+Figure. The input of the encoder is the “CAKE” grapheme sequence, and the decoder produces “KEY K” as the phoneme sequences.
 The left side is the encoder; the right side is the decoder.
 The model stops making predictions after generating the end-of-phonemes tag.
-As distinct from [15,16], input data for the encoder is not reversed in any of our models.
+As distinct from , input data for the encoder is not reversed in any of our models.
 
 In our experiments, we used encoder-decoder architectures.
 Several models with different hyperparameters were developed and tested.
@@ -150,51 +141,52 @@ In the following paragraphs, the five models are introduced:
 The first model uses LSTMs for both the encoder and the decoder.
 The LSTM encoder reads the input sequence and creates a fixed-dimensional vector representation.
 The second LSTM is the decoder, and it generates the output.
-Figure 2a shows the structure of the first model.
+Figurea shows the structure of the first model.
 It can be seen that both LSTMs have 1024 units; softmax activation function is used to obtain model predictions.
-This architecture is the same as a previous solution [16], while the parameters of training (optimization method, regularization, etc.) are identical to the settings used in case of the other four models.
+This architecture is the same as a previous solution , while the parameters of training (optimization method, regularization, etc.) are identical to the settings used in case of the other four models.
 In this way we try to ensure a fair comparison among the models.
 
-Figure 2. G2P conversion model based on encoder-decoder (a) LSTMs (first model); (b) Bi-LSTMs (second model); (c) encoder CNN, decoder Bi-LSTM (third model).
+Figure. G2P conversion model based on encoder-decoder (a) LSTMs (first model); (b) Bi-LSTMs (second model); (c) encoder CNN, decoder Bi-LSTM (third model).
 f, d, s are the number of the filters, length of the filters and stride, respectively, in the convolutional layer.
 
 Although the encoder-decoder architecture achieves competitive results on a wide range of problems, it suffers from the constraint that all input sequences are forced to be encoded to a fixed-size latent space.
-To overcome this limitation, we investigated the effects of the attention mechanism proposed by [44,45] in Model 1 and Model 2.
+To overcome this limitation, we investigated the effects of the attention mechanism proposed by  in Model 1 and Model 2.
 We applied an attention layer between the encoder and decoder LSTMs in the case of Model 1, and Bi-LSTMs for Model 2.
-The introduced attention layers are based on global attention [45].
-In the second model, both the encoder and the decoder are Bi-LSTMs [11,46,47].
-The structure of this model is presented in Figure 2b.
+The introduced attention layers are based on global attention.
+In the second model, both the encoder and the decoder are Bi-LSTMs .
+The structure of this model is presented in Figureb.
 The input is fed to the first Bi-LSTM (encoder), which combines two unidirectional LSTM layers that process the input from left-to-right and right-to-left.
 The output of the encoder is given as the input for the second Bi-LSTM (decoder).
 Finally, the softmax function is applied to generate the output of one-hot vectors (phonemes).
 During the inference, the complete input sequence is processed by the encoder, and after that, the decoder generates the output.
 For predicting a phoneme, both the left and the right contexts are considered.
-This model was also inspired by an existing solution [12].
+This model was also inspired by an existing solution .
 In the third model, a convolutional neural network is introduced as the encoder, and a Bi-LSTM as the decoder.
-This architecture is presented in Figure 2c.
+This architecture is presented in Figurec.
 As this figure shows, the number of filters is 524, the length of the filter is 23, the stride is 1, and the number of cells in the Bi-LSTM is 1024.
 In this model, the CNN layer takes graphemes as input and performs convolution operations.
 For regularization purpose, we also introduced batch normalization in this model.
-The fourth model contains convolutional layers only, with residual connections (blocks) [42].
-These residual connections have two rules [48]:  (1)    if feature maps have the same size, then the blocks share the same hyperparameters.
-(2) each time when the feature map is halved, the number of filters is doubled.
+The fourth model contains convolutional layers only, with residual connections (blocks) .
+These residual connections have two rules :
+if feature maps have the same size, then the blocks share the same hyperparameters.
+each time when the feature map is halved, the number of filters is doubled.
 First, we apply one convolutional layer with 64 filters to the input layer, followed by a stack of residual blocks.
-Through hyperparameter optimization, the best result was achieved by 4 residual blocks, as shown in Figure 3a, and the number of filters in each residual block is 64, 128, 256, 512, respectively.
-Each residual block contains a sequence of two convolutional layers followed by a batch normalization [41] layer and ReLU activation.
+Through hyperparameter optimization, the best result was achieved by 4 residual blocks, as shown in Figurea, and the number of filters in each residual block is 64, 128, 256, 512, respectively.
+Each residual block contains a sequence of two convolutional layers followed by a batch normalization  layer and ReLU activation.
 The filter size of all convolutional layers is three.
 After these blocks, one more batch normalization layer and ReLU activation are applied.
 The architecture ends with a fully connected layer, which uses the softmax activation function.
 
-Figure 3. G2P conversion based on (a) convolutional neural network with residual connections (fourth model); and (b) encoder convolutional neural network with residual connections and decoder Bi-LSTM (fifth model).
+Figure. G2P conversion based on (a) convolutional neural network with residual connections (fourth model); and (b) encoder convolutional neural network with residual connections and decoder Bi-LSTM (fifth model).
 f, d, s are the number of the filters, length of the filters and stride, respectively.
 
 We carried out experiments with the same fully convolutional models without residual connections; however, the phoneme and word error rates were worse than with residual connections, as expected.
 The fifth model combines Models 3 and 4: the encoder has the same convolutional neural network architecture with residual connections and batch normalization that was introduced in model four.
 The decoder is a Bi-LSTM, as in model three.
-The structure of this model is presented in Figure 3b.
+The structure of this model is presented in Figureb.
 In all models except Model 4, we used stateless LSTM (or Bi-LSTM) configurations; the internal state is reset after each batch for predictions.
 
-3.2. Details of the Bidirectional Decoder
+Details of the Bidirectional Decoder
 
 The details of the bidirectional decoder, which was used in Model 2, are presented in this section.
 Given an input sequence x = ( x1 , x2 , . . . , x N ), the LSTM network computes the hidden vector sequence h = (h1 , h2 , . . . , h N ) and output vector sequence y = (y1 , y2 , . . . , y N ).
@@ -208,8 +200,8 @@ For G2P, x = ( x1 , x2 , . . . , x N ) are one-hot character vectors of grapheme
 In the proposed Model 2, Bi-LSTM was used as an encoder, and it consists of two LSTMs: one that processes the sequence from left-to-right (forward encoder), and one that does it in reverse (backward encoder).
 This was applied to learn the semantic representation of the input sequences in both directions.
 One LSTM looks at the sequence from left-to-right (forward encoder), and so reads an input sequence in left-to-right order; and another LSTM looks at it in reverse (backward encoder), and so reads an input sequence in a right-to-left order.
-At each of the time steps, the forward hidden ← sequence ~h and the backward hidden sequence h are iterated by the following equations [49]: →                              →                                          ht = H(W       → xt   + W→→ h t−1 + b→ ),                                (1)                                                     xh             hh             h                                           ←                              ←                                          ht = H(W       ← xt   + W←← h t+1 + b← ),                                (2)                                                     xh             hh             h       
-In Equation (1), the forward layer is iterated from t = 1 to N; in Equation (2), the backward layer is iterated from t = N to 1; H is an element-wise sigmoid function.
+At each of the time steps, the forward hidden ← sequence ~h and the backward hidden sequence h are iterated by the following equations: 
+In Equation, the forward layer is iterated from t = 1 to N; in Equation, the backward layer is iterated from t = N to 1; H is an element-wise sigmoid function.
 As the next step, the hidden states of these two LSTMs were concatenated to form an annotation → ← sequence h = {h1 , h2 , . . . , h N }, where ht = [ht , ht ] encodes information about the t − th grapheme with respect to all the other surrounding graphemes in the input.
  W → , W ← , W←← and W→→ are weight xh     xh       hh      hh matrixes; b→ , b← denotes the bias vectors.
 Generally, in all parameters, the arrows pointing left to right            h    h and right to left refer to the forward and backward layers, respectively.
@@ -222,22 +214,18 @@ It was initialized with a final encoded state and a reversed output (phonemes).
 The forward decoder is trained to sequentially predict the next phoneme given the phoneme sequence.
 This part was initialized with the final state of the encoder and all phoneme sequences.
 Each decoder output is passed through the softmax layer that will learn to classify the correct phonemes.
-For training, given the previous phonemes, the model factorizes the conditional into a summation of individual log conditional probabilities from both directions,                                                     −−−−−−−−−−−−                                                                      → ←−−−−−−−−−−−                                                                                           −                                                                                                                   P yt y[1:(t−1)] , y[(t+1):N ] = log P yt y1:(t−1) + log P yt y(t+1):N ,                     (3)        −−−−−−−−−−−−                       →     ←−−−−−−−−−−−−                                                  −                                                    where log P yt y[1:(t−1)] and log P yt y[(t+1):N ] are the left-to-right (forward), the right-to-left (backward) conditional probability in Equation (3), and calculated as per the equations below:                              ←−−−−−−−−−−−−                                                −                                                                                                    ←                            Plog P yt y[(t+1):N ] =      ∑ log P(yt |{yt+1 , .
- .
- .
- , y N }, x,   h, d ),           (4)                               −−−−−−−−−−−−→                                                      →                              log P( yt y[1:(t−1)] ) =   ∑ log P(yt |{y1 , .
- .
- .
- , yt−1 }, x, h, d ),              (5)
-The prediction is performed on test data as follows:                                            ←−−−−−−−−−−−−                                                              −                                                                                                          log P yt y[(t+1):N ] = ∑ log P(yt | x, h])                                                  (6)       
-According to Equation (6), future output is not used during inference.
-The architecture is shown in Figure 4.
+For training, given the previous phonemes, the model factorizes the conditional into a summation of individual log conditional probabilities from both directions,
+where log P yt y[1:(t−1)] and log P yt y[(t+1):N ] are the left-to-right (forward), the right-to-left (backward) conditional probability in Equation, and calculated as per the equations below: 
 
-Figure 4. The architecture of the proposed bidirectional decoder model for G2P task.
+The prediction is performed on test data as follows:
+According to Equation, future output is not used during inference.
+The architecture is shown in Figure.
+
+Figure. The architecture of the proposed bidirectional decoder model for G2P task.
  
-4. Experiments
+Experiments
 
-4.1. Datasets
+Datasets
 
 We used the CMU pronunciation (http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and NetTalk (we are grateful to Stan Chen for providing the data) datasets, which have frequently been chosen by various researchers [3,16,32].
 The training and testing splits are the same as those found in [4,5,8,12];  thus, the results are comparable.
@@ -249,58 +237,14 @@ There are 26 graphemes (lowercase alphabet symbols) and  52 phonemes (‘!’, �
 We use <EP> and </EP> tokens as beginning-of-graphemes and end-of-graphemes tokens in both  datasets.
 For inference, the decoder uses the past phoneme sequence to predict the next phoneme, and  it stops predicting after token </EP>.
 
-4.2. Training
+Training
      
 For the CMUDict experiments, in all models, the size of the input layers is equal to the input: {length of the longest input (22) × number of graphemes (27)} and the size of the output layers is equal to the output: {length of the longest output (22) × number of phonemes (41)}.
 To transform graphemes and phonemes for neural networks, we convert inputs into 27-dimensional and outputs to 41-dimensional one-hot vector representations.
 For example, the phoneme sequences of the word ‘ARREST’ is ‘ER EH S T’; the input and output vectors of the grapheme and phoneme sequences are as below:
 
-      Input vector of ‘ARREST’:
-                                                                                     
-                                          A   B   C    E     ···    R   ··· S   T ···
-                                
-                                    A    1   0   0    0      0     0    0  0   0  0 
-                                     R    0   0   0    0      0     1    0  0   0  0 
-                                                                                     
-                                
-                                                                                     
-                                
-                                    R    0   0   0    0      0     1    0  0   0  0 
-                                
-                                    E    0   0   0    1      0     0    0  0   0  0 
-                                     S    0   0   0    0      0     0    0  1   0  0 
-                                                                                     
-                                
-                                     T    0   0   0    0      0     0    0  0   1  0 
-                                                                                     
-                                
-                                    ···   0   0   0   ···     0     0    0 ··· ··· 0
 
-      Output vector of ‘ER EH S T’:
-                                                                                                
-                                      /EP     · · · EH      ER     EP   · · · S SH    T    ···
-                           
-                               EP     0       0     0       0      1    0 0     0    0     0    
-                                                                                                 
-                               ER      0       0     0       1      0    0 0     0    0     0
-                                                                                                
-                                                                                                
-                                                                                                
-                           
-                              EH      0       0     1       0      0    0 0     0    0     0    
-                                                                                                 
-                           
-                                S     0       0     0       0      0    0 1     0    0     0    
-                                                                                                 
-                                 T     0       0     0       0      0    0 0     0    1     0
-                                                                                                
-                                                                                                
-                               /EP     1       0     0       0      0    0 0     0    0     0
-                                                                                                
-                                                                                                
-                                ···    0       0     0      ···     0    0 0 ···     ···    0
-
-In the case of LSTMs, we applied the Adam optimization algorithm [50] with a starting learning rate of 0.001, and with baseline values of β1 , β2 and ε (0.9, 0.999 and 1 × 10−8 , respectively).
+In the case of LSTMs, we applied the Adam optimization algorithm with a starting learning rate of 0.001, and with baseline values of β1 , β2 and ε (0.9, 0.999 and 1 × 10−8 , respectively).
 For batch size, 128 was chosen.
 Weights were saved when the PER on the validation dataset achieved a lower value than before.
 When the PER did not decrease further for 100 epochs, the best model was chosen, and it was trained with stochastic gradient descent (SGD) further.
@@ -312,108 +256,70 @@ In all proposed models, the patience of early stopping was set to 50 in the Adam
 For NetTalk experiments, the sizes of the input and output layers are as follows: input—{(length of the longest input (19) × number of graphemes (26)}); and       output—{length of the longest output (19) × number of phonemes (52)}.
 We converted inputs to 26-dimensional and outputs to 52-dimensional one-hot vector representations as in case of CMUDict.
 The same model structure was used as with the CMUDict experiments.
-Moreover, the implementation of a single convolutional layer on input data is presented in Figure 5.
+Moreover, the implementation of a single convolutional layer on input data is presented in Figure.
 The input is a one-hot vector of ‘ARREST’; 64 filters of (input length) ×3 are applied to the input.
 In other words, the input is convolved with 64 feature maps, which produce the output of the convolutional layer.
 Zero padding was used to ensure that the output of the convolution layer has the same dimension as the input.
 During training, the filter weights are optimized to produce lower loss values.
 
-Figure 5. Implementation of a single convolutional layer with 64 filters of size (input length) ×3 to the input data.
+Figure. Implementation of a single convolutional layer with 64 filters of size (input length) ×3 to the input data.
 
 During inference, prediction of the graphemes sequence is decoded until </EP>, and the length of input and output are not considered.
 
-4.3. Evaluation and Results
+Evaluation and Results
       
 NVidia Titan Xp (12 GB) and NVidia Titan X (12 GB) GPU cards hosted in two i7 workstations with 32GB RAM served for training and inference.
 Ubuntu 14.04 with Cuda 8.0 and cuDNN 5.0 was used as a general software architecture.
 For training and evaluation, the Keras deep learning framework with Theano backend was our environment.
-For evaluation, the standard and commonly used [12,16] measurements of phoneme error rate (PER) and word error rate (WER) were calculated.
+For evaluation, the standard and commonly used measurements of phoneme error rate (PER) and word error rate (WER) were calculated.
 PER was used to measure the distance between the predicted phoneme sequence and reference pronunciation divided by the number of phonemes in the reference pronunciation.
-Edit distance (also known as Levenshtein distance [51]) is the minimum number of insertions (I), deletions (D) and substitutions (S), that are required to transform one sequence into the other.
-If there are multiple pronunciation variants for a word in the reference data, the variant that has the smallest Levenshtein distance [51] to the candidate is used.
-Levenshtein distance can be calculated by dynamic programming method [52].
+Edit distance (also known as Levenshtein distance ) is the minimum number of insertions (I), deletions (D) and substitutions (S), that are required to transform one sequence into the other.
+If there are multiple pronunciation variants for a word in the reference data, the variant that has the smallest Levenshtein distance  to the candidate is used.
+Levenshtein distance can be calculated by dynamic programming method .
 For WER computation, which is only counted if the predicted pronunciation does not match any reference pronunciation, the number of word errors is divided by the total number of unique words in the reference.
 After training the model, predictions were run on the test dataset.
-The results of evaluation on the CMUDict dataset are shown in Table 1.
+The results of evaluation on the CMUDict dataset are shown in Table.
 The first and second columns show the model number and the applied architecture, respectively.
 The third and fourth columns show the PER and WER values.
-The fifth column of Table 1 contains the average sum of training and validation time of one epoch.
+The fifth column of Table contains the average sum of training and validation time of one epoch.
 The last two columns present information about the size of models, which shows the number of parameters (weights) and the number of epochs to reach minimum validation loss.
 According to the results, the encoder-decoder Bi-LSTM architecture (Model 2) outperforms the first model, as expected.
-However, attention-based Model 1 (called Model 1A in Table 1) outperforms Model 2 in terms of PER.
+However, attention-based Model 1 (called Model 1A in Table) outperforms Model 2 in terms of PER.
 The best WER and PER values are achieved by the fifth model: PER is 4.81%, and WER is 25.13%.
-Attention-based Model 2 (called Model 2A in Table 1) approaches the best results in terms of both PER and WER.
+Attention-based Model 2 (called Model 2A in Table) approaches the best results in terms of both PER and WER.
 However, the number of parameters of Model 2A is twice as high as for Model 5.
 Although the fourth model was faster than all of the other models, both the PER and WER of this model were the highest; however, they are still competitive.
 Moreover, this model also has the fewest parameters.
 
-Table 1. Results on the CMUDict dataset.
+Table. Results on the CMUDict dataset.
 
-                                                                                               Number      Model
-   Model                      Method                      PER (%)   WER (%)       Time (s)
-                                                                                              of Epochs     Size
-      1                Encoder-Decoder LSTM                5.68       28.44        467.73        185       12.7 M
-     1A       Encoder-Decoder LSTM with attention layer    5.23       28.36         688.9        136       13.9 M
-      2              Encoder-Decoder Bi-LSTM               5.26       27.07        858.93        177       33.8 M
-                   Encoder-Decoder Bi-LSTM with
-     2A                                                    4.86       25.67        1045.5        114       35.3 M
-                           attention layer
-      3           Encoder CNN, decoder Bi-LSTM             5.17       26.82        518.3         115       13.1 M
-      4        End-to-end CNN (with res. connections)      5.84       29.74        176.1         142       7.62 M
-                 Encoder CNN with res. connections,
-      5                                                    4.81       25.13        573.5         147       14.5 M
-                          decoder Bi-LSTM
 
 
 We compared the performance of the fifth model on both CMUDict and NetTalk with previously achieved state-of-the-art results. 
-These comparisons are presented in Table 2. 
+These comparisons are presented in Table. 
 The first column shows the dataset, the second column presents the method used in previous solutions with references, PER and WER columns tell the results of the referred models. 
-Table 2 clearly shows that our fifth model outperforms the previous solutions by PER on each dataset, except for [32]. 
-For NetTalk, we were able to significantly surpass the previous state-of-the-art, but a better WER was obtained by [32] with an encoder-decoder network based on an attention mechanism. 
-We should point out that the results of the fifth model are very close to those obtained by [32].
+Table clearly shows that our fifth model outperforms the previous solutions by PER on each dataset, except for . 
+For NetTalk, we were able to significantly surpass the previous state-of-the-art, but a better WER was obtained by  with an encoder-decoder network based on an attention mechanism. 
+We should point out that the results of the fifth model are very close to those obtained by .
 
-Table 2. Comparison of best previous results of G2P models with our fifth model (encoder is a CNN with residual connections, Bi-LSTM decoder) on CMUDict and NetTalk.
-
-      Data                                      Method                                       PER (%)      WER (%)
-                                      Joint sequence model [3]                                8.26         33.67
-                                            Bi-LSTM [16]                                      7.38         30.77
-    NetTalk
-                              Encoder-decoder with global attention [32]                      7.14         29.20
-                      Encoder CNN with residual connections, decoder Bi-LSTM
-                                                                                              5.69         30.10
-                                              (Model 5)
-                                      LSTM with Full-delay [12]                               9.11          30.1
-                                       Joint sequence model [3]                               5.88         24.53
-                                     Encoder-decoder LSTM [16]                                7.63         28.61
-                                      Bi-LSTM + Alignment [16]                                5.45         23.55
-                   Combination of sequitur G2P and seq2seq-attention and multitask
-                                                                                              5.76         24.88
-                                              learning [26]
-   CMUDict
-                    Ensemble of 5 [Encoder-decoder + global attention] models [32]            4.69         20.24
-                              Encoder-decoder with global attention [32]                      5.04         21.69
-                                     Joint multi-gram + CRF [8]                               5.5          23.4
-                                        Joint n-gram model [4]                                7.0           28.5
-                           Joint maximum entropy (ME) n-gram model [5]                        5.9          24.7
-                                      Encoder-Decoder GRU [9]                                  5.8          28.7
-                   Encoder CNN with residual con., decoder Bi-LSTM (fifth model)              4.81         25.13
+Table. Comparison of best previous results of G2P models with our fifth model (encoder is a CNN with residual connections, Bi-LSTM decoder) on CMUDict and NetTalk.
 
 
-The proposed best model in [26] consists of the combination of the sequitur G2P (model order 8) and seq2seq-attention (Bi-LSTM 512 × 3) and multitask learning (ARPAbet/IPA), and although the WER in their case is better, Model 5 has a smaller PER.
-Although the encoder-decoder LSTM by [16] is similar to our first model, the PER is better in our case; the WER of both models is almost the same. 
-Our second model is comparable with [16], in which the Bi-LSTM method was implemented, alignment was also applied.
+The proposed best model in  consists of the combination of the sequitur G2P (model order 8) and seq2seq-attention (Bi-LSTM 512 × 3) and multitask learning (ARPAbet/IPA), and although the WER in their case is better, Model 5 has a smaller PER.
+Although the encoder-decoder LSTM by is similar to our first model, the PER is better in our case; the WER of both models is almost the same. 
+Our second model is comparable with , in which the Bi-LSTM method was implemented, alignment was also applied.
 
-5. Discussion
+Discussion
 
 In this section, we discuss the results of the previous section and analyze the connection between PER values and word length, furthermore the position of the error within the word.
 
 We categorize the word length into 3 classes: short (shorter than 6 characters), medium (between 6 and 10 characters), long (more than 10 characters).
 According to this categorization, there were 4306 short, 5993 medium and 1028 long words in the CMUDict dataset.
 In this analysis, we ignored approximately 600 words that have multiple pronunciation variants in the reference data.
-The results of this comparison are presented in Figure 6a.
+The results of this comparison are presented in Figurea.
 For short words, all models show similar PERs; for medium length words, except the end-to-end CNN model (fourth model), the other models resulted in similar error; for long words, encoder CNN with residual connection, decoder Bi-LSTM (fourth model) and encoder CNN, decoder Bi-LSTM (third model) got similar minimum errors.
 The fourth model showed the highest error in both medium and long length words.
-According to Figure 6a, the advantage of Bi-LSTM-based models is clearly shown for learning long sequences.
+According to Figurea, the advantage of Bi-LSTM-based models is clearly shown for learning long sequences.
 Moreover, errors occurring in the first half of the pronunciation (in the reference) increases the probability of predicting incorrect phonemes in the second half.
 Still, a correctly predicted first half cannot guarantee a correctly predicted second half.
 In our experiments, convolutional architectures also performed well on short and on long-range dependencies.
@@ -432,9 +338,9 @@ Types of errors: S S S I S I
 Position: [1,8,8] 
 As example the example shows, two substitutions substitutions (S) and (I) occurred in our fifth model output.
 
-Figure 6b shows position errors calculated the models models on on the the reference reference dataset.
+Figure shows position errors calculated the models models on on the the reference reference dataset.
 
-Furthermore, in all models presented here, PER is better than the previous results on CMUDict except the first four models in [32], while WER is still reasonable.
+Furthermore, in all models presented here, PER is better than the previous results on CMUDict except the first four models in , while WER is still reasonable.
 This means that even most of the incorrect predictions are very close to the reference; therefore, they have small PER.
 Accordingly, we need to analyze the incorrect predictions (outputs) for each model to see how many phonemes are correct in the reference.
 In the fifth model, 25.3% of the test data are not correct (about 3000 test samples).
@@ -450,26 +356,17 @@ For example, for the word ZANGHI Model 5 output is [Z AE N G], while the referen
 The graphemes ‘NGHI’ appeared only 7 times in the training data.
 Furthermore, many words are of foreign origin, for example, GDANSK is Polish a city, SCICCHITANO is an Italian name, KOVACIK is a Turkish surname.
 Generating phoneme sequences of abbreviations is one of the hard challenges.
-For example, LPN, INES are shown with their references and the prediction form of Model 5 in Table 3:     
+For example, LPN, INES are shown with their references and the prediction form of Model 5 in Table:     
 
-Table 3. Examples of errors predicted by Model 5.
-
-                  Word from Test Data     Reference of Given Word        Prediction of Model 5
-                     YELLOWKNIFE             Y EH L OW N AY F             Y EH L OW K N N F
-                        ZANGHI                  Z AA N G IY                    Z AE N G
-                       GDANSK                 G AH D AE N S K              D AE N AE K EH K
-                     SCICCHITANO           S IH K AH T AA N OW             S CH CH Y K IY IY
-                       KOVACIK              K AA V AH CH IH K             K AH V AA CH IH K
-                          LPN                  EH L P IY EH N                L L N N P IY E
-                         INES                     IH N IH S                      AY N Z
+Table. Examples of errors predicted by Model 5.
 
 In the proposed models, we were able to achieve smaller PERs with different hyperparameter settings, but WERs showed different behavior, in contrast with what we expected.
 To calculate WER, the number of word errors is divided by the total number of unique words in the reference.
 These word errors are counted only if the predicted pronunciation does not match any reference pronunciation.
 Therefore, in the generated phoneme sequences of words that contained errors, there is at least one phoneme error.
-For that reason, we calculated the number of word errors depending on the number of phoneme errors for all proposed models on CMUDict, as presented in Figure 7.
+For that reason, we calculated the number of word errors depending on the number of phoneme errors for all proposed models on CMUDict, as presented in Figure.
 
-Figure 7. Number of word errors depending on the number of phoneme errors for all models.
+Figure. Number of word errors depending on the number of phoneme errors for all models.
 
 In the case of each model, there are twice as many words with only one phoneme error than words with two phoneme errors.
 Words with one phoneme error significantly effect the WER.
@@ -479,9 +376,9 @@ There was approximately the same number of words with four phoneme errors in Mod
 There were very few words with five or more phoneme errors in any of the models.
 Model 1 and Model 3 have only 1 word which has seven phoneme errors; Model 5 has 2 words; Model 4 has 6 words.
 The number of words with eight phoneme errors was 0 in Model 3 and Model 5; 1 in Model 4.
-Figure 7 helps to understand why PER in our models can be smaller while WER is higher.    
+Figure helps to understand why PER in our models can be smaller while WER is higher.    
 
-6. Conclusions
+Conclusions
      
 In this paper, convolutional neural networks for grapheme-to-phoneme conversion are introduced.
 Five different models for the G2P task are described, and the results are compared to previously reported state-of-the-art research.
