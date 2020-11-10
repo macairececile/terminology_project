@@ -21,5 +21,15 @@ rule : if AorN && "data" 	then it's a term
 
 Same for # corpus || multilingual corpus
 
+# input representations -> input representations of language
+source: N N
+target: N N P N
+rule: s[0]==t[0] && s[1]==t[1] && t[2]=="of"
+
+
+
+
+
+
 
 

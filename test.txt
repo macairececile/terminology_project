@@ -1,13 +1,5 @@
 INTERSPEECH 2013
 TUNDRA: A Multilingual Corpus of Found Data for TTS Research Created with Light Supervision
-A. Stan1 , O. Watts2 , Y. Mamiya2 , M. Giurgiu1 , R. A. J. Clark2 , J. Yamagishi2,3 , S. King2
-1 Communications Department, Technical University of Cluj-Napoca, Romania
-2 The Centre for Speech Technology Research, University of Edinburgh, UK
-3 National Institute of Informatics, Japan
-{adriana.stan, mircea.giurgiu}@com.utcluj.ro, Simon.King@ed.ac.uk,
-{owatts, Yoshitaka.Mamiya, robert, jyamagis}@inf.ed.ac.uk
-
-
 
 Abstract        
 Simple4All Tundra (version 1.0) is the first release of a standardised multilingual corpus designed for text-to-speech research with imperfect or found data.

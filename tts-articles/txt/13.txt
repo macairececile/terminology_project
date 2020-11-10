@@ -272,7 +272,7 @@ Due to the mismatch between the CUDA programming model and such persistent kerne
 Although our GPU inference speeds are not quite real-time (Table 2), we believe that with these techniques and a better implementation we can achieve real-time WaveNet inference on GPUs as well as CPUs.
 Implementation details for the persistent GPU kernels are available in Appendix D.
 
-6. Conclusion
+Conclusion
 
 In this work, we demonstrate that current Deep Learning approaches are viable for all the components of a highquality text-to-speech engine by building a fully neural system.
 We optimize inference to faster-than-real-time speeds, showing that these techniques can be applied to generate audio in real-time in a streaming fashion.
