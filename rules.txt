@@ -1,0 +1,25 @@
+# text-to-speech
+source : N
+target : compound
+rule :	if N == text then - then to then - then speech
+			 [ before text ;
+			if system or model 
+				] after ;
+			else
+				] after speech
+
+
+# language model || model of a language
+source: N N
+target: N C N
+rule: s[0]==t[3] && s[1]==t[0] && t[2]=="of"
+
+# data || imperfect data
+source : N
+target : AorN N
+rule : if AorN && "data" 	then it's a term
+
+Same for # corpus || multilingual corpus
+
+
+
