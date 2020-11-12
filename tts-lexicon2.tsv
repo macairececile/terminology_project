@@ -145,7 +145,7 @@
 156	T	N N	post-processing net	post-processing net	12
 157	T	N	MLPs	mlps	12
 159	T	N N	input sequence	input sequence	12
-160	T	A N N	HMM-based generation synthesis	hmm-based generation synthesis	12
+160	T	A N N	HMM-based generation synthesis	hmm-base generation synthesis	12
 161	T	N N	text-to-spectrogram model	text-to-spectrogram model	12
 162	T	N	ReLU	relu	12
 163	T	N N	feature vector	feature vector	12
@@ -215,7 +215,7 @@
 239	T	N N	teacher model	teacher model	9
 240	T	A A N	recurrent neural network	recurrent neural network	9
 241	T	A N	audio data	audio datum	9
-242	T	A N N N	HMM-based generation synthesis approach	hmm-based generation synthesis approach	9
+242	T	A N N N	HMM-based generation synthesis approach	hmm-base generation synthesis approach	9
 243	T	N N	truth audio	truth audio	9
 244	T	N N	phoneme pairs	phoneme pair	9
 245	T	A N	synthetic speech	synthetic speech	9
@@ -258,7 +258,7 @@
 294	T	A A N	deep neural networks	deep neural network	8
 295	T	A N	phonotactic constraints	phonotactic constraint	8
 296	T	N N	cross-language voice	cross-language voice	8
-297	T	A N	HMM-based TTS	hmm-based tts	8
+297	T	A N	HMM-based TTS	hmm-base tts	8
 298	T	N N	confidence intervals	confidence interval	8
 301	T	N	WaveGlow	waveglow	23
 302	T	A	phonotactic	phonotactic	15
@@ -346,3 +346,5 @@
 3296	T	N	sounds	sound	14
 3627	T	N	WORLD	world	23
 1111	T	N	audiobook	audiobook	
+1112	T	N	sequence-to-sequence	sequence-to-sequence	
+1113	T	N	grapheme-to-phoneme	grapheme-to-phoneme	
