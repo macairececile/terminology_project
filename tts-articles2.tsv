@@ -1,0 +1,4043 @@
+#	type	pattern	pilot	lemma	freq
+1	T	N	phoneme	phoneme	298
+2	T	N	encoder	encoder	168
+3	T	A N	neural network	neural network	131
+3	V[s]	A A N	feedforward neural network	feedforward neural network	10
+3	V[s]	A A N	convolutional neural networks	convolutional neural network	18
+3	V[s]	A A N	recurrent neural network	recurrent neural network	9
+3	V[s]	A A N	deep neural networks	deep neural network	8
+3	V[s]	N A N	Time-Delay Neural Network	time-delay neural network	2
+4	T	N	decoder	decoder	116
+5	T	N	vocoder	vocoder	95
+6	T	N	corpus	corpus	93
+7	T	A N	Deep Voice	deep voice	77
+7	V[s]	N A N	multi-speaker Deep Voice	multi-speaker deep voice	3
+8	T	N	vector	vector	75
+9	T	A N	acoustic model	acoustic model	72
+9	V[s]	A A N	context-dependent acoustic models	context-dependent acoustic model	2
+9	V[s]	A A N	multilingual acoustic models	multilingual acoustic model	4
+9	V[s]	A A N	initial acoustic models	initial acoustic model	2
+9	V[s]	A A N	separate acoustic model	separate acoustic model	2
+10	T	N	dataset	dataset	71
+11	T	N	text-to-speech	text-to-speech	66
+12	T	N	convolution	convolution	62
+13	T	N	WaveNet	wavenet	57
+14	T	N	algorithm	algorithm	56
+15	T	N	graphemes	grapheme	51
+16	T	N	LSTM	lstm	51
+17	T	N N	speech recognition	speech recognition	51
+17	V[s]	A N N	multilingual speech recognition	multilingual speech recognition	5
+17	V[s]	A N N	monolingual speech recognition	monolingual speech recognition	5
+17	V[s]	A N N	automatic speech recognition	automatic speech recognition	9
+18	T	N N	training data	training datum	50
+18	V[s]	N N N N	speaker encoder training data	speaker encoder training datum	2
+18	V[s]	A N N N	low quality training data	low quality training datum	2
+19	T	N N	TTS system	tts system	98
+19	V[s]	A N N	neural TTS system	neural tts system	18
+19	V[s]	N N N	end-to-end TTS systems	end-to-end tts system	3
+19	V[s]	N N N	multi-speaker TTS system	multi-speaker tts system	3
+19	V[s]	A A N N	HMM-based parametric TTS system	hmm-based parametric tts system	2
+19	V[s]	A A N N	parallel neural TTS system	parallel neural tts system	3
+19	V[s]	A A N N	recent neural TTS systems	recent neural tts system	2
+20	T	N	end-to-end	end-to-end	49
+21	T	N	naturalness	naturalness	48
+22	T	N	mapping	mapping	47
+23	T	N N	TTS model	tts model	46
+23	V[s]	N N N	Transformer TTS model	transformer tts model	10
+23	V[s]	A N N	neural TTS model	neural tts model	7
+23	V[s]	N N N N	autoregressive Transformer TTS model	autoregressive transformer tts model	8
+23	V[s]	A N N	multilingual TTS model	multilingual tts model	6
+23	V[s]	N N N	end-to-end TTS models	end-to-end tts model	5
+23	V[s]	A A N N	multilingual neural TTS model	multilingual neural tts model	2
+23	V[s]	A N N	bilingual TTS model	bilingual tts model	2
+24	T	N	ParaNet	paranet	46
+25	T	N	spectrogram	spectrogram	92
+26	T	N N	speaker embeddings	speaker embeddings	43
+26	V[s]	A N N	trainable speaker embeddings	trainable speaker embeddings	5
+26	V[s]	A N N	Site-Specific Speaker Embeddings	site-specific speaker embeddings	2
+26	V[s]	A A N N	low-dimensional trainable speaker embeddings	low-dimensional trainable speaker embeddings	2
+27	T	N N	phoneme duration	phoneme duration	43
+27	V[s]	N C N P N	duration and distance of phoneme	duration and distance of phoneme	2
+27	V[s]	N N N	phoneme duration prediction	phoneme duration prediction	6
+27	V[s]	N N N	phoneme duration model	phoneme duration model	5
+27	V[s]	N N N	phoneme duration sequence	phoneme duration sequence	3
+28	T	N N	language models	language model	43
+28	V[s]	A N N	multilingual language models	multilingual language model	4
+28	V[s]	A N N	N-gram language models	n-gram language model	4
+28	V[s]	N N N	GlobalPhone Language Models	globalphone language model	4
+28	V[s]	N N N	language model transducers	language model transducer	2
+28	V[s]	A N N	benchmark language models	benchmark language model	2
+29	T	N N	speech synthesis	speech synthesis	86
+29	V[s]	A A N N	statistical parametric speech synthesis	statistical parametric speech synthesis	13
+29	V[s]	A N N	multilingual speech synthesis	multilingual speech synthesis	6
+29	V[s]	N N N	multi-speaker speech synthesis	multi-speaker speech synthesis	6
+29	V[s]	N N N	end-to-end speech synthesis	end-to-end speech synthesis	4
+29	V[s]	A N N	HMM-based speech synthesis	hmm-based speech synthesis	3
+29	V[s]	A N N	expressive speech synthesis	expressive speech synthesis	4
+29	V[s]	A A N N	neural network-based speech synthesis	neural network-based speech synthesis	2
+29	V[s]	N N N	Single-Speaker Speech Synthesis	single-speaker speech synthesis	2
+29	V[s]	N N N	speech synthesis toolkit	speech synthesis toolkit	2
+30	T	N N	unit selection	unit selection	42
+30	V[s]	N N N	unit selection synthesis	unit selection synthesis	8
+30	V[s]	N N N	unit selection technique	unit selection technique	3
+30	V[s]	N N N	unit selection voices	unit selection voice	2
+31	T	N	raters	rater	40
+32	T	N	classifier	classifier	39
+33	T	N N	speaker encoder	speaker encoder	38
+33	V[s]	N N N	speaker encoder network	speaker encoder network	4
+34	T	N N	ground truth	ground truth	37
+34	V[s]	N N N	ground truth audio	ground truth audio	8
+34	V[s]	N N N	ground truth samples	ground truth sample	7
+35	T	N	transcriptions	transcription	36
+36	T	N N	decision tree	decision tree	35
+36	V[s]	N N N	decision tree marginalization	decision tree marginalization	6
+36	V[s]	A N N	state-tying decision tree	state-tying decision tree	2
+37	T	N	waveform	waveform	67
+38	T	N N	target language	target language	33
+39	T	N	Tacotron	tacotron	64
+40	T	N	Transformer	transformer	30
+41	T	N N	speech data	speech datum	30
+42	T	N	prosody	prosody	30
+43	T	N	transducer	transducer	30
+44	T	N N	speaker identity	speaker identity	29
+44	V[s]	N P N N	identity of the reference speaker	identity of reference speaker	2
+44	V[s]	A N N	native speaker identity	native speaker identity	2
+44	V[s]	N N N	speaker identity labels	speaker identity label	2
+45	T	N	normalization	normalization	54
+46	T	N	Tundra	tundra	27
+47	T	N N	ASR system	asr system	27
+47	V[s]	A N N	HMM-based ASR system	hmm-based asr system	4
+47	V[s]	A N N	multilingual ASR system	multilingual asr system	3
+47	V[s]	A A N N	typical HMM-based ASR system	typical hmm-based asr system	2
+48	T	N N	input representations	input representation	26
+48	V[s]	A N N	phonemic input representation	phonemic input representation	4
+48	V[s]	A N N	unified input representation	unified input representation	2
+48	V[s]	N N N	text input representations	text input representation	4
+48	V[s]	A N N	language-dependent input representations	language-dependent input representation	2
+49	T	A N	residual connections	residual connection	26
+50	T	N N	phoneme sequence	phoneme sequence	26
+50	V[s]	N N N	phoneme duration sequence	phoneme duration sequence	3
+51	T	N	multi-speaker	multi-speaker	52
+52	T	N	MLSP	mlsp	25
+53	T	N	subset	subset	25
+54	T	N	encoder-decoder	encoder-decoder	25
+55	T	A N	fundamental frequency	fundamental frequency	25
+55	V[s]	A A N	time-dependent fundamental frequency	time-dependent fundamental frequency	2
+56	T	N	FastSpeech	fastspeech	49
+57	T	A	phonetic	phonetic	49
+58	T	N	kernel	kernel	24
+59	T	N	mel-spectrogram	mel-spectrogram	96
+59	V[m]	A N	mel-scale spectrogram	mel-scale spectrogram	2
+60	T	N N	machine translation	machine translation	24
+60	V[s]	A N N	neural machine translation	neural machine translation	6
+60	V[s]	A N N	statistical machine translation	statistical machine translation	3
+60	V[s]	N N N	machine translation output	machine translation output	2
+61	T	A	unsupervised	unsupervised	24
+62	T	N N	MLP features	mlp feature	48
+62	V[s]	A N N	multilingual MLP features	multilingual mlp feature	10
+62	V[s]	A N N	cross-lingual MLP features	cross-lingual mlp feature	6
+62	V[s]+	N N N	MLP feature extraction	mlp feature extraction	10
+62	V[s]	N N N	MLP features MRASTA	mlp feature mrasta	2
+62	V[s]	A N N	monolingual MLP features	monolingual mlp feature	2
+62	V[s]	A N N	stand-alone MLP feature	stand-alone mlp feature	2
+63	T	A N	acoustic features	acoustic feature	24
+63	V[s]	A C A N	linguistic and acoustic features	linguistic and acoustic feature	3
+64	T	N	LibriSpeech	librispeech	24
+65	T	A N	neural vocoder	neural vocoder	23
+65	V[s]	A A N	parallel neural vocoder	parallel neural vocoder	7
+65	V[s]	A A N	WaveNet-based neural vocoder	wavenet-based neural vocoder	2
+66	T	N	abbreviations	abbreviation	23
+67	T	N	activation	activation	23
+68	T	N	transform	transform	23
+69	T	N	optimization	optimization	23
+70	T	A N	linguistic features	linguistic feature	23
+70	V[s]	A C A N	linguistic and acoustic features	linguistic and acoustic feature	3
+71	T	N N	speaker classifier	speaker classifier	23
+71	V[s]	N N N	adversarial speaker classifier	adversarial speaker classifier	7
+71	V[s]	A N N	adversarially-trained speaker classifier	adversarially-trained speaker classifier	2
+72	T	N	toolkit	toolkit	45
+73	T	A N	audio quality	audio quality	22
+74	T	N	datasets	datasets	22
+75	T	N N	word error	word error	21
+76	T	N	byte	byte	21
+77	T	N	Mellotron	mellotron	41
+78	T	N N	Opinion Score	opinion score	20
+78	V[s]	A A N N	crowdsourced Mean Opinion Score	crowdsourced mean opinion score	3
+78	V[s]	A A N N	5-scale mean opinion score	5-scale mean opinion score	3
+79	T	N N	output language	output language	20
+80	T	A	site-specific	site-specific	20
+81	T	N N	pitch contour	pitch contour	20
+82	T	N N	attention alignments	attention alignment	19
+83	T	N	iterations	iteration	19
+84	T	N N	phoneme error	phoneme error	19
+85	T	N N	synthesis model	synthesis model	19
+85	V[s]	A N N	audio synthesis model	audio synthesis model	11
+85	V[s]	N N N N	multispeaker voice synthesis model	multispeaker voice synthesis model	2
+85	V[s]	N N N	voice synthesis model	voice synthesis model	4
+86	T	N N	output layer	output layer	19
+86	V[s]	A N N	recurrent output layer	recurrent output layer	2
+86	V[s]	A N N	fully-connected output layer	fully-connected output layer	2
+87	T	N	distillation	distillation	19
+88	T	N N	target speaker	target speaker	19
+89	T	A N	natural speech	natural speech	18
+90	T	A N	multiple languages	multiple language	18
+91	T	N N	attention mechanism	attention mechanism	18
+92	T	A N N	neural TTS system	neural tts system	18
+93	T	N	punctuation	punctuation	18
+94	T	A A N	convolutional neural networks	convolutional neural network	18
+95	T	N N	speech signal	speech signal	18
+95	V[s]	N N P N	speech signal of bandwidth	speech signal of bandwidth	3
+96	T	N	MRASTA	mrasta	18
+97	T	N	setup	setup	18
+98	T	N N	autoregressive model	autoregressive model	18
+98	V[s]	N N N	autoregressive text-to-spectrogram model	autoregressive text-to-spectrogram model	4
+98	V[s]	N A N	autoregressive seq2seq model	autoregressive seq2seq model	2
+98	V[s]	A N N	pretrained autoregressive model	pretrained autoregressive model	2
+99	T	N	VCTK	vctk	17
+100	T	A N N	multilingual speech processing	multilingual speech processing	17
+101	T	N	excitation	excitation	17
+102	T	N	BLSTM	blstm	17
+103	T	A N	temporal context	temporal context	17
+104	T	A N	hidden layers	hidden layer	17
+104	V[s]	N A N	feedforward hidden layers	feedforward hidden layer	2
+104	V[s]	A A N	single hidden layer	single hidden layer	2
+105	T	N N	Transformer TTS	transformer tts	17
+105	V[s]	N N N	autoregressive Transformer TTS	autoregressive transformer tts	10
+105	V[s]	N N N	Transformer TTS model	transformer tts model	10
+106	T	N N	feature extraction	feature extraction	33
+106	V[s]+	N N N	MLP feature extraction	mlp feature extraction	10
+106	V[s]	N N N	MRASTA feature extraction	mrasta feature extraction	3
+106	V[s]	A N N	acoustic feature extraction	acoustic feature extraction	3
+107	T	N N	pronunciation dictionaries	pronunciation dictionary	16
+107	V[s]	N N N	GlobalPhone Pronunciation Dictionaries	globalphone pronunciation dictionary	3
+108	T	N N	text-to-speech systems	text-to-speech system	16
+108	V[s]	A N N	multilingual text-to-speech systems	multilingual text-to-speech system	2
+108	V[s]	A N N	commercial text-to-speech systems	commercial text-to-speech system	2
+109	T	A N	single speaker	single speaker	16
+110	T	A N	native speakers	native speaker	16
+110	V[s]	A A N	Chinese native speakers	chinese native speaker	2
+111	T	A	spectral	spectral	31
+112	T	N N	batch normalization	batch normalization	15
+112	V[s]	N N N	batch normalization layer	batch normalization layer	2
+113	T	A N	hidden states	hidden state	15
+113	V[s]	A N P N	hidden state of every layer	hidden state of layer	2
+114	T	A	positional	positional	15
+115	T	A N	non-autoregressive ParaNet	non-autoregressive paranet	15
+116	T	N N	segmentation model	segmentation model	15
+117	T	N	CBHG	cbhg	15
+118	T	A N	residual encoder	residual encoder	15
+118	V[s]	A A N	variational residual encoder	variational residual encoder	4
+119	T	N N	Tundra corpus	tundra corpus	14
+120	T	N N	speaker similarity	speaker similarity	14
+120	V[s]	N N N	speaker similarity MOS	speaker similarity mo	2
+121	T	N N	attention block	attention block	14
+122	T	A N	future work	future work	14
+123	T	N	audiobooks	audiobooks	42
+124	T	N N	expert knowledge	expert knowledge	14
+124	V[s]	A N N	language-specific expert knowledge	language-specific expert knowledge	4
+125	T	A N	multilingual TTS	multilingual tts	14
+126	T	N	WaveVAE	wavevae	14
+127	T	N N	phoneme inputs	phoneme input	14
+128	T	N N N	word error rate	word error rate	14
+129	T	A	trainable	trainable	14
+130	T	N N	grapheme-to-phoneme conversion	grapheme-to-phoneme conversion	14
+130	V[s]	N N N	grapheme-to-phoneme conversion models	grapheme-to-phoneme conversion model	2
+131	T	A	unified	unified	14
+132	T	N N	batch size	batch size	14
+133	T	N	generalization	generalization	13
+134	T	N N	input language	input language	13
+135	T	A N	multilingual model	multilingual model	13
+135	V[s]	A A N	multilingual acoustic models	multilingual acoustic model	4
+135	V[s]	A A N N	multilingual neural TTS model	multilingual neural tts model	2
+135	V[s]	A C A N	monolingual and multilingual model	monolingual and multilingual model	3
+136	T	N P N	amount of data	amount of datum	13
+136	V[s]	A N P N	lower amounts of data	low amount of datum	2
+137	T	N N	speaker verification	speaker verification	13
+137	V[s]	N N N	speaker verification task	speaker verification task	4
+138	T	N N	speech-to-speech translation	speech-to-speech translation	13
+138	V[s]	A N N	personalized speech-to-speech translation	personalized speech-to-speech translation	2
+139	T	N	suffixes	suffix	13
+140	T	N N	speech quality	speech quality	13
+141	T	A N	recurrent layers	recurrent layer	13
+142	T	N	TANH	tanh	13
+143	T	N	softmax	softmax	13
+144	T	A N	cross-lingual adaptation	cross-lingual adaptation	13
+144	V[s]+	A A N	unsupervised cross-lingual adaptation	unsupervised cross-lingual adaptation	2
+145	T	A N	1D convolution	1d convolution	13
+146	T	N	nonlinearity	nonlinearity	13
+147	T	N N	input text	input text	13
+147	V[s]	N N N	input text encoder	input text encoder	3
+147	V[s]	N N N	input text sequence	input text sequence	2
+148	T	N N	music score	music score	13
+148	V[d]	A N	musical score	musical score	2
+149	T	N N	frequency model	frequency model	13
+149	V[s]+	N N N	frequency prediction models	frequency prediction model	5
+149	V[s]+	A N N	fundamental frequency model	fundamental frequency model	3
+150	T	A A N N	statistical parametric speech synthesis	statistical parametric speech synthesis	13
+151	T	N N	voice speed	voice speed	13
+152	T	N N	log likelihood	log likelihood	13
+153	T	N N	training speakers	training speaker	12
+153	V[s]	N N N	training speaker diversity	training speaker diversity	2
+154	T	N N	language identification	language identification	12
+154	V[s]	A N N	automatic language identification	automatic language identification	2
+155	T	N	milliseconds	millisecond	12
+156	T	N N	post-processing net	post-processing net	12
+157	T	N	MLPs	mlps	12
+158	T	N	validation	validation	12
+159	T	N N	input sequence	input sequence	12
+159	V[s]	N N N	input text sequence	input text sequence	2
+159	V[s]	A N N	complete input sequence	complete input sequence	2
+160	T	A N N	HMM-based generation synthesis	hmm-based generation synthesis	12
+161	T	N N	text-to-spectrogram model	text-to-spectrogram model	12
+161	V[s]	N N N	autoregressive text-to-spectrogram model	autoregressive text-to-spectrogram model	4
+161	V[s]	A N N	non-autoregressive text-to-spectrogram model	non-autoregressive text-to-spectrogram model	3
+162	T	N	ReLU	relu	12
+163	T	N N	feature vector	feature vector	12
+163	V[s]	A N N	linguistic feature vector	linguistic feature vector	2
+164	T	N	GPUs	gpus	12
+165	T	N	lattice	lattice	12
+166	T	N	speedup	speedup	12
+167	T	N N	model parameters	model parameter	12
+168	T	N N	training algorithm	training algorithm	12
+169	T	N N	duration model	duration model	12
+169	V[s]	N N N	phoneme duration model	phoneme duration model	5
+170	T	N N	synthesis network	synthesis network	12
+171	T	A N	Open Source	open source	12
+172	T	N	GlobalPhone	globalphone	35
+173	T	A	seq2seq	seq2seq	23
+174	T	A N	convolutional layers	convolutional layer	23
+174	V[s]	A A N	single convolutional layer	single convolutional layer	3
+175	T	A N	latent variables	latent variable	11
+176	T	N N	background noise	background noise	11
+177	T	N	STFT	stft	11
+178	T	A N	audio signal	audio signal	11
+179	T	N	orthography	orthography	11
+180	T	N N	attention errors	attention error	11
+180	V[s]	N N N	attention error analysis	attention error analysis	3
+181	T	N N	phoneme boundaries	phoneme boundary	11
+181	V[s]	N N N	phoneme boundary detection	phoneme boundary detection	2
+182	T	A N	lexical analysis	lexical analysis	22
+183	T	A	Finnish	finnish	11
+184	T	N	dropout	dropout	11
+185	T	N N	text analysis	text analysis	11
+186	T	A N	unseen speakers	unseen speaker	11
+187	T	N N	mel-spectrogram sequence	mel-spectrogram sequence	11
+188	T	N	LSTMs	lstms	11
+189	T	A A N	statistical parametric synthesis	statistical parametric synthesis	11
+189	V[s]	A A N N	statistical parametric speech synthesis	statistical parametric speech synthesis	13
+190	T	N N	MOS scores	mo score	11
+190	V[s]	N N N	similarity MOS scores	similarity mo score	4
+190	V[s]	A N N N	higher similarity MOS scores	high similarity mo score	2
+191	T	N N N	speech processing systems	speech processing system	11
+191	V[s]	A N N N	multilingual speech processing systems	multilingual speech processing system	2
+192	T	N	HMMs	hmms	11
+193	T	N N	G2P conversion	g2p conversion	21
+194	T	N	Oord	oord	10
+195	T	A N	multilingual ASR	multilingual asr	10
+196	T	N	CMUDict	cmudict	20
+197	T	N	WFSTs	wfsts	10
+198	T	N N	length regulator	length regulator	10
+199	T	A	morphologic	morphologic	10
+200	T	N N	speech database	speech database	10
+200	V[s]	A A N N	internal English speech database	internal english speech database	3
+201	T	N	concatenation	concatenation	10
+202	T	N N N	Transformer TTS model	transformer tts model	10
+203	T	N P N	hours of speech	hour of speech	10
+204	T	N N N	MLP feature extraction	mlp feature extraction	10
+204	V[s]	A N N N	Cross-lingual MLP feature extraction	cross-lingual mlp feature extraction	2
+205	T	A N	written form	written form	10
+206	T	N	Idiap	idiap	10
+207	T	N N	MOS evaluation	mo evaluation	10
+207	V[s]	A N N	subjective MOS evaluation	subjective mo evaluation	2
+207	V[s]	N N P N	MOS evaluation of speaker	mo evaluation of speaker	2
+208	T	N N	voice synthesis	voice synthesis	10
+208	V[s]	N N N	voice synthesis model	voice synthesis model	4
+209	T	N N	text normalization	text normalization	10
+210	T	A N	multiple speakers	multiple speaker	10
+210	V[s]	A N P N	multiple speakers of each language	multiple speaker of language	2
+211	T	N N N	autoregressive Transformer TTS	autoregressive transformer tts	10
+212	T	N	NetTalk	nettalk	10
+213	T	N	morpheme	morpheme	10
+214	T	N N	reversal layer	reversal layer	10
+214	V[s]	A N N	gradient reversal layer	gradient reversal layer	8
+215	T	A N N	high quality speech	high quality speech	10
+216	T	N	RNNs	rnns	10
+217	T	N	annotation	annotation	10
+218	T	N N	duration predictor	duration predictor	20
+219	T	A	Gaussian	gaussian	30
+220	T	N N	text data	text datum	19
+221	T	A N	multilingual MLP	multilingual mlp	19
+222	T	N	Bi-LSTM	bi-lstm	19
+223	T	A	audio	audio	189
+224	T	A	Hungarian	hungarian	9
+225	T	N N	Adam optimizer	adam optimizer	9
+226	T	N	coder	coder	9
+227	T	N	hier-MRASTA	hier-mrasta	9
+228	T	N N	waveform synthesis	waveform synthesis	9
+228	V[s]	A N N	parallel waveform synthesis	parallel waveform synthesis	2
+229	T	N N	audiobook data	audiobook datum	9
+229	V[s]	N N N	audiobook data Introduction	audiobook datum introduction	2
+230	T	A N	related work	related work	9
+231	T	A N N	automatic speech recognition	automatic speech recognition	9
+232	T	A	phonological	phonological	9
+233	T	N	regression	regression	9
+234	T	N N N	speech recognition systems	speech recognition system	9
+234	V[s]	A N N N	automatic speech recognition systems	automatic speech recognition system	2
+235	T	N N	end-to-end TTS	end-to-end tts	9
+235	V[s]	N N N	end-to-end TTS models	end-to-end tts model	5
+236	T	R	sequentially	sequentially	9
+237	T	N N	test sets	test set	9
+237	V[s]	A N N	100-sentence test set	100-sentence test set	2
+238	T	N N	knowledge distillation	knowledge distillation	9
+238	V[s]	A N N	sequence-level knowledge distillation	sequence-level knowledge distillation	8
+239	T	N N	network architecture	network architecture	9
+239	V[s]	A N N	neural network architecture	neural network architecture	5
+240	T	N N	teacher model	teacher model	9
+241	T	A A N	recurrent neural network	recurrent neural network	9
+242	T	A N	audio data	audio datum	9
+243	T	A N N N	HMM-based generation synthesis approach	hmm-based generation synthesis approach	9
+244	T	N N	truth audio	truth audio	9
+245	T	N N	phoneme pairs	phoneme pair	9
+246	T	A N	synthetic speech	synthetic speech	9
+246	V[s]	N A N	rating synthetic speech	rating synthetic speech	2
+247	T	N N	LID system	lid system	9
+247	V[s]	A A N N	hierarchical MLP-based LID system	hierarchical mlp-based lid system	4
+248	T	N N	text input	text input	9
+248	V[s]	N N N	text input representations	text input representation	4
+249	T	A N	seq2seq model	seq2seq model	9
+249	V[s]	N A N	autoregressive seq2seq model	autoregressive seq2seq model	2
+249	V[s]	N A N	vanilla seq2seq model	vanilla seq2seq model	3
+249	V[s]	A A N	non-autoregressive seq2seq model	non-autoregressive seq2seq model	2
+250	T	N	interpolation	interpolation	9
+251	T	N N	EN speaker	en speaker	9
+252	T	N N	mel-spectrogram generation	mel-spectrogram generation	9
+252	V[s]	A N N	parallel mel-spectrogram generation	parallel mel-spectrogram generation	2
+253	T	N N	FastSpeech model	fastspeech model	9
+254	T	N N	speech waveform	speech waveform	9
+255	T	N	WaveGlow	waveglow	17
+256	T	N	MUSHRA	mushra	8
+257	T	N N N	speech synthesis system	speech synthesis system	8
+257	V[s]	A N N N	HMM-based speech synthesis system	hmm-based speech synthesis system	2
+258	T	N	morphology	morphology	8
+259	T	N N N	probability density function	probability density function	8
+260	T	A N	non-autoregressive model	non-autoregressive model	8
+260	V[s]	A A N	non-autoregressive seq2seq model	non-autoregressive seq2seq model	2
+261	T	A N	maximum likelihood	maximum likelihood	8
+262	T	A N	vocal model	vocal model	8
+263	T	N N	training set	training set	8
+264	T	N N	Markov models	markov model	8
+264	V[s]	A N N	hidden Markov models	hidden markov model	7
+265	T	N N	WORLD vocoder	world vocoder	8
+266	T	N	insertion	insertion	8
+267	T	N	Griffin-Lim	griffin-lim	16
+268	T	N	latency	latency	8
+269	T	A N N	gradient reversal layer	gradient reversal layer	8
+270	T	A N	audio samples	audio sample	8
+271	T	N	intelligibility	intelligibility	8
+272	T	A	binary	binary	8
+273	T	N N A N	output language acoustic model	output language acoustic model	8
+274	T	N N	word class	word class	8
+274	V[s]	N N N	word class features	word class feature	2
+275	T	N N	CN speakers	cn speaker	8
+276	T	N	VTLN	vtln	8
+277	T	N N	sentence boundary	sentence boundary	8
+278	T	A N	dynamic features	dynamic feature	8
+279	T	N N	adversarial loss	adversarial loss	8
+279	V[s]	N N N	adversarial loss Introduction	adversarial loss introduction	2
+280	T	A N	vocal range	vocal range	8
+281	T	A	shared	shared	8
+282	T	N	recognizer	recognizer	8
+283	T	N N	ablation studies	ablation study	8
+284	T	A N	multilingual text-to-speech	multilingual text-to-speech	8
+285	T	N	pre-net	pre-net	8
+286	T	N N N	ground truth audio	ground truth audio	8
+287	T	N N	training corpus	training corpus	8
+288	T	N N	language processing	language processing	8
+288	V[s]	A N N	natural language processing	natural language processing	4
+289	T	N N N N	autoregressive Transformer TTS model	autoregressive transformer tts model	8
+290	T	N N	sentence segmentation	sentence segmentation	8
+291	T	N N	word segmentation	word segmentation	8
+291	V[s]	A N N	unseen word segmentation	unseen word segmentation	2
+292	T	N	phonology	phonology	8
+293	T	A N N	cross-lingual speaker adaptation	cross-lingual speaker adaptation	8
+294	T	N N	convolution block	convolution block	8
+294	V[s]	A N N	non-causal convolution blocks	non-causal convolution block	2
+295	T	N	paradigm	paradigm	8
+296	T	A N N	sequence-level knowledge distillation	sequence-level knowledge distillation	8
+297	T	A N	site-specific speaker	site-specific speaker	8
+298	T	A A N	deep neural networks	deep neural network	8
+299	T	A N	phonotactic constraints	phonotactic constraint	8
+300	T	N N	cross-language voice	cross-language voice	8
+301	T	A N	HMM-based TTS	hmm-based tts	8
+302	T	N N	confidence intervals	confidence interval	8
+303	T	A N	female speakers	female speaker	8
+303	V[s]	A A N	professional female speaker	professional female speaker	2
+304	T	A	phonotactic	phonotactic	15
+305	T	A	feed-forward	feed-forward	43
+306	T	N N	text-to-speech synthesis	text-to-speech synthesis	14
+307	T	A N	monolingual MLP	monolingual mlp	7
+308	T	N N N	phoneme error rate	phoneme error rate	7
+309	T	A N	expressive speech	expressive speech	7
+310	T	N N	model architecture	model architecture	7
+311	T	N N	inference speed	inference speed	14
+311	V[s]	N N N	GPU inference speeds	gpu inference speed	2
+311	V[s]	A N N	slow inference speed	slow inference speed	5
+312	T	A N	prior work	prior work	7
+313	T	A N	subjective evaluation	subjective evaluation	7
+314	T	A N	deep learning	deep learning	7
+315	T	N N	speaker characteristics	speaker characteristic	7
+316	T	A N	fourth model	fourth model	7
+317	T	N	Lword	lword	7
+318	T	A N	phonetic segment	phonetic segment	7
+319	T	A A N	parallel neural vocoder	parallel neural vocoder	7
+320	T	N N	layer models	layer model	7
+321	T	A N N	hidden Markov models	hidden markov model	7
+322	T	N N	stage MLP	stage mlp	7
+323	T	N N	WaveNet inference	wavenet inference	7
+323	V[s]	N N N	WaveNet inference kernels	wavenet inference kernel	2
+324	T	A	imperfect	imperfect	7
+325	T	A N	state-of-the-art results	state-of-the-art result	7
+326	T	N	tagset	tagset	7
+327	T	N	artifacts	artifact	7
+328	T	N N	evaluation data	evaluation datum	7
+328	V[s]	A A N N	NIST RT05 evaluation data	nist rt05 evaluation datum	2
+329	T	N N	classification accuracy	classification accuracy	7
+329	V[s]	N N P N	classification accuracy of a speaker	classification accuracy of speaker	3
+330	T	A N N	neural TTS model	neural tts model	7
+331	T	N	Part-of-Speech	part-of-speech	7
+332	T	N N	input tokens	input token	7
+333	T	A N	spectral features	spectral feature	7
+334	T	N N N	adversarial speaker classifier	adversarial speaker classifier	7
+335	T	N N	naturalness MOS	naturalness mo	7
+335	V[s]	N N N	Naturalness MOS decreases	naturalness mo decrease	2
+336	T	N	spectra	spectra	7
+337	T	A	inverse	inverse	14
+338	T	N N N	ground truth samples	ground truth sample	7
+339	T	N N	spectrogram frames	spectrogram frame	7
+340	T	N	hyperparameters	hyperparameters	21
+341	T	N N	language embeddings	language embeddings	7
+342	T	N	self-attention	self-attention	7
+343	T	A	observed	observed	7
+344	T	N N	FFT blocks	fft block	7
+345	T	N N N	word stress assignment	word stress assignment	7
+346	T	A N	speaker-adversarial loss	speaker-adversarial loss	7
+347	T	A N	recurrent unit	recurrent unit	7
+348	T	A	approximate	approximate	7
+349	T	A	speaker-dependent	speaker-dependent	13
+350	T	N N	parameter generation	parameter generation	13
+350	V[s]	A N N	contextual parameter generation	contextual parameter generation	3
+351	T	A N N	multilingual speech synthesis	multilingual speech synthesis	6
+352	T	N	CSS10	css10	12
+353	T	N N	synthesizer network	synthesizer network	6
+354	T	N	extractor	extractor	6
+355	T	N	formant	formant	6
+356	T	N P N	set of speaker	set of speaker	6
+357	T	N N	end-to-end models	end-to-end model	6
+357	V[s]	N N N	end-to-end TTS models	end-to-end tts model	5
+358	T	N C N N	rhythm and pitch contour	rhythm and pitch contour	6
+359	T	N N	text sequence	text sequence	6
+359	V[s]	N N N	input text sequence	input text sequence	2
+360	T	N	autoencoder	autoencoder	6
+361	T	N N	input features	input feature	6
+362	T	N	mispronunciations	mispronunciation	6
+363	T	N N	vocoder parameters	vocoder parameter	6
+364	T	N N	byte inputs	byte input	6
+365	T	A N	contextual information	contextual information	6
+366	T	N N	alignment maps	alignment map	6
+367	T	N N	speech parameter	speech parameter	6
+368	T	N	quantization	quantization	6
+369	T	A	alphabetic	alphabetic	6
+370	T	N N	inference latency	inference latency	6
+371	T	A N N	high similarity MOS	high similarity mo	6
+372	T	N N	encoder-decoder architecture	encoder-decoder architecture	6
+373	T	N N	GlobalPhone language	globalphone language	6
+373	V[s]	N N N	GlobalPhone Language Models	globalphone language model	4
+374	T	A N	audio clip	audio clip	6
+375	T	N N	word sequence	word sequence	6
+376	T	N N	model output	model output	6
+377	T	A N	monolingual system	monolingual system	6
+378	T	A	Cyrillic	cyrillic	6
+379	T	N N	LSTM layers	lstm layer	6
+380	T	N	LJSpeech	ljspeech	6
+381	T	N P N N	amount of training data	amount of training datum	6
+382	T	N N	reference utterance	reference utterance	6
+383	T	A N	experimental results	experimental result	6
+384	T	N N	STFT loss	stft loss	6
+385	T	N N	cross-language transfer	cross-language transfer	6
+386	T	A N	unsupported languages	unsupported language	6
+387	T	A N	Common Voice	common voice	6
+388	T	N N	decoder layers	decoder layer	6
+389	T	A N N	fundamental frequency prediction	fundamental frequency prediction	6
+390	T	N	subsections	subsection	6
+391	T	A N	English speaker	english speaker	6
+391	V[s]	A A N	English native speaker	english native speaker	2
+392	T	R	iteratively	iteratively	6
+393	T	A	online	online	6
+394	T	A	rule-based	rule-based	12
+395	T	N	discontinuities	discontinuity	6
+396	T	N N	CN speech	cn speech	6
+396	V[s]	A N N	synthetic CN speech	synthetic cn speech	2
+397	T	N N	model quality	model quality	6
+398	T	A N	bottom row	bottom row	6
+399	T	N	prefix	prefix	6
+400	T	A N	distributional analysis	distributional analysis	6
+401	T	N N	text resources	text resource	6
+402	T	N	crowdMOS	crowdmos	6
+403	T	N N	target costs	target cost	6
+404	T	N N	voice talent	voice talent	6
+405	T	N N	modulation frequencies	modulation frequency	6
+405	V[s]	A N N	low modulation frequencies	low modulation frequency	3
+406	T	N N	GlobalPhone corpus	globalphone corpus	6
+406	V[s]	A N N	entire GlobalPhone corpus	entire globalphone corpus	2
+407	T	A	intelligible	intelligible	6
+408	T	N	controllability	controllability	6
+409	T	A N	hybrid approach	hybrid approach	6
+410	T	N N	text representation	text representation	6
+410	V[s]	N N N	text input representations	text input representation	4
+411	T	N N N	decision tree marginalization	decision tree marginalization	6
+412	T	N N	word boundary	word boundary	6
+413	T	A N N	multilingual TTS model	multilingual tts model	6
+414	T	N N	pronunciation lexicons	pronunciation lexicon	6
+415	T	N N	confidence measures	confidence measure	6
+416	T	N	RLAT	rlat	6
+417	T	N N	voice quality	voice quality	6
+418	T	N N	voice conversion	voice conversion	6
+418	V[s]	N N N	voice conversion techniques	voice conversion technique	2
+419	T	A N N	neural machine translation	neural machine translation	6
+420	T	A N	receptive field	receptive field	6
+421	T	N N	model size	model size	6
+422	T	N N	grapheme sequence	grapheme sequence	6
+423	T	A	posterior	posterior	23
+424	T	N	timestep	timestep	23
+425	T	N	procent	procent	11
+426	T	A N	cepstral coefficients	cepstral coefficient	11
+427	T	A N	convolutional network	convolutional network	11
+427	V[s]	A A N	convolutional neural networks	convolutional neural network	18
+427	V[s]	A A N	1D convolutional network	1d convolutional network	6
+428	T	A N N	audio synthesis model	audio synthesis model	11
+429	T	A	one-hot	one-hot	11
+430	T	N	cross-language	cross-language	21
+431	T	N	WERs	wers	5
+432	T	N	shared-tandem	shared-tandem	5
+433	T	N N	output sequence	output sequence	5
+434	T	A N	intelligible speech	intelligible speech	5
+435	T	N N	language pairs	language pair	5
+436	T	A N	multilingual setting	multilingual setting	5
+437	T	N C N N	input and output languages	input and output language	5
+438	T	N N	ASR performance	asr performance	5
+439	T	N N	coder parameter	coder parameter	5
+439	V[s]	N N N	coder parameter vectors	coder parameter vector	3
+440	T	A	numeral	numeral	10
+441	T	N N	autoregressive counterpart	autoregressive counterpart	5
+442	T	N N	text preprocessing	text preprocessing	5
+442	V[s]	N N N	TTS text preprocessing	tts text preprocessing	2
+442	V[s]	N N N	text preprocessing modules	text preprocessing module	2
+443	T	N N	speaker information	speaker information	5
+444	T	N N	training setup	training setup	5
+445	T	N N	synthesis results	synthesis result	5
+445	V[s]	A N N	Audio Synthesis Results	audio synthesis result	2
+446	T	N	CERs	cers	5
+447	T	N P N	violation of phonotactics	violation of phonotactics	5
+448	T	N N	weight matrices	weight matrix	5
+449	T	A N N	monolingual speech recognition	monolingual speech recognition	5
+450	T	A N	synthetic voices	synthetic voice	10
+451	T	N N	autoregressive nature	autoregressive nature	5
+451	V[s]	N N P N	autoregressive nature of the model	autoregressive nature of model	3
+452	T	N	compute	compute	5
+453	T	N N	adversarial training	adversarial training	5
+453	V[s]	N N N	domain adversarial training	domain adversarial training	3
+454	T	A N	audio generation	audio generation	5
+454	V[s]	A A N	unconditional audio generation	unconditional audio generation	2
+455	T	A N N	trainable speaker embeddings	trainable speaker embeddings	5
+456	T	A N	special symbol	special symbol	5
+457	T	A N	adjectival forms	adjectival form	5
+458	T	A N	multilingual corpus	multilingual corpus	5
+459	T	A N	convolutional encoder	convolutional encoder	5
+459	V[s]	A A N	language-specific convolutional encoders	language-specific convolutional encoder	2
+460	T	N N	test samples	test sample	5
+461	T	N N	den Oord	den oord	5
+461	V[s]	N N N	van den Oord	van den oord	3
+462	T	N	MLPG	mlpg	5
+463	T	N N	pronunciation rules	pronunciation rule	5
+463	V[s]	A N N	complicated pronunciation rules	complicated pronunciation rule	2
+464	T	N P N	problem of word	problem of word	5
+465	T	A	back-end	back-end	5
+466	T	N N	attention weights	attention weight	5
+467	T	N	CMOS	cmos	5
+468	T	N N	IAF vocoder	iaf vocoder	5
+468	V[s]	A N N	distilled IAF vocoder	distilled iaf vocoder	2
+469	T	A N	latent representations	latent representation	5
+470	T	N	deletion	deletion	5
+471	T	N	converter	converter	5
+472	T	A	mono	mono	5
+473	T	N N	Style transfer	style transfer	5
+474	T	N N	Mandarin language	mandarin language	5
+475	T	A N	unsupervised adaptation	unsupervised adaptation	5
+475	V[s]+	A A N	unsupervised cross-lingual adaptation	unsupervised cross-lingual adaptation	2
+475	V[s]	A A N N	unsupervised cross-lingual speaker adaptation	unsupervised cross-lingual speaker adaptation	3
+475	V[s]	A N P N	unsupervised adaptation of TTS	unsupervised adaptation of tts	2
+476	T	A N	distilled IAF	distilled iaf	5
+477	T	A A N	connectionist temporal classification	connectionist temporal classification	5
+478	T	N N N	Adam optimization algorithm	adam optimization algorithm	5
+479	T	A N	basic units	basic unit	5
+480	T	A N	1-D convolution	1-d convolution	5
+481	T	N N N	frequency prediction models	frequency prediction model	5
+481	V[s]	A N N N	fundamental frequency prediction models	fundamental frequency prediction model	4
+482	T	A N	foreign words	foreign word	5
+483	T	N N	rater comments	rater comment	5
+484	T	N P N	adaptation of TTS	adaptation of tts	5
+484	V[s]	A N P N	unsupervised adaptation of TTS	unsupervised adaptation of tts	2
+485	T	N	aperiodicities	aperiodicity	5
+486	T	A N	cross-lingual MLP	cross-lingual mlp	10
+487	T	N N	State mapping	state mapping	5
+487	V[s]	N N N	state mapping techniques	state mapping technique	2
+488	T	N N	MFCC features	mfcc feature	5
+489	T	N N	context information	context information	5
+490	T	N N	syllable segmentation	syllable segmentation	5
+491	T	N N	inference kernels	inference kernel	5
+491	V[s]	N N N	WaveNet inference kernels	wavenet inference kernel	2
+492	T	A N N	non-autoregressive ParaNet model	non-autoregressive paranet model	5
+493	T	N N	synthesis speed	synthesis speed	5
+494	T	N N	sampling rate	sampling rate	5
+495	T	N	BLSTM-S	blstm-s	5
+496	T	A N N	multilingual MLP features	multilingual mlp feature	10
+497	T	A N N	acoustic model training	acoustic model training	5
+498	T	N	regularization	regularization	5
+499	T	N N	feature set	feature set	5
+500	T	N N N	end-to-end TTS models	end-to-end tts model	5
+501	T	N	layer-by-layer	layer-by-layer	5
+502	T	A N	prosodic contexts	prosodic context	5
+502	V[s]	A C A N	phonetic and prosodic contexts	phonetic and prosodic context	2
+503	T	N N	times speed-up	time speed-up	5
+504	T	N N	reference pronunciation	reference pronunciation	5
+505	T	N N	WaveNet models	wavenet model	5
+506	T	A N	bilinear transform	bilinear transform	5
+507	T	N N	input vocabulary	input vocabulary	5
+507	V[s]	A N N	grapheme-based input vocabulary	grapheme-based input vocabulary	2
+508	T	N N N	phoneme duration model	phoneme duration model	5
+509	T	A N	non-autoregressive decoder	non-autoregressive decoder	5
+510	T	A N	critical bands	critical band	5
+511	T	A N N	global style token	global style token	5
+512	T	A N	preliminary study	preliminary study	5
+513	T	A N N	neural network architecture	neural network architecture	5
+514	T	A	UTF-8	utf-8	10
+515	T	N N	sequence-to-sequence model	sequence-to-sequence model	5
+515	V[s]	A N N	attention-based sequence-to-sequence model	attention-based sequence-to-sequence model	2
+516	T	N N	inference time	inference time	5
+517	T	A N	morphological analysis	morphological analysis	10
+517	V[s]	A A N	rule-based morphological analysis	rule-based morphological analysis	2
+518	T	N N	TTS corpora	tts corpus	5
+518	V[s]	A N N	Conventional TTS corpora	conventional tts corpus	2
+519	T	N N	punctuation marks	punctuation mark	5
+520	T	N N	speech segments	speech segment	5
+521	T	N N	reference speech	reference speech	5
+522	T	N N	autoregressive teacher	autoregressive teacher	5
+523	T	N N	Index Terms	index term	10
+524	T	A N	linguistic knowledge	linguistic knowledge	5
+525	T	N	Wikipedia	wikipedia	5
+526	T	N N	sequence learning	sequence learning	5
+527	T	N N	encoder outputs	encoder output	5
+528	T	A N	audio file	audio file	5
+529	T	N	dimensionality	dimensionality	5
+530	T	N N	training voices	training voice	5
+531	T	A N	previous solutions	previous solution	5
+532	T	A N N	multilingual speech recognition	multilingual speech recognition	5
+533	T	N	epochs	epoch	5
+534	T	N	front-end	front-end	37
+535	T	N N	multi-speaker TTS	multi-speaker tts	9
+536	T	A N	non-standard words	non-standard word	9
+537	T	N	synthesizer	synthesizer	63
+538	T	A N	cepstral features	cepstral feature	9
+538	V[s]	A A N	PLP cepstral features	plp cepstral feature	5
+539	T	A N	objective results	objective result	9
+540	T	A	acoustic	acoustic	136
+541	T	N	code-switching	code-switching	13
+542	T	N	alignment	alignment	86
+543	T	N N	conditioning network	conditioning network	4
+544	T	N	LVCSR	lvcsr	4
+545	T	A N	conditional probability	conditional probability	4
+546	T	A N	real speech	real speech	4
+547	T	A N	residual channels	residual channel	4
+548	T	N P N N	hours of speech data	hour of speech datum	4
+549	T	A	min-max	min-max	4
+550	T	N P N	part of the prosody	part of prosody	4
+551	T	N N	LJSpeech dataset	ljspeech dataset	4
+552	T	A N	cross-lingual transfer	cross-lingual transfer	4
+553	T	A A N	conditional random fields	conditional random field	4
+554	T	A N	entire model	entire model	4
+555	T	N N N	end-to-end speech synthesis	end-to-end speech synthesis	4
+556	T	N N	Blizzard Challenge	blizzard challenge	4
+557	T	A N	current phoneme	current phoneme	4
+558	T	A N	non-causal convolution	non-causal convolution	4
+559	T	N N	speech recording	speech recording	4
+560	T	A	found	found	4
+561	T	N	variability	variability	4
+562	T	A	teacher-forced	teacher-forced	4
+563	T	A N	spectral envelope	spectral envelope	4
+564	T	N N	input layer	input layer	4
+565	T	N V A	observation is consistent	observation be consistent	4
+566	T	A N	bidirectional decoder	bidirectional decoder	4
+567	T	N	kostra	kostra	4
+568	T	N N N	similarity MOS scores	similarity mo score	4
+569	T	N N	segment durations	segment duration	4
+570	T	N N	shared-tandem system	shared-tandem system	4
+571	T	A N	companion webpage	companion webpage	4
+572	T	N N	WaveNet vocoder	wavenet vocoder	4
+573	T	N	Kingma	kingma	4
+574	T	A N N	N-gram language models	n-gram language model	4
+575	T	N N	attention distillation	attention distillation	4
+576	T	N	notation	notation	4
+577	T	A N	fluent speech	fluent speech	4
+577	V[s]	A A N	fluent Spanish speech	fluent spanish speech	2
+578	T	N N	source speaker	source speaker	4
+579	T	N	whitespace	whitespace	8
+580	T	N N	phoneme features	phoneme feature	4
+581	T	R	phonetically	phonetically	4
+582	T	A N	multilingual text	multilingual text	4
+583	T	N	trigram	trigram	4
+584	T	N	MCCs	mccs	4
+585	T	A N	Neural Text-to-Speech	neural text-to-speech	4
+586	T	A N	total duration	total duration	4
+587	T	A N	posterior features	posterior feature	4
+588	T	A N N N	fundamental frequency prediction models	fundamental frequency prediction model	4
+589	T	N N	system components	system component	4
+589	V[s]	A N N	TTS System Components	tts system component	3
+589	V[s]	N P N N	component of a text-to-speech system	component of text-to-speech system	2
+590	T	A N	parametric system	parametric system	4
+591	T	A N	residual blocks	residual block	4
+592	T	N N	MUSHRA scores	mushra score	4
+593	T	N	zero-shot	zero-shot	4
+594	T	A N	grapheme-based model	grapheme-based model	4
+595	T	N N	training language	training language	4
+596	T	N N N	unit selection synthesis	unit selection synthesis	8
+597	T	N N	prediction errors	prediction error	4
+598	T	A N N	subjective listening tests	subjective listening test	4
+599	T	A N	mixed task	mixed task	4
+600	T	A N	ordinary words	ordinary word	4
+601	T	N N	attention layer	attention layer	4
+602	T	A N	raw waveform	raw waveform	4
+603	T	N N	phoneme representations	phoneme representation	4
+604	T	A N N	good speech quality	good speech quality	4
+605	T	N C A N	Duration and Fundamental Frequency	duration and fundamental frequency	4
+606	T	A N	latent factors	latent factor	4
+607	T	N V A	scores are consistent	score be consistent	4
+608	T	N N	Porter stemmer	porter stemmer	4
+609	T	N N	output features	output feature	4
+610	T	N N	development subsets	development subset	4
+611	T	A N	polyglot synthesis	polyglot synthesis	4
+612	T	N N	recognition performance	recognition performance	4
+613	T	A N	hand-engineered features	hand-engineered feature	4
+614	T	N	E2E-Prosody	e2e-prosody	4
+615	T	A N	UTF-8 byte	utf-8 byte	4
+616	T	N P N	variety of languages	variety of language	4
+617	T	N N	attention distributions	attention distribution	4
+618	T	N N	beam search	beam search	4
+619	T	N N	stress pattern	stress pattern	4
+620	T	A N	supplementary material	supplementary material	4
+621	T	N N N	Idiap Research Institute	idiap research institute	4
+622	T	N N N	speaker encoder network	speaker encoder network	4
+623	T	A N	variational autoencoder	variational autoencoder	4
+624	T	N N	training time	training time	4
+625	T	A N N	expressive speech synthesis	expressive speech synthesis	4
+626	T	A N	cross-lingual voice	cross-lingual voice	8
+627	T	N N	reduction factor	reduction factor	4
+628	T	A	specialized	specialized	4
+629	T	A N	lower similarity	low similarity	4
+630	T	N N	vector representation	vector representation	4
+631	T	N N	phoneme set	phoneme set	4
+632	T	N N	POS tags	po tag	4
+633	T	A N	intralingual adaptation	intralingual adaptation	4
+634	T	A A N N	hierarchical MLP-based LID system	hierarchical mlp-based lid system	4
+635	T	A N	natural sentences	natural sentence	4
+636	T	A N	proper nouns	proper noun	4
+637	T	A N	fictitious speakers	fictitious speaker	4
+638	T	A N N N	neural network speech synthesis	neural network speech synthesis	4
+639	T	A N	best model	good model	4
+639	V[s]	A A N	better acoustic model	good acoustic model	2
+640	T	A	sub-optimal	sub-optimal	4
+641	T	A A N	variational residual encoder	variational residual encoder	4
+642	T	N C N N	speech and text data	speech and text datum	4
+643	T	N C N N	speech and language technology	speech and language technology	4
+644	T	A N N	low fidelity audio	low fidelity audio	4
+645	T	N	Simple4All	simple4all	8
+646	T	N	affix	affix	4
+647	T	A N	multiple pronunciation	multiple pronunciation	4
+648	T	N N	TTS front-end	tts front-end	12
+649	T	A N	isolated words	isolated word	4
+650	T	A N	affine projection	affine projection	4
+651	T	N C N N	grapheme and phoneme sequences	grapheme and phoneme sequence	4
+652	T	N N N N	speech parameter generation algorithm	speech parameter generation algorithm	4
+653	T	A N N	language-specific expert knowledge	language-specific expert knowledge	4
+654	T	A N	local grammars	local grammar	4
+655	T	N N N	GlobalPhone Language Models	globalphone language model	4
+656	T	A N	hidden representation	hidden representation	4
+657	T	N N	input signal	input signal	4
+658	T	N N	target spectrogram	target spectrogram	4
+659	T	N	Hier	hier	4
+660	T	A N N	multilingual language models	multilingual language model	4
+661	T	N N	Model Structure	model structure	4
+662	T	N N	syllable weight	syllable weight	4
+663	T	N N	generation error	generation error	4
+663	V[s]	A N N	minimum generation error	minimum generation error	3
+664	T	N N	language identity	language identity	4
+665	T	A N	phonetic-to-acoustic mapping	phonetic-to-acoustic mapping	4
+666	T	N N	speech samples	speech sample	4
+667	T	N P N	types of error	type of error	4
+667	V[s]	N N	error types	error type	2
+668	T	A N N	Rapid Language Adaptation	rapid language adaptation	4
+669	T	A N	STRAIGHT vocoder	straight vocoder	4
+670	T	N P N N	terms of speech quality	term of speech quality	4
+671	T	A N	single model	single model	4
+672	T	N P N	set of utterances	set of utterance	4
+673	T	R	computationally	computationally	4
+674	T	N N	test utterance	test utterance	8
+675	T	A N	hidden units	hidden unit	4
+676	T	A A N	adaptive cepstral analysis	adaptive cepstral analysis	4
+677	T	N N	output speech	output speech	4
+678	T	N N	unit representation	unit representation	4
+679	T	N N	multispeaker models	multispeaker model	8
+680	T	N N	training data	training data	4
+681	T	N V A	representation is equivalent	representation be equivalent	4
+682	T	N N	layer-by-layer manner	layer-by-layer manner	4
+683	T	A	sigmoid	sigmoid	8
+684	T	N N	letter space	letter space	4
+685	T	A N	additional inputs	additional input	4
+686	T	A N N	natural language processing	natural language processing	4
+687	T	N N	synthesis quality	synthesis quality	4
+688	T	N N	input data	input datum	4
+689	T	A N	unsupervised learning	unsupervised learning	4
+690	T	A N	lexical constraints	lexical constraint	4
+691	T	N N	speech naturalness	speech naturalness	4
+691	V[s]	N P N N	naturalness of CN speech	naturalness of cn speech	2
+692	T	A N	top left	top left	4
+693	T	N N N	unit selection systems	unit selection system	4
+694	T	N N	CN raters	cn rater	4
+695	T	N N	query vectors	query vector	4
+696	T	N	right-to-left	right-to-left	4
+697	T	N N	pronunciation variants	pronunciation variant	4
+697	V[s]	A N N	multiple pronunciation variants	multiple pronunciation variant	2
+698	T	N N	EN voice	en voice	4
+699	T	N N	language ID	language id	4
+700	T	A	distinguishable	distinguishable	4
+701	T	N N	G2P task	g2p task	4
+702	T	N N	phoneme recognizers	phoneme recognizer	4
+703	T	N	LibriTTS	libritts	4
+704	T	A	WaveNet-based	wavenet-based	4
+705	T	A N	synthetic utterances	synthetic utterance	4
+705	V[s]	A C A N	real and synthetic utterances	real and synthetic utterance	2
+706	T	N P N	rest of the model	rest of model	4
+707	T	N N N	voice synthesis model	voice synthesis model	4
+708	T	A N	Gaussian WaveNet	gaussian wavenet	4
+709	T	A N	raw spectrogram	raw spectrogram	4
+710	T	A A N	multilingual acoustic models	multilingual acoustic model	4
+711	T	N	website	website	4
+712	T	A N	smaller footprint	small footprint	4
+713	T	N V A	language were disjoint	language be disjoint	4
+714	T	N P N	sequence of words	sequence of word	4
+714	V[s]	N N	word sequence	word sequence	6
+715	T	N N	decoder Bi-LSTM	decoder bi-lstm	4
+716	T	A N	hidden activation	hidden activation	4
+717	T	N N	TTS pipeline	tts pipeline	4
+718	T	N N	speech rate	speech rate	4
+719	T	N N	rewrite rules	rewrite rule	4
+720	T	A N	bilingual speaker	bilingual speaker	4
+721	T	N N	decoder step	decoder step	4
+721	V[s]	N N N	decoder time steps	decoder time step	2
+722	T	A N	articulatory features	articulatory feature	4
+723	T	N N	model performance	model performance	4
+724	T	N N	pronunciation accuracy	pronunciation accuracy	4
+725	T	A N	human speech	human speech	4
+726	T	A	scalable	scalable	4
+727	T	N N	development sets	development set	4
+728	T	A N	good generalization	good generalization	4
+729	T	N	Figurea	figurea	4
+730	T	N N	TTS task	tts task	4
+731	T	N N	research community	research community	4
+732	T	N N N	text input representations	text input representation	4
+733	T	N N	loss function	loss function	4
+734	T	N N N	autoregressive text-to-spectrogram model	autoregressive text-to-spectrogram model	4
+735	T	A	waveform-level	waveform-level	8
+736	T	N N	speech technology	speech technology	4
+737	T	N N	phoneme labels	phoneme label	4
+738	T	A N	discriminative features	discriminative feature	4
+739	T	N P N	minutes of speech	minute of speech	4
+740	T	A N N	HMM-based ASR system	hmm-based asr system	4
+741	T	N N	duration sequence	duration sequence	4
+741	V[s]	N N N	phoneme duration sequence	phoneme duration sequence	3
+742	T	A	syllabic	syllabic	4
+743	T	N	increments	increment	4
+744	T	N N N	speaker verification task	speaker verification task	4
+745	T	A	finite-state	finite-state	11
+746	T	N	pronunciation	pronunciation	77
+747	T	N	time-steps	time-steps	7
+748	T	A	Unicode	unicode	7
+749	T	A	heuristic	heuristic	7
+750	T	N N	log-mel spectrograms	log-mel spectrograms	14
+751	T	A A N	long short-term memory	long short-term memory	7
+752	T	A N	numeral expansion	numeral expansion	7
+753	T	A	context-independent	context-independent	14
+754	T	A N N	lexical analysis WFST	lexical analysis wfst	7
+755	T	A N	parallel waveform	parallel waveform	7
+756	T	A N	statistical models	statistical model	7
+757	T	N N	posterior probabilities	posterior probability	7
+757	V[s]	N N N	phone posterior probabilities	phone posterior probability	4
+758	T	N P N	duration of every phoneme	duration of phoneme	7
+758	V[s]+	N N	phoneme duration	phoneme duration	43
+759	T	N	lookup	lookup	7
+760	T	A A N	feedforward neural network	feedforward neural network	10
+761	T	A	data-driven	data-driven	10
+762	T	N N	speaker gender	speaker gender	3
+763	T	A N	original Tacotron	original tacotron	3
+764	T	N V A	results are consistent	result be consistent	3
+765	T	A N N	neural network input	neural network input	3
+766	T	N N	reference data	reference datum	3
+767	T	N N	configuration file	configuration file	3
+768	T	A N	50ms windows	50ms window	3
+769	T	A N	linear transformation	linear transformation	3
+770	T	A	laborious	laborious	3
+771	T	N	prev	prev	3
+772	T	N P N	powers of the base	power of base	3
+773	T	N P A N	development of multilingual speech	development of multilingual speech	3
+774	T	N N	G2P model	g2p model	3
+775	T	N N	state distributions	state distribution	3
+776	T	N N	training criteria	training criterion	3
+777	T	N P N	variety of speakers	variety of speaker	3
+778	T	N	DNNs	dnns	3
+779	T	N N	sample-by-sample manner	sample-by-sample manner	3
+780	T	N N	synthesizer training	synthesizer training	3
+781	T	A A N N	parallel neural TTS system	parallel neural tts system	3
+782	T	A	knowledge-based	knowledge-based	3
+783	T	N N	source-filter model	source-filter model	3
+784	T	A N	male speakers	male speaker	3
+785	T	N N	encoder architecture	encoder architecture	3
+785	V[s]	A A N N	variational residual encoder architecture	variational residual encoder architecture	2
+786	T	N N	ASR studies	asr study	3
+787	T	N N	CPU implementation	cpu implementation	3
+788	T	A N	lexical renditions	lexical rendition	3
+789	T	N	FSTs	fsts	3
+790	T	A N	discriminative models	discriminative model	3
+790	V[s]	N A N	speaker discriminative models	speaker discriminative model	2
+791	T	A N N	statistical machine translation	statistical machine translation	3
+792	T	A N	Mechanical Turk	mechanical turk	3
+793	T	A N	similar results	similar result	3
+794	T	A C A N	linguistic and acoustic features	linguistic and acoustic feature	3
+795	T	N	TC-STAR	tc-star	3
+796	T	A N	informal comparisons	informal comparison	3
+796	V[s]	A N P N	informal comparisons of the outputs	informal comparison of output	2
+797	T	A N	token units	token unit	3
+798	T	N P N	area of research	area of research	3
+799	T	A N N	high quality synthesis	high quality synthesis	6
+800	T	N N	text transcript	text transcript	3
+801	T	N N	encoder CNN	encoder cnn	3
+802	T	N N N	unit selection technique	unit selection technique	3
+803	T	A N	non-autoregressive generation	non-autoregressive generation	3
+804	T	A	nonlinear	nonlinear	3
+805	T	A N	standard deviation	standard deviation	6
+806	T	A	fixed-dimensional	fixed-dimensional	3
+807	T	A N	faster convergence	fast convergence	3
+808	T	N N	state machine	state machine	3
+809	T	N	latten	latten	3
+810	T	N N	phrase boundary	phrase boundary	3
+810	V[s]	A N N	prosodic phrase boundary	prosodic phrase boundary	2
+811	T	A N	manual intervention	manual intervention	3
+812	T	N P N N	amount of text data	amount of text datum	3
+813	T	A	reverse	reverse	3
+814	T	A N	acoustic confusions	acoustic confusion	3
+815	T	A N	original language	original language	3
+816	T	N N	G2P systems	g2p system	3
+817	T	A N N	inverse system output	inverse system output	3
+818	T	A	language-independent	language-independent	12
+819	T	A A N N	5-scale mean opinion score	5-scale mean opinion score	3
+820	T	N N	kernel sizes	kernel size	3
+821	T	N	GRUs	grus	3
+822	T	A N N	professional voice actors	professional voice actor	3
+823	T	N A N	production parametric system	production parametric system	3
+824	T	N P N	terms of naturalness	term of naturalness	3
+825	T	A N N	cross-lingual MLP features	cross-lingual mlp feature	6
+826	T	A N N	Unicode character database	unicode character database	3
+827	T	N N	CBHG encoder	cbhg encoder	3
+828	T	N N	system construction	system construction	3
+829	T	N	bootstrap	bootstrap	3
+830	T	A N N	multilingual ASR system	multilingual asr system	3
+831	T	N N	source signal	source signal	3
+832	T	N	ML-MLP	ml-mlp	3
+833	T	N N	word pronunciation	word pronunciation	3
+834	T	N N	voice characteristics	voice characteristic	3
+835	T	N N P N	autoregressive nature of the model	autoregressive nature of model	3
+836	T	N N	rhythm data	rhythm datum	3
+837	T	A	IPA-based	ipa-based	3
+838	T	N	mono-tandem	mono-tandem	3
+838	V[m]	A N	Monolingual tandem	monolingual tandem	2
+839	T	N	params	params	3
+840	T	A N	attention-based model	attention-based model	3
+841	T	A	64-dim	64-dim	3
+842	T	N N	network weights	network weight	3
+843	T	A N	latent characteristics	latent characteristic	3
+844	T	N N N	attention error analysis	attention error analysis	3
+845	T	N N	feature maps	feature map	3
+846	T	N N	inference process	inference process	3
+847	T	N N	word skip	word skip	3
+848	T	N N	speaker voice	speaker voice	3
+849	T	A N	oblique case	oblique case	3
+850	T	A	language-dependent	language-dependent	12
+850	V[g]	A	language-independent	language-independent	12
+851	T	N P N N N	sequence of log-mel spectrogram frames	sequence of log-mel spectrogram frame	3
+852	T	N N	crowdMOS toolkit	crowdmos toolkit	3
+853	T	N	TDNN	tdnn	3
+854	T	A	nontrivial	nontrivial	3
+855	T	A N	Gaussian filter	gaussian filter	3
+856	T	N N	Morpheme classes	morpheme class	3
+857	T	N	numbuilder	numbuilder	3
+858	T	N N	regression trees	regression tree	3
+859	T	N N	kHz audio	khz audio	3
+860	T	N A N	multi-speaker Deep Voice	multi-speaker deep voice	3
+861	T	N N A N	input language acoustic model	input language acoustic model	3
+862	T	A N N	subjective evaluation test	subjective evaluation test	3
+863	T	N N N	input text encoder	input text encoder	3
+864	T	N N	language detection	language detection	3
+864	V[s]	A N N	automatic language detection	automatic language detection	2
+865	T	N N	IPA symbols	ipa symbol	3
+866	T	N P A N	output of the multilingual MLP	output of multilingual mlp	3
+867	T	A N	conventional approaches	conventional approach	3
+868	T	N N N	phoneme duration sequence	phoneme duration sequence	3
+869	T	A N	high naturalness	high naturalness	3
+870	T	N N	normalization layer	normalization layer	3
+870	V[s]	N N N	batch normalization layer	batch normalization layer	2
+871	T	N N	multi-speaker Tacotron	multi-speaker tacotron	3
+872	T	N N	GALE project	gale project	3
+873	T	N N	single-speaker model	single-speaker model	3
+874	T	N N	one-hot vector	one-hot vector	6
+875	T	A N	linear interpolation	linear interpolation	3
+876	T	N C N N	training and development subsets	training and development subset	3
+877	T	N N	recording script	recording script	3
+878	T	N N	similarity score	similarity score	3
+878	V[s]	N N N	similarity MOS scores	similarity mo score	4
+879	T	A N	extra input	extra input	3
+880	T	N N	TTS training	tts training	3
+881	T	N V A	pronunciations are correct	pronunciation be correct	3
+882	T	A N N	lowest similarity MOS	low similarity mo	3
+883	T	N N	cosine similarity	cosine similarity	3
+884	T	A A N	hyperbolic tangent units	hyperbolic tangent unit	3
+885	T	A N	perceptual quality	perceptual quality	3
+886	T	N N	selection synthesizers	selection synthesizer	3
+887	T	N P N	length of the filters	length of filter	3
+888	T	N C A N	utterance or whole speech	utterance or whole speech	3
+889	T	A	sample-level	sample-level	6
+890	T	A A N	standard spectral features	standard spectral feature	3
+891	T	A N P N	parametric representation of speech	parametric representation of speech	3
+892	T	N	pre-processing	pre-processing	3
+893	T	N	Melodia	melodia	3
+894	T	N N	label sequence	label sequence	3
+895	T	N N	rater instructions	rater instruction	3
+896	T	N N	LibriSpeech speakers	librispeech speaker	3
+897	T	A N	bidirectional GRU	bidirectional gru	3
+898	T	A A N N	crowdsourced Mean Opinion Score	crowdsourced mean opinion score	3
+899	T	N N	feature observations	feature observation	3
+900	T	N N	CBHG module	cbhg module	3
+901	T	A A N	statistical parametric approaches	statistical parametric approach	3
+902	T	N N N	van den Oord	van den oord	3
+903	T	N	mean-variance	mean-variance	3
+904	T	N N	source text	source text	3
+905	T	N N	LVCSR system	lvcsr system	3
+906	T	N	deverberation	deverberation	3
+907	T	N N	concatenation costs	concatenation cost	3
+908	T	N N	text transcription	text transcription	3
+909	T	N N	GlobalPhone speech	globalphone speech	3
+910	T	A N N	wrong attention alignments	wrong attention alignment	3
+911	T	N N N	waveform generation module	waveform generation module	3
+912	T	N N	word accuracy	word accuracy	3
+913	T	N C N N	spectral and excitation parameters	spectral and excitation parameter	3
+914	T	A	Bi-GRU	bi-gru	3
+915	T	N N	phoneme string	phoneme string	3
+916	T	A N	100-sentence test	100-sentence test	3
+917	T	N N	TTS output	tts output	3
+918	T	A N	rare words	rare word	3
+919	T	N N	input frame	input frame	3
+920	T	N N	attention mask	attention mask	3
+921	T	N N	syllable structure	syllable structure	3
+922	T	A	median	median	6
+923	T	N A N	vanilla seq2seq model	vanilla seq2seq model	3
+924	T	A N	recurrent initialization	recurrent initialization	3
+925	T	N P N	structure of this model	structure of model	3
+925	V[s]	N N	Model Structure	model structure	4
+926	T	A N	high-quality speech	high-quality speech	3
+926	V[img]	A N N	high quality speech	high quality speech	10
+927	T	N N	hyperparameter optimization	hyperparameter optimization	3
+928	T	A N	Parallel WaveNet	parallel wavenet	3
+929	T	A	semantic	semantic	3
+930	T	A	comparative	comparative	3
+931	T	N P N	batch of samples	batch of sample	3
+932	T	N P A N	scratch with random initialization	scratch with random initialization	3
+933	T	N	encoder-attention-decoder	encoder-attention-decoder	3
+934	T	N C A N	form and written form	form and written form	3
+935	T	N N	attention module	attention module	3
+936	T	N N N	multi-speaker speech synthesis	multi-speaker speech synthesis	6
+937	T	N N	Lexicon construction	lexicon construction	3
+938	T	A N	multiple threads	multiple thread	3
+939	T	N P N	terms of CER	term of cer	3
+940	T	A N N	fundamental frequency model	fundamental frequency model	3
+940	V[s]	A N N N	fundamental frequency prediction models	fundamental frequency prediction model	4
+941	T	N N N	Number Lexicon transducer	number lexicon transducer	3
+942	T	N N	Levenshtein distance	levenshtein distance	3
+943	T	A	logographic	logographic	3
+944	T	N	MULTI	multi	3
+945	T	A N	parallel vocoder	parallel vocoder	3
+945	V[s]	A A N	parallel neural vocoder	parallel neural vocoder	7
+946	T	N N	phoneme embeddings	phoneme embeddings	3
+947	T	N N N	domain adversarial training	domain adversarial training	3
+948	T	N N	percentage expression	percentage expression	3
+949	T	N N	VCTK model	vctk model	3
+950	T	A	hand-engineered	hand-engineered	6
+951	T	N N	word forms	word form	3
+952	T	N	computation	computation	3
+953	T	A N	phonetic component	phonetic component	3
+954	T	N N P N	classification accuracy of a speaker	classification accuracy of speaker	3
+955	T	N	SAMPA	sampa	3
+956	T	N	runtime	runtime	3
+957	T	N N	learning rate	learning rate	3
+958	T	A N N	average voice models	average voice model	3
+959	T	N P N N	amount of adaptation data	amount of adaptation datum	3
+960	T	N N N	end-to-end TTS systems	end-to-end tts system	3
+961	T	N N	encoder-decoder models	encoder-decoder model	3
+962	T	A N	unnatural pauses	unnatural pause	3
+963	T	N	unigram	unigram	3
+964	T	A N N	fundamental frequency contour	fundamental frequency contour	3
+965	T	A A N N	unsupervised cross-lingual speaker adaptation	unsupervised cross-lingual speaker adaptation	3
+966	T	A A N	1D convolutional network	1d convolutional network	6
+967	T	A N	previous section	previous section	3
+968	T	N N	emission probabilities	emission probability	3
+969	T	A N N	minimum generation error	minimum generation error	3
+970	T	A N	long phonemes	long phoneme	3
+971	T	N P N	rest of this paper	rest of paper	3
+972	T	A N	real speakers	real speaker	3
+973	T	N	FestVox	festvox	3
+974	T	A N	unified approaches	unified approach	3
+975	T	N N	adversarial classifier	adversarial classifier	3
+975	V[s]	N N N	adversarial speaker classifier	adversarial speaker classifier	7
+976	T	N N	data resources	datum resource	3
+977	T	N N	phoneme side	phoneme side	3
+978	T	A N	multilingual database	multilingual database	3
+979	T	R	optionally	optionally	3
+980	T	A	speaker-discriminative	speaker-discriminative	3
+981	T	N N	memory bandwidth	memory bandwidth	3
+982	T	A A N	full multilingual model	full multilingual model	3
+983	T	N	<text	<text	3
+984	T	A N N	F0 Frame Error	f0 frame error	3
+985	T	A N	lexical toolkit	lexical toolkit	3
+986	T	N N	synthesis time	synthesis time	3
+987	T	N P N	position of the errors	position of error	3
+988	T	N N N	GlobalPhone Pronunciation Dictionaries	globalphone pronunciation dictionary	3
+989	T	A N	acoustic modeling	acoustic modeling	3
+990	T	N N	table lookup	table lookup	3
+990	V[s]	A N N	simple table lookup	simple table lookup	2
+991	T	N N N	speech recognition task	speech recognition task	3
+992	T	A C A N	monolingual and multilingual model	monolingual and multilingual model	3
+993	T	A N	Gaussian mixture	gaussian mixture	3
+994	T	N N P N	speech signal of bandwidth	speech signal of bandwidth	3
+995	T	A	rudimentary	rudimentary	3
+996	T	N N	bias vectors	bias vector	3
+997	T	A N	similar performance	similar performance	3
+998	T	A N N	non-autoregressive text-to-spectrogram model	non-autoregressive text-to-spectrogram model	3
+999	T	N N	MRASTA filters	mrasta filter	3
+1000	T	N P N	results of this evaluation	result of evaluation	3
+1001	T	A N	minimal effort	minimal effort	3
+1002	T	A N N	cross-lingual adaptation approach	cross-lingual adaptation approach	3
+1003	T	N N N	phoneme duration prediction	phoneme duration prediction	6
+1004	T	N N N	coder parameter vectors	coder parameter vector	3
+1005	T	A N	unrelated languages	unrelated language	3
+1006	T	A N N	low modulation frequencies	low modulation frequency	3
+1007	T	N N	reference speaker	reference speaker	3
+1008	T	N N	phone models	phone model	3
+1009	T	A N	roman numbers	roman number	3
+1010	T	N N	conditioning inputs	conditioning input	3
+1011	T	N N	band aperiodicities	band aperiodicity	3
+1012	T	A N	subjective results	subjective result	3
+1013	T	N N	point increments	point increment	3
+1014	T	N N	speaker recognition	speaker recognition	3
+1015	T	N	Ping	ping	3
+1016	T	A N	similar trend	similar trend	3
+1017	T	N N N	multi-speaker TTS system	multi-speaker tts system	3
+1018	T	N N	KL divergence	kl divergence	3
+1019	T	N N	skip channels	skip channel	3
+1020	T	A N	median duration	median duration	3
+1021	T	N N	context vector	context vector	3
+1022	T	N N	LibriSpeech model	librispeech model	3
+1023	T	N	left-to-right	left-to-right	6
+1024	T	N	prepositions	preposition	3
+1025	T	N	overfitting	overfitting	3
+1026	T	N N	speech audio	speech audio	3
+1027	T	N	bigram	bigram	3
+1028	T	N N	SUS sentences	sus sentence	3
+1029	T	A N N N	Absolute Category Rating scale	absolute category rating scale	3
+1030	T	N N	autoregressive inference	autoregressive inference	3
+1031	T	N	EMIME	emime	6
+1032	T	N N	input augmentation	input augmentation	3
+1033	T	A N	repeated words	repeated word	3
+1034	T	A N N	acoustic feature extraction	acoustic feature extraction	3
+1035	T	A N	Russian percentage	russian percentage	3
+1036	T	N N	Block diagram	block diagram	3
+1037	T	N	RMSE	rmse	3
+1038	T	A N	contextual constraints	contextual constraint	3
+1039	T	N N	word length	word length	3
+1039	V[s]	N N N	word syllable length	word syllable length	2
+1040	T	A N	seq2seq target	seq2seq target	3
+1041	T	N C N N	Naturalness and speaker similarity	naturalness and speaker similarity	3
+1042	T	A N	tonal languages	tonal language	3
+1043	T	A	unstressed	unstressed	3
+1044	T	N N	text word	text word	3
+1045	T	A N	linguistic descriptions	linguistic description	3
+1046	T	N N	hop size	hop size	3
+1047	T	N	nasal	nasal	3
+1048	T	N N	waveform samples	waveform sample	3
+1049	T	R	proactively	proactively	3
+1050	T	N	portability	portability	3
+1051	T	A N	entire pipeline	entire pipeline	3
+1052	T	N N	alignment process	alignment process	3
+1053	T	N	github	github	3
+1054	T	A N	backward encoder	backward encoder	3
+1055	T	A N N	Automatic language recognition	automatic language recognition	3
+1056	T	N N	autoregressive DV3	autoregressive dv3	3
+1057	T	A N	small dataset	small dataset	6
+1058	T	A N	audio waveforms	audio waveform	3
+1059	T	N N	highway network	highway network	3
+1060	T	A N	trivial task	trivial task	3
+1061	T	N N	attention head	attention head	3
+1062	T	N N	speech utterance	speech utterance	3
+1063	T	N N	letter sequence	letter sequence	3
+1064	T	N P N	thousands of speakers	thousand of speaker	3
+1065	T	N	Bi-LSTMs	bi-lstms	3
+1066	T	N N	speech frames	speech frame	3
+1067	T	A N	orthographic transcripts	orthographic transcript	3
+1068	T	N P N	Dropout with a probability	dropout with probability	3
+1069	T	A N N	parallel waveform model	parallel waveform model	3
+1070	T	N N	word representations	word representation	3
+1071	T	N N	research activities	research activity	3
+1072	T	N	PDFs	pdfs	3
+1073	T	N P N	frames of speech	frame of speech	3
+1073	V[s]	N N	speech frames	speech frame	3
+1074	T	A N	complete system	complete system	3
+1075	T	N N	OOV words	oov word	3
+1076	T	N P N	sequence of phonemes	sequence of phoneme	6
+1076	V[s]+	N N	phoneme sequence	phoneme sequence	26
+1077	T	A N N	extensive domain expertise	extensive domain expertise	3
+1078	T	N N	silence phoneme	silence phoneme	3
+1079	T	N N	attention loss	attention loss	3
+1080	T	A A N	standard cepstral features	standard cepstral feature	3
+1081	T	N N	ASR transcriptions	asr transcription	3
+1082	T	N	int16	int16	3
+1083	T	N N	training pipeline	training pipeline	3
+1084	T	N	Lperc	lperc	3
+1085	T	N	upsampling	upsampling	3
+1086	T	A N N	one-hot character vectors	one-hot character vector	3
+1087	T	N	multi-layer	multi-layer	8
+1088	T	A N N	slow inference speed	slow inference speed	5
+1089	T	A N	universal phone	universal phone	5
+1090	T	N	high-frequency	high-frequency	5
+1090	V[m]	A N N	high modulation frequencies	high modulation frequency	2
+1091	T	A	diagonal	diagonal	5
+1092	T	N N	50k steps	50k step	5
+1093	T	A	out-of-vocabulary	out-of-vocabulary	5
+1094	T	N N	post-processing network	post-processing network	5
+1094	V[s]	N N N	CBHG post-processing network	cbhg post-processing network	2
+1095	T	N	autoregressively	autoregressively	5
+1096	T	N	sample-by-sample	sample-by-sample	5
+1097	T	N	LSTM-RNNs	lstm-rnns	5
+1098	T	A N	benchmark systems	benchmark system	5
+1099	T	N P N	length of the mel-spectrograms	length of mel-spectrograms	5
+1100	T	N N	unity variance	unity variance	5
+1101	T	N C A N	extraction and acoustic models	extraction and acoustic model	5
+1102	T	N P A N	normalization of non-standard words	normalization of non-standard word	5
+1103	T	N N	Feed-Forward Transformer	feed-forward transformer	5
+1104	T	N N	grapheme-to-phoneme model	grapheme-to-phoneme model	5
+1104	V[s]	N N N	grapheme-to-phoneme conversion models	grapheme-to-phoneme conversion model	2
+1105	T	A N	HMM-based speech	hmm-based speech	5
+1106	T	A	singular	singular	5
+1107	T	A N	mel-cepstral coefficients	mel-cepstral coefficient	5
+1108	T	A N	bidirectional LSTM	bidirectional lstm	5
+1109	T	A A N	PLP cepstral features	plp cepstral feature	5
+1110	T	N	utterances	utterance	116
+1111	T	N	co-occurrence	co-occurrence	7
+1112	T	N	full-context	full-context	7
+1113	T	A N	context-independent phones	context-independent phone	9
+1114	T	N	syllable	syllable	44
+1115	T	A N	strong baselines	strong baseline	2
+1116	T	A N	byte-based models	byte-based model	2
+1117	T	A N N	external alignment system	external alignment system	2
+1118	T	N N	data-stress training	data-stress training	2
+1119	T	A N N	complete input sequence	complete input sequence	2
+1120	T	N P N N	sequence of phoneme pair	sequence of phoneme pair	2
+1121	T	N C N P N	duration and distance of phoneme	duration and distance of phoneme	2
+1122	T	N C N N	phoneme and mel-spectrogram sequence	phoneme and mel-spectrogram sequence	2
+1123	T	A A N N	significant audio quality improvement	significant audio quality improvement	2
+1124	T	N N	Corpus Construction	corpus construction	2
+1125	T	N N	training dataset	training dataset	4
+1126	T	A N N	latent space dimension	latent space dimension	2
+1127	T	N C N N	language and technology expertise	language and technology expertise	2
+1128	T	N P N	performance of the system	performance of system	2
+1129	T	A N P N	unsupervised adaptation of TTS	unsupervised adaptation of tts	2
+1130	T	A A N	transparent alphabetic orthographies	transparent alphabetic orthography	2
+1131	T	A N	speaker-independent representations	speaker-independent representation	2
+1132	T	N V A	approach is simple	approach be simple	2
+1133	T	N N P N	MOS evaluation of speaker	mo evaluation of speaker	2
+1134	T	A N N	receptive field size	receptive field size	2
+1135	T	N N	Sally dataset	sally dataset	2
+1136	T	A A N N	English neural TTS system	english neural tts system	2
+1137	T	N	float32	float32	2
+1138	T	A N	standard corpora	standard corpus	2
+1139	T	A N	phrasal accentuation	phrasal accentuation	2
+1140	T	R	subjectively	subjectively	2
+1141	T	A N	state-of-the-art approaches	state-of-the-art approach	2
+1142	T	N N	EN language	en language	2
+1143	T	R A A N	equally deep unidirectional GRU	equally deep unidirectional gru	2
+1144	T	R	acoustically	acoustically	2
+1145	T	N N	GRU cells	gru cell	2
+1146	T	N N	self-attention network	self-attention network	2
+1147	T	A N N	universal phone set	universal phone set	2
+1148	T	N	joint-multigram	joint-multigram	2
+1149	T	N	modiscation	modiscation	2
+1150	T	N N	autoregressive generation	autoregressive generation	2
+1151	T	A	two-step	two-step	2
+1152	T	N N	speaker label	speaker label	2
+1152	V[s]	N N N	speaker identity labels	speaker identity label	2
+1153	T	A N N	parallel mel-spectrogram generation	parallel mel-spectrogram generation	2
+1154	T	A N	hybrid architecture	hybrid architecture	2
+1155	T	N P N N	length of the mel-spectrogram sequence	length of mel-spectrogram sequence	2
+1156	T	A N	language-dependent information	language-dependent information	2
+1157	T	N C N N	prosody or background noise	prosody or background noise	2
+1158	T	A N N	standard TTS corpora	standard tts corpus	2
+1159	T	N P N N	problem of length mismatch	problem of length mismatch	2
+1160	T	A N	sound units	sound unit	2
+1161	T	N P N N	languages with single-byte characters	language with single-byte character	2
+1162	T	A N	average gradients	average gradient	2
+1163	T	N N N	time domain waveform	time domain waveform	2
+1164	T	A N	cross-lingual knowledge-sharing	cross-lingual knowledge-sharing	2
+1164	V[m]	A N N	cross-lingual parameter sharing	cross-lingual parameter sharing	2
+1165	T	N N N	multi-space probability distributions	multi-space probability distribution	2
+1166	T	N A N	autoregressive seq2seq model	autoregressive seq2seq model	2
+1167	T	N N	speech file	speech file	2
+1168	T	A N	individual components	individual component	2
+1169	T	A N	previous timestep	previous timestep	2
+1170	T	N V A	bytes is language-dependent	byte be language-dependent	2
+1171	T	N	aligner	aligner	2
+1172	T	N N	syllable nuclei	syllable nucleus	2
+1173	T	A N	textual features	textual feature	2
+1174	T	N N	speech content	speech content	2
+1175	T	N C N N	text and speaker information	text and speaker information	2
+1176	T	N N	Tundra languages	tundra language	2
+1177	T	N N N	speech-to-speech translation projects	speech-to-speech translation project	2
+1178	T	N N N	log magnitude spectrogram	log magnitude spectrogram	2
+1179	T	A N	Equivalent graphemes	equivalent grapheme	2
+1180	T	A N N	higher quality voices	high quality voice	2
+1181	T	N P N N	result of rater comments	result of rater comment	2
+1182	T	A N	implicit assumptions	implicit assumption	2
+1183	T	A N N N	neural network input vector	neural network input vector	2
+1184	T	N N	phoneme system	phoneme system	2
+1185	T	A N	dominant languages	dominant language	2
+1186	T	N P N	remainder of the paper	remainder of paper	2
+1187	T	N A N	Time-Delay Neural Network	time-delay neural network	2
+1188	T	N N	error propagation	error propagation	2
+1189	T	A A N N	hyperbolic tangent activation functions	hyperbolic tangent activation function	2
+1190	T	N N	output data	output datum	2
+1191	T	N P N	languages with respect	language with respect	2
+1192	T	N P N N	experiment with an input representation	experiment with input representation	2
+1193	T	N P N	partitions of the space	partition of space	2
+1194	T	N N	transfer works	transfer work	2
+1195	T	N C A N	constraints and acoustic confusions	constraint and acoustic confusion	2
+1196	T	N P A N	hours of audio data	hour of audio datum	2
+1197	T	A N	low pitch	low pitch	4
+1198	T	A N	larger databases	large database	2
+1199	T	A N N	entire GlobalPhone corpus	entire globalphone corpus	2
+1200	T	A	over-smoothed	over-smoothed	2
+1201	T	N N	power spectrum	power spectrum	2
+1202	T	N P A N	model with additional speaker	model with additional speaker	2
+1203	T	N	homographs	homograph	2
+1204	T	A N	reasonable quality	reasonable quality	2
+1205	T	N N	frame level	frame level	2
+1206	T	N N	language version	language version	2
+1207	T	N P N	development of techniques	development of technique	2
+1208	T	N P N P N	products of powers of the base	product of power of base	2
+1209	T	N N	feature space	feature space	2
+1210	T	N N N	machine translation output	machine translation output	2
+1211	T	N V A	phoneme is higher	phoneme be high	2
+1212	T	A N	backward decoder	backward decoder	2
+1213	T	A N	cepstral domain	cepstral domain	2
+1214	T	N C N N	phoneme and word error	phoneme and word error	2
+1215	T	A N	Xerox tools	xerox tool	2
+1216	T	A N N N	higher similarity MOS scores	high similarity mo score	2
+1217	T	A N	location-sensitive attention	location-sensitive attention	2
+1218	T	A N A N	critical band auditory spectrum	critical band auditory spectrum	2
+1219	T	N N	phone class	phone class	2
+1220	T	A N	professional recording	professional recording	2
+1221	T	N N N N	phoneme pair error rate	phoneme pair error rate	2
+1222	T	A N N	English word stress	english word stress	2
+1223	T	N P N N	length of output spectrogram	length of output spectrogram	2
+1224	T	A N	explicit language	explicit language	2
+1225	T	A C A N	real and synthetic utterances	real and synthetic utterance	2
+1226	T	N N	candidate unit	candidate unit	2
+1227	T	N P N P N	terms of sums of products	term of sum of product	2
+1228	T	A N N	future context information	future context information	2
+1229	T	A N	log-linear spectrograms	log-linear spectrograms	2
+1230	T	A N	specific speaker	specific speaker	2
+1231	T	A A A N	single Gaussian prior distribution	single gaussian prior distribution	2
+1232	T	N V A	pre-net is critical	pre-net be critical	2
+1233	T	A N P N N	native speaker of the target language	native speaker of target language	2
+1234	T	N N N	adversarial loss Introduction	adversarial loss introduction	2
+1235	T	N P N	WER of this model	wer of model	2
+1236	T	A N	single kernel	single kernel	2
+1237	T	N N N	WaveNet inference kernels	wavenet inference kernel	2
+1238	T	N N	phoneme symbols	phoneme symbol	2
+1239	T	N N	Corpus Statistics	corpus statistic	2
+1240	T	A N N	sample-level autoregressive methods	sample-level autoregressive method	2
+1241	T	A N	main components	main component	2
+1242	T	N N	tanh nonlinearities	tanh nonlinearity	2
+1243	T	N N	out-of-language detection	out-of-language detection	4
+1244	T	A N	uppermost fragment	uppermost fragment	2
+1245	T	A N P N	large number of languages	large number of language	2
+1246	T	A N	prosodic annotation	prosodic annotation	2
+1247	T	N P N N	naturalness of CN speech	naturalness of cn speech	2
+1248	T	N N	Transfer learning	transfer learning	2
+1249	T	A N N N	Rapid Language Adaptation Toolkit	rapid language adaptation toolkit	2
+1250	T	N N N	adversarial loss term	adversarial loss term	2
+1251	T	A	mel-scale	mel-scale	4
+1252	T	N N	system development	system development	2
+1253	T	N	regularizer	regularizer	2
+1254	T	A A N	time-dependent fundamental frequency	time-dependent fundamental frequency	2
+1255	T	N A N	feedforward hidden layers	feedforward hidden layer	2
+1256	T	N C N N	signal or music score	signal or music score	2
+1257	T	A N	language-model WFSTs	language-model wfsts	4
+1258	T	A N	min-max normalisation	min-max normalisation	2
+1259	T	A A N N	neural network-based speech synthesis	neural network-based speech synthesis	2
+1260	T	N	Basque	basque	4
+1261	T	N N	regularization approach	regularization approach	2
+1262	T	A N N	neural network structure	neural network structure	2
+1263	T	N N	conversion system	conversion system	2
+1264	T	N N N	word class features	word class feature	2
+1265	T	N A N	speaker discriminative models	speaker discriminative model	2
+1266	T	A N P N	hidden state of every layer	hidden state of layer	2
+1267	T	A N	Hungarian data	hungarian datum	2
+1268	T	N N	thread contention	thread contention	2
+1269	T	N P N	variety of styles	variety of style	2
+1270	T	N N	different-speaker similarity	different-speaker similarity	4
+1271	T	N P N C N	length of the filters and stride	length of filter and stride	2
+1272	T	A	nominative	nominative	2
+1273	T	N N N	phoneme boundary detection	phoneme boundary detection	2
+1274	T	N N	cache thrashing	cache thrashing	2
+1275	T	N P N N	estimation of model parameters	estimation of model parameter	2
+1276	T	A N	one-to-one mapping	one-to-one mapping	2
+1277	T	N N	input phoneme	input phoneme	2
+1278	T	N P N	hours of English	hour of english	2
+1279	T	A N	tonal variants	tonal variant	2
+1280	T	N P N N	multi-templates of speech units	multi-templates of speech unit	2
+1281	T	A N N N	automatic speech recognition systems	automatic speech recognition system	2
+1282	T	N P N	case of Model	case of model	2
+1283	T	N P N P N	sums of products of powers	sum of product of power	2
+1284	T	A N N	hierarchical MRASTA features	hierarchical mrasta feature	4
+1285	T	A N	separate word	separate word	2
+1286	T	A N N N	low quality training data	low quality training datum	2
+1287	T	N	lextools	lextools	4
+1288	T	A N P N	moderate control of accent	moderate control of accent	2
+1289	T	A N	Hungarian language	hungarian language	2
+1290	T	R A N	previously unseen characters	previously unseen character	2
+1291	T	N N	FSM toolkit	fsm toolkit	2
+1292	T	N N	ASR models	asr model	2
+1293	T	A N	adjectival readings	adjectival reading	2
+1294	T	N N	Introduction Text-to-speech	introduction text-to-speech	2
+1295	T	A N	Phonetic coverage	phonetic coverage	2
+1296	T	N A N N	end-to-end neural speech synthesis	end-to-end neural speech synthesis	2
+1297	T	N N	period disambiguation	period disambiguation	2
+1298	T	N N	output biases	output bias	2
+1299	T	A N	limited data	limited datum	2
+1300	T	N	Keywords	keywords	2
+1301	T	N P A N	network with residual connections	network with residual connection	2
+1302	T	N V A	gradients are unstable	gradient be unstable	2
+1303	T	N N P N	beam search with width	beam search with width	2
+1304	T	A A N N	recent neural TTS systems	recent neural tts system	2
+1305	T	A N	speaker-specific information	speaker-specific information	2
+1306	T	A N	confident data	confident datum	2
+1307	T	N V A	quality is reasonable	quality be reasonable	2
+1307	V[s]	A N	reasonable quality	reasonable quality	2
+1308	T	N N	language resources	language resource	2
+1309	T	A N	final loss	final loss	2
+1310	T	R A N	morphologically rich languages	morphologically rich language	2
+1311	T	N N	similarity tests	similarity test	2
+1312	T	A A N N	deep unidirectional GRU decoder	deep unidirectional gru decoder	2
+1313	T	A A N	context-dependent acoustic models	context-dependent acoustic model	2
+1314	T	N V A	rectangles are neural	rectangle be neural	2
+1315	T	N P N	place of the phonemes	place of phoneme	2
+1316	T	A N N	UTF-8 byte representation	utf-8 byte representation	2
+1317	T	N N	lexical-to-MMA map	lexical-to-mma map	2
+1318	T	A N	generative process	generative process	2
+1319	T	N N N	text preprocessing modules	text preprocessing module	2
+1320	T	A N	web-based tools	web-based tool	2
+1321	T	N A N	recognizer dependent bias	recognizer dependent bias	2
+1322	T	A A N	separate acoustic model	separate acoustic model	2
+1323	T	N	ELRA	elra	2
+1324	T	N N N	voice conversion techniques	voice conversion technique	2
+1325	T	N C A N	French and Italian recordings	french and italian recording	2
+1326	T	A N	single stage	single stage	2
+1327	T	N P N N N	series of coder parameter vectors	series of coder parameter vector	2
+1328	T	A A N	single hidden layer	single hidden layer	2
+1329	T	N P N	quality of voices	quality of voice	2
+1329	V[s]	N N	voice quality	voice quality	6
+1330	T	N	MBROLA	mbrola	2
+1331	T	N N	output audio	output audio	2
+1332	T	A N	speaker-independent manner	speaker-independent manner	2
+1333	T	N N	Merlin distribution	merlin distribution	2
+1334	T	A N N	phonemic input representation	phonemic input representation	4
+1335	T	N	ELDA	elda	2
+1336	T	A N	syllabic consonants	syllabic consonant	2
+1337	T	A N N	brittle design choices	brittle design choice	2
+1338	T	N N	model hyperparameters	model hyperparameters	2
+1339	T	N N	GALE Mandarin	gale mandarin	2
+1340	T	A N	standard words	standard word	2
+1341	T	A	bootstrapping	bootstrapping	4
+1342	T	N A N N	similarity Mean Opinion Score	similarity mean opinion score	2
+1343	T	A N	Bidirectional RNN	bidirectional rnn	4
+1343	V[s]	A A N	bidirectional LSTM-based RNN	bidirectional lstm-based rnn	2
+1344	T	A N N	language-dependent input representations	language-dependent input representation	2
+1345	T	A N N	best generalization performance	good generalization performance	2
+1346	T	N N N N	speaker encoder training data	speaker encoder training datum	2
+1347	T	N N	Factorization transducer	factorization transducer	2
+1348	T	N N N	MLP features MRASTA	mlp feature mrasta	2
+1349	T	N N N N	multi-band noise gate removal	multi-band noise gate removal	2
+1350	T	A	ill-formed	ill-formed	2
+1351	T	N N	word string	word string	2
+1352	T	A N	16-bit signals	16-bit signal	2
+1353	T	A N N N	single TitanX Maxwell GPU	single titanx maxwell gpu	2
+1354	T	N N	mel-spectrogram side	mel-spectrogram side	2
+1355	T	N N	boundary frequency	boundary frequency	2
+1356	T	N N	application words	application word	2
+1357	T	A	studied	studied	2
+1358	T	N N	Mandarin MLP	mandarin mlp	2
+1359	T	N N P N	speaker coverage of CN	speaker coverage of cn	2
+1360	T	A N P N N	moderate control of speech accent	moderate control of speech accent	2
+1361	T	A N P N	procedural manipulation of rhythm	procedural manipulation of rhythm	2
+1362	T	N N	accuracy ratings	accuracy rating	2
+1363	T	N P N N	set of speaker embeddings	set of speaker embeddings	2
+1364	T	N P A N	Training of such models	training of such model	2
+1365	T	A N	low-dimensional speaker	low-dimensional speaker	2
+1366	T	A N	non-causal converter	non-causal converter	2
+1367	T	A N N	mixed language task	mixed language task	2
+1368	T	N P N	subset of the database	subset of database	2
+1369	T	A N	approximate first-order	approximate first-order	2
+1370	T	N P N	block of rules	block of rule	2
+1371	T	A N N	cross-lingual feature study	cross-lingual feature study	2
+1372	T	N P N N	evaluation of speaker similarity	evaluation of speaker similarity	2
+1373	T	N V A	systems are similar	system be similar	2
+1374	T	N C N N	synthesizer and speaker classifier	synthesizer and speaker classifier	2
+1375	T	A N	correct form	correct form	2
+1376	T	N N N N	multispeaker voice synthesis model	multispeaker voice synthesis model	2
+1377	T	A N N	monolingual MLP features	monolingual mlp feature	2
+1378	T	A N P N	large variety of languages	large variety of language	2
+1379	T	A N	language-specific components	language-specific component	2
+1380	T	N N	transducer Lnumbers	transducer lnumbers	2
+1381	T	N N	preprocessing phase	preprocessing phase	2
+1382	T	N N	waveform concatenation	waveform concatenation	2
+1383	T	A A N	initial acoustic models	initial acoustic model	2
+1384	T	A N	tandem features	tandem feature	2
+1385	T	A N	manual transcription	manual transcription	2
+1386	T	A N	slow drawls	slow drawl	2
+1387	T	N N	Length Control	length control	2
+1388	T	N P N N	identity of the reference speaker	identity of reference speaker	2
+1389	T	A N N	high quality data	high quality datum	2
+1390	T	N N	evaluation data	evaluation data	2
+1391	T	N N	accent transfer	accent transfer	2
+1392	T	N N	syllable boundary	syllable boundary	2
+1393	T	N P N P N	forms of words with phonemes	form of word with phoneme	2
+1394	T	A N N	high modulation frequencies	high modulation frequency	2
+1395	T	A N N	oblique case forms	oblique case form	2
+1396	T	A N	main threads	main thread	2
+1397	T	A N	language-specific phoneme	language-specific phoneme	2
+1398	T	N N N	state mapping techniques	state mapping technique	2
+1399	T	N N	mark constructions	mark construction	2
+1400	T	A N	relative position	relative position	2
+1401	T	A N	significant fraction	significant fraction	2
+1402	T	A N	spectral tilt	spectral tilt	2
+1403	T	N	Reichel	reichel	2
+1404	T	N P N N	model of text analysis	model of text analysis	2
+1405	T	N N N	decision tree question	decision tree question	2
+1406	T	N N N	speaker identity-preserving loss	speaker identity-preserving loss	2
+1407	T	A A N	statistical parametric TTS	statistical parametric tts	2
+1408	T	N N N	unit selection approaches	unit selection approach	2
+1409	T	N N	optimization problem	optimization problem	2
+1410	T	N P N N	representation of the input sequences	representation of input sequence	2
+1411	T	N N N	language identification tasks	language identification task	2
+1412	T	N N	EMIME project	emime project	4
+1413	T	A N	phonetic categories	phonetic category	2
+1414	T	N N	encoder-decoder structure	encoder-decoder structure	2
+1415	T	A N	effective techniques	effective technique	2
+1416	T	N C N N	time and expert knowledge	time and expert knowledge	2
+1417	T	N N	data quality	datum quality	2
+1418	T	N V A	languages is nontrivial	language be nontrivial	2
+1419	T	A N	early stopping	early stopping	2
+1420	T	N N	tone embeddings	tone embeddings	2
+1421	T	N N	layer results	layer result	2
+1422	T	N N	layer normalization	layer normalization	2
+1423	T	N	Prahallad	prahallad	2
+1424	T	A N N	cross-lingual parameter sharing	cross-lingual parameter sharing	2
+1425	T	A A N	1-D convolutional filters	1-d convolutional filter	2
+1426	T	N N	input speakers	input speaker	2
+1427	T	A N N	Conventional TTS corpora	conventional tts corpus	2
+1428	T	A N N N	multilingual speech processing systems	multilingual speech processing system	2
+1429	T	N C N N	CPU and GPU inference	cpu and gpu inference	2
+1430	T	A C A N	past and future context	past and future context	2
+1431	T	A N N	inverse filter outputs	inverse filter output	2
+1432	T	A N	OOL detection	ool detection	4
+1433	T	A N N	neural network outputs	neural network output	2
+1434	T	A N	regular expressions	regular expression	2
+1435	T	N N	rate schedule	rate schedule	2
+1436	T	N	VoiceLoop	voiceloop	4
+1437	T	N N	Encoder parameter	encoder parameter	2
+1438	T	N P N	degree of transfer	degree of transfer	2
+1439	T	N P N	property of the speaker	property of speaker	2
+1440	T	N P N N	sequence of log-mel spectrogram	sequence of log-mel spectrogram	4
+1441	T	N	download	download	2
+1442	T	N N N	speaker identity labels	speaker identity label	2
+1443	T	N N	speech synthesizers	speech synthesizer	4
+1444	T	N N N	audiobook data Introduction	audiobook datum introduction	2
+1445	T	N P N N	MOS of cross-language voice	mo of cross-language voice	2
+1446	T	A C A N	primary and secondary stresses	primary and secondary stress	2
+1447	T	A N P N	central state of the model	central state of model	2
+1448	T	N N N	sentence error rate	sentence error rate	2
+1449	T	N N	data mapping	data mapping	2
+1450	T	A N	data-driven approaches	data-driven approach	2
+1451	T	N N N	Single-Speaker Speech Synthesis	single-speaker speech synthesis	2
+1452	T	N N	CMUDict dataset	cmudict dataset	4
+1453	T	N N	phone durations	phone duration	2
+1454	T	N N	grapheme representation	grapheme representation	2
+1455	T	A N	numerical features	numerical feature	2
+1456	T	A N	median filter	median filter	2
+1457	T	A N	main memory	main memory	2
+1458	T	A N	genitive case	genitive case	2
+1459	T	A N N	spectral envelope features	spectral envelope feature	2
+1460	T	N N	model WFSTs	model wfsts	2
+1461	T	N N N	training speaker diversity	training speaker diversity	2
+1462	T	N	triphone	triphone	4
+1463	T	A N	low frequencies	low frequency	2
+1464	T	N C N N	EN and CN raters	en and cn rater	2
+1465	T	N N	language mismatch	language mismatch	2
+1466	T	N	acceptor	acceptor	2
+1467	T	N N N	FastSpeech model training	fastspeech model training	2
+1468	T	N N	phoneme clusters	phoneme cluster	2
+1469	T	A N	common representation	common representation	2
+1470	T	N N	conditioning synthesis	conditioning synthesis	2
+1471	T	R A N	significantly less data	significantly less datum	2
+1472	T	N N N	GPU inference speeds	gpu inference speed	2
+1473	T	N N	Motorola systems	motorola system	2
+1474	T	N N	speaker id	speaker id	2
+1475	T	A A N	unsupervised cross-lingual adaptation	unsupervised cross-lingual adaptation	2
+1475	V[s]	A A N N	unsupervised cross-lingual speaker adaptation	unsupervised cross-lingual speaker adaptation	3
+1476	T	A	run-time	run-time	2
+1477	T	A N	equivalent phonemes	equivalent phoneme	2
+1478	T	N P A N	amounts of low quality	amount of low quality	2
+1479	T	N N	SST system	sst system	2
+1480	T	A N	data-poor scenario	data-poor scenario	2
+1481	T	A A N	non-autoregressive seq2seq model	non-autoregressive seq2seq model	2
+1482	T	A N	English-trained MLP	english-trained mlp	2
+1483	T	N N N	speech synthesis toolkit	speech synthesis toolkit	2
+1484	T	N N	diphone voices	diphone voice	2
+1485	T	N N	error types	error type	2
+1486	T	A N N	subjective MOS evaluation	subjective mo evaluation	2
+1487	T	N N	text information	text information	2
+1488	T	A N	rudimentary support	rudimentary support	2
+1489	T	A N	lower expectations	low expectation	2
+1490	T	A N N	lower self similarity	low self similarity	2
+1491	T	A A A N	neural network-based acoustic model	neural network-based acoustic model	2
+1492	T	N V A	model is incapable	model be incapable	2
+1493	T	N N	voice dataset	voice dataset	2
+1494	T	N N	GRU encoder	gru encoder	2
+1495	T	A	confusable	confusable	2
+1496	T	A N	Future versions	future version	2
+1497	T	N N	Yin algorithm	yin algorithm	2
+1498	T	N N	excitation signal	excitation signal	2
+1499	T	A	Latin-based	latin-based	2
+1500	T	A A N	smallest basic units	small basic unit	2
+1501	T	N P N	subset of utterances	subset of utterance	2
+1502	T	A N	full model	full model	2
+1502	V[s]	A A N	full multilingual model	full multilingual model	3
+1503	T	N P A N	phonemes of a conventional front-end	phoneme of conventional front-end	2
+1504	T	N	LM-BM	lm-bm	2
+1505	T	A N	arabic numbers	arabic number	2
+1506	T	A N N	automatic language detection	automatic language detection	2
+1507	T	A N N	better objective results	good objective result	2
+1508	T	N N	filter size	filter size	2
+1509	T	N P N N	part of the synthesis task	part of synthesis task	2
+1510	T	A N	universal resource	universal resource	2
+1511	T	A N	multiple voices	multiple voice	2
+1512	T	N N	Access date	access date	2
+1513	T	A N	posterior distribution	posterior distribution	2
+1514	T	N P N N	representation of speaker identity	representation of speaker identity	2
+1515	T	A N	deeper layers	deep layer	2
+1516	T	A N	long words	long word	2
+1517	T	A N N	multilingual text-to-speech systems	multilingual text-to-speech system	2
+1518	T	N P N N	part of speech categories	part of speech category	2
+1519	T	A N N	personalized speech-to-speech translation	personalized speech-to-speech translation	2
+1520	T	A N N	unlabelled speech attributes	unlabelled speech attribute	2
+1521	T	N N	synthesis module	synthesis module	2
+1522	T	A A N	multilingual phoneme-based systems	multilingual phoneme-based system	2
+1523	T	A N P N N	rapid deployment of speech processing	rapid deployment of speech processing	2
+1524	T	N N	Mandarin data	mandarin datum	2
+1525	T	A N N	laborious feature engineering	laborious feature engineering	2
+1526	T	A N N	cross-lingual speaker transfer	cross-lingual speaker transfer	2
+1527	T	A N N	deep learning approaches	deep learning approach	2
+1528	T	N N	train set	train set	2
+1529	T	N C N N	hyper-parameters and network architectures	hyper-parameters and network architecture	2
+1530	T	A N P N	informal comparisons of the outputs	informal comparison of output	2
+1531	T	N N N	ground truth scores	ground truth score	2
+1532	T	A N	relative difficulty	relative difficulty	2
+1533	T	N N	speech transcriptions	speech transcription	2
+1534	T	N N	Bell Laboratories	bell laboratory	2
+1535	T	A N	large distance	large distance	2
+1536	T	N	MMSE	mmse	2
+1537	T	N P N N	utterance with a reference utterance	utterance with reference utterance	2
+1538	T	A N	non-trivial tasks	non-trivial task	2
+1539	T	N	CPUs	cpus	2
+1540	T	N	GP-Dict	gp-dict	2
+1541	T	N A N	rating synthetic speech	rating synthetic speech	2
+1542	T	A N	prosodic phrasing	prosodic phrasing	2
+1543	T	N N	speech-to-text translation	speech-to-text translation	2
+1544	T	N C N N	representations or model components	representation or model component	2
+1545	T	A N	zero-padded frames	zero-padded frame	2
+1546	T	A N	special out-of-vocabulary	special out-of-vocabulary	2
+1547	T	N N	system function	system function	2
+1548	T	A	Brahmic	brahmic	2
+1549	T	R	Empirically	empirically	2
+1550	T	N N	Introduction Text	introduction text	2
+1551	T	N N	interword space	interword space	2
+1552	T	A	above-mentioned	above-mentioned	2
+1553	T	A N N	simple table lookup	simple table lookup	2
+1554	T	A	linear-scale	linear-scale	6
+1555	T	A A A N	variational autoencoder-like residual encoder	variational autoencoder-like residual encoder	4
+1556	T	A N N	pretrained autoregressive model	pretrained autoregressive model	2
+1557	T	A N	current research	current research	2
+1558	T	A N N	Manual error analysis	manual error analysis	2
+1559	T	N P A N	context of cross-lingual adaptation	context of cross-lingual adaptation	2
+1560	T	N N	data-stress situations	data-stress situation	2
+1561	T	N C A N	Transformer and 1D convolution	transformer and 1d convolution	2
+1562	T	N N	time derivatives	time derivative	2
+1563	T	N N N	CBHG post-processing network	cbhg post-processing network	2
+1564	T	A N	realistic speech	realistic speech	2
+1565	T	N P A N	incorporation of temporal context	incorporation of temporal context	2
+1566	T	N N	NVidia Titan	nvidia titan	2
+1567	T	N N N N N	Input representations End-to-end TTS models	input representation end-to-end tts model	2
+1568	T	A N	current frame	current frame	2
+1569	T	A N	dimensional vector	dimensional vector	2
+1570	T	N N	spectrogram features	spectrogram feature	2
+1571	T	A A N	unconditional audio generation	unconditional audio generation	2
+1572	T	N	small-footprint	small-footprint	2
+1572	V[mg]	A N	smaller footprint	small footprint	4
+1573	T	N	Taggers	taggers	2
+1574	T	A N	OOL segments	ool segment	2
+1575	T	R A N	lightly supervised method	lightly supervised method	2
+1576	T	A N	rule-based approaches	rule-based approach	2
+1577	T	N	skidkoj	skidkoj	2
+1578	T	A N	multilingual systems	multilingual system	2
+1578	V[s]	A A N	multilingual phoneme-based systems	multilingual phoneme-based system	2
+1578	V[s]	A N N N	multilingual speech processing systems	multilingual speech processing system	2
+1579	T	N N P N	similarity MOS of cross-language	similarity mo of cross-language	2
+1580	T	N C N N	training and autoregressive inference	training and autoregressive inference	2
+1581	T	A N	natural TTS	natural tts	2
+1582	T	A N N	inverse autoregressive flow	inverse autoregressive flow	2
+1583	T	A A N	neural network-based system	neural network-based system	2
+1584	T	R	channel-wise	channel-wise	2
+1585	T	N	Ioffe	ioffe	2
+1586	T	A N N	final language model	final language model	2
+1587	T	A N N N	single speaker per-language variant	single speaker per-language variant	2
+1588	T	N V A	classification is similar	classification be similar	2
+1589	T	N N	training audio	training audio	2
+1590	T	A N N	state-tying decision tree	state-tying decision tree	2
+1591	T	A N N	Gaussian autoregressive WaveNet	gaussian autoregressive wavenet	2
+1592	T	A N	linguistic form	linguistic form	2
+1593	T	N N	character properties	character property	2
+1594	T	N N	density distillation	density distillation	2
+1595	T	N N N	input language states	input language state	2
+1596	T	N V A	phoneme is voiced	phoneme be voiced	2
+1597	T	A N	diverse speech	diverse speech	2
+1598	T	A N	full dataset	full dataset	2
+1599	T	A N	desirable feature	desirable feature	2
+1600	T	A N	small subset	small subset	2
+1601	T	A A N N	adaptive cepstral analysis algorithm	adaptive cepstral analysis algorithm	2
+1602	T	A N N	prosodic phrase boundary	prosodic phrase boundary	2
+1603	T	N N	Mandarin vocabulary	mandarin vocabulary	2
+1604	T	N N	decoder output	decoder output	2
+1605	T	A	3-dim	3-dim	2
+1606	T	A N	small set	small set	2
+1607	T	N C N N	speaker and language factorization	speaker and language factorization	2
+1608	T	N N N	grapheme-to-phoneme conversion models	grapheme-to-phoneme conversion model	2
+1609	T	A N	audio corpus	audio corpus	2
+1610	T	N V A	picture is similar	picture be similar	2
+1611	T	A N	time-step index	time-step index	2
+1612	T	N P A N	Comparison of objective results	comparison of objective result	2
+1613	T	A N N	native speaker identity	native speaker identity	2
+1614	T	N N	MUSHRA tests	mushra test	2
+1615	T	N C N P N	phoneme-set or part of speech	phoneme-set or part of speech	2
+1616	T	N	test-sentence	test-sentence	4
+1617	T	A N	natural variability	natural variability	2
+1618	T	N	CNNs	cnns	2
+1619	T	N	EN-to-ES	en-to-es	2
+1620	T	N P N	off-diagonals of Table	off-diagonals of table	2
+1621	T	N C A N	char or byte-based variants	char or byte-based variant	2
+1622	T	N N N	multimedia data mining	multimedia datum mining	2
+1623	T	N N	FFT size	fft size	2
+1624	T	A N	related field	related field	2
+1625	T	N N	Input Structure	input structure	2
+1626	T	N N	minority languages	minority language	2
+1627	T	N N	evaluation sentences	evaluation sentence	2
+1628	T	N P N	sharing of data	sharing of datum	2
+1629	T	N P N	Percent of Words	percent of word	2
+1630	T	A	faster-than-real-time	faster-than-real-time	4
+1631	T	A N	pre-trained models	pre-trained model	2
+1632	T	N	EN-to-CN	en-to-cn	2
+1633	T	A N N	Site-Specific Speaker Embeddings	site-specific speaker embeddings	2
+1634	T	A N	variational autoencoder-style	variational autoencoder-style	2
+1635	T	R	distantly	distantly	2
+1636	T	N N	POS tagger	po tagger	2
+1637	T	A N N	challenging test sentences	challenging test sentence	2
+1638	T	N P N	lack of controllability	lack of controllability	2
+1639	T	N N N	unit selection voices	unit selection voice	2
+1640	T	A A N N	multilingual neural TTS model	multilingual neural tts model	2
+1641	T	N N	data sparsity	data sparsity	2
+1642	T	N P N N	component of a text-to-speech system	component of text-to-speech system	2
+1643	T	A N	sigmoid nonlinearity	sigmoid nonlinearity	2
+1644	T	A N P N N	smaller number of input tokens	small number of input token	2
+1645	T	N N N	pronunciation dictionary entry	pronunciation dictionary entry	2
+1646	T	N N	ML criterion	ml criterion	2
+1647	T	A N	absolute error	absolute error	2
+1648	T	N	Wi,j	wi,j	2
+1649	T	N N	impulse response	impulse response	2
+1650	T	N	cepstra	cepstra	2
+1651	T	N N	softmax layer	softmax layer	2
+1652	T	N N	navigation systems	navigation system	2
+1653	T	A C A N N	monolingual and multilingual model performance	monolingual and multilingual model performance	2
+1654	T	N C N N	identification and out-of-language detection	identification and out-of-language detection	2
+1655	T	N C N N	accent and speaker identity	accent and speaker identity	2
+1656	T	N N	text-to-speech research	text-to-speech research	2
+1657	T	N N	source representations	source representation	2
+1658	T	N P N	contribution of each component	contribution of component	2
+1659	T	N N	attribute encoder	attribute encoder	2
+1660	T	R A A N	fully parallel neural TTS	fully parallel neural tts	2
+1661	T	A N N	attention-based sequence-to-sequence model	attention-based sequence-to-sequence model	2
+1662	T	N P N N	lack of language conventions	lack of language convention	2
+1663	T	N C N N	character and phoneme models	character and phoneme model	2
+1664	T	N P N N	control of speaker identity	control of speaker identity	2
+1665	T	N N	WaveNet inputs	wavenet input	2
+1666	T	A N	audible artifacts	audible artifact	2
+1667	T	N C N N	Model and training setup	model and training setup	2
+1668	T	A N N	grapheme-based input vocabulary	grapheme-based input vocabulary	2
+1669	T	A N	sound quality	sound quality	2
+1670	T	A N N N N	multilingual Bell Labs TTS system	multilingual bell lab tts system	2
+1671	T	A N N	distilled IAF vocoder	distilled iaf vocoder	2
+1672	T	N N	utterance selection	utterance selection	2
+1673	T	N N	seed models	seed model	2
+1674	T	N N P N	density function of speech	density function of speech	2
+1675	T	A N N	linguistic feature vector	linguistic feature vector	2
+1676	T	N N	default inputs	default input	2
+1677	T	N	incl	incl	2
+1678	T	N P N N	case with byte inputs	case with byte input	2
+1679	T	N P A N	rise of statistical machine	rise of statistical machine	2
+1680	T	N P N N	voices with naturalness MOS	voice with naturalness mo	2
+1681	T	N N	demo voices	demo voice	2
+1682	T	N N	MOS tests	mo test	2
+1683	T	N P N	encoder of WaveVAE	encoder of wavevae	2
+1684	T	A N N	unified input representation	unified input representation	2
+1685	T	N	skidkoĭ	skidkoĭ	2
+1686	T	A N	Swiss French	swiss french	2
+1687	T	A A N	better acoustic model	good acoustic model	2
+1688	T	N N	language modeling	language modeling	2
+1689	T	A N	basic system	basic system	2
+1690	T	A N N	acoustic model bootstrapping	acoustic model bootstrapping	2
+1691	T	A N	special type	special type	2
+1692	T	A N	precise pitch	precise pitch	2
+1693	T	N P N	sequences of graphemes	sequence of grapheme	2
+1693	V[s]	N N	grapheme sequence	grapheme sequence	6
+1694	T	N P N	performance of FastSpeech	performance of fastspeech	2
+1695	T	N N N	TTS text preprocessing	tts text preprocessing	2
+1696	T	N P A N	top of the variational autoencoder	top of variational autoencoder	2
+1697	T	A N	aperiodic parameters	aperiodic parameter	2
+1698	T	N N	text processing	text processing	2
+1699	T	A N	bad joins	bad join	2
+1700	T	A A N	initial public version	initial public version	2
+1701	T	N P A N	impact of such outliers	impact of such outlier	2
+1702	T	N	VSMs	vsms	2
+1703	T	N P N C N	categories of letter and word	category of letter and word	2
+1704	T	A N	lexical representations	lexical representation	2
+1705	T	N N	notation simplicity	notation simplicity	2
+1706	T	A N	high-level features	high-level feature	2
+1707	T	A N	HMM-based synthesis	hmm-based synthesis	2
+1708	T	A N	Mel-Cepstral Distortion	mel-cepstral distortion	2
+1709	T	N	knowledge-sharing	knowledge-sharing	4
+1710	T	A N	common components	common component	2
+1711	T	N V A	rules is labor-intensive	rule be labor-intensive	2
+1712	T	A N	80k steps	80k step	2
+1713	T	A N	textual inputs	textual input	2
+1714	T	N P A N	sizes of the 1D convolution	size of 1d convolution	2
+1715	T	N N	Grant Agreement	grant agreement	2
+1716	T	N N	MOS results	mo result	2
+1717	T	A N P N	multiple speakers of each language	multiple speaker of language	2
+1718	T	A N	short utterances	short utterance	2
+1719	T	A N	forward encoder	forward encoder	2
+1720	T	N C N N	effort and expert knowledge	effort and expert knowledge	2
+1721	T	A A N N	Swiss National Science Foundation	swiss national science foundation	2
+1722	T	A N	fully-connected networks	fully-connected network	2
+1723	T	A N	modified version	modified version	2
+1724	T	N N N	vector space model	vector space model	2
+1725	T	N N	input audio	input audio	2
+1726	T	N P N	spelling of a word	spelling of word	2
+1727	T	N N	character sequence	character sequence	2
+1728	T	A N	excellent basis	excellent basis	2
+1729	T	N P N	Probability of word	probability of word	2
+1730	T	A A N	similar bilingual Chinese	similar bilingual chinese	2
+1731	T	N P N N	sharing of model capacity	sharing of model capacity	2
+1732	T	A N	Light Supervision	light supervision	2
+1733	T	N P N	subset of LibriTTS	subset of libritts	2
+1734	T	N N	encoder-decoder framework	encoder-decoder framework	2
+1735	T	A A A N	zero-mean stationary Gaussian process	zero-mean stationary gaussian process	2
+1736	T	A N	neural model	neural model	2
+1736	V[s]	A A A N	neural network-based acoustic model	neural network-based acoustic model	2
+1737	T	A N	static coefficients	static coefficient	2
+1738	T	A N	phoneme-based model	phoneme-based model	2
+1739	T	A N	competitive results	competitive result	2
+1740	T	N N	synthesis structure	synthesis structure	2
+1741	T	N N N N	phoneme duration prediction models	phoneme duration prediction model	2
+1742	T	A N	larger gap	large gap	2
+1743	T	N P A N	Sizes of lexical analysis	size of lexical analysis	2
+1744	T	A N N	synthetic CN speech	synthetic cn speech	2
+1745	T	N	resp	resp	2
+1746	T	N P A N	module of the multilingual Bell	module of multilingual bell	2
+1747	T	N N N	Naturalness MOS decreases	naturalness mo decrease	2
+1748	T	A N	perfect correlation	perfect correlation	2
+1749	T	N N	cross entropy	cross entropy	2
+1750	T	N N	GEN models	gen model	2
+1751	T	N	kilograms	kilogram	2
+1752	T	N P N N	evaluations of speech naturalness	evaluation of speech naturalness	2
+1753	T	N V A	styles are present	style be present	2
+1754	T	N	approximant	approximant	2
+1755	T	A N	efficient training	efficient training	2
+1756	T	N	priori	priori	2
+1757	T	N N	i-th mel	i-th mel	2
+1758	T	N N	tone information	tone information	2
+1759	T	A N N N	spectral feature baseline system	spectral feature baseline system	2
+1760	T	N N	tagset inconsistencies	tagset inconsistency	2
+1761	T	N N	adaptation transforms	adaptation transform	2
+1762	T	N P N	forms of procent	form of procent	2
+1763	T	N P N N	languages with multi-byte characters	language with multi-byte character	2
+1764	T	N N	word types	word type	2
+1765	T	A N N	alphabetic writing system	alphabetic writing system	2
+1766	T	N N	convergence speed	convergence speed	2
+1767	T	N N	Graphemes Embeddings	grapheme embeddings	2
+1768	T	N N N	speaker similarity MOS	speaker similarity mo	2
+1769	T	N C A N	speaker and language-independent text	speaker and language-independent text	2
+1770	T	A A N N	NIST RT05 evaluation data	nist rt05 evaluation datum	2
+1771	T	N N N	input text sequence	input text sequence	2
+1772	T	A N P N	large amount of data	large amount of datum	2
+1773	T	R	schematically	schematically	2
+1774	T	N N	CPU kernels	cpu kernel	2
+1775	T	A A A N	zero-mean white Gaussian noise	zero-mean white gaussian noise	2
+1776	T	N P N N	performance of G2P conversion	performance of g2p conversion	2
+1777	T	A	extensible	extensible	2
+1778	T	N P N	languages of a corpus	language of corpus	2
+1779	T	N N	convolution outputs	convolution output	2
+1780	T	N N	NLP tasks	nlp task	2
+1781	T	N P A N	consequence of the low speaker	consequence of low speaker	2
+1782	T	N N N	van den Bosch	van den bosch	2
+1783	T	A N N	non-autoregressive sequence generation	non-autoregressive sequence generation	2
+1784	T	A N N N	cross-lingual MLP adaptation approach	cross-lingual mlp adaptation approach	2
+1785	T	A N	consistent voice	consistent voice	2
+1786	T	N A N N	end-to-end generative TTS model	end-to-end generative tts model	2
+1787	T	N P N	variety of applications	variety of application	2
+1788	T	N N P N	Maxwell GPU with each iteration	maxwell gpu with iteration	2
+1789	T	A N	hidden reference	hidden reference	2
+1790	T	N N	output phoneme	output phoneme	2
+1791	T	A	harmonic	harmonic	4
+1792	T	A N	infinite sequence	infinite sequence	2
+1793	T	A N	multimodal interaction	multimodal interaction	2
+1794	T	A N	empty phoneme	empty phoneme	2
+1795	T	N P N	representation of speaker	representation of speaker	4
+1796	T	N	Pashtu	pashtu	2
+1797	T	A N	final utterance	final utterance	2
+1798	T	A N N	English speaking raters	english speaking rater	2
+1799	T	N P A N	training of a multilingual model	training of multilingual model	2
+1800	T	A N	finer-grained alignments	finer-grained alignment	2
+1801	T	N N	Mellotron defaults	mellotron default	2
+1802	T	A N N	text-to-linguistic description subsystem	text-to-linguistic description subsystem	2
+1803	T	N C N N	speed or prosody control	speed or prosody control	2
+1804	T	A N	interactive demos	interactive demo	2
+1805	T	A N A N	Open Source Neural Network	open source neural network	2
+1806	T	N N N	batch normalization layer	batch normalization layer	2
+1807	T	A N	2-D convolution	2-d convolution	2
+1808	T	A N P N	latest status of the GlobalPhone	late status of globalphone	2
+1809	T	N C N N	character or byte inputs	character or byte input	2
+1810	T	A N P N N	convolutional network with ReLU activation	convolutional network with relu activation	2
+1811	T	N P A N	languages with moderate control	language with moderate control	2
+1812	T	N N N	word syllable length	word syllable length	2
+1813	T	A N	initial attention	initial attention	2
+1814	T	N V A	task is similar	task be similar	2
+1815	T	A N	unique words	unique word	2
+1816	T	A N	null hypothesis	null hypothesis	2
+1817	T	A N	Monolingual tandem	monolingual tandem	2
+1818	T	A N	initial state	initial state	2
+1819	T	N P N	applications of TTS	application of tts	2
+1820	T	N N	vanilla Tacotron	vanilla tacotron	2
+1821	T	N	backpropagation	backpropagation	2
+1822	T	N P N	variant of WaveNet	variant of wavenet	2
+1823	T	A N	Swiss German	swiss german	2
+1824	T	A A N N	low-dimensional trainable speaker embeddings	low-dimensional trainable speaker embeddings	2
+1825	T	N V A	systems are sensitive	system be sensitive	2
+1826	T	N P A N	goal of automatic language	goal of automatic language	2
+1827	T	A N	promising results	promising result	2
+1828	T	A N	contextual factors	contextual factor	2
+1829	T	N N	feature normalisation	feature normalisation	2
+1830	T	A N N	bilingual TTS model	bilingual tts model	2
+1831	T	N N	model loss	model loss	2
+1832	T	A N	Romanian data	romanian datum	2
+1833	T	N V A	system is unusable	system be unusable	2
+1834	T	N N	default settings	default setting	2
+1835	T	N V A	setting is straightforward	setting be straightforward	2
+1836	T	N N	prosody context	prosody context	2
+1837	T	N	RBMs	rbms	2
+1838	T	N V A	toolkit is Open	toolkit be open	2
+1839	T	A N	autoencoding input	autoencoding input	2
+1840	T	A	robotic	robotic	2
+1841	T	N V A	model is applicable	model be applicable	2
+1842	T	A N	24kHz dataset	24khz dataset	2
+1843	T	N N	base Tacotron	base tacotron	2
+1844	T	N P N	importance of training	importance of training	2
+1845	T	A N N N	Cross-lingual MLP feature extraction	cross-lingual mlp feature extraction	2
+1846	T	N N	system builder	system builder	2
+1847	T	N N	skip network	skip network	2
+1848	T	N N	CMUDict experiments	cmudict experiment	2
+1849	T	N N	out-of-language segments	out-of-language segment	2
+1850	T	N N	input words	input word	2
+1851	T	A N	200K steps	200k step	2
+1852	T	A N	English MLP	english mlp	2
+1853	T	A N N	stand-alone MLP feature	stand-alone mlp feature	2
+1854	T	A N	incorrect phonemes	incorrect phoneme	2
+1855	T	N V A	trend is similar	trend be similar	2
+1855	V[s]	A N	similar trend	similar trend	3
+1856	T	A N N	recurrent output layer	recurrent output layer	2
+1857	T	A N P N	lower amounts of data	low amount of datum	2
+1858	T	A	GMM-based	gmm-based	2
+1859	T	N N N	speaker verification system	speaker verification system	2
+1860	T	A N P N	gradient clipping with factor	gradient clipping with factor	2
+1861	T	N N P N	voice actors with accents	voice actor with accent	2
+1862	T	A N	large body	large body	2
+1863	T	N N N	Output language states	output language state	2
+1864	T	N P A N	sequence of 128-dim log-mel	sequence of 128-dim log-mel	2
+1865	T	N N P N	phoneme sequences of words	phoneme sequence of word	2
+1866	T	A N	prosodic models	prosodic model	2
+1867	T	A N	stable attentions	stable attention	2
+1868	T	N N	decoder targets	decoder target	2
+1869	T	N N	grapheme sets	grapheme set	2
+1870	T	N N N	softmax activation function	softmax activation function	2
+1871	T	A N	phonological features	phonological feature	2
+1872	T	A N	phoneme-independent embeddings	phoneme-independent embeddings	2
+1873	T	A N	concurrent work	concurrent work	2
+1874	T	N V A	work are familiar	work be familiar	2
+1875	T	A N	mel-scale spectrogram	mel-scale spectrogram	2
+1876	T	N C A N	naturalness but higher similarity	naturalness but high similarity	2
+1877	T	A N	KLT statistics	klt statistic	2
+1878	T	A N	geographic locations	geographic location	2
+1879	T	A A N	baseline monolingual models	baseline monolingual model	2
+1880	T	N P N N	distortion of band aperiodicities	distortion of band aperiodicity	2
+1881	T	N N	mean-variance normalisation	mean-variance normalisation	2
+1882	T	A N N	Gaussian mixture models	gaussian mixture model	2
+1883	T	A N P N N	small amounts of adaptation data	small amount of adaptation datum	2
+1884	T	A C A N	native or foreign accents	native or foreign accent	2
+1885	T	N N	Griffin-Lim algorithm	griffin-lim algorithm	4
+1886	T	A N	CNN-based sequence-to-sequence	cnn-based sequence-to-sequence	2
+1887	T	A N	Dynamic Programming	dynamic programming	2
+1888	T	N C N N	transcription and phone set	transcription and phone set	2
+1889	T	N P N N	duration of the space characters	duration of space character	2
+1890	T	N	HCRF	hcrf	2
+1891	T	N	codebook	codebook	4
+1892	T	A N	challenging task	challenging task	2
+1893	T	A N	multilingual case	multilingual case	2
+1894	T	N C N N	rhythm and pitch information	rhythm and pitch information	2
+1895	T	N P A N	Details of the Bidirectional Decoder	detail of bidirectional decoder	2
+1896	T	N N	training Mellotron	training mellotron	2
+1897	T	A N	spectral enhancement	spectral enhancement	2
+1898	T	N	i-vectors	i-vectors	2
+1899	T	A N N	probable tag sequence	probable tag sequence	2
+1900	T	N N	source code	source code	2
+1901	T	N P A N	Ministry of Human Resources	ministry of human resource	2
+1902	T	N V A	classifiers are fully-connected	classifier be fully-connected	2
+1903	T	A N	unknown words	unknown word	2
+1904	T	A N	best set	good set	2
+1905	T	N	tag-set	tag-set	2
+1906	T	N N	pre-processing steps	pre-processing step	2
+1907	T	A N N	expanded sequence Hmel	expanded sequence hmel	2
+1908	T	A N	Major bottlenecks	major bottleneck	2
+1909	T	A N	Romanian system	romanian system	2
+1910	T	A N	fair comparison	fair comparison	2
+1911	T	N N	training steps	training step	2
+1912	T	N P N	field of MLSP	field of mlsp	2
+1913	T	A N	proprietary dataset	proprietary dataset	2
+1914	T	N N N	msec frame intervals	msec frame interval	2
+1915	T	N N	target audio	target audio	2
+1916	T	A N	additional advantage	additional advantage	2
+1917	T	N V A	effect is larger	effect be large	2
+1918	T	N V A	language is small	language be small	2
+1919	T	N C N N	accuracy and voice quality	accuracy and voice quality	2
+1920	T	A N P N N	plain text with POS tags	plain text with po tag	2
+1921	T	N	kostr0a	kostr0a	2
+1922	T	N P N N	languages of the Tundra corpus	language of tundra corpus	2
+1923	T	N N	likelihood evaluation	likelihood evaluation	2
+1924	T	N N N	log pitch frequency	log pitch frequency	2
+1925	T	A N	one-to-one alignment	one-to-one alignment	2
+1926	T	N	transcripts	transcript	30
+1927	T	N P N	type of network	type of network	2
+1928	T	N N	image synthesis	image synthesis	2
+1929	T	A	multi-stage	multi-stage	4
+1930	T	A N	Morphologic segmentation	morphologic segmentation	2
+1931	T	N N	target position	target position	2
+1932	T	A N	objective errors	objective error	2
+1933	T	N N	OOV problem	oov problem	2
+1934	T	N N N	target mel-spectrogram sequence	target mel-spectrogram sequence	2
+1935	T	A N	transparent orthographies	transparent orthography	2
+1935	V[s]	A A N	transparent alphabetic orthographies	transparent alphabetic orthography	2
+1936	T	N	modifier	modifier	2
+1937	T	N N	MLP training	mlp training	2
+1938	T	N N	adversarial layer	adversarial layer	2
+1939	T	N C N N	Daelemans and van den	daelemans and van den	2
+1940	T	N N	KLD criterion	kld criterion	2
+1941	T	A N N	commercial text-to-speech systems	commercial text-to-speech system	2
+1942	T	A N P N	top row of Table	top row of table	2
+1943	T	A N	marked events	marked event	2
+1944	T	A A A N N	multilingual parametric neural TTS system	multilingual parametric neural tts system	2
+1945	T	N P N N N	Performance of Mandarin ASR systems	performance of mandarin asr system	2
+1946	T	N C N N	Interaction and MULTImedia Data	interaction and multimedia datum	2
+1947	T	N N	Encoder-Decoder LSTM	encoder-decoder lstm	2
+1948	T	A N	monolingual speakers	monolingual speaker	2
+1949	T	N C A N	representation and shared parameters	representation and shared parameter	2
+1950	T	N N N	letter error rate	letter error rate	2
+1951	T	A A N	English native speaker	english native speaker	2
+1952	T	N N	Successor Variety	successor variety	2
+1953	T	N N P N	CN case with byte	cn case with byte	2
+1954	T	N N	transform mapping	transform mapping	2
+1955	T	A A N	Chinese native speakers	chinese native speaker	2
+1956	T	A N	short words	short word	2
+1957	T	A	well-explained	well-explained	2
+1958	T	N N	training database	training database	2
+1959	T	N V A	voices were indistinguishable	voice be indistinguishable	2
+1960	T	A	non-linearity	non-linearity	2
+1961	T	N N	student project	student project	2
+1962	T	N P N N	framework with attention mechanism	framework with attention mechanism	2
+1963	T	N V A	sets are disjoint	set be disjoint	2
+1964	T	A N	language-specific text	language-specific text	2
+1965	T	A N A N N	Recent end-to-end neural TTS models	recent end-to-end neural tts model	2
+1966	T	N C N N	text and speaker encoders	text and speaker encoder	2
+1967	T	N N	validation data	validation datum	2
+1968	T	A N N N	high variance similarity MOS	high variance similarity mo	2
+1969	T	N N A N	loss Introduction Recent end-to-end	loss introduction recent end-to-end	2
+1970	T	A A N	WaveNet-based neural vocoder	wavenet-based neural vocoder	2
+1971	T	N N	uncertainty sampling	uncertainty sampling	2
+1972	T	A N	entire utterance	entire utterance	2
+1973	T	A A N N	HMM-based parametric TTS system	hmm-based parametric tts system	2
+1974	T	A N	well-defined contexts	well-defined context	2
+1975	T	A N	hard cases	hard case	2
+1976	T	A N	latent dimension	latent dimension	2
+1977	T	A N	exponential decay	exponential decay	2
+1978	T	N N	synthesis parts	synthesis part	2
+1979	T	N	Hausa	hausa	2
+1980	T	N	English–Mandarin	english–mandarin	2
+1981	T	A N	mobile devices	mobile device	2
+1982	T	N N P N	surface forms of words	surface form of word	2
+1983	T	A N P N N	lookup table of speaker embeddings	lookup table of speaker embeddings	2
+1984	T	N N	rhythm information	rhythm information	2
+1985	T	A N	human perception	human perception	2
+1986	T	N N	CN voice	cn voice	2
+1987	T	N N A N	fidelity audio lower scores	fidelity audio low score	2
+1988	T	A N	single layer	single layer	2
+1988	V[s]	A A N	single convolutional layer	single convolutional layer	3
+1988	V[s]	A A N	single hidden layer	single hidden layer	2
+1989	T	A N	forward layer	forward layer	2
+1990	T	A N N	100-sentence test set	100-sentence test set	2
+1991	T	N N	analysis portion	analysis portion	2
+1992	T	A N N N	unstable adversarial classifier gradients	unstable adversarial classifier gradient	2
+1993	T	A N	multiple frames	multiple frame	2
+1994	T	N P A N	performance of different text	performance of different text	2
+1995	T	N N	full-context models	full-context model	4
+1996	T	A N	computational problem	computational problem	2
+1997	T	A N	previous methods	previous method	2
+1998	T	N P N N N	deployment of speech processing systems	deployment of speech processing system	2
+1999	T	A N	distinct cluster	distinct cluster	2
+2000	T	N C N N	layer and ReLU activation	layer and relu activation	2
+2001	T	N N	speaker variation	speaker variation	2
+2002	T	A N N	non-causal convolution blocks	non-causal convolution block	2
+2003	T	N N	Word Normalization	word normalization	2
+2003	V[s]	N P A N	normalization of non-standard words	normalization of non-standard word	5
+2004	T	A N	adjectival rendition	adjectival rendition	2
+2005	T	A N	relevant language	relevant language	2
+2006	T	N V A	phone is dependent	phone be dependent	2
+2007	T	N P A N	speakers with less data	speaker with less datum	2
+2008	T	N N	Speech Translation	speech translation	2
+2009	T	A N N N	128-dim log-mel spectrogram frames	128-dim log-mel spectrogram frame	2
+2010	T	A N	incorrect predictions	incorrect prediction	2
+2011	T	N P A N	stability of cross-lingual speaker	stability of cross-lingual speaker	2
+2012	T	A N N	secondary fine-tuning step	secondary fine-tuning step	2
+2013	T	N C N N	speech and language processing	speech and language processing	2
+2014	T	A N N	adversarially-trained speaker classifier	adversarially-trained speaker classifier	2
+2015	T	N N	autoregressive architecture	autoregressive architecture	2
+2016	T	A N	faster-than-real-time speeds	faster-than-real-time speed	2
+2017	T	N	GMMs	gmms	2
+2018	T	A N	Cross-lingual tandem	cross-lingual tandem	2
+2019	T	N P N	orders of magnitude	order of magnitude	2
+2020	T	A N N	low speaker coverage	low speaker coverage	2
+2021	T	A N N	256-dim softmax output	256-dim softmax output	2
+2022	T	A	automated	automated	2
+2023	T	A N	sigmoid function	sigmoid function	2
+2024	T	A N	expressive characteristics	expressive characteristic	2
+2025	T	A A N N	variational residual encoder architecture	variational residual encoder architecture	2
+2026	T	N	circumflex	circumflex	2
+2027	T	A C A N	phonetic and prosodic contexts	phonetic and prosodic context	2
+2028	T	N C N N	Speech and Text Alignment	speech and text alignment	2
+2029	T	N N	similarity evaluation	similarity evaluation	2
+2029	V[s]	N P N N	evaluation of speaker similarity	evaluation of speaker similarity	2
+2030	T	R A N	semantically unpredictable sentences	semantically unpredictable sentence	2
+2031	T	N N	Pipeline approach	pipeline approach	2
+2032	T	N V A	speakers are expensive	speaker be expensive	2
+2033	T	N V A	results are comparable	result be comparable	2
+2034	T	A N N	Audio Synthesis Results	audio synthesis result	2
+2035	T	N N N	pitch frequency features	pitch frequency feature	2
+2036	T	A N	Monolingual character	monolingual character	2
+2037	T	A N	best WER	good wer	2
+2038	T	N N	crowdMOS framework	crowdmos framework	2
+2039	T	A N N	complicated pronunciation rules	complicated pronunciation rule	2
+2040	T	A	high-dimensional	high-dimensional	4
+2041	T	A A N	latent variable model	latent variable model	2
+2042	T	N	reformulation	reformulation	2
+2043	T	N N	speech spectra	speech spectra	2
+2044	T	A N	linear unit	linear unit	2
+2045	T	N N	rhythm transfer	rhythm transfer	2
+2046	T	A N	delta features	delta feature	2
+2047	T	N C N N	bandwidth and peak FLOPs	bandwidth and peak flop	2
+2048	T	A N	supervised adaptation	supervised adaptation	2
+2048	V[gp]+	A N	unsupervised adaptation	unsupervised adaptation	5
+2049	T	N N	stress embeddings	stress embeddings	2
+2050	T	N N	Segmentation Results	segmentation result	2
+2051	T	N V A	collections are prohibitive	collection be prohibitive	2
+2052	T	N N	VCTK dataset	vctk dataset	2
+2053	T	N N N	sentence boundary breaks	sentence boundary break	2
+2054	T	N N	hour subset	hour subset	2
+2055	T	A	alphasyllabic	alphasyllabic	2
+2056	T	A N	Future opportunities	future opportunity	2
+2057	T	A N	invertible transformation	invertible transformation	2
+2058	T	N N	Weight sharing	weight sharing	2
+2059	T	A N N	hidden semi-Markov models	hidden semi-markov model	2
+2060	T	N N	triplet loss	triplet loss	2
+2061	T	N	multi-tandem	multi-tandem	4
+2062	T	A N	utterance-level alignments	utterance-level alignment	2
+2063	T	N P A N	languages with large alphabets	language with large alphabet	2
+2064	T	A N P N N	hidden states of the phoneme sequence	hidden state of phoneme sequence	2
+2065	T	A N	mono task	mono task	2
+2066	T	N C N N	pitch and rhythm data	pitch and rhythm datum	2
+2067	T	A N	long sequence	long sequence	2
+2068	T	A N	acceptable results	acceptable result	2
+2069	T	A N	English text-to-speech	english text-to-speech	2
+2070	T	N C N N	byte and phoneme models	byte and phoneme model	2
+2071	T	A	desned	desned	2
+2072	T	N N	training processes	training process	2
+2073	T	N N	training batches	training batch	2
+2074	T	A N	clipping gradients	clipping gradient	2
+2075	T	N	Szegedy	szegedy	2
+2076	T	A N P N	consistent sequence of bytes	consistent sequence of byte	2
+2077	T	N	SV-EERs	sv-eers	2
+2078	T	N N	broadcast news	broadcast news	2
+2079	T	N	SNSF	snsf	2
+2080	T	A N N	unseen word segmentation	unseen word segmentation	2
+2081	T	N	MFCCs	mfccs	2
+2082	T	A N N	multiple pronunciation variants	multiple pronunciation variant	2
+2083	T	N N	CMOS evaluation	cmos evaluation	2
+2084	T	A A A N	per-input token speaker-adversarial loss	per-input token speaker-adversarial loss	2
+2085	T	N N	Noise reduction	noise reduction	2
+2086	T	R	arbitrarily	arbitrarily	2
+2087	T	N	forced-aligner	forced-aligner	2
+2088	T	A N	monotonous voice	monotonous voice	2
+2089	T	N P N	half of the word	half of word	2
+2090	T	A N	backward layer	backward layer	2
+2091	T	N P N	window of length	window of length	2
+2092	T	A N	statistical approaches	statistical approach	2
+2092	V[s]	A A N	statistical parametric approaches	statistical parametric approach	3
+2093	T	A N N	F0 prediction model	f0 prediction model	2
+2094	T	N N	WaveNet architecture	wavenet architecture	2
+2095	T	A A N	bidirectional LSTM-based RNN	bidirectional lstm-based rnn	2
+2096	T	N	Figureb	figureb	2
+2097	T	N N	multitask learning	multitask learning	2
+2098	T	N P N	hours of Mandarin	hour of mandarin	2
+2099	T	A N N	parallel waveform synthesis	parallel waveform synthesis	2
+2100	T	N N	collection scenario	collection scenario	2
+2101	T	R	recursively	recursively	2
+2102	T	A A N N	typical HMM-based ASR system	typical hmm-based asr system	2
+2103	T	N N	input length	input length	2
+2104	T	A N N	initial co-occurrence matrix	initial co-occurrence matrix	2
+2105	T	N N	GL model	gl model	2
+2106	T	A N N	benchmark language models	benchmark language model	2
+2107	T	N P N	component of the system	component of system	2
+2107	V[s]+	N N	system components	system component	4
+2108	T	N N	feed-forward network	feed-forward network	4
+2109	T	A N	negative log	negative log	2
+2110	T	N N	log variance	log variance	2
+2111	T	A N	English audiobook	english audiobook	2
+2112	T	N N N	decoder time steps	decoder time step	2
+2113	T	A N P N	expert-specified categories of letter	expert-specified category of letter	2
+2114	T	N	cepstrum	cepstrum	2
+2115	T	N V A	layers is equal	layer be equal	2
+2116	T	A N	faster speed	fast speed	2
+2117	T	N A N	unit hidden layer	unit hidden layer	2
+2118	T	A N	musical score	musical score	2
+2119	T	A N P N	written form of word	written form of word	2
+2120	T	A A N	fluent Spanish speech	fluent spanish speech	2
+2121	T	A A N	meaningful latent space	meaningful latent space	2
+2122	T	N C N N	naturalness and similarity MOS	naturalness and similarity mo	2
+2123	T	N N N	phone set conventions	phone set convention	2
+2124	T	N	reparameterization	reparameterization	2
+2125	T	N N	interpolation weights	interpolation weight	2
+2126	T	N P N C N N	representations of the text and speaker identity	representation of text and speaker identity	2
+2127	T	A	logF0	logf0	4
+2128	T	A N	teacher-forced training	teacher-forced training	2
+2129	T	N P N N N	part of DARPA GALE project	part of darpa gale project	2
+2130	T	A N	attention-based layer	attention-based layer	2
+2131	T	N N	t-SNE visualization	t-sne visualization	2
+2132	T	A N N N	variable length mel spectrogram	variable length mel spectrogram	2
+2133	T	N P A N	variance of the Gaussian posterior	variance of gaussian posterior	2
+2134	T	A N N	automatic language identification	automatic language identification	2
+2135	T	N P N	types of features	type of feature	2
+2136	T	A N P N N	Gaussian noise with unity variance	gaussian noise with unity variance	2
+2137	T	N C N N	duration and frequency models	duration and frequency model	2
+2138	T	N	ECDF	ecdf	2
+2139	T	A N	high accuracy	high accuracy	2
+2140	T	N N N	TitanX Maxwell GPU	titanx maxwell gpu	4
+2140	V[s]	A N N N	single TitanX Maxwell GPU	single titanx maxwell gpu	2
+2141	T	A A N	professional female speaker	professional female speaker	2
+2142	T	A N	explicit variables	explicit variable	2
+2143	T	A N	relative difference	relative difference	2
+2144	T	A N	single voice	single voice	2
+2145	T	N V A	phone is equal	phone be equal	2
+2146	T	N N	Phoneme Conversion	phoneme conversion	2
+2147	T	A N	small letter	small letter	2
+2148	T	N	URLs	urls	2
+2149	T	N	Librivox	librivox	2
+2150	T	N N	output distribution	output distribution	2
+2151	T	N C N N	character or phoneme input	character or phoneme input	2
+2152	T	N N N	phone posterior probabilities	phone posterior probability	4
+2153	T	A N	untranscribed speech	untranscribed speech	2
+2154	T	A N	current syllable	current syllable	2
+2155	T	A N N N	HMM-based speech synthesis system	hmm-based speech synthesis system	2
+2156	T	A N N	major building blocks	major building block	2
+2157	T	N N A N	Speaker similarity Mean Opinion	speaker similarity mean opinion	2
+2158	T	A N	highest error	high error	2
+2159	T	N N	ASR research	asr research	2
+2160	T	A A N N	Global Autonomous Language Exploitation	global autonomous language exploitation	2
+2161	T	N	blurriness	blurriness	2
+2162	T	A N	linear-scale spectrogram	linear-scale spectrogram	2
+2163	T	N	Wi,jt	wi,jt	2
+2164	T	N C N N	Synthesis and Cross-Language Voice	synthesis and cross-language voice	2
+2165	T	A N N	single feed-forward pass	single feed-forward pass	2
+2166	T	N N	output gate	output gate	2
+2167	T	A N P N N	massive amounts of text data	massive amount of text datum	2
+2168	T	A N	letter-based approach	letter-based approach	2
+2169	T	N	lexicon	lexicon	39
+2170	T	N	matrix	matrix	27
+2171	T	N	duration	duration	140
+2172	T	A	utterance-level	utterance-level	5
+2173	T	A	time-domain	time-domain	5
+2174	T	N	parameters	parameter	99
+2175	T	N	layer	layer	220
+2176	T	N	baseline	baseline	26
+2177	T	A	ordinal	ordinal	3
+2178	T	A N	freely-available corpus	freely-available corpus	3
+2179	T	N P A N	CNN with residual connection	cnn with residual connection	3
+2180	T	A N	MLP-based features	mlp-based feature	3
+2181	T	A N	unlabelled text	unlabelled text	3
+2182	T	N	filterbank	filterbank	3
+2183	T	N N	convolution operations	convolution operation	3
+2184	T	A N	phonetic context	phonetic context	3
+2184	V[s]	A C A N	phonetic and prosodic contexts	phonetic and prosodic context	2
+2185	T	A	element-wise	element-wise	3
+2186	T	N A N	multi-layer bidirectional encoder	multi-layer bidirectional encoder	3
+2187	T	N N	baseline models	baseline model	3
+2188	T	N	matrix-vector	matrix-vector	3
+2189	T	A	word-level	word-level	3
+2190	T	A N	morphologic features	morphologic feature	3
+2191	T	N N	speaking raters	speaking rater	3
+2192	T	N N	waveform synthesizer	waveform synthesizer	3
+2193	T	N N N	MRASTA feature extraction	mrasta feature extraction	3
+2194	T	A	stand-alone	stand-alone	3
+2195	T	A	Castilian	castilian	3
+2196	T	A N	linguistic context	linguistic context	3
+2197	T	A A N N	internal English speech database	internal english speech database	3
+2198	T	A	state-tying	state-tying	3
+2199	T	N N	objective function	objective function	3
+2200	T	A N	UTF-8 text	utf-8 text	3
+2201	T	A N	lookup table	lookup table	3
+2202	T	N	grapheme-phoneme	grapheme-phoneme	3
+2203	T	A	meta-learning	meta-learning	6
+2204	T	A N	phonetic-temporal patterns	phonetic-temporal pattern	3
+2205	T	N N	finite-state transducers	finite-state transducer	3
+2206	T	N	expressivity	expressivity	3
+2207	T	N N	CSS10 dataset	css10 dataset	3
+2208	T	N	TensorFlow	tensorflow	3
+2209	T	N	MGCEP	mgcep	3
+2210	T	N N	multi-tandem systems	multi-tandem system	3
+2211	T	N C N N	synthesis and vocoder networks	synthesis and vocoder network	3
+2212	T	A N	objective metric	objective metric	3
+2213	T	A N	spectral parameters	spectral parameter	3
+2214	T	A	20-layer	20-layer	3
+2215	T	A N N	HMM-based speech synthesis	hmm-based speech synthesis	3
+2216	T	N C N N	ASR and TTS modules	asr and tts module	3
+2217	T	A	scalar	scalar	3
+2218	T	A N	ongoing work	ongoing work	3
+2219	T	A N N	contextual parameter generation	contextual parameter generation	3
+2220	T	A N N N	Vocal tract length normalization	vocal tract length normalization	3
+2221	T	A N	phonetic lexicon	phonetic lexicon	3
+2222	T	N N N	NVIDIA V100 GPUs	nvidia v100 gpus	3
+2223	T	N N	baseline system	baseline system	3
+2224	T	A N	MLP output	mlp output	3
+2225	T	N	procentov	procentov	3
+2226	T	A N	pre-trained speaker	pre-trained speaker	3
+2227	T	A A N	long temporal context	long temporal context	3
+2228	T	N N	mel-spectrogram autoregressively	mel-spectrogram autoregressively	3
+2229	T	A N	positional information	positional information	3
+2230	T	A N N	TTS System Components	tts system component	3
+2231	T	A	corpusbased	corpusbased	3
+2232	T	A A N	single convolutional layer	single convolutional layer	3
+2233	T	N	evaluation	evaluation	106
+2234	T	N	inference	inference	90
+2235	T	N N	audio> pairs	audio> pair	4
+2236	T	A N	quantitative results	quantitative result	4
+2237	T	N N	text-analysis module	text-analysis module	4
+2238	T	A	real-time	real-time	21
+2239	T	N	noun	noun	19
+2240	T	A	bilingual	bilingual	16
+2241	T	A	gradient	gradient	24
+2242	T	N	ULSTM	ulstm	1
+2243	T	A N	cross-lignual scenarios	cross-lignual scenario	2
+2244	T	N	CLSA	clsa	1
+2245	T	N	EMIME11	emime11	1
+2246	T	A N	lower FFE	low ffe	1
+2247	T	N	over-smoothing	over-smoothing	1
+2248	T	N	skidka	skidka	1
+2249	T	N	Gutenberg	gutenberg	2
+2250	T	N N P N	Mehryar Mohri of AT&T	mehryar mohri of at&t	1
+2251	T	N	MIDI	midi	1
+2252	T	N	100ms	100ms	1
+2253	T	N	hyperthreading	hyperthreading	1
+2254	T	A	floating-point	floating-point	2
+2255	T	N N	low-resource settings	low-resource setting	2
+2256	T	N	GP-LM	gp-lm	1
+2257	T	N	Hekou	hekou	1
+2258	T	N	number-names	number-names	1
+2259	T	N N	s-th row	s-th row	1
+2260	T	A	correlate	correlate	1
+2261	T	N	speedups	speedups	1
+2262	T	N	Morise	morise	1
+2263	T	A N	objective measure	objective measure	2
+2264	T	A	4-part	4-part	1
+2265	T	A N	Tacotron-generated spectrograms	tacotron-generated spectrograms	1
+2266	T	N N	sanity check	sanity check	1
+2267	T	N P A N	likelihoods of the trained LSTM-RNN	likelihood of trained lstm-rnn	2
+2268	T	N	meta-network	meta-network	1
+2269	T	N	allreduce	allreduce	1
+2270	T	A	date-related	date-related	1
+2271	T	N	alignner	alignner	1
+2272	T	N	EPPS	epps	1
+2273	T	A	pre-stressed	pre-stressed	1
+2274	T	A N	tunable trade-off	tunable trade-off	1
+2275	T	A N	phonemic transcription	phonemic transcription	2
+2276	T	N	PPER	pper	1
+2277	T	N	K-grams	k-grams	1
+2278	T	A	SAMPA-based	sampa-based	1
+2279	T	A N	eval set	eval set	1
+2280	T	N N	ATR ν-talk	atr ν-talk	1
+2281	T	N	Defense	defense	1
+2282	T	N	word-segmentation	word-segmentation	1
+2282	V[mg]+	N N	word segmentation	word segmentation	8
+2283	T	A N	simple tests	simple test	2
+2284	T	N	Nina	nina	1
+2285	T	N N	odnym procentom	odnym procentom	1
+2286	T	N N	sequence-to-sequence synthesis	sequence-to-sequence synthesis	3
+2287	T	N	single-precision	single-precision	2
+2288	T	A	mechanistic	mechanistic	1
+2289	T	R	facultatively	facultatively	1
+2290	T	N C N N	HRT and Obzor Nacional	hrt and obzor nacional	1
+2291	T	N	automaton	automaton	1
+2292	T	N P A N	data-bases of natural speech	data-bases of natural speech	2
+2293	T	A	unised	unised	1
+2294	T	A A N	hierarchial MLP-based approach	hierarchial mlp-based approach	2
+2295	T	A N	virtual assistant	virtual assistant	1
+2296	T	N	labor	labor	1
+2297	T	N	Donezk	donezk	1
+2298	T	A	reported	reported	1
+2299	T	N N	data requirements	data requirement	2
+2300	T	A	precalculated	precalculated	1
+2301	T	N N	speaker discrimination	speaker discrimination	2
+2302	T	A N	L2 cache	l2 cache	2
+2303	T	N N	ground-truth mel	ground-truth mel	2
+2304	T	N	NGHI	nghi	1
+2305	T	A	favorable	favorable	2
+2306	T	A	frame-level	frame-level	2
+2306	V[mg]	N N	frame level	frame level	2
+2307	T	A	configurable	configurable	1
+2308	T	N P A N	prose of the 20th century	prose of 20th century	1
+2309	T	N N	across-context averaging	across-context averaging	1
+2310	T	N	vierunddreißig	vierunddreißig	1
+2311	T	A N	400X speedup	400x speedup	2
+2312	T	N	corpuslanguages	corpuslanguages	1
+2312	V[m]	N P N	languages of a corpus	language of corpus	2
+2313	T	N	submodules	submodules	1
+2314	T	N N	Fernando Pereira	fernando pereira	1
+2315	T	N N	Bordeaux Dr	bordeaux dr	1
+2316	T	N	HSMMs	hsmms	1
+2317	T	N N	multi-speaker text-to-speech	multi-speaker text-to-speech	2
+2318	T	N	COMTIS13	comtis13	1
+2319	T	A N	phonemic alphabet	phonemic alphabet	2
+2320	T	N	recomputation	recomputation	1
+2321	T	A	384-dimensional	384-dimensional	1
+2322	T	A	Colombian	colombian	1
+2323	T	N	ELBO	elbo	1
+2324	T	N P A N	output of the convolutional layer	output of convolutional layer	2
+2325	T	N P N	average of some set	average of set	1
+2326	T	N	voicedness	voicedness	1
+2327	T	A	1000X	1000x	1
+2328	T	R	inversely	inversely	1
+2329	T	N	µtot	µtot	1
+2330	T	N	text-analyzers	text-analyzers	1
+2331	T	A	buzzy	buzzy	1
+2332	T	N	speech-label	speech-label	2
+2333	T	N	subproblems	subproblem	1
+2334	T	A	26-dimensional	26-dimensional	1
+2335	T	N	Nepali	nepali	1
+2336	T	N	corpus3	corpus3	1
+2337	T	A N	MGCEP analysis	mgcep analysis	2
+2338	T	R	discriminatively	discriminatively	1
+2339	T	N	tri-grapheme	tri-grapheme	1
+2340	T	A N	monotonic atten-tion	monotonic atten-tion	2
+2341	T	N	etazh	etazh	1
+2342	T	R	syntactically	syntactically	1
+2343	T	N	quinphone	quinphone	2
+2344	T	A N	position-wise FFN	position-wise ffn	1
+2345	T	N N	Eric Battenberg	eric battenberg	1
+2346	T	A	acoustic-phonotactic	acoustic-phonotactic	1
+2347	T	A N A N N	MLP-based phone posterior estimation approach	mlp-based phone posterior estimation approach	2
+2348	T	A	27-dimensional	27-dimensional	1
+2349	T	N	Assabah	assabah	1
+2350	T	R	slow	slow	1
+2351	T	A	biquery	biquery	1
+2352	T	N N	ATR νtalk	atr νtalk	1
+2353	T	A	reconstructed	reconstructed	1
+2354	T	N	bigrams	bigrams	1
+2355	T	N	Pinyin	pinyin	1
+2356	T	N	text-normalization	text-normalization	1
+2356	V[mg]	N N	text normalization	text normalization	10
+2357	T	N	ANNs	anns	1
+2358	T	N	Farsi	farsi	1
+2359	T	N	VoxCeleb	voxceleb	2
+2360	T	N	iquery	iquery	1
+2361	T	N N	step-by-step guidelines	step-by-step guideline	1
+2362	T	A	lexical-class	lexical-class	1
+2363	T	A	Slovenian	slovenian	1
+2364	T	N	TDT4	tdt4	1
+2365	T	R	quantitatively	quantitatively	1
+2366	T	A	melcepstral	melcepstral	1
+2367	T	N	expressiveness	expressiveness	1
+2368	T	N	postsltering	postsltering	1
+2369	T	A N	forward–backward algorithm	forward–backward algorithm	2
+2370	T	N N	GPU cards	gpu card	1
+2371	T	N	closed-form	closed-form	1
+2372	T	N	Marcus	marcus	1
+2373	T	N	distinctiveness	distinctiveness	1
+2374	T	A N	attentional decoder	attentional decoder	2
+2375	T	A N	framewise LLR	framewise llr	1
+2376	T	N	Zquery	zquery	1
+2377	T	N	frame-shift	frame-shift	2
+2378	T	N	ICSI	icsi	1
+2379	T	A	fine-tuned	fine-tuned	1
+2380	T	A	3proposed	3proposed	1
+2381	T	N	RealNVP	realnvp	1
+2382	T	N	pyat	pyat	1
+2383	T	A N	affirmative anddemonstrate	affirmative anddemonstrate	1
+2384	T	N N	NetTalk dataset	nettalk dataset	2
+2385	T	N	200ms	200ms	1
+2386	T	N	Wuhan	wuhan	1
+2387	T	N	Mono	mono	1
+2388	T	R	Intuitively	intuitively	1
+2389	T	N	KL-divergence	kl-divergence	1
+2389	V[mg]	N N	KL divergence	kl divergence	3
+2390	T	N	state-mappings	state-mappings	1
+2390	V[m]+	N N	State mapping	state mapping	5
+2391	T	N	color	color	1
+2392	T	A N	Chinese Hanzi	chinese hanzi	1
+2393	T	N	data-collection	data-collection	2
+2394	T	N	pre-emphasis	pre-emphasis	1
+2395	T	N	ParaNet-12	paranet-12	1
+2396	T	A	transformation-based	transformation-based	1
+2397	T	A N	wide-spread languages	wide-spread language	2
+2398	T	R	speciscally	speciscally	1
+2399	T	N	adverbs	adverb	1
+2400	T	A	quantitive	quantitive	1
+2401	T	N	DBLSTM	dblstm	1
+2402	T	N	on-the-fly	on-the-fly	1
+2403	T	N C N N	Pereira and Mehryar Mohri	pereira and mehryar mohri	1
+2404	T	N N	MLSA slter	mlsa slter	1
+2405	T	N	Salimans	salimans	1
+2406	T	N	conv	conv	1
+2407	T	N	MLLT	mllt	1
+2408	T	N	lieu	lieu	1
+2409	T	A N	Bayes Formula	bayes formula	2
+2410	T	N	express-chronika	express-chronika	1
+2411	T	N C N N	Hanoi and Ho Chi	hanoi and ho chi	1
+2412	T	N	Hindustani	hindustani	1
+2413	T	N N	Siamak Tazari	siamak tazari	1
+2414	T	N	WORLD4	world4	1
+2415	T	N C A N	Scots and Irish Gaelic	scot and irish gaelic	1
+2416	T	N	Ubuntu	ubuntu	1
+2417	T	N	Decoupling	decoupling	1
+2418	T	A	letter-to-sound	letter-to-sound	2
+2419	T	A N	Japanese Kana	japanese kana	1
+2420	T	N V A	audios are unintelligible	audio be unintelligible	1
+2421	T	N N	end-of-phonemes tag	end-of-phonemes tag	1
+2422	T	A	2018b	2018b	1
+2423	T	A	|t-history	t-history	1
+2424	T	N	needlessto	needlessto	1
+2425	T	A N	MMSE criterion	mmse criterion	2
+2426	T	N	benests	benests	1
+2427	T	A N	context-dependent HMMs	context-dependent hmms	2
+2428	T	N	two-layer	two-layer	1
+2429	T	A N	GMMbased VAD	gmmbased vad	1
+2430	T	N	language-area	language-area	1
+2431	T	R	preliminarily	preliminarily	1
+2432	T	A A N	hierarchical MLP-based phone	hierarchical mlp-based phone	2
+2433	T	N A N	six-week hands-on lab	six-week hands-on lab	1
+2434	T	A N	independent tests	independent test	2
+2435	T	N	Japanese,it	japanese,it	1
+2436	T	N	Liberman	liberman	1
+2437	T	N	WaveRNN	wavernn	1
+2438	T	N	Vinyals	vinyals	1
+2439	T	N N	Data Acquisition	data acquisition	2
+2440	T	N	delta-delta	delta-delta	2
+2441	T	N P N	set of webpages	set of webpages	1
+2442	T	N	tokenisations	tokenisations	1
+2443	T	A	non-expert	non-expert	2
+2444	T	N N	Lux Aeterna	lux aeterna	1
+2445	T	N	apostrophe	apostrophe	1
+2446	T	N N	FC stands	fc stand	1
+2447	T	A	multi-head	multi-head	2
+2448	T	N	tagsets	tagsets	1
+2449	T	N	predicting	predicting	1
+2450	T	A	8-part	8-part	1
+2451	T	N N	DARPA initiative	darpa initiative	2
+2452	T	N P A N	workstations with 32GB RAM	workstation with 32gb ram	1
+2453	T	A	unsynchronised	unsynchronised	1
+2454	T	N	Pravda	pravda	1
+2455	T	N	INES	ines	1
+2456	T	A N	i7 workstations	i7 workstation	1
+2457	T	A N	lower WER	low wer	1
+2458	T	A N	SEV neutral	sev neutral	1
+2459	T	A N	qualitative experiments	qualitative experiment	2
+2460	T	A N	alternate hypothesis	alternate hypothesis	2
+2461	T	A	in-domain	in-domain	2
+2462	T	N	affixation	affixation	1
+2463	T	N N	TTS researchommunity	tts researchommunity	1
+2464	T	N	triphone-context	triphone-context	2
+2465	T	N C N N	Heredia and San Jose	heredia and san jose	1
+2466	T	N	Goeteborgs-Posten	goeteborgs-posten	1
+2467	T	A N	concatenative speech	concatenative speech	2
+2468	T	A	centric	centric	1
+2469	T	N	STAVOCO	stavoco	1
+2470	T	A A N	rule-based morphological analysis	rule-based morphological analysis	2
+2471	T	N	Nacion	nacion	1
+2472	T	A	solvable	solvable	1
+2473	T	N C A N	intervention and language-specific expert	intervention and language-specific expert	2
+2474	T	N	visually-impaired	visually-impaired	1
+2475	T	N	grid-search	grid-search	1
+2476	T	A	acyclic	acyclic	1
+2477	T	N N	ground-truth spectrograms	ground-truth spectrograms	2
+2478	T	A N	simpler architecture	simple architecture	2
+2479	T	A N N	fully-connected output layer	fully-connected output layer	2
+2480	T	A N	multilingual data	multilingual data	2
+2481	T	N	Gonzalvo	gonzalvo	1
+2482	T	N	Djerba	djerba	1
+2483	T	N	recursion	recursion	1
+2484	T	A	superscript	superscript	1
+2485	T	N N	ring all-reduce	ring all-reduce	2
+2486	T	N N	Ami Patel	ami patel	1
+2487	T	N	musicXML	musicxml	1
+2488	T	N	Brants	brant	1
+2489	T	A	traversal	traversal	1
+2490	T	N C N N	Speech and Language research	speech and language research	2
+2491	T	N	denoising	denoising	1
+2492	T	A	uncorrelated	uncorrelated	1
+2493	T	A	1≤t≤T	1≤t≤t	1
+2494	T	N	onecould	onecould	1
+2495	T	A	regardeless	regardeless	1
+2496	T	N	seq2seq-attention	seq2seq-attention	1
+2497	T	N	arclist	arclist	1
+2498	T	N	OpenBLAS	openblas	1
+2499	T	N N	sub-word units	sub-word unit	2
+2500	T	N	lemmata	lemmata	1
+2501	T	N N N	Ceskomoravsky Profit Journal	ceskomoravsky profit journal	1
+2502	T	A A N	language-specific convolutional encoders	language-specific convolutional encoder	2
+2503	T	A	vocoding	vocoding	2
+2504	T	N N	phone inventory	phone inventory	2
+2505	T	A	ideographic	ideographic	1
+2506	T	A N	outgoing transitions	outgoing transition	1
+2507	T	A	pretagged	pretagged	1
+2508	T	A N N	letter-based phone set	letter-based phone set	2
+2509	T	N	Sfax	sfax	1
+2510	T	N	DeepVoice	deepvoice	1
+2510	V[mg]+	A N	Deep Voice	deep voice	77
+2511	T	R	dynamically	dynamically	1
+2512	T	N	Arik	arik	1
+2513	T	N	parantheses	paranthese	1
+2514	T	R	meaningfully	meaningfully	1
+2515	T	A	word-based	word-based	1
+2516	T	N N	Carnegie Mellon	carnegie mellon	1
+2517	T	A	orthogonal	orthogonal	1
+2518	T	R	spatially	spatially	1
+2519	T	N	Sega	sega	1
+2520	T	N	Lample	lample	1
+2521	T	N	Indigo	indigo	1
+2522	T	R	semi-automatically	semi-automatically	1
+2523	T	N	applicability	applicability	1
+2524	T	N	SpeechDat	speechdat	1
+2525	T	N	modelbuilding	modelbuilding	2
+2526	T	N	non-fine	non-fine	1
+2527	T	N	Lword1	lword1	1
+2528	T	N	MGE-LSD	mge-lsd	1
+2529	T	N	convolution-bank-highway-GRU	convolution-bank-highway-gru	1
+2530	T	N	faune	faune	1
+2531	T	A N	expert supervision	expert supervision	2
+2532	T	A N	non-aspirated stops	non-aspirated stop	1
+2533	T	A N	TensorFlow framework	tensorflow framework	2
+2534	T	N	Nachmani	nachmani	1
+2535	T	N	Klingon	klingon	1
+2536	T	N	MSLP	mslp	1
+2537	T	N	PeachPy	peachpy	1
+2538	T	N	GP-LMs	gp-lms	1
+2539	T	A	perceptible	perceptible	1
+2540	T	N N	Mihai Nae	mihai nae	1
+2541	T	N	SPTK5	sptk5	1
+2542	T	N N	SGI Indy	sgi indy	1
+2543	T	A N	unified framework	unified framework	2
+2544	T	N	multi-linguality	multi-linguality	2
+2545	T	R	equivalently	equivalently	1
+2546	T	A N	horizontal stripes	horizontal stripe	1
+2547	T	N N	Ogonyok Gaseta	ogonyok gaseta	1
+2548	T	N	expectation-maximization	expectation-maximization	1
+2549	T	N N	call routing	call routing	1
+2550	T	N	SPEECON	speecon	1
+2551	T	N	Vesterman	vesterman	1
+2552	T	N N N N N	Frankfurter Allgemeine und Sueddeutsche Zeitung	frankfurter allgemeine und sueddeutsche zeitung	1
+2553	T	N	lthough	lthough	1
+2554	T	N	DCTTS	dctts	1
+2555	T	A N	authorized distributors	authorized distributor	1
+2556	T	N	phone-sets	phone-sets	2
+2557	T	N	srst	srst	1
+2558	T	N N	Porto Velho	porto velho	1
+2559	T	N	NCCR	nccr	1
+2560	T	A	SParseval	sparseval	1
+2561	T	N	ENGTWOL	engtwol	1
+2562	T	N	Zaman	zaman	1
+2563	T	R	optimally	optimally	1
+2564	T	N	batchsize	batchsize	1
+2564	V[mg]	N N	batch size	batch size	14
+2565	T	R	Inuitively	inuitively	1
+2566	T	N N	Mountain Avenue	mountain avenue	1
+2567	T	N N	highquality text-to-speech	highquality text-to-speech	2
+2568	T	A N	HTS-like workflow	hts-like workflow	1
+2569	T	N	GAN-TTS	gan-tts	1
+2570	T	N	Keras	keras	1
+2571	T	A N	conditional speech	conditional speech	2
+2572	T	N	decision-tree	decision-tree	1
+2572	V[mg]+	N N	decision tree	decision tree	35
+2573	T	N N	multi-resolution RASTA	multi-resolution rasta	1
+2574	T	N	Weide	weide	1
+2575	T	N	forced-alignment	forced-alignment	2
+2576	T	N	categorization	categorization	1
+2577	T	A A N	model Lpunc1 maps	model lpunc1 map	1
+2578	T	A N	internal dataset	internal dataset	2
+2579	T	N	Similarderivation	similarderivation	1
+2580	T	A	tree-based	tree-based	1
+2581	T	A	frame-wise	frame-wise	2
+2582	T	N	p-value	p-value	1
+2583	T	N C N N	Journal and Lidove Noviny	journal and lidove noviny	1
+2584	T	N N	web harvesting	web harvesting	1
+2585	T	A	Ossian	ossian	2
+2586	T	N N N	language model transducers	language model transducer	2
+2587	T	A N	softsign BN	softsign bn	1
+2588	T	R	prosodically	prosodically	1
+2589	T	N N	decoder RNN	decoder rnn	2
+2590	T	N	capitalization	capitalization	1
+2591	T	N N	language dependence	language dependence	3
+2592	T	A N	inverted breve	inverted breve	1
+2593	T	A	syllable-based	syllable-based	1
+2594	T	R	Jaitly	jaitly	1
+2595	T	A	few-shot	few-shot	2
+2596	T	N	t-test	t-test	1
+2597	T	N	compwl	compwl	1
+2598	T	A A N	deep bi-directional LSTM	deep bi-directional lstm	2
+2599	T	N	ParaNet-6	paranet-6	1
+2600	T	N	Merlin1	merlin1	1
+2601	T	N N	mel-spectrograms non-autoregressively	mel-spectrograms non-autoregressively	1
+2602	T	A	data-based	data-based	2
+2603	T	A	stuttering	stuttering	1
+2604	T	N	DBNs	dbns	1
+2605	T	N N	CN failed4	cn failed4	1
+2606	T	R	monotonously	monotonously	1
+2607	T	R	Concretely	concretely	1
+2608	T	N	log-magnitude	log-magnitude	2
+2609	T	R	accelerando	accelerando	1
+2610	T	N N	summer workshop	summer workshop	1
+2611	T	A N	feed-forward structure	feed-forward structure	2
+2612	T	N	Höge	höge	1
+2613	T	N N	|w-representation ik	w-representation ik	1
+2614	T	N	numeral-expansion	numeral-expansion	2
+2614	V[mg]	A N	numeral expansion	numeral expansion	7
+2615	T	N N	cross-language knowledge	cross-language knowledge	2
+2616	T	R	linearly	linearly	1
+2617	T	N	Figurec	figurec	1
+2618	T	A	state-of-the-art	state-of-the-art	17
+2619	T	N N	Cartea Sonora	cartea sonora	1
+2620	T	A N N	clustering-based unit-selection approach	clustering-based unit-selection approach	2
+2621	T	N N	segment-by-segment piecewise-stationary	segment-by-segment piecewise-stationary	1
+2622	T	A	higher-quality	higher-quality	1
+2623	T	N P A N	committee of different pitch-trackers	committee of different pitch-trackers	1
+2624	T	N	Weilhammer	weilhammer	1
+2625	T	N	autoregressiveness	autoregressiveness	1
+2626	T	N	ARPABET	arpabet	1
+2627	T	N	CHATR	chatr	1
+2628	T	N N	multi-speaker training	multi-speaker training	2
+2629	T	A N	Toby Hawker	toby hawker	1
+2630	T	A	separable	separable	1
+2631	T	A N	concatenative system	concatenative system	2
+2632	T	A	multiplicative	multiplicative	1
+2633	T	N	GALE12	gale12	1
+2634	T	N	preprocess	preprocess	1
+2635	T	N P N	characterisation of documents	characterisation of document	1
+2636	T	N	fricative	fricative	1
+2637	T	N N	screen shot	screen shot	1
+2638	T	N N	single-speaker TTS	single-speaker tts	2
+2639	T	N	Prélude	prélude	1
+2640	T	N	easy-to-follow	easy-to-follow	1
+2641	T	N	input	input	270
+2642	T	N	speaker	speaker	630
+2643	T	N	Merlin	merlin	14
+2644	T	A	Arabic	arabic	14
+2645	T	A N	previous work	previous work	14
+2646	T	N	sequence	sequence	184
+2647	T	N	robustness	robustness	10
+2648	T	N	Mandarin	mandarin	53
+2649	T	N	model	model	1030
+2650	T	N	consonants	consonant	10
+2651	T	N	variants	variant	24
+2652	T	N	segments	segment	47
+2653	T	N	tokens	token	49
+2654	T	A	unseen	unseen	24
+2655	T	N	filter	filter	41
+2656	T	N	frequency	frequency	71
+2657	T	R	manually	manually	15
+2658	T	A	fictitious	fictitious	6
+2659	T	N	vowel	vowel	17
+2660	T	A N	European languages	european language	7
+2661	T	N	configuration	configuration	12
+2662	T	R	randomly	randomly	16
+2663	T	A	high-quality	high-quality	16
+2664	T	N	Appendix	appendix	19
+2665	T	A	expressive	expressive	15
+2666	T	N	approximations	approximation	7
+2667	T	N	text	text	236
+2668	T	N	data	datum	317
+2669	T	N	language	language	746
+2670	T	N	probability	probability	50
+2671	T	N	convergence	convergence	11
+2672	T	A	weighted	weighted	5
+2673	T	N	conditioning	conditioning	25
+2674	T	A	trained	trained	8
+2675	T	N	demo	demo	13
+2676	T	A	hybrid	hybrid	15
+2677	T	N	mismatch	mismatch	8
+2678	T	N	nucleus	nucleus	7
+2679	T	N	database	database	57
+2680	T	N	domain	domain	32
+2681	T	N	batch	batch	48
+2682	T	N	speech	speech	616
+2683	T	N	percent	percent	9
+2684	T	N	switching	switching	6
+2685	T	N N	recording session	recording session	4
+2686	T	A	Turkish	turkish	6
+2687	T	N N	language barriers	language barrier	3
+2688	T	N	features	feature	318
+2689	T	N	module	module	33
+2690	T	A	parallel	parallel	54
+2691	T	A N	total number	total number	6
+2692	T	N	rendition	rendition	9
+2693	T	N	variables	variable	23
+2694	T	N	formulation	formulation	6
+2695	T	N	hypothesis	hypothesis	9
+2696	T	N	architecture	architecture	106
+2697	T	N	bottleneck	bottleneck	7
+2698	T	N	skip	skip	11
+2699	T	N	output	output	209
+2700	T	A N	key components	key component	3
+2701	T	N	metrics	metric	8
+2702	T	A	clipping	clipping	4
+2703	T	N N	building blocks	building block	7
+2704	T	A N	main differences	main difference	3
+2705	T	A	Bulgarian	bulgarian	8
+2706	T	A	preliminary	preliminary	8
+2707	T	A	arbitrary	arbitrary	7
+2708	T	N	dictionaries	dictionary	31
+2709	T	A	Romanian	romanian	19
+2710	T	A	plural	plural	3
+2711	T	A N	major difference	major difference	3
+2712	T	N	default	default	15
+2713	T	N	intonation	intonation	4
+2714	T	A	finite	finite	4
+2715	T	N	phrasing	phrasing	4
+2716	T	N	Vietnamese	vietnamese	5
+2717	T	N	acronyms	acronym	11
+2718	T	A	initial	initial	33
+2719	T	N	components	component	76
+2720	T	N	recordings	recording	66
+2721	T	N	ClariNet	clarinet	12
+2722	T	N	fluency	fluency	6
+2723	T	N	prediction	prediction	54
+2724	T	A	mixed	mixed	12
+2725	T	A	conditional	conditional	13
+2726	T	N	coda	coda	2
+2727	T	A N	native language	native language	3
+2728	T	A	fluent	fluent	9
+2729	T	R	explicitly	explicitly	14
+2730	T	N	voice	voice	327
+2731	T	N	diagram	diagram	4
+2732	T	R	Fluently	fluently	4
+2733	T	A N	large amounts	large amount	8
+2733	V[s]	A N P N	large amount of data	large amount of datum	2
+2734	T	N	headphones	headphones	3
+2735	T	N	Tamil	tamil	3
+2736	T	N	sharing	sharing	13
+2737	T	A N	foreign language	foreign language	11
+2738	T	N	solemnity	solemnity	2
+2739	T	N	summation	summation	2
+2740	T	A	noisy	noisy	14
+2741	T	N	elect	elect	2
+2742	T	N	error	error	136
+2743	T	A	Spanish	spanish	47
+2744	T	N	interface	interface	8
+2745	T	A	Korean	korean	11
+2746	T	A N	recent work	recent work	3
+2747	T	N	samples	sample	88
+2748	T	N	digit	digit	6
+2749	T	N	stack	stack	7
+2750	T	A	benchmark	benchmark	16
+2751	T	A N	female voices	female voice	2
+2752	T	A	descriptive	descriptive	2
+2753	T	N	spelling	spelling	7
+2754	T	N P N	lot of attention	lot of attention	2
+2755	T	A N	major obstacle	major obstacle	2
+2756	T	N	rhythm	rhythm	42
+2757	T	N	experiments	experiment	70
+2758	T	N	characteristics	characteristic	36
+2759	T	N	width	width	11
+2760	T	R	implicitly	implicitly	6
+2761	T	N N	case studies	case study	6
+2762	T	A	Russian	russian	37
+2763	T	N	verb	verb	4
+2764	T	A N	higher performance	high performance	2
+2765	T	N	adjective	adjective	8
+2766	T	A	cohesive	cohesive	2
+2767	T	N	threads	thread	19
+2768	T	A	natural	natural	47
+2769	T	N	FLOPs	flop	8
+2770	T	N	context	context	87
+2771	T	N	chunks	chunk	12
+2772	T	N	Karlsruhe	karlsruhe	2
+2773	T	A	unwieldy	unwieldy	2
+2774	T	N	syntax	syntax	2
+2775	T	A	dissimilar	dissimilar	4
+2776	T	N	implementation	implementation	25
+2777	T	N	framework	framework	47
+2778	T	N	cluster	cluster	9
+2779	T	N	tandem	tandem	6
+2780	T	N	delta	delta	5
+2781	T	N	Chinese	chinese	33
+2782	T	A N	broader range	broad range	2
+2783	T	N	fidelity	fidelity	6
+2784	T	A	animated	animated	2
+2785	T	N	training	training	321
+2786	T	A	distinct	distinct	10
+2787	T	A N	best system	good system	2
+2788	T	A	auxiliary	auxiliary	3
+2789	T	N	padding	padding	3
+2790	T	R	Conventionally	conventionally	2
+2791	T	N	substitutions	substitution	5
+2792	T	A	proportional	proportional	2
+2793	T	A	implicit	implicit	5
+2794	T	N	tools	tool	50
+2795	T	N	center	center	3
+2796	T	A	robust	robust	16
+2797	T	N	intuitions	intuition	2
+2798	T	A N	high degree	high degree	2
+2799	T	A	masculine	masculine	2
+2800	T	N	symbols	symbol	28
+2801	T	A N	English language	english language	7
+2802	T	A	applicable	applicable	7
+2803	T	A	emotive	emotive	3
+2804	T	A N	extreme case	extreme case	2
+2805	T	N	Summary	summary	7
+2806	T	A N	recent trends	recent trend	2
+2807	T	A	similar	similar	99
+2808	T	N	modifications	modification	8
+2809	T	A	Croatian	croatian	5
+2810	T	A	separate	separate	25
+2811	T	N	intersection	intersection	3
+2812	T	N	query	query	10
+2813	T	A	roman	roman	6
+2814	T	A	challenging	challenging	7
+2815	T	N N	driving force	driving force	2
+2816	T	A N	current trends	current trend	4
+2817	T	A N	English system	english system	2
+2817	V[s]	A A N N	English neural TTS system	english neural tts system	2
+2818	T	R	exponentially	exponentially	1
+2819	T	N	methodologies	methodology	3
+2820	T	N	frame	frame	75
+2821	T	A N	small amount	small amount	5
+2822	T	N	distribution	distribution	36
+2823	T	N	dialects	dialect	6
+2824	T	R	purposefully	purposefully	2
+2825	T	A	Danish	danish	2
+2826	T	A N	present case	present case	2
+2827	T	N	techniques	technique	85
+2828	T	A	backward	backward	19
+2829	T	A	remaining	remaining	1
+2830	T	A	trivial	trivial	5
+2831	T	N	cadences	cadence	1
+2832	T	N	Thai	thai	3
+2833	T	N	Brill	brill	1
+2834	T	A N	higher scores	high score	2
+2834	V[s]	A N N N	higher similarity MOS scores	high similarity mo score	2
+2835	T	A	informal	informal	5
+2836	T	A	universal	universal	10
+2837	T	N	degradation	degradation	3
+2838	T	N	grammars	grammar	6
+2839	T	N	distortion	distortion	6
+2840	T	N	juncture	juncture	2
+2841	T	A	Portuguese	portuguese	6
+2842	T	A	Swedish	swedish	3
+2843	T	N	Acknowledgements	acknowledgement	7
+2844	T	R	typically	typically	23
+2845	T	N	coherency	coherency	2
+2846	T	A N	recent study	recent study	3
+2847	T	R	diagonally	diagonally	1
+2848	T	R	gratefully	gratefully	2
+2849	T	N	Polish	polish	6
+2850	T	R	approximately	approximately	29
+2851	T	N	limitations	limitation	13
+2852	T	A N	lower scores	low score	3
+2853	T	A	specific	specific	13
+2854	T	A N	earlier work	early work	2
+2855	T	N	Ukrainian	ukrainian	2
+2856	T	N N	Sao Paulo	sao paulo	2
+2857	T	N	blocks	block	68
+2858	T	N	bias	bias	15
+2859	T	R	naively	naively	2
+2860	T	N	converse	converse	1
+2861	T	R	sporadically	sporadically	1
+2862	T	R	uniformly	uniformly	2
+2863	T	N	clone	clone	5
+2864	T	R	independently	independently	12
+2865	T	N	Blizzard	blizzard	7
+2866	T	N	listeners	listener	19
+2867	T	R	separately	separately	13
+2868	T	A	Prolific	prolific	2
+2869	T	A N	poor quality	poor quality	2
+2870	T	A	intractable	intractable	1
+2871	T	N	word	word	327
+2872	T	A	detailed	detailed	8
+2873	T	N	spectrum	spectrum	13
+2874	T	A	persistent	persistent	4
+2875	T	N	percentage	percentage	15
+2876	T	A	disparate	disparate	1
+2877	T	N	threshold	threshold	13
+2878	T	R	prohibitively	prohibitively	1
+2879	T	N	plateau	plateau	3
+2880	T	A	relative	relative	12
+2881	T	N	accent	accent	31
+2882	T	N	ratings	rating	26
+2883	T	A	large-scale	large-scale	4
+2884	T	N	attributes	attribute	6
+2885	T	A N	large extent	large extent	2
+2886	T	A N	current system	current system	3
+2887	T	N	Table	table	139
+2888	T	N	dimension	dimension	21
+2889	T	N	pitch	pitch	67
+2890	T	N	Hallelujah	hallelujah	1
+2891	T	N	pauses	pause	9
+2892	T	A	interchangeable	interchangeable	1
+2893	T	N	graphs	graph	2
+2894	T	N	Python	python	2
+2895	T	N	smoothness	smoothness	1
+2896	T	N	adaptabilities	adaptability	1
+2897	T	N	Section	section	94
+2898	T	A	timeconsuming	timeconsuming	4
+2899	T	N	complexity	complexity	9
+2900	T	N	attention	attention	137
+2901	T	A	feasible	feasible	5
+2902	T	N	Motorola	motorola	3
+2903	T	N	stems	stem	5
+2904	T	N	system	system	463
+2905	T	N	gender	gender	8
+2906	T	N	quality	quality	148
+2907	T	N	groundwork	groundwork	3
+2908	T	A	noteworthy	noteworthy	1
+2909	T	A N	essential parts	essential part	2
+2910	T	R	hand	hand	1
+2911	T	A	distorted	distorted	1
+2912	T	N	Cameroon	cameroon	1
+2913	T	R	theoretically	theoretically	3
+2914	T	N	string	string	29
+2915	T	R	significantly	significantly	42
+2916	T	R	jointly	jointly	17
+2917	T	N	glue	glue	2
+2918	T	A	comparable	comparable	7
+2919	T	N	accessibility	accessibility	3
+2920	T	A	optional	optional	3
+2921	T	A	English	english	102
+2922	T	N	Grenoble	grenoble	1
+2923	T	R	freely	freely	12
+2924	T	A	prior	prior	31
+2925	T	N	reference	reference	52
+2926	T	N	methods	method	63
+2927	T	N	scratch	scratch	15
+2928	T	A	proper	proper	16
+2929	T	A	extensive	extensive	7
+2930	T	N	variation	variation	18
+2931	T	A N	good results	good result	9
+2932	T	A	astronomical	astronomical	1
+2933	T	A	identical	identical	6
+2934	T	A N	better performance	good performance	11
+2935	T	N	ambiguity	ambiguity	4
+2936	T	A	problematic	problematic	3
+2937	T	N	approach	approach	148
+2938	T	N	comparison	comparison	31
+2939	T	A	noticeable	noticeable	3
+2939	V[g]	R	noticeably	noticeably	3
+2940	T	R	commonly	commonly	8
+2941	T	N	Equation	equation	8
+2942	T	R	inherently	inherently	2
+2943	T	N	effectiveness	effectiveness	7
+2944	T	N N	Costa Rica	costa rica	1
+2945	T	N	labels	label	32
+2946	T	N	stress	stress	34
+2947	T	N	weights	weight	46
+2948	T	N	generator	generator	9
+2949	T	A	correct	correct	24
+2950	T	N	Maori	maori	1
+2951	T	R	conclusively	conclusively	2
+2952	T	N	shortcut	shortcut	1
+2953	T	N	task	task	81
+2954	T	A	complex	complex	16
+2955	T	A	maximum	maximum	19
+2956	T	N	Tunis	tunis	1
+2957	T	N	nuances	nuance	2
+2958	T	A	pronounced	pronounced	1
+2959	T	N	discrepancy	discrepancy	4
+2960	T	N	knowledge	knowledge	54
+2961	T	R	noticeably	noticeably	3
+2962	T	R	Firstly	firstly	4
+2963	T	N	proponents	proponent	1
+2964	T	A	high-speed	high-speed	1
+2965	T	R	statistically	statistically	2
+2966	T	R	seamlessly	seamlessly	1
+2967	T	A	inferior	inferior	2
+2968	T	N	combination	combination	20
+2969	T	N	type	type	40
+2970	T	A	restricted	restricted	1
+2971	T	A	portable	portable	1
+2972	T	N	Czech	czech	4
+2973	T	R	lightly	lightly	9
+2974	T	N	Debussy	debussy	1
+2975	T	A	smooth	smooth	5
+2976	T	N	documentation	documentation	4
+2977	T	A	complementary	complementary	2
+2978	T	N	GALE	gale	7
+2979	T	A	precise	precise	5
+2980	T	A	original	original	20
+2981	T	N	unit	unit	121
+2982	T	R	smoothly	smoothly	5
+2983	T	N	sentences	sentence	86
+2984	T	R	directly	directly	42
+2985	T	A	adjacent	adjacent	6
+2986	T	N	Introduction	introduction	21
+2987	T	R	henceforth	henceforth	1
+2988	T	N	illustration	illustration	6
+2989	T	R	logically	logically	2
+2990	T	A	male	male	7
+2991	T	A	insufficient	insufficient	3
+2992	T	R	solely	solely	10
+2993	T	N	drawback	drawback	4
+2994	T	N	silence	silence	20
+2995	T	N	Japanese	japanese	20
+2996	T	A	compound	compound	7
+2997	T	A	lightweight	lightweight	2
+2998	T	N	testers	tester	2
+2999	T	N	description	description	16
+3000	T	R	correctly	correctly	8
+3001	T	N	Monde	monde	1
+3002	T	A	deficient	deficient	1
+3003	T	A N	prime mover	prime mover	1
+3004	T	A	objective	objective	30
+3005	T	R	specifically	specifically	18
+3006	T	N	variety	variety	26
+3007	T	N	simplicity	simplicity	5
+3008	T	N	SPICE	spice	4
+3009	T	R	versa	versa	2
+3010	T	A	intensive	intensive	2
+3011	T	N	excerpt	excerpt	2
+3012	T	N	lack	lack	14
+3013	T	A	significant	significant	20
+3014	T	A	desirable	desirable	5
+3015	T	N	backbone	backbone	2
+3016	T	R	incorrectly	incorrectly	1
+3017	T	N	Dempster	dempster	1
+3018	T	A	common	common	30
+3019	T	N N	phone numbers	phone number	2
+3020	T	A	relevant	relevant	10
+3021	T	N	tone	tone	19
+3022	T	A	large	large	67
+3023	T	A	neutral	neutral	4
+3024	T	R	consistently	consistently	13
+3025	T	N	usefulness	usefulness	1
+3026	T	N	feasibility	feasibility	1
+3027	T	R	Conceivably	conceivably	1
+3028	T	A	balanced	balanced	3
+3029	T	R	automatically	automatically	13
+3030	T	N	Sproat	sproat	2
+3031	T	R	Similarly	similarly	15
+3032	T	N	tree	tree	45
+3033	T	N	research	research	78
+3034	T	R	extensively	extensively	4
+3035	T	N	criterion	criterion	16
+3036	T	R	faster	faster	11
+3037	T	R	efficiently	efficiently	5
+3038	T	A	clean	clean	11
+3039	T	N	users	user	25
+3040	T	N	phrase	phrase	19
+3041	T	R	drastically	drastically	3
+3042	T	A	faster	fast	14
+3043	T	N	Sofia	sofia	1
+3044	T	A	Tactical	tactical	1
+3045	T	N	ripple	ripple	1
+3046	T	A	independent	independent	18
+3047	T	A	constant	constant	4
+3048	T	N	occurrences	occurrence	2
+3049	T	A N	adverse effect	adverse effect	2
+3050	T	R	fine	fine	1
+3051	T	N	expression	expression	10
+3052	T	A	susceptible	susceptible	2
+3053	T	N	reconstruction	reconstruction	4
+3054	T	A	German	german	33
+3055	T	N	microphone	microphone	3
+3056	T	N	projection	projection	8
+3057	T	N	results	result	197
+3058	T	N	machine	machine	43
+3059	T	A	Italian	italian	15
+3060	T	R	Informally	informally	1
+3061	T	A	compassionate	compassionate	1
+3062	T	A	female	female	13
+3063	T	A	Daily	daily	6
+3064	T	N	stride	stride	6
+3065	T	N	scripts	script	17
+3066	T	A	superior	superior	4
+3067	T	R	anonymously	anonymously	1
+3068	T	N	resources	resource	50
+3069	T	R	partially	partially	5
+3070	T	N	ratio	ratio	6
+3071	T	N	composition	composition	6
+3072	T	R	moderately	moderately	1
+3073	T	A	preferred	preferred	4
+3074	T	N	denominator	denominator	1
+3075	T	A	real	real	21
+3076	T	A	dependent	dependent	12
+3077	T	N	coverage	coverage	13
+3078	T	A	critical	critical	14
+3079	T	N	familiarity	familiarity	1
+3080	T	A	distinguished	distinguished	1
+3081	T	N	dependencies	dependency	5
+3082	T	N	conjunction	conjunction	2
+3083	T	A	reasonable	reasonable	10
+3084	T	A	bottom	bottom	14
+3085	T	A	minimum	minimum	11
+3086	T	A	substantial	substantial	8
+3087	T	N	structure	structure	38
+3088	T	N	contrast	contrast	25
+3089	T	A	efficient	efficient	8
+3090	T	N	source	source	54
+3091	T	A	compact	compact	1
+3092	T	N	server	server	1
+3093	T	N	entirety	entirety	1
+3094	T	N	study	study	59
+3095	T	A	typical	typical	8
+3096	T	N	form	form	77
+3097	T	N	Sally	sally	3
+3098	T	N	character	character	51
+3099	T	R	deep	deep	6
+3100	T	A	advisable	advisable	1
+3101	T	R	continuously	continuously	2
+3102	T	A	slow	slow	14
+3103	T	N	participants	participant	10
+3104	T	A	accustomed	accustomed	1
+3105	T	N	test	test	72
+3106	T	N	Tunisia	tunisia	1
+3107	T	N	usage	usage	2
+3108	T	N	reliance	reliance	2
+3109	T	N	progression	progression	2
+3110	T	N	loss	loss	71
+3111	T	N	collaborators	collaborator	1
+3112	T	N	by-product	by-product	1
+3113	T	R	squarely	squarely	1
+3114	T	N	flurry	flurry	1
+3115	T	A	concrete	concrete	1
+3116	T	A	small	small	49
+3117	T	R	briefly	briefly	6
+3118	T	N	motivation	motivation	5
+3119	T	N	expertise	expertise	15
+3120	T	N	literature	literature	10
+3121	T	N	code	code	12
+3122	T	N	space	space	53
+3123	T	A	prominent	prominent	3
+3124	T	R	competitively	competitively	1
+3125	T	A	Cardinal	cardinal	3
+3126	T	N	steps	step	57
+3127	T	R	easier	easier	2
+3128	T	R	Lastly	lastly	1
+3129	T	A	detrimental	detrimental	1
+3130	T	N	application	application	39
+3131	T	A	traditional	traditional	8
+3132	T	N	Conclusions	conclusion	20
+3133	T	A	shallow	shallow	1
+3134	T	N	performance	performance	99
+3135	T	N	aspects	aspect	16
+3136	T	N	Figure	figure	135
+3137	T	A	persuasive	persuasive	1
+3138	T	R	overhead	overhead	1
+3139	T	N	Istanbul	istanbul	1
+3140	T	R	massively	massively	1
+3141	T	N	paper	paper	62
+3142	T	A	uniform	uniform	6
+3143	T	N	capabilities	capability	6
+3144	T	N	topic	topic	6
+3145	T	N	information	information	79
+3146	T	N	Dutch	dutch	5
+3147	T	R	predominantly	predominantly	2
+3148	T	A	general	general	34
+3149	T	R	fully	fully	36
+3150	T	A	tolerant	tolerant	1
+3151	T	N	instance	instance	22
+3152	T	A N	important role	important role	2
+3153	T	A	equivalent	equivalent	13
+3154	T	A	indicative	indicative	1
+3155	T	A	rare	rare	7
+3156	T	N	paragraph	paragraph	2
+3157	T	N	column	column	11
+3158	T	A	adequate	adequate	3
+3159	T	R	interestingly	interestingly	2
+3160	T	N	core	core	5
+3161	T	N	style	style	42
+3162	T	A	unknown	unknown	7
+3163	T	N	Griffin	griffin	1
+3164	T	A	accurate	accurate	5
+3165	T	R	Additionally	additionally	2
+3166	T	A	vice	vice	2
+3167	T	N	Tramp	tramp	1
+3168	T	A	regular	regular	4
+3169	T	A	imbalanced	imbalanced	2
+3170	T	R	simultaneously	simultaneously	4
+3171	T	A	practical	practical	4
+3172	T	N	stability	stability	6
+3173	T	R	primarily	primarily	5
+3174	T	N	addition	addition	29
+3175	T	N	scale	scale	18
+3176	T	N	Greek	greek	4
+3177	T	R	rigorously	rigorously	1
+3178	T	N	fail	fail	1
+3179	T	R	specially	specially	6
+3180	T	N	consistency	consistency	3
+3181	T	R	suitably	suitably	2
+3182	T	A	uncertain	uncertain	3
+3183	T	N	Porter	porter	5
+3184	T	N	letter	letter	55
+3185	T	N	fascism	fascism	1
+3186	T	A	helpful	helpful	5
+3187	T	A	unique	unique	7
+3188	T	N	assumption	assumption	6
+3189	T	N	rate	rate	94
+3190	T	R	Finally	finally	35
+3191	T	A	cultural	cultural	2
+3192	T	N	element	element	17
+3193	T	N	window	window	28
+3194	T	N	Note	note	26
+3195	T	R	easily	easily	24
+3196	T	N	differences	difference	35
+3197	T	N	precision	precision	2
+3198	T	N	Index	index	16
+3199	T	N	Bangkok	bangkok	2
+3200	T	A N	real word	real word	2
+3201	T	A	valid	valid	2
+3202	T	A	unnecessary	unnecessary	3
+3203	T	R	substantially	substantially	6
+3204	T	N	testing	testing	8
+3205	T	A	inappropriate	inappropriate	3
+3206	T	N	mode	mode	3
+3207	T	R	systematically	systematically	1
+3208	T	N	novices	novice	2
+3209	T	N	arithmetic	arithmetic	1
+3210	T	N	CD-Rom	cd-rom	1
+3211	T	N	number	number	161
+3212	T	N	barriers	barrier	8
+3213	T	R	accurately	accurately	3
+3214	T	N	background	background	16
+3215	T	R	unnecessarily	unnecessarily	1
+3216	T	A	standard	standard	41
+3217	T	A	average	average	20
+3218	T	N	Accounting	accounting	2
+3219	T	N	phase	phase	7
+3220	T	N	flow	flow	6
+3221	T	A	stable	stable	5
+3222	T	A	empty	empty	4
+3223	T	A	unfamiliar	unfamiliar	1
+3224	T	A	high-level	high-level	6
+3225	T	N	French	french	22
+3226	T	N	advances	advance	14
+3227	T	A	peculiar	peculiar	1
+3228	T	A	visible	visible	3
+3229	T	N	distance	distance	13
+3230	T	R	essentially	essentially	5
+3231	T	R	good	good	1
+3232	T	N	competencies	competency	2
+3233	T	N	perception	perception	6
+3234	T	N	beginning	beginning	9
+3235	T	A	acceptable	acceptable	7
+3236	T	N	left	left	9
+3237	T	N	Seoul	seoul	1
+3238	T	N	peak	peak	8
+3239	T	A	fourth	fourth	10
+3240	T	N	instructions	instruction	7
+3241	T	A	active	active	5
+3242	T	N	researchers	researcher	7
+3243	T	N	expert	expert	23
+3244	T	N	directions	direction	17
+3245	T	N	technology	technology	25
+3246	T	R	nonetheless	nonetheless	1
+3247	T	N	arrows	arrow	1
+3248	T	A	unsuitable	unsuitable	1
+3249	T	N	repetition	repetition	1
+3250	T	A	untouched	untouched	1
+3251	T	R	internally	internally	1
+3252	T	N	fertility	fertility	1
+3253	T	R	Thirdly	thirdly	1
+3254	T	A	frequent	frequent	1
+3255	T	A	full	full	27
+3256	T	A	effective	effective	9
+3257	T	N	Brazilian	brazilian	1
+3258	T	R	economically	economically	2
+3259	T	R	sufficiently	sufficiently	4
+3260	T	N	format	format	4
+3261	T	R	readily	readily	4
+3262	T	N	purpose	purpose	15
+3263	T	R	roughly	roughly	3
+3264	T	R	quicker	quicker	1
+3265	T	A	ripe	ripe	1
+3266	T	N	essence	essence	2
+3267	T	N	factors	factor	27
+3268	T	N	surface	surface	8
+3269	T	R	individually	individually	2
+3270	T	N	Riley	riley	1
+3271	T	N	obstacle	obstacle	3
+3272	T	A	short	short	20
+3273	T	N	details	detail	28
+3274	T	N	terms	term	50
+3275	T	A	excellent	excellent	5
+3276	T	N	advantage	advantage	22
+3277	T	R	highly	highly	17
+3278	T	R	prematurely	prematurely	1
+3279	T	N	recipe	recipe	5
+3280	T	N	timing	timing	4
+3281	T	N	process	process	45
+3282	T	N	challenges	challenge	28
+3283	T	N	shortcomings	shortcoming	1
+3284	T	N	work	work	141
+3285	T	N	solutions	solution	16
+3286	T	N	sounds	sound	14
+3287	T	A	suitable	suitable	4
+3288	T	A	productive	productive	1
+3289	T	N	rules	rule	36
+3290	T	R	incredibly	incredibly	2
+3291	T	N	focus	focus	7
+3292	T	A	STRAIGHT	straight	13
+3293	T	R	realistically	realistically	1
+3294	T	R	arguably	arguably	3
+3295	T	N	hierarchy	hierarchy	2
+3296	T	N	cells	cell	8
+3297	T	N	splits	split	4
+3298	T	N	Anchor	anchor	1
+3299	T	N	authors	author	10
+3300	T	N	content	content	10
+3301	T	N	separation	separation	3
+3302	T	A	crucial	crucial	5
+3303	T	N	calculation	calculation	3
+3304	T	N	ability	ability	21
+3305	T	N	disadvantages	disadvantage	3
+3306	T	R	potentially	potentially	4
+3307	T	R	wide	wide	1
+3308	T	N	exploration	exploration	2
+3309	T	A	compelling	compelling	1
+3310	T	N	CART	cart	1
+3311	T	N	entries	entry	11
+3312	T	R	slightly	slightly	13
+3313	T	A	ideal	ideal	3
+3314	T	A	present	present	25
+3315	T	N	Belarus	belarus	1
+3316	T	N	range	range	22
+3317	T	N	Glow	glow	1
+3318	T	N	state	state	69
+3319	T	N	respect	respect	13
+3320	T	A	costly	costly	2
+3321	T	R	generally	generally	14
+3322	T	N	improvement	improvement	18
+3323	T	A	competitive	competitive	5
+3324	T	A	apparent	apparent	4
+3325	T	A	extra	extra	5
+3326	T	A	sophisticated	sophisticated	2
+3327	T	R	previously	previously	14
+3328	T	A	total	total	26
+3329	T	N	order	order	47
+3330	T	A	heavy	heavy	4
+3331	T	N	grey	grey	2
+3332	T	A	valuable	valuable	2
+3333	T	N	creation	creation	6
+3334	T	N	estimate	estimate	5
+3335	T	A	perfect	perfect	4
+3336	T	N	notion	notion	5
+3337	T	N	readers	reader	12
+3338	T	R	collectively	collectively	1
+3339	T	A	powerful	powerful	4
+3340	T	N	means	means	4
+3341	T	R	effectively	effectively	12
+3342	T	R	importantly	importantly	3
+3343	T	N	consequence	consequence	9
+3344	T	N	confusion	confusion	5
+3345	T	N	Prague	prague	1
+3346	T	R	completely	completely	13
+3347	T	N	extensions	extension	6
+3348	T	R	necessarily	necessarily	6
+3349	T	N	momentum	momentum	3
+3350	T	N	leaves	leaf	1
+3351	T	N	development	development	43
+3352	T	N	potential	potential	13
+3353	T	R	distinctly	distinctly	1
+3354	T	N	participation	participation	3
+3355	T	R	successfully	successfully	7
+3356	T	A N	Great Britain	great britain	2
+3357	T	N	breathing	breathing	1
+3358	T	N	case	case	96
+3359	T	N	energy	energy	9
+3360	T	A	well-known	well-known	1
+3361	T	N	hassle	hassle	1
+3362	T	R	universally	universally	1
+3363	T	A	greater	great	22
+3364	T	N	convenience	convenience	1
+3365	T	A	flexible	flexible	2
+3366	T	A	evident	evident	3
+3367	T	R	greatly	greatly	5
+3368	T	N	trick	trick	6
+3369	T	N	Cherry	cherry	1
+3370	T	A	rich	rich	8
+3371	T	N	hesitations	hesitation	1
+3372	T	N	spite	spite	2
+3373	T	N	project	project	38
+3374	T	N	contributions	contribution	15
+3375	T	A	hard	hard	20
+3376	T	N	principle	principle	11
+3377	T	R	perfectly	perfectly	6
+3378	T	A	familiar	familiar	4
+3379	T	A	unchanged	unchanged	3
+3380	T	N	creators	creator	1
+3381	T	N	Complications	complication	1
+3382	T	A	future	future	38
+3383	T	N	field	field	23
+3384	T	N	irregularities	irregularity	1
+3385	T	A	akin	akin	1
+3386	T	A	important	important	25
+3387	T	R	Fundamentally	fundamentally	1
+3388	T	N	melody	melody	1
+3389	T	N	tolerance	tolerance	1
+3390	T	N	schedule	schedule	4
+3391	T	A	essential	essential	6
+3392	T	N	procedure	procedure	12
+3393	T	A	academic	academic	1
+3394	T	A	silly	silly	1
+3395	T	N P N	point of view	point of view	3
+3396	T	A	alternative	alternative	8
+3397	T	N	requirements	requirement	9
+3398	T	R	largely	largely	10
+3399	T	N	slope	slope	2
+3400	T	N	developers	developer	4
+3401	T	N	relationship	relationship	13
+3402	T	N	1990s	1990s	2
+3403	T	N	Hungary	hungary	1
+3404	T	A	convenient	convenient	1
+3405	T	N	depth	depth	3
+3406	T	N	conventions	convention	6
+3407	T	N	discount	discount	4
+3408	T	N	reduction	reduction	10
+3409	T	R	forwards	forwards	1
+3410	T	R	purely	purely	2
+3411	T	N	Zagreb	zagreb	1
+3412	T	N	importance	importance	6
+3413	T	N	understanding	understanding	4
+3414	T	N	discussion	discussion	9
+3415	T	A	beneficial	beneficial	1
+3416	T	N	effect	effect	25
+3417	T	R	adequately	adequately	1
+3418	T	R	closely	closely	6
+3419	T	N	middle	middle	5
+3420	T	N	impetus	impetus	1
+3421	T	N	impact	impact	10
+3422	T	R	simply	simply	25
+3423	T	A	expensive	expensive	5
+3424	T	A	National	national	8
+3425	T	R	notably	notably	3
+3426	T	N	decision	decision	50
+3427	T	N	effort	effort	23
+3428	T	N	design	design	14
+3429	T	A	easier	easy	17
+3430	T	A	considerable	considerable	4
+3431	T	R	surprisingly	surprisingly	3
+3432	T	N	teacher	teacher	15
+3433	T	A N	recent years	recent year	6
+3434	T	N	scope	scope	3
+3435	T	A	fine	fine	4
+3436	T	N	emphasis	emphasis	4
+3437	T	A	white	white	5
+3438	T	N	fashion	fashion	6
+3439	T	N	forty	forty	1
+3440	T	N	part	part	47
+3441	T	N	level	level	33
+3442	T	A	obvious	obvious	5
+3443	T	N	problem	problem	64
+3444	T	A	close	close	16
+3445	T	N	dialogue	dialogue	2
+3446	T	R	appropriately	appropriately	1
+3447	T	N	crossings	crossing	1
+3448	T	N	hours	hour	37
+3449	T	R	closer	closer	3
+3450	T	A	interesting	interesting	5
+3451	T	R	naturally	naturally	4
+3452	T	N	seed	seed	4
+3453	T	R	presently	presently	1
+3454	T	A	early	early	15
+3455	T	N	redundancy	redundancy	4
+3456	T	A	popular	popular	6
+3457	T	N	foreigner	foreigner	2
+3458	T	N	date	date	12
+3459	T	A	irrelevant	irrelevant	1
+3460	T	R	recently	recently	24
+3461	T	N	control	control	19
+3462	T	N	distinction	distinction	2
+3463	T	A	understandable	understandable	1
+3464	T	A	bold	bold	1
+3465	T	N	position	position	28
+3466	T	R	left	left	1
+3467	T	A	forward	forward	20
+3468	T	N	restrictions	restriction	3
+3469	T	R	Likewise	likewise	1
+3470	T	N	Correspondence	correspondence	1
+3471	T	R	equally	equally	6
+3472	T	N	wrists	wrist	1
+3473	T	N	train	train	11
+3474	T	N	devices	device	4
+3475	T	R	fast	fast	4
+3476	T	N	exception	exception	3
+3477	T	R	poorly	poorly	1
+3478	T	N	sentiment	sentiment	2
+3479	T	N	property	property	13
+3480	T	N	lists	list	10
+3481	T	N	male	male	2
+3482	T	N	outset	outset	1
+3483	T	N	flexibility	flexibility	2
+3484	T	N	material	material	10
+3485	T	N	cost	cost	28
+3486	T	N	uncertainty	uncertainty	3
+3487	T	R	nationally	nationally	1
+3488	T	N	origin	origin	2
+3489	T	N	breaks	break	8
+3490	T	A	economic	economic	2
+3491	T	N	strategy	strategy	8
+3492	T	N	insights	insight	2
+3493	T	A	poor	poor	5
+3494	T	N	extent	extent	5
+3495	T	N	neighbors	neighbor	6
+3496	T	N	relations	relation	6
+3497	T	R	carefully	carefully	4
+3498	T	N	choice	choice	11
+3499	T	N	influence	influence	5
+3500	T	R	possibly	possibly	7
+3501	T	A	intact	intact	1
+3502	T	N	items	item	6
+3503	T	N	stage	stage	18
+3504	T	N	environments	environment	8
+3505	T	N	issues	issue	28
+3506	T	N	Internet	internet	2
+3507	T	N	collection	collection	6
+3508	T	N	inability	inability	1
+3509	T	A	attractive	attractive	3
+3510	T	N	singers	singer	3
+3511	T	N	infrastructure	infrastructure	2
+3512	T	N	behavior	behavior	6
+3513	T	N	desire	desire	4
+3514	T	N	Poland	poland	1
+3515	T	N	perspective	perspective	2
+3516	T	A	unusual	unusual	2
+3517	T	N	cycle	cycle	2
+3518	T	R	gradually	gradually	2
+3519	T	A	interested	interested	7
+3520	T	R	internationally	internationally	1
+3521	T	N	articles	article	7
+3522	T	N	location	location	5
+3523	T	N	CAKE	cake	2
+3524	T	R	broadly	broadly	1
+3525	T	N	guarantees	guarantee	2
+3526	T	N	Ryan	ryan	1
+3527	T	N	registers	register	1
+3528	T	R	fairly	fairly	3
+3529	T	A	difficult	difficult	22
+3530	T	N	Korea	korea	1
+3531	T	N	expectations	expectation	4
+3532	T	R	initially	initially	3
+3533	T	N	burden	burden	2
+3534	T	N	conditions	condition	16
+3535	T	R	originally	originally	4
+3536	T	R	differently	differently	1
+3537	T	A	ridiculous	ridiculous	1
+3538	T	N	period	period	13
+3539	T	R	occasionally	occasionally	2
+3540	T	N	image	image	6
+3541	T	N	majority	majority	6
+3542	T	A	successful	successful	5
+3543	T	N	Graves	grave	2
+3544	T	N	emotions	emotion	2
+3545	T	A	American	american	7
+3546	T	N	questions	question	19
+3547	T	N	goal	goal	16
+3548	T	N	switch	switch	1
+3549	T	N	half	half	11
+3550	T	R	officially	officially	2
+3551	T	N	possibility	possibility	5
+3552	T	R	constantly	constantly	2
+3553	T	N	occupation	occupation	1
+3554	T	N	operations	operation	15
+3555	T	N	library	library	2
+3556	T	R	quickly	quickly	7
+3557	T	N	Singapore	singapore	2
+3558	T	A	Fair	fair	3
+3559	T	R	alike	alike	1
+3560	T	N	account	account	9
+3561	T	R	partly	partly	3
+3562	T	N	popularity	popularity	1
+3563	T	N	access	access	6
+3564	T	N	progress	progress	5
+3565	T	N	catch	catch	1
+3566	T	N	session	session	6
+3567	T	N	acquisition	acquisition	3
+3568	T	N	Finland	finland	1
+3569	T	N	mistakes	mistake	4
+3570	T	R	extremely	extremely	4
+3571	T	R	rapidly	rapidly	2
+3572	T	N	response	response	7
+3573	T	A	unaware	unaware	1
+3574	T	R	rarely	rarely	2
+3575	T	R	nearby	nearby	1
+3576	T	N	medium	medium	5
+3577	T	R	widely	widely	3
+3578	T	N	shows	show	12
+3579	T	N	Brazil	brazil	1
+3580	T	R	worse	worse	1
+3581	T	N	subjects	subject	5
+3582	T	A	clear	clear	12
+3583	T	N	track	track	4
+3584	T	N	squares	square	3
+3585	T	A	light	light	7
+3586	T	N	practice	practice	6
+3587	T	N	ARREST	arrest	2
+3588	T	N	comments	comment	6
+3589	T	N	indication	indication	2
+3590	T	R	severely	severely	1
+3591	T	N	lectures	lecture	1
+3592	T	A	grateful	grateful	1
+3593	T	N	advert	advert	1
+3594	T	N	Banker	banker	1
+3595	T	N	Festival	festival	6
+3596	T	A	true	true	5
+3597	T	A	impossible	impossible	3
+3598	T	N	India	india	2
+3599	T	N	time	time	89
+3600	T	N	Switzerland	switzerland	1
+3601	T	N	point	point	22
+3602	T	R	properly	properly	3
+3603	T	A	confident	confident	4
+3604	T	N	attempts	attempt	8
+3605	T	A N	European Union	european union	2
+3606	T	N	turn	turn	3
+3607	T	N	candidate	candidate	5
+3608	T	N	encounters	encounter	1
+3609	T	N	promise	promise	2
+3610	T	N	survey	survey	5
+3611	T	R	formally	formally	1
+3612	T	N	findings	finding	2
+3613	T	R	longer	longer	6
+3614	T	N	outcome	outcome	2
+3615	T	N	consent	consent	1
+3616	T	A	weak	weak	1
+3617	T	N	production	production	6
+3618	T	N	release	release	2
+3619	T	N	community	community	9
+3620	T	N	replacement	replacement	2
+3621	T	R	Traditionally	traditionally	1
+3622	T	N	page	page	3
+3623	T	N	WORLD	world	22
+3624	T	R	precisely	precisely	1
+3625	T	R	barely	barely	1
+3626	T	N	dollars	dollar	2
+3627	T	R	heavily	heavily	2
+3628	T	N	clause	clause	2
+3629	T	A	North	north	3
+3630	T	R	Nowadays	nowadays	1
+3631	T	N	consideration	consideration	2
+3632	T	R	dramatically	dramatically	1
+3633	T	A	capable	capable	2
+3634	T	N	volunteers	volunteer	1
+3635	T	N	increases	increase	9
+3636	T	N	Conflicts	conflict	2
+3637	T	N	Denmark	denmark	1
+3638	T	R	long	long	7
+3639	T	N	regard	regard	1
+3640	T	N	rise	rise	5
+3641	T	A	black	black	4
+3642	T	N	China	china	2
+3643	T	N	basis	basis	4
+3644	T	R	strongly	strongly	2
+3645	T	N	equipment	equipment	3
+3646	T	N	Turkey	turkey	1
+3647	T	N	Croatia	croatia	1
+3648	T	N	head	head	7
+3649	T	N	quarter	quarter	3
+3650	T	N	minutes	minute	13
+3651	T	N	explosion	explosion	1
+3652	T	N	interest	interest	11
+3653	T	N	decade	decade	3
+3654	T	R	frequently	frequently	1
+3655	T	N	newspaper	newspaper	4
+3656	T	R	earlier	earlier	8
+3657	T	N	care	care	5
+3658	T	N	Hunt	hunt	1
+3659	T	N	height	height	1
+3660	T	R	ultimately	ultimately	1
+3661	T	N	line	line	10
+3662	T	N	circles	circle	1
+3663	T	N	Henry	henry	1
+3664	T	R	totally	totally	2
+3665	T	N	entertainment	entertainment	1
+3666	T	N	operator	operator	2
+3667	T	N	idea	idea	7
+3668	T	N	support	support	8
+3669	T	N	view	view	8
+3670	T	N	concerns	concern	6
+3671	T	R	increasingly	increasingly	2
+3672	T	N	area	area	15
+3673	T	N	student	student	5
+3674	T	N	scheme	scheme	7
+3675	T	N	absence	absence	1
+3676	T	N	investigation	investigation	3
+3677	T	N	substitutes	substitute	1
+3678	T	N	front	front	3
+3679	T	N	hand	hand	7
+3680	T	N	theory	theory	1
+3681	T	A	cheaper	cheap	1
+3682	T	N	benefits	benefit	4
+3683	T	N	remarks	remark	1
+3684	T	N	start	start	3
+3685	T	N	bonus	bonus	1
+3686	T	N	fact	fact	10
+3687	T	N	claims	claim	4
+3688	T	N	expense	expense	1
+3689	T	N	funding	funding	2
+3690	T	N	ambition	ambition	1
+3691	T	N	opportunities	opportunity	5
+3692	T	N	recommendations	recommendation	1
+3693	T	N	site	site	4
+3694	T	N	branch	branch	1
+3695	T	N	edges	edge	1
+3696	T	R	regularly	regularly	1
+3697	T	A	free	free	2
+3698	T	N	groups	group	12
+3699	T	N	reasons	reason	5
+3700	T	N	guides	guide	1
+3701	T	N	sense	sense	2
+3702	T	N	storey	storey	1
+3703	T	A	aware	aware	2
+3704	T	N	Clark	clark	1
+3705	T	N	side	side	8
+3706	T	R	Abroad	abroad	1
+3707	T	N	Australia	australia	2
+3708	T	N	Prince	prince	1
+3709	T	N	situations	situation	3
+3710	T	N	experience	experience	3
+3711	T	N	University	university	4
+3712	T	N	intention	intention	1
+3713	T	A	August	august	2
+3714	T	N	bank	bank	4
+3715	T	N	option	option	2
+3716	T	N	currency	currency	1
+3717	T	N	evidence	evidence	3
+3718	T	N	sign	sign	1
+3719	T	N	union	union	4
+3720	T	A	unable	unable	1
+3721	T	N	force	force	3
+3722	T	R	apparently	apparently	1
+3723	T	N	March	march	2
+3724	T	N	circumstances	circumstance	1
+3725	T	N	link	link	1
+3726	T	N	Japan	japan	1
+3727	T	A	worth	worth	1
+3728	T	A	responsible	responsible	1
+3729	T	N	services	service	7
+3730	T	N	Politicians	politician	1
+3731	T	N	book	book	3
+3732	T	N	past	past	1
+3733	T	R	eventually	eventually	1
+3734	T	N	capitals	capital	1
+3735	T	N	Cash	cash	1
+3736	T	N	November	november	1
+3737	T	N	Scene	scene	1
+3738	T	N	Germany	germany	1
+3739	T	N	place	place	5
+3740	T	N	hope	hope	1
+3741	T	N	heart	heart	1
+3742	T	N	mind	mind	1
+3743	T	N	trials	trial	1
+3744	T	N	Contract	contract	1
+3745	T	N	countries	country	3
+3746	T	N	city	city	2
+3747	T	N	things	thing	3
+3748	T	N	industry	industry	2
+3749	T	R	back	back	4
+3750	T	N	workers	worker	1
+3751	T	N	years	year	15
+3752	T	N	France	france	1
+3753	T	N	government	government	3
+3754	T	N	today	today	2
+3755	T	N	Europe	europe	1
+3756	T	N	people	people	4
+3757	T	N	children	child	1
+3758	T	N	companies	company	1
