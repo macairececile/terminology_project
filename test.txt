@@ -1,25 +1,166 @@
-Abstract: Grapheme-to-phoneme conversion is the process of generating pronunciation for words based on their written form.
-It has a highly essential role for natural language processing, text-to-speech synthesis and automatic speech recognition systems.
-In this paper, we investigate convolutional neural networks (CNN) for G2P conversion.
-We propose a novel CNN-based sequence-to-sequence (seq2seq) architecture for G2P conversion.
-Our approach includes an end-to-end CNN G2P conversion with residual connections and, furthermore, a model that utilizes a convolutional neural network (with and without residual connections) as encoder and Bi-LSTM as a decoder.
-We compare our approach with state-of-the-art methods, including Encoder-Decoder LSTM and Encoder-Decoder Bi-LSTM.
-Training and inference times, phoneme and word error rates were evaluated on the public CMUDict dataset for US English, and the best performing convolutional neural network-based architecture was also evaluated on the NetTalk dataset.
-Our method approaches the accuracy of previous state-of-the-art results in terms of phoneme error rate.
-Keywords: grapheme-to-phoneme (G2P); encoder-decoder; LSTM; 1D convolution; Bi-LSTM; residual architecture
+TUNDRA: A Multilingual Corpus of Found Data for TTS Research Created with Light Supervision
+
+Text-to-Speech
+
+Abstract        
+Simple4All Tundra (version 1.0) is the first release of a standardised multilingual corpus designed for text-to-speech research with imperfect or found data.
+The corpus consists of approximately 60 hours of speech data from audiobooks in 14 languages, as well as utterance-level alignments obtained with a lightly-supervised process.
+Future versions of the corpus will include finer-grained alignment and prosodic annotation, all of which will be made freely available.
+This paper gives a general outline of the data collected so far, as well as a detailed description of how this has been done, emphasizing the minimal language-specific knowledge and manual intervention used to compile the corpus.
+To demonstrate its potential use, text-to-speech systems have been built for all languages using unsupervised or lightly supervised methods, also briefly presented in the paper.
+Index Terms: multilingual corpus, light supervision, imperfect data, found data, text-to-speech, audiobook data
+
+Introduction
+Building a text-to-speech (TTS) conversion system for a new language has in the past been an expensive and time-consuming activity.
+Using data-driven methods to build, for example, a statistical parametric waveform generation module or TTS back-end, can alleviate to some extent the lack of expert linguistic knowledge.
+Even then, however, a recording script must be prepared, a voice talent recruited and high-quality speech recording carefully supervised.
+Also problematic is the text-processing component of the system, i.e. the TTS front-end, if none is available for the target language.
+A front-end is made up of rule-based or statistical modules; acquiring the expert knowledge required either to manually specify those rules, or to annotate a learning sample on which to train the statistical models, represents a major obstacle to creating a TTS system for a new target language and requires highly specialised knowledge.
+Such non-trivial tasks include, for example, specifying a phoneme-set or part of speech (POS) tag-set for a language where one has not already been defined; annotating plain text with POS tags, as required to train a POS tagger and annotating the surface forms of words with phonemes to build a pronunciation lexicon.
+One of the primary goals of the project Simple4All1 is to produce freely available tools for building TTS systems with little or no expert supervision from freely available existing data.
+These tools enable us to sidestep the expense associated with engineering a speech corpus in each new target language from scratch, in the case where data is not readily available.
+Our toolkit includes modules for handling imperfect recording conditions, segmenting audio into manageable chunks, and aligning those chunks with a chapter or book-level text transcription.
+We here explain how these tools have been applied to existing audiobook data in 14 languages, most of it freely available, to create a multilingual corpus with minimal manual intervention and language-specific expert knowledge.
+The result of this processing is a standardised multilingual database of ‘found’ data, which we release under the name Tundra.
+There has been much recent interest in in using found data to produce TTS systems, in particular, speech data from audiobook recordings.
+We note that the Arctic databases have provided a valuable resource for research into TTS using conventional purpose-recorded databases, in that they are freely available and serve as a common point of reference for benchmarking.
+In view of this significant and growing interest in building TTS systems from found data, we feel there is a need for a similarly standardised and freely-available corpus of found data. We present Tundra to the TTS researchommunity in the hope that it can start to fill that need.
+Our toolkit also includes modules for selecting a subset of utterances with a uniform speaking style, and constructing TTS systems from text and speech data without reliance on language-specific expert knowledge or on conventional linguistic resources such as lexicons, phonesets, part-of-speech taggersetc.
+In order to show that it is feasible to build voices on corpora built with such minimal expert supervision, we also present a demonstration of TTS systems that we have built by applying these tools to Tundra.
+We do not present detailed explanation, evaluation and analysis of these demo systems here due to space limitations, and refer interested readers to , where such details will be given.
+An initial public version of the Simple4All tools used to compile the corpus and build the demo voices is due to be released in November 2013.
+
+www.simple4all.org/    
+
+Corpus Construction
+In this section we describe the pipeline of data processing involved in building the Tundra corpus, from speech denoisingand deverberation to lightly supervised speech and text alignment.
+All the steps presented in the following subsections are based solely on found speech and text resources and could be easily applied to any other resource, even by non-expert users.
+As regards language dependency, the only step which requires familiarity with at least the script of the target language is the first step of matching 10 minutes of speech with an orthographic transcript.
+All the other processes can be performed by the users with little or no training in speech processing and without relying on any target language knowledge.
+
+Speech Pre-processing
+Conventional TTS corpora deliver speech recorded in noise-free non-reverberant environments, and thus lead to high-quality synthetic speech.
+Found data, on the other hand are usually recorded in sub-optimal conditions, and without professional recording equipment.
+Therefore, when building TTS systems on this type of data, some pre-processing steps are in order.
+For Tundra, recordings which casual listening suggested were sub-optimal went through the following pre-processing steps, applied to each recording session individually,2 so that variations in between them can be normalised:
+Noise reduction: uses a multi-band noise gate removal with a 20dB noise reduction threshold, a frequency smoothing of 150 Hz and 0.15 second decay time.
+The noise profile was selected from the initial silence segments of each speech file.
+Normalisation: DC offset was removed, and the recordings were normalised to a maximum amplitude of -0.1 dB, so that the average energy level is the same across different recording sessions.
+Deverberation: was performed using a RMS based algorithm, with a smoothing of 40 ms and a release of 400ms.
+
+Lightly-supervised Audio Segmentation
+Current parametric TTS systems generally use training data which is segmented into sentence-length chunks, and rarely make use of contexts beyond the current sentence.
+The small length of the training data is also a limitation of the forced alignment algorithm while training.
+Although several algorithms have been proposed to enable the use of longer speech segments, we still consider that sentence-length utterances are the building blocks of TTS, and longer segments can be easily obtained by concatenating the former, thus ensuring a paragraph or maybe chapter level analysis or training.
+presents a lightly supervised method for the segmentation of speech into sentences. The method uses a small amount of manually labelled data, in which the silence between sentences is marked for around 5 to 10 minutes of speech.
+Silence marking is a trivial task and requires no technical knowledge.
+Using the initial training data, standard Gaussian mixture models (GMMs) with 16 components are trained for speech and silence respectively.
+The observation vectors consist of energy, 12 dimensional MFCCs, their delta features, and the number of zero crossings in a frame.
+The distinction between speech and silence is made by calculating the log likelihood ratio (LLR) of each frame.
+The framewise LLR is smoothed using a moving median filter.
+While doing sentence level segmentation, an important aspect is to discriminate between within-sentence breaks, and sentence boundary breaks.
+Therefore, the trained GMMs likelihood scores are evaluated on the training data, and the durations of the sentence boundary silence segments and the durations of within-sentence silence segments are computed.
+Two Gaussian PDFs are then fitted to the two model durations.
+The intersection point of the two PDFs is used as a duration threshold to classify silent segments as either sentence-internal or sentence boundary breaks.
+Results presented in showed that this method when applied to an English audiobook, successfully identified most of the sentence boundaries.
+We also evaluate it in this paper by comparing speech-based segmentation results against the text based ones.
+
+Audiobooks are usually distributed in chapter-size chunks which correspond to one recording session.
+
+Lightly-supervised Speech and Text Alignment
+In  we first introduced a method for the automatic alignment of speech data with unsynchronised, imperfect transcripts, for a domain where no initial acoustic models are available.
+As opposed to , where existing high-quality acoustic and language models are used, our method requires only relatively low-quality grapheme-based acoustic models trained solely on the speech resource to be aligned.
+To overcome the lack of good acoustic models, the ASR decoding network is limited to a sequence of words derived from the approximate transcript, similar to.
+This sequence is called a skip network.
+The confidence of the alignment is ranked based on the acoustic scores obtained in the decoding process with different degrees of freedom included in the skip network.
+Manual intervention is limited to matching the first 10 minutes of speech with the correct text transcription, to provide data for training the initial acoustic models, similar to.
+This feature makes the method easily applicable in any language employing an alphabetic writing system, and enables the use of found data without the hassle of manually transcribing its entirety.
+Initial results on the English audiobook A Tramp Abroad by Mark Twain3 showed an average 55% confident data, with a WER of 1% and SER of 8%.
+Since then, the acoustic model training has been extended to tri-grapheme and lightly supervised discriminative training, which led to an average of75% confident data with similar word and sentence error rates.
+One major loss in sentence accuracy rates is due to utterance initial and final word deletions and insertions, which cannot be correctly detected by the current confidence measure. However, previous studies showed that phone errors less than 1% do not degrade the quality of the synthetic speech.
+The output of the alignment process is a set of segmented speech files with their corresponding orthographic transcripts, including punctuation, and also a time alignment of the segments within the initial speech data.
+
+The Corpus
+The procedures described above have been applied to a number of freely available found resources.
+Audiobooks were a first choice, as they are a readily available in multiple languages and are generally read by a single speaker and recorded with equipment of at least reasonable quality.
+Another advantage would be that by using cohesive and expressive spoken data as the basis for training a TTS system might yield more cohesive and expressive multi-utterance TTS output, fact which explains the high interest in them lately.
+This latter advantage is not especially made use of in the demo voices presented here, but is the subject of on-going work for us elsewhere.
+To emphasise the utility of audiobooks in TTS systems, in Fig.  we present a comparison between standard TTS corpora and audiobooks with respect to logF0 in 4 different languages.
+The standard TTS corpora are: a subset of the database called ‘Nina’ in, a subset of a corpus of Finnish speech recorded from a female speaker specifically for TTS purposes, SEV neutral [19] and RSS [20].
+
+http://librivox.org/a-tramp-abroad-by-mark-twain/
 
 
+Table : Simple4All Tundra Corpus overview
 
-Introduction 
-The process of grapheme-to-phoneme (G2P) conversion generates a phonetic transcription from the written form of words.
-The spelling of a word is called a grapheme sequence (or graphemes), the phonetic form is called a phoneme sequence (or phonemes).
-It is essential to develop a phonemic lexicon in text-to-speech (TTS) and automatic speech recognition (ASR) systems.
-For this purpose, G2P techniques are used, and getting state-of-the-art performance in these systems depends on the accuracy of G2P conversion.
-For instance, in ASR acoustic models, the pronunciation lexicons and language models are critical components.
-Acoustic and language models are built automatically from large corpora.
-Pronunciation lexicons are the middle layer between acoustic and language models.
-For a new speech recognition task, the performance of the overall system depends on the quality of the pronunciation component.
-In other words, the system’s performance depends on G2P accuracy.
-For example, the G2P conversion of word ‘speaker’ is ‘S P IY K ER’.
-In TTS systems, a high-quality G2P model is also an essential part and has a great influence on the overall quality.
-Inaccurate G2P conversion results in unnatural pronunciation or even incomprehensible synthetic speech.
+Figure : logF0 comparison of conventional TTS corpora versus audiobook data in four languages: English (EN), Spanish (ES), Finnish (FI) and Romanian (RM).
+A denotes the audiobook data, and S denotes the standard TTS database.
+The standard corpora speaker genders are the same as the selected audiobooks.
+
+Figure : logF0 boxplots for all languages. Language codes are given in Table
+
+It can be easily observed that the audiobooks have a greater standard deviation compared with conventional corpora, which means that they could easily provide a much richer prosodic context.
+This aspect can also be noticed from Fig. where logF0 distributions are plotted for all the languages of the corpus.
+As a result, Tundra 1.0 includes 14 audiobooks in 14 languages: Bulgarian, Danish, Dutch, English, Finnish, French, German, Hungarian, Italian, Polish, Portuguese, Romanian, Russian and Spanish.
+Language selection was based on the availability of both speech and text data, as well as the language having an alphabetic writing system (in this case, Latin and Cyrillic alphabets). 
+Important resources for these are the Librivox and Gutenberg4 projects, which are the sources for most of the data used to compile Tundra.
+The complete list speech and text sources can be found here http://tundra.simple4all.org/.
+
+http://librivox.org and http://gutenberg.org/ 
+
+Table presents an overview of the entire corpus, including title and author of the audiobook, speaker gender and total duration.
+There are 8 male and 6 female speakers, and the aligned corpus amounts to approximately 60 hours of speech.
+For the final set of utterances included in this corpus, each audiobook underwent the steps described in the Section and which are schematically depicted in Fig.
+Audiobook chapters were converted from mp3 to wav format and then cleaned if the overall quality was considered low.
+The first 10 minutes of speech were then annotated with silence segments and manually transcribed.
+Manual transcription proved to be a trivial task, and based on the book text, the authors were able to perform it, although they do not speak most of the languages included in the corpus.
+For the Cyrillic writing system languages (i.e. Bulgarian and Russian), native speakers were asked to correct an initial transcription provided by the authors.
+Data was then segmented using the VAD algorithm, and the resulting number of speech utterances is presented in Table alongside the text-based segmentation.
+
+For example, the Spanish and Romanian data are professional recordings which did not require any pre-processing.
+We currently decide whether to pre-process recordings based on informal listening, but aim to automate this with an objective measure of speech quality in future versions of our toolkit.               
+
+The difference between the number of VAD and text utterances results from the writing style of the book (i.e. mostly dialogue, or mostly descriptive) and the fact that in the alignment process, in order to obtain the most data from the audiobook, segmented utterances which are shorter than a specified threshold (5 seconds for these data) are concatenated.
+After the alignment process, an average of 68% of the data were considered confident and included in the final corpus.
+Table  presents the duration of the aligned data and its percentage from the total duration. This percentage appears to be highly dependent on:
+a) the total amount of data available: see the low percentage of the Danish audiobook which has only 2.1 hours;
+b) speaker gender: female voices seem to have a lower alignment percentage;
+c) grapheme-to-phoneme language complexity: see English and French versus Italian and German;
+and d) speaker characteristics: speaking rhythm, degree of expresivity, as well as general voice quality also affect the results.
+SER and WER values for the aligned audiobooks could not be exactly determined, as this would have required their full manual transcription, which is outside the scope of this corpus building procedure.
+However, one chapter from each audiobook in the languages spoken by the authors was evaluated, and the errors tend to be similar to those in, meaning a less than 1% WER and a 8% SER.
+Higher error rates were reported for the noisier speech data (see Table for general signal-to-noise ratios).
+To be useful as a standardised TTS corpus, Tundra is also partitioned into training and test sets.
+To ensure a satisfactory amount of testing data even for the shortest audiobook, the test data were selected from the final chapters/parts of the audiobooks, so that they amount to at least 10% of the aligned duration of it.
+The entire segmented and aligned corpus, along with the chapter-wise time alignment and training/test set division of can be downloaded from http://tundra.simple4all.org 
+
+Spanish and Romanian also have very simple G2P rules, but the speakers’ greater expressivity limits the alignner’s performance.
+This being a subjective measure, we encourage readers to listen to samples of the audiobooks.
+         
+Figure : Outline of corpus construction and voice building
+
+Demo
+To show the feasibility of using a corpus that has been compiled with such minimal intervention and language-specific expertise, we have used it to build demo TTS voices in the corpuslanguages.
+To build these voices we first select a subset of utterances spoken in a homogenous style using a slightly supervised active learning-based approach.
+We then employ a toolkit which has been specifically designed to construct TTS front-ends while making as few implicit assumptions about the target language as possible, and to be configurable with minimal effort and expert knowledge to suit arbitrary new target languages.
+The modules of our toolkit therefore rely where possible on resources which are intended to be universal.
+For example, to tokenise input text we rely on character properties given in the Unicode character database – a regular expression defined over these properties has so far produced sensible tokenisations in a variety of alphabetic (Latin-based, Cyrillic) and alphasyllabic (Brahmic) scripts.)
+A letter-based approach is used, in which the names of letters are used directly as the names of speech modelling units (in place of the phonemes of a conventional front-end).
+This has given good results for languages with transparent alphabetic orthographies such as Romanian, Spanish and Finnish, and can give acceptable results even for languages with less transparent orthographies, such as English.
+Furthermore, our tools make no use of expert-specified categories of letter and word, such as phonetic categories (vowel, nasal, approximant, etc.) and part of speech categories (noun, verb, adjective, etc.).
+Instead, we use features that are designed to stand in for such expert knowledge but which are derived fully automatically from the distributional analysis of plain text in the target language.
+Samples of the voices can be heard at http://tundra.simple4all.org/demo/.
+For reasons of space we refer readers interested in full presentation and evaluation of thesesystems to.
+
+Conclusion
+We have introduced a first version of the Simple4All Tundra corpus, and described its construction from readily available speech data.
+14 audiobooks in 14 languages have been so far included in the corpus along with their orthographic transcripts.
+Tundra will be extended in the future with other types of imperfect, found data, such as lectures, or parliamentary speech, data which have a higher degree of spontaneity and expressivity.
+We will also aim at making available finer-grained alignments of the data, and also more elaborate prosodic annotations, such as style diarisation, emphasis or sentiment analysis.
+The TTS systems built from this corpus demonstrate a first application of  the Tundra corpus, and support its usefulness.
+
+Acknowledgements
+The research leading to these results has received funding from the European Community’s Seventh Framework Programme (FP7/2007-2013) under grant agreement No 287678.
+The research presented here has made use of the resources provided by the Edinburgh Compute and Data Facility (ECDF: http://www.ecdf.ed.ac.uk).
+The ECDF is partially supported by the eDIKT initiative (http://www.edikt.org.uk).
+We would like to thank Mihai Nae from Cartea Sonora for releasing the Romanian data, as well as to all the volunteers at Librivox and Gutenberg for dedicating their time to distribute this wide variety of data.
