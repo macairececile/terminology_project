@@ -1,0 +1,19 @@
+Our segmentation model is trained to output the alignment between a given utterance and a sequence of target phonemes.
+This task is similar to the problem of aligning speech to written output in speech recognition.
+In that domain, the connectionist temporal classification (CTC) loss function has been shown to focus on character alignments to learn a mapping between sound and text (Graves et al., 2006).
+We adapt the convolutional recurrent neural network architecture from a state-of-the-art speech recognition system (Amodei et al., 2015) for phoneme boundary detection.
+A network trained with CTC to generate sequences of phonemes will produce brief peaks for every output phoneme.
+Although this is sufficient to roughly align the phonemes to the audio, it is insufficient to detect precise  phoneme boundaries.
+To overcome this, we train to predict sequences of phoneme pairs rather than single phonemes.
+The network will then tend to output phoneme pairs at timesteps close to the boundary between two phonemes in a pair.
+To illustrate our label encoding, consider the string “Hello!”.
+To convert this to a sequence of phoneme pair labels, convert the utterance to phonemes (using a pronunciation dictionary such as CMUDict or a grapheme-tophoneme model) and pad the phoneme sequence on either end with the silence phoneme to get “sil HH EH L OW sil”.
+Finally, construct consecutive phoneme pairs and get “(sil, HH), (HH, EH), (EH, L), (L, OW), (OW, sil)”.
+Input audio is featurized by computing 20 Mel-frequency cepstral coefficients (MFCCs) with a ten millisecond stride.
+On top of the input layer, there are two convolution layers (2D convolutions in time and frequency), three bidirectional recurrent GRU layers, and finally a softmax output layer.
+The convolution layers use kernels with unit stride, height nine (in frequency bins), and width five (in time) and the recurrent layers use 512 GRU cells (for each direction).
+Dropout with a probability of 0.95 is applied after the last convolution and recurrent layers.
+To compute the phoneme-pair error rate (PPER), we decode using beam search.
+To decode phoneme boundaries, we perform a beam search with width 50 with the constraint that neighboring phoneme pairs overlap by at least one phoneme and keep track of the positions in the utterance of each phoneme pair.
+For training, we use the Adam optimization algorithm with β 1 = 0.9, β 2 = 0.
+999, ε = 10 −8 , a batch size of 128, a learning rate of 10 −4 , and an annealing rate of 0.95 applied every 500 iterations (Kingma & Ba, 2014).
