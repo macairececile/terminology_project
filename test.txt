@@ -1,10 +1,25 @@
-INTERSPEECH 2013
-TUNDRA: A Multilingual Corpus of Found Data for TTS Research Created with Light Supervision
+Abstract: Grapheme-to-phoneme conversion is the process of generating pronunciation for words based on their written form.
+It has a highly essential role for natural language processing, text-to-speech synthesis and automatic speech recognition systems.
+In this paper, we investigate convolutional neural networks (CNN) for G2P conversion.
+We propose a novel CNN-based sequence-to-sequence (seq2seq) architecture for G2P conversion.
+Our approach includes an end-to-end CNN G2P conversion with residual connections and, furthermore, a model that utilizes a convolutional neural network (with and without residual connections) as encoder and Bi-LSTM as a decoder.
+We compare our approach with state-of-the-art methods, including Encoder-Decoder LSTM and Encoder-Decoder Bi-LSTM.
+Training and inference times, phoneme and word error rates were evaluated on the public CMUDict dataset for US English, and the best performing convolutional neural network-based architecture was also evaluated on the NetTalk dataset.
+Our method approaches the accuracy of previous state-of-the-art results in terms of phoneme error rate.
+Keywords: grapheme-to-phoneme (G2P); encoder-decoder; LSTM; 1D convolution; Bi-LSTM; residual architecture
 
-Abstract        
-Simple4All Tundra (version 1.0) is the first release of a standardised multilingual corpus designed for text-to-speech research with imperfect or found data.
-The corpus consists of approximately 60 hours of speech data from audiobooks in 14 languages, as well as utterance-level alignments obtained with a lightly-supervised process.
-Future versions of the corpus will include finer-grained alignment and prosodic annotation, all of which will be made freely available.
-This paper gives a general outline of the data collected so far, as well as a detailed description of how this has been done, emphasizing the minimal language-specific knowledge and manual intervention used to compile the corpus.
-To demonstrate its potential use, text-to-speech systems have been built for all languages using unsupervised or lightly supervised methods, also briefly presented in the paper.
-Index Terms: multilingual corpus, light supervision, imperfect data, found data, text-to-speech, audiobook data
+
+
+Introduction 
+The process of grapheme-to-phoneme (G2P) conversion generates a phonetic transcription from the written form of words.
+The spelling of a word is called a grapheme sequence (or graphemes), the phonetic form is called a phoneme sequence (or phonemes).
+It is essential to develop a phonemic lexicon in text-to-speech (TTS) and automatic speech recognition (ASR) systems.
+For this purpose, G2P techniques are used, and getting state-of-the-art performance in these systems depends on the accuracy of G2P conversion.
+For instance, in ASR acoustic models, the pronunciation lexicons and language models are critical components.
+Acoustic and language models are built automatically from large corpora.
+Pronunciation lexicons are the middle layer between acoustic and language models.
+For a new speech recognition task, the performance of the overall system depends on the quality of the pronunciation component.
+In other words, the system’s performance depends on G2P accuracy.
+For example, the G2P conversion of word ‘speaker’ is ‘S P IY K ER’.
+In TTS systems, a high-quality G2P model is also an essential part and has a great influence on the overall quality.
+Inaccurate G2P conversion results in unnatural pronunciation or even incomprehensible synthetic speech.

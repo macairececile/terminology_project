@@ -19,17 +19,17 @@ Modern TTS systems are based on complex, multi-stage processing pipelines, each 
 Due to this complexity, developing new TTS systems can be very labor intensive and difficult.
 Deep Voice is inspired by traditional text-to-speech pipelines and adopts the same structure, while replacing all components with neural networks and using simpler features: first we convert text to phoneme and then use an audio synthesis model to convert linguistic features into speech (Taylor, 2009).
 Unlike prior work (which uses hand-engineered features such as spectral envelope, spectral parameters, aperiodic parameters, etc.), our only features are phonemes with stress annotations, phoneme durations, and fundamental frequency (F0).
-This choice of features makes our system more readily applicable to newdatasets, voices, and domains without any manual data annotation or additional feature engineering.
-We demonstratethis claim by retraining our entire pipeline without any hyperparameter changes on an entirely new dataset that contains solely audio and unaligned textual transcriptions andgenerating relatively high quality speech.
-In a conventionalTTS system this adaptation requires days to weeks of tuning, whereas Deep Voice allows you to do it in only a fewhours of manual effort and the time it takes models to train.
-Realtime inference is a requirement for a production-quality TTS system; without it, the system is unusable formost applications of TTS.
-Prior work has demonstrated thata WaveNet (van den Oord et al., 2016) can generate close to human-level speech.
-However, WaveNet inference poses adaunting computational problem due to the high-frequency,autoregressive nature of the model, and it has been hithertounknown whether such models can be used in a production system.
-We answer this question in the affirmative anddemonstrate efficient, faster-than-realtime WaveNet inference kernels that produce high-quality 16 kHz audio andrealize a 400X speedup over previous WaveNet inferenceimplementations (Paine et al., 2016).
+This choice of features makes our system more readily applicable to new datasets, voices, and domains without any manual data annotation or additional feature engineering.
+We demonstrate this claim by retraining our entire pipeline without any hyperparameter changes on an entirely new dataset that contains solely audio and unaligned textual transcriptions andgenerating relatively high quality speech.
+In a conventional TTS system this adaptation requires days to weeks of tuning, whereas Deep Voice allows you to do it in only a fewhours of manual effort and the time it takes models to train.
+Realtime inference is a requirement for a production-quality TTS system; without it, the system is unusable for most applications of TTS.
+Prior work has demonstrated that a WaveNet (van den Oord et al., 2016) can generate close to human-level speech.
+However, WaveNet inference poses adaunting computational problem due to the high-frequency, autoregressive nature of the model, and it has been hit her to unknown whether such models can be used in a production system.
+We answer this question in the affirmative anddemonstrate efficient, faster-than-realtime WaveNet inference kernels that produce high-quality 16 kHz audio andrealize a 400X speedup over previous WaveNet inference implementations (Paine et al., 2016).
 
 Related Work
 
-Previous work uses neural networks as substitutes for several TTS system components, including grapheme-tophoneme conversion models (Rao et al., 2015; Yao & Zweig, 2015), phoneme duration prediction models (Zen & Sak, 2015), fundamental frequency prediction models (Pascual & Bonafonte, 2016; Ronanki et al., 2016), and audio synthesis models (van den Oord et al., 2016; Mehri et al., 2016).
+Previous work uses neural networks as substitutes for several TTS system components, including grapheme-to-phoneme conversion models (Rao et al., 2015; Yao & Zweig, 2015), phoneme duration prediction models (Zen & Sak, 2015), fundamental frequency prediction models (Pascual & Bonafonte, 2016; Ronanki et al., 2016), and audio synthesis models (van den Oord et al., 2016; Mehri et al., 2016).
 Unlike Deep Voice, however, none of these systems solve the entire problem of TTS and many of them use specialized hand-engineered features developed specifically for their domain.
 Most recently, there has been a lot of work in parametric audio synthesis, notably WaveNet, SampleRNN, and Char2Wav (van den Oord et al., 2016; Mehri et al., 2016; Sotelo et al., 2017).
 While WaveNet can be used for both conditional and unconditional audio generation, SampleRNN is only used for unconditional audio generation.
