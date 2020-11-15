@@ -87,7 +87,7 @@ To the best of our knowledge, our approach is the first that uses convolutional 
 In this paper, we present one general sequence-to-sequence and four encoder-decoder models.
 These are introduced in Section.
 Our goal was to achieve and surpass (if possible) the accuracy of previous models and to reduce the training times (which is quite high in the case of LSTM/GRU).
-The remaining parts of this paper are structured as follows: Section discusses the possibility of applying convolutional neural networks for sequence-to-sequence-based grapheme-to-phoneme conversion.
+The remaining parts of this paper are structured as follows: Section discusses the possibility of applying convolutional neural networks for sequence-to-sequence grapheme-to-phoneme conversion.
 Datasets, training processes, and evaluation of the proposed models are presented in Section.
 Section analyzes the results of the models, and finally, the conclusion is drawn in Section.
 

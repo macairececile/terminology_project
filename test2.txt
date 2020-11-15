@@ -1,1 +1,1 @@
-ASR acoustic model
+Following Transformer, residual connections, layer normalization, and dropout are added after the self-attention network and 1D

@@ -1,4 +1,6 @@
 #	type	pattern	pilot	lemma	freq
+	T	N N	1D Convolution	1d convolution	
+	T	N N	1D convolutional	1d convolutional	
 9	T	A N	acoustic model	acoustic model	72
 497	T	A N N	acoustic model training	acoustic model training	5
 2346	T	A	acoustic-phonotactic	acoustic-phonotactic	1
@@ -18,7 +20,9 @@
 601	T	N N	attention layer	attention layer	4
 91	T	N N	attention mechanism	attention mechanism	18
 466	T	N N	attention weights	attention weight	5
+	T	A N	attention-based model	attention-based model	
 1661	T	A N N	attention-based sequence-to-sequence model	attention-based sequence-to-sequence model	2
+	T	A	attention-enabled	attention-enabled	
 223	T	A	audio	audio	189
 374	T	A N	audio clip	audio clip	6
 454	T	A N	audio generation	audio generation	5
@@ -32,16 +36,25 @@
 441	T	N N	autoregressive counterpart	autoregressive counterpart	5
 98	T	N N	autoregressive model	autoregressive model	18
 1166	T	N A N	autoregressive seq2seq model	autoregressive seq2seq model	2
+	T	A N N	autoregressive sequence generation	autoregressive sequence generation	
 734	T	N N N	autoregressive text-to-spectrogram model	autoregressive text-to-spectrogram model	4
 211	T	N N N	autoregressive Transformer TTS	autoregressive transformer tts	10
 289	T	N N N N	autoregressive Transformer TTS model	autoregressive transformer tts model	8
 1095	T	N	autoregressively	autoregressively	5
 465	T	A	back-end	back-end	5
+	T	N N	backward decoder	backward decoder	
+	T	N N	backward encoder	backward encoder	
 112	T	N N	batch normalization	batch normalization	15
 132	T	N N	batch size	batch size	14
+	T	N	beginning-of-graphemes	beginning-of-graphemes	
+	T	A N	bi-directional LSTM	bi-directional lstm	
+	T	N	Bi-GRU	bi-gru	
 222	T	N	Bi-LSTM	bi-lstm	19
+	T	N	Bi-LSTMs	bi-lstm	
 566	T	A N	bidirectional decoder	bidirectional decoder	4
+	T	A A A N	Bidirectional Gated Recurrent Unit	bidirectional gated recurrent unit	
 1108	T	A N	bidirectional LSTM	bidirectional lstm	5
+	T	A N	bidirectional multi-layer	bidirectional multi-layer	
 556	T	N N	Blizzard Challenge	blizzard challenge	4
 102	T	N	BLSTM	blstm	17
 495	T	N	BLSTM-S	blstm-s	5
@@ -55,7 +68,11 @@
 2620	T	A N N	clustering-based unit-selection approach	clustering-based unit-selection approach	2
 467	T	N	CMOS	cmos	5
 196	T	N	CMUDict	cmudict	20
+1114	T	N	CNN	cnn	
+1112	T	A	CNN-based	cnn-base	
 541	T	N	code-switching	code-switching	13
+	T	A N	concatenative synthesis	concatenative synthesis	
+	T	A N N	conditional random fields	conditional random field	
 543	T	N N	conditioning network	conditioning network	4
 1313	T	A A N	context-dependent acoustic models	context-dependent acoustic model	2
 2427	T	A N	context-dependent HMMs	context-dependent hmms	2
@@ -65,7 +82,9 @@
 174	T	A N	convolutional layers	convolutional layer	23
 427	T	A N	convolutional network	convolutional network	11
 1810	T	A N P N N	convolutional network with ReLU activation	convolutional network with relu activation	2
+1113	T	A A A N	convolutional neural network-based architecture	convolutional neural network-based architecture	
 94	T	A A N	convolutional neural networks	convolutional neural network	18
+	T	N	CRF	crf	
 430	T	N	cross-language	cross-language	21
 2615	T	N N	cross-language knowledge	cross-language knowledge	2
 385	T	N N	cross-language transfer	cross-language transfer	6
@@ -84,8 +103,11 @@
 626	T	A N	cross-lingual voice	cross-lingual voice	8
 352	T	N	CSS10	css10	12
 2602	T	A	data-based	data-based	2
+	T	N	DBLSTM	dblstm	
 36	T	N N	decision tree	decision tree	35
 2572	T	N	decision-tree	decision-tree	1
+	T	A N	decod output	decod output	
+	T	N	decoder	decoder	
 715	T	N N	decoder Bi-LSTM	decoder bi-lstm	4
 2598	T	A A N	deep bi-directional LSTM	deep bi-directional lstm	2
 314	T	A N	deep learning	deep learning	7
@@ -93,8 +115,11 @@
 1312	T	A A N N	deep unidirectional GRU decoder	deep unidirectional gru decoder	2
 7	T	A N	Deep Voice	deep voice	77
 2510	T	N	DeepVoice	deepvoice	1
+	T	N	dropout	dropout	
 605	T	N C A N	Duration and Fundamental Frequency	duration and fundamental frequency	4
 218	T	N N	duration predictor	duration predictor	20
+	T	N	encoder	encoder	
+	T	N N	encoder-attention-decoder	encoder-attention-decoder	
 54	T	N	encoder-decoder	encoder-decoder	25
 372	T	N N	encoder-decoder architecture	encoder-decoder architecture	6
 1734	T	N N	encoder-decoder framework	encoder-decoder framework	2
@@ -109,15 +134,20 @@
 309	T	A N	expressive speech	expressive speech	7
 625	T	A N N	expressive speech synthesis	expressive speech synthesis	4
 56	T	N	FastSpeech	fastspeech	49
+	T	N	feed-forward	feed-forward	
 2611	T	A N	feed-forward structure	feed-forward structure	2
 1103	T	N N	Feed-Forward Transformer	feed-forward transformer	5
+	T	N N	Feed-Forward Transformer	Feed-Forward Transformer	
 760	T	A A N	feedforward neural network	feedforward neural network	10
+	T	N N	FFT Block	fft block	
 344	T	N N	FFT blocks	fft block	7
-729	T	N	Figurea	figurea	4
+	T	N N	finite-state automata	finite-state automata	
 2769	T	N	FLOPs	flop	8
-2369	T	A N	forward–backward algorithm	forward–backward algorithm	2
+2369	T	A N	forward backward algorithm	forward backward algorithm	2
+	T	N N	forward decoder	forward decoder	
 481	T	N N N	frequency prediction models	frequency prediction model	5
 534	T	N	front-end	front-end	37
+	T	N	FSTs	fsts	
 1660	T	R A A N	fully parallel neural TTS	fully parallel neural tts	2
 55	T	A N	fundamental frequency	fundamental frequency	25
 588	T	A N N N	fundamental frequency prediction models	fundamental frequency prediction model	4
@@ -127,17 +157,24 @@
 655	T	N N N	GlobalPhone Language Models	globalphone language model	4
 164	T	N	GPUs	gpus	12
 269	T	A N N	gradient reversal layer	gradient reversal layer	8
+15	T	N	grapheme	grapheme	51
 651	T	N C N N	grapheme and phoneme sequences	grapheme and phoneme sequence	4
 422	T	N N	grapheme sequence	grapheme sequence	6
+	T	N N	grapheme vector	grapheme vector	
 594	T	A N	grapheme-based model	grapheme-based model	4
+1478	T	N	grapheme-phoneme	grapheme-phoneme	
+9632	T	N N N	grapheme-phoneme sequence alignment	grapheme-phoneme sequence alignment	
+1116	T	N	grapheme-to-phoneme	grapheme-to-phoneme	
 130	T	N N	grapheme-to-phoneme conversion	grapheme-to-phoneme conversion	14
 1608	T	N N N	grapheme-to-phoneme conversion models	grapheme-to-phoneme conversion model	2
-15	T	N	graphemes	grapheme	51
 267	T	N	Griffin-Lim	griffin-lim	16
 286	T	N N N	ground truth audio	ground truth audio	8
 338	T	N N N	ground truth samples	ground truth sample	7
 2477	T	N N	ground-truth spectrograms	ground-truth spectrograms	2
+	T	N	GRU	gru	
+	T	N	HCRF	hcrf	
 716	T	A N	hidden activation	hidden activation	4
+8526	T	A A N N	Hidden Conditional Random Field	hide conditional random field	
 104	T	A N	hidden layers	hidden layer	17
 321	T	A N N	hidden Markov models	hidden markov model	7
 113	T	A N	hidden states	hidden state	15
@@ -155,6 +192,7 @@
 1707	T	A N	HMM-based synthesis	hmm-based synthesis	2
 301	T	A N	HMM-based TTS	hmm-based tts	8
 192	T	N	HMMs	hmms	11
+	T	N	hyper-parameters	Hyper-parameter	
 340	T	N	hyperparameters	hyperparameters	21
 468	T	N N	IAF vocoder	iaf vocoder	5
 48	T	N N	input representations	input representation	26
@@ -167,6 +205,8 @@
 818	T	A	language-independent	language-independent	12
 2502	T	A A N	language-specific convolutional encoders	language-specific convolutional encoder	2
 320	T	N N	layer models	layer model	7
+	T	N N	layer normalization	layer normalization	
+	T	N N	learning rate	learning rate	
 2168	T	A N	letter-based approach	letter-based approach	2
 2508	T	A N N	letter-based phone set	letter-based phone set	2
 2418	T	A	letter-to-sound	letter-to-sound	2
@@ -185,6 +225,7 @@
 733	T	N N	loss function	loss function	4
 16	T	N	LSTM	lstm	51
 379	T	N N	LSTM layers	lstm layer	6
+	T	A	LSTM-based model	Lstm-based model	
 1097	T	N	LSTM-RNNs	lstm-rnns	5
 188	T	N	LSTMs	lstms	11
 544	T	N	LVCSR	lvcsr	4
@@ -192,6 +233,9 @@
 264	T	N N	Markov models	markov model	8
 261	T	A N	maximum likelihood	maximum likelihood	8
 584	T	N	MCCs	mccs	4
+	T	N N N	mean opinion score	mean opinion score	
+	T	N N N	mean square error	mean square error	
+	T	N	Mel	mel	
 1107	T	A N	mel-cepstral coefficients	mel-cepstral coefficient	5
 1251	T	A	mel-scale	mel-scale	4
 59	T	N	mel-spectrogram	mel-spectrogram	96
@@ -214,6 +258,9 @@
 258	T	N	morphology	morphology	8
 190	T	N	MOS	mo	
 96	T	N	MRASTA	mrasta	18
+	T	N	MSE	mse	
+	T	N N	multi-head	multi-head	
+	T	N A N	multi-layer bidirectional encoder	multi-layer bidirectional encoder	
 936	T	N N N	multi-speaker speech synthesis	multi-speaker speech synthesis	6
 2628	T	N N	multi-speaker training	multi-speaker training	2
 710	T	A A N	multilingual acoustic models	multilingual acoustic model	4
@@ -240,18 +287,21 @@
 686	T	A N N	natural language processing	natural language processing	4
 212	T	N	NetTalk	nettalk	10
 239	T	N N	network architecture	network architecture	9
+	T	A	network-based	network-based	
 419	T	A N N	neural machine translation	neural machine translation	6
 1736	T	A N	neural model	neural model	2
 3	T	A N	neural network	neural network	131
 513	T	A N N	neural network architecture	neural network architecture	5
 638	T	A N N N	neural network speech synthesis	neural network speech synthesis	4
-1491	T	A A A N	neural network-based acoustic model	neural network-based acoustic model	2
-1259	T	A A N N	neural network-based speech synthesis	neural network-based speech synthesis	2
+1491	T	A A A N	neural network-based acoustic model	neural network-base acoustic model	2
+1259	T	A A N N	neural network-based speech synthesis	neural network-base speech synthesis	2
 585	T	A N	Neural Text-to-Speech	neural text-to-speech	4
 94	T	A N	neural TTS	neural tts	
 330	T	A N N	neural TTS model	neural tts model	7
 92	T	A N N	neural TTS system	neural tts system	18
 65	T	A N	neural vocoder	neural vocoder	23
+	T	N	NLP	nlp	
+	T	N	NMT	nmt	
 509	T	A N	non-autoregressive decoder	non-autoregressive decoder	5
 260	T	A N	non-autoregressive model	non-autoregressive model	8
 115	T	A N	non-autoregressive ParaNet	non-autoregressive paranet	15
@@ -259,6 +309,7 @@
 1481	T	A A N	non-autoregressive seq2seq model	non-autoregressive seq2seq model	2
 1783	T	A N N	non-autoregressive sequence generation	non-autoregressive sequence generation	2
 998	T	A N N	non-autoregressive text-to-spectrogram model	non-autoregressive text-to-spectrogram model	3
+	T	A	one-hot	one-hot	
 874	T	N N	one-hot vector	one-hot vector	6
 171	T	A N	Open Source	open source	12
 1805	T	A N A N	Open Source Neural Network	open source neural network	2
@@ -268,8 +319,11 @@
 1153	T	A N N	parallel mel-spectrogram generation	parallel mel-spectrogram generation	2
 319	T	A A N	parallel neural vocoder	parallel neural vocoder	7
 755	T	A N	parallel waveform	parallel waveform	7
+	T	N N	parametric synthesis	parametric synthesis	
+	T	N N N	parametric TTS system	parametric tts system	
 24	T	N	ParaNet	paranet	46
 331	T	N	Part-of-Speech	part-of-speech	7
+	T	N	PER	per	
 757	V[s]	N N N	phone posterior probabilities	phone posterior probability	4
 2556	T	N	phone-sets	phone-sets	2
 1	T	N	phoneme	phoneme	298
@@ -285,12 +339,14 @@
 50	T	N N	phoneme sequence	phoneme sequence	26
 1738	T	A N	phoneme-based model	phoneme-based model	2
 48	V[s]	A N N	phonemic input representation	phonemic input representation	4
+1115	T	A N	phonemic lexicon	phonemic lexicon	
 57	T	A	phonetic	phonetic	49
 665	T	A N	phonetic-to-acoustic mapping	phonetic-to-acoustic mapping	4
 232	T	A	phonological	phonological	9
 292	T	N	phonology	phonology	8
 304	T	A	phonotactic	phonotactic	15
 299	T	A N	phonotactic constraints	phonotactic constraint	8
+	T	N	pitch	pitch	
 1109	T	A A N	PLP cepstral features	plp cepstral feature	5
 1636	T	N N	POS tagger	po tagger	2
 632	T	N N	POS tags	po tag	4
@@ -306,13 +362,18 @@
 49	T	A N	residual connections	residual connection	26
 118	T	A N	residual encoder	residual encoder	15
 214	T	N N	reversal layer	reversal layer	10
+	T	N	RNN	rnn	
+	T	A	RNN-based	Rnn-based	
 216	T	N	RNNs	rnns	10
 1576	T	A N	rule-based approaches	rule-based approach	2
+1156	T	A N N	Rule-based G2P systems	rule-base g2p system	
 2470	T	A A N	rule-based morphological analysis	rule-based morphological analysis	2
 955	T	N	SAMPA	sampa	3
 2278	T	A	SAMPA-based	sampa-based	1
+	T	N N	self-attention	self-attention	
 173	T	A	seq2seq	seq2seq	23
 2496	T	N	seq2seq-attention	seq2seq-attention	1
+	T	N P N	sequence to sequence	sequence to sequence	
 296	T	A N N	sequence-level knowledge distillation	sequence-level knowledge distillation	8
 2385	T	N	Sequence-to-sequence	sequence-to-sequence	
 570	T	N	shared-tandem	shared-tandem	4
@@ -339,15 +400,18 @@
 736	T	N N	speech technology	speech technology	4
 2008	T	N N	Speech Translation	speech translation	2
 254	T	N N	speech waveform	speech waveform	9
+	T	A N	speech-related tasks	speech-related task	
 138	T	N N	speech-to-speech translation	speech-to-speech translation	13
 2092	T	A N	statistical approaches	statistical approach	2
 756	T	A N	statistical models	statistical model	7
+	T	A A N	statistical parametric approaches	statistical parametric approach	
 150	T	A A N N	statistical parametric speech synthesis	statistical parametric speech synthesis	13
 189	T	A A N	statistical parametric synthesis	statistical parametric synthesis	11
 177	T	N	STFT	stft	11
 384	T	N N	STFT loss	stft loss	6
 2593	T	A	syllable-based	syllable-based	1
 85	T	N N	synthesis model	synthesis model	19
+	T	A N	synthesized speech	synthesize speech	
 353	T	N N	synthesizer network	synthesizer network	6
 246	T	A N	synthetic speech	synthetic speech	9
 450	T	A N	synthetic voices	synthetic voice	10
@@ -356,11 +420,16 @@
 142	T	N	TANH	tanh	13
 38	T	N N	target language	target language	33
 658	T	N N	target spectrogram	target spectrogram	4
+	T	N	TCN	tcn	
+	T	A N N	temporal convolution network	temporal convolution network	
+	T	N P N	text to speech	text to speech	
 161	T	N	Text-to-spectrogram	text-to-spectrogram	
 11	T	N	text-to-speech	text-to-speech	66
 72	T	N	toolkit	toolkit	45
 455	T	A N N	trainable speaker embeddings	trainable speaker embeddings	5
+	T	N	transducers	transducer	
 2396	T	A	transformation-based	transformation-based	1
+	T	N	transformer	transform	
 105	T	N N	Transformer TTS	transformer tts	17
 202	T	N N N	Transformer TTS model	transformer tts model	10
 2339	T	N	tri-grapheme	tri-grapheme	1
