@@ -10,7 +10,7 @@ Further scaling up the model by training on multiple speakers of each language, 
 Index Terms: speech synthesis, end-to-end, adversarial loss
 
 Introduction
-Recent end-to-end neural TTS models have been extended to enable control of speaker identity as well as unlabelled speech attributes, e.g. prosody, by conditioning synthesis on latent representations [8–12] in addition to text.
+Recent end-to-end neural TTS models have been extended to enable control of speaker identity as well as unlabelled speech attributes, e.g. prosody, by conditioning synthesis on latent representations in addition to text.
 Extending such models to support multiple, unrelated languages is nontrivial when using language-dependent input representations or model components, especially when the amount of training data per language is imbalanced.
 For example, there is no overlap in the text representation between languages like Mandarin and English. Furthermore, recordings from bilingual speakers are expensive to collect. It is therefore most common for each speaker in the training set to speak only one language, so speaker identity is perfectly correlated with language.
 This makes it difficult to transfer voices across different languages, a desirable feature when the number of available training voices for a particular language is small.
@@ -96,7 +96,7 @@ We train models using a proprietary dataset composed of high quality speech in t
 Model and training setup
 The synthesizer network uses the Tacotron 2 architecture , with additional inputs consisting of learned speaker (64-dim) and language embeddings (3-dim), concatenated and passed to the decoder at each step.
 The generated speech is represented as a sequence of 128-dim log-mel spectrogram frames, computed from 50ms windows shifted by 12.5ms.
-The variational residual encoder architecture closely follows the attribute encoder in [12].
+The variational residual encoder architecture closely follows the attribute encoder in .
 It maps a variable length mel spectrogram to two vectors parameterizing the mean and log variance of the Gaussian posterior.
 The speaker classifiers are fully-connected networks with one 256 unit hidden layer followed by a softmax predicting the speaker identity.
 The synthesizer and speaker classifier are trained with weight 1.0 and 0.02 respectively.
@@ -117,7 +117,7 @@ We synthesize 100 samples per model, and have each one rated by 6 raters.
 Evaluation 
 To evaluate synthesized speech, we rely on crowdsourced Mean Opinion Score (MOS) evaluations of speech naturalness via subjective listening tests.
 Ratings follow the Absolute Category Rating scale, with scores from 1 to 5 in 0.5 point increments.
-For cross-language voice cloning, we also evaluate whether the synthesized speech resembles the identity of the reference speaker by pairing each synthesized utterance with a reference utterance from the same speaker for subjective MOS evaluation of speaker similarity, as in [5].
+For cross-language voice cloning, we also evaluate whether the synthesized speech resembles the identity of the reference speaker by pairing each synthesized utterance with a reference utterance from the same speaker for subjective MOS evaluation of speaker similarity, as in .
 Although rater instructions explicitly asked for the content to be ignored, note that this similarity evaluation is more challenging than the one in because the reference and target examples are spoken in different languages, and raters are not bilingual.
 We found that low fidelity audio tended to result in high variance similarity MOS so we always use WaveRNN outputs.
 For each language, we chose one speaker to use for similarity tests.

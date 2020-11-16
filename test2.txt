@@ -1,4 +1,0 @@
-500 iterations (Kingma & Ba, 2014). 
-
-multilingual speech model fozef 
-

@@ -84,7 +84,7 @@ Audiobooks were a first choice, as they are a readily available in multiple lang
 Another advantage would be that by using cohesive and expressive spoken data as the basis for training a TTS system might yield more cohesive and expressive multi-utterance TTS output, fact which explains the high interest in them lately.
 This latter advantage is not especially made use of in the demo voices presented here, but is the subject of on-going work for us elsewhere.
 To emphasise the utility of audiobooks in TTS systems, in Fig.  we present a comparison between standard TTS corpora and audiobooks with respect to logF0 in 4 different languages.
-The standard TTS corpora are: a subset of the database called ‘Nina’ in, a subset of a corpus of Finnish speech recorded from a female speaker specifically for TTS purposes, SEV neutral [19] and RSS [20].
+The standard TTS corpora are: a subset of the database called ‘Nina’ in, a subset of a corpus of Finnish speech recorded from a female speaker specifically for TTS purposes, SEV neutral and RSS.
 
 http://librivox.org/a-tramp-abroad-by-mark-twain/
 

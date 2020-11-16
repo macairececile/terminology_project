@@ -240,7 +240,7 @@ where v 0:r denotes the first r elements of the vector v and v r:2r denotes the 
 Output: Compute the two output 1 × 1 convolutions:
 Finally, sample y i+1 randomly from the distribution p.
 
-We parallelize these across two groups of threads as depicted in Figure 2.
+We parallelize these across two groups of threads as depicted in Figure .
 A group of main threads computes (j) x (0) , a cur , h (j) , and x (j) , z a , and p.
 A group of auxiliary (j) (j) threads computes a prev , q (j) , and z s , with the a prev being computed for the next upcoming timestep while the main threads compute z a and p.
 Each of these groups can consist of a single thread or of multiple threads; if there are multiple threads, each thread computes one block of each matrix-vector multiply, binary operation, or unary operation, and thread barriers are inserted as needed.

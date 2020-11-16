@@ -65,7 +65,7 @@ In contrast, Deep Voice 2’s segmentation model layers instead compute   h (l) 
 In addition, we find that the segmentation model often makes mistakes for boundaries between silence phonemes and other phonemes, which can significantly reduce segmentation accuracy on some datasets.
 We introduce a small post-processing step to correct these mistakes: whenever the segmentation model decodes a silence boundary, we adjust the location of the boundary with a silence detection heuristic.
 
-We compute the smoothed normalized audio power as p[n] = (x[n] 2 /x max 2 ) ⇤ g[n], where x[n] is the audio signal, g[n] is the impulse response of a Gaussian filter, x max is the maximum value of x[n] and ⇤ is one-dimensional convolution operation. We assign the silence phoneme boundaries when p[n] exceeds a fixed
+We compute the smoothed normalized audio power as p(n) = (x(n) 2 /x max 2 ) ⇤ g(n), where x(n) is the audio signal, g(n) is the impulse response of a Gaussian filter, x max is the maximum value of x(n) and ⇤ is one-dimensional convolution operation. We assign the silence phoneme boundaries when p(n) exceeds a fixed
 threshold. The optimal parameter values for the Gaussian filter and the threshold depend on the dataset and audio sampling rate.
 
 Duration Model
@@ -103,7 +103,7 @@ In order to synthesize speech from multiple speakers, we augment each of our mod
 Unlike previous work, our approach does not rely on per-speaker weight matrices or layers.
 Speaker-dependent parameters are stored in a very low-dimensional vector and thus there is near-complete weight sharing between speakers.
 We use speaker embeddings to produce recurrent neural network (RNN) initial states, nonlinearity biases, and multiplicative gating factors, used throughout the networks.
-Speaker embeddings are initialized randomly with a uniform distribution over [0.1, 0.1] and trained jointly via backpropagation; each model has its own set of speaker embeddings.
+Speaker embeddings are initialized randomly with a uniform distribution over (0.1, 0.1) and trained jointly via backpropagation; each model has its own set of speaker embeddings.
 To encourage each speaker’s unique voice signature to influence the model, we incorporate the speaker embeddings into multiple portions of the model.
 Empirically, we find that simply providing the speaker embeddings to the input layers does not work as well for any of the presented models besides the vocal model, possibly due to the high degree of residual connections present in the WaveNet and due to the difficulty of learning high-quality speaker embeddings.
 We observed that several patterns tend to yield high performance: 

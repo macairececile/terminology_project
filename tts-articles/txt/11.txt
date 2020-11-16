@@ -71,7 +71,7 @@ Nowadays, completely convolutional neural networks may achieve superior results 
 Sequence-to-sequence (seq2seq) learning, or encoder-decoder type neural networks have achieved remarkable success in various tasks, such as speech recognition, text-to-speech synthesis, machine translation.
 This type of network is used for several tasks, and its performance has also been enhanced with attention mechanisms.
 In this structure, the encoder computes a representation of each input sequence, and the decoder generates an output sequence based on the learned representation.
-In [28], bidirectional multi-layer recurrent neural network-based seq2seq learning was investigated in two architectures: a single Bi-LSTM/Bidirectional Gated Recurrent Unit (Bi-GRU) layer and two Bi-LSTM/Bi-GRU layers.
+In (28), bidirectional multi-layer recurrent neural network-based seq2seq learning was investigated in two architectures: a single Bi-LSTM/Bidirectional Gated Recurrent Unit (Bi-GRU) layer and two Bi-LSTM/Bi-GRU layers.
 Both Bi-LSTM and Bi-GRU uses both past and future contexts.
 Moreover, a bidirectional decoder was proposed for neural machine translation (NMT) in .
 Both encoder and decoder are Bi-GRU, but this model is applicable to other RNNs, such as LSTM.
@@ -201,7 +201,7 @@ This was applied to learn the semantic representation of the input sequences in 
 One LSTM looks at the sequence from left-to-right (forward encoder), and so reads an input sequence in left-to-right order; and another LSTM looks at it in reverse (backward encoder), and so reads an input sequence in a right-to-left order.
 At each of the time steps, the forward hidden ← sequence ~h and the backward hidden sequence h are iterated by the following equations: 
 In Equation, the forward layer is iterated from t = 1 to N; in Equation, the backward layer is iterated from t = N to 1; H is an element-wise sigmoid function.
-As the next step, the hidden states of these two LSTMs were concatenated to form an annotation → ← sequence h = {h1 , h2 , . . . , h N }, where ht = [ht , ht ] encodes information about the t − th grapheme with respect to all the other surrounding graphemes in the input.
+As the next step, the hidden states of these two LSTMs were concatenated to form an annotation → ← sequence h = {h1 , h2 , . . . , h N }, where ht = (ht , ht ) encodes information about the t − th grapheme with respect to all the other surrounding graphemes in the input.
  W → , W ← , W←← and W→→ are weight xh     xh       hh      hh matrixes; b→ , b← denotes the bias vectors.
 Generally, in all parameters, the arrows pointing left to right            h    h and right to left refer to the forward and backward layers, respectively.
 The forward LSTM unrolls the sequences until it reaches the end of sequence for that input.
@@ -214,7 +214,7 @@ The forward decoder is trained to sequentially predict the next phoneme given th
 This part was initialized with the final state of the encoder and all phoneme sequences.
 Each decoder output is passed through the softmax layer that will learn to classify the correct phonemes.
 For training, given the previous phonemes, the model factorizes the conditional into a summation of individual log conditional probabilities from both directions,
-where log P yt y[1:(t−1)] and log P yt y[(t+1):N ] are the left-to-right (forward), the right-to-left (backward) conditional probability in Equation, and calculated as per the equations below: 
+where log P yt y(1:(t−1)) and log P yt y((t+1):N ) are the left-to-right (forward), the right-to-left (backward) conditional probability in Equation, and calculated as per the equations below: 
 
 The prediction is performed on test data as follows:
 According to Equation, future output is not used during inference.
@@ -226,8 +226,8 @@ Experiments
 
 Datasets
 
-We used the CMU pronunciation (http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and NetTalk (we are grateful to Stan Chen for providing the data) datasets, which have frequently been chosen by various researchers [3,16,32].
-The training and testing splits are the same as those found in [4,5,8,12];  thus, the results are comparable.
+We used the CMU pronunciation (http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and NetTalk (we are grateful to Stan Chen for providing the data) datasets, which have frequently been chosen by various researchers (3,16,32).
+The training and testing splits are the same as those found in (4,5,8,12);  thus, the results are comparable.
 CMUDict contains a 106,837-word training set and a 12,000-word test set (reference data).
 2670 words are used as development set.
 There are 27 graphemes (uppercase alphabet symbols plus the apostrophe) and 41 phonemes (AA, AE, AH, AO, AW, AY, B, CH, D, DH,  EH, ER, EY, F, G, HH, IH, IY, JH, K, L, M, N, NG, OW, OY, P, R, S, SH, T, TH, UH, UW, V, W, Y, Z, ZH, <EP>, </EP>) in this dataset.
@@ -331,10 +331,10 @@ For insertion error (I), the position of the previous grapheme was taken into ac
 The example below describes the process details: 
 Word: Acknowledgement 
 Enumeration: 0 1 2 3 4 5 6 7 8 9 10 11 12 
-Reference: [EP AE K N AA L IH JH M AH N T /EP]
-Prediction: [EP IH K N AA L IH JH IH JH AH N T /EP] 
+Reference: (EP AE K N AA L IH JH M AH N T /EP)
+Prediction: (EP IH K N AA L IH JH IH JH AH N T /EP) 
 Types of errors: S S S I S I 
-Position: [1,8,8] 
+Position: (1,8,8) 
 As example the example shows, two substitutions substitutions (S) and (I) occurred in our fifth model output.
 
 Figure shows position errors calculated the models models on on the the reference reference dataset.
@@ -349,9 +349,9 @@ These percentages in the other presented models are more or less the same.
 Generally, the same 1000 words are incorrectly predicted by all presented models.
 We can see different types of error when generating phoneme sequences.
 One of these errors is that some phonemes are unnecessarily generated multiple times.
-For example, for the word YELLOWKNIFE, reference is [Y EH L OWN AY F], the prediction of Model 5 for this word is [Y EH L OW K N N F], where the character N was generated twice.
+For example, for the word YELLOWKNIFE, reference is (Y EH L OWN AY F), the prediction of Model 5 for this word is (Y EH L OW K N N F), where the character N was generated twice.
 Another error type regards sequences of graphemes that are rarely represented in the training process.
-For example, for the word ZANGHI Model 5 output is [Z AE N G], while the reference is [Z AA N G IY].
+For example, for the word ZANGHI Model 5 output is (Z AE N G), while the reference is (Z AA N G IY).
 The graphemes ‘NGHI’ appeared only 7 times in the training data.
 Furthermore, many words are of foreign origin, for example, GDANSK is Polish a city, SCICCHITANO is an Italian name, KOVACIK is a Turkish surname.
 Generating phoneme sequences of abbreviations is one of the hard challenges.
