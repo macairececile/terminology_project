@@ -7,7 +7,8 @@ These modules comprise rule-based text normalization subsuming sentence segmenta
 
 Introduction
 
-Text preprocessing for English text-to-speech (TTS) synthesis in general consists of the following steps: Text Normalization This first step subsumes sentence segmentation, tokenizing, and normalization of nonstandard words.
+Text preprocessing for English text-to-speech (TTS) synthesis in general consists of the following steps: Text Normalization. 
+This first step subsumes sentence segmentation, tokenizing, and normalization of nonstandard words.
 For sentence segmentation the main problem is the ambiguity of the period, marking sentence boundaries or abbreviations, sometimes even simultaneously (it is 5 p.m.).
 For period disambiguation an identification of abbreviations is needed as well as a disambiguation of capitalized words (proper names vs.sentence initial words, thus words following a sentence boundary period).
 Complications arise from abbreviations that do not differ from ordinary sentence final words (no. also being an abbreviation of number) and from the fact that also proper names can occur in sentence initial position.
@@ -17,19 +18,22 @@ Machine learning approaches as the decision tree classifier in Riley (1989) use 
 Current systems achieve an error rate down to less than 1%.
 Tokenizing in its simplest form is achieved by splitting the text at white spaces and at punctuation marks, that do not belong to abbreviations identified in the preceding step.
 Non-standard words are tokens to be expanded to an appropriate orthographic form before grapheme-to-phoneme conversion.
-Their normalization includes amongst others number conversion, homograph disambiguation (Henry X, Scene X, Mr.X), expansion of abbreviations and symbols, and appropriate treatment of acronyms (some have to be spelled, others not), and email and URL addresses.
+Their normalization includes amongst others number conversion, homograph disambiguation (Henry, Scene, Mr), expansion of abbreviations and symbols, and appropriate treatment of acronyms (some have to be spelled, others not), and email and URL addresses.
 A token might be split into several words by these operations.
 Normalization is a difficult task, since creation of the nonstandard word types mentioned above is arbitrarily productive and therefore not to be solved solely by table lookup.
 Furthermore phonetic realization is highly context dependent, examples are the homographs above or digit strings which can be realized either as numbers, phone numbers or years.
 While most of the normalization systems tackle this problem by heuristic disambiguation and expansion rules, e.g. Black et al. (1999), there are also some language modeling and machine learning approaches for normalization subtasks.
 For example in Sproat et al. (2001) word normalization is amongst others formulated in terms of maximizing the conditional probability of a normalized word sequence given an observed token sequence.
-Part-of-Speech Tagging Part-of-Speech (POS) tagging means word class assignment to each token.
-Its input is given by the tokenized text.
+
+Part-of-Speech Tagging 
+
+Part-of-Speech tagging means word class assignment to each token.
+Its input is given by the tokenized text. 
 Taggers have to cope with unknown words (OOV problem) and ambiguous word-tag mappings.
 Rule-based approaches like ENGTWOL (Voutilainen, 1995) operate on a) dictionaries containing word forms together with the associated POS labels and morphologic and syntactical features and b) context sensitive rules to choose the appropriate labels during application.
 In statistical approaches (Jelinek, 1985) generally the most probable tag sequence given the observed word sequence is estimated.
 In transformation-based tagging (Brill, 1995) a hybrid approach can be found, where disambiguation rules are derived by statistical means.
-Grapheme-to-Phoneme Conversion Since hand-crafted rule generation for language processing is very timeconsuming and corresponding systems are highly language dependent, most of the current G2P systems are purely data-driven (see e.g.Yvon (1994) for an overview over some machine learning approaches to G2P conversion).
+Grapheme-to-Phoneme Conversion Since hand-crafted rule generation for language processing is very timeconsuming and corresponding systems are highly language dependent, most of the current G2P systems are purely data-driven (see e.g. Yvon (1994) for an overview over some machine learning approaches to G2P conversion).
 Accounting for the influence of morphology and syllable structure can improve performance of G2P conversion (Reichel and Schiel, 2005).
 Word Stress The assignment of English word stress relies on phonological, morphological, and word class features.
 The crucial phonological feature is syllable weight: heavy syllables rather attract stress than weak ones.
@@ -46,7 +50,7 @@ Identification of Proper Names, Acronyms and Abbreviations
 Since retrieval of proper names, acronyms and abbreviations is crucial for appropriate sentence segmentation and normalization of non-standard words, this task is carried out prior to text normalization.
 Due to the high productivity of these word classes simple table lookup is insufficient and has to be augmented by following procedures.
 Proper names All those tokens are considered as proper names that occur only and at least twice in capitalized form.
-Only occurrences in unambiguous environments are counted, that means not behind a period except for periods of prepositional titles like Mr., Dr., etc.
+Only occurrences in unambiguous environments are counted, that means not behind a period except for periods of prepositional titles like Mr , Dr , etc. 
 Abbreviations Token t is identified as an abbreviation, if 1) it has not been classified as a proper name and 2) it ends with a period and 3) one of the following conditions is fulfilled: 
 • t contains another period (e.g.), or 
 • the string of t preceding the period consists of just one small letter, or 
@@ -76,7 +80,7 @@ Numbers In general the following number transformations are carried out: roman n
 The identification of roman numbers and the distinction of cardinals and ordinals is guided by local grammars.
 Cardinal numbers are disambiguated whether to be pronounced as one number, as a date, or digit by digit through pattern matching and examination of the text environment regarding e.g. date-related or phone number cues.
 Dates are further completed by prepositions and articles accordingly.
-E.g. 12 Feb. becomes on the twelve of February, but on being omitted if a preposition is already given.
+E.g. 12 Feb becomes on the twelve of February, but on being omitted if a preposition is already given.
 Abbreviations and Acronyms Unknown abbreviations are spelled.
 Unknown acronyms are spelled if indicated by a preceding indefinite article or by violation of phonotactics (incl. lack of vowels; see above).
 Otherwise they are pronounced as standard words.
@@ -141,7 +145,7 @@ The first step for creating the grapheme-to-phoneme converter was to align the p
 Inspired by the work of Daelemans and van den Bosch (1997) an initial co-occurrence matrix between letters and phonemes was estimated.
 This was done by diagonally aligning the letters and phonemes of each entry (see Figure 3).
 For each phoneme a triangular window with an area of 1 and a width of 5 letters was centered at the diagonal in order to spread the probability of co-occurence to adjacent letters.
-The values of the initial co-occurrence matrix are converted into probabilities and used in a Dynamic Programming (DP) algorithm to find the most likely alignment for each pronunciation dictionary entry.
+The values of the initial co-occurrence matrix are converted into probabilities and used in a Dynamic Programming algorithm to find the most likely alignment for each pronunciation dictionary entry.
 The DP algorithm is designed to align either the empty phoneme, ore one phoneme, or a phoneme cluster to each letter.
 In order to get a left-aligned phoneme string which is necessary for its alignment with morphologic segments (see below), heuristic post-processing was applied.
 

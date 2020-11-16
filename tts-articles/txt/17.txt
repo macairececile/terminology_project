@@ -142,8 +142,7 @@ We are still substantially far way from being able to build synthesizers in new 
 DISCUSSION
 
 Although we now have a defined method for building new voices in new languages, it still requires a substantial degree of skill, expertise and care to build high quality voices in new languages. 
-As researchers and speech technologists we may feel we have solved this problem but there are still many languages in the world that do not have support for synthetic voices, and given the lack of literacy outside the top languages these may particularly benefit more from speech
-technology.
+As researchers and speech technologists we may feel we have solved this problem but there are still many languages in the world that do not have support for synthetic voices, and given the lack of literacy outside the top languages these may particularly benefit more from speech technology.
 To make this task easier we still need to develop better methods to answer such questions as “how can be find the most appropriate phoneme set from data”, “what are the speaker-specific pronunciation rules?”. 
 We also need to better understand cross-lingual voice conversion if we are to build voices in new languages more easily.
 Improvements in building voices are continuing and are likely to involve automatic adaptation of some “close” language as well as improving tools and evaluation techniques to make the building of voices easier.

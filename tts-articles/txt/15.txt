@@ -37,7 +37,7 @@ We evaluate the contribution of each component, and demonstrate the proposed mod
 Model Structure
 
 We base our multilingual TTS model on Tacotron 2 , which uses an attention-based sequence-to-sequence model to generate a sequence of log-mel spectrogram frames based on an input text sequence. The architecture is illustrated in Figure 1. 
-It augments the base Tacotron 2 model with additional speaker and, optionally, language embedding inputs (bottom right), an adversarially-trained speaker classifier (top right), and a variational autoencoder-style residual encoder (top left) which conditions the decoder on a latent embedding computed from the target spectrogram during training (top left). 
+It augments the base Tacotron 2 model with additional speaker and, optionally, language embedding inputs (bottom right), an adversarially-trained speaker classifier (top right), and a variational autoencoder residual encoder (top left) which conditions the decoder on a latent embedding computed from the target spectrogram during training (top left). 
 Finally, similar to Tacotron 2, we separately train a WaveRNN neural vocoder.
 
 Input representations
@@ -72,14 +72,14 @@ A special symbol is used when there is no tone or stress.
 
 Residual encoder
 
-Following, we augment the TTS model by incorporating a variational autoencoder-like residual encoder which encodes the latent factors in the training audio, e.g. prosody or background noise, which is not well-explained by the conditioning inputs: the text representation, speaker, and language embeddings. 
+Following, we augment the TTS model by incorporating a variational autoencoder residual encoder which encodes the latent factors in the training audio, e.g. prosody or background noise, which is not well-explained by the conditioning inputs: the text representation, speaker, and language embeddings. 
 We follow the structure from, except we use a standard single Gaussian prior distribution and reduce the latent dimension to 16. 
 In our experiments, we observe that feeding in the prior mean (all zeros) during inference, significantly improves stability of cross-lingual speaker transfer and leads to improved naturalness as shown by MOS evaluations in Section 3.4.
 
 Adversarial training
 
 One of the challenges for multilingual TTS is data sparsity, where some languages may only have training data for a few speakers. 
-In the extreme case where there is only one speaker per language in the training data, the speaker identity is essentially the same as the language ID. 
+In the extreme case where there is only one speaker per language in the training data, the speaker identity is essentially the same as the language id. 
 To encourage the model to learn disentangled representations of the text and speaker identity, we proactively discourage the text encoding t s from also capturing speaker information.
 We employ domain adversarial training to encourage t i to encode text in a speaker-independent manner by introducing a speaker classifier based on the text encoding and a gradient reversal layer. 
 Note that the speaker classifier is optimized with a different objective than the rest of the model:

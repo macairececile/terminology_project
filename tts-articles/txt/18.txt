@@ -15,8 +15,7 @@ INTRODUCTION
 
 Speech synthesis is typically formulated as the conversion of text to speech (TTS). 
 This formulation, however, leaves out control for all the aspects of speech not contained in the text.
-Here we approach the problem of expressive speech synthesis which includes not just text, but other characteristics such as pitch, rhythm and emphasis. There are formulations to expressive speech synthesis that require animated and emotive
-voice data. 
+Here we approach the problem of expressive speech synthesis which includes not just text, but other characteristics such as pitch, rhythm and emphasis. There are formulations to expressive speech synthesis that require animated and emotive voice data. 
 This is an inconvenient drawback given the limited access to such data. 
 In our approach, we can make a voice emote and sing without any such data.
 Recent approaches that utilize deep learning for expressive speech synthesis combine text and a learned latent embedding for prosody or global style.
@@ -46,11 +45,10 @@ Given this formulation, during training we maximize the following:
 where the superscript i represents the i-th mel, T(i) , S(i) and P(i) represent the text, speaker, and pitch contour associated with the i-th mel, Ri represents the learned alignments between the text and mel-spectrogram frames, Zmel(i) represents the global style token conditioned on mel (i) as presented in, and θ represents the model parameters.
 The explicit factors offers two advantages. First, by providing the model with text and speaker information, we prevent the problem of entanglement between text and speaker information. Second by providing the model with pitch contour and voicing information, we are able to directly control pitch and voicing decisions during inference.
 Similarly the latent factors offers two advantages. 
-First, by learning the alignment map between the text and mel-spectrogram during training, we do not need to extract phoneme alignments for training and can control the rhythm during inference by providing the model with an alignment
-map. 
+First, by learning the alignment map between the text and mel-spectrogram during training, we do not need to extract phoneme alignments for training and can control the rhythm during inference by providing the model with an alignment map. 
 Second, by providing the model with a dictionary of latent variables, we are able to learn latent factors that are harder to express or extract explicitly, thus leveraging the full power of latent variables.
 Using this formulation we are able to transfer the text, rhythm and pitch contour from a source, e. g. audio signal or musical score, to a target speaker by replacing the variables in Equation (1) accordingly. 
-For example, we first collect the text, pitch and rhythm (Ts , Ps , Rs), from the source, sample a GST Zquery from the GST dictionary learned by Mellotron, and chose a target speaker St.
+For example, we first collect the text, pitch and rhythm (Ts , Ps , Rs), from the source, sample a GST Zquery from the GST dictionary learned by Mellotron, and chose a target speaker.
 mel(out) should now have the same text, pitch and rhythm as the source, latent characteristics obtained from the global style token and the voice of the target speaker. 
 In our current formulation, the target speaker, S t , would always be found in the training set, while the source text, pitch and rhythm (Ts, Ps, Rs) could be from outside the training set. 
 This allows us to train a model that makes a voice emote and sing without using any singing voice in the training dataset, without any manual labelling of emotions nor pitch, and without any manual alignments between words and audio, nor between pitch and audio.
