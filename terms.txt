@@ -1,0 +1,471 @@
+"N N" "1D Convolution" "1d convolution"
+"N N" "1D convolutional" "1d convolutional"
+"A N" "acoustic model" "acoustic model"
+"A N N" "acoustic model training" "acoustic model training"
+A acoustic-phonotactic acoustic-phonotactic
+"N N N" "Adam optimization algorithm" "adam optimization algorithm"
+"N N" "Adam optimizer" "adam optimizer"
+"A A N" "adaptive cepstral analysis" "adaptive cepstral analysis"
+"A A N N" "adaptive cepstral analysis algorithm" "adaptive cepstral analysis algorithm"
+"N N" "adversarial loss" "adversarial loss"
+"N N N" "adversarial speaker classifier" "adversarial speaker classifier"
+N ASR asr
+"N N" "ASR performance" "asr performance"
+"N N" "attention alignments" "attention alignment"
+"N N" "attention block" "attention block"
+"N N" "attention distillation" "attention distillation"
+"N N" "attention distributions" "attention distribution"
+"N N" "attention errors" "attention error"
+"N N" "attention layer" "attention layer"
+"N N" "attention mechanism" "attention mechanism"
+"N N" "attention weights" "attention weight"
+"A N" "attention-based model" "attention-base model"
+"A N N" "attention-based sequence-to-sequence model" "attention-base sequence-to-sequence model"
+A attention-enabled attention-enable
+A audio audio
+"A N" "audio clip" "audio clip"
+"A N" "audio generation" "audio generation"
+"A N" "audio samples" "audio sample"
+"A N" "audio signal" "audio signal"
+"A N N" "audio synthesis model" "audio synthesis model"
+"N N" "audiobook data" "audiobook data"
+"A N N" "automatic language identification" "automatic language identification"
+"A N N" "automatic speech recognition" "automatic speech recognition"
+"N N" "autoregressive architecture" "autoregressive architecture"
+"N N" "autoregressive counterpart" "autoregressive counterpart"
+"N N" "autoregressive model" "autoregressive model"
+"N A N" "autoregressive seq2seq model" "autoregressive seq2seq model"
+"A N N" "autoregressive sequence generation" "autoregressive sequence generation"
+"N N N" "autoregressive text-to-spectrogram model" "autoregressive text-to-spectrogram model"
+"N N N" "autoregressive Transformer TTS" "autoregressive transformer tts"
+"N N N N" "autoregressive Transformer TTS model" "autoregressive transformer tts model"
+N autoregressively autoregressively
+A back-end back-end
+"N N" "backward decoder" "backward decoder"
+"N N" "backward encoder" "backward encoder"
+"N N" "batch normalization" "batch normalization"
+"N N" "batch size" "batch size"
+N beginning-of-graphemes begin-of-grapheme
+"A N" "bi-directional LSTM" "bi-directional lstm"
+N Bi-GRU bi-gru
+N Bi-LSTM bi-lstm
+N Bi-LSTMs bi-lstms
+"A N" "bidirectional decoder" "bidirectional decoder"
+"A A A N" "Bidirectional Gated Recurrent Unit" "bidirectional gate recurrent unit"
+"A N" "bidirectional LSTM" "bidirectional lstm"
+"A N" "bidirectional multi-layer" "bidirectional multi-layer"
+"N N" "Blizzard Challenge" "blizzard challenge"
+N BLSTM blstm
+N BLSTM-S blstm-s
+N byte byte
+N CART cart
+N CBHG cbhg
+"A N" "cepstral coefficients" "cepstral coefficient"
+"A N" "cepstral features" "cepstral feature"
+N CERs cers
+N ClariNet clarinet
+"A N N" "clustering-based unit-selection approach" "cluster-base unit-selection approach"
+N CMOS cmos
+N CMUDict cmudict
+N CNN cnn
+A CNN-based cnn-base
+N code-switching code-switching
+"A N" "concatenative synthesis" "concatenative synthesis"
+"A N N" "conditional random fields" "conditional random field"
+"N N" "conditioning network" "conditioning network"
+"A A N" "context-dependent acoustic models" "context-dependent acoustic model"
+"A N" "context-dependent HMMs" "context-dependent hmms"
+"A N" "context-independent phones" "context-independent phone"
+"N N" "convolution block" "convolution block"
+"A N" "convolutional encoder" "convolutional encoder"
+"A N" "convolutional layers" "convolutional layer"
+"A N" "convolutional network" "convolutional network"
+"A N P N N" "convolutional network with ReLU activation" "convolutional network with relu activation"
+"A A A N" "convolutional neural network-based architecture" "convolutional neural network-base architecture"
+"A A N" "convolutional neural networks" "convolutional neural network"
+N CRF crf
+N cross-language cross-language
+"N N" "cross-language knowledge" "cross-language knowledge"
+"N N" "cross-language transfer" "cross-language transfer"
+"N N" "cross-language voice" "cross-language voice"
+"A N" "cross-lignual scenarios" "cross-lignual scenario"
+"A N" "cross-lingual adaptation" "cross-lingual adaptation"
+"A N" "cross-lingual knowledge-sharing" "cross-lingual knowledge-sharing"
+"A N" "cross-lingual MLP" "cross-lingual mlp"
+"A N N N" "cross-lingual MLP adaptation approach" "cross-lingual mlp adaptation approach"
+"A N N N" "Cross-lingual MLP feature extraction" "cross-lingual mlp feature extraction"
+"A N N" "cross-lingual MLP features" "cross-lingual mlp feature"
+"A N N" "cross-lingual parameter sharing" "cross-lingual parameter sharing"
+"A N N" "cross-lingual speaker adaptation" "cross-lingual speaker adaptation"
+"A N N" "cross-lingual speaker transfer" "cross-lingual speaker transfer"
+"A N" "cross-lingual transfer" "cross-lingual transfer"
+"A N" "cross-lingual voice" "cross-lingual voice"
+N CSS10 css10
+A data-based datum-base
+N DBLSTM dblstm
+"N N" "decision tree" "decision tree"
+N decision-tree decision-tree
+"A N" "decod output" "decod output"
+N decoder decoder
+"N N" "decoder Bi-LSTM" "decoder bi-lstm"
+"A A N" "deep bi-directional LSTM" "deep bi-directional lstm"
+"A N" "deep learning" "deep learning"
+"A A N" "deep neural networks" "deep neural network"
+"A A N N" "deep unidirectional GRU decoder" "deep unidirectional gru decoder"
+"A N" "Deep Voice" "deep voice"
+N DeepVoice deepvoice
+N dropout dropout
+"N C A N" "Duration and Fundamental Frequency" "duration and fundamental frequency"
+"N N" "duration predictor" "duration predictor"
+N encoder encoder
+"N N" encoder-attention-decoder encoder-attention-decoder
+N encoder-decoder encoder-decoder
+"N N" "encoder-decoder architecture" "encoder-decoder architecture"
+"N N" "encoder-decoder framework" "encoder-decoder framework"
+"N N" "encoder-decoder structure" "encoder-decoder structure"
+"N N" "end-of-phonemes tag" "end-of-phoneme tag"
+N end-to-end end-to-end
+"N A N N" "end-to-end generative TTS model" "end-to-end generative tts model"
+"N A N N" "end-to-end neural speech synthesis" "end-to-end neural speech synthesis"
+"N N N" "end-to-end speech synthesis" "end-to-end speech synthesis"
+"N N N" "end-to-end TTS models" "end-to-end tts model"
+N epochs epoch
+"A N" "expressive speech" "expressive speech"
+"A N N" "expressive speech synthesis" "expressive speech synthesis"
+N FastSpeech fastspeech
+N feed-forward feed-forward
+"A N" "feed-forward structure" "feed-forward structure"
+"N N" "Feed-Forward Transformer" "feed-forward transformer"
+"N N" "Feed-Forward Transformer" "feed-forward transformer"
+"A A N" "feedforward neural network" "feedforward neural network"
+"N N" "FFT Block" "fft block"
+"N N" "FFT blocks" "fft blocks"
+"N N" "finite-state automata" "finite-state automata"
+N FLOPs flops
+"A N" "forward backward algorithm" "forward backward algorithm"
+"N N" "forward decoder" "forward decoder"
+"N N N" "frequency prediction models" "frequency prediction model"
+N front-end front-end
+N FSTs fst
+"R A A N" "fully parallel neural TTS" "fully parallel neural tts"
+"A N" "fundamental frequency" "fundamental frequency"
+"A N N N" "fundamental frequency prediction models" "fundamental frequency prediction model"
+N G2P g2p
+N GALE gale
+N GlobalPhone globalphone
+"N N N" "GlobalPhone Language Models" "globalphone language model"
+N GPUs gpus
+"A N N" "gradient reversal layer" "gradient reversal layer"
+N grapheme grapheme
+"N C N N" "grapheme and phoneme sequences" "grapheme and phoneme sequences"
+"N N" "grapheme sequence" "grapheme sequence"
+"N N" "grapheme vector" "grapheme vector"
+"A N" "grapheme-based model" "grapheme-base model"
+N grapheme-phoneme grapheme-phoneme
+"N N N" "grapheme-phoneme sequence alignment" "grapheme-phoneme sequence alignment"
+N grapheme-to-phoneme grapheme-to-phoneme
+"N N" "grapheme-to-phoneme conversion" "grapheme-to-phoneme conversion"
+"N N N" "grapheme-to-phoneme conversion models" "grapheme-to-phoneme conversion model"
+N Griffin-Lim griffin-lim
+"N N N" "ground truth audio" "ground truth audio"
+"N N N" "ground truth samples" "ground truth sample"
+"N N" "ground-truth spectrograms" "ground-truth spectrogram"
+N GRU gru
+N HCRF hcrf
+"A N" "hidden activation" "hide activation"
+"A A N N" "Hidden Conditional Random Field" "hidden conditional random field"
+"A N" "hidden layers" "hidden layer"
+"A N N" "hidden Markov models" "hide markov model"
+"A N" "hidden states" "hidden states"
+"A N" "hidden units" "hide unit"
+N hier-MRASTA hier-mrasta
+"A A N" "hierarchial MLP-based approach" "hierarchial mlp-base approach"
+"A A N N" "hierarchical MLP-based LID system" "hierarchical mlp-base lid system"
+"A A N" "hierarchical MLP-based phone" "hierarchical mlp-base phone"
+"A N N" "HMM-based ASR system" "hmm-base asr system"
+"A N N" "HMM-based generation synthesis" "hmm-base generation synthesis"
+"A N N N" "HMM-based generation synthesis approach" "hmm-base generation synthesis approach"
+"A A N N" "HMM-based parametric TTS system" "hmm-base parametric tts system"
+"A N" "HMM-based speech" "hmm-base speech"
+"A N N N" "HMM-based speech synthesis system" "hmm-base speech synthesis system"
+"A N" "HMM-based synthesis" "hmm-base synthesis"
+"A N" "HMM-based TTS" "hmm-base tts"
+N HMMs hmms
+N hyper-parameters hyper-parameter
+N hyperparameters hyperparameter
+"N N" "IAF vocoder" "iaf vocoder"
+"N N" "input representations" "input representation"
+N K-grams k-grams
+N Kingma kingma
+N kostra kostra
+N labels label
+"N N N" "language model transducers" "language model transducer"
+A language-dependent language-dependent
+A language-independent language-independent
+"A A N" "language-specific convolutional encoders" "language-specific convolutional encoder"
+"N N" "layer models" "layer model"
+"N N" "layer normalization" "layer normalization"
+"N N" "learning rate" "learning rate"
+"A N" "letter-based approach" "letter-base approach"
+"A N N" "letter-based phone set" "letter-base phone set"
+A letter-to-sound letter-to-sound
+"A N" "lexical analysis" "lexical analysis"
+"A N N" "lexical analysis WFST" "lexical analysis wfst"
+N LibriSpeech librispeech
+N LibriTTS libritts
+"A N" "Light Supervision" "light supervision"
+"R A N" "lightly supervised method" "lightly supervise method"
+"A N" "linguistic knowledge" "linguistic knowledge"
+N LJSpeech ljspeech
+"N N" "log likelihood" "log likelihood"
+N log-magnitude log-magnitude
+"N N" "log-mel spectrograms" "log-mel spectrogram"
+"A A N" "long short-term memory" "long short-term memory"
+"N N" "loss function" "loss function"
+N LSTM lstm
+"N N" "LSTM layers" "lstm layer"
+A "LSTM-based model" "lstm-base model"
+N LSTM-RNNs lstm-rnns
+N LSTMs lstms
+N LVCSR lvcsr
+"N N" "machine translation" "machine translation"
+"N N" "Markov models" "markov model"
+"A N" "maximum likelihood" "maximum likelihood"
+N MCCs mccs
+"N N N" "mean opinion score" "mean opinion score"
+"N N N" "mean square error" "mean square error"
+N Mel mel
+"A N" "mel-cepstral coefficients" "mel-cepstral coefficient"
+A mel-scale mel-scale
+N mel-spectrogram mel-spectrogram
+"N N" "mel-spectrogram sequence" "mel-spectrogram sequence"
+"N N" "mel-spectrograms non-autoregressively" "mel-spectrogram non-autoregressively"
+A melcepstral melcepstral
+N Mellotron mellotron
+N Merlin merlin
+N MLP mlp
+N MLPG mlpg
+N MLPs mlps
+N MLSP mlsp
+"A N" "MMSE criterion" "mmse criterion"
+"N N" "model architecture" "model architecture"
+"A N" "monolingual MLP" "monolingual mlp"
+"A N N" "monolingual MLP features" "monolingual mlp features"
+"A N N" "monolingual speech recognition" "monolingual speech recognition"
+N morpheme morpheme
+"A N" "morphological analysis" "morphological analysis"
+N morphology morphology
+N MOS mos
+N MRASTA mrasta
+N MSE mse
+"N N" multi-head multi-head
+"N A N" "multi-layer bidirectional encoder" "multi-layer bidirectional encoder"
+"N N N" "multi-speaker speech synthesis" "multi-speaker speech synthesis"
+"N N" "multi-speaker training" "multi-speaker training"
+"A A N" "multilingual acoustic models" "multilingual acoustic model"
+"A N" "multilingual ASR" "multilingual asr"
+"A N N" "multilingual language models" "multilingual language model"
+"A N" "multilingual MLP" "multilingual mlp"
+"A N N" "multilingual MLP features" "multilingual mlp features"
+"A N" "multilingual model" "multilingual model"
+"A A A N N" "multilingual parametric neural TTS system" "multilingual parametric neural tts system"
+"A A N" "multilingual phoneme-based systems" "multilingual phoneme-base system"
+"A N" "multilingual setting" "multilingual setting"
+"A N N" "multilingual speech processing" "multilingual speech processing"
+"A N N N" "multilingual speech processing systems" "multilingual speech processing system"
+"A N N" "multilingual speech recognition" "multilingual speech recognition"
+"A N N" "multilingual speech synthesis" "multilingual speech synthesis"
+"A N" "multilingual systems" "multilingual system"
+"A N" "multilingual text-to-speech" "multilingual text-to-speech"
+"A N N" "multilingual text-to-speech systems" "multilingual text-to-speech system"
+"A N" "multilingual TTS" "multilingual tts"
+"A N N" "multilingual TTS model" "multilingual tts model"
+"N N N N" "multispeaker voice synthesis model" "multispeaker voice synthesis model"
+N MUSHRA mushra
+"A N N" "N-gram language models" "n-gram language model"
+"A N N" "natural language processing" "natural language processing"
+N NetTalk nettalk
+"N N" "network architecture" "network architecture"
+A network-based network-base
+"A N N" "neural machine translation" "neural machine translation"
+"A N" "neural model" "neural model"
+"A N" "neural network" "neural network"
+"A N N" "neural network architecture" "neural network architecture"
+"A N N N" "neural network speech synthesis" "neural network speech synthesis"
+"A A A N" "neural network-based acoustic model" "neural network-base acoustic model"
+"A A N N" "neural network-based speech synthesis" "neural network-base speech synthesis"
+"A N" "Neural Text-to-Speech" "neural text-to-speech"
+"A N" "neural TTS" "neural tts"
+"A N N" "neural TTS model" "neural tts model"
+"A N N" "neural TTS system" "neural tts system"
+"A N" "neural vocoder" "neural vocoder"
+N NLP nlp
+N NMT nmt
+"A N" "non-autoregressive decoder" "non-autoregressive decoder"
+"A N" "non-autoregressive model" "non-autoregressive model"
+"A N" "non-autoregressive ParaNet" "non-autoregressive paranet"
+"A N N" "non-autoregressive ParaNet model" "non-autoregressive paranet model"
+"A A N" "non-autoregressive seq2seq model" "non-autoregressive seq2seq model"
+"A N N" "non-autoregressive sequence generation" "non-autoregressive sequence generation"
+"A N N" "non-autoregressive text-to-spectrogram model" "non-autoregressive text-to-spectrogram model"
+A one-hot one-hot
+"N N" "one-hot vector" "one-hot vector"
+"A N" "Open Source" "open source"
+"A N A N" "Open Source Neural Network" "open source neural network"
+"N N" "Opinion Score" "opinion score"
+"N N A N" "output language acoustic model" "output language acoustic model"
+"N N" "output layer" "output layer"
+"A N N" "parallel mel-spectrogram generation" "parallel mel-spectrogram generation"
+"A A N" "parallel neural vocoder" "parallel neural vocoder"
+"A N" "parallel waveform" "parallel waveform"
+"N N" "parametric synthesis" "parametric synthesis"
+"N N N" "parametric TTS system" "parametric tts system"
+N ParaNet paranet
+N Part-of-Speech part-of-speech
+N PER per
+"N N N" "phone posterior probabilities" "phone posterior probability"
+N phone-sets phone-set
+N phoneme phoneme
+"N N" "phoneme boundaries" "phoneme boundaries"
+"N N" "phoneme duration" "phoneme duration"
+"N N N" "phoneme duration model" "phoneme duration model"
+"N N N" "phoneme duration prediction" "phoneme duration prediction"
+"N N N N" "phoneme duration prediction models" "phoneme duration prediction model"
+"N N N" "phoneme error rate" "phoneme error rate"
+"N N" "phoneme labels" "phoneme label"
+"N N" "phoneme pairs" "phoneme pairs"
+"N N" "phoneme recognizers" "phoneme recognizer"
+"N N" "phoneme sequence" "phoneme sequence"
+"A N" "phoneme-based model" "phoneme-base model"
+"A N N" "phonemic input representation" "phonemic input representation"
+"A N" "phonemic lexicon" "phonemic lexicon"
+A phonetic phonetic
+"A N" "phonetic-to-acoustic mapping" "phonetic-to-acoustic mapping"
+A phonological phonological
+N phonology phonology
+A phonotactic phonotactic
+"A N" "phonotactic constraints" "phonotactic constraint"
+N pitch pitch
+"A A N" "PLP cepstral features" "plp cepstral feature"
+"N N" "POS tagger" "pos tagger"
+"N N" "POS tags" "pos tags"
+"N N" "post-processing network" "post-processing network"
+"N N N" "probability density function" "probability density function"
+N prosody prosody
+N quinphone quinphone
+"A N" "raw spectrogram" "raw spectrogram"
+"A N" "raw waveform" "raw waveform"
+"A A N" "recurrent neural network" "recurrent neural network"
+N ReLU relu
+"N N" "research community" "research community"
+"A N" "residual connections" "residual connection"
+"A N" "residual encoder" "residual encoder"
+"N N" "reversal layer" "reversal layer"
+N RNN rnn
+A RNN-based rnn-base
+N RNNs rnns
+"A N" "rule-based approaches" "rule-base approach"
+"A N N" "Rule-based G2P systems" "rule-base g2p system"
+"A A N" "rule-based morphological analysis" "rule-base morphological analysis"
+N SAMPA sampa
+A SAMPA-based sampa-base
+"N N" self-attention self-attention
+A seq2seq seq2seq
+N seq2seq-attention seq2seq-attention
+"N P N" "sequence to sequence" "sequence to sequence"
+"A N N" "sequence-level knowledge distillation" "sequence-level knowledge distillation"
+N Sequence-to-sequence sequence-to-sequence
+N shared-tandem share-tandem
+"A N" "sigmoid function" "sigmoid function"
+N Simple4All simple4all
+"A N N" "slow inference speed" "slow inference speed"
+N softmax softmax
+"N N N" "speaker encoder network" "speaker encoder network"
+"A N" "speaker-adversarial loss" "speaker-adversarial loss"
+A spectral spectral
+"A N" "spectral envelope" "spectral envelope"
+N spectrogram spectrogram
+N spectrum spectrum
+N speech speech
+"N C N N" "speech and language technology" "speech and language technology"
+"N C N N" "speech and text data" "speech and text datum"
+"N N N N" "speech parameter generation algorithm" "speech parameter generation algorithm"
+"N N N" "speech processing systems" "speech processing system"
+"N N" "speech rate" "speech rate"
+"N N" "speech recognition" "speech recognition"
+"N N N" "speech recognition systems" "speech recognition system"
+"N N" "speech recording" "speech recording"
+"N N N" "speech synthesis system" "speech synthesis system"
+"N N" "speech technology" "speech technology"
+"N N" "Speech Translation" "speech translation"
+"N N" "speech waveform" "speech waveform"
+"A N" "speech-related tasks" "speech-relate task"
+"N N" "speech-to-speech translation" "speech-to-speech translation"
+"A N" "statistical approaches" "statistical approach"
+"A N" "statistical models" "statistical model"
+"A A N" "statistical parametric approaches" "statistical parametric approach"
+"A A N N" "statistical parametric speech synthesis" "statistical parametric speech synthesis"
+"A A N" "statistical parametric synthesis" "statistical parametric synthesis"
+N STFT stft
+"N N" "STFT loss" "stft loss"
+A syllable-based syllable-base
+"N N" "synthesis model" "synthesis model"
+"A N" "synthesized speech" "synthesize speech"
+"N N" "synthesizer network" "synthesizer network"
+"A N" "synthetic speech" "synthetic speech"
+"A N" "synthetic voices" "synthetic voice"
+N Tacotron tacotron
+"A N" "Tacotron-generated spectrograms" "tacotron-generate spectrogram"
+N TANH tanh
+"N N" "target language" "target language"
+"N N" "target spectrogram" "target spectrogram"
+N TCN tcn
+"A N N" "temporal convolution network" "temporal convolution network"
+"N P N" "text to speech" "text to speech"
+N Text-to-spectrogram text-to-spectrogram
+N text-to-speech text-to-speech
+N toolkit toolkit
+"A N N" "trainable speaker embeddings" "trainable speaker embedding"
+N transducers transducer
+A transformation-based transformation-base
+N transformer transformer
+"N N" "Transformer TTS" "transformer tts"
+"N N N" "Transformer TTS model" "transformer tts model"
+N tri-grapheme tri-grapheme
+N triphone-context triphone-context
+N TTS tts
+N Tundra tundra
+"N N N" "unit selection synthesis" "unit selection synthesis"
+"A N P N" "unsupervised adaptation of TTS" "unsupervised adaptation of tts"
+"A A N" "unsupervised cross-lingual adaptation" "unsupervise cross-lingual adaptation"
+"A A N N" "unsupervised cross-lingual speaker adaptation" "unsupervise cross-lingual speaker adaptation"
+"A N" "variational autoencoder" "variational autoencoder"
+"A A A N" "variational autoencoder-like residual encoder" "variational autoencoder-like residual encoder"
+"A A N" "variational residual encoder" "variational residual encoder"
+N vector vector
+"A N" "vocal model" "vocal model"
+"A N" "vocal range" "vocal range"
+N vocoder vocoder
+"N N" "vocoder parameters" "vocoder parameter"
+A vocoding vocode
+N voice voice
+"N N" "voice speed" "voice speed"
+"N N" "voice synthesis" "voice synthesis"
+"N N N" "voice synthesis model" "voice synthesis model"
+N VoxCeleb voxceleb
+N VTLN vtln
+N waveform waveform
+"N N" "waveform synthesis" "waveform synthesis"
+A waveform-level waveform-level
+N WaveGlow waveglow
+N WaveNet wavenet
+"N N" "WaveNet inference" "wavenet inference"
+"N N" "WaveNet models" "wavenet model"
+"N N" "WaveNet vocoder" "wavenet vocoder"
+A WaveNet-based wavenet-base
+N WaveVAE wavevae
+N WERs wer
+N WFSTs wfst
+"A N" "wide-spread languages" "wide-spread language"
+"N N N" "word error rate" "word error rate"
+"N N" "WORLD vocoder" "world vocoder"

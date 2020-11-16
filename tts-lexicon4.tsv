@@ -191,6 +191,7 @@
 2155	T	A N N N	HMM-based speech synthesis system	hmm-based speech synthesis system	2
 1707	T	A N	HMM-based synthesis	hmm-based synthesis	2
 301	T	A N	HMM-based TTS	hmm-based tts	8
+	T	A	HMM-based	Hmm-based	
 192	T	N	HMMs	hmms	11
 	T	N	hyper-parameters	Hyper-parameter	
 340	T	N	hyperparameters	hyperparameters	21
@@ -215,7 +216,7 @@
 64	T	N	LibriSpeech	librispeech	24
 703	T	N	LibriTTS	libritts	4
 1732	T	A N	Light Supervision	light supervision	2
-1575	T	R A N	lightly supervised method	lightly supervised method	2
+1575	T	R A	lightly supervised	lightly supervised	2
 524	T	A N	linguistic knowledge	linguistic knowledge	5
 380	T	N	LJSpeech	ljspeech	6
 152	T	N N	log likelihood	log likelihood	13
@@ -236,6 +237,7 @@
 	T	N N N	mean opinion score	mean opinion score	
 	T	N N N	mean square error	mean square error	
 	T	N	Mel	mel	
+	T	A	mel-cepstral 	mel-cepstral 	
 1107	T	A N	mel-cepstral coefficients	mel-cepstral coefficient	5
 1251	T	A	mel-scale	mel-scale	4
 59	T	N	mel-spectrogram	mel-spectrogram	96
@@ -466,7 +468,9 @@
 704	T	A	WaveNet-based	wavenet-based	4
 126	T	N	WaveVAE	wavevae	14
 431	T	N	WERs	wers	5
+	T	N	WER	Wer	
 197	T	N	WFSTs	wfsts	10
 2397	T	A N	wide-spread languages	wide-spread language	2
 128	T	N N N	word error rate	word error rate	14
 265	T	N N	WORLD vocoder	world vocoder	8
+303	T	A	Gaussian	gaussian	31
