@@ -73,7 +73,7 @@ Although the network is not optimized directly to learn a representation which c
 
 Synthesizer
 
-We extend the recurrent sequence-to-sequence with attention Tacotron 2 architecture to support multiple speakers following a scheme similar to [8].
+We extend the recurrent sequence-to-sequence with attention Tacotron 2 architecture to support multiple speakers following a scheme similar to .
 An embedding vector for the target speaker is concatenated with the synthesizer encoder output at each time step.
 In contrast to, we find that simply passing embeddings to the attention layer, as in Figure 1, converges across different speakers.
 We compare two variants of this model, one which computes the embedding using the speaker encoder, and a baseline which optimizes a fixed embedding for each speaker in the training set, essentially learning a lookup table of speaker embeddings similar to.

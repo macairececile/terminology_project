@@ -65,7 +65,7 @@ Having around 1000 sentences (perhaps around 40,000 phonemes) seems to be reason
 We have also experimented with a more elaborate selection technique, where we first model a particular speaker’s acoustic variation and select data based on their actual usage rather than just general phonemes. 
 This may perform better but it is more computationally expensive, and requires an existing model of the speaker, which may not be available when building a new language.
 We used the simpler technique in building the CMU ARCTIC voices, and have successfully used very similar techniques for a wide range of languages including as Croatian, Thai and Spanish. 
-Also we note that given a suitably balanced set of utterances we can more accurately automatically label the data using acoustic modeling HMM tools such as [10].
+Also we note that given a suitably balanced set of utterances we can more accurately automatically label the data using acoustic modeling HMM tools such as .
 The quality and ease with which a synthesizer can be built is still very dependent on the quality of the voice talent and of the recording set up. 
 Even with professional voice actors we have found that speakers who have recorded for speech synthesizers before perform better. 
 Thus there is a consistency and style of delivery which leads to a better synthesizer. 

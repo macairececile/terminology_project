@@ -239,7 +239,7 @@ https://github.com/xcmyz/FastSpeech
 
 
 
-It consists of four stacked Gaussian IAF blocks, which are parameterized by [10, 10, 10, 30]-layer WaveNets respectively, with the 64 residual & skip channels and filter size 3 in dilated convolutions.
+It consists of four stacked Gaussian IAF blocks, which are parameterized by 10, 10, 10, 30-layer WaveNets respectively, with the 64 residual & skip channels and filter size 3 in dilated convolutions.
 The IAF is conditioned on log-mel spectrograms with two layers of transposed 2-D convolution as in ClariNet. We use the same teacher-student setup for ClariNet as in  and we train a 20-layer Gaussian autoregressive WaveNet as the teacher model.
 For the encoder in WaveVAE, we also use a 20-layers Gaussian WaveNet conditioned on log-mel spectrograms.
 For the decoder, we use the same architecture as the distilled IAF.

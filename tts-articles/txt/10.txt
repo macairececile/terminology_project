@@ -123,9 +123,9 @@ Other variants
 In Merlin, other variants of neural networks are also implemented, such as gated recurrent units (GRUs) , simplified LSTM , and the other variants on LSTMs and GRUs described in .
 All these basic units can be assembled together to create a new architecture by simply changing a configuration file.
 For example, to implement a 4-layer feedforward neural network using hyperbolic tangent units, one can simply specify the following architecture in the configuration file:
-[TANH, TANH, TANH, TANH]
+(TANH, TANH, TANH, TANH)
 Similarly, a hybrid bidirectional LSTM-based RNN can be specified as:
-[TANH, TANH, TANH, BLSTM]
+(TANH, TANH, TANH, BLSTM)
 in the configuration file. More details of the supported unit type can be found in the documentation of the system.
                                                                                                      
 Figure : An illustration of a long short-term memory unit. The inputs to the unit are the input signal and the hidden activation of the previous time instance.                                                                          
@@ -158,7 +158,7 @@ Table : Comparison of objective results using the WORLD vocoder.
 MCD: Mel-Cepstral Distortion. BAP: distortion of band aperiodicities. F0 RMSE is calculated on a linear scale. V/UV: voiced/unvoiced error.
 
      
-Before training, the input features were normalised using min-max to the range [0.01, 0.99] and output features were normalised to zero mean and unit variance.
+Before training, the input features were normalised using min-max to the range (0.01, 0.99) and output features were normalised to zero mean and unit variance.
 At synthesis time, Maximum likelihood parameter generation (MLPG) was applied to generate smooth parameter trajectories from the denormalised neural network outputs, then spectral enhancement in the cepstral domain was applied to the MCCs to enhance naturalness.
 Speech Signal Processing Toolkit (SPTK5 ) was used to implement the spectral enhancement.
                                                                            

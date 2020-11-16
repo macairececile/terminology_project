@@ -41,7 +41,7 @@ Whereas well-established signal processing algorithms provide explicit variables
 We factorize a single speaker mel-spectrogram M into explicit variables such as text, speaker identity, a fundamental frequency contour augmented with voiced/unvoiced decisions and two latent variables learned by the model during training. 
 The first latent variable refers to a dictionary of vectors that can be queried with an audio input or sampled directly as described in. The second latent variable is the learned attention map between the text and the mel-spectrogram as described in.
 From now on we will refer to the augmented fundamental frequency contour as pitch contour and refer to the first and second latent variables as global style tokens (GST) and rhythm respectively.
-We are interested in factorizing M = [T, S, P, R, Z], where T represents the text, S represents the speaker identity, P represents the pitch contour, R represents the rhythm and Z represents the global style tokens. 
+We are interested in factorizing M = (T, S, P, R, Z), where T represents the text, S represents the speaker identity, P represents the pitch contour, R represents the rhythm and Z represents the global style tokens. 
 Given this formulation, during training we maximize the following:
 where the superscript i represents the i-th mel, T(i) , S(i) and P(i) represent the text, speaker, and pitch contour associated with the i-th mel, Ri represents the learned alignments between the text and mel-spectrogram frames, Zmel(i) represents the global style token conditioned on mel (i) as presented in, and θ represents the model parameters.
 The explicit factors offers two advantages. First, by providing the model with text and speaker information, we prevent the problem of entanglement between text and speaker information. Second by providing the model with pitch contour and voicing information, we are able to directly control pitch and voicing decisions during inference.
@@ -100,7 +100,7 @@ We remind the reader that although we refer to pitch, our model’s representati
 We concatenate the syllables into words and convert graphemes to phonemes. 
 For single phone events, the duration of each phone is equal to the duration of the event. 
 For multi-phone events, the duration of each phone is dependent on its type: we use heuristics to assign durations between 20 and 100ms to consonants and assign the remainder of the event’s duration to vowels. 
-For example, consider a one second long single note event on the word Bass with phoneme representation [B, AE, S]. 
+For example, consider a one second long single note event on the word Bass with phoneme representation (B, AE, S. 
 We set B to 20 ms, S to 100 ms and the remaining duration to AE, and hence have full control over the duration of each phone.
 
 EXPERIMENTS

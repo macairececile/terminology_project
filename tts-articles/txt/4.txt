@@ -104,7 +104,7 @@ It also does not include the adversarial speaker classifier.
 
 Dataset
 We created a new dataset for our experiments, based on carefully cleaning and preprocessing freely available audio sources:
-CSS10 and a small fraction of Common Voice [9]. Table shows total durations of the used audio data per language.
+CSS10 and a small fraction of Common Voice . Table shows total durations of the used audio data per language.
 
 CSS10
 CSS10 consists of mono-speaker data in German, Greek, Spanish, Finnish, French, Hungarian, Japanese, Dutch, Russian, and Chinese.

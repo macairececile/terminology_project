@@ -24,7 +24,7 @@ Concluding remarks are given in the final section.
 
 WAVEFORM-LEVEL DEFINITION OF PROBABILITY DENSITY FUNCTION OF SPEECH
 Cepstral representation
-A discrete-time speech signal x = [x(0), x(1), . . . , x(T − 1)]⊤ corresponding to an utterance or whole speech database is assumed to be a zero-mean stationary Gaussian process.
+A discrete-time speech signal x = x(0), x(1), . . . , x(T − 1)⊤ corresponding to an utterance or whole speech database is assumed to be a zero-mean stationary Gaussian process.
 The probability density function of a zero-mean stationary Gaussian process can be written as
 
 
@@ -80,7 +80,7 @@ The structure of the training algorithm is quite similar to that in the adaptive
 It is also noted that the log likelihood can be calculated by
 
                                                                                                             
-where e = [e(0), . . . , e(T − 1)]⊤ and the third term of Eq.corresponds to the sum of squares of the inverse system output.                                                                                                      
+where e = e(0), . . . , e(T − 1)⊤ and the third term of Eq.corresponds to the sum of squares of the inverse system output.                                                                                                      
 
 Fig. Log likelihoods of trained LSTM-RNNs over both training and development subsets (60,000 samples).
 Note that the initialization stage using the MMSE criterion was not included.
