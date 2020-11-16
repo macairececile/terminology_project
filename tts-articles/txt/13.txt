@@ -51,8 +51,7 @@ TTS System Components
 
 As shown in Fig. 1, the TTS system consists of five major building blocks:
 • The grapheme-to-phoneme model converts from written text (English characters) to phonemes (encoded using a phonemic alphabet such as ARPABET).
-• The segmentation model locates phoneme boundaries in the voice dataset. Given an audio file and a phoneme-by-phoneme transcription of the audio, the
-segmentation model identifies where in the audio each phoneme begins and ends.
+• The segmentation model locates phoneme boundaries in the voice dataset. Given an audio file and a phoneme-by-phoneme transcription of the audio, the segmentation model identifies where in the audio each phoneme begins and ends.
 • The phoneme duration model predicts the temporal duration of every phoneme in a phoneme sequence (an utterance).
 • The fundamental frequency model predicts whether a phoneme is voiced. If it is, the model predicts the fundamental frequency (F0) throughout the phoneme’s duration.
 • The audio synthesis model combines the outputs of the grapheme-to-phoneme, phoneme duration, and fundamental frequency prediction models and synthesizes audio at a high sampling rate, corresponding to the desired text.
@@ -88,13 +87,13 @@ Although this is sufficient to roughly align the phonemes to the audio, it is in
 To overcome this, we train to predict sequences of phoneme pairs rather than single phonemes.
 The network will then tend to output phoneme pairs at timesteps close to the boundary between two phonemes in a pair.
 To illustrate our label encoding, consider the string “Hello!”.
-To convert this to a sequence of phoneme pair labels, convert the utterance to phonemes (using a pronunciation dictionary such as CMUDict or a grapheme-tophoneme model) and pad the phoneme sequence on either end with the silence phoneme to get “sil HH EH L OW sil”.
+To convert this to a sequence of phoneme pair labels, convert the utterance to phonemes (using a pronunciation dictionary such as CMUDict or a grapheme-to-phoneme model) and pad the phoneme sequence on either end with the silence phoneme to get “sil HH EH L OW sil”.
 Finally, construct consecutive phoneme pairs and get “(sil, HH), (HH, EH), (EH, L), (L, OW), (OW, sil)”.
 Input audio is featurized by computing 20 Mel-frequency cepstral coefficients (MFCCs) with a ten millisecond stride.
 On top of the input layer, there are two convolution layers (2D convolutions in time and frequency), three bidirectional recurrent GRU layers, and finally a softmax output layer.
 The convolution layers use kernels with unit stride, height nine (in frequency bins), and width five (in time) and the recurrent layers use 512 GRU cells (for each direction).
 Dropout with a probability of 0.95 is applied after the last convolution and recurrent layers.
-To compute the phoneme-pair error rate (PPER), we decode using beam search.
+To compute the phoneme pair error rate (PPER), we decode using beam search.
 To decode phoneme boundaries, we perform a beam search with width 50 with the constraint that neighboring phoneme pairs overlap by at least one phoneme and keep track of the positions in the utterance of each phoneme pair.
 For training, we use the Adam optimization algorithm with β 1 = 0.9, β 2 = 0.
 999, ε = 10 −8 , a batch size of 128, a learning rate of 10 −4 , and an annealing rate of 0.95 applied every 500 iterations (Kingma & Ba, 2014).
@@ -128,8 +127,7 @@ Please refer to Appendix A for full details of our WaveNet architecture and the 
 Results
 
 We train our models on an internal English speech database containing approximately 20 hours of speech data segmented into 13,079 utterances. 
-In addition, we present audio synthesis results for our models trained on a subset
-of the Blizzard 2013 data (Prahallad et al., 2013). 
+In addition, we present audio synthesis results for our models trained on a subset of the Blizzard 2013 data (Prahallad et al., 2013). 
 Both datasets are spoken by a professional female speaker.
 All of our models are implemented using the TensorFlow framework (Abadi et al., 2015).
 
@@ -140,8 +138,7 @@ After approximately 14,000 iterations, the model converges to a phoneme pair err
 
 Grapheme-to-Phoneme Results
 
-We train a grapheme-to-phoneme model on data obtained from CMUDict (Weide, 2008). We strip out all words that do not start with a letter, contain numbers, or have multiple pronunciations, which leaves 124,978 out of the original
-133,854 grapheme-phoneme sequence pairs.
+We train a grapheme-to-phoneme model on data obtained from CMUDict (Weide, 2008). We strip out all words that do not start with a letter, contain numbers, or have multiple pronunciations, which leaves 124,978 out of the original 133,854 grapheme-phoneme sequence pairs.
 We train on a single TitanX Maxwell GPU with each iteration taking approximately 150 milliseconds. 
 After approximately 20,000 iterations, the model converges to a phoneme error rate of 5.8% and a word error rate of 28.7%, which are on par with previous reported results (Yao & Zweig, 2015). 
 Unlike prior work, we do not use a language model during decoding and do not include words with multiple pronunciations in our data set.
@@ -170,7 +167,7 @@ As is common with high-dimensional generative models (Theis et al., 2015), model
 While models with unusually high loss sound distinctly noisy, models that optimize below a certain threshold do not have a loss indicative of their quality.
 In addition, changes in model architecture (such as depth and output frequency) can have a significant impact on model loss while having a small effect on audio quality.
 To estimate perceptual quality of the individual stages of our TTS pipeline, we crowdsourced mean opinion score (MOS) ratings (ratings between one and five, higher values being better) from Mechanical Turk using the CrowdMOS toolkit and methodology (Ribeiro et al., 2011).
-In order to separate the effect of the audio preprocessing, the WaveNet model quality, and the phoneme duration and fundamental frequency model quality, we present MOS scores for a variety of utterance types, including synthesis results where the WaveNet inputs (duration and F0) are extracted from ground truth audio rather than synthesized by other models.
+In order to separate the effect of the audio preprocessing, the WaveNet model quality, and the phoneme duration and fundamental frequency model quality, we present MOS scores for a variety of utterance types, including synthesis results where the WaveNet inputs (duration and F0) are extracted from ground truth audio rather than  synthesized by other models.
 The results are presented in Table 1.
 We purposefully include ground truth samples in every batch of samples that raters evaluate to highlight the delta from human speech and allow raters to distinguish finer grained differences between models; the downside of this approach is that the resulting MOS scores will be significantly lower than if raters are presented only with synthesized audio samples.
 First of all, we find a significant drop in MOS when simply downsampling the audio stream from 48 kHz to 16 kHz, especially in combination with μ-law companding and quantization, likely because a 48 kHz sample is presented to the raters as a baseline for a 5 score, and a low quality noisy synthesis result is presented as a 1.
@@ -237,8 +234,7 @@ Layer Inference: For every layer j from j = 1 to ` with dilation width d:
 (a) Compute the left half of the width-two dilated convolution via a matrix-vector multiply:
 (b) Compute the right half of the dilated convolution:
 (c) Compute the hidden state h (j) given the conditioning vector L h :
-where v 0:r denotes the first r elements of the vector v and v r:2r denotes the next r elements. Then, compute the input to the next layer via a matrix-
-vector multiply:
+where v 0:r denotes the first r elements of the vector v and v r:2r denotes the next r elements. Then, compute the input to the next layer via a matrix-vector multiply:
 (d) Compute the contribution to the skip-channel matrix multiply from this layer, accumulating over all layers, with q (0) = B skip :
 
 Output: Compute the two output 1 × 1 convolutions:
@@ -255,7 +251,7 @@ The maximum absolute error arising from these approximations is 1.5 × 10 −3 f
 With approximate instead of exact nonlinearities, performance increases by roughly 30%.
 We also implement inference with weight matrices quantized to int16 and find no change in perceptual quality when using quantization.
 For larger models, quantization offers a significant speedup when using fewer threads, but overhead of thread synchronization prevents it from being useful with a larger number of threads.
-Finally, we write custom AVX assembly kernels for matrixvector multiplication using PeachPy (Dukhan, 2015) specialized to our matrix sizes.
+Finally, we write custom AVX assembly kernels for matrix vector multiplication using PeachPy (Dukhan, 2015) specialized to our matrix sizes.
 Inference using our custom assembly kernels is up to 1.5X faster than Intel MKL and 3.5X faster than OpenBLAS when using float32.
 Neither library provides the equivalent int16 operations.
 
