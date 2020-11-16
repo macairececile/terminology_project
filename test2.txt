@@ -1,4 +1,4 @@
 500 iterations (Kingma & Ba, 2014). 
 
-Phoneme Duration and Fundamental Frequency Model
+multilingual speech model fozef 
 
