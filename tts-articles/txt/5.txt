@@ -217,7 +217,7 @@ Data: In our experiment, we use an internal English speech dataset containing ab
 We downsample the audios to 24 kHz.
 Text-to-spectrogram models: For both ParaNet and Deep Voice 3 (DV3), we use the mixed representation of characters and phonemes .
 The default hyperparameters of ParaNet and DV3 are provided in  Table.
-Both ParaNet and DV3 are trained for 500K steps using Adam optimizer (Kingma & Ba, 2015).
+Both ParaNet and DV3 are trained for 500000 steps using Adam optimizer. 
 We find that larger kernel width and deeper layers generally help improve the performance of ParaNet.
 In terms of the number of parameters, our ParaNet (17.61 M params) is 2.57× larger than the Deep Voice 3 (6.85M params) and 1.71× smaller than the FastSpeech (30.1M params) .
 We use an open source reimplementation of FastSpeech 1 by adapting the hyperparameters for handling the 24kHz dataset.
@@ -225,7 +225,7 @@ Neural vocoders: In this work, we compare various neural vocoders paired with te
 We train all neural vocoders on 8 Nvidia 1080Ti GPUs using randomly chosen 0.5s audio clips.
 We train two 20-layer WaveNets with residual channel 256 conditioned on the predicted mel spectrogram from ParaNet and DV3, respectively.
 We apply two layers of convolution block to process the predicted mel spectrogram, and use two layers of transposed 2-D convolution (in time and frequency) interleaved with leaky ReLU (α = 0.4) to upsample the outputs from frame-level to sample-level.
-We use the Adam optimizer (Kingma & Ba, 2015) with a batch size of 8 and a learning rate of 0.001 at the beginning, which is annealed by half every 200K steps. We train the models for 1M steps.
+We use the Adam optimizer (Kingma & Ba, 2015) with a batch size of 8 and a learning rate of 0.001 at the beginning, which is annealed by half every 200000 steps. We train the models for 1M steps.
 We use the same IAF architecture as ClariNet (Ping et al., 2018a).
 
 https://github.com/xcmyz/FastSpeech
@@ -244,9 +244,9 @@ The IAF is conditioned on log-mel spectrograms with two layers of transposed 2-D
 For the encoder in WaveVAE, we also use a 20-layers Gaussian WaveNet conditioned on log-mel spectrograms.
 For the decoder, we use the same architecture as the distilled IAF.
 Both the encoder and decoder of WaveVAE share the same conditioner network. Both of the distilled IAF and WaveVAE are trained on ground-truth mel spectrogram.
-We use Adam optimizer with 1000K steps for distilled IAF.
-For WaveVAE, we train it for 400K because it converges much faster.
-The learning rate is set to 0.001 at the beginning and annealed by half every 200K steps for both models.
+We use Adam optimizer with 1000000 steps for distilled IAF.
+For WaveVAE, we train it for 400000 because it converges much faster.
+The learning rate is set to 0.001 at the beginning and annealed by half every 200000 steps for both models.
 We use the open source implementation of WaveGlow with default hyperparameters (residual channel 256) 2 , except change the sampling rate from 22.05kHz to 24kHz, FFT window length from 1024 to 1200, and FFT window shift from 256 to 300 for handling the 24kHz dataset.
 The model is trained for 2M steps.
 

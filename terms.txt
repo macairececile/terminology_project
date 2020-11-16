@@ -1,471 +1,6777 @@
-"N N" "1D Convolution" "1d convolution"
-"N N" "1D convolutional" "1d convolutional"
-"A N" "acoustic model" "acoustic model"
-"A N N" "acoustic model training" "acoustic model training"
-A acoustic-phonotactic acoustic-phonotactic
-"N N N" "Adam optimization algorithm" "adam optimization algorithm"
-"N N" "Adam optimizer" "adam optimizer"
-"A A N" "adaptive cepstral analysis" "adaptive cepstral analysis"
-"A A N N" "adaptive cepstral analysis algorithm" "adaptive cepstral analysis algorithm"
-"N N" "adversarial loss" "adversarial loss"
-"N N N" "adversarial speaker classifier" "adversarial speaker classifier"
-N ASR asr
-"N N" "ASR performance" "asr performance"
-"N N" "attention alignments" "attention alignment"
-"N N" "attention block" "attention block"
-"N N" "attention distillation" "attention distillation"
-"N N" "attention distributions" "attention distribution"
-"N N" "attention errors" "attention error"
-"N N" "attention layer" "attention layer"
-"N N" "attention mechanism" "attention mechanism"
-"N N" "attention weights" "attention weight"
-"A N" "attention-based model" "attention-base model"
-"A N N" "attention-based sequence-to-sequence model" "attention-base sequence-to-sequence model"
-A attention-enabled attention-enable
-A audio audio
-"A N" "audio clip" "audio clip"
-"A N" "audio generation" "audio generation"
-"A N" "audio samples" "audio sample"
-"A N" "audio signal" "audio signal"
-"A N N" "audio synthesis model" "audio synthesis model"
-"N N" "audiobook data" "audiobook data"
-"A N N" "automatic language identification" "automatic language identification"
-"A N N" "automatic speech recognition" "automatic speech recognition"
-"N N" "autoregressive architecture" "autoregressive architecture"
-"N N" "autoregressive counterpart" "autoregressive counterpart"
-"N N" "autoregressive model" "autoregressive model"
-"N A N" "autoregressive seq2seq model" "autoregressive seq2seq model"
-"A N N" "autoregressive sequence generation" "autoregressive sequence generation"
-"N N N" "autoregressive text-to-spectrogram model" "autoregressive text-to-spectrogram model"
-"N N N" "autoregressive Transformer TTS" "autoregressive transformer tts"
-"N N N N" "autoregressive Transformer TTS model" "autoregressive transformer tts model"
-N autoregressively autoregressively
-A back-end back-end
-"N N" "backward decoder" "backward decoder"
-"N N" "backward encoder" "backward encoder"
-"N N" "batch normalization" "batch normalization"
-"N N" "batch size" "batch size"
-N beginning-of-graphemes begin-of-grapheme
-"A N" "bi-directional LSTM" "bi-directional lstm"
-N Bi-GRU bi-gru
-N Bi-LSTM bi-lstm
-N Bi-LSTMs bi-lstms
-"A N" "bidirectional decoder" "bidirectional decoder"
-"A A A N" "Bidirectional Gated Recurrent Unit" "bidirectional gate recurrent unit"
-"A N" "bidirectional LSTM" "bidirectional lstm"
-"A N" "bidirectional multi-layer" "bidirectional multi-layer"
-"N N" "Blizzard Challenge" "blizzard challenge"
-N BLSTM blstm
-N BLSTM-S blstm-s
-N byte byte
-N CART cart
-N CBHG cbhg
-"A N" "cepstral coefficients" "cepstral coefficient"
-"A N" "cepstral features" "cepstral feature"
-N CERs cers
-N ClariNet clarinet
-"A N N" "clustering-based unit-selection approach" "cluster-base unit-selection approach"
-N CMOS cmos
-N CMUDict cmudict
-N CNN cnn
-A CNN-based cnn-base
-N code-switching code-switching
-"A N" "concatenative synthesis" "concatenative synthesis"
-"A N N" "conditional random fields" "conditional random field"
-"N N" "conditioning network" "conditioning network"
-"A A N" "context-dependent acoustic models" "context-dependent acoustic model"
-"A N" "context-dependent HMMs" "context-dependent hmms"
-"A N" "context-independent phones" "context-independent phone"
-"N N" "convolution block" "convolution block"
-"A N" "convolutional encoder" "convolutional encoder"
-"A N" "convolutional layers" "convolutional layer"
-"A N" "convolutional network" "convolutional network"
-"A N P N N" "convolutional network with ReLU activation" "convolutional network with relu activation"
-"A A A N" "convolutional neural network-based architecture" "convolutional neural network-base architecture"
-"A A N" "convolutional neural networks" "convolutional neural network"
-N CRF crf
-N cross-language cross-language
-"N N" "cross-language knowledge" "cross-language knowledge"
-"N N" "cross-language transfer" "cross-language transfer"
-"N N" "cross-language voice" "cross-language voice"
-"A N" "cross-lignual scenarios" "cross-lignual scenario"
-"A N" "cross-lingual adaptation" "cross-lingual adaptation"
-"A N" "cross-lingual knowledge-sharing" "cross-lingual knowledge-sharing"
-"A N" "cross-lingual MLP" "cross-lingual mlp"
-"A N N N" "cross-lingual MLP adaptation approach" "cross-lingual mlp adaptation approach"
-"A N N N" "Cross-lingual MLP feature extraction" "cross-lingual mlp feature extraction"
-"A N N" "cross-lingual MLP features" "cross-lingual mlp feature"
-"A N N" "cross-lingual parameter sharing" "cross-lingual parameter sharing"
-"A N N" "cross-lingual speaker adaptation" "cross-lingual speaker adaptation"
-"A N N" "cross-lingual speaker transfer" "cross-lingual speaker transfer"
-"A N" "cross-lingual transfer" "cross-lingual transfer"
-"A N" "cross-lingual voice" "cross-lingual voice"
-N CSS10 css10
-A data-based datum-base
-N DBLSTM dblstm
-"N N" "decision tree" "decision tree"
-N decision-tree decision-tree
-"A N" "decod output" "decod output"
-N decoder decoder
-"N N" "decoder Bi-LSTM" "decoder bi-lstm"
-"A A N" "deep bi-directional LSTM" "deep bi-directional lstm"
-"A N" "deep learning" "deep learning"
-"A A N" "deep neural networks" "deep neural network"
-"A A N N" "deep unidirectional GRU decoder" "deep unidirectional gru decoder"
-"A N" "Deep Voice" "deep voice"
-N DeepVoice deepvoice
-N dropout dropout
-"N C A N" "Duration and Fundamental Frequency" "duration and fundamental frequency"
-"N N" "duration predictor" "duration predictor"
-N encoder encoder
-"N N" encoder-attention-decoder encoder-attention-decoder
-N encoder-decoder encoder-decoder
-"N N" "encoder-decoder architecture" "encoder-decoder architecture"
-"N N" "encoder-decoder framework" "encoder-decoder framework"
-"N N" "encoder-decoder structure" "encoder-decoder structure"
-"N N" "end-of-phonemes tag" "end-of-phoneme tag"
-N end-to-end end-to-end
-"N A N N" "end-to-end generative TTS model" "end-to-end generative tts model"
-"N A N N" "end-to-end neural speech synthesis" "end-to-end neural speech synthesis"
-"N N N" "end-to-end speech synthesis" "end-to-end speech synthesis"
-"N N N" "end-to-end TTS models" "end-to-end tts model"
-N epochs epoch
-"A N" "expressive speech" "expressive speech"
-"A N N" "expressive speech synthesis" "expressive speech synthesis"
-N FastSpeech fastspeech
-N feed-forward feed-forward
-"A N" "feed-forward structure" "feed-forward structure"
-"N N" "Feed-Forward Transformer" "feed-forward transformer"
-"N N" "Feed-Forward Transformer" "feed-forward transformer"
-"A A N" "feedforward neural network" "feedforward neural network"
-"N N" "FFT Block" "fft block"
-"N N" "FFT blocks" "fft blocks"
-"N N" "finite-state automata" "finite-state automata"
-N FLOPs flops
-"A N" "forward backward algorithm" "forward backward algorithm"
-"N N" "forward decoder" "forward decoder"
-"N N N" "frequency prediction models" "frequency prediction model"
-N front-end front-end
-N FSTs fst
-"R A A N" "fully parallel neural TTS" "fully parallel neural tts"
-"A N" "fundamental frequency" "fundamental frequency"
-"A N N N" "fundamental frequency prediction models" "fundamental frequency prediction model"
-N G2P g2p
-N GALE gale
-N GlobalPhone globalphone
-"N N N" "GlobalPhone Language Models" "globalphone language model"
-N GPUs gpus
-"A N N" "gradient reversal layer" "gradient reversal layer"
-N grapheme grapheme
-"N C N N" "grapheme and phoneme sequences" "grapheme and phoneme sequences"
-"N N" "grapheme sequence" "grapheme sequence"
-"N N" "grapheme vector" "grapheme vector"
-"A N" "grapheme-based model" "grapheme-base model"
-N grapheme-phoneme grapheme-phoneme
-"N N N" "grapheme-phoneme sequence alignment" "grapheme-phoneme sequence alignment"
-N grapheme-to-phoneme grapheme-to-phoneme
-"N N" "grapheme-to-phoneme conversion" "grapheme-to-phoneme conversion"
-"N N N" "grapheme-to-phoneme conversion models" "grapheme-to-phoneme conversion model"
-N Griffin-Lim griffin-lim
-"N N N" "ground truth audio" "ground truth audio"
-"N N N" "ground truth samples" "ground truth sample"
-"N N" "ground-truth spectrograms" "ground-truth spectrogram"
-N GRU gru
-N HCRF hcrf
-"A N" "hidden activation" "hide activation"
-"A A N N" "Hidden Conditional Random Field" "hidden conditional random field"
-"A N" "hidden layers" "hidden layer"
-"A N N" "hidden Markov models" "hide markov model"
-"A N" "hidden states" "hidden states"
-"A N" "hidden units" "hide unit"
-N hier-MRASTA hier-mrasta
-"A A N" "hierarchial MLP-based approach" "hierarchial mlp-base approach"
-"A A N N" "hierarchical MLP-based LID system" "hierarchical mlp-base lid system"
-"A A N" "hierarchical MLP-based phone" "hierarchical mlp-base phone"
-"A N N" "HMM-based ASR system" "hmm-base asr system"
-"A N N" "HMM-based generation synthesis" "hmm-base generation synthesis"
-"A N N N" "HMM-based generation synthesis approach" "hmm-base generation synthesis approach"
-"A A N N" "HMM-based parametric TTS system" "hmm-base parametric tts system"
-"A N" "HMM-based speech" "hmm-base speech"
-"A N N N" "HMM-based speech synthesis system" "hmm-base speech synthesis system"
-"A N" "HMM-based synthesis" "hmm-base synthesis"
-"A N" "HMM-based TTS" "hmm-base tts"
-N HMMs hmms
-N hyper-parameters hyper-parameter
-N hyperparameters hyperparameter
-"N N" "IAF vocoder" "iaf vocoder"
-"N N" "input representations" "input representation"
-N K-grams k-grams
-N Kingma kingma
-N kostra kostra
-N labels label
-"N N N" "language model transducers" "language model transducer"
-A language-dependent language-dependent
-A language-independent language-independent
-"A A N" "language-specific convolutional encoders" "language-specific convolutional encoder"
-"N N" "layer models" "layer model"
-"N N" "layer normalization" "layer normalization"
-"N N" "learning rate" "learning rate"
-"A N" "letter-based approach" "letter-base approach"
-"A N N" "letter-based phone set" "letter-base phone set"
-A letter-to-sound letter-to-sound
-"A N" "lexical analysis" "lexical analysis"
-"A N N" "lexical analysis WFST" "lexical analysis wfst"
-N LibriSpeech librispeech
-N LibriTTS libritts
-"A N" "Light Supervision" "light supervision"
-"R A N" "lightly supervised method" "lightly supervise method"
-"A N" "linguistic knowledge" "linguistic knowledge"
-N LJSpeech ljspeech
-"N N" "log likelihood" "log likelihood"
-N log-magnitude log-magnitude
-"N N" "log-mel spectrograms" "log-mel spectrogram"
-"A A N" "long short-term memory" "long short-term memory"
-"N N" "loss function" "loss function"
-N LSTM lstm
-"N N" "LSTM layers" "lstm layer"
-A "LSTM-based model" "lstm-base model"
-N LSTM-RNNs lstm-rnns
-N LSTMs lstms
-N LVCSR lvcsr
-"N N" "machine translation" "machine translation"
-"N N" "Markov models" "markov model"
-"A N" "maximum likelihood" "maximum likelihood"
-N MCCs mccs
-"N N N" "mean opinion score" "mean opinion score"
-"N N N" "mean square error" "mean square error"
-N Mel mel
-"A N" "mel-cepstral coefficients" "mel-cepstral coefficient"
-A mel-scale mel-scale
-N mel-spectrogram mel-spectrogram
-"N N" "mel-spectrogram sequence" "mel-spectrogram sequence"
-"N N" "mel-spectrograms non-autoregressively" "mel-spectrogram non-autoregressively"
-A melcepstral melcepstral
-N Mellotron mellotron
-N Merlin merlin
-N MLP mlp
-N MLPG mlpg
-N MLPs mlps
-N MLSP mlsp
-"A N" "MMSE criterion" "mmse criterion"
-"N N" "model architecture" "model architecture"
-"A N" "monolingual MLP" "monolingual mlp"
-"A N N" "monolingual MLP features" "monolingual mlp features"
-"A N N" "monolingual speech recognition" "monolingual speech recognition"
-N morpheme morpheme
-"A N" "morphological analysis" "morphological analysis"
-N morphology morphology
-N MOS mos
-N MRASTA mrasta
-N MSE mse
-"N N" multi-head multi-head
-"N A N" "multi-layer bidirectional encoder" "multi-layer bidirectional encoder"
-"N N N" "multi-speaker speech synthesis" "multi-speaker speech synthesis"
-"N N" "multi-speaker training" "multi-speaker training"
-"A A N" "multilingual acoustic models" "multilingual acoustic model"
-"A N" "multilingual ASR" "multilingual asr"
-"A N N" "multilingual language models" "multilingual language model"
-"A N" "multilingual MLP" "multilingual mlp"
-"A N N" "multilingual MLP features" "multilingual mlp features"
-"A N" "multilingual model" "multilingual model"
-"A A A N N" "multilingual parametric neural TTS system" "multilingual parametric neural tts system"
-"A A N" "multilingual phoneme-based systems" "multilingual phoneme-base system"
-"A N" "multilingual setting" "multilingual setting"
-"A N N" "multilingual speech processing" "multilingual speech processing"
-"A N N N" "multilingual speech processing systems" "multilingual speech processing system"
-"A N N" "multilingual speech recognition" "multilingual speech recognition"
-"A N N" "multilingual speech synthesis" "multilingual speech synthesis"
-"A N" "multilingual systems" "multilingual system"
-"A N" "multilingual text-to-speech" "multilingual text-to-speech"
-"A N N" "multilingual text-to-speech systems" "multilingual text-to-speech system"
-"A N" "multilingual TTS" "multilingual tts"
-"A N N" "multilingual TTS model" "multilingual tts model"
-"N N N N" "multispeaker voice synthesis model" "multispeaker voice synthesis model"
-N MUSHRA mushra
-"A N N" "N-gram language models" "n-gram language model"
-"A N N" "natural language processing" "natural language processing"
-N NetTalk nettalk
-"N N" "network architecture" "network architecture"
-A network-based network-base
-"A N N" "neural machine translation" "neural machine translation"
-"A N" "neural model" "neural model"
-"A N" "neural network" "neural network"
-"A N N" "neural network architecture" "neural network architecture"
-"A N N N" "neural network speech synthesis" "neural network speech synthesis"
-"A A A N" "neural network-based acoustic model" "neural network-base acoustic model"
-"A A N N" "neural network-based speech synthesis" "neural network-base speech synthesis"
-"A N" "Neural Text-to-Speech" "neural text-to-speech"
-"A N" "neural TTS" "neural tts"
-"A N N" "neural TTS model" "neural tts model"
-"A N N" "neural TTS system" "neural tts system"
-"A N" "neural vocoder" "neural vocoder"
-N NLP nlp
-N NMT nmt
-"A N" "non-autoregressive decoder" "non-autoregressive decoder"
-"A N" "non-autoregressive model" "non-autoregressive model"
-"A N" "non-autoregressive ParaNet" "non-autoregressive paranet"
-"A N N" "non-autoregressive ParaNet model" "non-autoregressive paranet model"
-"A A N" "non-autoregressive seq2seq model" "non-autoregressive seq2seq model"
-"A N N" "non-autoregressive sequence generation" "non-autoregressive sequence generation"
-"A N N" "non-autoregressive text-to-spectrogram model" "non-autoregressive text-to-spectrogram model"
-A one-hot one-hot
-"N N" "one-hot vector" "one-hot vector"
-"A N" "Open Source" "open source"
-"A N A N" "Open Source Neural Network" "open source neural network"
-"N N" "Opinion Score" "opinion score"
-"N N A N" "output language acoustic model" "output language acoustic model"
-"N N" "output layer" "output layer"
-"A N N" "parallel mel-spectrogram generation" "parallel mel-spectrogram generation"
-"A A N" "parallel neural vocoder" "parallel neural vocoder"
-"A N" "parallel waveform" "parallel waveform"
-"N N" "parametric synthesis" "parametric synthesis"
-"N N N" "parametric TTS system" "parametric tts system"
-N ParaNet paranet
-N Part-of-Speech part-of-speech
-N PER per
-"N N N" "phone posterior probabilities" "phone posterior probability"
-N phone-sets phone-set
-N phoneme phoneme
-"N N" "phoneme boundaries" "phoneme boundaries"
-"N N" "phoneme duration" "phoneme duration"
-"N N N" "phoneme duration model" "phoneme duration model"
-"N N N" "phoneme duration prediction" "phoneme duration prediction"
-"N N N N" "phoneme duration prediction models" "phoneme duration prediction model"
-"N N N" "phoneme error rate" "phoneme error rate"
-"N N" "phoneme labels" "phoneme label"
-"N N" "phoneme pairs" "phoneme pairs"
-"N N" "phoneme recognizers" "phoneme recognizer"
-"N N" "phoneme sequence" "phoneme sequence"
-"A N" "phoneme-based model" "phoneme-base model"
-"A N N" "phonemic input representation" "phonemic input representation"
-"A N" "phonemic lexicon" "phonemic lexicon"
-A phonetic phonetic
-"A N" "phonetic-to-acoustic mapping" "phonetic-to-acoustic mapping"
-A phonological phonological
-N phonology phonology
-A phonotactic phonotactic
-"A N" "phonotactic constraints" "phonotactic constraint"
-N pitch pitch
-"A A N" "PLP cepstral features" "plp cepstral feature"
-"N N" "POS tagger" "pos tagger"
-"N N" "POS tags" "pos tags"
-"N N" "post-processing network" "post-processing network"
-"N N N" "probability density function" "probability density function"
-N prosody prosody
-N quinphone quinphone
-"A N" "raw spectrogram" "raw spectrogram"
-"A N" "raw waveform" "raw waveform"
-"A A N" "recurrent neural network" "recurrent neural network"
-N ReLU relu
-"N N" "research community" "research community"
-"A N" "residual connections" "residual connection"
-"A N" "residual encoder" "residual encoder"
-"N N" "reversal layer" "reversal layer"
-N RNN rnn
-A RNN-based rnn-base
-N RNNs rnns
-"A N" "rule-based approaches" "rule-base approach"
-"A N N" "Rule-based G2P systems" "rule-base g2p system"
-"A A N" "rule-based morphological analysis" "rule-base morphological analysis"
-N SAMPA sampa
-A SAMPA-based sampa-base
-"N N" self-attention self-attention
-A seq2seq seq2seq
-N seq2seq-attention seq2seq-attention
-"N P N" "sequence to sequence" "sequence to sequence"
-"A N N" "sequence-level knowledge distillation" "sequence-level knowledge distillation"
-N Sequence-to-sequence sequence-to-sequence
-N shared-tandem share-tandem
-"A N" "sigmoid function" "sigmoid function"
-N Simple4All simple4all
-"A N N" "slow inference speed" "slow inference speed"
-N softmax softmax
-"N N N" "speaker encoder network" "speaker encoder network"
-"A N" "speaker-adversarial loss" "speaker-adversarial loss"
-A spectral spectral
-"A N" "spectral envelope" "spectral envelope"
-N spectrogram spectrogram
-N spectrum spectrum
-N speech speech
-"N C N N" "speech and language technology" "speech and language technology"
-"N C N N" "speech and text data" "speech and text datum"
-"N N N N" "speech parameter generation algorithm" "speech parameter generation algorithm"
-"N N N" "speech processing systems" "speech processing system"
-"N N" "speech rate" "speech rate"
-"N N" "speech recognition" "speech recognition"
-"N N N" "speech recognition systems" "speech recognition system"
-"N N" "speech recording" "speech recording"
-"N N N" "speech synthesis system" "speech synthesis system"
-"N N" "speech technology" "speech technology"
-"N N" "Speech Translation" "speech translation"
-"N N" "speech waveform" "speech waveform"
-"A N" "speech-related tasks" "speech-relate task"
-"N N" "speech-to-speech translation" "speech-to-speech translation"
-"A N" "statistical approaches" "statistical approach"
-"A N" "statistical models" "statistical model"
-"A A N" "statistical parametric approaches" "statistical parametric approach"
-"A A N N" "statistical parametric speech synthesis" "statistical parametric speech synthesis"
-"A A N" "statistical parametric synthesis" "statistical parametric synthesis"
-N STFT stft
-"N N" "STFT loss" "stft loss"
-A syllable-based syllable-base
-"N N" "synthesis model" "synthesis model"
-"A N" "synthesized speech" "synthesize speech"
-"N N" "synthesizer network" "synthesizer network"
-"A N" "synthetic speech" "synthetic speech"
-"A N" "synthetic voices" "synthetic voice"
-N Tacotron tacotron
-"A N" "Tacotron-generated spectrograms" "tacotron-generate spectrogram"
-N TANH tanh
-"N N" "target language" "target language"
-"N N" "target spectrogram" "target spectrogram"
-N TCN tcn
-"A N N" "temporal convolution network" "temporal convolution network"
-"N P N" "text to speech" "text to speech"
-N Text-to-spectrogram text-to-spectrogram
-N text-to-speech text-to-speech
-N toolkit toolkit
-"A N N" "trainable speaker embeddings" "trainable speaker embedding"
-N transducers transducer
-A transformation-based transformation-base
-N transformer transformer
-"N N" "Transformer TTS" "transformer tts"
-"N N N" "Transformer TTS model" "transformer tts model"
-N tri-grapheme tri-grapheme
-N triphone-context triphone-context
-N TTS tts
-N Tundra tundra
-"N N N" "unit selection synthesis" "unit selection synthesis"
-"A N P N" "unsupervised adaptation of TTS" "unsupervised adaptation of tts"
-"A A N" "unsupervised cross-lingual adaptation" "unsupervise cross-lingual adaptation"
-"A A N N" "unsupervised cross-lingual speaker adaptation" "unsupervise cross-lingual speaker adaptation"
-"A N" "variational autoencoder" "variational autoencoder"
-"A A A N" "variational autoencoder-like residual encoder" "variational autoencoder-like residual encoder"
-"A A N" "variational residual encoder" "variational residual encoder"
-N vector vector
-"A N" "vocal model" "vocal model"
-"A N" "vocal range" "vocal range"
-N vocoder vocoder
-"N N" "vocoder parameters" "vocoder parameter"
-A vocoding vocode
-N voice voice
-"N N" "voice speed" "voice speed"
-"N N" "voice synthesis" "voice synthesis"
-"N N N" "voice synthesis model" "voice synthesis model"
-N VoxCeleb voxceleb
-N VTLN vtln
-N waveform waveform
-"N N" "waveform synthesis" "waveform synthesis"
-A waveform-level waveform-level
-N WaveGlow waveglow
-N WaveNet wavenet
-"N N" "WaveNet inference" "wavenet inference"
-"N N" "WaveNet models" "wavenet model"
-"N N" "WaveNet vocoder" "wavenet vocoder"
-A WaveNet-based wavenet-base
-N WaveVAE wavevae
-N WERs wer
-N WFSTs wfst
-"A N" "wide-spread languages" "wide-spread language"
-"N N N" "word error rate" "word error rate"
-"N N" "WORLD vocoder" "world vocoder"
+Transfer transfer transfer NOUN N
+Learning learning learn VERB V
+from from from ADP P
+Speaker speaker speaker NOUN N
+Verification verification verification NOUN N
+to to to ADP P
+Multispeaker multispeaker multispeaker PROPN N
+Text text text NOUN N
+- - - PUNCT 
+To to to ADP P
+- - - PUNCT 
+Speech speech speech NOUN N
+Synthesis synthesis synthesis NOUN N
+"
+
+
+" "
+
+
+" "
+
+
+" SPACE 
+Abstract abstract abstract ADJ A
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+describe describe describe VERB V
+a a a DET 
+neural neural neural ADJ A
+network network network NOUN N
+- - - PUNCT 
+based based base VERB V
+system system system NOUN N
+for for for ADP P
+text text text NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+speech speech speech NOUN N
+( ( ( PUNCT 
+TTS tts tts PROPN N
+) ) ) PUNCT 
+synthesis synthesis synthesis NOUN N
+that that that DET 
+is is be AUX 
+able able able ADJ A
+to to to PART P
+generate generate generate VERB V
+speech speech speech NOUN N
+audio audio audio NOUN N
+in in in ADP P
+the the the DET 
+voice voice voice NOUN N
+of of of ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+including including include VERB V
+those those those DET 
+unseen unseen unseen ADJ A
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Our our -PRON- DET 
+system system system NOUN N
+consists consists consist VERB V
+of of of ADP P
+three three three NUM 
+independently independently independently ADV 
+trained trained train VERB V
+components components component NOUN N
+: : : PUNCT 
+a a a DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+network network network NOUN N
+, , , PUNCT 
+trained trained train VERB V
+on on on ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+task task task NOUN N
+using using use VERB V
+an an an DET 
+independent independent independent ADJ A
+dataset dataset dataset NOUN N
+of of of ADP P
+noisy noisy noisy ADJ A
+speech speech speech NOUN N
+without without without ADP P
+transcripts transcripts transcript NOUN N
+from from from ADP P
+thousands thousands thousand NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+, , , PUNCT 
+to to to PART P
+generate generate generate VERB V
+a a a DET 
+fixed fixed fix VERB V
+- - - PUNCT 
+dimensional dimensional dimensional ADJ A
+embedding embedding embedding NOUN N
+vector vector vector NOUN N
+from from from ADP P
+only only only ADJ A
+seconds seconds second NOUN N
+of of of ADP P
+reference reference reference NOUN N
+speech speech speech NOUN N
+from from from ADP P
+a a a DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+; ; ; PUNCT 
+a a a DET 
+sequence sequence sequence NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+sequence sequence sequence NOUN N
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+based based base VERB V
+on on on ADP P
+Tacotron tacotron tacotron PROPN N
+2 2 2 NUM 
+that that that DET 
+generates generates generate VERB V
+a a a DET 
+mel mel mel NOUN N
+spectrogram spectrogram spectrogram NOUN N
+from from from ADP P
+text text text NOUN N
+, , , PUNCT 
+conditioned conditioned condition VERB V
+on on on ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embedding PROPN N
+; ; ; PUNCT 
+an an an DET 
+auto auto auto NOUN N
+- - - PUNCT 
+regressive regressive regressive ADJ A
+WaveNet wavenet wavenet NOUN N
+- - - PUNCT 
+based based base VERB V
+vocoder vocoder vocoder NOUN N
+network network network NOUN N
+that that that DET 
+converts converts convert VERB V
+the the the DET 
+mel mel mel PROPN N
+spectrogram spectrogram spectrogram PROPN N
+into into into ADP P
+time time time NOUN N
+domain domain domain NOUN N
+waveform waveform waveform NOUN N
+samples samples sample NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+demonstrate demonstrate demonstrate VERB V
+that that that SCONJ C
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+is is be AUX 
+able able able ADJ A
+to to to PART P
+transfer transfer transfer VERB V
+the the the DET 
+knowledge knowledge knowledge NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+variability variability variability NOUN N
+learned learned learn VERB V
+by by by ADP P
+the the the DET 
+discriminatively discriminatively discriminatively ADV 
+- - - PUNCT 
+trained trained train VERB V
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+to to to ADP P
+the the the DET 
+multispeaker multispeaker multispeaker NOUN N
+TTS tts tts PROPN N
+task task task NOUN N
+, , , PUNCT 
+and and and CCONJ C
+is is be AUX 
+able able able ADJ A
+to to to PART P
+synthesize synthesize synthesize VERB V
+natural natural natural ADJ A
+speech speech speech NOUN N
+from from from ADP P
+speakers speakers speaker NOUN N
+unseen unseen unseen ADJ A
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+quantify quantify quantify VERB V
+the the the DET 
+importance importance importance NOUN N
+of of of ADP P
+training training train VERB V
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+on on on ADP P
+a a a DET 
+large large large ADJ A
+and and and CCONJ C
+diverse diverse diverse ADJ A
+speaker speaker speaker NOUN N
+set set set VERB V
+in in in ADP P
+order order order NOUN N
+to to to PART P
+obtain obtain obtain VERB V
+the the the DET 
+best best good ADJ A
+generalization generalization generalization NOUN N
+performance performance performance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Finally finally finally ADV 
+, , , PUNCT 
+we we -PRON- PRON 
+show show show VERB V
+that that that SCONJ C
+randomly randomly randomly ADV 
+sampled sampled sample VERB V
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+can can can VERB V
+be be be AUX 
+used used use VERB V
+to to to PART P
+synthesize synthesize synthesize VERB V
+speech speech speech NOUN N
+in in in ADP P
+the the the DET 
+voice voice voice NOUN N
+of of of ADP P
+novel novel novel NOUN N
+speakers speakers speaker NOUN N
+dissimilar dissimilar dissimilar ADJ A
+from from from ADP P
+those those those DET 
+used used use VERB V
+in in in ADP P
+training training training NOUN N
+, , , PUNCT 
+indicating indicating indicate VERB V
+that that that SCONJ C
+the the the DET 
+model model model NOUN N
+has has have AUX 
+learned learned learn VERB V
+a a a DET 
+high high high ADJ A
+quality quality quality NOUN N
+speaker speaker speaker NOUN N
+representation representation representation NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Introduction introduction introduction NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+The the the DET 
+goal goal goal NOUN N
+of of of ADP P
+this this this DET 
+work work work NOUN N
+is is be AUX 
+to to to PART P
+build build build VERB V
+a a a DET 
+TTS tts tts PROPN N
+system system system NOUN N
+which which which DET 
+can can can VERB V
+generate generate generate VERB V
+natural natural natural ADJ A
+speech speech speech NOUN N
+for for for ADP P
+a a a DET 
+variety variety variety NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+in in in ADP P
+a a a DET 
+data data datum NOUN N
+efficient efficient efficient ADJ A
+manner manner manner NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+specifically specifically specifically ADV 
+address address address VERB V
+a a a DET 
+zero zero zero NUM 
+- - - PUNCT 
+shot shot shot NOUN N
+learning learning learning NOUN N
+setting setting setting NOUN N
+, , , PUNCT 
+where where where ADV 
+a a a DET 
+few few few ADJ A
+seconds seconds second NOUN N
+of of of ADP P
+untranscribed untranscribed untranscribed ADJ A
+reference reference reference NOUN N
+audio audio audio NOUN N
+from from from ADP P
+a a a DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+is is be AUX 
+used used use VERB V
+to to to PART P
+synthesize synthesize synthesize VERB V
+new new new ADJ A
+speech speech speech NOUN N
+in in in ADP P
+that that that DET 
+speaker speaker speaker NOUN N
+’s ’s ’s PROPN N
+voice voice voice NOUN N
+, , , PUNCT 
+without without without ADP P
+updating updating update VERB V
+any any any DET 
+model model model NOUN N
+parameters parameters parameter NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Such such such ADJ A
+systems systems system NOUN N
+have have have AUX 
+accessibility accessibility accessibility NOUN N
+applications applications application NOUN N
+, , , PUNCT 
+such such such ADJ A
+as as as SCONJ C
+restoring restoring restore VERB V
+the the the DET 
+ability ability ability NOUN N
+to to to PART P
+communicate communicate communicate VERB V
+naturally naturally naturally ADV 
+to to to ADP P
+users users user NOUN N
+who who who PRON 
+have have have AUX 
+lost lost lose VERB V
+their their -PRON- DET 
+voice voice voice NOUN N
+and and and CCONJ C
+are are be AUX 
+therefore therefore therefore ADV 
+unable unable unable ADJ A
+to to to PART P
+provide provide provide VERB V
+many many many ADJ A
+new new new ADJ A
+training training training NOUN N
+examples examples example NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+They they -PRON- PRON 
+could could could VERB V
+also also also ADV 
+enable enable enable VERB V
+new new new ADJ A
+applications applications application NOUN N
+, , , PUNCT 
+such such such ADJ A
+as as as SCONJ C
+transferring transferring transfer VERB V
+a a a DET 
+voice voice voice NOUN N
+across across across ADP P
+languages languages language NOUN N
+for for for ADP P
+more more more ADV 
+natural natural natural ADJ A
+speech speech speech NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+speech speech speech NOUN N
+translation translation translation NOUN N
+, , , PUNCT 
+or or or CCONJ C
+generating generating generate VERB V
+realistic realistic realistic ADJ A
+speech speech speech NOUN N
+from from from ADP P
+text text text NOUN N
+in in in ADP P
+low low low ADJ A
+resource resource resource NOUN N
+settings settings setting NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+it it -PRON- PRON 
+is is be AUX 
+also also also ADV 
+important important important ADJ A
+to to to PART P
+note note note VERB V
+the the the DET 
+potential potential potential NOUN N
+for for for ADP P
+misuse misuse misuse NOUN N
+of of of ADP P
+this this this DET 
+technology technology technology NOUN N
+, , , PUNCT 
+for for for ADP P
+example example example NOUN N
+impersonating impersonating impersonate VERB V
+someone someone someone PRON 
+’s ’s ’s PUNCT 
+voice voice voice NOUN N
+without without without ADP P
+their their -PRON- DET 
+consent consent consent NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+order order order NOUN N
+to to to PART P
+address address address VERB V
+safety safety safety NOUN N
+concerns concerns concern NOUN N
+consistent consistent consistent ADJ A
+with with with ADP P
+principles principles principle NOUN N
+such such such ADJ A
+as as as SCONJ C
+, , , PUNCT 
+we we -PRON- PRON 
+verify verify verify VERB V
+that that that SCONJ C
+voices voices voice NOUN N
+generated generated generate VERB V
+by by by ADP P
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+can can can VERB V
+easily easily easily ADV 
+be be be AUX 
+distinguished distinguished distinguish VERB V
+from from from ADP P
+real real real ADJ A
+voices voices voice NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Synthesizing synthesizing synthesize VERB V
+natural natural natural ADJ A
+speech speech speech NOUN N
+requires requires require VERB V
+training training training NOUN N
+on on on ADP P
+a a a DET 
+large large large ADJ A
+number number number NOUN N
+of of of ADP P
+high high high ADJ A
+quality quality quality NOUN N
+speech speech speech NOUN N
+- - - PUNCT 
+transcript transcript transcript NOUN N
+pairs pairs pair NOUN N
+, , , PUNCT 
+and and and CCONJ C
+supporting supporting support VERB V
+many many many ADJ A
+speakers speakers speaker NOUN N
+usually usually usually ADV 
+uses uses use VERB V
+tens tens ten NOUN N
+of of of ADP P
+minutes minutes minute NOUN N
+of of of ADP P
+training training training NOUN N
+data data datum NOUN N
+per per per ADP P
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Recording recording record VERB V
+a a a DET 
+large large large ADJ A
+amount amount amount NOUN N
+of of of ADP P
+high high high ADJ A
+quality quality quality NOUN N
+data data datum NOUN N
+for for for ADP P
+many many many ADJ A
+speakers speakers speaker NOUN N
+is is be AUX 
+impractical impractical impractical ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Our our -PRON- DET 
+approach approach approach NOUN N
+is is be AUX 
+to to to ADP P
+decouple decouple decouple NOUN N
+speaker speaker speaker NOUN N
+modeling modeling model VERB V
+from from from ADP P
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+by by by ADP P
+independently independently independently ADV 
+training training train VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+- - - PUNCT 
+discriminative discriminative discriminative ADJ A
+embedding embedding embedding NOUN N
+network network network NOUN N
+that that that DET 
+captures captures capture VERB V
+the the the DET 
+space space space NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+characteristics characteristics characteristic NOUN N
+and and and CCONJ C
+training training train VERB V
+a a a DET 
+high high high ADJ A
+quality quality quality NOUN N
+TTS tts tts PROPN N
+model model model NOUN N
+on on on ADP P
+a a a DET 
+smaller smaller small ADJ A
+dataset dataset dataset NOUN N
+conditioned conditioned condition VERB V
+on on on ADP P
+the the the DET 
+representation representation representation NOUN N
+learned learned learn VERB V
+by by by ADP P
+the the the DET 
+first first first ADJ A
+network network network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Decoupling decoupling decouple VERB V
+the the the DET 
+networks networks network NOUN N
+enables enables enable VERB V
+them them -PRON- PRON 
+to to to PART P
+be be be AUX 
+trained trained train VERB V
+on on on ADP P
+independent independent independent ADJ A
+data data datum NOUN N
+, , , PUNCT 
+which which which DET 
+reduces reduces reduce VERB V
+the the the DET 
+need need need NOUN N
+to to to PART P
+obtain obtain obtain VERB V
+high high high ADJ A
+quality quality quality NOUN N
+multispeaker multispeaker multispeaker NOUN N
+training training training PROPN N
+data data datum NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+train train train VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+network network network NOUN N
+on on on ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+task task task NOUN N
+to to to PART P
+determine determine determine VERB V
+if if if SCONJ C
+two two two NUM 
+different different different ADJ A
+utterances utterances utterance NOUN N
+were were be AUX 
+spoken spoken speak VERB V
+by by by ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+to to to ADP P
+the the the DET 
+subsequent subsequent subsequent ADJ A
+TTS tts tts PROPN N
+model model model NOUN N
+, , , PUNCT 
+this this this DET 
+network network network NOUN N
+is is be AUX 
+trained trained train VERB V
+on on on ADP P
+untranscribed untranscribed untranscribed ADJ A
+speech speech speech NOUN N
+containing containing contain VERB V
+reverberation reverberation reverberation NOUN N
+and and and CCONJ C
+background background background NOUN N
+noise noise noise NOUN N
+from from from ADP P
+a a a DET 
+large large large ADJ A
+number number number NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+demonstrate demonstrate demonstrate VERB V
+that that that SCONJ C
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+and and and CCONJ C
+synthesis synthesis synthesis NOUN N
+networks networks network NOUN N
+can can can VERB V
+be be be AUX 
+trained trained train VERB V
+on on on ADP P
+unbalanced unbalanced unbalanced ADJ A
+and and and CCONJ C
+disjoint disjoint disjoint NOUN N
+sets sets set NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+and and and CCONJ C
+still still still ADV 
+generalize generalize generalize VERB V
+well well well ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+train train train VERB V
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+on on on ADP P
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+2000 2000 2000 NUM 
+speakers speakers speaker NOUN N
+and and and CCONJ C
+show show show VERB V
+that that that SCONJ C
+training training train VERB V
+the the the DET 
+encoder encoder encoder NOUN N
+on on on ADP P
+a a a DET 
+much much much ADV 
+larger larger large ADJ A
+set set set NOUN N
+of of of ADP P
+18000 18000 18000 NUM 
+speakers speakers speaker NOUN N
+improves improves improve VERB V
+adaptation adaptation adaptation NOUN N
+quality quality quality NOUN N
+, , , PUNCT 
+and and and CCONJ C
+further further further ADJ A
+enables enables enable VERB V
+synthesis synthesis synthesis NOUN N
+of of of ADP P
+completely completely completely ADV 
+novel novel novel ADJ A
+speakers speakers speaker NOUN N
+by by by ADP P
+sampling sampling sample VERB V
+from from from ADP P
+the the the DET 
+embedding embedding embedding NOUN N
+prior prior prior ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+There there there PRON 
+has has have AUX 
+been been be AUX 
+significant significant significant ADJ A
+interest interest interest NOUN N
+in in in ADP P
+end end end NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+end end end NOUN N
+training training training NOUN N
+of of of ADP P
+TTS tts tts PROPN N
+models models model NOUN N
+, , , PUNCT 
+which which which DET 
+are are be AUX 
+trained trained train VERB V
+directly directly directly ADV 
+from from from ADP P
+text text text NOUN N
+- - - PUNCT 
+audio audio audio NOUN N
+pairs pairs pair NOUN N
+, , , PUNCT 
+without without without ADP P
+depending depending depend VERB V
+on on on ADP P
+hand hand hand NOUN N
+crafted crafted craft VERB V
+intermediate intermediate intermediate ADJ A
+representations representations representation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Tacotron tacotron tacotron PROPN N
+2 2 2 NUM 
+used used use VERB V
+WaveNet wavenet wavenet NOUN N
+as as as SCONJ C
+a a a DET 
+vocoder vocoder vocoder NOUN N
+to to to PART P
+invert invert invert VERB V
+spectrograms spectrograms spectrogram NOUN N
+generated generated generate VERB V
+by by by ADP P
+an an an DET 
+encoder encoder encoder NOUN N
+- - - PUNCT 
+decoder decoder decoder NOUN N
+architecture architecture architecture NOUN N
+with with with ADP P
+attention attention attention NOUN N
+, , , PUNCT 
+obtaining obtaining obtain VERB V
+naturalness naturalness naturalness NOUN N
+approaching approaching approach VERB V
+that that that DET 
+of of of ADP P
+human human human ADJ A
+speech speech speech NOUN N
+by by by ADP P
+combining combining combine VERB V
+Tacotron’sprosody tacotron’sprosody tacotron’sprosody NOUN N
+with with with ADP P
+WaveNet wavenet wavenet PROPN N
+’s ’s ’s PART P
+audio audio audio ADJ A
+quality quality quality NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+only only only ADV 
+supported supported support VERB V
+a a a DET 
+single single single ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Gibiansky gibiansky gibiansky PROPN N
+et et et PROPN N
+al al al PROPN N
+. . . PROPN N
+ntroduced ntroduced ntroduce VERB V
+a a a DET 
+multispeaker multispeaker multispeaker NOUN N
+variation variation variation NOUN N
+of of of ADP P
+Tacotron tacotron tacotron PROPN N
+which which which DET 
+learned learned learn VERB V
+low low low ADJ A
+- - - PUNCT 
+dimensional dimensional dimensional ADJ A
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+for for for ADP P
+each each each DET 
+training training training NOUN N
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Deep deep deep ADJ A
+Voice voice voice NOUN N
+3proposed 3proposed 3propose VERB V
+a a a DET 
+fully fully fully ADV 
+convolutional convolutional convolutional ADJ A
+encoder encoder encoder NOUN N
+- - - PUNCT 
+decoder decoder decoder NOUN N
+architecture architecture architecture NOUN N
+which which which DET 
+scaled scaled scale VERB V
+up up up ADP P
+to to to PART P
+support support support VERB V
+over over over ADP P
+2,400 2,400 2,400 NUM 
+speakers speakers speaker NOUN N
+from from from ADP P
+LibriSpeech librispeech librispeech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+These these these DET 
+systems systems system NOUN N
+learn learn learn VERB V
+a a a DET 
+fixed fixed fix VERB V
+set set set NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+and and and CCONJ C
+therefore therefore therefore ADV 
+only only only ADV 
+support support support NOUN N
+synthesis synthesis synthesis NOUN N
+of of of ADP P
+voices voices voice NOUN N
+seen seen see VERB V
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+, , , PUNCT 
+VoiceLoop voiceloop voiceloop PROPN N
+proposed proposed propose VERB V
+a a a DET 
+novel novel novel ADJ A
+architecture architecture architecture NOUN N
+based based base VERB V
+on on on ADP P
+a a a DET 
+fixed fixed fix VERB V
+size size size NOUN N
+memory memory memory NOUN N
+buffer buffer buffer NOUN N
+which which which DET 
+can can can VERB V
+generate generate generate VERB V
+speech speech speech NOUN N
+from from from ADP P
+voices voices voice NOUN N
+unseen unseen unseen ADJ A
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Obtaining obtaining obtain VERB V
+good good good ADJ A
+results results result NOUN N
+required required require VERB V
+tens tens ten NOUN N
+of of of ADP P
+minutes minutes minute NOUN N
+of of of ADP P
+enrollment enrollment enrollment NOUN N
+speech speech speech NOUN N
+and and and CCONJ C
+transcripts transcripts transcript NOUN N
+for for for ADP P
+a a a DET 
+new new new ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Recent recent recent ADJ A
+extensions extensions extension NOUN N
+have have have AUX 
+enabled enabled enable VERB V
+few few few ADJ A
+- - - PUNCT 
+shot shot shot ADJ A
+speaker speaker speaker NOUN N
+adaptation adaptation adaptation NOUN N
+where where where ADV 
+only only only ADV 
+a a a DET 
+few few few ADJ A
+seconds seconds second NOUN N
+of of of ADP P
+speech speech speech NOUN N
+per per per ADP P
+speaker speaker speaker NOUN N
+( ( ( PUNCT 
+without without without ADP P
+transcripts transcripts transcript NOUN N
+) ) ) PUNCT 
+can can can VERB V
+be be be AUX 
+used used use VERB V
+to to to PART P
+generate generate generate VERB V
+new new new ADJ A
+speech speech speech NOUN N
+in in in ADP P
+that that that DET 
+speaker speaker speaker NOUN N
+’s ’s ’s PART P
+voice voice voice NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+extends extends extend VERB V
+Deep deep deep ADJ A
+Voice voice voice NOUN N
+3 3 3 NUM 
+, , , PUNCT 
+comparing comparing compare VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+adaptation adaptation adaptation NOUN N
+method method method NOUN N
+similar similar similar ADJ A
+to to to ADP P
+where where where ADV 
+the the the DET 
+model model model NOUN N
+parameters parameters parameter NOUN N
+( ( ( PUNCT 
+including including include VERB V
+speaker speaker speaker PROPN N
+embedding embedding embedding PROPN N
+) ) ) PUNCT 
+are are be AUX 
+fine fine fine ADV 
+- - - PUNCT 
+tuned tuned tune VERB V
+on on on ADP P
+a a a DET 
+small small small ADJ A
+amount amount amount NOUN N
+of of of ADP P
+adaptation adaptation adaptation NOUN N
+data data datum NOUN N
+to to to ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+encoding encoding encoding NOUN N
+method method method NOUN N
+which which which DET 
+uses uses use VERB V
+a a a DET 
+neural neural neural ADJ A
+network network network NOUN N
+to to to PART P
+predict predict predict VERB V
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+directly directly directly ADV 
+from from from ADP P
+a a a DET 
+spectrogram spectrogram spectrogram NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+latter latter latter ADJ A
+approach approach approach NOUN N
+is is be AUX 
+significantly significantly significantly ADV 
+more more more ADJ A
+data data datum NOUN N
+efficient efficient efficient ADJ A
+, , , PUNCT 
+obtaining obtaining obtain VERB V
+higher higher high ADJ A
+naturalness naturalness naturalness NOUN N
+using using use VERB V
+small small small ADJ A
+amounts amounts amount NOUN N
+of of of ADP P
+adaptation adaptation adaptation NOUN N
+data data datum NOUN N
+, , , PUNCT 
+in in in ADP P
+as as as ADV 
+few few few ADJ A
+as as as SCONJ C
+one one one NUM 
+or or or CCONJ C
+two two two NUM 
+utterances utterances utterance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+is is be AUX 
+also also also ADV 
+significantly significantly significantly ADV 
+more more more ADV 
+computationally computationally computationally ADV 
+efficient efficient efficient ADJ A
+since since since SCONJ C
+it it -PRON- PRON 
+does does do AUX 
+not not not PART P
+require require require VERB V
+hundreds hundreds hundred NOUN N
+of of of ADP P
+backpropagation backpropagation backpropagation NOUN N
+iterations iterations iteration NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Nachmani nachmani nachmani PROPN N
+et et et PROPN N
+al al al PROPN N
+. . . PUNCT 
+" " " " " " SPACE 
+similarly similarly similarly ADV 
+extended extended extend VERB V
+VoiceLoop voiceloop voiceloop PROPN N
+to to to PART P
+utilize utilize utilize VERB V
+a a a DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+encoding encoding encoding NOUN N
+network network network NOUN N
+to to to PART P
+predict predict predict VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+embedding embedding embedding NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+network network network NOUN N
+is is be AUX 
+trained trained train VERB V
+jointly jointly jointly ADV 
+with with with ADP P
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+using using use VERB V
+a a a DET 
+contrastive contrastive contrastive ADJ A
+triplet triplet triplet NOUN N
+loss loss loss NOUN N
+to to to PART P
+ensure ensure ensure VERB V
+that that that SCONJ C
+embeddings embeddings embedding NOUN N
+predicted predicted predict VERB V
+from from from ADP P
+utterances utterances utterance NOUN N
+by by by ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+are are be AUX 
+closer closer close ADJ A
+than than than SCONJ C
+embeddings embeddings embedding NOUN N
+computed computed compute VERB V
+from from from ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+addition addition addition NOUN N
+, , , PUNCT 
+a a a DET 
+cycle cycle cycle NOUN N
+- - - PUNCT 
+consistency consistency consistency NOUN N
+loss loss loss NOUN N
+is is be AUX 
+used used use VERB V
+to to to PART P
+ensure ensure ensure VERB V
+that that that SCONJ C
+the the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+encodes encodes encode VERB V
+to to to ADP P
+a a a DET 
+similar similar similar ADJ A
+embedding embedding embedding NOUN N
+as as as SCONJ C
+the the the DET 
+adaptation adaptation adaptation NOUN N
+utterance utterance utterance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+A a a DET 
+similar similar similar ADJ A
+spectrogram spectrogram spectrogram NOUN N
+encoder encoder encoder NOUN N
+network network network NOUN N
+, , , PUNCT 
+trained trained train VERB V
+without without without ADP P
+a a a DET 
+triplet triplet triplet NOUN N
+loss loss loss NOUN N
+, , , PUNCT 
+was was be AUX 
+shown shown show VERB V
+to to to PART P
+work work work VERB V
+for for for ADP P
+transferring transferring transfer VERB V
+target target target NOUN N
+prosody prosody prosody NOUN N
+to to to ADP P
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+this this this DET 
+paper paper paper NOUN N
+we we -PRON- PRON 
+demonstrate demonstrate demonstrate VERB V
+that that that SCONJ C
+training training train VERB V
+a a a DET 
+similar similar similar ADJ A
+encoder encoder encoder NOUN N
+to to to PART P
+discriminate discriminate discriminate VERB V
+between between between ADP P
+speakers speakers speaker NOUN N
+leads leads lead VERB V
+to to to ADP P
+reliable reliable reliable ADJ A
+transfer transfer transfer NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+characteristics characteristics characteristic NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Our our -PRON- DET 
+work work work NOUN N
+is is be AUX 
+most most most ADV 
+similar similar similar ADJ A
+to to to ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+encoding encoding encoding NOUN N
+models models model NOUN N
+in in in ADP P
+, , , PUNCT 
+except except except SCONJ C
+that that that SCONJ C
+we we -PRON- PRON 
+utilize utilize utilize VERB V
+a a a DET 
+network network network NOUN N
+independently independently independently ADV 
+- - - PUNCT 
+trained trained train VERB V
+for for for ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+task task task NOUN N
+on on on ADP P
+a a a DET 
+large large large ADJ A
+dataset dataset dataset NOUN N
+of of of ADP P
+untranscribed untranscribed untranscribed ADJ A
+audio audio audio NOUN N
+from from from ADP P
+tens tens ten NOUN N
+of of of ADP P
+thousands thousands thousand NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+, , , PUNCT 
+using using use VERB V
+a a a DET 
+state state state NOUN N
+- - - PUNCT 
+of of of ADP P
+- - - PUNCT 
+the the the DET 
+- - - PUNCT 
+art art art NOUN N
+generalized generalized generalize VERB V
+end end end NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+end end end NOUN N
+loss loss loss NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+incorporated incorporated incorporate VERB V
+a a a DET 
+similar similar similar ADJ A
+speaker speaker speaker NOUN N
+- - - PUNCT 
+discriminative discriminative discriminative ADJ A
+representation representation representation NOUN N
+into into into ADP P
+their their -PRON- DET 
+model model model NOUN N
+, , , PUNCT 
+however however however ADV 
+all all all DET 
+components components component NOUN N
+were were be AUX 
+trained trained train VERB V
+jointly jointly jointly ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+explore explore explore VERB V
+transfer transfer transfer NOUN N
+learning learning learn VERB V
+from from from ADP P
+a a a DET 
+pre pre pre ADJ A
+- - - ADJ A
+trained trained train VERB V
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+model model model NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Doddipatla doddipatla doddipatla PROPN N
+et et et PROPN N
+al al al PROPN N
+. . . PROPN N
+used used use VERB V
+a a a DET 
+similar similar similar ADJ A
+transfer transfer transfer NOUN N
+learning learning learning NOUN N
+configuration configuration configuration NOUN N
+where where where ADV 
+a a a DET 
+speaker speaker speaker NOUN N
+embedding embedding embedding NOUN N
+computed computed compute VERB V
+from from from ADP P
+a a a DET 
+pre pre pre ADJ A
+- - - ADJ A
+trained trained train VERB V
+speaker speaker speaker NOUN N
+classifier classifier classifier NOUN N
+was was be AUX 
+used used use VERB V
+to to to PART P
+condition condition condition VERB V
+a a a DET 
+TTS tts tts NOUN N
+system system system NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+this this this DET 
+paper paper paper NOUN N
+we we -PRON- PRON 
+utilize utilize utilize VERB V
+an an an DET 
+end end end NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+end end end NOUN N
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+which which which DET 
+does does do AUX 
+not not not PART P
+rely rely rely VERB V
+on on on ADP P
+intermediate intermediate intermediate ADJ A
+linguistic linguistic linguistic ADJ A
+features features feature NOUN N
+, , , PUNCT 
+and and and CCONJ C
+a a a DET 
+substantially substantially substantially ADV 
+different different different ADJ A
+speaker speaker speaker NOUN N
+embedding embedding embedding NOUN N
+network network network NOUN N
+which which which DET 
+is is be AUX 
+not not not PART P
+limited limited limit VERB V
+to to to ADP P
+a a a DET 
+closed closed closed ADJ A
+set set set NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Furthermore furthermore furthermore ADV 
+, , , PUNCT 
+we we -PRON- PRON 
+analyze analyze analyze VERB V
+how how how ADV 
+quality quality quality NOUN N
+varies varies vary VERB V
+with with with ADP P
+the the the DET 
+number number number NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+in in in ADP P
+the the the DET 
+training training training NOUN N
+set set set VERB V
+, , , PUNCT 
+and and and CCONJ C
+find find find VERB V
+that that that SCONJ C
+zero zero zero NUM 
+- - - PUNCT 
+shot shot shot NOUN N
+transfer transfer transfer NOUN N
+requires requires require VERB V
+training training training NOUN N
+on on on ADP P
+thousands thousands thousand NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+, , , PUNCT 
+many many many ADJ A
+more more more ADJ A
+than than than SCONJ C
+were were be AUX 
+used used use VERB V
+in in in ADP P
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Multispeaker multispeaker multispeaker PROPN N
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+model model model NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Our our -PRON- DET 
+system system system NOUN N
+is is be AUX 
+composed composed compose VERB V
+of of of ADP P
+three three three NUM 
+independently independently independently ADV 
+trained trained train VERB V
+neural neural neural ADJ A
+networks networks network NOUN N
+, , , PUNCT 
+illustrated illustrated illustrate VERB V
+in in in ADP P
+Figure figure figure NOUN N
+1 1 1 NUM 
+: : : PUNCT 
+( ( ( PUNCT 
+1 1 1 X 
+) ) ) PUNCT 
+a a a DET 
+recurrent recurrent recurrent ADJ A
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+, , , PUNCT 
+based based base VERB V
+on on on ADP P
+, , , PUNCT 
+which which which DET 
+computes computes compute VERB V
+a a a DET 
+fixed fixed fix VERB V
+dimensional dimensional dimensional ADJ A
+vector vector vector NOUN N
+from from from ADP P
+a a a DET 
+speech speech speech NOUN N
+signal signal signal NOUN N
+, , , PUNCT 
+( ( ( PUNCT 
+2 2 2 X 
+) ) ) PUNCT 
+a a a DET 
+sequence sequence sequence NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+sequence sequence sequence NOUN N
+synthesizer synthesizer synthesizer NOUN N
+, , , PUNCT 
+based based base VERB V
+on on on ADP P
+, , , PUNCT 
+which which which DET 
+predicts predicts predict VERB V
+a a a DET 
+mel mel mel NOUN N
+spectrogram spectrogram spectrogram NOUN N
+from from from ADP P
+a a a DET 
+sequence sequence sequence NOUN N
+of of of ADP P
+grapheme grapheme grapheme NOUN N
+or or or CCONJ C
+phoneme phoneme phoneme PROPN N
+inputs inputs inputs PROPN N
+, , , PUNCT 
+conditioned conditioned condition VERB V
+on on on ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+vector vector vector NOUN N
+, , , PUNCT 
+and and and CCONJ C
+( ( ( PUNCT 
+3 3 3 X 
+) ) ) PUNCT 
+an an an DET 
+autoregressive autoregressive autoregressive ADJ A
+WaveNet wavenet wavenet ADJ A
+vocoder vocoder vocoder NOUN N
+, , , PUNCT 
+which which which DET 
+converts converts convert VERB V
+the the the DET 
+spectrogram spectrogram spectrogram NOUN N
+into into into ADP P
+time time time NOUN N
+domain domain domain NOUN N
+waveforms waveforms waveform NOUN N
+. . . PUNCT 
+"
+                                                    
+" "
+                                                    
+" "
+                                                    
+" SPACE 
+Figure figure figure NOUN N
+: : : PUNCT 
+Model model model NOUN N
+overview overview overview NOUN N
+. . . PUNCT 
+Each each each DET 
+of of of ADP P
+the the the DET 
+three three three NUM 
+components components component NOUN N
+are are be AUX 
+trained trained train VERB V
+independently independently independently ADV 
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+The the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+is is be AUX 
+used used use VERB V
+to to to PART P
+condition condition condition VERB V
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+on on on ADP P
+a a a DET 
+reference reference reference NOUN N
+speech speech speech NOUN N
+signal signal signal NOUN N
+from from from ADP P
+the the the DET 
+desired desired desire VERB V
+target target target NOUN N
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Critical critical critical ADJ A
+to to to ADP P
+good good good ADJ A
+generalization generalization generalization NOUN N
+is is be AUX 
+the the the DET 
+use use use NOUN N
+of of of ADP P
+a a a DET 
+representation representation representation NOUN N
+which which which DET 
+captures captures capture VERB V
+the the the DET 
+characteristics characteristics characteristic NOUN N
+of of of ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+and and and CCONJ C
+the the the DET 
+ability ability ability NOUN N
+to to to PART P
+identify identify identify VERB V
+these these these DET 
+characteristics characteristics characteristic NOUN N
+using using use VERB V
+only only only ADV 
+a a a DET 
+short short short ADJ A
+adaptation adaptation adaptation NOUN N
+signal signal signal NOUN N
+, , , PUNCT 
+independent independent independent ADJ A
+of of of ADP P
+its its -PRON- DET 
+phonetic phonetic phonetic ADJ A
+content content content NOUN N
+and and and CCONJ C
+background background background NOUN N
+noise noise noise NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+These these these DET 
+requirements requirements requirement NOUN N
+are are be AUX 
+satisfied satisfied satisfy VERB V
+using using use VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+- - - PUNCT 
+discriminative discriminative discriminative ADJ A
+model model model NOUN N
+trained trained train VERB V
+on on on ADP P
+a a a DET 
+text text text NOUN N
+- - - PUNCT 
+independent independent independent ADJ A
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+task task task NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+follow follow follow VERB V
+, , , PUNCT 
+which which which DET 
+proposed proposed propose VERB V
+a a a DET 
+highly highly highly ADV 
+scalable scalable scalable ADJ A
+and and and CCONJ C
+accurate accurate accurate ADJ A
+neural neural neural ADJ A
+network network network NOUN N
+framework framework framework NOUN N
+for for for ADP P
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+network network network NOUN N
+maps maps map VERB V
+a a a DET 
+sequence sequence sequence NOUN N
+of of of ADP P
+log log log NOUN N
+- - - PUNCT 
+mel mel mel PROPN N
+spectrogram spectrogram spectrogram PROPN N
+frames frames frame NOUN N
+computed computed compute VERB V
+from from from ADP P
+a a a DET 
+speech speech speech NOUN N
+utterance utterance utterance NOUN N
+of of of ADP P
+arbitrary arbitrary arbitrary ADJ A
+length length length NOUN N
+, , , PUNCT 
+to to to ADP P
+a a a DET 
+fixed fixed fix VERB V
+- - - PUNCT 
+dimensional dimensional dimensional ADJ A
+embedding embedding embedding NOUN N
+vector vector vector NOUN N
+, , , PUNCT 
+known known know VERB V
+as as as SCONJ C
+d d d ADJ A
+- - - PUNCT 
+vector vector vector NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+network network network NOUN N
+is is be AUX 
+trained trained train VERB V
+to to to PART P
+optimize optimize optimize VERB V
+a a a DET 
+generalized generalized generalized ADJ A
+end end end NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+end end end NOUN N
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+loss loss loss NOUN N
+, , , PUNCT 
+so so so SCONJ C
+that that that SCONJ C
+embeddings embeddings embedding NOUN N
+of of of ADP P
+utterances utterances utterance NOUN N
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+have have have AUX 
+high high high ADJ A
+cosine cosine cosine NOUN N
+similarity similarity similarity NOUN N
+, , , PUNCT 
+while while while SCONJ C
+those those those DET 
+of of of ADP P
+utterances utterances utterance NOUN N
+from from from ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+are are be AUX 
+far far far ADV 
+apart apart apart ADV 
+in in in ADP P
+the the the DET 
+embedding embedding embedding NOUN N
+space space space NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+training training training NOUN N
+dataset dataset dataset VERB V
+consists consists consist VERB V
+of of of ADP P
+speech speech speech NOUN N
+audio audio audio NOUN N
+examples examples example NOUN N
+segmented segmented segment VERB V
+into into into ADP P
+1.6 1.6 1.6 NUM 
+seconds seconds second NOUN N
+and and and CCONJ C
+associated associated associated PROPN N
+speaker speaker speaker PROPN N
+identity identity identity NOUN N
+labels labels label NOUN N
+; ; ; PUNCT 
+no no no DET 
+transcripts transcripts transcript NOUN N
+are are be AUX 
+used used use VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Input input input NOUN N
+40-channel 40-channel 40-channel NUM 
+log log log NOUN N
+- - - PUNCT 
+mel mel mel NOUN N
+spectrograms spectrograms spectrogram NOUN N
+are are be AUX 
+passed passed pass VERB V
+to to to ADP P
+a a a DET 
+network network network NOUN N
+consisting consisting consist VERB V
+of of of ADP P
+a a a DET 
+stack stack stack NOUN N
+of of of ADP P
+3 3 3 NUM 
+LSTM lstm lstm NOUN N
+layers layers layer NOUN N
+of of of ADP P
+768 768 768 NUM 
+cells cells cell NOUN N
+, , , PUNCT 
+each each each DET 
+followed followed follow VERB V
+by by by ADP P
+a a a DET 
+projection projection projection NOUN N
+to to to ADP P
+256 256 256 NUM 
+dimensions dimensions dimension NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+final final final ADJ A
+embedding embedding embedding NOUN N
+is is be AUX 
+created created create VERB V
+by by by ADP P
+L2 l2 l2 NOUN N
+-normalizing -normalizing -normalizing NUM 
+the the the DET 
+output output output NOUN N
+of of of ADP P
+the the the DET 
+top top top ADJ A
+layer layer layer NOUN N
+at at at ADP P
+the the the DET 
+final final final ADJ A
+frame frame frame NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+During during during ADP P
+inference inference inference NOUN N
+, , , PUNCT 
+an an an DET 
+arbitrary arbitrary arbitrary ADJ A
+length length length NOUN N
+utterance utterance utterance NOUN N
+is is be AUX 
+broken broken break VERB V
+into into into ADP P
+800ms 800ms 800ms PROPN N
+windows windows window NOUN N
+, , , PUNCT 
+overlapped overlapped overlap VERB V
+by by by ADP P
+50 50 50 NUM 
+% % % NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+network network network NOUN N
+is is be AUX 
+run run run VERB V
+independently independently independently ADV 
+on on on ADP P
+each each each DET 
+window window window NOUN N
+, , , PUNCT 
+and and and CCONJ C
+the the the DET 
+outputs outputs output NOUN N
+are are be AUX 
+averaged averaged averaged ADJ A
+and and and CCONJ C
+normalized normalized normalized ADJ A
+to to to PART P
+create create create VERB V
+the the the DET 
+final final final ADJ A
+utterance utterance utterance NOUN N
+embedding embedding embed VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Although although although SCONJ C
+the the the DET 
+network network network NOUN N
+is is be AUX 
+not not not PART P
+optimized optimized optimize VERB V
+directly directly directly ADV 
+to to to PART P
+learn learn learn VERB V
+a a a DET 
+representation representation representation NOUN N
+which which which DET 
+captures captures capture VERB V
+speaker speaker speaker NOUN N
+characteristics characteristics characteristic NOUN N
+relevant relevant relevant ADJ A
+to to to ADP P
+synthesis synthesis synthesis VERB V
+, , , PUNCT 
+we we -PRON- PRON 
+find find find VERB V
+that that that SCONJ C
+training training training NOUN N
+on on on ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+discrimination discrimination discrimination NOUN N
+task task task NOUN N
+leads leads lead VERB V
+to to to ADP P
+an an an DET 
+embedding embedding embedding NOUN N
+which which which DET 
+is is be AUX 
+directly directly directly ADV 
+suitable suitable suitable ADJ A
+for for for ADP P
+conditioning conditioning condition VERB V
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+on on on ADP P
+speaker speaker speaker NOUN N
+identity identity identity NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Synthesizer synthesizer synthesizer NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+extend extend extend VERB V
+the the the DET 
+recurrent recurrent recurrent ADJ A
+sequence sequence sequence NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+sequence sequence sequence NOUN N
+with with with ADP P
+attention attention attention NOUN N
+Tacotron tacotron tacotron PROPN N
+2 2 2 NUM 
+architecture architecture architecture NOUN N
+to to to PART P
+support support support VERB V
+multiple multiple multiple ADJ A
+speakers speakers speaker NOUN N
+following following follow VERB V
+a a a DET 
+scheme scheme scheme NOUN N
+similar similar similar ADJ A
+to to to ADP P
+[ [ [ PUNCT 
+8 8 8 NUM 
+] ] ] PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+An an an DET 
+embedding embedding embed VERB V
+vector vector vector NOUN N
+for for for ADP P
+the the the DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+is is be AUX 
+concatenated concatenated concatenate VERB V
+with with with ADP P
+the the the DET 
+synthesizer synthesizer synthesizer PROPN N
+encoder encoder encoder PROPN N
+output output output NOUN N
+at at at ADP P
+each each each DET 
+time time time NOUN N
+step step step NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+to to to ADP P
+, , , PUNCT 
+we we -PRON- PRON 
+find find find VERB V
+that that that SCONJ C
+simply simply simply ADV 
+passing passing pass VERB V
+embeddings embeddings embedding NOUN N
+to to to ADP P
+the the the DET 
+attention attention attention NOUN N
+layer layer layer NOUN N
+, , , PUNCT 
+as as as SCONJ C
+in in in ADP P
+Figure figure figure NOUN N
+1 1 1 NUM 
+, , , PUNCT 
+converges converges converge NOUN N
+across across across ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+compare compare compare VERB V
+two two two NUM 
+variants variants variant NOUN N
+of of of ADP P
+this this this DET 
+model model model NOUN N
+, , , PUNCT 
+one one one NUM 
+which which which DET 
+computes computes compute VERB V
+the the the DET 
+embedding embedding embedding NOUN N
+using using use VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+, , , PUNCT 
+and and and CCONJ C
+a a a DET 
+baseline baseline baseline NOUN N
+which which which DET 
+optimizes optimizes optimize VERB V
+a a a DET 
+fixed fixed fix VERB V
+embedding embedding embedding NOUN N
+for for for ADP P
+each each each DET 
+speaker speaker speaker NOUN N
+in in in ADP P
+the the the DET 
+training training training NOUN N
+set set set VERB V
+, , , PUNCT 
+essentially essentially essentially ADV 
+learning learning learn VERB V
+a a a DET 
+lookup lookup lookup NOUN N
+table table table NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+similar similar similar ADJ A
+to to to ADP P
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+synthesizer synthesizer synthesizer NOUN N
+is is be AUX 
+trained trained train VERB V
+on on on ADP P
+pairs pairs pair NOUN N
+of of of ADP P
+text text text NOUN N
+transcript transcript transcript NOUN N
+and and and CCONJ C
+target target target VERB V
+audio audio audio NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+At at at ADP P
+the the the DET 
+input input input NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+map map map VERB V
+the the the DET 
+text text text NOUN N
+to to to ADP P
+a a a DET 
+sequence sequence sequence NOUN N
+of of of ADP P
+phonemes phonemes phoneme NOUN N
+, , , PUNCT 
+which which which DET 
+leads leads lead VERB V
+to to to ADP P
+faster faster fast ADJ A
+convergence convergence convergence NOUN N
+and and and CCONJ C
+improved improved improve VERB V
+pronunciation pronunciation pronunciation NOUN N
+of of of ADP P
+rare rare rare ADJ A
+words words word NOUN N
+and and and CCONJ C
+proper proper proper ADJ A
+nouns nouns noun NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+network network network NOUN N
+is is be AUX 
+trained trained train VERB V
+in in in ADP P
+a a a DET 
+transfer transfer transfer NOUN N
+learning learning learning NOUN N
+configuration configuration configuration NOUN N
+, , , PUNCT 
+using using use VERB V
+a a a DET 
+pretrained pretrained pretraine VERB V
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+( ( ( PUNCT 
+whose whose whose DET 
+parameters parameters parameter NOUN N
+are are be AUX 
+frozen frozen frozen ADJ A
+) ) ) PUNCT 
+to to to PART P
+extract extract extract VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+from from from ADP P
+the the the DET 
+target target target NOUN N
+audio audio audio NOUN N
+, , , PUNCT 
+i.e. i.e. i.e. X 
+the the the DET 
+speaker speaker speaker PROPN N
+reference reference reference PROPN N
+signal signal signal PROPN N
+is is be AUX 
+the the the DET 
+same same same ADJ A
+as as as SCONJ C
+the the the DET 
+target target target NOUN N
+speech speech speech NOUN N
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+No no no DET 
+explicit explicit explicit ADJ A
+speaker speaker speaker NOUN N
+identifier identifier identifier NOUN N
+labels labels label NOUN N
+are are be AUX 
+used used use VERB V
+during during during ADP P
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Target target target NOUN N
+spectrogram spectrogram spectrogram PROPN N
+features features feature NOUN N
+are are be AUX 
+computed computed compute VERB V
+from from from ADP P
+50ms 50ms 50ms ADJ A
+windows windows window NOUN N
+computed computed compute VERB V
+with with with ADP P
+a a a DET 
+12.5ms 12.5ms 12.5ms PROPN N
+step step step NOUN N
+, , , PUNCT 
+passed passed pass VERB V
+through through through ADP P
+an an an DET 
+80-channel 80-channel 80-channel NUM 
+mel mel mel ADJ A
+- - - PUNCT 
+scale scale scale NOUN N
+filterbank filterbank filterbank NOUN N
+followed followed follow VERB V
+by by by ADP P
+log log log PROPN N
+dynamic dynamic dynamic ADJ A
+range range range NOUN N
+compression compression compression NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+extend extend extend VERB V
+by by by ADP P
+augmenting augmenting augment VERB V
+the the the DET 
+L2 l2 l2 NOUN N
+loss loss loss NOUN N
+on on on ADP P
+the the the DET 
+predicted predicted predict VERB V
+spectrogram spectrogram spectrogram NOUN N
+with with with ADP P
+an an an DET 
+additional additional additional ADJ A
+L1 l1 l1 PROPN N
+loss loss loss NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+practice practice practice NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+found found find VERB V
+this this this DET 
+combined combined combine VERB V
+loss loss loss NOUN N
+to to to PART P
+be be be AUX 
+more more more ADV 
+robust robust robust ADJ A
+on on on ADP P
+noisy noisy noisy ADJ A
+training training training NOUN N
+data data datum NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+to to to ADP P
+, , , PUNCT 
+we we -PRON- PRON 
+do do do AUX 
+n’t n’t not PART P
+introduce introduce introduce VERB V
+additional additional additional ADJ A
+loss loss loss NOUN N
+terms terms term NOUN N
+based based base VERB V
+on on on ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embedding NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+See see see INTJ 
+https://google.github.io/tacotron/publications/speaker_adaptation https://google.github.io/tacotron/publications/speaker_adaptation https://google.github.io/tacotron/publications/speaker_adaptation PRON 
+for for for ADP P
+samples samples sample NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Figure figure figure NOUN N
+: : : PUNCT 
+Example example example NOUN N
+synthesis synthesis synthesis NOUN N
+of of of ADP P
+a a a DET 
+sentence sentence sentence NOUN N
+in in in ADP P
+different different different ADJ A
+voices voices voice NOUN N
+using using use VERB V
+the the the DET 
+proposed proposed propose VERB V
+system system system NOUN N
+. . . PUNCT 
+Mel mel mel PROPN N
+spectrograms spectrograms spectrogram NOUN N
+are are be AUX 
+visualized visualized visualize VERB V
+for for for ADP P
+reference reference reference NOUN N
+utterances utterances utterance NOUN N
+used used use VERB V
+to to to PART P
+generate generate generate VERB V
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+( ( ( PUNCT 
+left left left ADV 
+) ) ) PUNCT 
+, , , PUNCT 
+and and and CCONJ C
+the the the DET 
+corresponding corresponding corresponding ADJ A
+synthesizer synthesizer synthesizer NOUN N
+outputs outputs output NOUN N
+( ( ( PUNCT 
+right right right ADV 
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+text text text NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+spectrogram spectrogram spectrogram NOUN N
+alignment alignment alignment NOUN N
+is is be AUX 
+shown shown show VERB V
+in in in ADP P
+red red red NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Three three three NUM 
+speakers speakers speaker NOUN N
+held held hold VERB V
+out out out SCONJ C
+of of of ADP P
+the the the DET 
+train train train NOUN N
+sets sets set NOUN N
+are are be AUX 
+used used use VERB V
+: : : PUNCT 
+one one one NUM 
+male male male NOUN N
+( ( ( PUNCT 
+top top top NOUN N
+) ) ) PUNCT 
+and and and CCONJ C
+two two two NUM 
+female female female ADJ A
+( ( ( PUNCT 
+center center center NOUN N
+and and and CCONJ C
+bottom bottom bottom NOUN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+ 
+" "
+ 
+" "
+ 
+" SPACE 
+Neural neural neural ADJ A
+vocoder vocoder vocoder NOUN N
+"
+ 
+" "
+ 
+" "
+ 
+" SPACE 
+We we -PRON- PRON 
+use use use VERB V
+the the the DET 
+sample sample sample NOUN N
+- - - PUNCT 
+by by by ADP P
+- - - PUNCT 
+sample sample sample NOUN N
+autoregressive autoregressive autoregressive ADJ A
+WaveNet wavenet wavenet PROPN N
+as as as SCONJ C
+a a a DET 
+vocoder vocoder vocoder NOUN N
+to to to PART P
+invert invert invert VERB V
+synthesized synthesized synthesize VERB V
+mel mel mel PROPN N
+spectrograms spectrograms spectrogram NOUN N
+emitted emitted emit VERB V
+by by by ADP P
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+into into into ADP P
+time time time NOUN N
+- - - PUNCT 
+domain domain domain NOUN N
+waveforms waveforms waveform NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+architecture architecture architecture NOUN N
+is is be AUX 
+the the the DET 
+same same same ADJ A
+as as as SCONJ C
+that that that DET 
+described described describe VERB V
+in in in ADP P
+, , , PUNCT 
+composed composed compose VERB V
+of of of ADP P
+30 30 30 NUM 
+dilated dilated dilate VERB V
+convolution convolution convolution NOUN N
+layers layers layer NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+network network network NOUN N
+is is be AUX 
+not not not PART P
+directly directly directly ADV 
+conditioned conditioned condition VERB V
+on on on ADP P
+the the the DET 
+output output output NOUN N
+of of of ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+mel mel mel PROPN N
+spectrogram spectrogram spectrogram PROPN N
+predicted predicted predict VERB V
+by by by ADP P
+the the the DET 
+synthesizer synthesizer synthesizer PROPN N
+network network network NOUN N
+captures captures capture NOUN N
+all all all DET 
+of of of ADP P
+the the the DET 
+relevant relevant relevant ADJ A
+detail detail detail NOUN N
+needed needed need VERB V
+for for for ADP P
+high high high ADJ A
+quality quality quality NOUN N
+synthesis synthesis synthesis NOUN N
+of of of ADP P
+a a a DET 
+variety variety variety NOUN N
+of of of ADP P
+voices voices voice NOUN N
+, , , PUNCT 
+allowing allowing allow VERB V
+a a a DET 
+multispeaker multispeaker multispeaker NOUN N
+vocoder vocoder vocoder NOUN N
+to to to PART P
+be be be AUX 
+constructed constructed construct VERB V
+by by by ADP P
+simply simply simply ADV 
+training training train VERB V
+on on on ADP P
+data data datum NOUN N
+from from from ADP P
+many many many ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+ 
+" "
+ 
+" "
+ 
+" SPACE 
+Inference inference inference NOUN N
+and and and CCONJ C
+zero zero zero NUM 
+- - - PUNCT 
+shot shot shot NOUN N
+speaker speaker speaker NOUN N
+adaptation adaptation adaptation NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+During during during ADP P
+inference inference inference NOUN N
+the the the DET 
+model model model NOUN N
+is is be AUX 
+conditioned conditioned condition VERB V
+using using use VERB V
+arbitrary arbitrary arbitrary ADJ A
+untranscribed untranscribed untranscribed ADJ A
+speech speech speech NOUN N
+audio audio audio NOUN N
+, , , PUNCT 
+which which which DET 
+does does do AUX 
+not not not PART P
+need need need VERB V
+to to to PART P
+match match match VERB V
+the the the DET 
+text text text NOUN N
+to to to PART P
+be be be AUX 
+synthesized synthesized synthesize VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Since since since SCONJ C
+the the the DET 
+speaker speaker speaker NOUN N
+characteristics characteristics characteristic VERB V
+to to to PART P
+use use use VERB V
+for for for ADP P
+synthesis synthesis synthesis NOUN N
+are are be AUX 
+inferred inferred infer VERB V
+from from from ADP P
+audio audio audio NOUN N
+, , , PUNCT 
+it it -PRON- PRON 
+can can can VERB V
+be be be AUX 
+conditioned conditioned condition VERB V
+on on on ADP P
+audio audio audio NOUN N
+from from from ADP P
+speakers speakers speaker NOUN N
+that that that DET 
+are are be AUX 
+outside outside outside ADP P
+the the the DET 
+training training training NOUN N
+set set set VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+practice practice practice NOUN N
+we we -PRON- PRON 
+find find find VERB V
+that that that SCONJ C
+using using use VERB V
+a a a DET 
+single single single ADJ A
+audio audio audio ADJ A
+clip clip clip NOUN N
+of of of ADP P
+a a a DET 
+few few few ADJ A
+seconds seconds second NOUN N
+duration duration duration NOUN N
+is is be AUX 
+sufficient sufficient sufficient ADJ A
+to to to PART P
+synthesize synthesize synthesize VERB V
+new new new ADJ A
+speech speech speech NOUN N
+with with with ADP P
+the the the DET 
+corresponding corresponding correspond VERB V
+speaker speaker speaker NOUN N
+characteristics characteristics characteristic NOUN N
+, , , PUNCT 
+representing representing represent VERB V
+zero zero zero NUM 
+- - - PUNCT 
+shot shot shot NOUN N
+adaptation adaptation adaptation NOUN N
+to to to ADP P
+novel novel novel ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+Section section section NOUN N
+3 3 3 NUM 
+we we -PRON- PRON 
+evaluate evaluate evaluate VERB V
+how how how ADV 
+well well well ADV 
+this this this DET 
+process process process NOUN N
+generalizes generalizes generalize VERB V
+to to to PART P
+previously previously previously ADV 
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+An an an DET 
+example example example NOUN N
+of of of ADP P
+the the the DET 
+inference inference inference NOUN N
+process process process NOUN N
+is is be AUX 
+visualized visualized visualize VERB V
+in in in ADP P
+Figure figure figure NOUN N
+2 2 2 NUM 
+, , , PUNCT 
+which which which DET 
+shows shows show VERB V
+spectrograms spectrograms spectrogram NOUN N
+synthesized synthesized synthesize VERB V
+using using use VERB V
+several several several ADJ A
+different different different ADJ A
+5 5 5 NUM 
+second second second ADJ A
+speaker speaker speaker NOUN N
+reference reference reference NOUN N
+utterances utterances utterance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Compared compared compare VERB V
+to to to ADP P
+those those those DET 
+of of of ADP P
+the the the DET 
+female female female NOUN N
+( ( ( PUNCT 
+center center center NOUN N
+and and and CCONJ C
+bottom bottom bottom NOUN N
+) ) ) PUNCT 
+speakers speakers speaker NOUN N
+, , , PUNCT 
+the the the DET 
+synthesized synthesized synthesize VERB V
+male male male NOUN N
+( ( ( PUNCT 
+top top top ADJ A
+) ) ) PUNCT 
+speaker speaker speaker PROPN N
+spectrogram spectrogram spectrogram PROPN N
+has has have AUX 
+noticeably noticeably noticeably ADV 
+lower lower low ADJ A
+fundamental fundamental fundamental ADJ A
+frequency frequency frequency NOUN N
+, , , PUNCT 
+visible visible visible ADJ A
+in in in ADP P
+the the the DET 
+denser denser denser NOUN N
+harmonic harmonic harmonic PROPN N
+spacing spacing space VERB V
+( ( ( PUNCT 
+horizontal horizontal horizontal ADJ A
+stripes stripes stripe NOUN N
+) ) ) PUNCT 
+in in in ADP P
+low low low ADJ A
+frequencies frequencies frequency NOUN N
+, , , PUNCT 
+as as as ADV 
+well well well ADV 
+as as as SCONJ C
+formants formants formant NOUN N
+, , , PUNCT 
+visible visible visible ADJ A
+in in in ADP P
+the the the DET 
+mid mid mid ADJ A
+- - - ADJ A
+frequency frequency frequency ADJ A
+peaks peaks peak NOUN N
+present present present ADJ A
+during during during ADP P
+vowel vowel vowel NOUN N
+sounds sounds sound VERB V
+such such such ADJ A
+as as as SCONJ C
+the the the DET 
+‘ ‘ ' PUNCT 
+i i i PRON 
+’ ’ ' PUNCT 
+at at at ADP P
+0.3 0.3 0.3 NUM 
+seconds seconds second NOUN N
+– – – PUNCT 
+the the the DET 
+top top top ADJ A
+male male male ADJ A
+F2 f2 f2 PROPN N
+is is be AUX 
+in in in ADP P
+mel mel mel PROPN N
+channel channel channel PROPN N
+35 35 35 NUM 
+, , , PUNCT 
+whereas whereas whereas SCONJ C
+the the the DET 
+F2 f2 f2 NOUN N
+of of of ADP P
+the the the DET 
+middle middle middle ADJ A
+speaker speaker speaker NOUN N
+appears appears appear VERB V
+closer closer close ADJ A
+to to to PART P
+channel channel channel VERB V
+40 40 40 NUM 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Similar similar similar ADJ A
+differences differences difference NOUN N
+are are be AUX 
+also also also ADV 
+visible visible visible ADJ A
+in in in ADP P
+sibilant sibilant sibilant ADJ A
+sounds sounds sound NOUN N
+, , , PUNCT 
+e.g. e.g. e.g. ADV 
+the the the DET 
+‘s ‘s 's NOUN N
+’ ’ ' PUNCT 
+at at at ADP P
+0.4 0.4 0.4 NUM 
+seconds seconds second NOUN N
+contains contains contain VERB V
+more more more ADJ A
+energy energy energy NOUN N
+in in in ADP P
+lower lower low ADJ A
+frequencies frequencies frequency NOUN N
+in in in ADP P
+the the the DET 
+male male male ADJ A
+voice voice voice NOUN N
+than than than SCONJ C
+in in in ADP P
+the the the DET 
+female female female ADJ A
+voices voices voice NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Finally finally finally ADV 
+, , , PUNCT 
+the the the DET 
+characteristic characteristic characteristic ADJ A
+speaking speaking speaking NOUN N
+rate rate rate NOUN N
+is is be AUX 
+also also also ADV 
+captured captured capture VERB V
+to to to ADP P
+some some some DET 
+extent extent extent NOUN N
+by by by ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+, , , PUNCT 
+as as as SCONJ C
+can can can VERB V
+be be be AUX 
+seen seen see VERB V
+by by by ADP P
+the the the DET 
+longer longer longer ADV 
+signal signal signal ADJ A
+duration duration duration NOUN N
+in in in ADP P
+the the the DET 
+bottom bottom bottom NOUN N
+row row row NOUN N
+compared compared compare VERB V
+to to to ADP P
+the the the DET 
+top top top ADJ A
+two two two NUM 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Similar similar similar ADJ A
+observations observations observation NOUN N
+can can can VERB V
+be be be AUX 
+made made make VERB V
+about about about ADP P
+the the the DET 
+corresponding corresponding correspond VERB V
+reference reference reference NOUN N
+utterance utterance utterance NOUN N
+spectrograms spectrograms spectrogram NOUN N
+in in in ADP P
+the the the DET 
+right right right ADJ A
+column column column NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Table table table NOUN N
+: : : PUNCT 
+Speech speech speech NOUN N
+naturalness naturalness naturalness PROPN N
+Mean mean mean PROPN N
+Opinion opinion opinion NOUN N
+Score score score PROPN N
+( ( ( PUNCT 
+MOS mos mos PROPN N
+) ) ) PUNCT 
+with with with ADP P
+95 95 95 NUM 
+% % % NOUN N
+confidence confidence confidence NOUN N
+intervals intervals interval NOUN N
+. . . PUNCT 
+"
+
+
+" "
+
+
+" "
+
+
+" SPACE 
+Experiments experiments experiment NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+used used use VERB V
+two two two NUM 
+public public public ADJ A
+datasets datasets dataset NOUN N
+for for for ADP P
+training training train VERB V
+the the the DET 
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+and and and CCONJ C
+vocoder vocoder vocoder NOUN N
+networks networks network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+VCTK vctk vctk NOUN N
+contains contains contain VERB V
+44 44 44 NUM 
+hours hours hour NOUN N
+of of of ADP P
+clean clean clean ADJ A
+speech speech speech NOUN N
+from from from ADP P
+109 109 109 NUM 
+speakers speakers speaker NOUN N
+, , , PUNCT 
+the the the DET 
+majority majority majority NOUN N
+of of of ADP P
+which which which DET 
+have have have AUX 
+British british british ADJ A
+accents accents accent NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+downsampled downsampled downsample VERB V
+the the the DET 
+audio audio audio NOUN N
+to to to ADP P
+24 24 24 NUM 
+kHz khz khz PROPN N
+, , , PUNCT 
+trimmed trimmed trim VERB V
+leading leading lead VERB V
+and and and CCONJ C
+trailing trailing trail VERB V
+silence silence silence NOUN N
+( ( ( PUNCT 
+reducing reducing reduce VERB V
+the the the DET 
+median median median ADJ A
+duration duration duration NOUN N
+from from from ADP P
+3.3 3.3 3.3 NUM 
+seconds seconds second NOUN N
+to to to ADP P
+1.8 1.8 1.8 NUM 
+seconds seconds second NOUN N
+) ) ) PUNCT 
+, , , PUNCT 
+and and and CCONJ C
+split split split VERB V
+into into into ADP P
+three three three NUM 
+subsets subsets subset NOUN N
+: : : PUNCT 
+train train train NOUN N
+, , , PUNCT 
+validation validation validation NOUN N
+( ( ( PUNCT 
+containing containing contain VERB V
+the the the DET 
+same same same ADJ A
+speakers speakers speaker NOUN N
+as as as SCONJ C
+the the the DET 
+train train train NOUN N
+set set set VERB V
+) ) ) PUNCT 
+and and and CCONJ C
+test test test NOUN N
+( ( ( PUNCT 
+containing containing contain VERB V
+11 11 11 NUM 
+speakers speakers speaker NOUN N
+held held hold VERB V
+out out out ADP P
+from from from ADP P
+the the the DET 
+train train train NOUN N
+and and and CCONJ C
+validation validation validation NOUN N
+sets sets set NOUN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+LibriSpeech librispeech librispeech NOUN N
+consists consists consist VERB V
+of of of ADP P
+the the the DET 
+union union union PROPN N
+of of of ADP P
+the the the DET 
+two two two NUM 
+“ “ """" PUNCT 
+clean clean clean ADJ A
+” ” """" PUNCT 
+training training training NOUN N
+sets sets set NOUN N
+, , , PUNCT 
+comprising comprising comprise VERB V
+436 436 436 NUM 
+hours hours hour NOUN N
+of of of ADP P
+speech speech speech NOUN N
+from from from ADP P
+1,172 1,172 1,172 NUM 
+speakers speakers speaker NOUN N
+, , , PUNCT 
+sampled sampled sample VERB V
+at at at ADP P
+16 16 16 NUM 
+kHz khz khz NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+majority majority majority NOUN N
+of of of ADP P
+speech speech speech NOUN N
+is is be AUX 
+US us us PROPN N
+English english english PROPN N
+, , , PUNCT 
+however however however ADV 
+since since since SCONJ C
+it it -PRON- PRON 
+is is be AUX 
+sourced sourced source VERB V
+from from from ADP P
+audio audio audio ADJ A
+books books book NOUN N
+, , , PUNCT 
+the the the DET 
+tone tone tone NOUN N
+and and and CCONJ C
+style style style NOUN N
+of of of ADP P
+speech speech speech NOUN N
+can can can VERB V
+differ differ differ VERB V
+significantly significantly significantly ADV 
+between between between ADP P
+utterances utterances utterance NOUN N
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+resegmented resegmented resegmente VERB V
+the the the DET 
+data data datum NOUN N
+into into into ADP P
+shorter shorter short ADJ A
+utterances utterances utterance NOUN N
+by by by ADP P
+force force force NOUN N
+aligning aligning align VERB V
+the the the DET 
+audio audio audio NOUN N
+to to to ADP P
+the the the DET 
+transcript transcript transcript NOUN N
+using using use VERB V
+an an an DET 
+ASR asr asr NOUN N
+model model model NOUN N
+and and and CCONJ C
+breaking breaking break VERB V
+segments segments segment NOUN N
+on on on ADP P
+silence silence silence NOUN N
+, , , PUNCT 
+reducing reducing reduce VERB V
+the the the DET 
+median median median ADJ A
+duration duration duration NOUN N
+from from from ADP P
+14 14 14 NUM 
+to to to PART P
+5 5 5 NUM 
+seconds seconds second NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+in in in ADP P
+the the the DET 
+original original original ADJ A
+dataset dataset dataset NOUN N
+, , , PUNCT 
+there there there PRON 
+is is be AUX 
+no no no DET 
+punctuation punctuation punctuation NOUN N
+in in in ADP P
+transcripts transcripts transcript NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+speaker speaker speaker NOUN N
+sets sets set NOUN N
+are are be AUX 
+completely completely completely ADV 
+disjoint disjoint disjoint NOUN N
+among among among ADP P
+the the the DET 
+train train train NOUN N
+, , , PUNCT 
+validation validation validation NOUN N
+, , , PUNCT 
+and and and CCONJ C
+test test test NOUN N
+sets sets set NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Many many many ADJ A
+recordings recordings recording NOUN N
+in in in ADP P
+the the the DET 
+LibriSpeech librispeech librispeech NOUN N
+clean clean clean ADJ A
+corpus corpus corpus NOUN N
+contain contain contain VERB V
+noticeable noticeable noticeable ADJ A
+environmental environmental environmental ADJ A
+and and and CCONJ C
+stationary stationary stationary ADJ A
+background background background NOUN N
+noise noise noise NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+preprocessed preprocessed preprocesse VERB V
+the the the DET 
+target target target NOUN N
+spectrogram spectrogram spectrogram NOUN N
+using using use VERB V
+a a a DET 
+simple simple simple ADJ A
+spectral spectral spectral ADJ A
+subtraction subtraction subtraction NOUN N
+denoising denoising denoise VERB V
+procedure procedure procedure NOUN N
+, , , PUNCT 
+where where where ADV 
+the the the DET 
+background background background NOUN N
+noise noise noise NOUN N
+spectrum spectrum spectrum ADV 
+of of of ADP P
+an an an DET 
+utterance utterance utterance NOUN N
+was was be AUX 
+estimated estimated estimate VERB V
+as as as SCONJ C
+the the the DET 
+10th 10th 10th ADJ A
+percentile percentile percentile NOUN N
+of of of ADP P
+the the the DET 
+energy energy energy NOUN N
+in in in ADP P
+each each each DET 
+frequency frequency frequency NOUN N
+band band band NOUN N
+across across across ADP P
+the the the DET 
+full full full ADJ A
+signal signal signal NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+process process process NOUN N
+was was be AUX 
+only only only ADV 
+used used use VERB V
+on on on ADP P
+the the the DET 
+synthesis synthesis synthesis NOUN N
+target target target NOUN N
+; ; ; PUNCT 
+the the the DET 
+original original original ADJ A
+noisy noisy noisy ADJ A
+speech speech speech NOUN N
+was was be AUX 
+passed passed pass VERB V
+to to to ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+trained trained train VERB V
+separate separate separate ADJ A
+synthesis synthesis synthesis NOUN N
+and and and CCONJ C
+vocoder vocoder vocoder NOUN N
+networks networks network NOUN N
+for for for ADP P
+each each each DET 
+of of of ADP P
+these these these DET 
+two two two NUM 
+corpora corpora corpora NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Throughout throughout throughout ADP P
+this this this DET 
+section section section NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+used used use VERB V
+synthesis synthesis synthesis NOUN N
+networks networks network NOUN N
+trained trained train VERB V
+on on on ADP P
+phoneme phoneme phoneme PROPN N
+inputs inputs inputs PROPN N
+, , , PUNCT 
+in in in ADP P
+order order order NOUN N
+to to to PART P
+control control control VERB V
+for for for ADP P
+pronunciation pronunciation pronunciation NOUN N
+in in in ADP P
+subjective subjective subjective ADJ A
+evaluations evaluations evaluation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+For for for ADP P
+the the the DET 
+VCTK vctk vctk NOUN N
+dataset dataset dataset NOUN N
+, , , PUNCT 
+whose whose whose DET 
+audio audio audio NOUN N
+is is be AUX 
+quite quite quite ADV 
+clean clean clean ADJ A
+, , , PUNCT 
+we we -PRON- PRON 
+found found find VERB V
+that that that SCONJ C
+the the the DET 
+vocoder vocoder vocoder NOUN N
+trained trained train VERB V
+on on on ADP P
+ground ground ground NOUN N
+truth truth truth PROPN N
+mel mel mel PROPN N
+spectrograms spectrograms spectrogram NOUN N
+worked worked work VERB V
+well well well ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+for for for ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+which which which DET 
+is is be AUX 
+noisier noisier noisy ADJ A
+, , , PUNCT 
+we we -PRON- PRON 
+found found find VERB V
+it it -PRON- PRON 
+necessary necessary necessary ADJ A
+to to to PART P
+train train train VERB V
+the the the DET 
+vocoder vocoder vocoder NOUN N
+on on on ADP P
+spectrograms spectrograms spectrogram NOUN N
+predicted predicted predict VERB V
+by by by ADP P
+the the the DET 
+synthesizer synthesizer synthesizer PROPN N
+network network network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+No no no DET 
+denoising denoising denoise VERB V
+was was be AUX 
+performed performed perform VERB V
+on on on ADP P
+the the the DET 
+target target target NOUN N
+waveform waveform waveform NOUN N
+for for for ADP P
+vocoder vocoder vocoder NOUN N
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+was was be AUX 
+trained trained train VERB V
+on on on ADP P
+a a a DET 
+proprietary proprietary proprietary ADJ A
+voice voice voice NOUN N
+search search search NOUN N
+corpus corpus corpus NOUN N
+containing containing contain VERB V
+36 36 36 NUM 
+M m m PROPN N
+utterances utterances utterance NOUN N
+with with with ADP P
+median median median ADJ A
+duration duration duration NOUN N
+of of of ADP P
+3.9 3.9 3.9 NUM 
+seconds seconds second NOUN N
+from from from ADP P
+18000 18000 18000 NUM 
+English english english PROPN N
+speakers speakers speaker NOUN N
+in in in ADP P
+the the the DET 
+United united united PROPN N
+States states states PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+dataset dataset dataset NOUN N
+is is be AUX 
+not not not PART P
+transcribed transcribed transcribe VERB V
+, , , PUNCT 
+but but but CCONJ C
+contains contains contain VERB V
+anonymized anonymized anonymize VERB V
+speaker speaker speaker NOUN N
+identities identities identity NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+is is be AUX 
+never never never ADV 
+used used use VERB V
+to to to PART P
+train train train VERB V
+synthesis synthesis synthesis NOUN N
+networks networks network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+primarily primarily primarily ADV 
+rely rely rely VERB V
+on on on ADP P
+crowdsourced crowdsourced crowdsource VERB V
+Mean mean mean ADJ A
+Opinion opinion opinion NOUN N
+Score score score NOUN N
+( ( ( PUNCT 
+MOS mos mos PROPN N
+) ) ) PUNCT 
+evaluations evaluations evaluation NOUN N
+based based base VERB V
+on on on ADP P
+subjective subjective subjective ADJ A
+listening listening listening NOUN N
+tests tests test NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+All all all DET 
+our our -PRON- DET 
+MOS mos mos NOUN N
+evaluations evaluations evaluation NOUN N
+are are be AUX 
+aligned aligned align VERB V
+to to to ADP P
+the the the DET 
+Absolute absolute absolute ADJ A
+Category category category NOUN N
+Rating rating rating NOUN N
+scale scale scale NOUN N
+, , , PUNCT 
+with with with ADP P
+rating rating rating NOUN N
+scores scores score NOUN N
+from from from ADP P
+1 1 1 NUM 
+to to to ADP P
+5 5 5 NUM 
+in in in ADP P
+0.5 0.5 0.5 NUM 
+point point point NOUN N
+increments increments increment NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+use use use VERB V
+this this this DET 
+framework framework framework NOUN N
+to to to PART P
+evaluate evaluate evaluate VERB V
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+along along along ADP P
+two two two NUM 
+dimensions dimensions dimension NOUN N
+: : : PUNCT 
+its its -PRON- DET 
+naturalness naturalness naturalness NOUN N
+and and and CCONJ C
+similarity similarity similarity NOUN N
+to to to ADP P
+real real real ADJ A
+speech speech speech NOUN N
+from from from ADP P
+the the the DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Speech speech speech NOUN N
+naturalness naturalness naturalness NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+compared compared compare VERB V
+the the the DET 
+naturalness naturalness naturalness NOUN N
+of of of ADP P
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+using using use VERB V
+synthesizers synthesizers synthesizer NOUN N
+and and and CCONJ C
+vocoders vocoders vocoder NOUN N
+trained trained train VERB V
+on on on ADP P
+VCTK vctk vctk NOUN N
+and and and CCONJ C
+LibriSpeech librispeech librispeech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+constructed constructed construct VERB V
+an an an DET 
+evaluation evaluation evaluation NOUN N
+set set set VERB V
+of of of ADP P
+100 100 100 NUM 
+phrases phrases phrase NOUN N
+which which which DET 
+do do do AUX 
+not not not PART P
+appear appear appear VERB V
+in in in ADP P
+any any any DET 
+training training training NOUN N
+sets sets set NOUN N
+, , , PUNCT 
+and and and CCONJ C
+evaluated evaluated evaluate VERB V
+two two two NUM 
+sets sets set NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+for for for ADP P
+each each each DET 
+model model model NOUN N
+: : : PUNCT 
+one one one NUM 
+composed composed compose VERB V
+of of of ADP P
+speakers speakers speaker NOUN N
+included included include VERB V
+in in in ADP P
+the the the DET 
+train train train NOUN N
+set set set NOUN N
+( ( ( PUNCT 
+Seen seen see VERB V
+) ) ) PUNCT 
+, , , PUNCT 
+and and and CCONJ C
+another another another DET 
+composed composed compose VERB V
+of of of ADP P
+those those those DET 
+that that that DET 
+were were be AUX 
+held held hold VERB V
+out out out ADP P
+( ( ( PUNCT 
+Unseen unseen unseen ADJ A
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+used used use VERB V
+11 11 11 NUM 
+seen seen see VERB V
+and and and CCONJ C
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+for for for ADP P
+VCTK vctk vctk NOUN N
+and and and CCONJ C
+10 10 10 NUM 
+seen seen see VERB V
+and and and CCONJ C
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+for for for ADP P
+LibriSpeech librispeech librispeech PROPN N
+( ( ( PUNCT 
+Appendix appendix appendix PROPN N
+D d d PROPN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+For for for ADP P
+each each each DET 
+speaker speaker speaker NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+randomly randomly randomly ADV 
+chose chose choose VERB V
+one one one NUM 
+utterance utterance utterance NOUN N
+with with with ADP P
+duration duration duration NOUN N
+of of of ADP P
+about about about ADV 
+5 5 5 NUM 
+seconds seconds second NOUN N
+to to to PART P
+use use use VERB V
+to to to PART P
+compute compute compute VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embedding NOUN N
+( ( ( PUNCT 
+see see see VERB V
+Appendix appendix appendix PROPN N
+C c c PROPN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Each each each DET 
+phrase phrase phrase NOUN N
+was was be AUX 
+synthesized synthesized synthesize VERB V
+for for for ADP P
+each each each DET 
+speaker speaker speaker NOUN N
+, , , PUNCT 
+for for for ADP P
+a a a DET 
+total total total NOUN N
+of of of ADP P
+about about about ADV 
+1,000 1,000 1,000 NUM 
+synthesized synthesized synthesize VERB V
+utterances utterances utterance NOUN N
+per per per ADP P
+evaluation evaluation evaluation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Each each each DET 
+sample sample sample NOUN N
+was was be AUX 
+rated rated rate VERB V
+by by by ADP P
+a a a DET 
+single single single ADJ A
+rater rater rater NOUN N
+, , , PUNCT 
+and and and CCONJ C
+each each each DET 
+evaluation evaluation evaluation NOUN N
+was was be AUX 
+conducted conducted conduct VERB V
+independently independently independently ADV 
+: : : PUNCT 
+the the the DET 
+outputs outputs output NOUN N
+of of of ADP P
+different different different ADJ A
+models models model NOUN N
+were were be AUX 
+not not not PART P
+compared compared compare VERB V
+directly directly directly ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Results results result NOUN N
+are are be AUX 
+shown shown show VERB V
+in in in ADP P
+Table table table NOUN N
+1 1 1 NUM 
+, , , PUNCT 
+comparing comparing compare VERB V
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+to to to PART P
+baseline baseline baseline PROPN N
+multispeaker multispeaker multispeaker NOUN N
+models models model NOUN N
+that that that DET 
+utilize utilize utilize VERB V
+a a a DET 
+lookup lookup lookup NOUN N
+table table table NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+similar similar similar ADJ A
+to to to ADP P
+, , , PUNCT 
+but but but CCONJ C
+otherwise otherwise otherwise ADV 
+have have have AUX 
+identical identical identical ADJ A
+architectures architectures architecture NOUN N
+to to to ADP P
+the the the DET 
+proposed proposed propose VERB V
+synthesizer synthesizer synthesizer NOUN N
+network network network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+achieved achieved achieve VERB V
+about about about ADV 
+4.0 4.0 4.0 NUM 
+MOS mos mos NOUN N
+in in in ADP P
+all all all DET 
+datasets datasets dataset NOUN N
+, , , PUNCT 
+with with with ADP P
+the the the DET 
+VCTK vctk vctk ADJ A
+model model model NOUN N
+obtaining obtaining obtain VERB V
+a a a DET 
+MOS mos mos NOUN N
+about about about ADV 
+0.2 0.2 0.2 NUM 
+points points point NOUN N
+higher higher high ADJ A
+than than than SCONJ C
+the the the DET 
+LibriSpeech librispeech librispeech NOUN N
+model model model NOUN N
+when when when ADV 
+evaluated evaluated evaluate VERB V
+on on on ADP P
+seen seen see VERB V
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+the the the DET 
+consequence consequence consequence NOUN N
+of of of ADP P
+two two two NUM 
+drawbacks drawbacks drawback NOUN N
+of of of ADP P
+the the the DET 
+LibriSpeech librispeech librispeech NOUN N
+dataset dataset dataset NOUN N
+: : : PUNCT 
+( ( ( PUNCT 
+i i i NOUN N
+) ) ) PUNCT 
+the the the DET 
+lack lack lack NOUN N
+of of of ADP P
+punctuation punctuation punctuation NOUN N
+in in in ADP P
+transcripts transcripts transcript NOUN N
+, , , PUNCT 
+which which which DET 
+makes makes make VERB V
+it it -PRON- PRON 
+difficult difficult difficult ADJ A
+for for for ADP P
+the the the DET 
+model model model NOUN N
+to to to PART P
+learn learn learn VERB V
+to to to PART P
+pause pause pause VERB V
+naturally naturally naturally ADV 
+, , , PUNCT 
+and and and CCONJ C
+( ( ( PUNCT 
+ii ii ii PROPN N
+) ) ) PUNCT 
+the the the DET 
+higher higher high ADJ A
+level level level NOUN N
+of of of ADP P
+background background background NOUN N
+noise noise noise NOUN N
+compared compared compare VERB V
+to to to ADP P
+VCTK vctk vctk PROPN N
+, , , PUNCT 
+some some some DET 
+of of of ADP P
+which which which DET 
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+has has have AUX 
+learned learned learn VERB V
+to to to PART P
+reproduce reproduce reproduce VERB V
+, , , PUNCT 
+despite despite despite SCONJ C
+denoising denoising denoise VERB V
+the the the DET 
+training training training NOUN N
+targets targets target NOUN N
+as as as SCONJ C
+described described describe VERB V
+above above above ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Most most most ADV 
+importantly importantly importantly ADV 
+, , , PUNCT 
+the the the DET 
+audio audio audio NOUN N
+generated generated generate VERB V
+by by by ADP P
+our our -PRON- DET 
+model model model NOUN N
+for for for ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+is is be AUX 
+deemed deemed deem VERB V
+to to to PART P
+be be be AUX 
+at at at ADP P
+least least least ADJ A
+as as as ADV 
+natural natural natural ADJ A
+as as as SCONJ C
+that that that DET 
+generated generated generate VERB V
+for for for ADP P
+seen seen see VERB V
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Surprisingly surprisingly surprisingly ADV 
+, , , PUNCT 
+the the the DET 
+MOS mos mos NOUN N
+on on on ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+is is be AUX 
+higher higher high ADJ A
+than than than SCONJ C
+that that that DET 
+of of of ADP P
+seen seen see VERB V
+speakers speakers speaker NOUN N
+, , , PUNCT 
+by by by ADP P
+as as as ADV 
+much much much ADJ A
+as as as SCONJ C
+0.2 0.2 0.2 NUM 
+points points point NOUN N
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+a a a DET 
+consequence consequence consequence NOUN N
+of of of ADP P
+the the the DET 
+randomly randomly randomly ADV 
+selected selected select VERB V
+reference reference reference NOUN N
+utterance utterance utterance NOUN N
+for for for ADP P
+each each each DET 
+speaker speaker speaker NOUN N
+, , , PUNCT 
+which which which DET 
+sometimes sometimes sometimes ADV 
+contains contains contain VERB V
+uneven uneven uneven ADJ A
+and and and CCONJ C
+non non non ADJ A
+- - - ADJ A
+neutral neutral neutral ADJ A
+prosody prosody prosody NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+informal informal informal ADJ A
+listening listening listening NOUN N
+tests tests test NOUN N
+we we -PRON- PRON 
+found found find VERB V
+that that that SCONJ C
+the the the DET 
+prosody prosody prosody NOUN N
+of of of ADP P
+the the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+sometimes sometimes sometimes ADV 
+mimics mimics mimic VERB V
+that that that DET 
+of of of ADP P
+the the the DET 
+reference reference reference NOUN N
+, , , PUNCT 
+similar similar similar ADJ A
+to to to ADP P
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+effect effect effect NOUN N
+is is be AUX 
+larger larger large ADJ A
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+which which which DET 
+contains contains contain VERB V
+more more more ADV 
+varied varied varied ADJ A
+prosody prosody prosody NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+suggests suggests suggest VERB V
+that that that SCONJ C
+additional additional additional ADJ A
+care care care NOUN N
+must must must VERB V
+be be be AUX 
+taken taken take VERB V
+to to to ADP P
+disentangle disentangle disentangle PROPN N
+speaker speaker speaker PROPN N
+identity identity identity NOUN N
+from from from ADP P
+prosody prosody prosody NOUN N
+within within within ADP P
+the the the DET 
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+, , , PUNCT 
+perhaps perhaps perhaps ADV 
+by by by ADP P
+integrating integrating integrate VERB V
+a a a DET 
+prosody prosody prosody NOUN N
+encoder encoder encoder NOUN N
+as as as SCONJ C
+in in in ADP P
+, , , PUNCT 
+or or or CCONJ C
+by by by ADP P
+training training train VERB V
+on on on ADP P
+randomly randomly randomly ADV 
+paired paired pair VERB V
+reference reference reference NOUN N
+and and and CCONJ C
+target target target VERB V
+utterances utterances utterance NOUN N
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Table table table NOUN N
+: : : PUNCT 
+Speaker speaker speaker NOUN N
+similarity similarity similarity PROPN N
+Mean mean mean PROPN N
+Opinion opinion opinion NOUN N
+Score score score NOUN N
+( ( ( PUNCT 
+MOS mos mos PROPN N
+) ) ) PUNCT 
+with with with ADP P
+95 95 95 NUM 
+% % % NOUN N
+confidence confidence confidence NOUN N
+intervals intervals interval NOUN N
+. . . PUNCT 
+"
+
+
+
+" "
+
+
+
+" "
+
+
+
+" SPACE 
+Speaker speaker speaker NOUN N
+similarity similarity similarity NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+To to to PART P
+evaluate evaluate evaluate VERB V
+how how how ADV 
+well well well ADV 
+the the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+matches matches match VERB V
+that that that SCONJ C
+from from from ADP P
+the the the DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+paired paired pair VERB V
+each each each DET 
+synthesized synthesized synthesize VERB V
+utterance utterance utterance NOUN N
+with with with ADP P
+a a a DET 
+randomly randomly randomly ADV 
+selected selected select VERB V
+ground ground ground NOUN N
+truth truth truth NOUN N
+utterance utterance utterance NOUN N
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Each each each DET 
+pair pair pair NOUN N
+is is be AUX 
+rated rated rate VERB V
+by by by ADP P
+one one one NUM 
+rater rater rater NOUN N
+with with with ADP P
+the the the DET 
+following following follow VERB V
+instructions instructions instruction NOUN N
+: : : PUNCT 
+“ “ """" PUNCT 
+You you -PRON- PRON 
+should should should VERB V
+not not not PART P
+judge judge judge VERB V
+the the the DET 
+content content content NOUN N
+, , , PUNCT 
+grammar grammar grammar NOUN N
+, , , PUNCT 
+or or or CCONJ C
+audio audio audio ADJ A
+quality quality quality NOUN N
+of of of ADP P
+the the the DET 
+sentences sentences sentence NOUN N
+; ; ; PUNCT 
+instead instead instead ADV 
+, , , PUNCT 
+just just just ADV 
+focus focus focus VERB V
+on on on ADP P
+the the the DET 
+similarity similarity similarity NOUN N
+of of of ADP P
+the the the DET 
+speakers speakers speaker NOUN N
+to to to ADP P
+one one one NUM 
+another another another DET 
+. . . PUNCT 
+” ” """" PUNCT 
+"
+" "
+" "
+" SPACE 
+Results results result NOUN N
+are are be AUX 
+shown shown show VERB V
+in in in ADP P
+Table table table NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+scores scores score NOUN N
+for for for ADP P
+the the the DET 
+VCTK vctk vctk ADJ A
+model model model NOUN N
+tend tend tend VERB V
+to to to PART P
+be be be AUX 
+higher higher high ADJ A
+than than than SCONJ C
+those those those DET 
+for for for ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+reflecting reflecting reflect VERB V
+the the the DET 
+cleaner cleaner clean ADJ A
+nature nature nature NOUN N
+of of of ADP P
+the the the DET 
+dataset dataset dataset NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+also also also ADV 
+evident evident evident ADJ A
+in in in ADP P
+the the the DET 
+higher higher high ADJ A
+ground ground ground NOUN N
+truth truth truth NOUN N
+baselines baselines baseline NOUN N
+on on on ADP P
+VCTK vctk vctk PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+For for for ADP P
+seen seen seen ADJ A
+speakers speakers speaker NOUN N
+on on on ADP P
+VCTK vctk vctk PROPN N
+, , , PUNCT 
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+performs performs perform VERB V
+about about about ADV 
+as as as ADV 
+well well well ADV 
+as as as SCONJ C
+the the the DET 
+baseline baseline baseline NOUN N
+which which which DET 
+uses uses use VERB V
+an an an DET 
+embedding embedding embed VERB V
+lookup lookup lookup NOUN N
+table table table NOUN N
+for for for ADP P
+speaker speaker speaker NOUN N
+conditioning conditioning conditioning NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+obtained obtained obtain VERB V
+a a a DET 
+lower lower low ADJ A
+similarity similarity similarity NOUN N
+MOS mos mos NOUN N
+than than than SCONJ C
+the the the DET 
+baseline baseline baseline NOUN N
+, , , PUNCT 
+which which which DET 
+is is be AUX 
+likely likely likely ADV 
+due due due ADP P
+to to to ADP P
+the the the DET 
+wider wider wide ADJ A
+degree degree degree NOUN N
+of of of ADP P
+within within within ADP P
+- - - PUNCT 
+speaker speaker speaker NOUN N
+variation variation variation NOUN N
+( ( ( PUNCT 
+Appendix appendix appendix PROPN N
+B b b PROPN N
+) ) ) PUNCT 
+, , , PUNCT 
+and and and CCONJ C
+background background background NOUN N
+noise noise noise NOUN N
+level level level NOUN N
+in in in ADP P
+the the the DET 
+dataset dataset dataset NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+On on on ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+obtains obtains obtain VERB V
+lower lower low ADJ A
+similarity similarity similarity NOUN N
+between between between ADP P
+ground ground ground NOUN N
+truth truth truth NOUN N
+and and and CCONJ C
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+On on on ADP P
+VCTK vctk vctk PROPN N
+, , , PUNCT 
+the the the DET 
+similarity similarity similarity NOUN N
+score score score NOUN N
+of of of ADP P
+3.28 3.28 3.28 NUM 
+is is be AUX 
+between between between ADP P
+“ “ """" PUNCT 
+moderately moderately moderately ADV 
+similar similar similar ADJ A
+” ” """" PUNCT 
+and and and CCONJ C
+“ “ """" PUNCT 
+very very very ADV 
+similar similar similar ADJ A
+” ” """" PUNCT 
+on on on ADP P
+the the the DET 
+evaluation evaluation evaluation NOUN N
+scale scale scale NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Informally informally informally ADV 
+, , , PUNCT 
+it it -PRON- PRON 
+is is be AUX 
+clear clear clear ADJ A
+that that that SCONJ C
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+is is be AUX 
+able able able ADJ A
+to to to PART P
+transfer transfer transfer VERB V
+the the the DET 
+broad broad broad ADJ A
+strokes strokes stroke NOUN N
+of of of ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+characteristics characteristics characteristic NOUN N
+for for for ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+clearly clearly clearly ADV 
+reflecting reflecting reflect VERB V
+the the the DET 
+correct correct correct ADJ A
+gender gender gender NOUN N
+, , , PUNCT 
+pitch pitch pitch NOUN N
+, , , PUNCT 
+and and and CCONJ C
+formant formant formant ADJ A
+ranges ranges range NOUN N
+( ( ( PUNCT 
+as as as SCONJ C
+also also also ADV 
+visualized visualized visualize VERB V
+in in in ADP P
+Figure figure figure NOUN N
+2 2 2 NUM 
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+But but but CCONJ C
+the the the DET 
+significantly significantly significantly ADV 
+reduced reduced reduce VERB V
+similarity similarity similarity NOUN N
+scores scores score NOUN N
+on on on ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+suggests suggests suggest VERB V
+that that that SCONJ C
+some some some DET 
+nuances nuances nuance NOUN N
+, , , PUNCT 
+e.g. e.g. e.g. ADV 
+related related relate VERB V
+to to to ADP P
+characteristic characteristic characteristic ADJ A
+prosody prosody prosody NOUN N
+, , , PUNCT 
+are are be AUX 
+lost lost lose VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+is is be AUX 
+trained trained train VERB V
+only only only ADV 
+on on on ADP P
+North north north PROPN N
+American american american ADJ A
+accented accented accented ADJ A
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+a a a DET 
+result result result NOUN N
+, , , PUNCT 
+accent accent accent NOUN N
+mismatch mismatch mismatch NOUN N
+constrains constrains constrain VERB V
+our our -PRON- DET 
+performance performance performance NOUN N
+on on on ADP P
+speaker speaker speaker PROPN N
+similarity similarity similarity NOUN N
+on on on ADP P
+VCTK vctk vctk PROPN N
+since since since SCONJ C
+the the the DET 
+rater rater rater NOUN N
+instructions instructions instruction NOUN N
+did did do AUX 
+not not not PART P
+specify specify specify VERB V
+how how how ADV 
+to to to PART P
+judge judge judge VERB V
+accents accents accent NOUN N
+, , , PUNCT 
+so so so SCONJ C
+raters raters rater NOUN N
+may may may VERB V
+consider consider consider VERB V
+a a a DET 
+pair pair pair NOUN N
+to to to PART P
+be be be AUX 
+from from from ADP P
+different different different ADJ A
+speakers speakers speaker NOUN N
+if if if SCONJ C
+the the the DET 
+accents accents accent NOUN N
+do do do AUX 
+not not not PART P
+match match match VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Indeed indeed indeed ADV 
+, , , PUNCT 
+examination examination examination NOUN N
+of of of ADP P
+rater rater rater NOUN N
+comments comments comment NOUN N
+shows shows show VERB V
+that that that SCONJ C
+our our -PRON- DET 
+model model model NOUN N
+sometimes sometimes sometimes ADV 
+produced produced produce VERB V
+a a a DET 
+different different different ADJ A
+accent accent accent NOUN N
+than than than SCONJ C
+the the the DET 
+ground ground ground NOUN N
+truth truth truth NOUN N
+, , , PUNCT 
+which which which DET 
+led led lead VERB V
+to to to ADP P
+lower lower low ADJ A
+scores scores score NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+a a a DET 
+few few few ADJ A
+raters raters rater NOUN N
+commented commented comment VERB V
+that that that SCONJ C
+the the the DET 
+tone tone tone NOUN N
+and and and CCONJ C
+inflection inflection inflection NOUN N
+of of of ADP P
+the the the DET 
+voices voices voice NOUN N
+sounded sounded sound VERB V
+very very very ADV 
+similar similar similar ADJ A
+despite despite despite SCONJ C
+differences differences difference NOUN N
+in in in ADP P
+accent accent accent NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+an an an DET 
+initial initial initial ADJ A
+evaluation evaluation evaluation NOUN N
+of of of ADP P
+the the the DET 
+ability ability ability NOUN N
+to to to PART P
+generalize generalize generalize VERB V
+to to to ADP P
+out out out SCONJ C
+of of of ADP P
+domain domain domain NOUN N
+speakers speakers speaker NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+used used use VERB V
+synthesizers synthesizers synthesizer NOUN N
+trained trained train VERB V
+on on on ADP P
+VCTK vctk vctk NOUN N
+and and and CCONJ C
+LibriSpeech librispeech librispeech NOUN N
+to to to PART P
+synthesize synthesize synthesize VERB V
+speakers speakers speaker NOUN N
+from from from ADP P
+the the the DET 
+other other other ADJ A
+dataset dataset dataset NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+only only only ADV 
+varied varied vary VERB V
+the the the DET 
+train train train NOUN N
+set set set VERB V
+of of of ADP P
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+and and and CCONJ C
+vocoder vocoder vocoder NOUN N
+networks networks network NOUN N
+; ; ; PUNCT 
+both both both DET 
+models models model NOUN N
+used used use VERB V
+an an an DET 
+identical identical identical ADJ A
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+shown shown show VERB V
+in in in ADP P
+Table table table NOUN N
+3 3 3 NUM 
+, , , PUNCT 
+the the the DET 
+models models model NOUN N
+were were be AUX 
+able able able ADJ A
+to to to PART P
+generate generate generate VERB V
+speech speech speech NOUN N
+with with with ADP P
+the the the DET 
+same same same ADJ A
+degree degree degree NOUN N
+of of of ADP P
+naturalness naturalness naturalness NOUN N
+as as as SCONJ C
+on on on ADP P
+unseen unseen unseen ADJ A
+, , , PUNCT 
+but but but CCONJ C
+in in in ADP P
+- - - PUNCT 
+domain domain domain NOUN N
+, , , PUNCT 
+speakers speakers speaker NOUN N
+shown shown show VERB V
+in in in ADP P
+Table table table NOUN N
+1 1 1 NUM 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+the the the DET 
+LibriSpeech librispeech librispeech NOUN N
+model model model NOUN N
+synthesized synthesized synthesize VERB V
+VCTK vctk vctk NOUN N
+speakers speakers speaker NOUN N
+with with with ADP P
+significantly significantly significantly ADV 
+higher higher high ADJ A
+speaker speaker speaker NOUN N
+similarity similarity similarity NOUN N
+than than than SCONJ C
+the the the DET 
+VCTK vctk vctk ADJ A
+model model model NOUN N
+is is be AUX 
+able able able ADJ A
+to to to PART P
+synthesize synthesize synthesize VERB V
+LibriSpeech librispeech librispeech NOUN N
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+better better well ADJ A
+generalization generalization generalization NOUN N
+of of of ADP P
+the the the DET 
+LibriSpeech librispeech librispeech NOUN N
+model model model NOUN N
+suggests suggests suggest VERB V
+that that that SCONJ C
+training training train VERB V
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+on on on ADP P
+only only only ADV 
+100 100 100 NUM 
+speakers speakers speaker NOUN N
+is is be AUX 
+insufficient insufficient insufficient ADJ A
+to to to PART P
+enable enable enable VERB V
+high high high ADJ A
+quality quality quality NOUN N
+speaker speaker speaker NOUN N
+transfer transfer transfer NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Table table table NOUN N
+: : : PUNCT 
+Cross cross cross NOUN N
+- - - ADJ A
+dataset dataset dataset ADJ A
+evaluation evaluation evaluation NOUN N
+on on on ADP P
+naturalness naturalness naturalness NOUN N
+and and and CCONJ C
+speaker speaker speaker NOUN N
+similarity similarity similarity NOUN N
+for for for ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+
+
+
+" "
+
+
+
+" "
+
+
+
+" SPACE 
+Speaker speaker speaker NOUN N
+verification verification verification NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+As as as SCONJ C
+an an an DET 
+objective objective objective ADJ A
+metric metric metric NOUN N
+of of of ADP P
+the the the DET 
+degree degree degree NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+similarity similarity similarity NOUN N
+between between between ADP P
+synthesized synthesized synthesize VERB V
+and and and CCONJ C
+ground ground grind VERB V
+truth truth truth NOUN N
+audio audio audio NOUN N
+for for for ADP P
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+evaluated evaluated evaluate VERB V
+the the the DET 
+ability ability ability NOUN N
+of of of ADP P
+a a a DET 
+limited limited limited ADJ A
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+system system system NOUN N
+to to to PART P
+distinguish distinguish distinguish VERB V
+synthetic synthetic synthetic NOUN N
+from from from ADP P
+real real real ADJ A
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+trained trained train VERB V
+a a a DET 
+new new new ADJ A
+eval eval eval NOUN N
+- - - PUNCT 
+only only only ADV 
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+with with with ADP P
+the the the DET 
+same same same ADJ A
+network network network NOUN N
+topology topology topology NOUN N
+as as as SCONJ C
+Section section section NOUN N
+, , , PUNCT 
+but but but CCONJ C
+using using use VERB V
+a a a DET 
+different different different ADJ A
+training training training NOUN N
+set set set NOUN N
+of of of ADP P
+28 28 28 NUM 
+M m m PART P
+utterances utterances utterance NOUN N
+from from from ADP P
+113000 113000 113000 NUM 
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Using using use VERB V
+a a a DET 
+different different different ADJ A
+model model model NOUN N
+for for for ADP P
+evaluation evaluation evaluation NOUN N
+ensured ensured ensure VERB V
+that that that SCONJ C
+metrics metrics metric NOUN N
+were were be AUX 
+not not not PART P
+only only only ADV 
+valid valid valid ADJ A
+on on on ADP P
+a a a DET 
+specific specific specific ADJ A
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+space space space NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+enroll enroll enroll VERB V
+the the the DET 
+voices voices voice NOUN N
+of of of ADP P
+21 21 21 NUM 
+real real real ADJ A
+speakers speakers speaker NOUN N
+: : : PUNCT 
+11 11 11 NUM 
+speakers speakers speaker NOUN N
+from from from ADP P
+VCTK vctk vctk PROPN N
+, , , PUNCT 
+and and and CCONJ C
+10 10 10 NUM 
+from from from ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+and and and CCONJ C
+score score score NOUN N
+synthesized synthesized synthesize VERB V
+waveforms waveforms waveform NOUN N
+against against against ADP P
+the the the DET 
+set set set NOUN N
+of of of ADP P
+enrolled enrolled enrol VERB V
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+All all all DET 
+enrollment enrollment enrollment NOUN N
+and and and CCONJ C
+verification verification verification NOUN N
+speakers speakers speaker NOUN N
+are are be AUX 
+unseen unseen unseen ADJ A
+during during during ADP P
+synthesizer synthesizer synthesizer ADJ A
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Speaker speaker speaker NOUN N
+verification verification verification NOUN N
+equal equal equal ADJ A
+error error error NOUN N
+rates rates rate NOUN N
+( ( ( PUNCT 
+SV sv sv PROPN N
+- - - PUNCT 
+EERs eers eer NOUN N
+) ) ) PUNCT 
+are are be AUX 
+estimated estimated estimate VERB V
+by by by ADP P
+pairing pairing pair VERB V
+each each each DET 
+test test test NOUN N
+utterance utterance utterance NOUN N
+with with with ADP P
+each each each DET 
+enrollment enrollment enrollment NOUN N
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+synthesized synthesized synthesize VERB V
+100 100 100 NUM 
+test test test NOUN N
+utterances utterances utterance NOUN N
+for for for ADP P
+each each each DET 
+speaker speaker speaker NOUN N
+, , , PUNCT 
+so so so ADV 
+21,000 21,000 21,000 NUM 
+or or or CCONJ C
+23,100 23,100 23,100 NUM 
+trials trials trial NOUN N
+were were be AUX 
+performed performed perform VERB V
+for for for ADP P
+each each each DET 
+evaluation evaluation evaluation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+shown shown show VERB V
+in in in ADP P
+Table table table NOUN N
+, , , PUNCT 
+as as as ADV 
+long long long ADV 
+as as as SCONJ C
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+was was be AUX 
+trained trained train VERB V
+on on on ADP P
+a a a DET 
+sufficiently sufficiently sufficiently ADV 
+large large large ADJ A
+set set set NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+, , , PUNCT 
+i.e. i.e. i.e. X 
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+, , , PUNCT 
+the the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+is is be AUX 
+typically typically typically ADV 
+most most most ADV 
+similar similar similar ADJ A
+to to to ADP P
+the the the DET 
+ground ground ground NOUN N
+truth truth truth NOUN N
+voices voices voice NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+LibriSpeech librispeech librispeech NOUN N
+synthesizer synthesizer synthesizer NOUN N
+obtains obtains obtain VERB V
+similar similar similar ADJ A
+EERs eers eer NOUN N
+of of of ADP P
+5 5 5 NUM 
+- - - SYM 
+6 6 6 NUM 
+% % % NOUN N
+using using use VERB V
+reference reference reference NOUN N
+speakers speakers speaker NOUN N
+from from from ADP P
+both both both DET 
+datasets datasets dataset NOUN N
+, , , PUNCT 
+whereas whereas whereas SCONJ C
+the the the DET 
+one one one NOUN N
+trained trained train VERB V
+on on on ADP P
+VCTK vctk vctk PROPN N
+performs performs perform VERB V
+much much much ADV 
+worse worse bad ADJ A
+, , , PUNCT 
+especially especially especially ADV 
+on on on ADP P
+out out out SCONJ C
+- - - PUNCT 
+of of of ADP P
+- - - PUNCT 
+domain domain domain NOUN N
+LibriSpeech librispeech librispeech NOUN N
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+These these these DET 
+results results result NOUN N
+are are be AUX 
+consistent consistent consistent ADJ A
+with with with ADP P
+the the the DET 
+subjective subjective subjective ADJ A
+evaluation evaluation evaluation NOUN N
+in in in ADP P
+Table table table NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+measure measure measure VERB V
+the the the DET 
+difficulty difficulty difficulty NOUN N
+of of of ADP P
+discriminating discriminating discriminate VERB V
+between between between ADP P
+real real real ADJ A
+and and and CCONJ C
+synthetic synthetic synthetic ADJ A
+speech speech speech NOUN N
+for for for ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+performed performed perform VERB V
+an an an DET 
+additional additional additional ADJ A
+evaluation evaluation evaluation NOUN N
+with with with ADP P
+an an an DET 
+expanded expanded expand VERB V
+set set set NOUN N
+of of of ADP P
+enrolled enrolled enrol VERB V
+speakers speakers speaker NOUN N
+including including include VERB V
+10 10 10 NUM 
+synthetic synthetic synthetic ADJ A
+versions versions version NOUN N
+of of of ADP P
+the the the DET 
+10 10 10 NUM 
+real real real ADJ A
+LibriSpeech librispeech librispeech NOUN N
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+On on on ADP P
+this this this DET 
+20 20 20 NUM 
+voice voice voice NOUN N
+discrimination discrimination discrimination NOUN N
+task task task NOUN N
+we we -PRON- PRON 
+obtain obtain obtain VERB V
+an an an DET 
+EER eer eer NOUN N
+of of of ADP P
+2.86 2.86 2.86 NUM 
+% % % NOUN N
+, , , PUNCT 
+demonstrating demonstrating demonstrate VERB V
+that that that SCONJ C
+, , , PUNCT 
+while while while SCONJ C
+the the the DET 
+synthetic synthetic synthetic ADJ A
+speech speech speech NOUN N
+tends tends tend VERB V
+to to to PART P
+be be be AUX 
+close close close ADJ A
+to to to ADP P
+the the the DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+( ( ( PUNCT 
+cosine cosine cosine PROPN N
+similarity similarity similarity PROPN N
+> > > X 
+0.6 0.6 0.6 NUM 
+, , , PUNCT 
+and and and CCONJ C
+as as as SCONJ C
+in in in ADP P
+Table table table NOUN N
+4 4 4 NUM 
+) ) ) PUNCT 
+, , , PUNCT 
+it it -PRON- PRON 
+is is be AUX 
+nearly nearly nearly ADV 
+always always always ADV 
+even even even ADV 
+closer closer close ADJ A
+to to to ADP P
+other other other ADJ A
+synthetic synthetic synthetic ADJ A
+utterances utterances utterance NOUN N
+for for for ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+( ( ( PUNCT 
+similarity similarity similarity NOUN N
+> > > X 
+0.7 0.7 0.7 NUM 
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+From from from ADP P
+this this this DET 
+we we -PRON- PRON 
+can can can VERB V
+conclude conclude conclude VERB V
+that that that SCONJ C
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+can can can VERB V
+generate generate generate VERB V
+speech speech speech NOUN N
+that that that DET 
+resembles resembles resemble VERB V
+the the the DET 
+target target target NOUN N
+speaker speaker speaker NOUN N
+, , , PUNCT 
+but but but CCONJ C
+not not not PART P
+well well well ADV 
+enough enough enough ADJ A
+to to to PART P
+be be be AUX 
+confusable confusable confusable ADJ A
+with with with ADP P
+a a a DET 
+real real real ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+space space space NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Visualizing visualizing visualize VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+space space space NOUN N
+further further further ADV 
+contextualizes contextualizes contextualize VERB V
+the the the DET 
+quantitive quantitive quantitive ADJ A
+results results result NOUN N
+described described describe VERB V
+in in in ADP P
+Section section section NOUN N
+and and and CCONJ C
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+shown shown show VERB V
+in in in ADP P
+Figure figure figure NOUN N
+3 3 3 NUM 
+, , , PUNCT 
+different different different ADJ A
+speakers speakers speaker NOUN N
+are are be AUX 
+well well well ADV 
+separated separated separate VERB V
+from from from ADP P
+each each each DET 
+other other other ADJ A
+in in in ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+space space space NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+PCA pca pca NOUN N
+visualization visualization visualization NOUN N
+( ( ( PUNCT 
+left left leave VERB V
+) ) ) PUNCT 
+shows shows show VERB V
+that that that DET 
+synthesized synthesized synthesize VERB V
+utterances utterances utterance NOUN N
+tend tend tend VERB V
+to to to PART P
+lie lie lie VERB V
+very very very ADV 
+close close close ADV 
+to to to ADP P
+real real real ADJ A
+speech speech speech NOUN N
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+in in in ADP P
+the the the DET 
+embedding embedding embed VERB V
+space space space NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+synthetic synthetic synthetic ADJ A
+utterances utterances utterance NOUN N
+are are be AUX 
+still still still ADV 
+easily easily easily ADV 
+distinguishable distinguishable distinguishable ADJ A
+from from from ADP P
+the the the DET 
+real real real ADJ A
+human human human ADJ A
+speech speech speech NOUN N
+as as as SCONJ C
+demonstrated demonstrated demonstrate VERB V
+by by by ADP P
+the the the DET 
+t t t NOUN N
+- - - PUNCT 
+SNE sne sne NOUN N
+visualization visualization visualization NOUN N
+( ( ( PUNCT 
+right right right INTJ 
+) ) ) PUNCT 
+where where where ADV 
+utterances utterances utterance NOUN N
+from from from ADP P
+each each each DET 
+synthetic synthetic synthetic ADJ A
+speaker speaker speaker NOUN N
+form form form VERB V
+a a a DET 
+distinct distinct distinct ADJ A
+cluster cluster cluster NOUN N
+adjacent adjacent adjacent ADJ A
+to to to ADP P
+a a a DET 
+cluster cluster cluster NOUN N
+of of of ADP P
+real real real ADJ A
+utterances utterances utterance NOUN N
+from from from ADP P
+the the the DET 
+corresponding corresponding correspond VERB V
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Speakers speakers speaker NOUN N
+appear appear appear VERB V
+to to to PART P
+be be be AUX 
+well well well ADV 
+separated separated separate VERB V
+by by by ADP P
+gender gender gender NOUN N
+in in in ADP P
+both both both CCONJ C
+the the the DET 
+PCA pca pca NOUN N
+and and and CCONJ C
+t t t NOUN N
+- - - PUNCT 
+SNE sne sne NOUN N
+visualizations visualizations visualization NOUN N
+, , , PUNCT 
+with with with ADP P
+all all all DET 
+female female female ADJ A
+speakers speakers speaker NOUN N
+appearing appearing appear VERB V
+on on on ADP P
+the the the DET 
+left left left NOUN N
+, , , PUNCT 
+and and and CCONJ C
+all all all DET 
+male male male ADJ A
+speakers speakers speaker NOUN N
+appearing appearing appear VERB V
+on on on ADP P
+the the the DET 
+right right right NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+an an an DET 
+indication indication indication NOUN N
+that that that SCONJ C
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+has has have AUX 
+learned learned learn VERB V
+a a a DET 
+reasonable reasonable reasonable ADJ A
+representation representation representation NOUN N
+of of of ADP P
+speaker speaker speaker PROPN N
+space space space NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Figure figure figure NOUN N
+: : : PUNCT 
+Visualization visualization visualization NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+extracted extracted extract VERB V
+from from from ADP P
+LibriSpeech librispeech librispeech NOUN N
+utterances utterances utterance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Each each each DET 
+color color color NOUN N
+corresponds corresponds correspond VERB V
+to to to ADP P
+a a a DET 
+different different different ADJ A
+speaker speaker speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Real real real ADJ A
+and and and CCONJ C
+synthetic synthetic synthetic ADJ A
+utterances utterances utterance NOUN N
+appear appear appear VERB V
+nearby nearby nearby ADV 
+when when when ADV 
+they they -PRON- PRON 
+are are be AUX 
+from from from ADP P
+the the the DET 
+same same same ADJ A
+speaker speaker speaker NOUN N
+, , , PUNCT 
+however however however ADV 
+real real real ADJ A
+and and and CCONJ C
+synthetic synthetic synthetic ADJ A
+utterances utterances utterance NOUN N
+consistently consistently consistently ADV 
+form form form VERB V
+distinct distinct distinct ADJ A
+clusters clusters cluster NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Table table table NOUN N
+: : : PUNCT 
+Performance performance performance NOUN N
+using using use VERB V
+speaker speaker speaker NOUN N
+encoders encoders encoder NOUN N
+( ( ( PUNCT 
+SEs ses ses PROPN N
+) ) ) PUNCT 
+trained trained train VERB V
+on on on ADP P
+different different different ADJ A
+datasets datasets dataset NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Synthesizers synthesizers synthesizer NOUN N
+are are be AUX 
+all all all DET 
+trained trained train VERB V
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+Clean clean clean ADJ A
+and and and CCONJ C
+evaluated evaluated evaluate VERB V
+on on on ADP P
+held held hold VERB V
+out out out ADP P
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Number number number NOUN N
+of of of ADP P
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+training training training NOUN N
+speakers speakers speaker NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+It it -PRON- PRON 
+is is be AUX 
+likely likely likely ADJ A
+that that that SCONJ C
+the the the DET 
+ability ability ability NOUN N
+of of of ADP P
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+to to to PART P
+generalize generalize generalize VERB V
+well well well ADV 
+across across across ADP P
+a a a DET 
+wide wide wide ADJ A
+variety variety variety NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+is is be AUX 
+based based base VERB V
+on on on ADP P
+the the the DET 
+quality quality quality NOUN N
+of of of ADP P
+the the the DET 
+representation representation representation NOUN N
+learned learned learn VERB V
+by by by ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+therefore therefore therefore ADV 
+explored explored explore VERB V
+the the the DET 
+effect effect effect NOUN N
+of of of ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+training training training NOUN N
+set set set VERB V
+on on on ADP P
+synthesis synthesis synthesis NOUN N
+quality quality quality NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+made made make VERB V
+use use use NOUN N
+of of of ADP P
+three three three NUM 
+additional additional additional ADJ A
+training training training NOUN N
+sets sets set NOUN N
+: : : PUNCT 
+LibriSpeech librispeech librispeech NOUN N
+Other other other ADJ A
+, , , PUNCT 
+which which which DET 
+contains contains contain VERB V
+461 461 461 NUM 
+hours hours hour NOUN N
+of of of ADP P
+speech speech speech NOUN N
+from from from ADP P
+a a a DET 
+set set set NOUN N
+of of of ADP P
+1,166 1,166 1,166 NUM 
+speakers speakers speaker NOUN N
+disjoint disjoint disjoint NOUN N
+from from from ADP P
+those those those DET 
+in in in ADP P
+the the the DET 
+clean clean clean ADJ A
+subsets subsets subset NOUN N
+, , , PUNCT 
+VoxCeleb voxceleb voxceleb NOUN N
+, , , PUNCT 
+and and and CCONJ C
+VoxCeleb2 voxceleb2 voxceleb2 NOUN N
+which which which DET 
+contain contain contain VERB V
+139000 139000 139000 NUM 
+utterances utterances utterance NOUN N
+from from from ADP P
+1,211 1,211 1,211 NUM 
+speakers speakers speaker NOUN N
+, , , PUNCT 
+and and and CCONJ C
+1.09 1.09 1.09 NUM 
+M m m PROPN N
+utterances utterances utterance NOUN N
+from from from ADP P
+5,994 5,994 5,994 NUM 
+speakers speakers speaker NOUN N
+, , , PUNCT 
+respectively respectively respectively ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Table table table NOUN N
+" " " " " " SPACE 
+compares compares compare VERB V
+the the the DET 
+performance performance performance NOUN N
+of of of ADP P
+the the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+as as as SCONJ C
+a a a DET 
+function function function NOUN N
+of of of ADP P
+the the the DET 
+number number number NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+used used use VERB V
+to to to PART P
+train train train VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+measures measures measure VERB V
+the the the DET 
+importance importance importance NOUN N
+of of of ADP P
+speaker speaker speaker NOUN N
+diversity diversity diversity NOUN N
+when when when ADV 
+training training train VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+avoid avoid avoid VERB V
+overfitting overfitting overfitte VERB V
+, , , PUNCT 
+the the the DET 
+speaker speaker speaker NOUN N
+encoders encoders encoder NOUN N
+trained trained train VERB V
+on on on ADP P
+small small small ADJ A
+datasets datasets dataset NOUN N
+( ( ( PUNCT 
+top top top ADJ A
+two two two NUM 
+rows rows row NOUN N
+) ) ) PUNCT 
+use use use VERB V
+a a a DET 
+smaller smaller small ADJ A
+network network network NOUN N
+architecture architecture architecture NOUN N
+( ( ( PUNCT 
+256-dim 256-dim 256-dim NUM 
+LSTM lstm lstm NOUN N
+cells cells cell NOUN N
+with with with ADP P
+64-dim 64-dim 64-dim NUM 
+projections projections projection NOUN N
+) ) ) PUNCT 
+and and and CCONJ C
+output output output NOUN N
+64 64 64 NUM 
+dimensional dimensional dimensional ADJ A
+speaker speaker speaker NOUN N
+embeddings embeddings embedding NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+first first first ADV 
+evaluate evaluate evaluate VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+trained trained train VERB V
+on on on ADP P
+LibriSpeech librispeech librispeech NOUN N
+Clean clean clean ADJ A
+and and and CCONJ C
+Other other other ADJ A
+sets sets set NOUN N
+, , , PUNCT 
+each each each DET 
+of of of ADP P
+which which which DET 
+contain contain contain VERB V
+a a a DET 
+similar similar similar ADJ A
+number number number NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+Clean clean clean ADJ A
+, , , PUNCT 
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+and and and CCONJ C
+synthesizer synthesizer synthesizer PROPN N
+are are be AUX 
+trained trained train VERB V
+on on on ADP P
+the the the DET 
+same same same ADJ A
+data data datum NOUN N
+, , , PUNCT 
+a a a DET 
+baseline baseline baseline NOUN N
+similar similar similar ADJ A
+to to to ADP P
+the the the DET 
+non non non ADJ A
+- - - ADJ A
+fine fine fine ADJ A
+tuned tuned tune VERB V
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+from from from ADP P
+, , , PUNCT 
+except except except SCONJ C
+that that that SCONJ C
+it it -PRON- PRON 
+is is be AUX 
+trained trained train VERB V
+discriminatively discriminatively discriminatively ADV 
+as as as SCONJ C
+in in in ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+matched matched match VERB V
+condition condition condition NOUN N
+gives gives give VERB V
+a a a DET 
+slightly slightly slightly ADV 
+better better well ADJ A
+naturalness naturalness naturalness NOUN N
+and and and CCONJ C
+a a a DET 
+similar similar similar ADJ A
+similarity similarity similarity NOUN N
+score score score NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+the the the DET 
+number number number NOUN N
+of of of ADP P
+training training training NOUN N
+speakers speakers speaker NOUN N
+increases increases increase NOUN N
+, , , PUNCT 
+both both both CCONJ C
+naturalness naturalness naturalness NOUN N
+and and and CCONJ C
+similarity similarity similarity NOUN N
+improve improve improve VERB V
+significantly significantly significantly ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+objective objective objective ADJ A
+EER eer eer NOUN N
+results results result NOUN N
+also also also ADV 
+improve improve improve VERB V
+alongside alongside alongside ADP P
+the the the DET 
+subjective subjective subjective ADJ A
+evaluations evaluations evaluation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+These these these DET 
+results results result NOUN N
+have have have AUX 
+an an an DET 
+important important important ADJ A
+implication implication implication NOUN N
+for for for ADP P
+multispeaker multispeaker multispeaker PROPN N
+TTS tts tts PROPN N
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+data data datum NOUN N
+requirement requirement requirement NOUN N
+for for for ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+is is be AUX 
+much much much ADV 
+cheaper cheaper cheap ADJ A
+than than than SCONJ C
+full full full ADJ A
+TTS tts tts PROPN N
+training training training NOUN N
+since since since SCONJ C
+no no no DET 
+transcripts transcripts transcript NOUN N
+are are be AUX 
+necessary necessary necessary ADJ A
+, , , PUNCT 
+and and and CCONJ C
+the the the DET 
+audio audio audio ADJ A
+quality quality quality NOUN N
+can can can VERB V
+be be be AUX 
+lower lower low ADJ A
+than than than SCONJ C
+for for for ADP P
+TTS tts tts PROPN N
+training training training NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+have have have AUX 
+shown shown show VERB V
+that that that SCONJ C
+it it -PRON- PRON 
+is is be AUX 
+possible possible possible ADJ A
+to to to PART P
+synthesize synthesize synthesize VERB V
+very very very ADV 
+natural natural natural ADJ A
+TTS tts tts NOUN N
+by by by ADP P
+combining combining combine VERB V
+a a a DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+network network network NOUN N
+trained trained train VERB V
+on on on ADP P
+large large large ADJ A
+amounts amounts amount NOUN N
+of of of ADP P
+untranscribed untranscribed untranscribed ADJ A
+data data datum NOUN N
+with with with ADP P
+a a a DET 
+TTS tts tts PROPN N
+network network network NOUN N
+trained trained train VERB V
+on on on ADP P
+a a a DET 
+smaller smaller small ADJ A
+set set set NOUN N
+of of of ADP P
+high high high ADJ A
+quality quality quality NOUN N
+data data datum NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Table table table NOUN N
+: : : PUNCT 
+Speech speech speech NOUN N
+from from from ADP P
+fictitious fictitious fictitious ADJ A
+speakers speakers speaker NOUN N
+compared compared compare VERB V
+to to to ADP P
+their their -PRON- DET 
+nearest nearest near ADJ A
+neighbors neighbors neighbor NOUN N
+in in in ADP P
+the the the DET 
+train train train NOUN N
+sets sets set NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Fictitious fictitious fictitious ADJ A
+speakers speakers speaker NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Bypassing bypassing bypass VERB V
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+network network network PROPN N
+and and and CCONJ C
+conditioning conditioning condition VERB V
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+on on on ADP P
+random random random ADJ A
+points points point NOUN N
+in in in ADP P
+the the the DET 
+speaker speaker speaker NOUN N
+embedding embedding embed VERB V
+space space space NOUN N
+results results result NOUN N
+in in in ADP P
+speech speech speech NOUN N
+from from from ADP P
+fictitious fictitious fictitious ADJ A
+speakers speakers speaker NOUN N
+which which which DET 
+are are be AUX 
+not not not PART P
+present present present ADJ A
+in in in ADP P
+the the the DET 
+train train train NOUN N
+or or or CCONJ C
+test test test NOUN N
+sets sets set NOUN N
+of of of ADP P
+either either either CCONJ C
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+or or or CCONJ C
+the the the DET 
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+demonstrated demonstrated demonstrate VERB V
+in in in ADP P
+Table table table NOUN N
+, , , PUNCT 
+which which which DET 
+compares compares compare VERB V
+10 10 10 NUM 
+such such such ADJ A
+speakers speakers speaker NOUN N
+, , , PUNCT 
+generated generated generate VERB V
+from from from ADP P
+uniformly uniformly uniformly ADV 
+sampled sampled sample VERB V
+points points point NOUN N
+on on on ADP P
+the the the DET 
+surface surface surface NOUN N
+of of of ADP P
+the the the DET 
+unit unit unit NOUN N
+hypersphere hypersphere hypersphere ADV 
+, , , PUNCT 
+to to to ADP P
+their their -PRON- DET 
+nearest nearest near ADJ A
+neighbors neighbors neighbor NOUN N
+in in in ADP P
+the the the DET 
+training training training NOUN N
+sets sets set NOUN N
+of of of ADP P
+the the the DET 
+component component component NOUN N
+networks networks network NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+SV sv sv PROPN N
+- - - PUNCT 
+EERs eers eer NOUN N
+are are be AUX 
+computed computed compute VERB V
+using using use VERB V
+the the the DET 
+same same same ADJ A
+setup setup setup NOUN N
+as as as SCONJ C
+Section section section NOUN N
+after after after ADP P
+enrolling enrolling enrol VERB V
+voices voices voice NOUN N
+of of of ADP P
+the the the DET 
+10 10 10 NUM 
+nearest nearest near ADJ A
+neighbors neighbors neighbor NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Even even even ADV 
+though though though SCONJ C
+these these these DET 
+speakers speakers speaker NOUN N
+are are be AUX 
+totally totally totally ADV 
+fictitious fictitious fictitious ADJ A
+, , , PUNCT 
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+and and and CCONJ C
+the the the DET 
+vocoder vocoder vocoder NOUN N
+are are be AUX 
+able able able ADJ A
+to to to PART P
+generate generate generate VERB V
+audio audio audio NOUN N
+as as as ADV 
+natural natural natural ADJ A
+as as as SCONJ C
+for for for ADP P
+seen seen seen ADJ A
+or or or CCONJ C
+unseen unseen unseen ADJ A
+real real real ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+low low low ADJ A
+cosine cosine cosine NOUN N
+similarity similarity similarity NOUN N
+to to to ADP P
+the the the DET 
+nearest nearest near ADJ A
+neighbor neighbor neighbor NOUN N
+training training training NOUN N
+utterances utterances utterance NOUN N
+and and and CCONJ C
+very very very ADV 
+high high high ADJ A
+EER eer eer NOUN N
+indicate indicate indicate VERB V
+that that that SCONJ C
+they they -PRON- PRON 
+are are be AUX 
+indeed indeed indeed ADV 
+distinct distinct distinct ADJ A
+from from from ADP P
+the the the DET 
+training training training NOUN N
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Conclusion conclusion conclusion NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+present present present VERB V
+a a a DET 
+neural neural neural ADJ A
+network network network NOUN N
+- - - PUNCT 
+based based base VERB V
+system system system NOUN N
+for for for ADP P
+multispeaker multispeaker multispeaker PROPN N
+TTS tts tts PROPN N
+synthesis synthesis synthesis NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+system system system NOUN N
+combines combines combine VERB V
+an an an DET 
+independently independently independently ADV 
+trained trained train VERB V
+speaker speaker speaker NOUN N
+encoder encoder encoder NOUN N
+network network network NOUN N
+with with with ADP P
+a a a DET 
+sequence sequence sequence NOUN N
+- - - PUNCT 
+to to to ADP P
+- - - PUNCT 
+sequence sequence sequence NOUN N
+TTS tts tts PROPN N
+synthesis synthesis synthesis NOUN N
+network network network NOUN N
+and and and CCONJ C
+neural neural neural ADJ A
+vocoder vocoder vocoder NOUN N
+based based base VERB V
+on on on ADP P
+Tacotron tacotron tacotron PROPN N
+2 2 2 NUM 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+By by by ADP P
+leveraging leveraging leverage VERB V
+the the the DET 
+knowledge knowledge knowledge NOUN N
+learned learned learn VERB V
+by by by ADP P
+the the the DET 
+discriminative discriminative discriminative ADJ A
+speaker speaker speaker NOUN N
+encoder encoder encoder PROPN N
+, , , PUNCT 
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+is is be AUX 
+able able able ADJ A
+to to to PART P
+generate generate generate VERB V
+high high high ADJ A
+quality quality quality NOUN N
+speech speech speech NOUN N
+not not not PART P
+only only only ADV 
+for for for ADP P
+speakers speakers speaker NOUN N
+seen seen see VERB V
+during during during ADP P
+training training training NOUN N
+, , , PUNCT 
+but but but CCONJ C
+also also also ADV 
+for for for ADP P
+speakers speakers speaker NOUN N
+never never never ADV 
+seen seen see VERB V
+before before before ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Through through through ADP P
+evaluations evaluations evaluation NOUN N
+based based base VERB V
+on on on ADP P
+a a a DET 
+speaker speaker speaker NOUN N
+verification verification verification NOUN N
+system system system NOUN N
+as as as ADV 
+well well well ADV 
+as as as SCONJ C
+subjective subjective subjective ADJ A
+listening listening listening NOUN N
+tests tests test NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+demonstrated demonstrated demonstrate VERB V
+that that that SCONJ C
+the the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+is is be AUX 
+reasonably reasonably reasonably ADV 
+similar similar similar ADJ A
+to to to ADP P
+real real real ADJ A
+speech speech speech NOUN N
+from from from ADP P
+the the the DET 
+target target target NOUN N
+speakers speakers speaker NOUN N
+, , , PUNCT 
+even even even ADV 
+on on on ADP P
+such such such ADJ A
+unseen unseen unseen ADJ A
+speakers speakers speaker NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+ran ran run VERB V
+experiments experiments experiment NOUN N
+to to to PART P
+analyze analyze analyze VERB V
+the the the DET 
+impact impact impact NOUN N
+of of of ADP P
+the the the DET 
+amount amount amount NOUN N
+of of of ADP P
+data data datum NOUN N
+used used use VERB V
+to to to PART P
+train train train VERB V
+the the the DET 
+different different different ADJ A
+components components component NOUN N
+, , , PUNCT 
+and and and CCONJ C
+found found find VERB V
+that that that SCONJ C
+, , , PUNCT 
+given given give VERB V
+sufficient sufficient sufficient ADJ A
+speaker speaker speaker NOUN N
+diversity diversity diversity NOUN N
+in in in ADP P
+the the the DET 
+synthesizer synthesizer synthesizer ADJ A
+training training training NOUN N
+set set set NOUN N
+, , , PUNCT 
+speaker speaker speaker NOUN N
+transfer transfer transfer NOUN N
+quality quality quality NOUN N
+could could could VERB V
+be be be AUX 
+significantly significantly significantly ADV 
+improved improved improve VERB V
+by by by ADP P
+increasing increasing increase VERB V
+the the the DET 
+amount amount amount NOUN N
+of of of ADP P
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+training training training PROPN N
+data data datum NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Transfer transfer transfer NOUN N
+learning learning learning NOUN N
+is is be AUX 
+critical critical critical ADJ A
+to to to ADP P
+achieving achieving achieve VERB V
+these these these DET 
+results results result NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+By by by ADP P
+separating separating separate VERB V
+the the the DET 
+training training training NOUN N
+of of of ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+and and and CCONJ C
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+, , , PUNCT 
+the the the DET 
+system system system NOUN N
+significantly significantly significantly ADV 
+lowers lowers lower VERB V
+the the the DET 
+requirements requirements requirement NOUN N
+for for for ADP P
+multispeaker multispeaker multispeaker PROPN N
+TTS tts tts PROPN N
+training training training PROPN N
+data data datum NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+requires requires require VERB V
+neither neither neither DET 
+speaker speaker speaker NOUN N
+identity identity identity NOUN N
+labels labels label NOUN N
+for for for ADP P
+the the the DET 
+synthesizer synthesizer synthesizer PROPN N
+training training training PROPN N
+data data data PROPN N
+, , , PUNCT 
+nor nor nor CCONJ C
+high high high ADJ A
+quality quality quality NOUN N
+clean clean clean ADJ A
+speech speech speech NOUN N
+or or or CCONJ C
+transcripts transcripts transcript NOUN N
+for for for ADP P
+the the the DET 
+speaker speaker speaker PROPN N
+encoder encoder encoder PROPN N
+training training training PROPN N
+data data datum NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+addition addition addition NOUN N
+, , , PUNCT 
+training training train VERB V
+the the the DET 
+components components component NOUN N
+independently independently independently ADV 
+significantly significantly significantly ADV 
+simplifies simplifies simplify VERB V
+the the the DET 
+training training training NOUN N
+configuration configuration configuration NOUN N
+of of of ADP P
+the the the DET 
+synthesizer synthesizer synthesizer PROPN N
+network network network NOUN N
+compared compared compare VERB V
+to to to ADP P
+since since since SCONJ C
+it it -PRON- PRON 
+does does do AUX 
+not not not PART P
+require require require VERB V
+additional additional additional ADJ A
+triplet triplet triplet NOUN N
+or or or CCONJ C
+contrastive contrastive contrastive ADJ A
+losses losses loss NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+modeling modeling model VERB V
+speaker speaker speaker NOUN N
+variation variation variation NOUN N
+using using use VERB V
+a a a DET 
+low low low ADJ A
+dimensional dimensional dimensional ADJ A
+vector vector vector NOUN N
+limits limits limit VERB V
+the the the DET 
+ability ability ability NOUN N
+to to to PART P
+leverage leverage leverage VERB V
+large large large ADJ A
+amounts amounts amount NOUN N
+of of of ADP P
+reference reference reference NOUN N
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Improving improving improve VERB V
+speaker speaker speaker NOUN N
+similarity similarity similarity NOUN N
+given given give VERB V
+more more more ADJ A
+than than than SCONJ C
+a a a DET 
+few few few ADJ A
+seconds seconds second NOUN N
+of of of ADP P
+reference reference reference NOUN N
+speech speech speech NOUN N
+requires requires require VERB V
+a a a DET 
+model model model NOUN N
+adaptation adaptation adaptation NOUN N
+approach approach approach NOUN N
+as as as SCONJ C
+in in in ADV 
+, , , PUNCT 
+and and and CCONJ C
+more more more ADV 
+recently recently recently ADV 
+in in in ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Finally finally finally ADV 
+, , , PUNCT 
+we we -PRON- PRON 
+demonstrate demonstrate demonstrate VERB V
+that that that SCONJ C
+the the the DET 
+model model model NOUN N
+is is be AUX 
+able able able ADJ A
+to to to PART P
+generate generate generate VERB V
+realistic realistic realistic ADJ A
+speech speech speech NOUN N
+from from from ADP P
+fictitious fictitious fictitious ADJ A
+speakers speakers speaker NOUN N
+that that that DET 
+are are be AUX 
+dissimilar dissimilar dissimilar ADJ A
+from from from ADP P
+the the the DET 
+training training training NOUN N
+set set set NOUN N
+, , , PUNCT 
+implying implying imply VERB V
+that that that SCONJ C
+the the the DET 
+model model model NOUN N
+has has have AUX 
+learned learned learn VERB V
+to to to PART P
+utilize utilize utilize VERB V
+a a a DET 
+realistic realistic realistic ADJ A
+representation representation representation NOUN N
+of of of ADP P
+the the the DET 
+space space space NOUN N
+of of of ADP P
+speaker speaker speaker PROPN N
+variation variation variation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+proposed proposed propose VERB V
+model model model NOUN N
+does does do AUX 
+not not not PART P
+attain attain attain VERB V
+human human human ADJ A
+- - - PUNCT 
+level level level NOUN N
+naturalness naturalness naturalness NOUN N
+, , , PUNCT 
+despite despite despite SCONJ C
+the the the DET 
+use use use NOUN N
+of of of ADP P
+a a a DET 
+WaveNet wavenet wavenet ADJ A
+vocoder vocoder vocoder NOUN N
+( ( ( PUNCT 
+along along along ADP P
+with with with ADP P
+its its -PRON- DET 
+very very very ADV 
+high high high ADJ A
+inference inference inference NOUN N
+cost cost cost NOUN N
+) ) ) PUNCT 
+, , , PUNCT 
+in in in ADP P
+contrast contrast contrast NOUN N
+to to to ADP P
+the the the DET 
+single single single ADJ A
+speaker speaker speaker NOUN N
+results results result VERB V
+from from from ADP P
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+This this this DET 
+is is be AUX 
+a a a DET 
+consequence consequence consequence NOUN N
+of of of ADP P
+the the the DET 
+additional additional additional ADJ A
+difficulty difficulty difficulty NOUN N
+of of of ADP P
+generating generating generate VERB V
+speech speech speech NOUN N
+for for for ADP P
+a a a DET 
+variety variety variety NOUN N
+of of of ADP P
+speakers speakers speaker NOUN N
+given given give VERB V
+significantly significantly significantly ADV 
+less less less ADJ A
+data data datum NOUN N
+per per per ADP P
+speaker speaker speaker NOUN N
+, , , PUNCT 
+as as as ADV 
+well well well ADV 
+as as as SCONJ C
+the the the DET 
+use use use NOUN N
+of of of ADP P
+datasets datasets dataset NOUN N
+with with with ADP P
+lower lower low ADJ A
+data data datum NOUN N
+quality quality quality NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+An an an DET 
+additional additional additional ADJ A
+limitation limitation limitation NOUN N
+lies lies lie VERB V
+in in in ADP P
+the the the DET 
+model model model NOUN N
+’s ’s ’s PART P
+inability inability inability NOUN N
+to to to PART P
+transfer transfer transfer VERB V
+accents accents accent NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Given given give VERB V
+sufficient sufficient sufficient ADJ A
+training training training NOUN N
+data data datum NOUN N
+, , , PUNCT 
+this this this DET 
+could could could VERB V
+be be be AUX 
+addressed addressed address VERB V
+by by by ADP P
+conditioning conditioning condition VERB V
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+on on on ADP P
+independent independent independent ADJ A
+speaker speaker speaker NOUN N
+and and and CCONJ C
+accent accent accent NOUN N
+embeddings embeddings embedding NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Finally finally finally ADV 
+, , , PUNCT 
+we we -PRON- PRON 
+note note note VERB V
+that that that SCONJ C
+the the the DET 
+model model model NOUN N
+is is be AUX 
+also also also ADV 
+not not not PART P
+able able able ADJ A
+to to to PART P
+completely completely completely ADV 
+isolate isolate isolate VERB V
+the the the DET 
+speaker speaker speaker NOUN N
+voice voice voice NOUN N
+from from from ADP P
+the the the DET 
+prosody prosody prosody NOUN N
+of of of ADP P
+the the the DET 
+reference reference reference NOUN N
+audio audio audio NOUN N
+, , , PUNCT 
+a a a DET 
+similar similar similar ADJ A
+trend trend trend NOUN N
+to to to ADP P
+that that that DET 
+observed observed observe VERB V
+in in in ADP P
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
