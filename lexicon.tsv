@@ -169,6 +169,7 @@
 	T	A N N	generative adversarial network	generative adversarial network	
 172	T	N	GlobalPhone	globalphone	35
 655	T	N N N	GlobalPhone Language Models	globalphone language model	4
+	T	N	GMM	gmm 	
 	T	A	GMM-based	GMM-based	
 	T	N	GPU	gpu	
 164	T	N	GPUs	gpus	12
@@ -204,6 +205,7 @@
 634	T	A A N	hierarchical MLP-based LID	hierarchical mlp-based lid	4
 2432	T	A A N	hierarchical MLP-based phone	hierarchical mlp-based	2
 	T	A N N	high quality speech	high quality speech	
+	T	N	HMM	hmm 	
 	T	A	HMM-based	Hmm-based	
 740	T	A N	HMM-based ASR	hmm-based asr	4
 160	T	A N	HMM-based generation	hmm-based generation	12
@@ -313,7 +315,8 @@
 	T	A N	multilingual text	multilingual text	
 1376	T	N N N	multispeaker voice synthesis	multispeaker voice synthesis	2
 256	T	N	MUSHRA	mushra	8
-574	T	A N N	N-gram language	n-gram language	4
+574	T	A	N-gram	n-gram	4
+574	T	A N	N-gram language	n-gram language	4
 686	T	A N N	natural language processing	natural language processing	4
 212	T	N	NetTalk	nettalk	10
 239	T	N N	network architecture	network architecture	9
@@ -449,6 +452,7 @@
 2092	T	A N	statistical approaches	statistical approach	2
 	T	A N	statistical classifier	statistical classifier	
 756	T	A N	statistical models	statistical model	7
+	T	A N	statistical modules	statistical module	
 189	T	A A	statistical parametric	statistical parametric	11
 150	T	A A N	statistical parametric speech	statistical parametric speech	13
 	T	N	stem	stem	
@@ -508,6 +512,7 @@
 2359	T	N	VoxCeleb	voxceleb	2
 276	T	N	VTLN	vtln	8
 37	T	N	waveform	waveform	67
+	T	N N	Waveform generation	waveform generation	
 735	T	A	waveform-level	waveform-level	8
 255	T	N	WaveGlow	waveglow	17
 13	T	N	WaveNet	wavenet	57
