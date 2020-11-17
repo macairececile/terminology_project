@@ -1,4 +1,4 @@
-Learning to Speak Fluently in a Foreign Language: Multilingual Speech Synthesis and Cross-Language Voice Cloning
+Learning to Speak Fluently in a Foreign Language: Multilingual Speech Synthesis and cross-language voice cloning
 
 
 Abstract
@@ -77,7 +77,7 @@ In our experiments, we observe that feeding in the prior mean (all zeros) during
 
 Adversarial training
 One of the challenges for multilingual TTS is data sparsity, where some languages may only have training data for a few speakers.
-In the extreme case where there is only one speaker per language in the training data, the speaker identity is essentially the same as the language ID.
+In the extreme case where there is only one speaker per language in the training data, the speaker identity is essentially the same as the language id.
 To encourage the model to learn disentangled representations of the text and speaker identity, we proactively discourage the text encoding ts from also capturing speaker information.
 We employ domain adversarial training to encourage ti to encode text in a speaker-independent manner by introducing a speaker classifier based on the text encoding and a gradient reversal layer.
 Note that the speaker classifier is optimized with a different objective than the rest of the model: Lspeaker (ψs ; ti ) = N
@@ -160,8 +160,8 @@ Table: Naturalness and speaker similarity MOS of cross-language voice cloning of
 Table: Effect of EN speaker cloning with no residual encoder.
 
 
-Figure: Visualizing the effect of voice cloning and accent control, using 2D PCA of speaker embeddings computed from speech synthesized with different speaker, text, and language ID combinations. 
-Embeddings cluster together (bottom left and right), implying high similarity, when the speaker’s original language matches the language embedding, regardless of the text language. However, using language ID from the text (squares), modifying the speaker’s accent to speak fluently, hurts similarity compared to the native language and accent (circles).
+Figure: Visualizing the effect of voice cloning and accent control, using 2D PCA of speaker embeddings computed from speech synthesized with different speaker, text, and language id combinations. 
+Embeddings cluster together (bottom left and right), implying high similarity, when the speaker’s original language matches the language embedding, regardless of the text language. However, using language id from the text (squares), modifying the speaker’s accent to speak fluently, hurts similarity compared to the native language and accent (circles).
      
 Adding the adversarial speaker classifier enabled crosslanguage cloning of the EN speaker to CN with very high similarity MOS for both byte and phoneme models.
 However, naturalness MOS remains much lower than using the native speaker identity, with the naturalness listening test failing entirely in the CN case with byte inputs as a result of rater comments that the speech sounded like a foreign language.
