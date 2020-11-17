@@ -235,7 +235,6 @@
 2277	T	N	K-grams	k-grams	1
 573	T	N	Kingma	kingma	4
 567	T	N	kostra	kostra	4
-2945	T	N	labels	label	32
 	T	N N	language embed	language embed	
 	T	N A	language independent	language independent	
 2586	T	N N N	language model transducers	language model transducer	2
