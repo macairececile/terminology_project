@@ -173,6 +173,7 @@
 	T	A N N	generative adversarial network	generative adversarial network	
 172	T	N	GlobalPhone	globalphone	35
 655	T	N N N	GlobalPhone Language Models	globalphone language model	4
+	T	N	GMM	gmm	
 	T	A	GMM-based	GMM-based	
 	T	A N	GMMbased VAD	GMMbased VAD	
 	T	N	GPU	gpu	
@@ -209,6 +210,7 @@
 634	T	A A N	hierarchical MLP-based LID	hierarchical mlp-based lid	4
 2432	T	A A N	hierarchical MLP-based phone	hierarchical mlp-based	2
 	T	A N N	high quality speech	high quality speech	
+	T	N	HMM	hmm	
 	T	A	HMM-based	Hmm-based	
 740	T	A N	HMM-based ASR	hmm-based asr	4
 160	T	A N	HMM-based generation	hmm-based generation	12
@@ -319,6 +321,7 @@
 	T	A N	multilingual text	multilingual text	
 1376	T	N N N	multispeaker voice synthesis	multispeaker voice synthesis	2
 256	T	N	MUSHRA	mushra	8
+	T	N	N-gram	n-gram	
 574	T	A N N	N-gram language	n-gram language	4
 686	T	A N N	natural language processing	natural language processing	4
 212	T	N	NetTalk	nettalk	10
