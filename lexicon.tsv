@@ -84,6 +84,7 @@
 1313	T	A A N	context-dependent acoustic	context-dependent acoustic	2
 2427	T	A N	context-dependent HMMs	context-dependent hmms	2
 1113	T	A N	context-independent phones	context-independent phone	9
+	T	N N	conversion system	conversion system	
 294	T	N N	convolution block	convolution block	8
 459	T	A N	convolutional encoder	convolutional encoder	5
 174	T	A N	convolutional layers	convolutional layer	23
@@ -92,6 +93,7 @@
 1113	T	A A A	convolutional neural network-based	convolutional neural network-based	
 94	T	A A N	convolutional neural networks	convolutional neural network	18
 	T	A N N	convolutional output layer	convolutional output layer	
+	T	A	corpus-based	corpus-based	
 	T	N	CPU	cpu	
 	T	N	CRF	crf	
 2615	T	N N	cross-language knowledge	cross-language knowledge	2
@@ -106,6 +108,7 @@
 352	T	N	CSS10	css10	12
 	T	N	CUDA	cuda	
 2602	T	A	data-based	data-based	2
+	T	N	data-collection	data-collection	
 	T	A N	data-driven approach	data-driven approach	
 	T	N	DBLSTM	dblstm	
 36	T	N N	decision tree	decision tree	35
@@ -155,6 +158,7 @@
 	T	N N	forward decoder	forward decoder	
 	T	A N	forward layer	forward layer	
 	T	A N	forward-backward algorithm	forward-backward algorithm	
+	T	N	frame-level	frame-level	
 481	T	N N N	frequency prediction	frequency prediction	5
 534	T	N	front-end	front-end	37
 	T	N	FSTs	fsts	
@@ -170,6 +174,7 @@
 172	T	N	GlobalPhone	globalphone	35
 655	T	N N N	GlobalPhone Language Models	globalphone language model	4
 	T	A	GMM-based	GMM-based	
+	T	A N	GMMbased VAD	GMMbased VAD	
 	T	N	GPU	gpu	
 164	T	N	GPUs	gpus	12
 269	T	A N N	gradient reversal layer	gradient reversal layer	8
@@ -244,6 +249,7 @@
 2418	T	A	letter-to-sound	letter-to-sound	2
 182	T	A N	lexical analysis	lexical analysis	22
 754	T	A N N	lexical analysis WFST	lexical analysis wfst	7
+	T	N	lexicon	lexicon	
 64	T	N	LibriSpeech	librispeech	24
 703	T	N	LibriTTS	libritts	4
 1732	T	A N	Light Supervision	light supervision	2
@@ -349,6 +355,7 @@
 	T	N N	parametric synthesis	parametric synthesis	
 	T	N N	parametric TTS	parametric tts	
 24	T	N	ParaNet	paranet	46
+	T	N	part of speech	part of speech	
 331	T	N	Part-of-Speech	part-of-speech	7
 	T	N	PER	per	
 	T	N A	phone mapping	phone mapping	
@@ -366,6 +373,7 @@
 1738	T	A N	phoneme-based	phoneme-based	2
 	T	N	phoneme-by-phoneme	phoneme-to-phoneme	
 	T	A	phoneme-independent	phoneme-independent	
+	T	N	phoneme-set	phoneme-set	
 48	V[s]	A N N	phonemic input representation	phonemic input representation	4
 1115	T	A N	phonemic lexicon	phonemic lexicon	
 57	T	A	phonetic	phonetic	49
@@ -386,6 +394,7 @@
 	T	N	prefix-stem	prefix-stem	
 259	T	N N N	probability density function	probability density function	8
 	T	N N	pronunciation dictionaries	pronunciation dictionary	
+	T	N N	pronunciation lexicon	pronunciation lexicon	
 42	T	N	prosody	prosody	30
 	T	N	QRNN	qrnn	
 2343	T	N	quinphone	quinphone	2
@@ -420,6 +429,7 @@
 645	T	N	Simple4All	simple4all	8
 311	V[s]	A N N	slow inference speed	slow inference speed	5
 143	T	N	softmax	softmax	13
+	T	N N	space model	space model	
 	T	N N	speaker embedding	speaker embedding	
 622	T	N N N	speaker encoder network	speaker encoder network	4
 346	T	A N	speaker-adversarial loss	speaker-adversarial loss	7
@@ -454,10 +464,12 @@
 	T	N	stem	stem	
 177	T	N	STFT	stft	11
 384	T	N N	STFT loss	stft loss	6
+	T	A N	supervised learning	supervised learning	
 	T	N	syllabification	syllabification	
 	T	N N	syllable segmentation	syllable segmentation	
 2593	T	A	syllable-based	syllable-based	1
 85	T	N N	synthesis model	synthesis model	19
+	T	N	synthesiser	synthesiser	
 	T	A N	synthesized speech	synthesize speech	
 353	T	N N	synthesizer network	synthesizer network	6
 246	T	A N	synthetic speech	synthetic speech	9
@@ -466,6 +478,7 @@
 	T	N N	Tacotron 2	Tacotron 2	
 	T	A	Tacotron-generated	Tacotron-generated	
 2265	T	A N	Tacotron-generated spectrograms	tacotron-generated spectrograms	1
+	T	N	tag-set	tag-set	
 142	T	N	TANH	tanh	13
 38	T	N N	target language	target language	33
 658	T	N N	target spectrogram	target spectrogram	4
@@ -493,6 +506,8 @@
 475	V[s]	A N P N	unsupervised adaptation of TTS	unsupervised adaptation of tts	2
 1475	T	A A N	unsupervised cross-lingual adaptation	unsupervised cross-lingual adaptation	2
 475	V[s]	A A N N	unsupervised cross-lingual speaker adaptation	unsupervised cross-lingual speaker adaptation	3
+	T	A N	unsupervised learning	unsupervised learning	
+	T	N	utterance-level	utterance-level	
 623	T	A N	variational autoencoder	variational autoencoder	4
 1555	T	A A A N	variational autoencoder-like residual encoder	variational autoencoder-like residual encoder	4
 641	T	A A N	variational residual encoder	variational residual encoder	4

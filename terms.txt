@@ -1,27 +1,7 @@
-Unsupervised unsupervised unsupervised ADJ A
-and and and CCONJ C
-lightly lightly lightly ADV 
-- - - PUNCT 
-supervised supervised supervise VERB V
-learning learning learning NOUN N
-for for for ADP P
-rapid rapid rapid ADJ A
-construction construction construction NOUN N
-of of of ADP P
-TTS tts tts PROPN N
-systems systems system NOUN N
-in in in ADP P
-multiple multiple multiple ADJ A
-languages languages language NOUN N
-from from from ADP P
-‘ ‘ ' PUNCT 
-found found find VERB V
-’ ’ ' PUNCT 
-data data datum NOUN N
-: : : PUNCT 
-evaluation evaluation evaluation NOUN N
-and and and CCONJ C
-analysis analysis analysis NOUN N
+STATISTICAL statistical statistical ADJ A
+PARAMETRIC parametric parametric ADJ A
+SPEECH speech speech NOUN N
+SYNTHESIS synthesis synthesis NOUN N
 "
 
 " "
@@ -29,7 +9,7 @@ analysis analysis analysis NOUN N
 " "
 
 " SPACE 
-Abstract abstract abstract ADJ A
+ABSTRACT abstract abstract ADJ A
 "
 
 " "
@@ -39,308 +19,17 @@ Abstract abstract abstract ADJ A
 " SPACE 
 This this this DET 
 paper paper paper NOUN N
-presents presents present VERB V
-techniques techniques technique NOUN N
-for for for ADP P
-building building build VERB V
-text text text NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-speech speech speech NOUN N
-frontends frontends frontend NOUN N
-in in in ADP P
+gives gives give VERB V
 a a a DET 
-way way way NOUN N
-that that that DET 
-avoids avoids avoid VERB V
-the the the DET 
-need need need NOUN N
-for for for ADP P
-language language language NOUN N
-- - - PUNCT 
-specific specific specific ADJ A
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-, , , PUNCT 
-but but but CCONJ C
-instead instead instead ADV 
-relies relies rely VERB V
-on on on ADP P
-universal universal universal ADJ A
-resources resources resource NOUN N
-( ( ( PUNCT 
-such such such ADJ A
-as as as SCONJ C
-the the the DET 
-Unicode unicode unicode PROPN N
-character character character NOUN N
-database database database NOUN N
-) ) ) PUNCT 
-and and and CCONJ C
-unsupervised unsupervised unsupervised ADJ A
-learning learning learning NOUN N
-from from from ADP P
-unannotated unannotated unannotated ADJ A
-data data datum NOUN N
-to to to PART P
-ease ease ease VERB V
-system system system NOUN N
-development development development NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-acquisition acquisition acquisition NOUN N
+general general general ADJ A
+overview overview overview NOUN N
 of of of ADP P
-expert expert expert ADJ A
-language language language NOUN N
-- - - PUNCT 
-specific specific specific ADJ A
-knowledge knowledge knowledge NOUN N
-and and and CCONJ C
-expert expert expert NOUN N
-annotated annotated annotated ADJ A
-data data datum NOUN N
-is is be AUX 
-a a a DET 
-major major major ADJ A
-bottleneck bottleneck bottleneck NOUN N
-in in in ADP P
-the the the DET 
-development development development NOUN N
-of of of ADP P
-corpusbased corpusbased corpusbased ADJ A
-TTS tts tts PROPN N
-systems systems system NOUN N
-in in in ADP P
-new new new ADJ A
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-methods methods method NOUN N
-presented presented present VERB V
-here here here ADV 
-side side side NOUN N
-- - - PUNCT 
-step step step VERB V
-the the the DET 
-need need need NOUN N
-for for for ADP P
-such such such ADJ A
-resources resources resource NOUN N
-as as as SCONJ C
-pronunciation pronunciation pronunciation NOUN N
-lexicons lexicons lexicon NOUN N
-, , , PUNCT 
-phonetic phonetic phonetic ADJ A
-feature feature feature NOUN N
-sets sets set NOUN N
-, , , PUNCT 
-part part part NOUN N
-of of of ADP P
-speech speech speech NOUN N
-tagged tagged tag VERB V
-data data datum NOUN N
-, , , PUNCT 
-etc etc etc X 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-paper paper paper NOUN N
-explains explains explain VERB V
-how how how ADV 
-the the the DET 
 techniques techniques technique NOUN N
-introduced introduced introduce VERB V
-are are be AUX 
-applied applied apply VERB V
-to to to ADP P
-the the the DET 
-14 14 14 NUM 
-languages languages language NOUN N
-of of of ADP P
-a a a DET 
-corpus corpus corpus NOUN N
-of of of ADP P
-‘ ‘ ' PUNCT 
-found found find VERB V
-’ ’ ' PUNCT 
-audiobook audiobook audiobook VERB V
-data data datum NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Results results result NOUN N
-of of of ADP P
-an an an DET 
-evaluation evaluation evaluation NOUN N
-of of of ADP P
-the the the DET 
-intelligibility intelligibility intelligibility NOUN N
-of of of ADP P
-the the the DET 
-systems systems system NOUN N
-resulting resulting result VERB V
-from from from ADP P
-applying applying apply VERB V
-these these these DET 
-novel novel novel ADJ A
-techniques techniques technique NOUN N
-to to to ADP P
-this this this DET 
-data data datum NOUN N
-are are be AUX 
-presented presented present VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Index index index NOUN N
-Terms terms term NOUN N
-: : : PUNCT 
-multilingual multilingual multilingual ADJ A
+in in in ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
 speech speech speech NOUN N
 synthesis synthesis synthesis NOUN N
-, , , PUNCT 
-unsupervised unsupervised unsupervised ADJ A
-learning learning learning NOUN N
-, , , PUNCT 
-vector vector vector NOUN N
-space space space NOUN N
-model model model NOUN N
-, , , PUNCT 
-text text text NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-speech speech speech NOUN N
-, , , PUNCT 
-audiobook audiobook audiobook PROPN N
-data data data PROPN N
-"  
-
-" "  
-
-" "  
-
-" SPACE 
-Introduction introduction introduction NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-Collecting collecting collect VERB V
-and and and CCONJ C
-annotating annotating annotate VERB V
-the the the DET 
-data data datum NOUN N
-necessary necessary necessary ADJ A
-for for for ADP P
-training training train VERB V
-a a a DET 
-corpus corpus corpus NOUN N
-- - - PUNCT 
-based based base VERB V
-text text text NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-speech speech speech NOUN N
-( ( ( PUNCT 
-TTS tts tts PROPN N
-) ) ) PUNCT 
-conversion conversion conversion NOUN N
-system system system NOUN N
-in in in ADP P
-a a a DET 
-new new new ADJ A
-language language language NOUN N
-requires requires require VERB V
-considerable considerable considerable ADJ A
-time time time NOUN N
-and and and CCONJ C
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Conventionally conventionally conventionally ADV 
-, , , PUNCT 
-audio audio audio ADJ A
-data data datum NOUN N
-for for for ADP P
-training training train VERB V
-a a a DET 
-synthesiser synthesiser synthesiser ADJ A
-back back back NOUN N
-- - - PUNCT 
-end end end NOUN N
-( ( ( PUNCT 
-or or or CCONJ C
-waveform waveform waveform VERB V
-generator generator generator NOUN N
-) ) ) PUNCT 
-will will will VERB V
-be be be AUX 
-gathered gathered gather VERB V
-during during during ADP P
-a a a DET 
-speciallyarranged speciallyarranged speciallyarrange VERB V
-recording recording recording NOUN N
-session session session NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-this this this DET 
-, , , PUNCT 
-a a a DET 
-recording recording recording NOUN N
-script script script NOUN N
-must must must VERB V
-be be be AUX 
-prepared prepared prepare VERB V
-, , , PUNCT 
-a a a DET 
-suitable suitable suitable ADJ A
-studio studio studio NOUN N
-must must must VERB V
-be be be AUX 
-found found find VERB V
-, , , PUNCT 
-a a a DET 
-voice voice voice NOUN N
-talent talent talent NOUN N
-must must must VERB V
-be be be AUX 
-recruited recruited recruit VERB V
-and and and CCONJ C
-speech speech speech NOUN N
-recording recording recording NOUN N
-must must must VERB V
-be be be AUX 
-carefully carefully carefully ADV 
-supervised supervised supervise VERB V
 . . . PUNCT 
 "
 " "
@@ -349,1356 +38,155 @@ supervised supervised supervise VERB V
 One one one NUM 
 of of of ADP P
 the the the DET 
-primary primary primary ADJ A
-goals goals goal NOUN N
+instances instances instance NOUN N
 of of of ADP P
-the the the DET 
-Simple4All simple4all simple4all PROPN N
-1 1 1 NUM 
-project project project NOUN N
-is is be AUX 
-to to to PART P
-reduce reduce reduce VERB V
-the the the DET 
-time time time NOUN N
-and and and CCONJ C
-expert expert expert NOUN N
-knowledge knowledge knowledge NOUN N
-needed needed need VERB V
-to to to PART P
-produce produce produce VERB V
-new new new PROPN N
-TTS tts tts PROPN N
-systems systems system NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-we we -PRON- PRON 
-presented presented present VERB V
-a a a DET 
-toolkit toolkit toolkit NOUN N
-– – – PUNCT 
-developed developed develop VERB V
-as as as SCONJ C
-part part part NOUN N
-of of of ADP P
-this this this DET 
-project project project NOUN N
-– – – PUNCT 
-for for for ADP P
-segmenting segmenting segment VERB V
-and and and CCONJ C
-aligning aligning align VERB V
-existing existing exist VERB V
-freely freely freely ADV 
-- - - PUNCT 
-available available available ADJ A
-recordings recordings recording NOUN N
-( ( ( PUNCT 
-audiobooks audiobooks audiobooks PROPN N
-) ) ) PUNCT 
+these these these DET 
+techniques techniques technique NOUN N
 , , , PUNCT 
-circumventing circumventing circumvent VERB V
-to to to ADP P
-some some some DET 
-extent extent extent NOUN N
-the the the DET 
-need need need NOUN N
-to to to PART P
-engineer engineer engineer VERB V
-purpose purpose purpose NOUN N
+called called call VERB V
+HMM hmm hmm NOUN N
 - - - PUNCT 
-recorded recorded record VERB V
-speech speech speech NOUN N
-corpora corpora corpora NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-outcome outcome outcome NOUN N
-of of of ADP P
-applying applying apply VERB V
-those those those DET 
-tools tools tool NOUN N
-to to to ADP P
-audiobooks audiobooks audiobook NOUN N
-in in in ADP P
-14 14 14 NUM 
-languages languages language NOUN N
-is is be AUX 
-what what what PRON 
-we we -PRON- PRON 
-have have have AUX 
-released released release VERB V
-under under under ADP P
-the the the DET 
-name name name NOUN N
-of of of ADP P
-the the the DET 
-Tundra tundra tundra PROPN N
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-However however however ADV 
-, , , PUNCT 
-the the the DET 
-problems problems problem NOUN N
-associated associated associate VERB V
-with with with ADP P
-TTS tts tts PROPN N
-data data data PROPN N
-- - - PUNCT 
-collection collection collection NOUN N
-do do do AUX 
-not not not PART P
-stop stop stop VERB V
-when when when ADV 
-we we -PRON- PRON 
-have have have AUX 
-obtained obtained obtain VERB V
-transcribed transcribed transcribe VERB V
-speech speech speech NOUN N
-data data datum NOUN N
-for for for ADP P
-training training train VERB V
-a a a DET 
-synthesiser synthesiser synthesiser ADJ A
-back back back NOUN N
-- - - PUNCT 
-end end end NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-TTS tts tts PROPN N
-systems systems system NOUN N
-also also also ADV 
-require require require VERB V
-a a a DET 
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-( ( ( PUNCT 
-or or or CCONJ C
-text text text NOUN N
-analysis analysis analysis NOUN N
-module module module NOUN N
-) ) ) PUNCT 
-, , , PUNCT 
-which which which DET 
-accepts accepts accept VERB V
-input input input NOUN N
-text text text NOUN N
-and and and CCONJ C
-outputs outputs output VERB V
-a a a DET 
-representation representation representation NOUN N
-of of of ADP P
-an an an DET 
-utterance utterance utterance NOUN N
-suitable suitable suitable ADJ A
-for for for ADP P
-input input input NOUN N
-into into into ADP P
-the the the DET 
-back back back NOUN N
-- - - PUNCT 
-end end end NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-TTS tts tts PROPN N
-systems systems system NOUN N
-generally generally generally ADV 
-represent represent represent VERB V
-utterances utterances utterance NOUN N
-in in in ADP P
-terms terms term NOUN N
-of of of ADP P
-units units unit NOUN N
-and and and CCONJ C
-features features feature NOUN N
 based based base VERB V
-on on on ADP P
-linguistic linguistic linguistic ADJ A
-knowledge knowledge knowledge NOUN N
-, , , PUNCT 
-such such such ADJ A
-as as as SCONJ C
-phonemes phonemes phoneme NOUN N
-, , , PUNCT 
-syllables syllables syllable NOUN N
-, , , PUNCT 
-lexical lexical lexical ADJ A
-stress stress stress NOUN N
-, , , PUNCT 
-phrase phrase phrase NOUN N
-boundaries boundaries boundary NOUN N
-etc etc etc X 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-components components component NOUN N
-of of of ADP P
-the the the DET 
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-that that that DET 
-predict predict predict VERB V
-these these these DET 
-from from from ADP P
-input input input NOUN N
-text text text NOUN N
-are are be AUX 
-either either either ADV 
-made made make VERB V
-up up up ADP P
-of of of ADP P
-hand hand hand NOUN N
-- - - PUNCT 
-written written write VERB V
-rules rules rule NOUN N
-or or or CCONJ C
-statistical statistical statistical ADJ A
-modules modules module NOUN N
-; ; ; PUNCT 
-acquiring acquiring acquire VERB V
-the the the DET 
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-required required require VERB V
-either either either CCONJ C
-to to to PART P
-manually manually manually ADV 
-specify specify specify VERB V
-those those those DET 
-rules rules rule NOUN N
-, , , PUNCT 
-or or or CCONJ C
-to to to PART P
-annotate annotate annotate VERB V
-a a a DET 
-learning learning learn VERB V
-sample sample sample NOUN N
-on on on ADP P
-which which which DET 
-to to to PART P
-train train train VERB V
-the the the DET 
-statistical statistical statistical ADJ A
-models models model NOUN N
-, , , PUNCT 
-represents represents represent VERB V
-a a a DET 
-major major major ADJ A
-obstacle obstacle obstacle NOUN N
-to to to ADP P
-creating creating create VERB V
-a a a DET 
-TTS tts tts PROPN N
-system system system NOUN N
-for for for ADP P
-a a a DET 
-new new new ADJ A
-target target target NOUN N
-language language language NOUN N
-and and and CCONJ C
-requires requires require VERB V
-highly highly highly ADV 
-specialised specialised specialised ADJ A
-knowledge knowledge knowledge NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Such such such ADJ A
-non non non ADJ A
-- - - ADJ A
-trivial trivial trivial ADJ A
-tasks tasks task NOUN N
-include include include VERB V
-, , , PUNCT 
-for for for ADP P
-example example example NOUN N
-, , , PUNCT 
-specifying specifying specify VERB V
-a a a DET 
-phoneme phoneme phoneme NOUN N
-- - - PUNCT 
-set set set NOUN N
-or or or CCONJ C
-part part part NOUN N
-of of of ADP P
-speech speech speech NOUN N
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
 ( ( ( PUNCT 
-POS pos pos PROPN N
-) ) ) PUNCT 
-tag tag tag NOUN N
+or or or CCONJ C
+simply simply simply ADV 
+HMM hmm hmm NOUN N
 - - - PUNCT 
-set set set VERB V
-for for for ADP P
-a a a DET 
-language language language NOUN N
-where where where ADV 
-one one one PRON 
+based based base VERB V
+synthesis synthesis synthesis NOUN N
+) ) ) PUNCT 
+, , , PUNCT 
 has has have AUX 
-not not not PART P
-already already already ADV 
+recently recently recently ADV 
 been been be AUX 
-defined defined define VERB V
-; ; ; PUNCT 
-annotating annotating annotate VERB V
-plain plain plain ADJ A
-text text text NOUN N
-with with with ADP P
-POS pos pos PROPN N
-tags tags tag NOUN N
-, , , PUNCT 
-as as as SCONJ C
-required required require VERB V
-to to to PART P
-train train train VERB V
-a a a DET 
-POS pos pos NOUN N
-tagger tagger tagger NOUN N
-and and and CCONJ C
-annotating annotating annotate VERB V
-the the the DET 
-surface surface surface NOUN N
-forms forms form NOUN N
-of of of ADP P
-words words word NOUN N
-with with with ADP P
-phonemes phonemes phoneme NOUN N
-to to to PART P
-build build build VERB V
-a a a DET 
-pronunciation pronunciation pronunciation NOUN N
-lexicon lexicon lexicon NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-toolkit toolkit toolkit NOUN N
-we we -PRON- PRON 
-are are be AUX 
-developing developing develop VERB V
-in in in ADP P
-Simple4All simple4all simple4all PROPN N
-includes includes include VERB V
-tools tools tool NOUN N
-for for for ADP P
-constructing constructing construct VERB V
-TTS tts tts PROPN N
-front front front NOUN N
-- - - PUNCT 
-ends ends end NOUN N
-which which which DET 
-make make make VERB V
-as as as ADV 
-few few few ADJ A
-implicit implicit implicit ADJ A
-assumptions assumptions assumption NOUN N
-about about about ADP P
-the the the DET 
-target target target NOUN N
-language language language NOUN N
-as as as SCONJ C
-possible possible possible ADJ A
-, , , PUNCT 
-and and and CCONJ C
-which which which DET 
-can can can VERB V
-be be be AUX 
-configured configured configure VERB V
-with with with ADP P
-minimal minimal minimal ADJ A
-effort effort effort NOUN N
-and and and CCONJ C
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-to to to PART P
-suit suit suit VERB V
-arbitrary arbitrary arbitrary ADJ A
-new new new ADJ A
-target target target NOUN N
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-To to to ADP P
-this this this DET 
-end end end NOUN N
-, , , PUNCT 
-the the the DET 
-modules modules module NOUN N
-rely rely rely VERB V
-on on on ADP P
-resources resources resource NOUN N
-which which which DET 
-are are be AUX 
-intended intended intend VERB V
+shown shown show VERB V
 to to to PART P
 be be be AUX 
-universal universal universal ADJ A
-, , , PUNCT 
-such such such ADJ A
-as as as SCONJ C
-the the the DET 
-Unicode unicode unicode PROPN N
-character character character NOUN N
-database database database NOUN N
-, , , PUNCT 
-and and and CCONJ C
-employ employ employ VERB V
-unsupervised unsupervised unsupervised ADJ A
-learning learning learning NOUN N
-so so so SCONJ C
-that that that SCONJ C
-unlabelled unlabelled unlabelled ADJ A
-text text text NOUN N
-resources resources resource NOUN N
-can can can VERB V
-be be be AUX 
-exploited exploited exploit VERB V
-without without without ADP P
-the the the DET 
-need need need NOUN N
-for for for ADP P
-costly costly costly ADJ A
-annotation annotation annotation NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-current current current ADJ A
-paper paper paper NOUN N
-presents presents present VERB V
-these these these DET 
-tools tools tool NOUN N
-and and and CCONJ C
-explains explains explain VERB V
-how how how ADV 
-they they -PRON- PRON 
-were were be AUX 
-applied applied apply VERB V
-to to to ADP P
-the the the DET 
-data data datum NOUN N
-of of of ADP P
-the the the DET 
-Tundra tundra tundra PROPN N
-corpus corpus corpus NOUN N
-to to to PART P
-produce produce produce VERB V
-TTS tts tts PROPN N
-systems systems system NOUN N
+very very very ADV 
+effective effective effective ADJ A
 in in in ADP P
-14 14 14 NUM 
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-We we -PRON- PRON 
-present present present VERB V
-the the the DET 
-results results result NOUN N
-of of of ADP P
-a a a DET 
-listening listening listen VERB V
-test test test NOUN N
-of of of ADP P
-the the the DET 
-intelligibility intelligibility intelligibility NOUN N
-of of of ADP P
-those those those DET 
-systems systems system NOUN N
-, , , PUNCT 
-and and and CCONJ C
-thus thus thus ADV 
-evaluate evaluate evaluate VERB V
-the the the DET 
-entire entire entire ADJ A
-pipeline pipeline pipeline NOUN N
-implemented implemented implement VERB V
-by by by ADP P
-our our -PRON- DET 
-toolkit toolkit toolkit NOUN N
-, , , PUNCT 
-which which which DET 
-begins begins begin VERB V
-with with with ADP P
-raw raw raw ADJ A
-found found find VERB V
-data data datum NOUN N
-and and and CCONJ C
-ends ends end NOUN N
-with with with ADP P
-trained trained train VERB V
-TTS tts tts PROPN N
-systems systems system NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-An an an DET 
-initial initial initial ADJ A
-public public public ADJ A
-version version version NOUN N
-of of of ADP P
-tools tools tool NOUN N
-for for for ADP P
-this this this DET 
-whole whole whole ADJ A
-pipeline pipeline pipeline NOUN N
-( ( ( PUNCT 
-for for for ADP P
-segmenting segmenting segment VERB V
-and and and CCONJ C
-aligning aligning align VERB V
-found found find VERB V
-data data datum NOUN N
-and and and CCONJ C
-for for for ADP P
-producing producing produce VERB V
-TTS tts tts PROPN N
-systems systems system NOUN N
-with with with ADP P
-minimal minimal minimal ADJ A
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-) ) ) PUNCT 
-is is be AUX 
-due due due ADJ A
-to to to PART P
-be be be AUX 
-released released release VERB V
-in in in ADP P
-November november november PROPN N
-2013 2013 2013 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-prior prior prior ADJ A
-work work work NOUN N
-addressing addressing address VERB V
-the the the DET 
-bottleneck bottleneck bottleneck NOUN N
-in in in ADP P
-TTS tts tts PROPN N
-system system system NOUN N
-construction construction construction NOUN N
-represented represented represent VERB V
-by by by ADP P
-the the the DET 
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-, , , PUNCT 
-unified unified unify VERB V
-systems systems system NOUN N
-aimed aimed aim VERB V
-at at at ADP P
-producing producing produce VERB V
-complete complete complete ADJ A
-systems systems system NOUN N
-have have have AUX 
-generally generally generally ADV 
-taken taken take VERB V
-the the the DET 
-strategy strategy strategy NOUN N
-of of of ADP P
-providing providing provide VERB V
-infrastructure infrastructure infrastructure NOUN N
-to to to PART P
-ease ease ease VERB V
-the the the DET 
-collection collection collection NOUN N
-by by by ADP P
-non non non NOUN N
-- - - NOUN N
-experts experts expert NOUN N
-of of of ADP P
-the the the DET 
-conventional conventional conventional ADJ A
-resources resources resource NOUN N
-necessary necessary necessary ADJ A
-for for for ADP P
-system system system NOUN N
-construction construction construction NOUN N
+generating generating generate VERB V
+acceptable acceptable acceptable ADJ A
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 This this this DET 
-infrastructure infrastructure infrastructure NOUN N
-might might may VERB V
-take take take VERB V
-the the the DET 
-form form form NOUN N
-of of of ADP P
-user user user NOUN N
-- - - PUNCT 
-friendly friendly friendly ADJ A
-development development development NOUN N
-environments environments environment NOUN N
-, , , PUNCT 
-or or or CCONJ C
-training training training NOUN N
-and and and CCONJ C
-on on on ADV 
-- - - PUNCT 
-going going go VERB V
-support support support NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Prior prior prior ADJ A
-work work work NOUN N
-has has have AUX 
-also also also ADV 
-presented presented present VERB V
-unsupervised unsupervised unsupervised ADJ A
-methods methods method NOUN N
-for for for ADP P
-building building build VERB V
-systems systems system NOUN N
-based based base VERB V
-on on on ADP P
-letters letters letter NOUN N
-rather rather rather ADV 
-than than than SCONJ C
-phonemes phonemes phoneme NOUN N
-, , , PUNCT 
-induction induction induction NOUN N
-of of of ADP P
-phone phone phone NOUN N
-- - - PUNCT 
-sets sets set NOUN N
-, , , PUNCT 
-syllable syllable syllable ADJ A
-- - - PUNCT 
-like like like ADJ A
-units units unit NOUN N
-, , , PUNCT 
-or or or CCONJ C
-lexicons lexicons lexicon NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-However however however ADV 
-, , , PUNCT 
-this this this DET 
-work work work NOUN N
-has has have AUX 
-not not not PART P
-been been be AUX 
-presented presented present VERB V
-as as as SCONJ C
-an an an DET 
-integrated integrated integrate VERB V
-framework framework framework NOUN N
-for for for ADP P
-producing producing produce VERB V
-end end end NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-end end end NOUN N
-TTS tts tts PROPN N
-systems systems system NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Furthermore furthermore furthermore ADV 
-, , , PUNCT 
-despite despite despite SCONJ C
-the the the DET 
-significant significant significant ADJ A
-work work work NOUN N
-on on on ADP P
-unsupervised unsupervised unsupervised ADJ A
-learning learning learning NOUN N
-in in in ADP P
-Natural natural natural ADJ A
-Language language language NOUN N
-Processing processing processing NOUN N
-and and and CCONJ C
-Information information information NOUN N
-Retrieval retrieval retrieval NOUN N
-, , , PUNCT 
-potentially potentially potentially ADV 
-useful useful useful ADJ A
-techniques techniques technique NOUN N
-developed developed develop VERB V
-in in in ADP P
-those those those DET 
-fields fields field NOUN N
-have have have AUX 
-not not not PART P
-been been be AUX 
-applied applied apply VERB V
-to to to ADP P
-the the the DET 
-problem problem problem NOUN N
-of of of ADP P
-TTS tts tts PROPN N
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-induction induction induction NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Database database database NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-The the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-is is be AUX 
-a a a DET 
-standardised standardised standardised ADJ A
-multilingual multilingual multilingual ADJ A
-corpus corpus corpus NOUN N
-designed designed design VERB V
-for for for ADP P
-text text text NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-speech speech speech NOUN N
-research research research NOUN N
-with with with ADP P
-imperfect imperfect imperfect NOUN N
-or or or CCONJ C
-found found find VERB V
-data data datum NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-It it -PRON- PRON 
-consists consists consist VERB V
-of of of ADP P
-14 14 14 NUM 
-audiobooks audiobooks audiobook NOUN N
-in in in ADP P
-14 14 14 NUM 
-different different different ADJ A
-languages languages language NOUN N
-( ( ( PUNCT 
-Bulgarian bulgarian bulgarian ADJ A
-, , , PUNCT 
-Danish danish danish ADJ A
-, , , PUNCT 
-Dutch dutch dutch ADJ A
-, , , PUNCT 
-English english english PROPN N
-, , , PUNCT 
-Finnish finnish finnish ADJ A
-, , , PUNCT 
-French french french ADJ A
-, , , PUNCT 
-German german german ADJ A
-, , , PUNCT 
-Hungarian hungarian hungarian ADJ A
-, , , PUNCT 
-Italian italian italian ADJ A
-, , , PUNCT 
-Polish polish polish ADJ A
-, , , PUNCT 
-Portuguese portuguese portuguese ADJ A
-, , , PUNCT 
-Romanian romanian romanian ADJ A
-, , , PUNCT 
-Russian russian russian ADJ A
-and and and CCONJ C
-Spanish spanish spanish ADJ A
-) ) ) PUNCT 
-and and and CCONJ C
-amounts amounts amount VERB V
-to to to ADP P
-approximately approximately approximately ADV 
-60 60 60 NUM 
-hours hours hour NOUN N
-of of of ADP P
-speech speech speech NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-complete complete complete ADJ A
-list list list NOUN N
-of of of ADP P
-the the the DET 
-audiobooks audiobooks audiobook NOUN N
-with with with ADP P
-their their -PRON- DET 
-sources sources source NOUN N
-and and and CCONJ C
-durations durations duration NOUN N
-can can can VERB V
-be be be AUX 
-found found find VERB V
-here here here ADV 
-http://tundra.simple4all.org http://tundra.simple4all.org http://tundra.simple4all.org PROPN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-corpus corpus corpus NOUN N
-provides provides provide VERB V
-utterance utterance utterance NOUN N
-- - - PUNCT 
-level level level NOUN N
-alignments alignments alignment NOUN N
-obtained obtained obtain VERB V
-with with with ADP P
-a a a DET 
-lightly lightly lightly ADV 
-supervised supervised supervise VERB V
-process process process NOUN N
-described described describe VERB V
-in in in ADP P
-and and and CCONJ C
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-accuracy accuracy accuracy NOUN N
-of of of ADP P
-the the the DET 
-alignment alignment alignment NOUN N
-method method method NOUN N
-, , , PUNCT 
-as as as SCONJ C
-described described describe VERB V
-in in in ADP P
-is is be AUX 
-of of of ADP P
-7 7 7 NUM 
-% % % NOUN N
-SER ser ser NOUN N
-and and and CCONJ C
-0.8 0.8 0.8 NUM 
-% % % NOUN N
-WER wer wer NOUN N
-, , , PUNCT 
-therefore therefore therefore ADV 
-some some some DET 
-light light light ADJ A
-post post post NOUN N
-- - - ADJ A
-processing processing processing NOUN N
-is is be AUX 
-required required require VERB V
-in in in ADP P
-order order order NOUN N
-to to to PART P
-eliminate eliminate eliminate VERB V
-some some some DET 
-of of of ADP P
-the the the DET 
-erroneous erroneous erroneous ADJ A
-utterances utterances utterance NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Initial initial initial ADJ A
-segmentation segmentation segmentation NOUN N
-of of of ADP P
-the the the DET 
-audiobooks audiobooks audiobook NOUN N
-into into into ADP P
-utterancesize utterancesize utterancesize ADJ A
-chunks chunks chunk NOUN N
-was was be AUX 
-performed performed perform VERB V
-using using use VERB V
-the the the DET 
-lightly lightly lightly ADV 
-supervised supervised supervise VERB V
-GMMbased gmmbased gmmbase VERB V
-VAD vad vad NOUN N
-described described describe VERB V
-in in in ADP P
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-As as as SCONJ C
-most most most ADJ A
-of of of ADP P
-the the the DET 
-used used used ADJ A
-audiobooks audiobooks audiobook NOUN N
-are are be AUX 
-recorded recorded record VERB V
-in in in ADP P
-non non non ADJ A
-- - - ADJ A
-specialised specialised specialised ADJ A
-environments environments environment NOUN N
-, , , PUNCT 
-the the the DET 
-speech speech speech NOUN N
-data data datum NOUN N
-underwent underwent undergo VERB V
-a a a DET 
-light light light ADJ A
-cleaning cleaning cleaning NOUN N
-process process process NOUN N
-: : : PUNCT 
-normalising normalising normalise VERB V
-the the the DET 
-DC dc dc PROPN N
-offset offset offset PROPN N
-, , , PUNCT 
-applying applying apply VERB V
-a a a DET 
-multi multi multi ADJ A
-- - - ADJ A
-band band band ADJ A
-noise noise noise NOUN N
-gate gate gate PROPN N
-removal removal removal PROPN N
-and and and CCONJ C
-an an an DET 
-RMS rms rms ADV 
-- - - PUNCT 
-based based base VERB V
-deverberation deverberation deverberation NOUN N
-method method method NOUN N
-, , , PUNCT 
-as as as SCONJ C
-described described describe VERB V
-in in in ADP P
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-System system system NOUN N
-Construction construction construction NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-For for for ADP P
-each each each DET 
-of of of ADP P
-the the the DET 
-14 14 14 NUM 
-languages languages language NOUN N
-of of of ADP P
-the the the DET 
-Tundra tundra tundra PROPN N
-corpus corpus corpus PROPN N
-, , , PUNCT 
-a a a DET 
-TTS tts tts PROPN N
-system system system NOUN N
-was was be AUX 
-trained trained train VERB V
-with with with ADP P
-no no no DET 
-reliance reliance reliance NOUN N
-of of of ADP P
-language language language NOUN N
-- - - PUNCT 
-specific specific specific ADJ A
-expertise expertise expertise NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Although although although SCONJ C
-speaker speaker speaker NOUN N
-and and and CCONJ C
-recording recording recording NOUN N
-differences differences difference NOUN N
-mean mean mean VERB V
-that that that SCONJ C
-meaningful meaningful meaningful ADJ A
-comparison comparison comparison NOUN N
-between between between ADP P
-languages languages language NOUN N
-is is be AUX 
-difficult difficult difficult ADJ A
-, , , PUNCT 
-we we -PRON- PRON 
-wished wished wish VERB V
-to to to PART P
-make make make VERB V
-the the the DET 
-training training training NOUN N
-conditions conditions condition NOUN N
-for for for ADP P
-the the the DET 
-14 14 14 NUM 
-voices voices voice NOUN N
-as as as ADV 
-uniform uniform uniform ADJ A
-as as as SCONJ C
-possible possible possible ADJ A
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Therefore therefore therefore ADV 
-, , , PUNCT 
-we we -PRON- PRON 
-selected selected select VERB V
-a a a DET 
-1 1 1 NUM 
-hour hour hour NOUN N
-subset subset subset NOUN N
-of of of ADP P
-each each each DET 
-of of of ADP P
-the the the DET 
-languages languages language NOUN N
-’ ’ ’ PART P
-data data datum NOUN N
-on on on ADP P
-which which which DET 
-to to to PART P
-train train train VERB V
-voices voices voice NOUN N
-for for for ADP P
-this this this DET 
-evaluation evaluation evaluation NOUN N
-: : : PUNCT 
-the the the DET 
-method method method NOUN N
-of of of ADP P
-data data datum NOUN N
-selection selection selection NOUN N
-we we -PRON- PRON 
-used used use VERB V
-is is be AUX 
-explained explained explain VERB V
-in in in ADP P
-Section section section NOUN N
-3.1 3.1 3.1 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Then then then ADV 
-text text text NOUN N
-analysis analysis analysis NOUN N
-and and and CCONJ C
-waveform waveform waveform VERB V
-generation generation generation NOUN N
-components components component NOUN N
-were were be AUX 
-trained trained train VERB V
-on on on ADP P
-that that that DET 
-selected selected select VERB V
-data data datum NOUN N
-as as as SCONJ C
-explained explained explain VERB V
-in in in ADP P
-Sections sections section NOUN N
-3.2 3.2 3.2 NUM 
-and and and CCONJ C
-3.3 3.3 3.3 NUM 
-, , , PUNCT 
-respectively respectively respectively ADV 
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Lightly lightly lightly ADV 
-- - - PUNCT 
-supervised supervised supervise VERB V
-data data datum NOUN N
-selection selection selection NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-Our our -PRON- DET 
-principal principal principal ADJ A
-current current current ADJ A
-interest interest interest NOUN N
-in in in ADP P
-audiobook audiobook audiobook PROPN N
-data data datum NOUN N
-is is be AUX 
-that that that SCONJ C
-it it -PRON- PRON 
-presents presents present VERB V
-a a a DET 
-source source source NOUN N
-of of of ADP P
-‘ ‘ ' PUNCT 
-found found find VERB V
-’ ’ ' PUNCT 
-data data datum NOUN N
-from from from ADP P
-which which which DET 
-TTS tts tts PROPN N
-training training training NOUN N
-databases databases database NOUN N
-can can can VERB V
-be be be AUX 
-harvested harvested harvest VERB V
-without without without ADP P
-the the the DET 
-need need need NOUN N
-to to to PART P
-construct construct construct VERB V
-a a a DET 
-recording recording recording NOUN N
-script script script NOUN N
-, , , PUNCT 
-recruit recruit recruit VERB V
-a a a DET 
-native native native ADJ A
-speaker speaker speaker NOUN N
-of of of ADP P
-the the the DET 
-target target target NOUN N
-language language language NOUN N
-, , , PUNCT 
-and and and CCONJ C
-supervise supervise supervise VERB V
-the the the DET 
-recording recording recording NOUN N
-of of of ADP P
-a a a DET 
-script script script NOUN N
-from from from ADP P
-scratch scratch scratch NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-the the the DET 
-present present present ADJ A
-work work work NOUN N
-, , , PUNCT 
-therefore therefore therefore ADV 
-, , , PUNCT 
-we we -PRON- PRON 
-ignore ignore ignore VERB V
-the the the DET 
-other other other ADJ A
-possible possible possible ADJ A
-advantage advantage advantage NOUN N
-of of of ADP P
-using using use VERB V
-audiobook audiobook audiobook PROPN N
-data data datum NOUN N
-: : : PUNCT 
-that that that SCONJ C
-harnessing harnessing harness VERB V
-the the the DET 
-variety variety variety NOUN N
-of of of ADP P
-speaking speaking speak VERB V
-styles styles style NOUN N
-present present present ADJ A
-in in in ADP P
-audiobooks audiobooks audiobook NOUN N
-might might may VERB V
-enable enable enable VERB V
-us us -PRON- PRON 
-to to to PART P
-produce produce produce VERB V
-less less less ADJ A
-‘ ‘ ' PUNCT 
-mechanical’-sounding mechanical’-sounding mechanical’-sounding PROPN N
-TTS tts tts NOUN N
-systems systems system NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Although although although SCONJ C
-this this this DET 
-is is be AUX 
-a a a DET 
-longer longer long ADJ A
-- - - PUNCT 
-term term term NOUN N
-goal goal goal NOUN N
-, , , PUNCT 
-we we -PRON- PRON 
-here here here ADV 
-follow follow follow VERB V
-an an an DET 
-approach approach approach NOUN N
-similar similar similar ADJ A
-to to to ADP P
-the the the DET 
-one one one NUM 
-presented presented present VERB V
-in in in ADP P
-, , , PUNCT 
-which which which DET 
-aims aims aim VERB V
-to to to PART P
-select select select VERB V
-a a a DET 
-neutral neutral neutral ADJ A
-subset subset subset NOUN N
-of of of ADP P
-a a a DET 
-database database database NOUN N
-containing containing contain VERB V
-diverse diverse diverse ADJ A
-speech speech speech NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-that that that DET 
 paper paper paper NOUN N
-, , , PUNCT 
-9 9 9 NUM 
-utterancelevel utterancelevel utterancelevel NOUN N
-acoustic acoustic acoustic ADJ A
-features features feature NOUN N
-are are be AUX 
-used used use VERB V
-along along along ADP P
-with with with ADP P
-several several several ADJ A
-textual textual textual ADJ A
-cues cues cue NOUN N
-to to to PART P
-exclude exclude exclude VERB V
-diverse diverse diverse ADJ A
-speech speech speech NOUN N
-from from from ADP P
-the the the DET 
-training training training NOUN N
-set set set VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Thresholds thresholds threshold NOUN N
-over over over ADP P
+also also also ADV 
+contrasts contrasts contrast VERB V
 these these these DET 
-features features feature NOUN N
-are are be AUX 
-set set set VERB V
-manually manually manually ADV 
-by by by ADP P
+techniques techniques technique NOUN N
+with with with ADP P
 the the the DET 
-system system system NOUN N
-builder builder builder NOUN N
+more more more ADV 
+conventional conventional conventional ADJ A
+unit unit unit NOUN N
+selection selection selection NOUN N
+technology technology technology NOUN N
+that that that DET 
+has has have AUX 
+dominated dominated dominate VERB V
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+over over over ADP P
+the the the DET 
+last last last ADJ A
+ten ten ten NUM 
+years years year NOUN N
+. . . PUNCT 
+Advantages advantages advantage NOUN N
+and and and CCONJ C
+disadvantages disadvantages disadvantage NOUN N
+of of of ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+are are be AUX 
+highlighted highlighted highlight VERB V
+as as as ADV 
+well well well ADV 
+as as as SCONJ C
+identifying identifying identify VERB V
+where where where ADV 
+we we -PRON- PRON 
+expect expect expect VERB V
+the the the DET 
+key key key ADJ A
+developments developments development NOUN N
 to to to PART P
-exclude exclude exclude VERB V
-non non non ADJ A
-- - - ADJ A
-neutral neutral neutral ADJ A
-utterances utterances utterance NOUN N
+appear appear appear VERB V
+in in in ADP P
+the the the DET 
+immediate immediate immediate ADJ A
+future future future NOUN N
 . . . PUNCT 
 "
+
 " "
+
 " "
+
 " SPACE 
-For for for ADP P
-the the the DET 
-current current current ADJ A
-work work work NOUN N
-we we -PRON- PRON 
-perform perform perform VERB V
-utterance utterance utterance NOUN N
-selection selection selection NOUN N
-using using use VERB V
-an an an DET 
-active active active ADJ A
-learning learning learning NOUN N
-approach approach approach NOUN N
+Index index index NOUN N
+Terms terms term NOUN N
+— — — PUNCT 
+Speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
 , , , PUNCT 
-with with with ADP P
-uncertainty uncertainty uncertainty NOUN N
-sampling sampling sampling NOUN N
+hidden hidden hide VERB V
+Markov markov markov NOUN N
+models models model NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+BACKGROUND background background VERB V
+"
+
+" "
+
+" "
+
+" SPACE 
+With with with ADP P
+the the the DET 
+increase increase increase NOUN N
+in in in ADP P
+power power power NOUN N
+and and and CCONJ C
+resources resources resource NOUN N
+of of of ADP P
+computer computer computer NOUN N
+technology technology technology NOUN N
+, , , PUNCT 
+building building build VERB V
+natural natural natural ADJ A
+sounding sounding sound VERB V
+synthetic synthetic synthetic ADJ A
+voices voices voice NOUN N
+has has have AUX 
+progressed progressed progress VERB V
+from from from ADP P
+a a a DET 
+knowledge knowledge knowledge NOUN N
+- - - PUNCT 
+based based base VERB V
+activity activity activity NOUN N
+to to to ADP P
+a a a DET 
+data data data NOUN N
+- - - PUNCT 
+based based base VERB V
+one one one NOUN N
 . . . PUNCT 
 "
 " "
@@ -1706,1637 +194,202 @@ sampling sampling sampling NOUN N
 " SPACE 
 Rather rather rather ADV 
 than than than SCONJ C
-being being be AUX 
-required required require VERB V
-to to to PART P
-tune tune tune VERB V
-thresholds thresholds threshold NOUN N
-manually manually manually ADV 
-, , , PUNCT 
-the the the DET 
-system system system NOUN N
-builder builder builder NOUN N
-is is be AUX 
-presented presented present VERB V
-with with with ADP P
-example example example NOUN N
-utterances utterances utterance NOUN N
-and and and CCONJ C
-asked asked ask VERB V
-to to to PART P
-indicate indicate indicate VERB V
-whether whether whether SCONJ C
-or or or CCONJ C
-not not not PART P
-they they -PRON- PRON 
-are are be AUX 
-spoken spoken speak VERB V
-in in in ADP P
-a a a DET 
-neutral neutral neutral ADJ A
-style style style NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-interface interface interface NOUN N
-therefore therefore therefore ADV 
-insulates insulates insulate VERB V
-the the the DET 
-user user user NOUN N
-from from from ADP P
-the the the DET 
-details details detail NOUN N
-of of of ADP P
-the the the DET 
-features features feature NOUN N
-used used use VERB V
-, , , PUNCT 
-and and and CCONJ C
-lets lets let VERB V
-the the the DET 
-user user user NOUN N
-focus focus focus NOUN N
-on on on ADP P
-what what what PRON 
-should should should VERB V
-be be be AUX 
-key key key ADJ A
-: : : PUNCT 
-their their -PRON- DET 
-intuitive intuitive intuitive ADJ A
-response response response NOUN N
-to to to ADP P
-hearing hearing hear VERB V
-speech speech speech NOUN N
-samples samples sample NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-procedure procedure procedure NOUN N
-we we -PRON- PRON 
-used used use VERB V
-is is be AUX 
-as as as SCONJ C
-follows follows follow VERB V
-: : : PUNCT 
-1 1 1 X 
-) ) ) PUNCT 
-Feature feature feature NOUN N
-extraction extraction extraction NOUN N
-First first first ADV 
-, , , PUNCT 
-frame frame frame NOUN N
-- - - PUNCT 
-level level level NOUN N
-features features feature NOUN N
-( ( ( PUNCT 
-F f f PROPN N
-0 0 0 NUM 
-, , , PUNCT 
-energy energy energy NOUN N
-and and and CCONJ C
-spectral spectral spectral ADJ A
-tilt tilt tilt NOUN N
-– – – PUNCT 
-approximated approximated approximate VERB V
-by by by ADP P
-1st 1st 1st PROPN N
-mel mel mel PROPN N
-cepstral cepstral cepstral PROPN N
-coefficient coefficient coefficient PROPN N
-) ) ) PUNCT 
-are are be AUX 
-obtained obtained obtain VERB V
-, , , PUNCT 
-from from from ADP P
-which which which DET 
-utterance utterance utterance NOUN N
-- - - PUNCT 
-level level level NOUN N
-features features feature NOUN N
-are are be AUX 
-computed computed compute VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-fact fact fact NOUN N
-that that that SCONJ C
-no no no DET 
-thresholds thresholds threshold NOUN N
-need need need VERB V
-to to to PART P
-be be be AUX 
-manually manually manually ADV 
-tuned tuned tune VERB V
-means means mean NOUN N
-that that that SCONJ C
-we we -PRON- PRON 
-can can can VERB V
-afford afford afford VERB V
-to to to PART P
-use use use VERB V
-a a a DET 
-great great great ADJ A
-many many many ADJ A
-more more more ADJ A
-features features feature NOUN N
-than than than SCONJ C
-the the the DET 
-9 9 9 NUM 
-employed employed employ VERB V
-in in in ADV 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Our our -PRON- DET 
-feature feature feature NOUN N
-set set set VERB V
-is is be AUX 
-based based base VERB V
-on on on ADP P
-the the the DET 
-one one one NUM 
-described described describe VERB V
-in in in ADP P
-: : : PUNCT 
-we we -PRON- PRON 
-compute compute compute VERB V
-mean mean mean ADJ A
-, , , PUNCT 
-standard standard standard ADJ A
-deviation deviation deviation NOUN N
-, , , PUNCT 
-range range range NOUN N
-, , , PUNCT 
-slope slope slope NOUN N
-, , , PUNCT 
-minimum minimum minimum ADJ A
-and and and CCONJ C
-maximum maximum maximum ADJ A
-( ( ( PUNCT 
-6-level 6-level 6-level NUM 
-factor factor factor NOUN N
-) ) ) PUNCT 
-for for for ADP P
-F f f PROPN N
-0 0 0 NUM 
-, , , PUNCT 
-spectral spectral spectral ADJ A
-tilt tilt tilt NOUN N
-, , , PUNCT 
-and and and CCONJ C
-energy energy energy NOUN N
-( ( ( PUNCT 
-3-level 3-level 3-level NUM 
-factor factor factor NOUN N
-) ) ) PUNCT 
-in in in ADP P
-the the the DET 
-following following follow VERB V
-sub sub sub NOUN N
-- - - PUNCT 
-segments segments segment NOUN N
-of of of ADP P
+handcrafting handcrafting handcraft VERB V
 each each each DET 
-utterance utterance utterance NOUN N
-: : : PUNCT 
-entire entire entire ADJ A
-utterance utterance utterance NOUN N
-, , , PUNCT 
-1st 1st 1st NOUN N
-and and and CCONJ C
-2nd 2nd 2nd ADJ A
-halfs halfs halfs PROPN N
-, , , PUNCT 
-all all all DET 
-4 4 4 NUM 
-quarters quarters quarter NOUN N
-, , , PUNCT 
-first first first ADJ A
-and and and CCONJ C
-last last last ADJ A
-100ms 100ms 100ms PROPN N
-, , , PUNCT 
-first first first ADJ A
-and and and CCONJ C
-last last last ADJ A
-200ms 200ms 200ms NOUN N
-( ( ( PUNCT 
-11-level 11-level 11-level NUM 
-factor factor factor NOUN N
-) ) ) PUNCT 
-, , , PUNCT 
-giving giving give VERB V
-a a a DET 
-total total total NOUN N
-of of of ADP P
-198 198 198 NUM 
-features features feature NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-2 2 2 NUM 
-) ) ) PUNCT 
-Initial initial initial ADJ A
-labelling labelling labelling NOUN N
-The the the DET 
-user user user NOUN N
-is is be AUX 
-presented presented present VERB V
-with with with ADP P
-the the the DET 
-audio audio audio NOUN N
-of of of ADP P
-s s s PROPN N
-randomly randomly randomly ADV 
-- - - PUNCT 
-selected selected select VERB V
-seed seed seed NOUN N
-utterances utterances utterance NOUN N
-from from from ADP P
-the the the DET 
-whole whole whole ADJ A
-corpus corpus corpus NOUN N
-( ( ( PUNCT 
-via via via ADP P
-a a a DET 
-text text text NOUN N
-- - - PUNCT 
-based based base VERB V
-user user user NOUN N
-interface interface interface NOUN N
-) ) ) PUNCT 
-and and and CCONJ C
-asked asked ask VERB V
-to to to PART P
-label label label VERB V
-them them -PRON- PRON 
-keep keep keep VERB V
-or or or CCONJ C
-discard discard discard ADJ A
-– – – PUNCT 
-utterances utterances utterance NOUN N
-are are be AUX 
-labelled labelled label VERB V
-with with with ADP P
-the the the DET 
-user user user NOUN N
-’s ’s ’s PART P
-decision decision decision NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-3 3 3 NUM 
-) ) ) PUNCT 
-Classifier classifier classifier NOUN N
-training training train VERB V
-A a a DET 
-classifier classifier classifier NOUN N
-is is be AUX 
-trained trained train VERB V
-on on on ADP P
-the the the DET 
-labelled labelled label VERB V
-examples examples example NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Our our -PRON- DET 
-choice choice choice NOUN N
-of of of ADP P
-classifier classifier classifier NOUN N
-is is be AUX 
-a a a DET 
-bagged bagged bag VERB V
-ensemble ensemble ensemble NOUN N
-of of of ADP P
-decision decision decision NOUN N
-trees trees tree NOUN N
-because because because SCONJ C
-it it -PRON- PRON 
-can can can VERB V
-be be be AUX 
-trained trained train VERB V
-quickly quickly quickly ADV 
-( ( ( PUNCT 
-allowing allowing allow VERB V
-online online online ADV 
-active active active ADJ A
-learning learning learning NOUN N
-in in in ADP P
-real real real ADJ A
-time time time NOUN N
-) ) ) PUNCT 
-, , , PUNCT 
-is is be AUX 
-robust robust robust ADJ A
-against against against ADP P
-noisy noisy noisy ADJ A
-features features feature NOUN N
-and and and CCONJ C
-able able able ADJ A
-to to to PART P
-accept accept accept VERB V
-unnormalised unnormalised unnormalised ADJ A
-input input input NOUN N
-variables variables variable NOUN N
-, , , PUNCT 
-and and and CCONJ C
-mixtures mixtures mixture NOUN N
-of of of ADP P
-discrete discrete discrete ADJ A
-and and and CCONJ C
-continuous continuous continuous ADJ A
-input input input NOUN N
-variables variables variable NOUN N
-( ( ( PUNCT 
-allowing allowing allow VERB V
-a a a DET 
-great great great ADJ A
-many many many ADJ A
-different different different ADJ A
-acoustic acoustic acoustic ADJ A
-features features feature NOUN N
-to to to PART P
-be be be AUX 
-used used use VERB V
-, , , PUNCT 
-and and and CCONJ C
-different different different ADJ A
-types types type NOUN N
-of of of ADP P
-features features feature NOUN N
-) ) ) PUNCT 
-, , , PUNCT 
-allows allows allow VERB V
-the the the DET 
-space space space NOUN N
-of of of ADP P
-utterances utterances utterance NOUN N
-to to to PART P
-be be be AUX 
-partitioned partitioned partition VERB V
-recursively recursively recursively ADV 
-( ( ( PUNCT 
-enabling enabling enable VERB V
-complex complex complex ADJ A
-interactions interactions interaction NOUN N
-between between between ADP P
-features features feature NOUN N
-to to to PART P
-be be be AUX 
-detected detected detect VERB V
-) ) ) PUNCT 
-, , , PUNCT 
-and and and CCONJ C
-provides provides provide VERB V
-robust robust robust ADJ A
-estimates estimates estimate NOUN N
-of of of ADP P
-class class class NOUN N
-probabilities probabilities probability NOUN N
-( ( ( PUNCT 
-important important important ADJ A
-for for for ADP P
-step step step NOUN N
-4 4 4 NUM 
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-4 4 4 NUM 
-) ) ) PUNCT 
-Uncertainty uncertainty uncertainty NOUN N
-sampling sampling sample VERB V
-The the the DET 
-set set set NOUN N
-of of of ADP P
-u u u NOUN N
-uncertain uncertain uncertain ADJ A
-examples examples example NOUN N
-( ( ( PUNCT 
-utterances utterances utterance NOUN N
-about about about ADP P
-which which which DET 
-the the the DET 
-classifier classifier classifier NOUN N
-is is be AUX 
-most most most ADV 
-uncertain uncertain uncertain ADJ A
-– – – PUNCT 
-in in in ADP P
-the the the DET 
-present present present ADJ A
-case case case NOUN N
-, , , PUNCT 
-the the the DET 
-utterances utterances utterance NOUN N
-which which which DET 
-have have have AUX 
-closest closest close ADJ A
-to to to ADP P
-0.5 0.5 0.5 NUM 
-keep keep keep VERB V
-probability probability probability NOUN N
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-utterances utterances utterance NOUN N
-in in in ADP P
-this this this DET 
-set set set NOUN N
-are are be AUX 
-presented presented present VERB V
-to to to ADP P
-the the the DET 
-user user user NOUN N
-for for for ADP P
-labelling labelling labelling NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-5 5 5 NUM 
-) ) ) PUNCT 
-Steps steps step VERB V
-3 3 3 NUM 
-and and and CCONJ C
-4 4 4 NUM 
-are are be AUX 
-repeated repeated repeat VERB V
-as as as SCONJ C
-many many many ADJ A
-times times time NOUN N
-as as as SCONJ C
-time time time NOUN N
-allows allows allow VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-6 6 6 NUM 
-) ) ) PUNCT 
-The the the DET 
-set set set NOUN N
-of of of ADP P
-utterances utterances utterance NOUN N
-either either either CCONJ C
-labelled labelled label VERB V
-keep keep keep VERB V
-by by by ADP P
-the the the DET 
-user user user NOUN N
-are are be AUX 
-kept kept keep VERB V
-for for for ADP P
-training training training NOUN N
-, , , PUNCT 
-as as as ADV 
-well well well ADV 
-as as as SCONJ C
-enough enough enough ADJ A
-of of of ADP P
-the the the DET 
-utterances utterances utterance NOUN N
-to to to PART P
-which which which DET 
-the the the DET 
-trained trained train VERB V
-classifier classifier classifier NOUN N
-gives gives give VERB V
-the the the DET 
-highest highest high ADJ A
-keep keep keep VERB V
-probability probability probability NOUN N
-to to to ADP P
-, , , PUNCT 
-to to to PART P
-make make make VERB V
-up up up ADP P
-the the the DET 
-desired desired desire VERB V
-quantity quantity quantity NOUN N
-of of of ADP P
-training training training NOUN N
-data data datum NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-the the the DET 
-work work work NOUN N
-presented presented present VERB V
-here here here ADV 
-, , , PUNCT 
-s s s PROPN N
-was was be AUX 
-set set set VERB V
-to to to ADP P
-15 15 15 NUM 
-and and and CCONJ C
-u u u PRON 
-was was be AUX 
-set set set VERB V
-to to to ADP P
-1 1 1 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-That that that ADV 
-is is is ADV 
-, , , PUNCT 
-the the the DET 
-user user user NOUN N
-was was be AUX 
-asked asked ask VERB V
-to to to PART P
-provide provide provide VERB V
-15 15 15 NUM 
-labels labels label NOUN N
-at at at ADP P
-the the the DET 
-outset outset outset NOUN N
-, , , PUNCT 
-and and and CCONJ C
-presented presented present VERB V
-with with with ADP P
-a a a DET 
-single single single ADJ A
-uncertain uncertain uncertain ADJ A
-example example example NOUN N
-at at at ADP P
-each each each DET 
-iteration iteration iteration NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-stopping stopping stop VERB V
-criterion criterion criterion NOUN N
-we we -PRON- PRON 
-used used use VERB V
-in in in ADP P
-this this this DET 
-work work work NOUN N
-was was be AUX 
-to to to PART P
-limit limit limit VERB V
-the the the DET 
-number number number NOUN N
-of of of ADP P
-iterations iterations iteration NOUN N
-to to to ADP P
-15 15 15 NUM 
-– – – PUNCT 
-in in in ADP P
-the the the DET 
-present present present ADJ A
-, , , PUNCT 
-utterance utterance utterance NOUN N
-selection selection selection NOUN N
-time time time NOUN N
-was was be AUX 
-limited limited limit VERB V
-to to to ADP P
-approximately approximately approximately ADV 
-20 20 20 NUM 
-minutes minutes minute NOUN N
-per per per ADP P
-language language language NOUN N
-, , , PUNCT 
-and and and CCONJ C
-15 15 15 NUM 
-was was be AUX 
-found found find VERB V
-to to to PART P
-be be be AUX 
-a a a DET 
-reasonable reasonable reasonable ADJ A
-number number number NOUN N
-of of of ADP P
-iterations iterations iteration NOUN N
-in in in ADP P
-that that that DET 
-time time time NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Informal informal informal ADJ A
-comparison comparison comparison NOUN N
-suggested suggested suggest VERB V
-the the the DET 
-approach approach approach NOUN N
-outlined outlined outline VERB V
-is is be AUX 
-beneficial beneficial beneficial ADJ A
-for for for ADP P
-this this this DET 
-task task task NOUN N
-, , , PUNCT 
-but but but CCONJ C
-in in in ADP P
-ongoing ongoing ongoing ADJ A
-work work work NOUN N
-we we -PRON- PRON 
-are are be AUX 
-testing testing test VERB V
-this this this DET 
-rigorously rigorously rigorously ADJ A
-and and and CCONJ C
-comparing comparing compare VERB V
-uncertainty uncertainty uncertainty NOUN N
-sampling sampling sample VERB V
-with with with ADP P
-random random random ADJ A
-sampling sampling sampling NOUN N
-, , , PUNCT 
-as as as ADV 
-well well well ADV 
-as as as SCONJ C
-applying applying apply VERB V
-our our -PRON- DET 
-active active active ADJ A
-learning learning learning NOUN N
-tool tool tool NOUN N
-to to to ADP P
-other other other ADJ A
-TTS tts tts PROPN N
-tasks tasks task NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-construction construction construction NOUN N
-with with with ADP P
-unsupervised unsupervised unsupervised ADJ A
-learning learning learning NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-The the the DET 
-TTS tts tts PROPN N
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-building building building NOUN N
-tools tools tool NOUN N
-used used use VERB V
-for for for ADP P
-this this this DET 
-work work work NOUN N
-are are be AUX 
-based based base VERB V
-on on on ADP P
-ideas ideas idea NOUN N
-outlined outlined outline VERB V
-in in in ADP P
-and and and CCONJ C
-applied applied apply VERB V
-to to to ADP P
-Spanish spanish spanish PROPN N
-TTS tts tts PROPN N
-in in in ADP P
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Input input input NOUN N
-to to to ADP P
-the the the DET 
-system system system NOUN N
-consists consists consist VERB V
-of of of ADP P
-the the the DET 
-audio audio audio NOUN N
-of of of ADP P
-utterances utterances utterance NOUN N
-selected selected select VERB V
-as as as SCONJ C
-described described describe VERB V
-in in in ADP P
-Section section section NOUN N
-3.1 3.1 3.1 NUM 
-, , , PUNCT 
-together together together ADV 
-with with with ADP P
-their their -PRON- DET 
-text text text NOUN N
-transcription transcription transcription NOUN N
-( ( ( PUNCT 
-aligned aligned align VERB V
-at at at ADP P
-the the the DET 
-utterance utterance utterance NOUN N
-level level level NOUN N
-) ) ) PUNCT 
-: : : PUNCT 
-in in in ADP P
-the the the DET 
-present present present ADJ A
-case case case NOUN N
-, , , PUNCT 
-these these these DET 
-are are be AUX 
-taken taken take VERB V
-from from from ADP P
-the the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-, , , PUNCT 
-and and and CCONJ C
-had had have AUX 
-been been be AUX 
-obtained obtained obtain VERB V
-as as as SCONJ C
-summarised summarised summarise VERB V
-in in in ADP P
-Section section section NOUN N
-2 2 2 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-As as as SCONJ C
-an an an DET 
-additional additional additional ADJ A
-input input input NOUN N
-, , , PUNCT 
-5 5 5 NUM 
-million million million NUM 
-words words word NOUN N
-of of of ADP P
-running running run VERB V
-text text text NOUN N
-data data datum NOUN N
-were were be AUX 
-obtained obtained obtain VERB V
-from from from ADP P
-Wikipedia wikipedia wikipedia PROPN N
-in in in ADP P
-the the the DET 
-target target target NOUN N
-languages languages language NOUN N
-for for for ADP P
-construction construction construction NOUN N
-of of of ADP P
-the the the DET 
-wordand wordand wordand PROPN N
-letterrepresentations letterrepresentations letterrepresentation NOUN N
-described described describe VERB V
-below below below ADV 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Text text text NOUN N
-which which which DET 
-is is be AUX 
-input input input NOUN N
-to to to ADP P
-the the the DET 
-system system system NOUN N
-is is be AUX 
-assumed assumed assume VERB V
-to to to PART P
-be be be AUX 
-UTF-8 utf-8 utf-8 PROPN N
-encoded encoded encode VERB V
-: : : PUNCT 
-given given give VERB V
-UTF-8 utf-8 utf-8 PROPN N
-text text text NOUN N
-, , , PUNCT 
-text text text NOUN N
-processing processing processing NOUN N
-is is be AUX 
-fully fully fully ADV 
-automatic automatic automatic ADJ A
-and and and CCONJ C
-makes makes make VERB V
-use use use NOUN N
-of of of ADP P
-a a a DET 
-theoretically theoretically theoretically ADV 
-universal universal universal ADJ A
-resource resource resource NOUN N
-: : : PUNCT 
-the the the DET 
-Unicode unicode unicode PROPN N
-database database database NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Figure figure figure NOUN N
-: : : PUNCT 
-Use use use NOUN N
-of of of ADP P
-a a a DET 
-letter letter letter NOUN N
-space space space NOUN N
-to to to PART P
-replace replace replace VERB V
 phonetic phonetic phonetic ADJ A
-knowledge knowledge knowledge NOUN N
-in in in ADP P
-decision decision decision NOUN N
-- - - PUNCT 
-tree tree tree NOUN N
-based based base VERB V
-state state state NOUN N
-- - - PUNCT 
-tying tying tying NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Shown shown show VERB V
-here here here ADV 
-are are be AUX 
-2 2 2 NUM 
-dimensions dimensions dimension NOUN N
-of of of ADP P
-the the the DET 
-actual actual actual ADJ A
-letter letter letter NOUN N
-space space space NOUN N
-induced induced induce VERB V
-in in in ADP P
-training training train VERB V
-the the the DET 
-Romanian romanian romanian ADJ A
-system system system NOUN N
-described described describe VERB V
-in in in ADP P
-the the the DET 
-paper paper paper NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-3 3 3 NUM 
-lines lines line NOUN N
-bisecting bisecting bisect VERB V
-the the the DET 
-space space space NOUN N
-represent represent represent VERB V
-the the the DET 
-3 3 3 NUM 
-questions questions question NOUN N
-actually actually actually ADV 
-asked asked ask VERB V
-in in in ADP P
-the the the DET 
-uppermost uppermost uppermost ADJ A
-fragment fragment fragment NOUN N
-( ( ( PUNCT 
-first first first ADJ A
-three three three NUM 
-‘ ‘ ' PUNCT 
-generations generations generation NOUN N
-’ ’ ' PUNCT 
-) ) ) PUNCT 
-of of of ADP P
-the the the DET 
-state state state NOUN N
-- - - PUNCT 
-tying tying tie VERB V
-decision decision decision NOUN N
-tree tree tree NOUN N
-for for for ADP P
-the the the DET 
-central central central ADJ A
-state state state NOUN N
-of of of ADP P
-the the the DET 
-model model model NOUN N
-for for for ADP P
-spectral spectral spectral ADJ A
-envelope envelope envelope NOUN N
-features features feature NOUN N
-. . . PUNCT 
-Letters letters letter NOUN N
-shown shown show VERB V
-in in in ADP P
-black black black NOUN N
-are are be AUX 
-‘ ‘ ' PUNCT 
-heard heard hear VERB V
-’ ’ ' PUNCT 
-by by by ADP P
-the the the DET 
-system system system NOUN N
-( ( ( PUNCT 
-i.e. i.e. i.e. X 
-are are be AUX 
-present present present ADJ A
-in in in ADP P
-the the the DET 
-transcriptions transcriptions transcription NOUN N
-of of of ADP P
-the the the DET 
-audio audio audio ADJ A
-training training training NOUN N
-data data datum NOUN N
-) ) ) PUNCT 
-but but but CCONJ C
-ones ones one NOUN N
-shown shown show VERB V
-in in in ADP P
-grey grey grey PROPN N
-are are be AUX 
-only only only ADV 
-‘ ‘ ' PUNCT 
-seen seen see VERB V
-’ ’ ' PUNCT 
-( ( ( PUNCT 
-i.e. i.e. i.e. X 
-appear appear appear VERB V
-only only only ADV 
-in in in ADP P
-textual textual textual ADJ A
-training training training NOUN N
-data data datum NOUN N
-) ) ) PUNCT 
+unit unit unit NOUN N
 and and and CCONJ C
-are are be AUX 
-mainly mainly mainly ADV 
-foreign foreign foreign ADJ A
-language language language NOUN N
-letters letters letter NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Unicode unicode unicode VERB V
-character character character NOUN N
-properties properties property NOUN N
-are are be AUX 
-used used use VERB V
-to to to PART P
-tokenise tokenise tokenise VERB V
-the the the DET 
-text text text NOUN N
-and and and CCONJ C
-characterise characterise characterise VERB V
-tokens tokens token NOUN N
-as as as SCONJ C
-words words word NOUN N
+its its -PRON- DET 
+applicable applicable applicable ADJ A
+contexts contexts contexts NOUN N
 , , , PUNCT 
-whitespace whitespace whitespace NOUN N
-, , , PUNCT 
-punctuation punctuation punctuation NOUN N
-etc etc etc X 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Our our -PRON- DET 
-modules modules module NOUN N
-have have have AUX 
-so so so ADV 
-far far far ADV 
-been been be AUX 
-successfully successfully successfully ADV 
-applied applied apply VERB V
-to to to ADP P
-a a a DET 
-variety variety variety NOUN N
-of of of ADP P
-alphabetic alphabetic alphabetic ADJ A
-( ( ( PUNCT 
-Latin latin latin PROPN N
-- - - PUNCT 
-based based base VERB V
-, , , PUNCT 
-Cyrillic cyrillic cyrillic ADJ A
-) ) ) PUNCT 
-and and and CCONJ C
-alphasyllabic alphasyllabic alphasyllabic ADJ A
-( ( ( PUNCT 
-Brahmic brahmic brahmic ADJ A
-) ) ) PUNCT 
-scripts scripts script NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Our our -PRON- DET 
-front front front ADJ A
-- - - PUNCT 
-ends ends end NOUN N
-currently currently currently ADV 
-expect expect expect VERB V
-text text text NOUN N
-without without without ADP P
-abbreviations abbreviations abbreviation NOUN N
-, , , PUNCT 
-numerals numerals numeral NOUN N
-, , , PUNCT 
-and and and CCONJ C
-symbols symbols symbol NOUN N
-( ( ( PUNCT 
-e.g. e.g. e.g. ADV 
-for for for ADP P
-currency currency currency NOUN N
-) ) ) PUNCT 
-which which which DET 
-require require require VERB V
-expansion expansion expansion NOUN N
-; ; ; PUNCT 
-however however however ADV 
-, , , PUNCT 
-the the the DET 
-lightly lightly lightly ADV 
-supervised supervised supervise VERB V
-learning learning learning NOUN N
-of of of ADP P
-modules modules module NOUN N
-to to to PART P
-expand expand expand VERB V
-such such such ADJ A
-non non non ADJ A
-- - - ADJ A
-standard standard standard ADJ A
-words words word NOUN N
-is is be AUX 
-an an an DET 
-active active active ADJ A
-topic topic topic NOUN N
-of of of ADP P
-research research research NOUN N
-, , , PUNCT 
-and and and CCONJ C
-we we -PRON- PRON 
-hope hope hope VERB V
-to to to PART P
-integrate integrate integrate VERB V
-such such such ADJ A
-modules modules module NOUN N
-into into into ADP P
-our our -PRON- DET 
-toolkit toolkit toolkit NOUN N
-in in in ADP P
-the the the DET 
-near near near ADJ A
-future future future NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-letter letter letter NOUN N
-- - - PUNCT 
-based based base VERB V
-approach approach approach NOUN N
-is is be AUX 
-used used use VERB V
-, , , PUNCT 
-in in in ADP P
-which which which DET 
-the the the DET 
-names names name NOUN N
-of of of ADP P
-letters letters letter NOUN N
-are are be AUX 
-used used use VERB V
-directly directly directly ADV 
-as as as SCONJ C
-the the the DET 
-names names name NOUN N
-of of of ADP P
-speech speech speech NOUN N
-modelling modelling modelling NOUN N
-units units unit NOUN N
-( ( ( PUNCT 
-in in in ADP P
-place place place NOUN N
-of of of ADP P
-the the the DET 
-phonemes phonemes phoneme NOUN N
-of of of ADP P
-a a a DET 
-conventional conventional conventional ADJ A
-front front front ADJ A
-- - - PUNCT 
-end end end NOUN N
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-This this this DET 
-has has have AUX 
-given given give VERB V
-good good good ADJ A
-results results result NOUN N
-for for for ADP P
-languages languages language NOUN N
-with with with ADP P
-transparent transparent transparent ADJ A
-alphabetic alphabetic alphabetic ADJ A
-orthographies orthographies orthography NOUN N
-such such such ADJ A
-as as as SCONJ C
-Romanian romanian romanian ADJ A
-, , , PUNCT 
-Spanish spanish spanish ADJ A
-and and and CCONJ C
-Finnish finnish finnish ADJ A
-, , , PUNCT 
-and and and CCONJ C
-can can can VERB V
-give give give VERB V
-acceptable acceptable acceptable ADJ A
-results results result NOUN N
-even even even ADV 
-for for for ADP P
-languages languages language NOUN N
-with with with ADP P
-less less less ADJ A
-transparent transparent transparent ADJ A
-orthographies orthographies orthography NOUN N
-, , , PUNCT 
-such such such ADJ A
-as as as SCONJ C
-English english english PROPN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-induced induced induced ADJ A
-front front front NOUN N
-- - - PUNCT 
-ends ends end NOUN N
-make make make VERB V
-use use use NOUN N
-of of of ADP P
-no no no DET 
-expert expert expert NOUN N
-- - - PUNCT 
-specified specified specify VERB V
-categories categories category NOUN N
-of of of ADP P
-letter letter letter NOUN N
-and and and CCONJ C
-word word word NOUN N
-, , , PUNCT 
-such such such ADJ A
-as as as SCONJ C
-phonetic phonetic phonetic ADJ A
-categories categories category NOUN N
-( ( ( PUNCT 
-vowel vowel vowel NOUN N
-, , , PUNCT 
-nasal nasal nasal NOUN N
-, , , PUNCT 
-approximant approximant approximant ADJ A
-, , , PUNCT 
-etc etc etc X 
-. . . PUNCT 
-) ) ) PUNCT 
-and and and CCONJ C
-part part part NOUN N
-of of of ADP P
-speech speech speech NOUN N
-categories categories category NOUN N
-( ( ( PUNCT 
-noun noun noun ADJ A
-, , , PUNCT 
-verb verb verb ADJ A
-, , , PUNCT 
-adjective adjective adjective ADJ A
-, , , PUNCT 
-etc etc etc X 
-. . . PUNCT 
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Instead instead instead ADV 
-, , , PUNCT 
-features features feature VERB V
-that that that DET 
-are are be AUX 
-designed designed design VERB V
-to to to PART P
-stand stand stand VERB V
-in in in ADP P
-for for for ADP P
-such such such ADJ A
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-but but but CCONJ C
-which which which DET 
-are are be AUX 
-derived derived derive VERB V
-fully fully fully ADV 
-automatically automatically automatically ADV 
-from from from ADP P
-the the the DET 
-distributional distributional distributional ADJ A
-analysis analysis analysis NOUN N
-of of of ADP P
-unannotated unannotated unannotated ADJ A
-text text text NOUN N
-( ( ( PUNCT 
-speech speech speech NOUN N
-transcriptions transcriptions transcription NOUN N
-and and and CCONJ C
-Wikipedia wikipedia wikipedia PROPN N
-text text text PROPN N
-) ) ) PUNCT 
-are are be AUX 
-used used use VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-distributional distributional distributional ADJ A
-analysis analysis analysis NOUN N
-is is be AUX 
-conducted conducted conduct VERB V
-via via via ADP P
-vector vector vector NOUN N
-space space space NOUN N
-models models model NOUN N
-( ( ( PUNCT 
-VSMs vsms vsm NOUN N
-) ) ) PUNCT 
-; ; ; PUNCT 
-the the the DET 
-VSM vsm vsm NOUN N
-was was be AUX 
-originally originally originally ADV 
-applied applied apply VERB V
-to to to ADP P
-the the the DET 
-characterisation characterisation characterisation NOUN N
-of of of ADP P
-documents documents document NOUN N
-for for for ADP P
-purposes purposes purpose NOUN N
-of of of ADP P
-Information information information NOUN N
-Retrieval retrieval retrieval NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-VSMs vsms vsm NOUN N
-are are be AUX 
-applied applied apply VERB V
-to to to ADP P
-TTS tts tts PROPN N
-in in in ADP P
-, , , PUNCT 
-where where where ADV 
-models models model NOUN N
-are are be AUX 
-built built build VERB V
-at at at ADP P
-various various various ADJ A
-levels levels level NOUN N
-of of of ADP P
-analysis analysis analysis NOUN N
-( ( ( PUNCT 
-letter letter letter NOUN N
-, , , PUNCT 
-word word word NOUN N
-and and and CCONJ C
-utterance utterance utterance NOUN N
-) ) ) PUNCT 
-from from from ADP P
-large large large ADJ A
-bodies bodies body NOUN N
-of of of ADP P
-unlabelled unlabelled unlabelled ADJ A
-text text text NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-To to to PART P
-build build build VERB V
-these these these DET 
-models models model NOUN N
-, , , PUNCT 
-co co co NOUN N
-- - - ADJ A
-occurrence occurrence occurrence ADJ A
-statistics statistics statistic NOUN N
-are are be AUX 
-gathered gathered gather VERB V
-in in in ADP P
-matrix matrix matrix PROPN N
-form form form NOUN N
-to to to PART P
-produce produce produce VERB V
 high high high ADJ A
 - - - PUNCT 
-dimensional dimensional dimensional ADJ A
-representations representations representation NOUN N
-of of of ADP P
-the the the DET 
-distributional distributional distributional ADJ A
-behaviour behaviour behaviour NOUN N
-of of of ADP P
-e.g. e.g. e.g. ADV 
-word word word NOUN N
-and and and CCONJ C
-letter letter letter NOUN N
-types types type NOUN N
-in in in ADP P
-the the the DET 
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Lower lower low ADJ A
-- - - PUNCT 
-dimensional dimensional dimensional ADJ A
-representations representations representation NOUN N
-are are be AUX 
-obtained obtained obtain VERB V
-by by by ADP P
-approximately approximately approximately ADV 
-factorising factorising factorise VERB V
-the the the DET 
-matrix matrix matrix NOUN N
-of of of ADP P
-raw raw raw ADJ A
-cooccurrence cooccurrence cooccurrence NOUN N
-counts counts count VERB V
-by by by ADP P
-the the the DET 
-application application application NOUN N
-of of of ADP P
-slim slim slim ADJ A
-singular singular singular ADJ A
-value value value NOUN N
-decomposition decomposition decomposition NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-This this this DET 
-distributional distributional distributional ADJ A
-analysis analysis analysis NOUN N
-places places place VERB V
-textual textual textual ADJ A
-objects objects object NOUN N
-in in in ADP P
-a a a DET 
-continuous continuous continuous ADJ A
-- - - PUNCT 
-valued valued value VERB V
-space space space NOUN N
-, , , PUNCT 
-which which which DET 
-is is be AUX 
-then then then ADV 
-partitioned partitioned partition VERB V
-by by by ADP P
-decision decision decision NOUN N
-tree tree tree NOUN N
-questions questions question NOUN N
-during during during ADP P
-the the the DET 
-training training training NOUN N
-of of of ADP P
-TTS tts tts PROPN N
-system system system NOUN N
-components components component VERB V
-such such such ADJ A
-as as as SCONJ C
-acoustic acoustic acoustic ADJ A
-models models model NOUN N
-for for for ADP P
-synthesis synthesis synthesis NOUN N
-or or or CCONJ C
-decision decision decision NOUN N
-trees trees tree NOUN N
-for for for ADP P
-pause pause pause NOUN N
-prediction prediction prediction NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-the the the DET 
-present present present ADJ A
+quality quality quality NOUN N
+synthetic synthetic synthetic ADJ A
 voices voices voice NOUN N
-, , , PUNCT 
-a a a DET 
-VSM vsm vsm NOUN N
-of of of ADP P
-letters letters letter NOUN N
-was was be AUX 
-constructed constructed construct VERB V
-by by by ADP P
-producing producing produce VERB V
-a a a DET 
-matrix matrix matrix NOUN N
-of of of ADP P
-counts counts count NOUN N
-of of of ADP P
-immediate immediate immediate ADJ A
-left left left NOUN N
-and and and CCONJ C
-right right right ADJ A
-co co co NOUN N
-- - - NOUN N
-occurrences occurrences occurrence NOUN N
-of of of ADP P
-each each each DET 
-letter letter letter NOUN N
-type type type NOUN N
-, , , PUNCT 
-and and and CCONJ C
-from from from ADP P
-this this this DET 
-matrix matrix matrix NOUN N
-a a a DET 
-5-dimensional 5-dimensional 5-dimensional NUM 
-space space space NOUN N
-was was be AUX 
-produced produced produce VERB V
-to to to PART P
-characterise characterise characterise VERB V
-letters letters letter NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Token token token NOUN N
-co co co NOUN N
-- - - NOUN N
-occurrence occurrence occurrence NOUN N
-was was be AUX 
-counted counted count VERB V
-with with with ADP P
-the the the DET 
-nearest nearest near ADJ A
-left left left ADJ A
-and and and CCONJ C
-right right right ADJ A
-neighbour neighbour neighbour NOUN N
-tokens tokens token NOUN N
-( ( ( PUNCT 
-excluding excluding exclude VERB V
-whitespace whitespace whitespace NOUN N
-tokens tokens token NOUN N
-) ) ) PUNCT 
-; ; ; PUNCT 
-co co co NOUN N
-- - - NOUN N
-occurrence occurrence occurrence NOUN N
-was was be AUX 
-counted counted count VERB V
-with with with ADP P
-the the the DET 
-most most most ADV 
-frequent frequent frequent ADJ A
-250 250 250 NUM 
-tokens tokens token NOUN N
-in in in ADP P
-the the the DET 
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-10-dimensional 10-dimensional 10-dimensional NUM 
-space space space NOUN N
-was was be AUX 
-produced produced produce VERB V
-to to to PART P
-characterise characterise characterise VERB V
-tokens tokens token NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Two two two NUM 
-dimensions dimensions dimension NOUN N
-of of of ADP P
-the the the DET 
-letter letter letter NOUN N
-space space space NOUN N
-induced induced induce VERB V
-in in in ADP P
-training training train VERB V
-the the the DET 
-Romanian romanian romanian ADJ A
-system system system NOUN N
-are are be AUX 
-shown shown show VERB V
-in in in ADP P
-Figure figure figure NOUN N
-1 1 1 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-It it -PRON- PRON 
-can can can VERB V
+may may may VERB V
 be be be AUX 
-seen seen see VERB V
-that that that SCONJ C
+built built build VERB V
+from from from ADP P
+sufficiently sufficiently sufficiently ADV 
+diverse diverse diverse ADJ A
+single single single ADJ A
+speaker speaker speaker NOUN N
+databases databases database NOUN N
+of of of ADP P
+natural natural natural ADJ A
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+We we -PRON- PRON 
+can can can VERB V
+see see see VERB V
+a a a DET 
+progression progression progression NOUN N
+from from from ADP P
+sxed sxed sxe VERB V
+inventories inventories inventory NOUN N
+, , , PUNCT 
+found found find VERB V
 in in in ADP P
+diphone diphone diphone NOUN N
+systems systems system NOUN N
+to to to ADP P
+the the the DET 
+more more more ADV 
+general general general ADJ A
+, , , PUNCT 
+but but but CCONJ C
+more more more ADJ A
+resource resource resource NOUN N
+consuming consuming consuming NOUN N
+, , , PUNCT 
+techniques techniques technique NOUN N
+of of of ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+synthesis synthesis synthesis NOUN N
+where where where ADV 
+appropriate appropriate appropriate ADJ A
+sub sub sub ADJ A
+- - - ADJ A
+word word word NOUN N
+units units unit NOUN N
+are are be AUX 
+automatically automatically automatically ADV 
+selected selected select VERB V
+from from from ADP P
+large large large ADJ A
+databases databases database NOUN N
+of of of ADP P
+natural natural natural ADJ A
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+ATR atr atr PROPN N
+ν ν ν PROPN N
+- - - PUNCT 
+talk talk talk NOUN N
+was was be AUX 
+the the the DET 
+srst srst srst NOUN N
+to to to PART P
+show show show VERB V
+the the the DET 
+effectiveness effectiveness effectiveness NOUN N
+of of of ADP P
+automatic automatic automatic ADJ A
+selection selection selection NOUN N
+of of of ADP P
+appropriate appropriate appropriate ADJ A
+units units unit NOUN N
+, , , PUNCT 
+then then then ADV 
+CHATR chatr chatr VERB V
+generalized generalized generalize VERB V
 these these these DET 
-dimensions dimensions dimension NOUN N
+techniques techniques technique NOUN N
+to to to ADP P
+multiple multiple multiple ADJ A
+languages languages language NOUN N
+and and and CCONJ C
+an an an DET 
+automatic automatic automatic ADJ A
+training training training NOUN N
+scheme scheme scheme NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Unit unit unit NOUN N
+selection selection selection NOUN N
+techniques techniques technique NOUN N
+have have have AUX 
+risen risen rise VERB V
+to to to PART P
+be be be AUX 
+the the the DET 
+dominant dominant dominant ADJ A
+synthesis synthesis synthesis NOUN N
+technique technique technique NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+quality quality quality NOUN N
 of of of ADP P
 the the the DET 
-space space space NOUN N
+output output output NOUN N
+derives derives derive VERB V
+directly directly directly ADV 
+from from from ADP P
+the the the DET 
+quality quality quality NOUN N
+of of of ADP P
+the the the DET 
+recordings recordings recording NOUN N
 , , , PUNCT 
-vowel vowel vowel NOUN N
 and and and CCONJ C
-consonant consonant consonant ADJ A
-symbols symbols symbol NOUN N
-are are be AUX 
-clearly clearly clearly ADV 
-separable separable separable ADJ A
+it it -PRON- PRON 
+appears appears appear VERB V
+that that that SCONJ C
+the the the DET 
+larger larger large ADJ A
+the the the DET 
+database database database NOUN N
+the the the DET 
+better better well ADJ A
+the the the DET 
+coverage coverage coverage NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Commercial commercial commercial ADJ A
+systems systems system NOUN N
+have have have AUX 
+exploited exploited exploit VERB V
+these these these DET 
+technique technique technique NOUN N
+to to to PART P
+bring bring bring VERB V
+us us -PRON- PRON 
+a a a DET 
+new new new ADJ A
+level level level NOUN N
+of of of ADP P
+synthetic synthetic synthetic ADJ A
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+although although although SCONJ C
+certainly certainly certainly ADV 
+successful successful successful ADJ A
+, , , PUNCT 
+there there there PRON 
+is is be AUX 
+always always always ADV 
+the the the DET 
+issue issue issue NOUN N
+of of of ADP P
+spurious spurious spurious ADJ A
+errors errors error NOUN N
 . . . PUNCT 
 "
 " "
@@ -3344,1812 +397,1792 @@ separable separable separable ADJ A
 " SPACE 
 When when when ADV 
 a a a DET 
-decision decision decision NOUN N
-tree tree tree NOUN N
-for for for ADP P
-clustering clustering cluster VERB V
-acoustic acoustic acoustic ADJ A
-model model model NOUN N
-states states state NOUN N
-is is be AUX 
-built built build VERB V
-and and and CCONJ C
-allowed allowed allow VERB V
+desired desired desire VERB V
+sentence sentence sentence NOUN N
+happens happens happen VERB V
 to to to PART P
-query query query VERB V
-items items item NOUN N
-’ ’ ' PUNCT 
-positions positions position NOUN N
-in in in ADP P
-these these these DET 
-2 2 2 NUM 
-dimensions dimensions dimension NOUN N
-, , , PUNCT 
-it it -PRON- PRON 
-can can can VERB V
-use use use VERB V
-all all all DET 
-partitions partitions partition NOUN N
-of of of ADP P
-the the the DET 
-space space space NOUN N
-orthogonal orthogonal orthogonal ADJ A
-to to to ADP P
-its its -PRON- DET 
-axes axes axis NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-decision decision decision NOUN N
-tree tree tree NOUN N
-question question question NOUN N
-such such such ADJ A
-as as as SCONJ C
-Is is be AUX 
-the the the DET 
-letter letter letter NOUN N
-’s ’s ’s PART P
-value value value NOUN N
-in in in ADP P
-VSM vsm vsm NOUN N
-dimension dimension dimension NOUN N
-3 3 3 NUM 
-< < < X 
--0.03 -0.03 -0.03 NUM 
-? ? ? PUNCT 
-is is be AUX 
-very very very ADV 
-nearly nearly nearly ADV 
-equivalent equivalent equivalent ADJ A
-to to to ADP P
-a a a DET 
-question question question NOUN N
-based based base VERB V
-on on on ADP P
-linguistic linguistic linguistic ADJ A
-knowledge knowledge knowledge NOUN N
-such such such ADJ A
-as as as SCONJ C
-Is is be AUX 
-the the the DET 
-letter letter letter NOUN N
-a a a DET 
-consonant consonant consonant NOUN N
-? ? ? PUNCT 
-The the the DET 
-categories categories category NOUN N
-of of of ADP P
-vowel vowel vowel NOUN N
+require require require VERB V
+phonetic phonetic phonetic ADJ A
 and and and CCONJ C
-consonant consonant consonant NOUN N
+prosody prosody prosody NOUN N
+contexts contexts context NOUN N
+that that that DET 
 are are be AUX 
-useful useful useful ADJ A
-for for for ADP P
-clustering clustering cluster VERB V
-acoustic acoustic acoustic ADJ A
-models models model NOUN N
-, , , PUNCT 
-and and and CCONJ C
-so so so ADV 
-decision decision decision NOUN N
-trees trees tree NOUN N
-actually actually actually ADV 
-built built build VERB V
-using using use VERB V
-this this this DET 
-space space space NOUN N
-use use use VERB V
-such such such ADJ A
-partitions partitions partition NOUN N
-of of of ADP P
-the the the DET 
-space space space NOUN N
-: : : PUNCT 
-the the the DET 
-3 3 3 NUM 
-lines lines line NOUN N
-shown shown show VERB V
-bisecting bisecting bisect VERB V
-the the the DET 
-space space space NOUN N
-in in in ADP P
-the the the DET 
-figure figure figure NOUN N
-represent represent represent VERB V
-the the the DET 
-3 3 3 NUM 
-questions questions question NOUN N
-actually actually actually ADV 
-asked asked ask VERB V
-in in in ADP P
-the the the DET 
-uppermost uppermost uppermost ADJ A
-fragment fragment fragment NOUN N
-( ( ( PUNCT 
-first first first ADJ A
-three three three NUM 
-‘ ‘ ' PUNCT 
-generations generations generation NOUN N
-’ ’ ' PUNCT 
-) ) ) PUNCT 
-of of of ADP P
-the the the DET 
-state state state NOUN N
-- - - PUNCT 
-tying tying tie VERB V
-decision decision decision NOUN N
-tree tree tree NOUN N
-for for for ADP P
-the the the DET 
-central central central ADJ A
-state state state NOUN N
-of of of ADP P
-the the the DET 
-model model model NOUN N
-for for for ADP P
-spectral spectral spectral ADJ A
-envelope envelope envelope NOUN N
-features features feature NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Distributional distributional distributional ADJ A
-analysis analysis analysis NOUN N
-places places place NOUN N
-linguistic linguistic linguistic ADJ A
-or or or CCONJ C
-textual textual textual ADJ A
-units units unit NOUN N
+under under under ADP P
+represented represented represent VERB V
 in in in ADP P
 a a a DET 
-continuous continuous continuous ADJ A
-space space space NOUN N
-which which which DET 
-is is be AUX 
-then then then ADV 
-partitioned partitioned partition VERB V
-on on on ADP P
-acoustic acoustic acoustic ADJ A
-evidence evidence evidence NOUN N
+database database database NOUN N
+, , , PUNCT 
+the the the DET 
+quality quality quality NOUN N
+of of of ADP P
+the the the DET 
+synthesizer synthesizer synthesizer NOUN N
+can can can VERB V
+be be be AUX 
+severely severely severely ADV 
+degraded degraded degrade VERB V
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-The the the DET 
-space space space NOUN N
-constrains constrains constrain VERB V
+Even even even ADV 
+though though though SCONJ C
+this this this DET 
+may may may VERB V
+be be be AUX 
+a a a DET 
+rare rare rare ADJ A
+event event event NOUN N
+, , , PUNCT 
+a a a DET 
+single single single ADJ A
+bad bad bad ADJ A
+join join join NOUN N
+in in in ADP P
+an an an DET 
+utterance utterance utterance NOUN N
+can can can VERB V
+ruin ruin ruin VERB V
 the the the DET 
+listeners listeners listener NOUN N
+ƀow ƀow ƀow NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+is is be AUX 
+not not not PART P
 possible possible possible ADJ A
-groupings groupings grouping NOUN N
+to to to PART P
+guarantee guarantee guarantee VERB V
+that that that SCONJ C
+bad bad bad ADJ A
+joins joins join NOUN N
+and/or and/or and/or CCONJ C
+inappropriate inappropriate inappropriate ADJ A
+units units unit NOUN N
+do do do AUX 
+not not not PART P
+occur occur occur VERB V
+, , , PUNCT 
+simply simply simply ADV 
+because because because SCONJ C
 of of of ADP P
-objects objects object NOUN N
+the the the DET 
+vast vast vast ADJ A
+number number number NOUN N
+of of of ADP P
+possible possible possible ADJ A
+combinations combinations combination NOUN N
+that that that DET 
+could could could VERB V
+occur occur occur VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+for for for ADP P
+particular particular particular ADJ A
+applications applications application NOUN N
+it it -PRON- PRON 
+is is be AUX 
+often often often ADV 
+possible possible possible ADJ A
+to to to PART P
+almost almost almost ADV 
+always always always ADV 
+avoid avoid avoid VERB V
+them them -PRON- PRON 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Limited limited limited ADJ A
+domain domain domain NOUN N
+synthesizers synthesizers synthesizer NOUN N
+, , , PUNCT 
+where where where ADV 
+the the the DET 
+database database database NOUN N
+is is be AUX 
+designed designed design VERB V
+for for for ADP P
+the the the DET 
+particular particular particular ADJ A
+application application application NOUN N
+, , , PUNCT 
+go go go VERB V
+a a a DET 
+long long long ADJ A
+way way way NOUN N
+to to to ADP P
+making making make VERB V
+almost almost almost ADV 
+all all all DET 
+the the the DET 
+synthetic synthetic synthetic ADJ A
+output output output NOUN N
+near near near SCONJ C
+perfect perfect perfect ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+in in in ADP P
+spite spite spite NOUN N
+of of of ADP P
+the the the DET 
+desire desire desire NOUN N
+for for for ADP P
+perfect perfect perfect ADJ A
+synthesis synthesis synthesis NOUN N
+all all all DET 
+the the the DET 
+time time time NOUN N
+, , , PUNCT 
+there there there PRON 
+are are be AUX 
+limitations limitations limitation NOUN N
+in in in ADP P
+the the the DET 
+unit unit unit NOUN N
+selection selection selection NOUN N
+technique technique technique NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+No no no INTJ 
+( ( ( PUNCT 
+or or or CCONJ C
+little little little ADJ A
+) ) ) PUNCT 
+modiscation modiscation modiscation NOUN N
+of of of ADP P
+the the the DET 
+selected selected select VERB V
+pieces pieces piece NOUN N
+of of of ADP P
+natural natural natural ADJ A
+speech speech speech NOUN N
+are are be AUX 
+carried carried carry VERB V
+out out out ADP P
+, , , PUNCT 
+thus thus thus ADV 
+limiting limiting limit VERB V
+the the the DET 
+output output output NOUN N
+speech speech speech NOUN N
+to to to ADP P
+the the the DET 
+style style style NOUN N
+of of of ADP P
+that that that DET 
+in in in ADP P
+the the the DET 
+original original original ADJ A
+recordings recordings recording NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+With with with ADP P
+a a a DET 
+desire desire desire NOUN N
+for for for ADP P
+more more more ADJ A
+control control control NOUN N
+over over over ADP P
+the the the DET 
+speech speech speech NOUN N
+variation variation variation NOUN N
+, , , PUNCT 
+larger larger large ADJ A
+databases databases database NOUN N
+containing containing contain VERB V
+examples examples example NOUN N
+of of of ADP P
+different different different ADJ A
+styles styles style NOUN N
+are are be AUX 
+required required require VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+IBM ibm ibm PROPN N
+’s ’s ’s PART P
+stylistic stylistic stylistic ADJ A
+synthesis synthesis synthesis NOUN N
+is is be AUX 
+a a a DET 
+good good good ADJ A
+example example example NOUN N
+but but but CCONJ C
+is is be AUX 
+limited limited limit VERB V
+by by by ADP P
+the the the DET 
+amount amount amount NOUN N
+of of of ADP P
+variations variations variation NOUN N
 that that that DET 
 can can can VERB V
 be be be AUX 
-considered considered consider VERB V
-during during during ADP P
-decision decision decision NOUN N
-tree tree tree NOUN N
-growing growing grow VERB V
+recorded recorded record VERB V
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-Distributional distributional distributional ADJ A
-analysis analysis analysis NOUN N
-also also also ADV 
-allows allows allow VERB V
-splits splits split NOUN N
-made made make VERB V
-to to to PART P
-generalise generalise generalise VERB V
+In in in ADP P
+direct direct direct ADJ A
+contrast contrast contrast NOUN N
 to to to ADP P
-items items item NOUN N
-that that that DET 
-are are be AUX 
-‘ ‘ ' PUNCT 
-seen seen see VERB V
-’ ’ ' PUNCT 
-by by by ADP P
-the the the DET 
-system system system NOUN N
+this this this DET 
+selecting selecting selecting NOUN N
+of of of ADP P
+actual actual actual ADJ A
+instances instances instance NOUN N
+of of of ADP P
+speech speech speech NOUN N
+from from from ADP P
+a a a DET 
+database database database NOUN N
+, , , PUNCT 
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+has has have AUX 
+also also also ADV 
+grown grown grow VERB V
 in in in ADP P
-text text text NOUN N
-data data datum NOUN N
-but but but CCONJ C
-not not not PART P
-‘ ‘ ' PUNCT 
-heard heard hear VERB V
-’ ’ ' PUNCT 
-in in in ADP P
+popularity popularity popularity NOUN N
+over over over ADP P
 the the the DET 
-audio audio audio ADJ A
-data data datum NOUN N
+last last last ADJ A
+few few few ADJ A
+years years year NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+might might may VERB V
+be be be AUX 
+most most most ADV 
+simply simply simply ADV 
+described described describe VERB V
+as as as SCONJ C
+generating generating generate VERB V
+the the the DET 
+average average average NOUN N
+of of of ADP P
+some some some DET 
+set set set NOUN N
+of of of ADP P
+similarly similarly similarly ADV 
+sounding sounding sound VERB V
+speech speech speech NOUN N
+segments segments segment NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 This this this DET 
-is is be AUX 
-most most most ADV 
-obviously obviously obviously ADV 
-useful useful useful ADJ A
-where where where ADV 
-units units unit NOUN N
-such such such ADJ A
-as as as SCONJ C
-words words word NOUN N
-are are be AUX 
-concerned concerned concern VERB V
-, , , PUNCT 
-where where where ADV 
-many many many ADJ A
-items items item NOUN N
-not not not PART P
-present present present ADJ A
-in in in ADP P
+contrasts contrasts contrast VERB V
+directly directly directly ADV 
+with with with ADP P
 the the the DET 
-training training training NOUN N
+desire desire desire NOUN N
+in in in ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+to to to PART P
+keep keep keep VERB V
+the the the DET 
+natural natural natural ADJ A
+unmodised unmodised unmodised ADJ A
 speech speech speech NOUN N
-corpus corpus corpus PROPN N
-are are be AUX 
-likely likely likely ADJ A
-to to to PART P
-occur occur occur VERB V
-at at at ADP P
-run run run NOUN N
-- - - PUNCT 
-time time time NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-It it -PRON- PRON 
-can can can VERB V
+units units unit NOUN N
 , , , PUNCT 
-however however however ADV 
-, , , PUNCT 
-also also also ADV 
-be be be AUX 
-useful useful useful ADJ A
-where where where ADV 
-letters letters letter NOUN N
-are are be AUX 
-concerned concerned concerned ADJ A
-, , , PUNCT 
-and and and CCONJ C
-some some some DET 
-examples examples example NOUN N
-that that that DET 
-illustrate illustrate illustrate VERB V
-our our -PRON- DET 
-models models model NOUN N
-’ ’ ’ PART P
-ability ability ability NOUN N
-to to to PART P
-generalise generalise generalise VERB V
-beyond beyond beyond ADP P
-what what what PRON 
-is is be AUX 
-heard heard hear VERB V
-can can can VERB V
-be be be AUX 
-seen seen see VERB V
-in in in ADP P
-the the the DET 
-letter letter letter NOUN N
-space space space NOUN N
-shown shown show VERB V
-in in in ADP P
-Figure figure figure NOUN N
-1 1 1 NUM 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-There there there ADV 
-, , , PUNCT 
-letters letters letter NOUN N
-shown shown show VERB V
-in in in ADP P
-black black black NOUN N
-are are be AUX 
-‘ ‘ ' PUNCT 
-heard heard hear VERB V
-’ ’ ' PUNCT 
-by by by ADP P
-the the the DET 
-system system system NOUN N
 but but but CCONJ C
-ones ones one NOUN N
-shown shown show VERB V
-in in in ADP P
-grey grey grey PROPN N
-are are be AUX 
-only only only ADV 
-‘ ‘ ' PUNCT 
-seen seen see VERB V
-’ ’ ' PUNCT 
-– – – PUNCT 
-these these these DET 
-are are be AUX 
-mainly mainly mainly ADV 
-due due due ADJ A
-to to to ADP P
-foreign foreign foreign ADJ A
-language language language NOUN N
-words words word NOUN N
-within within within ADP P
-Romanian romanian romanian ADJ A
-Wikipedia wikipedia wikipedia PROPN N
-entries entries entry NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-It it -PRON- PRON 
-can can can VERB V
-be be be AUX 
-seen seen see VERB V
-that that that SCONJ C
-unheard unheard unheard ADJ A
-foreign foreign foreign ADJ A
-vowels vowels vowel NOUN N
-such such such ADJ A
-as as as SCONJ C
-á á á PROPN N
-and and and CCONJ C
-ö ö ö PROPN N
-are are be AUX 
-suitably suitably suitably ADV 
-placed placed place VERB V
-near near near SCONJ C
-the the the DET 
-Romanian romanian romanian ADJ A
-vowels vowels vowel NOUN N
-, , , PUNCT 
-and and and CCONJ C
-unheard unheard unheard ADJ A
-consonants consonants consonant NOUN N
-such such such ADJ A
-as as as SCONJ C
-ß ß ß NOUN N
-and and and CCONJ C
-q q q PROPN N
-are are be AUX 
-placed placed place VERB V
-near near near SCONJ C
-the the the DET 
-consonants consonants consonant NOUN N
-that that that DET 
-are are be AUX 
-actually actually actually ADV 
-heard heard hear VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Splits splits split VERB V
-such such such ADJ A
-as as as SCONJ C
-those those those DET 
-shown shown show VERB V
-– – – PUNCT 
-made made make VERB V
-only only only ADV 
-on on on ADP P
-the the the DET 
-basis basis basis NOUN N
-of of of ADP P
-the the the DET 
-heard heard hear VERB V
-items items item NOUN N
-– – – PUNCT 
-therefore therefore therefore ADV 
-generalise generalise generalise VERB V
-to to to PART P
-unheard unheard unheard VERB V
-items items item NOUN N
+using using use VERB V
+parametric parametric parametric ADJ A
+models models model NOUN N
+offers offers offer VERB V
+other other other ADJ A
+benests benests benest NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 In in in ADP P
+both both both DET 
 the the the DET 
-case case case NOUN N
-of of of ADP P
-letters letters letter NOUN N
-, , , PUNCT 
-this this this DET 
-allows allows allow VERB V
-rare rare rare ADJ A
+Blizzard blizzard blizzard PROPN N
+Challenge challenge challenge NOUN N
+2005 2005 2005 NUM 
 and and and CCONJ C
-foreign foreign foreign ADJ A
-letters letters letter NOUN N
-to to to PART P
-be be be AUX 
-handled handled handle VERB V
-despite despite despite SCONJ C
-their their -PRON- DET 
-absence absence absence NOUN N
-in in in ADP P
-the the the DET 
-transcriptions transcriptions transcription NOUN N
-of of of ADP P
-acoustic acoustic acoustic ADJ A
-training training training NOUN N
-data data datum NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-It it -PRON- PRON 
-can can can VERB V
-also also also ADV 
-allow allow allow VERB V
-better better well ADJ A
-handling handling handling NOUN N
-of of of ADP P
-non non non ADJ A
-- - - ADJ A
-standard standard standard ADJ A
-spellings spellings spelling NOUN N
-: : : PUNCT 
-in in in ADP P
-the the the DET 
-case case case NOUN N
-of of of ADP P
-the the the DET 
-vowel vowel vowel NOUN N
-î î î PROPN N
-( ( ( PUNCT 
-i i i PRON 
-with with with ADP P
-circumflex circumflex circumflex PROPN N
-) ) ) PUNCT 
-, , , PUNCT 
-there there there PRON 
-is is be AUX 
+2006 2006 2006 NUM 
+where where where ADV 
 a a a DET 
-variant variant variant ADJ A
-( ( ( PUNCT 
-with with with ADP P
-inverted inverted invert VERB V
-breve breve breve NOUN N
-instead instead instead ADV 
-of of of ADP P
-circumflex circumflex circumflex PROPN N
-) ) ) PUNCT 
-which which which DET 
-is is be AUX 
-not not not PART P
-present present present ADJ A
-in in in ADP P
-any any any DET 
-of of of ADP P
-the the the DET 
+common common common ADJ A
 speech speech speech NOUN N
-transcriptions transcriptions transcription NOUN N
-but but but CCONJ C
-which which which DET 
+database database database NOUN N
 is is be AUX 
-used used use VERB V
-in in in ADP P
-a a a DET 
-few few few ADJ A
-Wikipedia wikipedia wikipedia NOUN N
-articles articles article NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-From from from ADP P
-Figure figure figure NOUN N
-1 1 1 NUM 
-it it -PRON- PRON 
-can can can VERB V
-be be be AUX 
-seen seen see VERB V
-that that that SCONJ C
-almost almost almost ADV 
-identical identical identical ADJ A
-representations representations representation NOUN N
-are are be AUX 
-learned learned learn VERB V
-for for for ADP P
-these these these DET 
-two two two NUM 
-letters letters letter NOUN N
-, , , PUNCT 
-meaning meaning mean VERB V
-a a a DET 
-decision decision decision NOUN N
-tree tree tree NOUN N
-built built build VERB V
-using using use VERB V
-those those those DET 
-representations representations representation NOUN N
-will will will VERB V
-be be be AUX 
-able able able ADJ A
+provided provided provide VERB V
+to to to ADP P
+participants participants participant NOUN N
 to to to PART P
-handle handle handle VERB V
-the the the DET 
-variant variant variant ADJ A
-form form form NOUN N
-correctly correctly correctly ADV 
-at at at ADP P
-run run run NOUN N
-- - - PUNCT 
-time time time NOUN N
+build build build VERB V
+a a a DET 
+synthetic synthetic synthetic ADJ A
+voice voice voice NOUN N
 , , , PUNCT 
-even even even ADV 
-though though though SCONJ C
-no no no DET 
-instances instances instance NOUN N
-of of of ADP P
-that that that DET 
-variant variant variant NOUN N
-were were be AUX 
-seen seen see VERB V
-in in in ADP P
-the the the DET 
-transcription transcription transcription NOUN N
-of of of ADP P
-the the the DET 
-speech speech speech NOUN N
-training training training NOUN N
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-front front front ADJ A
-ends ends end NOUN N
-make make make VERB V
-use use use NOUN N
-of of of ADP P
-decision decision decision NOUN N
-trees trees tree NOUN N
-to to to PART P
-predict predict predict VERB V
-pauses pauses pause NOUN N
-at at at ADP P
-the the the DET 
-junctures junctures juncture NOUN N
-between between between ADP P
-words words word NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Data data datum NOUN N
-for for for ADP P
-training training train VERB V
-these these these DET 
-trees trees tree NOUN N
-are are be AUX 
-acquired acquired acquire VERB V
-automatically automatically automatically ADV 
-by by by ADP P
-force force force NOUN N
-- - - PUNCT 
-aligning aligning align VERB V
-the the the DET 
-training training training NOUN N
-data data datum NOUN N
-with with with ADP P
-their their -PRON- DET 
-transcriptions transcriptions transcription NOUN N
-, , , PUNCT 
-and and and CCONJ C
-allowing allowing allow VERB V
-the the the DET 
-optional optional optional ADJ A
-insertion insertion insertion NOUN N
-of of of ADP P
-silence silence silence NOUN N
-between between between ADP P
-words words word NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-independent independent independent ADJ A
-variables variables variable NOUN N
-used used use VERB V
-by by by ADP P
-the the the DET 
-trees trees tree NOUN N
-are are be AUX 
-whether whether whether SCONJ C
-words words word NOUN N
-are are be AUX 
-separated separated separate VERB V
-by by by ADP P
-punctuation punctuation punctuation NOUN N
-or or or CCONJ C
-space space space NOUN N
-, , , PUNCT 
-and and and CCONJ C
-the the the DET 
-VSM vsm vsm NOUN N
-features features feature NOUN N
-of of of ADP P
-the the the DET 
-tokens tokens token NOUN N
-preceding preceding precede VERB V
-and and and CCONJ C
-following following follow VERB V
-the the the DET 
-juncture juncture juncture NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-rich rich rich ADJ A
-set set set NOUN N
-of of of ADP P
-contexts contexts contexts NOUN N
-is is be AUX 
-created created create VERB V
-using using use VERB V
 the the the DET 
 results results result NOUN N
-of of of ADP P
-the the the DET 
-analysis analysis analysis NOUN N
-described described describe VERB V
-here here here ADV 
-for for for ADP P
-each each each DET 
-letter letter letter NOUN N
-token token token VERB V
-in in in ADP P
-the the the DET 
-database database database NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Features features feature NOUN N
-include include include VERB V
-the the the DET 
-identity identity identity NOUN N
-of of of ADP P
-the the the DET 
-letter letter letter NOUN N
-and and and CCONJ C
-the the the DET 
-identities identities identity NOUN N
-of of of ADP P
-its its -PRON- DET 
-neighbours neighbours neighbour NOUN N
-( ( ( PUNCT 
-within within within ADP P
-a a a DET 
-5-letter 5-letter 5-letter NUM 
-window window window NOUN N
-) ) ) PUNCT 
-, , , PUNCT 
-the the the DET 
-VSM vsm vsm NOUN N
-values values value NOUN N
-of of of ADP P
-each each each DET 
-of of of ADP P
-those those those DET 
-letters letters letter NOUN N
-, , , PUNCT 
-and and and CCONJ C
-the the the DET 
-distance distance distance NOUN N
 from from from ADP P
-and and and CCONJ C
-until until until ADP P
-a a a DET 
-word word word NOUN N
-boundary boundary boundary NOUN N
-, , , PUNCT 
-pause pause pause NOUN N
-, , , PUNCT 
-and and and CCONJ C
-utterance utterance utterance NOUN N
-boundary boundary boundary ADJ A
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-the the the DET 
-current current current ADJ A
-systems systems system NOUN N
-, , , PUNCT 
-word word word NOUN N
-VSM vsm vsm NOUN N
-features features feature NOUN N
-are are be AUX 
-not not not PART P
-included included include VERB V
-directly directly directly ADV 
-in in in ADP P
-the the the DET 
-letter letter letter NOUN N
-contexts contexts contexts NOUN N
-, , , PUNCT 
-but but but CCONJ C
-are are be AUX 
-used used use VERB V
-by by by ADP P
-the the the DET 
-decision decision decision NOUN N
-tree tree tree NOUN N
-for for for ADP P
-predicting predicting predict VERB V
-pauses pauses pause NOUN N
-at at at ADP P
-runtime runtime runtime NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Back back back ADJ A
-- - - PUNCT 
-end end end NOUN N
-construction construction construction NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-For for for ADP P
-training training train VERB V
-the the the DET 
-waveform waveform waveform PROPN N
-generation generation generation NOUN N
-modules modules module VERB V
-for for for ADP P
-the the the DET 
-14 14 14 NUM 
-voices voices voice NOUN N
-, , , PUNCT 
-the the the DET 
-waveforms waveforms waveform NOUN N
+listening listening listen VERB V
+tests tests test NOUN N
+have have have AUX 
+shown shown show VERB V
+that that that SCONJ C
+one one one NUM 
 of of of ADP P
 the the the DET 
-training training training NOUN N
-corpora corpora corpora PROPN N
-were were be AUX 
-parameterised parameterised parameterise VERB V
-almost almost almost ADV 
-as as as SCONJ C
-described described describe VERB V
+instances instances instance NOUN N
+of of of ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+techniques techniques technique NOUN N
+called called call VERB V
+HMM hmm hmm NOUN N
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+( ( ( PUNCT 
+or or or CCONJ C
+even even even ADV 
+HMM hmm hmm NOUN N
+- - - PUNCT 
+based based base VERB V
+synthesis synthesis synthesis NOUN N
+) ) ) PUNCT 
+offers offers offer VERB V
+more more more ADV 
+preferred preferred preferred ADJ A
+( ( ( PUNCT 
+through through through ADP P
+MOS mos mos NOUN N
+tests tests test NOUN N
+) ) ) PUNCT 
+and and and CCONJ C
+more more more ADV 
+understandable understandable understandable ADJ A
+( ( ( PUNCT 
+through through through ADP P
+WER wer wer NOUN N
+scores scores score NOUN N
+) ) ) PUNCT 
+synthesis synthesis synthesis NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Although although although SCONJ C
+even even even ADV 
+the the the DET 
+proponents proponents proponent NOUN N
+of of of ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+feel feel feel VERB V
+that that that SCONJ C
+the the the DET 
+best best good ADJ A
+examples examples example NOUN N
+of of of ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+are are be AUX 
+better better well ADJ A
+than than than SCONJ C
+the the the DET 
+best best good ADJ A
+examples examples example NOUN N
+of of of ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+, , , PUNCT 
+overall overall overall ADV 
+it it -PRON- PRON 
+appears appears appear VERB V
+that that that SCONJ C
+quality quality quality NOUN N
+of of of ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+has has have AUX 
+already already already ADV 
+reached reached reach VERB V
+a a a DET 
+quality quality quality NOUN N
+that that that DET 
+can can can VERB V
+stand stand stand VERB V
 in in in ADP P
+its its -PRON- DET 
+own own own ADJ A
+right right right NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 The the the DET 
-one one one NUM 
+quality quality quality NOUN N
+issue issue issue NOUN N
+really really really ADV 
+comes comes come VERB V
+down down down ADP P
+to to to ADP P
+the the the DET 
+fact fact fact NOUN N
+that that that SCONJ C
+given given give VERB V
+a a a DET 
+parametric parametric parametric ADJ A
+representation representation representation NOUN N
+it it -PRON- PRON 
+is is be AUX 
+necessary necessary necessary ADJ A
+to to to PART P
+reconstruct reconstruct reconstruct VERB V
+the the the DET 
+speech speech speech NOUN N
+from from from ADP P
+those those those DET 
+parameters parameters parameter NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+reconstruction reconstruction reconstruction NOUN N
+process process process NOUN N
+is is be AUX 
+still still still ADV 
+not not not PART P
+ideal ideal ideal ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Although although although SCONJ C
+modeling modeling model VERB V
+the the the DET 
+spectral spectral spectral ADJ A
+and and and CCONJ C
+prosody prosody prosody NOUN N
+features features feature NOUN N
+is is be AUX 
+relatively relatively relatively ADV 
+well well well ADV 
+desned desned desned ADJ A
+, , , PUNCT 
+models models model NOUN N
+of of of ADP P
+the the the DET 
+residual residual residual ADJ A
+/ / / SYM 
+excitation excitation excitation NOUN N
+are are be AUX 
+still still still ADV 
+yet yet yet ADV 
+to to to PART P
+be be be AUX 
+fully fully fully ADV 
+developed developed develop VERB V
+, , , PUNCT 
+though though though SCONJ C
+composite composite composite ADJ A
+models models model NOUN N
+like like like SCONJ C
+STRAIGHT straight straight ADV 
+are are be AUX 
+proving proving prove VERB V
+to to to PART P
+be be be AUX 
+useful useful useful ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+following following following ADJ A
+section section section NOUN N
+gives gives give VERB V
+a a a DET 
+more more more ADV 
+formal formal formal ADJ A
+desnition desnition desnition NOUN N
+of of of ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+techniques techniques technique NOUN N
+that that that DET 
+will will will VERB V
+allow allow allow VERB V
+a a a DET 
+easier easier easy ADJ A
+contrast contrast contrast NOUN N
+it it -PRON- PRON 
+to to to ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Then then then ADV 
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+is is be AUX 
+more more more ADV 
+formally formally formally ADV 
+desned desned desne VERB V
+, , , PUNCT 
+speciscally speciscally speciscally ADV 
+based based base VERB V
+on on on ADP P
+the the the DET 
+implementation implementation implementation NOUN N
+on on on ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+system system system NOUN N
+( ( ( PUNCT 
+HTS hts hts PROPN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+snal snal snal ADJ A
+sections sections section NOUN N
+discuss discuss discuss VERB V
+some some some DET 
+of of of ADP P
+the the the DET 
+advantages advantages advantage NOUN N
+in in in ADP P
+a a a DET 
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+framework framework framework NOUN N
+highlighting highlighting highlight VERB V
+some some some DET 
+of of of ADP P
+the the the DET 
+existing existing exist VERB V
+a a a DET 
+future future future ADJ A
+directions directions direction NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+UNIT unit unit NOUN N
+SELECTION selection selection NOUN N
+SYNTHESIS synthesis synthesis NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+There there there PRON 
+seems seems seem VERB V
+to to to PART P
+be be be AUX 
+two two two NUM 
+basic basic basic ADJ A
+techniques techniques technique NOUN N
+in in in ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+, , , PUNCT 
+though though though SCONJ C
+they they -PRON- PRON 
+are are be AUX 
+theoretically theoretically theoretically ADV 
+not not not PART P
+very very very ADV 
+different different different ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Hunt hunt hunt PROPN N
+and and and CCONJ C
+Black black black PROPN N
+presented presented present VERB V
+a a a DET 
+selection selection selection NOUN N
+model model model NOUN N
+, , , PUNCT 
+which which which DET 
+actually actually actually ADV 
+existed existed exist VERB V
+previously previously previously ADV 
+in in in ADP P
+ATR atr atr PROPN N
+νtalk νtalk νtalk NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+basic basic basic ADJ A
+notion notion notion NOUN N
+is is be AUX 
+that that that DET 
+of of of ADP P
+a a a DET 
+target target target NOUN N
+cost cost cost NOUN N
+, , , PUNCT 
+how how how ADV 
+well well well ADV 
+a a a DET 
+candidate candidate candidate NOUN N
+unit unit unit NOUN N
+from from from ADP P
+the the the DET 
+database database database NOUN N
+matches matches match VERB V
+the the the DET 
+desired desired desire VERB V
+unit unit unit NOUN N
+, , , PUNCT 
+and and and CCONJ C
+a a a DET 
+concatenation concatenation concatenation NOUN N
+cost cost cost NOUN N
+which which which DET 
+desnes desnes desne VERB V
+how how how ADV 
+well well well ADV 
+two two two NUM 
+selected selected select VERB V
+units units unit NOUN N
+combine combine combine VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Unit unit unit NOUN N
+selection selection selection NOUN N
+requires requires require VERB V
+the the the DET 
+optimization optimization optimization NOUN N
+of of of ADP P
+both both both DET 
+these these these DET 
+costs costs cost NOUN N
+over over over ADP P
+the the the DET 
+utterances utterances utterance NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+desnition desnition desnition NOUN N
+of of of ADP P
+target target target NOUN N
+cost cost cost NOUN N
+between between between ADP P
+a a a DET 
+candidate candidate candidate NOUN N
+unit unit unit NOUN N
+u u u NOUN N
+i i i NOUN N
+and and and CCONJ C
+a a a DET 
+desired desired desire VERB V
+unit unit unit NOUN N
+, , , PUNCT 
+"
+" "
+" "
+" SPACE 
+where where where ADV 
+j j j PROPN N
+indexes indexes index NOUN N
+over over over ADP P
+all all all DET 
+features features feature NOUN N
+( ( ( PUNCT 
+typically typically typically ADV 
+phonetic phonetic phonetic ADJ A
+and and and CCONJ C
+prosodic prosodic prosodic ADJ A
+contexts contexts context NOUN N
+are are be AUX 
+used used use VERB V
+) ) ) PUNCT 
+. . . PUNCT 
+Concatenation concatenation concatenation NOUN N
+cost cost cost NOUN N
+is is be AUX 
+desned desned desne VERB V
+as as as SCONJ C
+... ... ... PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+STATISTICAL statistical statistical ADJ A
+PARAMETRIC parametric parametric ADJ A
+SYNTHESIS synthesis synthesis NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Overview overview overview NOUN N
+of of of ADP P
+a a a DET 
+typical typical typical ADJ A
+system system system NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Though though though SCONJ C
+in in in ADP P
+this this this DET 
+case case case NOUN N
+k k k NOUN N
+may may may VERB V
+include include include VERB V
+spectral spectral spectral ADJ A
+and and and CCONJ C
+acoustic acoustic acoustic ADJ A
+features features feature NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Weights weights weight NOUN N
+( ( ( PUNCT 
+w w w PROPN N
+tj tj tj PROPN N
+and and and CCONJ C
+w w w PROPN N
+ck ck ck PROPN N
+) ) ) PUNCT 
+have have have AUX 
+to to to PART P
+be be be AUX 
+found found find VERB V
+for for for ADP P
+each each each DET 
+feature feature feature NOUN N
+, , , PUNCT 
+and and and CCONJ C
+actually actually actually ADV 
+implementations implementations implementation NOUN N
+used used use VERB V
+a a a DET 
+combination combination combination NOUN N
+of of of ADP P
+trained trained train VERB V
+and and and CCONJ C
+hand hand hand NOUN N
+tuned tuned tune VERB V
+weights weights weight NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+second second second ADJ A
+direction direction direction NOUN N
+, , , PUNCT 
+use use use VERB V
+a a a DET 
+clustering clustering clustering NOUN N
+method method method NOUN N
+that that that DET 
+allows allows allow VERB V
+the the the DET 
+target target target NOUN N
+cost cost cost NOUN N
+to to to PART P
+effectively effectively effectively ADV 
+be be be AUX 
+precalculated precalculated precalculate VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Units units unit NOUN N
+of of of ADP P
+the the the DET 
+same same same ADJ A
+type type type NOUN N
+are are be AUX 
+clustered clustered cluster VERB V
+into into into ADP P
+a a a DET 
+decision decision decision NOUN N
+tree tree tree NOUN N
+that that that DET 
+asks asks ask VERB V
+questions questions question NOUN N
+about about about ADP P
+features features feature NOUN N
+available available available ADJ A
+at at at ADP P
+synthesis synthesis synthesis NOUN N
+time time time NOUN N
+( ( ( PUNCT 
+e.g. e.g. e.g. ADV 
+phonetic phonetic phonetic ADJ A
+and and and CCONJ C
+prosody prosody prosody NOUN N
+context context context NOUN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+All all all DET 
+of of of ADP P
+these these these DET 
+techniques techniques technique NOUN N
+depend depend depend VERB V
+on on on ADP P
+a a a DET 
+acoustic acoustic acoustic ADJ A
+distance distance distance NOUN N
+measure measure measure NOUN N
+which which which DET 
+should should should VERB V
+be be be AUX 
+correlated correlated correlate VERB V
+with with with ADP P
+human human human ADJ A
+perception perception perception NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+These these these DET 
+apparently apparently apparently ADV 
+unit unit unit NOUN N
+selection selection selection NOUN N
+specisc specisc specisc PROPN N
+issues issues issue NOUN N
+are are be AUX 
+mentioned mentioned mention VERB V
+here here here ADV 
+because because because SCONJ C
+they they -PRON- PRON 
+have have have AUX 
+specisc specisc specisc PROPN N
+counterparts counterparts counterpart NOUN N
+in in in ADP P
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Figure figure figure NOUN N
+1 1 1 NUM 
+is is be AUX 
+a a a DET 
+block block block NOUN N
+diagram diagram diagram NOUN N
+of of of ADP P
+a a a DET 
+typical typical typical ADJ A
+HMM hmm hmm NOUN N
+- - - PUNCT 
+based based base VERB V
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+system system system NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+consists consists consist VERB V
+of of of ADP P
+training training training NOUN N
+and and and CCONJ C
+synthesis synthesis synthesis NOUN N
+parts parts part NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+training training training NOUN N
+part part part NOUN N
+is is be AUX 
+similar similar similar ADJ A
+to to to ADP P
+those those those DET 
+used used use VERB V
+in in in ADP P
+speech speech speech NOUN N
+recognition recognition recognition NOUN N
+systems systems system NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+main main main ADJ A
 difference difference difference NOUN N
 is is be AUX 
 that that that SCONJ C
-instead instead instead ADV 
-of of of ADP P
-the the the DET 
-committee committee committee PROPN N
-of of of ADP P
-different different different ADJ A
-pitch pitch pitch NOUN N
-- - - PUNCT 
-trackers trackers tracker NOUN N
-used used use VERB V
-in in in ADP P
-the the the DET 
-earlier earlier early ADJ A
-work work work NOUN N
-, , , PUNCT 
-pitch pitch pitch NOUN N
-tracks tracks track NOUN N
-obtained obtained obtain VERB V
-from from from ADP P
-a a a DET 
-glottal glottal glottal ADJ A
-source source source NOUN N
-signal signal signal NOUN N
-estimated estimated estimate VERB V
-by by by ADP P
-glottal glottal glottal ADJ A
-inverse inverse inverse NOUN N
-filtering filtering filtering NOUN N
-were were be AUX 
-used used use VERB V
-for for for ADP P
-their their -PRON- DET 
-greater greater great ADJ A
-accuracy accuracy accuracy NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-all all all DET 
-systems systems system NOUN N
-, , , PUNCT 
-speaker speaker speaker NOUN N
-- - - PUNCT 
-dependent dependent dependent ADJ A
-acoustic acoustic acoustic ADJ A
-models models model NOUN N
-were were be AUX 
-built built build VERB V
-from from from ADP P
-this this this DET 
-parameterised parameterised parameterised ADJ A
-speech speech speech NOUN N
-data data datum NOUN N
-and and and CCONJ C
-the the the DET 
-annotation annotation annotation NOUN N
-described described describe VERB V
-in in in ADP P
-Section section section NOUN N
-3.2 3.2 3.2 NUM 
-, , , PUNCT 
-using using use VERB V
-the the the DET 
-speaker speaker speaker NOUN N
-- - - PUNCT 
-dependent dependent dependent ADJ A
-modelbuilding modelbuilding modelbuilding NOUN N
-recipe recipe recipe NOUN N
-described described describe VERB V
-in in in ADP P
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Static static static ADJ A
-and and and CCONJ C
-interactive interactive interactive ADJ A
-demos demos demo NOUN N
-of of of ADP P
-the the the DET 
-resulting resulting result VERB V
-voices voices voice NOUN N
-are are be AUX 
-available available available ADJ A
-at at at ADP P
-http://tundra.simple4all.org/demo http://tundra.simple4all.org/demo http://tundra.simple4all.org/demo X 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-A a a DET 
-screen screen screen NOUN N
-shot shot shot NOUN N
-of of of ADP P
-the the the DET 
-geographically geographically geographically ADV 
-- - - PUNCT 
-organised organised organise VERB V
-demo demo demo NOUN N
-page page page NOUN N
-is is be AUX 
-shown shown show VERB V
-in in in ADP P
-Figure figure figure NOUN N
-2 2 2 NUM 
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Figure figure figure NOUN N
-: : : PUNCT 
-Demo demo demo PROPN N
-screenshot screenshot screenshot PROPN N
-: : : PUNCT 
-this this this DET 
-geographical geographical geographical ADJ A
-interface interface interface NOUN N
-to to to ADP P
-voices voices voice NOUN N
-can can can VERB V
-be be be AUX 
-found found find VERB V
-at at at ADP P
-http://tundra.simple4all.org/demo http://tundra.simple4all.org/demo http://tundra.simple4all.org/demo X 
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-System system system NOUN N
-Evaluation evaluation evaluation NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-Procedure procedure procedure NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-We we -PRON- PRON 
-are are be AUX 
-primarily primarily primarily ADV 
-interested interested interested ADJ A
-in in in ADP P
-having having have VERB V
-our our -PRON- DET 
-systems systems system NOUN N
-produce produce produce VERB V
-intelligible intelligible intelligible ADJ A
-speech speech speech NOUN N
-; ; ; PUNCT 
-evaluation evaluation evaluation NOUN N
-therefore therefore therefore ADV 
-focused focused focus VERB V
-on on on ADP P
-the the the DET 
-intelligibility intelligibility intelligibility NOUN N
-of of of ADP P
-TTS tts tts PROPN N
-output output output NOUN N
-as as as SCONJ C
-measured measured measure VERB V
-by by by ADP P
-the the the DET 
-word word word NOUN N
-and and and CCONJ C
-letter letter letter NOUN N
-error error error NOUN N
-rates rates rate NOUN N
-of of of ADP P
-listeners listeners listener NOUN N
-’ ’ ’ PART P
-transcriptions transcriptions transcription NOUN N
-of of of ADP P
-those those those DET 
-outputs outputs output NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Conventionally conventionally conventionally ADV 
-in in in ADP P
-TTS tts tts PROPN N
-evaluation evaluation evaluation PROPN N
-, , , PUNCT 
-listeners listeners listener NOUN N
-are are be AUX 
-asked asked ask VERB V
-to to to PART P
-transcribe transcribe transcribe VERB V
-semantically semantically semantically ADV 
-unpredictable unpredictable unpredictable ADJ A
-sentences sentences sentence NOUN N
-( ( ( PUNCT 
-SUS sus sus PROPN N
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-However however however ADV 
-, , , PUNCT 
-such such such ADJ A
-SUS sus sus NOUN N
-are are be AUX 
-not not not PART P
-currently currently currently ADV 
-available available available ADJ A
-in in in ADP P
-all all all DET 
-the the the DET 
-Tundra tundra tundra NOUN N
-languages languages language NOUN N
-and and and CCONJ C
-it it -PRON- PRON 
-is is be AUX 
-not not not PART P
-trivial trivial trivial ADJ A
-to to to PART P
-construct construct construct VERB V
-new new new ADJ A
-SUS sus sus NOUN N
-, , , PUNCT 
-and and and CCONJ C
-so so so ADV 
-we we -PRON- PRON 
-resorted resorted resort VERB V
-to to to ADP P
-using using use VERB V
-short short short ADJ A
-natural natural natural ADJ A
-sentences sentences sentence NOUN N
-from from from ADP P
-the the the DET 
-held held hold VERB V
-- - - PUNCT 
-out out out ADP P
-test test test NOUN N
-sets sets set NOUN N
-of of of ADP P
-the the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-all all all DET 
-14 14 14 NUM 
-Tundra tundra tundra NOUN N
-languages languages language NOUN N
-, , , PUNCT 
-40 40 40 NUM 
-sentences sentences sentence NOUN N
-were were be AUX 
-manually manually manually ADV 
-segmented segmented segment VERB V
-from from from ADP P
-the the the DET 
-held held hold VERB V
-- - - PUNCT 
-out out out ADP P
-chapters chapters chapter NOUN N
-of of of ADP P
-the the the DET 
-relevant relevant relevant ADJ A
-audiobook audiobook audiobook NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Note note note VERB V
-that that that SCONJ C
-these these these DET 
-test test test NOUN N
-sets sets set NOUN N
-are are be AUX 
-distributed distributed distribute VERB V
-with with with ADP P
-the the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-, , , PUNCT 
-and and and CCONJ C
-so so so ADV 
-the the the DET 
-results results result NOUN N
-presented presented present VERB V
-below below below ADV 
-can can can VERB V
-be be be AUX 
-considered considered consider VERB V
-benchmarks benchmarks benchmark NOUN N
-for for for ADP P
-future future future ADJ A
-work work work NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-An an an DET 
-attempt attempt attempt NOUN N
-was was be AUX 
-made made make VERB V
-to to to PART P
-select select select VERB V
-sentences sentences sentence NOUN N
-of of of ADP P
-6–8 6–8 6–8 NUM 
-words words word NOUN N
-in in in ADP P
-order order order NOUN N
-to to to PART P
-make make make VERB V
-the the the DET 
-inherent inherent inherent ADJ A
-difficulty difficulty difficulty NOUN N
-of of of ADP P
-transcription transcription transcription NOUN N
-as as as ADV 
-uniform uniform uniform ADJ A
-as as as SCONJ C
-possible possible possible ADJ A
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-However however however ADV 
-, , , PUNCT 
-in in in ADP P
-some some some DET 
-languages languages language NOUN N
-these these these DET 
-thresholds thresholds threshold NOUN N
-had had have AUX 
-to to to PART P
-be be be AUX 
-relaxed relaxed relax VERB V
-; ; ; PUNCT 
-Table table table NOUN N
-1 1 1 NUM 
-gives gives give VERB V
-statistics statistics statistic NOUN N
-of of of ADP P
-test test test NOUN N
-- - - PUNCT 
-sentence sentence sentence NOUN N
-lengths lengths length NOUN N
-in in in ADP P
-all all all DET 
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Subjects subjects subject NOUN N
-for for for ADP P
-the the the DET 
-evaluation evaluation evaluation NOUN N
-were were be AUX 
-recruited recruited recruit VERB V
-through through through ADP P
-a a a DET 
-webbased webbased webbased ADJ A
-crowdsourcing crowdsourcing crowdsourcing NOUN N
-service service service NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-advert advert advert NOUN N
-for for for ADP P
-the the the DET 
-evaluation evaluation evaluation NOUN N
-specified specified specify VERB V
-that that that SCONJ C
-native native native ADJ A
-speakers speakers speaker NOUN N
-of of of ADP P
-the the the DET 
-relevant relevant relevant ADJ A
-language language language NOUN N
-were were be AUX 
-required required require VERB V
-; ; ; PUNCT 
-in in in ADP P
-addition addition addition NOUN N
-, , , PUNCT 
-participation participation participation NOUN N
-in in in ADP P
-each each each DET 
-part part part NOUN N
-of of of ADP P
-the the the DET 
-evaluation evaluation evaluation NOUN N
-was was be AUX 
-restricted restricted restrict VERB V
-to to to ADP P
-users users user NOUN N
-registered registered register VERB V
-in in in ADP P
-countries countries country NOUN N
-where where where ADV 
-the the the DET 
-relevant relevant relevant ADJ A
-language language language NOUN N
-is is be AUX 
-an an an DET 
-official official official ADJ A
-or or or CCONJ C
-majority majority majority NOUN N
-language language language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-We we -PRON- PRON 
-attempted attempted attempt VERB V
-to to to PART P
-recruit recruit recruit VERB V
-listeners listeners listener NOUN N
-to to to PART P
-evaluate evaluate evaluate VERB V
-all all all DET 
-14 14 14 NUM 
-systems systems system NOUN N
-built built build VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-However however however ADV 
-, , , PUNCT 
-as as as SCONJ C
-the the the DET 
-option option option NOUN N
-to to to PART P
-restrict restrict restrict VERB V
-participation participation participation NOUN N
-to to to ADP P
-workers workers worker NOUN N
-registered registered register VERB V
-in in in ADP P
-Denmark denmark denmark PROPN N
-, , , PUNCT 
-Finland finland finland PROPN N
-and and and CCONJ C
-Hungary hungary hungary PROPN N
-was was be AUX 
-not not not PART P
-available available available ADJ A
-in in in ADP P
-the the the DET 
-service service service NOUN N
-we we -PRON- PRON 
-used used use VERB V
-, , , PUNCT 
-listening listening listen VERB V
-test test test NOUN N
-for for for ADP P
-only only only ADV 
-11 11 11 NUM 
-of of of ADP P
-the the the DET 
-systems systems system NOUN N
-were were be AUX 
-publicised publicised publicise VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-number number number NOUN N
-of of of ADP P
-responses responses response NOUN N
-from from from ADP P
-participants participants participant NOUN N
-varied varied vary VERB V
-greatly greatly greatly ADV 
-between between between ADP P
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-At at at ADP P
-the the the DET 
-time time time NOUN N
-of of of ADP P
-writing writing writing NOUN N
-, , , PUNCT 
-responses responses response VERB V
-from from from ADP P
-a a a DET 
-sufficient sufficient sufficient ADJ A
-number number number NOUN N
-of of of ADP P
-listeners listeners listener NOUN N
-( ( ( PUNCT 
-25 25 25 NUM 
-+ + + CCONJ C
-) ) ) PUNCT 
-had had have AUX 
-been been be AUX 
-collected collected collect VERB V
-in in in ADP P
-only only only ADV 
-5 5 5 NUM 
-of of of ADP P
-the the the DET 
-languages languages language NOUN N
-( ( ( PUNCT 
-Bulgarian bulgarian bulgarian PROPN N
-, , , PUNCT 
-English english english ADJ A
-, , , PUNCT 
-Italian italian italian ADJ A
-, , , PUNCT 
-Polish polish polish ADJ A
-and and and CCONJ C
-Romanian romanian romanian ADJ A
-) ) ) PUNCT 
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Results results result NOUN N
-for for for ADP P
-these these these DET 
-five five five NUM 
-languages languages language NOUN N
-are are be AUX 
-presented presented present VERB V
-here here here ADV 
-; ; ; PUNCT 
-evaluation evaluation evaluation NOUN N
-of of of ADP P
-the the the DET 
-remaining remaining remain VERB V
-voices voices voice NOUN N
-is is be AUX 
-left left leave VERB V
-for for for ADP P
-future future future ADJ A
-work work work NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-In in in ADP P
-all all all DET 
-languages languages language NOUN N
-, , , PUNCT 
-two two two NUM 
-conditions conditions condition NOUN N
-were were be AUX 
-evaluated evaluated evaluate VERB V
-: : : PUNCT 
-the the the DET 
-natural natural natural ADJ A
-speech speech speech NOUN N
-of of of ADP P
-the the the DET 
-natural natural natural ADJ A
-sentences sentences sentence NOUN N
-from from from ADP P
-the the the DET 
-test test test NOUN N
-set set set NOUN N
-, , , PUNCT 
-and and and CCONJ C
-the the the DET 
-TTS tts tts PROPN N
-system system system NOUN N
-reading reading read VERB V
-the the the DET 
-same same same ADJ A
-text text text NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Table table table NOUN N
-: : : PUNCT 
-Statistics statistics statistic NOUN N
-of of of ADP P
-Tundra tundra tundra PROPN N
-test test test NOUN N
-- - - PUNCT 
-sentence sentence sentence NOUN N
-lengths lengths length NOUN N
-( ( ( PUNCT 
-number number number NOUN N
-of of of ADP P
-words words word NOUN N
-) ) ) PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-In in in ADP P
-the the the DET 
-four four four NUM 
-languages languages language NOUN N
-of of of ADP P
-the the the DET 
-Simple4All simple4all simple4all PROPN N
-consortium consortium consortium PROPN N
-members members member NOUN N
-( ( ( PUNCT 
-including including include VERB V
-two two two NUM 
-of of of ADP P
-the the the DET 
-languages languages language NOUN N
-for for for ADP P
-which which which DET 
-results results result NOUN N
-are are be AUX 
-presented presented present VERB V
-here here here ADV 
-: : : PUNCT 
-Romanian romanian romanian PROPN N
-and and and CCONJ C
-English english english PROPN N
-) ) ) PUNCT 
-, , , PUNCT 
-however however however ADV 
-, , , PUNCT 
-SUS sus sus PROPN N
-were were be AUX 
-available available available ADJ A
-, , , PUNCT 
-and and and CCONJ C
-so so so ADV 
-for for for ADP P
-those those those DET 
-languages languages language NOUN N
-a a a DET 
-third third third ADJ A
-condition condition condition NOUN N
-was was be AUX 
-evaluated evaluated evaluate VERB V
-: : : PUNCT 
-the the the DET 
-TTS tts tts PROPN N
-system system system NOUN N
-producing producing produce VERB V
-SUS sus sus NOUN N
-texts texts text NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-This this this DET 
-is is be AUX 
-designed designed design VERB V
-to to to PART P
-provide provide provide VERB V
-a a a DET 
-way way way NOUN N
-of of of ADP P
-broadly broadly broadly ADV 
-gauging gauging gauge VERB V
-the the the DET 
-relative relative relative ADJ A
-difficulty difficulty difficulty NOUN N
-of of of ADP P
-transcribing transcribing transcribe VERB V
-natural natural natural ADJ A
-and and and CCONJ C
-SUS sus sus ADJ A
-sentences sentences sentence NOUN N
-, , , PUNCT 
-although although although SCONJ C
-language language language NOUN N
-and and and CCONJ C
-text text text NOUN N
-differences differences difference NOUN N
-mean mean mean VERB V
-it it -PRON- PRON 
-is is be AUX 
-obviously obviously obviously ADV 
-not not not PART P
-advisable advisable advisable ADJ A
-to to to PART P
-treat treat treat VERB V
-extrapolation extrapolation extrapolation NOUN N
-of of of ADP P
-the the the DET 
-differences differences difference NOUN N
-to to to ADP P
-the the the DET 
-remaining remaining remain VERB V
-languages languages language NOUN N
-with with with ADP P
-any any any DET 
-great great great ADJ A
-confidence confidence confidence NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-evaluation evaluation evaluation NOUN N
-was was be AUX 
-run run run VERB V
-as as as SCONJ C
-a a a DET 
-set set set NOUN N
-of of of ADP P
-webpages webpages webpage NOUN N
-where where where ADV 
-participants participants participant NOUN N
-were were be AUX 
-asked asked ask VERB V
-– – – PUNCT 
-using using use VERB V
-headphones headphones headphone NOUN N
-– – – PUNCT 
-to to to PART P
-listen listen listen VERB V
-to to to ADP P
-the the the DET 
-samples samples sample NOUN N
-and and and CCONJ C
-to to to PART P
-type type type VERB V
-in in in ADP P
-what what what PRON 
-they they -PRON- PRON 
-heard heard hear VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Multiple multiple multiple ADJ A
-listens listens listen NOUN N
-were were be AUX 
-allowed allowed allow VERB V
-as as as SCONJ C
-some some some DET 
-of of of ADP P
-the the the DET 
-the the the DET 
-natural natural natural ADJ A
-sentences sentences sentence NOUN N
-were were be AUX 
-longer longer long ADJ A
-than than than SCONJ C
-the the the DET 
-short short short ADJ A
-SUS sus sus NOUN N
-we we -PRON- PRON 
-would would would VERB V
-typically typically typically ADV 
-use use use VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-the the the DET 
-first first first ADJ A
-two two two NUM 
-conditions conditions condition NOUN N
-, , , PUNCT 
-a a a DET 
-balanced balanced balanced ADJ A
-design design design NOUN N
-was was be AUX 
-used used use VERB V
-so so so SCONJ C
-that that that SCONJ C
-each each each DET 
-listener listener listener NOUN N
-heard heard hear VERB V
-each each each DET 
-utterance utterance utterance NOUN N
-text text text NOUN N
-only only only ADV 
-once once once ADV 
-, , , PUNCT 
-while while while SCONJ C
-each each each DET 
-text text text NOUN N
-was was be AUX 
-heard heard hear VERB V
-an an an DET 
-equal equal equal ADJ A
-number number number NOUN N
-of of of ADP P
-times times time NOUN N
-in in in ADP P
 both both both DET 
-conditions conditions condition NOUN N
-over over over ADP P
+spectrum spectrum spectrum NOUN N
+( ( ( PUNCT 
+e.g. e.g. e.g. ADV 
+, , , PUNCT 
+melcepstral melcepstral melcepstral ADJ A
+coefficients coefficients coefficient NOUN N
+and and and CCONJ C
+their their -PRON- DET 
+dynamic dynamic dynamic ADJ A
+features features feature NOUN N
+) ) ) PUNCT 
+and and and CCONJ C
+excitation excitation excitation NOUN N
+( ( ( PUNCT 
+e.g. e.g. e.g. ADV 
+, , , PUNCT 
+log log log PROPN N
+F f f PROPN N
+0 0 0 NUM 
+and and and CCONJ C
+its its -PRON- DET 
+dynamic dynamic dynamic ADJ A
+features features feature NOUN N
+) ) ) PUNCT 
+parameters parameters parameter NOUN N
+are are be AUX 
+extracted extracted extract VERB V
+from from from ADP P
+a a a DET 
+speech speech speech NOUN N
+database database database NOUN N
+and and and CCONJ C
+modeled modeled model VERB V
+by by by ADP P
+context context context NOUN N
+- - - PUNCT 
+dependent dependent dependent ADJ A
+HMMs hmms hmms NOUN N
+( ( ( PUNCT 
+phonetic phonetic phonetic ADJ A
+, , , PUNCT 
+linguistic linguistic linguistic ADJ A
+, , , PUNCT 
+and and and CCONJ C
+prosodic prosodic prosodic PROPN N
+contexts contexts contexts PROPN N
+are are be AUX 
+taken taken take VERB V
+into into into ADP P
+account account account NOUN N
+) ) ) PUNCT 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+model model model VERB V
+log log log NOUN N
+F0 f0 f0 NOUN N
+sequence sequence sequence NOUN N
+which which which DET 
+includes includes include VERB V
+unvoiced unvoiced unvoiced ADJ A
+regions regions region NOUN N
+properly properly properly ADV 
+, , , PUNCT 
+multi multi multi ADJ A
+- - - ADJ A
+space space space ADJ A
+probability probability probability NOUN N
+distributions distributions distribution NOUN N
+are are be AUX 
+used used use VERB V
+for for for ADP P
 the the the DET 
-whole whole whole ADJ A
-evaluation evaluation evaluation NOUN N
+state state state NOUN N
+output output output NOUN N
+stream stream stream NOUN N
+for for for ADP P
+log log log NOUN N
+F0 f0 f0 NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 Each each each DET 
-listener listener listener NOUN N
-heard heard hear VERB V
-20 20 20 NUM 
-sentences sentences sentence NOUN N
-spoken spoken speak VERB V
-in in in ADP P
-each each each DET 
-condition condition condition NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-For for for ADP P
-English english english PROPN N
-and and and CCONJ C
-Romanian romanian romanian PROPN N
-where where where ADV 
+HMM hmm hmm NOUN N
+has has have AUX 
+state state state NOUN N
+duration duration duration NOUN N
+densities densities density NOUN N
+to to to PART P
+model model model VERB V
 the the the DET 
-SUS sus sus PROPN N
-condition condition condition NOUN N
-was was be AUX 
-also also also ADV 
-included included include VERB V
-, , , PUNCT 
-listeners listeners listener NOUN N
-heard heard hear VERB V
-a a a DET 
-further further further ADJ A
-set set set NOUN N
+temporal temporal temporal ADJ A
+structure structure structure NOUN N
 of of of ADP P
-20 20 20 NUM 
-SUS sus sus ADJ A
-sentences sentences sentence NOUN N
+speech speech speech NOUN N
 . . . PUNCT 
 "
-
 " "
-
 " "
-
 " SPACE 
-Results results result VERB V
-"
-
-" "
-
-" "
-
-" SPACE 
-Word word word NOUN N
-error error error NOUN N
-rates rates rate NOUN N
-for for for ADP P
+As as as SCONJ C
+a a a DET 
+result result result NOUN N
+, , , PUNCT 
 the the the DET 
-first first first ADJ A
-2 2 2 NUM 
-conditions conditions condition NOUN N
-are are be AUX 
-shown shown show VERB V
+system system system NOUN N
+models models model VERB V
+spectrum spectrum spectrum NOUN N
+, , , PUNCT 
+excitation excitation excitation NOUN N
+, , , PUNCT 
+and and and CCONJ C
+durations durations duration NOUN N
 in in in ADP P
-Figure figure figure NOUN N
-3 3 3 NUM 
+a a a DET 
+unised unised unised ADJ A
+framework framework framework NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-For for for ADP P
-all all all DET 
-languages languages language NOUN N
-besides besides besides SCONJ C
-English english english PROPN N
+The the the DET 
+synthesis synthesis synthesis NOUN N
+part part part NOUN N
+does does do AUX 
+the the the DET 
+inverse inverse inverse ADJ A
+operation operation operation NOUN N
+of of of ADP P
+speech speech speech NOUN N
+recognition recognition recognition NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+First first first ADV 
+, , , PUNCT 
+an an an DET 
+arbitrarily arbitrarily arbitrarily ADV 
+given given give VERB V
+text text text NOUN N
+corresponding corresponding correspond VERB V
+an an an DET 
+utterance utterance utterance NOUN N
+to to to PART P
+be be be AUX 
+synthesized synthesized synthesize VERB V
+is is be AUX 
+converted converted convert VERB V
+to to to ADP P
+a a a DET 
+context context context NOUN N
+- - - PUNCT 
+dependent dependent dependent ADJ A
+label label label NOUN N
+sequence sequence sequence NOUN N
+and and and CCONJ C
+then then then ADV 
+the the the DET 
+utterance utterance utterance NOUN N
+HMM hmm hmm INTJ 
+is is be AUX 
+constructed constructed construct VERB V
+by by by ADP P
+concatenating concatenating concatenate VERB V
+the the the DET 
+contextdependent contextdependent contextdependent ADJ A
+HMMs hmms hmms NOUN N
+according according accord VERB V
+to to to ADP P
+the the the DET 
+label label label NOUN N
+sequence sequence sequence NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Secondly secondly secondly ADV 
+, , , PUNCT 
+state state state NOUN N
+durations durations duration NOUN N
+of of of ADP P
+the the the DET 
+HMM hmm hmm NOUN N
+are are be AUX 
+determined determined determine VERB V
+based based base VERB V
+on on on ADP P
+the the the DET 
+state state state NOUN N
+duration duration duration NOUN N
+probability probability probability NOUN N
+density density density NOUN N
+functions functions function NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Thirdly thirdly thirdly ADV 
+, , , PUNCT 
+the the the DET 
+speech speech speech NOUN N
+parameter parameter parameter NOUN N
+generation generation generation NOUN N
+algorithm algorithm algorithm PROPN N
+( ( ( PUNCT 
+typically typically typically ADV 
+, , , PUNCT 
+case case case NOUN N
+1 1 1 NUM 
+in in in ADP P
+) ) ) PUNCT 
+generates generates generate VERB V
+the the the DET 
+sequence sequence sequence NOUN N
+of of of ADP P
+mel mel mel ADJ A
+- - - PUNCT 
+cepstral cepstral cepstral ADJ A
+coefficients coefficients coefficient NOUN N
+and and and CCONJ C
+log log log PROPN N
+F f f X 
+0 0 0 NUM 
+values values value NOUN N
+that that that DET 
+maximize maximize maximize VERB V
+their their -PRON- DET 
+output output output NOUN N
+probabilities probabilities probability NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Finally finally finally ADV 
 , , , PUNCT 
 a a a DET 
-similar similar similar ADJ A
-pattern pattern pattern NOUN N
+speech speech speech NOUN N
+waveform waveform waveform NOUN N
+is is be AUX 
+synthesized synthesized synthesize VERB V
+directly directly directly ADV 
+from from from ADP P
+the the the DET 
+generated generated generate VERB V
+mel mel mel NOUN N
+- - - PUNCT 
+cepstral cepstral cepstral ADJ A
+coefficients coefficients coefficient NOUN N
+and and and CCONJ C
+F0 f0 f0 NOUN N
+values values value NOUN N
+using using use VERB V
+the the the DET 
+MLSA mlsa mlsa PROPN N
+slter slter slter PROPN N
+with with with ADP P
+binary binary binary ADJ A
+pulse pulse pulse NOUN N
+or or or CCONJ C
+noise noise noise NOUN N
+excitation excitation excitation NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Advantages advantages advantage NOUN N
+and and and CCONJ C
+disadvantages disadvantages disadvantage NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+The the the DET 
+biggest biggest big ADJ A
+disadvantage disadvantage disadvantage NOUN N
+of of of ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+against against against ADP P
+the the the DET 
+unit unit unit NOUN N
+selection selection selection NOUN N
+approach approach approach NOUN N
+is is be AUX 
+the the the DET 
+quality quality quality NOUN N
+of of of ADP P
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+There there there PRON 
+seems seems seem VERB V
+to to to PART P
+be be be AUX 
+three three three NUM 
+factors factors factor NOUN N
+which which which DET 
+degrade degrade degrade VERB V
+the the the DET 
+quality quality quality NOUN N
+: : : PUNCT 
+vocoder vocoder vocoder NOUN N
+, , , PUNCT 
+modeling modeling modeling NOUN N
+accuracy accuracy accuracy NOUN N
+, , , PUNCT 
+and and and CCONJ C
+over over over ADV 
+- - - PUNCT 
+smoothing smoothing smooth VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+by by by ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+sounds sounds sound VERB V
+buzzy buzzy buzzy ADJ A
+since since since SCONJ C
+it it -PRON- PRON 
+is is be AUX 
+based based base VERB V
+on on on ADP P
+the the the DET 
+vocoding vocoding vocode VERB V
+technique technique technique NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+alleviate alleviate alleviate VERB V
+this this this DET 
+problem problem problem NOUN N
+, , , PUNCT 
+a a a DET 
+high high high ADJ A
+quality quality quality NOUN N
+vocoder vocoder vocoder NOUN N
+such such such ADJ A
+as as as SCONJ C
+multi multi multi ADJ A
+- - - ADJ A
+band band band ADJ A
+excitation excitation excitation NOUN N
+scheme scheme scheme NOUN N
+or or or CCONJ C
+STRAIGHT straight straight ADJ A
+have have have AUX 
+been been be AUX 
+integrated integrated integrate VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Several several several ADJ A
+groups groups group NOUN N
+have have have AUX 
+recently recently recently ADV 
+applied applied apply VERB V
+LSP lsp lsp NOUN N
+- - - PUNCT 
+type type type NOUN N
+parameters parameters parameter NOUN N
+instead instead instead ADV 
+of of of ADP P
+mel mel mel ADJ A
+- - - PUNCT 
+cepstral cepstral cepstral ADJ A
+coefficients coefficients coefficient NOUN N
+to to to ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+basic basic basic ADJ A
+system system system NOUN N
+uses uses use VERB V
+ML ml ml ADP P
+- - - PUNCT 
+estimated estimated estimate VERB V
+HMMs hmms hmms NOUN N
+as as as SCONJ C
+its its -PRON- DET 
+acoustic acoustic acoustic ADJ A
+models models model NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Because because because SCONJ C
+this this this DET 
+system system system NOUN N
+generates generates generate VERB V
+speech speech speech NOUN N
+parameters parameters parameter NOUN N
+from from from ADP P
+its its -PRON- DET 
+acoustic acoustic acoustic ADJ A
+models models model NOUN N
+, , , PUNCT 
+model model model NOUN N
+accuracy accuracy accuracy NOUN N
+highly highly highly ADV 
+affects affects affect VERB V
+the the the DET 
+quality quality quality NOUN N
+of of of ADP P
+synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+improve improve improve VERB V
+its its -PRON- DET 
+modeling modeling modeling NOUN N
+accuracy accuracy accuracy NOUN N
+, , , PUNCT 
+a a a DET 
+number number number NOUN N
+of of of ADP P
+advanced advanced advanced ADJ A
+acoustic acoustic acoustic ADJ A
+models models model NOUN N
+and and and CCONJ C
+training training training NOUN N
+frameworks frameworks framework NOUN N
+such such such ADJ A
+as as as SCONJ C
+hidden hidden hide VERB V
+semi semi semi ADJ A
+- - - NOUN N
+Markov markov markov ADJ A
+models models model NOUN N
+( ( ( PUNCT 
+HSMMs hsmms hsmms PROPN N
+) ) ) PUNCT 
+, , , PUNCT 
+trajectory trajectory trajectory NUM 
+HMMs hmms hmms NOUN N
+, , , PUNCT 
+buried buried bury VERB V
+Markov markov markov NOUN N
+models models model NOUN N
+, , , PUNCT 
+trended trended trend VERB V
+HMMs hmms hmms NOUN N
+, , , PUNCT 
+stochastic stochastic stochastic ADJ A
+Markov markov markov NOUN N
+graphs graphs graph NOUN N
+, , , PUNCT 
+minimum minimum minimum ADJ A
+generation generation generation NOUN N
+error error error NOUN N
+( ( ( PUNCT 
+MGE mge mge PROPN N
+) ) ) PUNCT 
+criterion criterion criterion NOUN N
+, , , PUNCT 
+and and and CCONJ C
+variational variational variational ADJ A
+Bayesian bayesian bayesian ADJ A
+approach approach approach NOUN N
+have have have AUX 
+been been be AUX 
+investigated investigated investigate VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+the the the DET 
+basic basic basic ADJ A
+system system system NOUN N
+, , , PUNCT 
+the the the DET 
+speech speech speech NOUN N
+parameter parameter parameter NOUN N
+generation generation generation NOUN N
+algorithm algorithm algorithm PROPN N
+is is be AUX 
+used used use VERB V
+to to to PART P
+generate generate generate VERB V
+spectral spectral spectral ADJ A
+and and and CCONJ C
+excitation excitation excitation NOUN N
+parameters parameters parameter NOUN N
+from from from ADP P
+HMMs hmms hmms NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+By by by ADP P
+taking taking take VERB V
+account account account NOUN N
+of of of ADP P
+constraints constraints constraint NOUN N
+between between between ADP P
+the the the DET 
+static static static ADJ A
+and and and CCONJ C
+dynamic dynamic dynamic ADJ A
+features features feature NOUN N
+, , , PUNCT 
+it it -PRON- PRON 
+can can can VERB V
+generate generate generate VERB V
+smooth smooth smooth ADJ A
+speech speech speech NOUN N
+parameter parameter parameter NOUN N
+trajectories trajectories trajectory NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+the the the DET 
+generated generated generate VERB V
+spectral spectral spectral NOUN N
+and and and CCONJ C
+excitation excitation excitation NOUN N
+parameters parameters parameter NOUN N
+are are be AUX 
+often often often ADV 
+over over over ADV 
+- - - PUNCT 
+smoothed smoothed smooth VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Synthesized synthesized synthesize VERB V
+speech speech speech NOUN N
+using using use VERB V
+over over over ADP P
+- - - PUNCT 
+smoothed smoothed smooth VERB V
+spectral spectral spectral ADJ A
+parameters parameters parameter NOUN N
+sounds sounds sound VERB V
+muffled muffled muffled ADJ A
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+To to to PART P
+reduce reduce reduce VERB V
+this this this DET 
+effect effect effect NOUN N
+and and and CCONJ C
+enhance enhance enhance VERB V
+the the the DET 
+speech speech speech NOUN N
+quality quality quality NOUN N
+, , , PUNCT 
+postsltering postsltering postsltere VERB V
+, , , PUNCT 
+a a a DET 
+conditional conditional conditional ADJ A
+speech speech speech NOUN N
+parameter parameter parameter NOUN N
+generation generation generation NOUN N
+algorithm algorithm algorithm PROPN N
+, , , PUNCT 
+or or or CCONJ C
+a a a DET 
+speech speech speech NOUN N
+parameter parameter parameter NOUN N
+generation generation generation NOUN N
+algorithm algorithm algorithm PROPN N
+considering considering consider VERB V
+global global global ADJ A
+variance variance variance NOUN N
+have have have AUX 
+been been be AUX 
+used used use VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Advantages advantages advantage NOUN N
+of of of ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+are are be AUX 
+"
+" "
+" "
+" SPACE 
+1 1 1 NUM 
+) ) ) PUNCT 
+its its -PRON- DET 
+voice voice voice NOUN N
+characteristics characteristics characteristic NOUN N
 can can can VERB V
 be be be AUX 
-observed observed observe VERB V
-: : : PUNCT 
-listeners listeners listener NOUN N
-’ ’ ’ PART P
-transcriptions transcriptions transcription NOUN N
-of of of ADP P
-natural natural natural ADJ A
-speech speech speech NOUN N
-attain attain attain VERB V
-a a a DET 
-WER wer wer NOUN N
-of of of ADP P
-8–12 8–12 8–12 PROPN N
-% % % NOUN N
+easily easily easily ADV 
+modised modised modise VERB V
 , , , PUNCT 
-and and and CCONJ C
-in in in ADP P
-all all all DET 
-cases cases case NOUN N
+"
+" "
+" "
+" SPACE 
+2 2 2 NUM 
+) ) ) PUNCT 
+it it -PRON- PRON 
+can can can VERB V
+be be be AUX 
+applied applied apply VERB V
+to to to ADP P
+various various various ADJ A
+languages languages language NOUN N
+with with with ADP P
+little little little ADJ A
+modiscation modiscation modiscation NOUN N
+, , , PUNCT 
+"
+" "
+" "
+" SPACE 
+3 3 3 NUM 
+) ) ) PUNCT 
+a a a DET 
+variety variety variety NOUN N
+of of of ADP P
+speaking speaking speak VERB V
+styles styles style NOUN N
+or or or CCONJ C
+emotional emotional emotional ADJ A
+speech speech speech NOUN N
+can can can VERB V
+be be be AUX 
+synthesized synthesized synthesize VERB V
+using using use VERB V
 the the the DET 
-TTS tts tts PROPN N
-system system system NOUN N
-attain attain attain VERB V
-WERs wers wer NOUN N
-approximately approximately approximately ADV 
-1.5 1.5 1.5 NUM 
-times times time NOUN N
-worse worse bad ADJ A
+small small small ADJ A
+amount amount amount NOUN N
+of of of ADP P
+speech speech speech NOUN N
+data data datum NOUN N
+, , , PUNCT 
+"
+" "
+" "
+" SPACE 
+4 4 4 NUM 
+) ) ) PUNCT 
+techniques techniques technique NOUN N
+developed developed develop VERB V
+in in in ADP P
+ASR asr asr PROPN N
+can can can VERB V
+be be be AUX 
+easily easily easily ADV 
+applied applied apply VERB V
+, , , PUNCT 
+"
+" "
+" "
+" SPACE 
+5 5 5 NUM 
+) ) ) PUNCT 
+its its -PRON- DET 
+footprint footprint footprint NOUN N
+is is be AUX 
+relatively relatively relatively ADV 
+small small small ADJ A
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-This this this DET 
-is is be AUX 
-consistent consistent consistent ADJ A
-with with with ADP P
-the the the DET 
-difference difference difference NOUN N
-between between between ADP P
-WERs wers wer NOUN N
-for for for ADP P
-natural natural natural ADJ A
-speech speech speech NOUN N
-and and and CCONJ C
-decent decent decent ADJ A
-benchmark benchmark benchmark NOUN N
-systems systems system NOUN N
+The the the DET 
+voice voice voice NOUN N
+characteristics characteristics characteristic NOUN N
 in in in ADP P
-larger larger large ADJ A
-scale scale scale NOUN N
-evaluations evaluations evaluation NOUN N
-on on on ADP P
-standard standard standard ADJ A
-corpora corpora corpora NOUN N
+1 1 1 NUM 
+) ) ) PUNCT 
+can can can VERB V
+be be be AUX 
+changed changed change VERB V
+by by by ADP P
+transforming transforming transform VERB V
+HMM hmm hmm PROPN N
+parameters parameters parameter NOUN N
+appropriately appropriately appropriately ADV 
+because because because SCONJ C
+the the the DET 
+system system system NOUN N
+generates generates generate VERB V
+speech speech speech NOUN N
+waveforms waveforms waveform NOUN N
+from from from ADP P
+the the the DET 
+HMMs hmms hmms NOUN N
+themselves themselves -PRON- PRON 
 . . . PUNCT 
 "
 " "
@@ -5158,491 +2191,926 @@ corpora corpora corpora NOUN N
 For for for ADP P
 example example example NOUN N
 , , , PUNCT 
-natural natural natural ADJ A
-speech speech speech NOUN N
-and and and CCONJ C
-the the the DET 
-Festival festival festival NOUN N
-benchmark benchmark benchmark NOUN N
+either either either CCONJ C
+a a a DET 
+speaker speaker speaker NOUN N
+adaptation adaptation adaptation NOUN N
+, , , PUNCT 
+a a a DET 
+speaker speaker speaker NOUN N
+interpolation interpolation interpolation NOUN N
+, , , PUNCT 
+or or or CCONJ C
+an an an DET 
+eigenvoice eigenvoice eigenvoice NOUN N
+technique technique technique NOUN N
+was was be AUX 
+applied applied apply VERB V
+to to to ADP P
+this this this DET 
 system system system NOUN N
-attained attained attain VERB V
-WERs wers wer NOUN N
-of of of ADP P
-17 17 17 NUM 
-% % % NOUN N
+, , , PUNCT 
 and and and CCONJ C
-25 25 25 NUM 
-% % % NOUN N
-respectively respectively respectively ADV 
-in in in ADP P
+it it -PRON- PRON 
+was was be AUX 
+shown shown show VERB V
+that that that SCONJ C
 the the the DET 
-2011 2011 2011 NUM 
+system system system NOUN N
+could could could VERB V
+modify modify modify VERB V
+voice voice voice NOUN N
+characteristics characteristics characteristic NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Multilingual multilingual multilingual ADJ A
+support support support NOUN N
+in in in ADP P
+2 2 2 NUM 
+) ) ) PUNCT 
+can can can VERB V
+be be be AUX 
+easily easily easily ADV 
+realized realized realize VERB V
+because because because SCONJ C
+in in in ADP P
+this this this DET 
+system system system NOUN N
+only only only ADV 
+contextual contextual contextual ADJ A
+factors factors factor NOUN N
+are are be AUX 
+dependent dependent dependent ADJ A
+on on on ADP P
+each each each DET 
+language language language NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Japanese japanese japanese PROPN N
+, , , PUNCT 
+Mandarin mandarin mandarin PROPN N
+, , , PUNCT 
+Korean korean korean PROPN N
+, , , PUNCT 
+English english english ADJ A
+, , , PUNCT 
+German german german ADJ A
+, , , PUNCT 
+Portuguese portuguese portuguese ADJ A
+, , , PUNCT 
+Swedish swedish swedish ADJ A
+, , , PUNCT 
+Finnish finnish finnish ADJ A
+, , , PUNCT 
+Slovenian slovenian slovenian ADJ A
+, , , PUNCT 
+Croatian croatian croatian ADJ A
+, , , PUNCT 
+Arabic arabic arabic ADJ A
+, , , PUNCT 
+Farsi farsi farsi PROPN N
+, , , PUNCT 
+and and and CCONJ C
+Polyglot polyglot polyglot NOUN N
+systems systems system NOUN N
+have have have AUX 
+already already already ADV 
+been been be AUX 
+developed developed develop VERB V
+by by by ADP P
+various various various ADJ A
+groups groups group NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Speaking speaking speak VERB V
+styles styles style NOUN N
+and and and CCONJ C
+emotional emotional emotional ADJ A
+voices voices voice NOUN N
+in in in ADP P
+3 3 3 NUM 
+) ) ) PUNCT 
+can can can VERB V
+be be be AUX 
+constructed constructed construct VERB V
+by by by ADP P
+re re re VERB V
+- - - ADJ A
+estimating estimating estimate VERB V
+existing existing exist VERB V
+average average average ADJ A
+voice voice voice NOUN N
+models models model NOUN N
+with with with ADP P
+only only only ADV 
+a a a DET 
+few few few ADJ A
+utterances utterances utterance NOUN N
+using using use VERB V
+adaptation adaptation adaptation NOUN N
+techniques techniques technique NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+As as as SCONJ C
+for for for ADP P
+4 4 4 NUM 
+) ) ) PUNCT 
+, , , PUNCT 
+we we -PRON- PRON 
+can can can VERB V
+employ employ employ VERB V
+a a a DET 
+number number number NOUN N
+of of of ADP P
+useful useful useful ADJ A
+technologies technologies technology NOUN N
+developed developed develop VERB V
+for for for ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+speech speech speech NOUN N
+recognition recognition recognition NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+For for for ADP P
+example example example NOUN N
+, , , PUNCT 
+structured structured structured ADJ A
+precision precision precision NOUN N
+matrix matrix matrix NOUN N
+models models model NOUN N
+, , , PUNCT 
+which which which DET 
+can can can VERB V
+approximate approximate approximate VERB V
+full full full ADJ A
+covariance covariance covariance NOUN N
+models models model NOUN N
+well well well ADV 
+using using use VERB V
+the the the DET 
+small small small ADJ A
+number number number NOUN N
+of of of ADP P
+parameters parameters parameter NOUN N
+, , , PUNCT 
+have have have AUX 
+successfully successfully successfully ADV 
+been been be AUX 
+applied applied apply VERB V
+to to to ADP P
+the the the DET 
+system system system NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Small small small ADJ A
+footprints footprints footprint NOUN N
+in in in ADP P
+5 5 5 NUM 
+) ) ) PUNCT 
+can can can VERB V
+be be be AUX 
+realized realized realize VERB V
+by by by ADP P
+storing storing store VERB V
+statistics statistics statistic NOUN N
+of of of ADP P
+HMMs hmms hmms NOUN N
+rather rather rather ADV 
+than than than SCONJ C
+multi multi multi ADJ A
+- - - ADJ A
+templates templates template NOUN N
+of of of ADP P
+speech speech speech NOUN N
+units units unit NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+For for for ADP P
+example example example NOUN N
+, , , PUNCT 
+footprints footprints footprint NOUN N
+of of of ADP P
+the the the DET 
+Nitech nitech nitech NOUN N
+’s ’s ’s PROPN N
 Blizzard blizzard blizzard PROPN N
 Challenge challenge challenge NOUN N
-evaluation evaluation evaluation NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-The the the DET 
-results results result NOUN N
-for for for ADP P
-English english english PROPN N
-are are be AUX 
-the the the DET 
-exception exception exception NOUN N
-to to to ADP P
-the the the DET 
-general general general ADJ A
-pattern pattern pattern NOUN N
-: : : PUNCT 
-the the the DET 
-WER wer wer NOUN N
-for for for ADP P
-synthetic synthetic synthetic ADJ A
-speech speech speech NOUN N
-is is be AUX 
-over over over ADP P
-4 4 4 NUM 
-times times time NOUN N
-worse worse bad ADJ A
+2005 2005 2005 NUM 
+voices voices voice NOUN N
+were were be AUX 
+less less less ADJ A
 than than than SCONJ C
-that that that DET 
-of of of ADP P
-natural natural natural ADJ A
-speech speech speech NOUN N
+2 2 2 NUM 
+MBytes mbytes mbyte NOUN N
+with with with ADP P
+no no no DET 
+compression compression compression NOUN N
 . . . PUNCT 
 "
+
 " "
+
 " "
+
 " SPACE 
-From from from ADP P
-prior prior prior ADJ A
-knowledge knowledge knowledge NOUN N
-and and and CCONJ C
-from from from ADP P
-looking looking look VERB V
-at at at ADP P
-listeners listeners listener NOUN N
-’ ’ ’ PART P
-transcriptions transcriptions transcription NOUN N
-, , , PUNCT 
-it it -PRON- PRON 
-seems seems seem VERB V
-clear clear clear ADJ A
-that that that SCONJ C
-this this this DET 
-is is be AUX 
-due due due ADJ A
-to to to ADP P
-the the the DET 
-fact fact fact NOUN N
-that that that SCONJ C
-TTS tts tts PROPN N
-is is be AUX 
+RELATION relation relation NOUN N
+AND and and CCONJ C
+HYBRID hybrid hybrid ADJ A
+APPROACHES approaches approach NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Relation relation relation NOUN N
+between between between ADP P
+two two two NUM 
+approaches approaches approach NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+Some some some DET 
+of of of ADP P
+clustering clustering clustering NOUN N
+- - - PUNCT 
 based based base VERB V
-on on on ADP P
-letters letters letter NOUN N
-in in in ADP P
-a a a DET 
-language language language NOUN N
-with with with ADP P
-such such such DET 
-an an an DET 
-opaque opaque opaque ADJ A
-letter letter letter NOUN N
-- - - PUNCT 
-to to to ADP P
-- - - PUNCT 
-sound sound sound NOUN N
-relationship relationship relationship NOUN N
+unit unit unit NOUN N
+selection selection selection NOUN N
+approaches approaches approach NOUN N
+uses uses use VERB V
+HMMbased hmmbased hmmbase VERB V
+state state state NOUN N
+clustering clustering clustering NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
 In in in ADP P
-all all all DET 
-languages languages language NOUN N
-except except except SCONJ C
-Polish polish polish NOUN N
+this this this DET 
+case case case NOUN N
 , , , PUNCT 
 the the the DET 
-difference difference difference NOUN N
-between between between ADP P
-the the the DET 
-first first first ADJ A
-two two two NUM 
-conditions conditions condition NOUN N
-( ( ( PUNCT 
-natural natural natural ADJ A
-speech speech speech NOUN N
-and and and CCONJ C
-TTS tts tts PROPN N
-) ) ) PUNCT 
-found found find VERB V
-to to to PART P
-be be be AUX 
-statistically statistically statistically ADV 
-significant significant significant ADJ A
-( ( ( PUNCT 
-with with with ADP P
-α α α PROPN N
-= = = SYM 
-0.05 0.05 0.05 NUM 
-) ) ) PUNCT 
-using using use VERB V
-the the the DET 
-bootstrap bootstrap bootstrap NOUN N
-procedure procedure procedure NOUN N
+structure structure structure NOUN N
+is is be AUX 
+very very very ADV 
+similar similar similar ADJ A
+to to to ADP P
+that that that DET 
 of of of ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-As as as SCONJ C
-expected expected expect VERB V
-, , , PUNCT 
-WERs wers wer NOUN N
-for for for ADP P
+The the the DET 
+essential essential essential ADJ A
+difference difference difference NOUN N
+between between between ADP P
 the the the DET 
-SUS sus sus PROPN N
-sentences sentences sentence NOUN N
+clustering clustering clustering NOUN N
+- - - PUNCT 
+based based base VERB V
+unit unit unit NOUN N
+- - - PUNCT 
+selection selection selection NOUN N
+approach approach approach NOUN N
+and and and CCONJ C
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+is is be AUX 
+that that that SCONJ C
+each each each DET 
+cluster cluster cluster NOUN N
+in in in ADP P
+the the the DET 
+generation generation generation NOUN N
+approach approach approach NOUN N
+is is be AUX 
+represented represented represent VERB V
+by by by ADP P
+statistics statistics statistic NOUN N
+of of of ADP P
+the the the DET 
+cluster cluster cluster NOUN N
+instead instead instead ADV 
+of of of ADP P
+multi multi multi ADJ A
+- - - ADJ A
+templates templates template NOUN N
+of of of ADP P
+speech speech speech NOUN N
+units units unit NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+, , , PUNCT 
+distributions distributions distribution NOUN N
+for for for ADP P
+spectrum spectrum spectrum NOUN N
+, , , PUNCT 
+F0 f0 f0 NOUN N
+, , , PUNCT 
+and and and CCONJ C
+duration duration duration NOUN N
 are are be AUX 
-much much much ADV 
-higher higher high ADJ A
-than than than SCONJ C
-those those those DET 
+clustered clustered cluster VERB V
+independently independently independently ADV 
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Accordingly accordingly accordingly ADV 
+, , , PUNCT 
+it it -PRON- PRON 
+has has have AUX 
+different different different ADJ A
+decision decision decision NOUN N
+trees trees tree NOUN N
 for for for ADP P
-natural natural natural ADJ A
-sentences sentences sentence NOUN N
+each each each DET 
+of of of ADP P
+spectrum spectrum spectrum NOUN N
+, , , PUNCT 
+F0 f0 f0 NOUN N
+, , , PUNCT 
+and and and CCONJ C
+duration duration duration NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+On on on ADP P
+the the the DET 
+other other other ADJ A
+hand hand hand NOUN N
+, , , PUNCT 
+unit unit unit NOUN N
+selection selection selection NOUN N
+systems systems system NOUN N
+often often often ADV 
+use use use VERB V
+regression regression regression NOUN N
+trees trees tree NOUN N
+( ( ( PUNCT 
+or or or CCONJ C
+CART cart cart NOUN N
+) ) ) PUNCT 
+for for for ADP P
+prosody prosody prosody NOUN N
+prediction prediction prediction NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+decision decision decision NOUN N
+trees trees tree NOUN N
+for for for ADP P
+F f f PROPN N
+0 0 0 NUM 
+and and and CCONJ C
+duration duration duration NOUN N
+in in in ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+are are be AUX 
+essentially essentially essentially ADV 
+equivalent equivalent equivalent ADJ A
+to to to ADP P
+the the the DET 
+regression regression regression NOUN N
+trees trees tree NOUN N
+in in in ADP P
+the the the DET 
+unit unit unit NOUN N
+selection selection selection NOUN N
+systems systems system NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+However however however ADV 
+, , , PUNCT 
+in in in ADP P
+the the the DET 
+unit unit unit NOUN N
+selection selection selection NOUN N
+systems systems system NOUN N
+, , , PUNCT 
+leaves leaves leave NOUN N
+of of of ADP P
+one one one NUM 
+of of of ADP P
+trees trees tree NOUN N
+must must must VERB V
+have have have AUX 
+speech speech speech NOUN N
+waveforms waveforms waveform NOUN N
 : : : PUNCT 
-24.8 24.8 24.8 NUM 
-% % % NOUN N
-and and and CCONJ C
-69.4 69.4 69.4 NUM 
-% % % NOUN N
+other other other ADJ A
+trees trees tree NOUN N
+are are be AUX 
+used used use VERB V
+to to to PART P
+calculate calculate calculate VERB V
+target target target NOUN N
+costs costs cost NOUN N
+, , , PUNCT 
+to to to PART P
+prune prune prune VERB V
+waveform waveform waveform PROPN N
+candidates candidates candidate NOUN N
+, , , PUNCT 
+or or or CCONJ C
+to to to PART P
+give give give VERB V
+features features feature NOUN N
 for for for ADP P
-Romanian romanian romanian ADJ A
+constructing constructing construct VERB V
+the the the DET 
+trees trees tree NOUN N
+for for for ADP P
+speech speech speech NOUN N
+waveforms waveforms waveform NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+It it -PRON- PRON 
+is is be AUX 
+noted noted note VERB V
+that that that SCONJ C
+in in in ADP P
+the the the DET 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+approach approach approach NOUN N
+, , , PUNCT 
+likelihoods likelihoods likelihood NOUN N
+of of of ADP P
+static static static ADJ A
+feature feature feature NOUN N
+parameters parameters parameter NOUN N
 and and and CCONJ C
-English english english PROPN N
+dynamic dynamic dynamic ADJ A
+feature feature feature NOUN N
+parameters parameters parameter NOUN N
+corresponds corresponds correspond VERB V
+to to to ADP P
+the the the DET 
+target target target NOUN N
+costs costs cost NOUN N
+and and and CCONJ C
+concatenation concatenation concatenation NOUN N
+costs costs cost NOUN N
 , , , PUNCT 
 respectively respectively respectively ADV 
 . . . PUNCT 
 "
-
 " "
-
 " "
-
 " SPACE 
-Figure figure figure NOUN N
-: : : PUNCT 
-Word word word NOUN N
-error error error NOUN N
-rates rates rate NOUN N
-for for for ADP P
-TTS tts tts PROPN N
-systems systems system NOUN N
-and and and CCONJ C
-natural natural natural ADJ A
-speech speech speech NOUN N
-for for for ADP P
-5 5 5 NUM 
-of of of ADP P
-the the the DET 
-14 14 14 NUM 
-systems systems system NOUN N
-built built build VERB V
-from from from ADP P
-the the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-. . . PUNCT 
-"
-
-" "
-
-" "
-
-" SPACE 
-Conclusions conclusions conclusion NOUN N
-"
-
-" "
-
-" "
-
-" SPACE 
-We we -PRON- PRON 
-have have have AUX 
-presented presented present VERB V
-tools tools tool NOUN N
-for for for ADP P
-building building build VERB V
-TTS tts tts PROPN N
-front front front NOUN N
-- - - PUNCT 
-ends ends end NOUN N
-in in in ADP P
-a a a DET 
-way way way NOUN N
-that that that DET 
-exploits exploits exploit VERB V
-unsupervised unsupervised unsupervised ADJ A
-learning learning learn VERB V
-techniques techniques technique NOUN N
+It it -PRON- PRON 
+is is be AUX 
+easy easy easy ADJ A
 to to to PART P
-side side side NOUN N
-- - - PUNCT 
-step step step VERB V
-the the the DET 
-need need need NOUN N
-for for for ADP P
-language language language NOUN N
-- - - PUNCT 
-specific specific specific ADJ A
-expert expert expert ADJ A
-knowledge knowledge knowledge NOUN N
-and and and CCONJ C
-resources resources resource NOUN N
-such such such ADJ A
-as as as SCONJ C
-pronunciation pronunciation pronunciation NOUN N
-lexicons lexicons lexicon NOUN N
-, , , PUNCT 
-phoneme phoneme phoneme ADJ A
-inventories inventories inventory NOUN N
-and and and CCONJ C
-part part part NOUN N
-of of of ADP P
-speech speech speech NOUN N
-taggers taggers tagger NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-We we -PRON- PRON 
-have have have AUX 
-shown shown show VERB V
-how how how ADV 
-the the the DET 
-tools tools tool NOUN N
-were were be AUX 
-applied applied apply VERB V
-to to to ADP P
-the the the DET 
-languages languages language NOUN N
-of of of ADP P
-the the the DET 
-Tundra tundra tundra PROPN N
-corpus corpus corpus NOUN N
-to to to PART P
-produce produce produce VERB V
-TTS tts tts PROPN N
-systems systems system NOUN N
-in in in ADP P
-14 14 14 NUM 
-languages languages language NOUN N
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-As as as SCONJ C
-we we -PRON- PRON 
-had had have AUX 
-previously previously previously ADV 
-built built build VERB V
-the the the DET 
-Tundra tundra tundra NOUN N
-corpus corpus corpus NOUN N
-from from from ADP P
-found found find VERB V
-data data datum NOUN N
-using using use VERB V
-minimal minimal minimal ADJ A
-supervision supervision supervision NOUN N
-and and and CCONJ C
-language language language NOUN N
-specific specific specific ADJ A
-knowledge knowledge knowledge NOUN N
-, , , PUNCT 
-these these these DET 
-TTS tts tts PROPN N
-systems systems system NOUN N
-represent represent represent VERB V
-the the the DET 
-output output output NOUN N
-of of of ADP P
-our our -PRON- DET 
-entire entire entire ADJ A
-pipeline pipeline pipeline NOUN N
-of of of ADP P
-tools tools tool NOUN N
-, , , PUNCT 
-and and and CCONJ C
-show show show VERB V
-the the the DET 
-type type type NOUN N
-of of of ADP P
-voice voice voice NOUN N
-which which which DET 
-any any any DET 
-interested interested interested ADJ A
-developer developer developer NOUN N
-should should should VERB V
-be be be AUX 
-able able able ADJ A
-to to to PART P
-build build build VERB V
-using using use VERB V
-our our -PRON- DET 
-toolkit toolkit toolkit NOUN N
-( ( ( PUNCT 
-which which which DET 
-will will will VERB V
-be be be AUX 
-made made make VERB V
-freely freely freely ADV 
-available available available ADJ A
-) ) ) PUNCT 
-despite despite despite SCONJ C
-a a a DET 
-lack lack lack NOUN N
-of of of ADP P
-language language language NOUN N
-- - - PUNCT 
-specific specific specific ADJ A
-or or or CCONJ C
-speech speech speech NOUN N
-technology technology technology NOUN N
-expertise expertise expertise NOUN N
+understand understand understand VERB V
 , , , PUNCT 
 if if if SCONJ C
-a a a DET 
-source source source NOUN N
-of of of ADP P
-speech speech speech NOUN N
-and and and CCONJ C
-text text text NOUN N
-data data datum NOUN N
-can can can VERB V
-be be be AUX 
-found found find VERB V
-. . . PUNCT 
-"
-" "
-" "
-" SPACE 
-Five five five NUM 
-of of of ADP P
-the the the DET 
-voices voices voice NOUN N
-were were be AUX 
-evaluated evaluated evaluate VERB V
-in in in ADP P
-a a a DET 
-listening listening listening NOUN N
-test test test NOUN N
-for for for ADP P
-intelligibility intelligibility intelligibility NOUN N
-, , , PUNCT 
-which which which DET 
 we we -PRON- PRON 
-consider consider consider VERB V
-to to to PART P
-show show show VERB V
-that that that SCONJ C
-systems systems system NOUN N
-of of of ADP P
-reasonable reasonable reasonable ADJ A
-quality quality quality NOUN N
-can can can VERB V
-be be be AUX 
-built built build VERB V
+approximate approximate approximate VERB V
+each each each DET 
+state state state NOUN N
+output output output NOUN N
+distribution distribution distribution NOUN N
 by by by ADP P
-applying applying apply VERB V
-our our -PRON- DET 
-tools tools tool NOUN N
-to to to PART P
-publicly publicly publicly ADV 
-available available available ADJ A
-audiobook audiobook audiobook NOUN N
-data data datum NOUN N
-, , , PUNCT 
-assuming assuming assume VERB V
-orthographies orthographies orthography NOUN N
+a a a DET 
+discrete discrete discrete ADJ A
+distribution distribution distribution NOUN N
+or or or CCONJ C
+instances instances instance NOUN N
 of of of ADP P
-similar similar similar ADJ A
-transparency transparency transparency NOUN N
-to to to ADP P
-those those those DET 
-of of of ADP P
-Bulgarian bulgarian bulgarian ADJ A
+frame frame frame NOUN N
+samples samples sample NOUN N
+in in in ADP P
+the the the DET 
+cluster cluster cluster NOUN N
+: : : PUNCT 
+when when when ADV 
+the the the DET 
+dynamic dynamic dynamic ADJ A
+feature feature feature NOUN N
+is is be AUX 
+calculated calculated calculate VERB V
+as as as SCONJ C
+the the the DET 
+difference difference difference NOUN N
+between between between ADP P
+neighboring neighboring neighbor VERB V
+static static static ADJ A
+features features feature NOUN N
 , , , PUNCT 
-Italian italian italian ADJ A
-, , , PUNCT 
-Polish polish polish ADJ A
-and and and CCONJ C
-Romanian romanian romanian NOUN N
+the the the DET 
+ML ml ml PROPN N
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+results results result VERB V
+in in in ADP P
+a a a DET 
+frame frame frame NOUN N
+- - - PUNCT 
+wise wise wise ADJ A
+DP dp dp NOUN N
+search search search NOUN N
+like like like SCONJ C
+unit unit unit NOUN N
+selection selection selection NOUN N
 . . . PUNCT 
 "
 " "
 " "
 " SPACE 
-While while while SCONJ C
-evaluation evaluation evaluation NOUN N
+Thus thus thus ADV 
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+parameter parameter parameter NOUN N
+generation generation generation NOUN N
+can can can VERB V
+be be be AUX 
+viewed viewed view VERB V
+as as as SCONJ C
+an an an DET 
+analogue analogue analogue ADJ A
+version version version NOUN N
+of of of ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+Hybrid hybrid hybrid ADJ A
+approaches approaches approach NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+As as as SCONJ C
+a a a DET 
+natural natural natural ADJ A
+consequence consequence consequence NOUN N
 of of of ADP P
 the the the DET 
-remaining remaining remain VERB V
-systems systems system NOUN N
-that that that DET 
-can can can VERB V
-be be be AUX 
-heard heard hear VERB V
-in in in ADP P
-the the the DET 
-demo demo demo NOUN N
-is is be AUX 
-still still still ADV 
-ongoing ongoing ongoing ADJ A
+above above above ADJ A
+viewpoints viewpoints viewpoint NOUN N
 , , , PUNCT 
-the the the DET 
-results results result NOUN N
-for for for ADP P
-five five five NUM 
-languages languages language NOUN N
-published published publish VERB V
-here here here ADV 
-– – – PUNCT 
-having having have VERB V
-been been be AUX 
-obtained obtained obtain VERB V
-from from from ADP P
-a a a DET 
-standardised standardised standardised ADJ A
-, , , PUNCT 
-publicly publicly publicly ADV 
-available available available ADJ A
-corpus corpus corpus NOUN N
-– – – PUNCT 
+there there there PRON 
 are are be AUX 
-intended intended intend VERB V
+also also also ADV 
+hybrid hybrid hybrid ADJ A
+approaches approaches approach NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Some some some DET 
+of of of ADP P
+these these these DET 
+approaches approaches approach NOUN N
+use use use VERB V
+spectrum spectrum spectrum NOUN N
+parameters parameters parameter NOUN N
+, , , PUNCT 
+F f f X 
+0 0 0 NUM 
+values values value NOUN N
+, , , PUNCT 
+and and and CCONJ C
+durations durations duration NOUN N
+( ( ( PUNCT 
+or or or CCONJ C
+a a a DET 
+part part part NOUN N
+of of of ADP P
+them them -PRON- PRON 
+) ) ) PUNCT 
+generated generated generate VERB V
+from from from ADP P
+HMM hmm hmm PROPN N
+to to to PART P
+calculate calculate calculate VERB V
+acoustic acoustic acoustic ADJ A
+target target target NOUN N
+costs costs cost NOUN N
+for for for ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Similarly similarly similarly ADV 
+, , , PUNCT 
+HMM hmm hmm INTJ 
+likelihoods likelihoods likelihood NOUN N
+are are be AUX 
+used used use VERB V
+as as as SCONJ C
+“ “ """" PUNCT 
+costs costs cost NOUN N
+” ” """" PUNCT 
+for for for ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Among among among ADP P
+of of of ADP P
+these these these DET 
+approaches approaches approach NOUN N
+, , , PUNCT 
+use use use VERB V
+frame frame frame NOUN N
+- - - PUNCT 
+sized sized sized ADJ A
+units units unit NOUN N
+, , , PUNCT 
+and and and CCONJ C
+use use use NOUN N
+generated generated generate VERB V
+longer longer long ADJ A
+trajectories trajectories trajectory NOUN N
+to to to PART P
+provide provide provide VERB V
+“ “ """" PUNCT 
+costs costs cost NOUN N
+” ” """" PUNCT 
+for for for ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Another another another DET 
+type type type NOUN N
+of of of ADP P
+hybrid hybrid hybrid ADJ A
+approaches approaches approach NOUN N
+uses uses use VERB V
+statistical statistical statistical ADJ A
+models models model NOUN N
+as as as SCONJ C
+a a a DET 
+probabilistic probabilistic probabilistic ADJ A
+smoother smoother smooth ADJ A
+for for for ADP P
+unit unit unit NOUN N
+selection selection selection NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Unifying unifying unifying ADJ A
+unit unit unit NOUN N
+selection selection selection NOUN N
+and and and CCONJ C
+HMM hmm hmm ADV 
+- - - PUNCT 
+based based base VERB V
+generation generation generation NOUN N
+synthesis synthesis synthesis NOUN N
+is is be AUX 
+also also also ADV 
+investigated investigated investigate VERB V
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+the the the DET 
+future future future NOUN N
+, , , PUNCT 
+we we -PRON- PRON 
+may may may VERB V
+converge converge converge VERB V
+at at at ADP P
+an an an DET 
+optimal optimal optimal ADJ A
+form form form NOUN N
+of of of ADP P
+corpusbased corpusbased corpusbased ADJ A
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+fusing fusing fuse VERB V
+generation generation generation NOUN N
+and and and CCONJ C
+selection selection selection NOUN N
+approaches approaches approach NOUN N
+. . . PUNCT 
+"
+
+" "
+
+" "
+
+" SPACE 
+CONCLUSION conclusion conclusion NOUN N
+"
+
+" "
+
+" "
+
+" SPACE 
+We we -PRON- PRON 
+can can can VERB V
+see see see VERB V
+that that that SCONJ C
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+speech speech speech NOUN N
+synthesis synthesis synthesis NOUN N
+offers offers offer VERB V
+a a a DET 
+wide wide wide ADJ A
+range range range NOUN N
+of of of ADP P
+techniques techniques technique NOUN N
+to to to PART P
+improve improve improve VERB V
+spoken spoken spoken ADJ A
+output output output NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+Its its -PRON- DET 
+more more more ADJ A
+complex complex complex ADJ A
+models models model NOUN N
+, , , PUNCT 
+when when when ADV 
+compared compared compare VERB V
+to to to ADP P
+standard standard standard ADJ A
+unit unit unit NOUN N
+selection selection selection NOUN N
+, , , PUNCT 
+allow allow allow VERB V
+for for for ADP P
+general general general ADJ A
+solutions solutions solution NOUN N
+, , , PUNCT 
+without without without ADP P
+necessarily necessarily necessarily ADV 
+requiring requiring require VERB V
+recording recording record VERB V
+speech speech speech NOUN N
+in in in ADP P
+all all all DET 
+phonetic phonetic phonetic ADJ A
+and and and CCONJ C
+prosodic prosodic prosodic ADJ A
+contexts contexts contexts NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+The the the DET 
+pure pure pure ADJ A
+unit unit unit NOUN N
+selection selection selection NOUN N
+view view view NOUN N
+requires requires require VERB V
+very very very ADV 
+large large large ADJ A
+databases databases database NOUN N
+to to to PART P
+cover cover cover VERB V
+examples examples example NOUN N
+of of of ADP P
+all all all DET 
+desired desired desire VERB V
+prosodic prosodic prosodic NOUN N
+, , , PUNCT 
+phonetic phonetic phonetic ADJ A
+and and and CCONJ C
+stylistic stylistic stylistic ADJ A
+variation variation variation NOUN N
+. . . PUNCT 
+"
+" "
+" "
+" SPACE 
+In in in ADP P
+contrast contrast contrast NOUN N
+statistical statistical statistical ADJ A
+parametric parametric parametric ADJ A
+synthesis synthesis synthesis NOUN N
+allows allows allow VERB V
+for for for ADP P
+models models model NOUN N
 to to to PART P
 be be be AUX 
-useful useful useful ADJ A
-benchmarks benchmarks benchmark NOUN N
-against against against ADP P
-which which which DET 
-future future future ADJ A
-work work work NOUN N
-can can can VERB V
-be be be AUX 
-compared compared compare VERB V
+combined combined combine VERB V
+and and and CCONJ C
+adapted adapted adapt VERB V
+thus thus thus ADV 
+not not not PART P
+requiring requiring require VERB V
+instances instances instance NOUN N
+of of of ADP P
+all all all DET 
+possible possible possible ADJ A
+combinations combinations combination NOUN N
+of of of ADP P
+contexts contexts contexts NOUN N
 . . . PUNCT 
 "
 " "

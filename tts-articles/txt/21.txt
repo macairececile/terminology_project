@@ -12,7 +12,7 @@ BACKGROUND
 
 With the increase in power and resources of computer technology, building natural sounding synthetic voices has progressed from a knowledge-based activity to a data-based one.
 Rather than handcrafting each phonetic unit and its applicable contexts, high-quality synthetic voices may be built from sufficiently diverse single speaker databases of natural speech.
-We can see a progression from sxed inventories, found in diphone systems to the more general, but more resource consuming, techniques of unit selection synthesis where appropriate sub-word units are automatically selected from large data-bases of natural speech.
+We can see a progression from sxed inventories, found in diphone systems to the more general, but more resource consuming, techniques of unit selection synthesis where appropriate sub-word units are automatically selected from large databases of natural speech.
 ATR ν-talk was the srst to show the effectiveness of automatic selection of appropriate units, then CHATR generalized these techniques to multiple languages and an automatic training scheme.
 Unit selection techniques have risen to be the dominant synthesis technique.
 The quality of the output derives directly from the quality of the recordings, and it appears that the larger the database the better the coverage.
