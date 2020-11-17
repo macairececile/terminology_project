@@ -14,6 +14,7 @@ It has been realized under the _Terminology_ course, as part of the _Natural lan
 ## Instructions
 
 There is three differents way to annonate your text.
+
 First, you should choose the type of annotation:
   * 1= terms annotation
   * 2= terms annoation and IOB tags
