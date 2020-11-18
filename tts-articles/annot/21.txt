@@ -1,0 +1,136 @@
+[STATISTICAL PARAMETRIC SPEECH SYNTHESIS] 
+
+ABSTRACT 
+
+This paper gives a general overview of techniques in [statistical parametric speech synthesis]. 
+One of the instances of these techniques, called [HMM-based generation synthesis] (or simply [HMM-based synthesis]), has recently been shown to be very effective in generating acceptable [speech synthesis]. 
+This paper also contrasts these techniques with the more conventional [unit selection technology] that has dominated [speech synthesis] over the last ten years. Advantages and disadvantages of [statistical parametric synthesis] are highlighted as well as identifying where we expect the key developments to appear in the immediate future. 
+
+Index Terms — [Speech synthesis], [hidden Markov models] 
+
+BACKGROUND 
+
+With the increase in power and resources of computer technology, building natural sounding [synthetic voices] has progressed from a knowledge-based activity to a data-based one. 
+Rather than handcrafting each [phonetic unit] and its applicable contexts, [high-quality synthetic voices] may be built from sufficiently diverse [single speaker databases] of natural [speech]. 
+We can see a progression from sxed inventories, found in diphone systems to the more general, but more resource consuming, techniques of [unit selection synthesis] where appropriate [sub-word units] are automatically selected from [large databases] of natural [speech]. 
+ATR ν-talk was the srst to show the effectiveness of automatic selection of appropriate units, then CHATR generalized these techniques to multiple languages and an automatic training scheme. 
+[Unit selection techniques] have risen to be the dominant synthesis technique. 
+The quality of the output derives directly from the quality of the recordings, and it appears that the larger the database the better the coverage. 
+Commercial systems have exploited these technique to bring us a new level of [synthetic speech]. 
+However, although certainly successful, there is always the issue of spurious errors. 
+When a desired sentence happens to require [phonetic] and [prosody] contexts that are under represented in a database, the quality of the synthesizer can be severely degraded. 
+Even though this may be a rare event, a single bad join in an utterance can ruin the listeners ƀow. 
+It is not possible to guarantee that bad joins and/or inappropriate units do not occur, simply because of the vast number of possible combinations that could occur. 
+However for particular applications it is often possible to almost always avoid them. 
+Limited domain synthesizers, where the database is designed for the particular application, go a long way to making almost all the synthetic output near perfect. 
+However in spite of the desire for perfect synthesis all the time, there are limitations in the [unit selection technique]. 
+No (or little) modiscation of the selected pieces of natural [speech] are carried out, thus limiting the output [speech] to the style of that in the original recordings. 
+With a desire for more control over the [speech variation], [larger databases] containing examples of different styles are required. 
+IBM’s stylistic synthesis is a good example but is limited by the amount of variations that can be recorded. 
+In direct contrast to this selecting of actual instances of [speech] from a database, [statistical parametric speech synthesis] has also grown in popularity over the last few years. 
+[Statistical parametric synthesis] might be most simply described as generating the average of some set of similarly sounding [speech segments]. 
+This contrasts directly with the desire in [unit selection] to keep the natural unmodised [speech units], but using parametric models offers other benests. 
+In both the [Blizzard Challenge] 2005 and 2006 where a common [speech database] is provided to participants to build a [synthetic voice], the results from listening tests have shown that one of the instances of [statistical parametric synthesis techniques] called [HMM-based generation synthesis] (or even [HMM-based synthesis]) offers more preferred (through [MOS tests]) and more understandable (through [WER scores]) synthesis. 
+Although even the proponents of [statistical parametric synthesis] feel that the best examples of [unit selection] are better than the best examples of [statistical parametric synthesis], overall it appears that quality of [statistical parametric synthesis] has already reached a quality that can stand in its own right. 
+The quality issue really comes down to the fact that given a parametric representation it is necessary to reconstruct the [speech] from those parameters. 
+The reconstruction process is still not ideal. 
+Although modeling the [spectral] and [prosody features] is relatively well desned, models of the residual / excitation are still yet to be fully developed, though composite models like STRAIGHT are proving to be useful. 
+The following section gives a more formal desnition of [unit selection techniques] that will allow a easier contrast it to [statistical parametric synthesis]. 
+Then [statistical parametric speech synthesis] is more formally desned, speciscally based on the implementation on the [HMM-based speech synthesis system] (HTS). 
+The snal sections discuss some of the advantages in a [statistical parametric framework] highlighting some of the existing a future directions. 
+
+[UNIT SELECTION SYNTHESIS] 
+
+There seems to be two basic techniques in [unit selection], though they are theoretically not very different. 
+Hunt and Black presented a selection model, which actually existed previously in ATR νtalk. 
+The basic notion is that of a target cost, how well a candidate unit from the database matches the desired unit, and a concatenation cost which desnes how well two selected units combine. 
+[Unit selection] requires the optimization of both these costs over the utterances. 
+The desnition of target cost between a candidate unit u i and a desired unit, 
+where j indexes over all features (typically [phonetic] and prosodic contexts are used). Concatenation cost is desned as... 
+
+[STATISTICAL PARAMETRIC SYNTHESIS] 
+
+Overview of a typical system 
+
+Though in this case k may include [spectral] and [acoustic features]. 
+Weights (w tj and w ck) have to be found for each feature, and actually implementations used a combination of trained and hand tuned weights. 
+The second direction, use a clustering method that allows the target cost to effectively be precalculated. 
+Units of the same type are clustered into a [decision tree] that asks questions about features available at synthesis time (e.g. [phonetic] and [prosody context]). 
+All of these techniques depend on a acoustic distance measure which should be correlated with human perception. 
+These apparently [unit selection] specisc issues are mentioned here because they have specisc counterparts in [statistical parametric synthesis]. 
+Figure 1 is a block diagram of a typical [HMM-based speech synthesis system]. 
+It consists of training and synthesis parts. 
+The training part is similar to those used in [speech recognition systems]. 
+The main difference is that both [spectrum] (e.g., [melcepstral coefficients] and their [dynamic features]) and excitation (e.g., log F 0 and its [dynamic features]) parameters are extracted from a [speech database] and modeled by [context-dependent HMMs] ([phonetic], linguistic, and prosodic contexts are taken into account). 
+To model log F0 sequence which includes unvoiced regions properly, multi-space probability distributions are used for the state output stream for log F0. 
+Each [HMM] has state duration densities to model the temporal structure of [speech]. 
+As a result, the system models [spectrum], excitation, and durations in a unised framework. 
+The synthesis part does the inverse operation of [speech recognition]. 
+First, an arbitrarily given text corresponding an utterance to be synthesized is converted to a [context-dependent label sequence] and then the utterance [HMM] is constructed by concatenating the contextdependent [HMMs] according to the label sequence. 
+Secondly, state durations of the [HMM] are determined based on the state duration [probability density functions]. 
+Thirdly, the [speech parameter generation algorithm] (typically, case 1 in) generates the [sequence of mel-cepstral coefficients] and log F 0 values that maximize their output probabilities. 
+Finally, a [speech waveform] is synthesized directly from the generated [mel-cepstral coefficients] and F0 values using the MLSA slter with binary pulse or noise excitation. 
+
+Advantages and disadvantages 
+
+The biggest disadvantage of the [HMM-based generation synthesis approach] against the [unit selection approach] is the quality of [synthesized speech]. 
+There seems to be three factors which degrade the quality : [vocoder], modeling accuracy, and over-smoothing. 
+The [synthesized speech] by the [HMM-based generation synthesis approach] sounds buzzy since it is based on the [vocoding technique]. 
+To alleviate this problem, a high quality [vocoder] such as multi-band excitation scheme or STRAIGHT have been integrated. 
+Several groups have recently applied [LSP-type parameters] instead of [mel-cepstral coefficients] to the [HMM-based generation synthesis approach]. 
+The basic system uses ML-estimated [HMMs] as its [acoustic models]. 
+Because this system generates [speech parameters] from its [acoustic models], model accuracy highly affects the quality of [synthesized speech]. 
+To improve its modeling accuracy, a number of advanced [acoustic models] and training frameworks such as hidden semi-[Markov models] (HSMMs), trajectory [HMMs], buried [Markov models], trended [HMMs], stochastic [Markov] graphs, minimum generation error (MGE) criterion, and variational Bayesian approach have been investigated. 
+In the basic system, the [speech parameter generation algorithm] is used to generate [spectral] and excitation parameters from [HMMs]. 
+By taking account of constraints between the static and [dynamic features], it can generate smooth [speech parameter] trajectories. 
+However, the generated [spectral] and excitation parameters are often over-smoothed. 
+[Synthesized speech] using over-smoothed [spectral parameters] sounds muffled. 
+To reduce this effect and enhance the [speech quality], postsltering, a conditional [speech parameter generation algorithm], or a [speech parameter generation algorithm] considering global variance have been used. 
+Advantages of the [HMM-based generation synthesis approach] are 
+1) its [voice characteristics] can be easily modised, 
+2) it can be applied to various languages with little modiscation, 
+3) a variety of speaking styles or [emotional speech] can be synthesized using the small amount of [speech data], 
+4) techniques developed in [ASR] can be easily applied, 
+5) its footprint is relatively small. 
+The [voice characteristics] in 1) can be changed by transforming [HMM parameters] appropriately because the system generates [speech waveforms] from the [HMMs] themselves. 
+For example, either a [speaker adaptation], a [speaker interpolation], or an eigenvoice technique was applied to this system, and it was shown that the system could modify [voice characteristics]. 
+Multilingual support in 2) can be easily realized because in this system only contextual factors are dependent on each language. 
+Japanese, Mandarin, Korean, English, German, Portuguese, Swedish, Finnish, Slovenian, Croatian, Arabic, Farsi, and Polyglot systems have already been developed by various groups. 
+Speaking styles and [emotional voices] in 3) can be constructed by re-estimating existing [average voice models] with only a few utterances using adaptation techniques. 
+As for 4), we can employ a number of useful technologies developed for the [HMM-based speech recognition]. 
+For example, structured precision matrix models, which can approximate full covariance models well using the small number of parameters, have successfully been applied to the system. 
+Small footprints in 5) can be realized by storing statistics of [HMMs] rather than multi-templates of [speech units]. 
+For example, footprints of the Nitech’s [Blizzard Challenge] 2005 voices were less than 2 MBytes with no compression. 
+
+RELATION AND [HYBRID APPROACHES] 
+
+Relation between two approaches 
+
+Some of clustering-based [unit selection approaches] uses [HMM-based state clustering]. 
+In this case, the structure is very similar to that of the [HMM-based generation synthesis approach]. 
+The essential difference between the clustering-based [unit-selection approach] and the [HMM-based generation synthesis approach] is that each cluster in the generation approach is represented by statistics of the cluster instead of multi-templates of [speech units]. 
+In the [HMM-based generation synthesis approach], distributions for [spectrum], F0, and duration are clustered independently. 
+Accordingly, it has different [decision trees] for each of [spectrum], F0, and duration. 
+On the other hand, [unit selection systems] often use regression trees (or [CART]) for [prosody prediction]. 
+The [decision trees] for F 0 and duration in the [HMM-based generation synthesis approach] are essentially equivalent to the regression trees in the [unit selection systems]. 
+However, in the [unit selection systems], leaves of one of trees must have [speech waveforms] : other trees are used to calculate target costs, to prune [waveform] candidates, or to give features for constructing the trees for [speech waveforms]. 
+It is noted that in the [HMM-based generation synthesis approach], likelihoods of [static feature] parameters and [dynamic feature] parameters corresponds to the target costs and concatenation costs, respectively. 
+It is easy to understand, if we approximate each state output distribution by a discrete distribution or instances of frame samples in the cluster : when the [dynamic feature] is calculated as the difference between neighboring [static features], the ML-based generation results in a frame-wise DP search like [unit selection]. 
+Thus [HMM-based parameter generation] can be viewed as an analogue version of [unit selection]. 
+
+[Hybrid approaches] 
+
+As a natural consequence of the above viewpoints, there are also [hybrid approaches]. 
+Some of these approaches use [spectrum parameters], F 0 values, and durations (or a part of them) generated from [HMM] to calculate acoustic target costs for [unit selection]. 
+Similarly, [HMM likelihoods] are used as “ costs ” for [unit selection]. 
+Among of these approaches, use frame-sized units, and use generated longer trajectories to provide “ costs ” for [unit selection]. 
+Another type of [hybrid approaches] uses [statistical models] as a probabilistic smoother for [unit selection]. 
+Unifying [unit selection] and [HMM-based generation synthesis] is also investigated. 
+In the future, we may converge at an optimal form of corpusbased [speech synthesis] fusing generation and selection approaches. 
+
+CONCLUSION 
+
+We can see that [statistical parametric speech synthesis] offers a wide range of techniques to improve spoken output. 
+Its more complex models, when compared to standard [unit selection], allow for general solutions, without necessarily requiring recording [speech] in all [phonetic] and prosodic contexts. 
+The pure [unit selection] view requires very [large databases] to cover examples of all desired prosodic, [phonetic] and stylistic variation. 
+In contrast [statistical parametric synthesis] allows for models to be combined and adapted thus not requiring instances of all possible combinations of contexts. 
