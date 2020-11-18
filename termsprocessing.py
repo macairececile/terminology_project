@@ -17,7 +17,7 @@ spacy_nlp = spacy.load('en_core_web_sm')
 rule_adj = ['accented', 'acoustic', 'artificial', 'attentional', 'autoregressive', 'bidirectional', 'bilingual',
             'continuous', 'cross-lingual', 'emotional', 'fluent', 'gated', 'generated', 'intelligible', 'labelled',
             'modern', 'monolingual', 'multilingual', 'multispeaker', 'neural', 'phonetic', 'substantial', 'supervised',
-            'training', 'unlabelled', 'unsupervised', 'vanilla']
+            'target', 'training', 'unlabelled', 'untranscribed', 'unsupervised', 'vanilla']
 
 rule_4 = ['accent', 'accuracy', 'activation', 'adaptation', 'algorithm', 'aligner', 'alignment', 'approach',
           'architecture', 'attention', 'attribute', 'bank', 'boundary', 'category', 'cell', 'class', 'classifier',

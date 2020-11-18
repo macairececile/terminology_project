@@ -268,7 +268,7 @@
 380	T	N	LJSpeech	ljspeech	6
 	T	N	LM-BM	lm-bm	
 152	T	N N	log likelihood	log likelihood	13
-	T	N N N	log magnitude spectrogram	log magnitude spectrogram	
+	T	N NÂ N	log magnitude spectrogram	log magnitude spectrogram	
 2608	T	N	log-magnitude	log-magnitude	2
 750	T	N N	log-mel spectrograms	log-mel spectrograms	14
 751	T	A A N	long short-term memory	long short-term memory	7
@@ -556,3 +556,5 @@
 265	T	N N	WORLD vocoder	world vocoder	8
 	T	N	x-vector	x-vector	
 	T	N N	Yin algorithm	Yin algorithm	
+	T	N N	Log-Mel spectrograms	log-mel spectrogram	
+	T	N N	hidden Markov	hidden markov	
