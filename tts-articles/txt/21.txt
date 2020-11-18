@@ -106,7 +106,7 @@ RELATION AND HYBRID APPROACHES
 
 Relation between two approaches
 
-Some of clustering-based unit selection approaches uses HMMbased state clustering.
+Some of clustering-based unit selection approaches uses HMM-based state clustering.
 In this case, the structure is very similar to that of the HMM-based generation synthesis approach.
 The essential difference between the clustering-based unit-selection approach and the HMM-based generation synthesis approach is that each cluster in the generation approach is represented by statistics of the cluster instead of multi-templates of speech units.
 In the HMM-based generation synthesis approach, distributions for spectrum, F0, and duration are clustered independently.

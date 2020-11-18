@@ -20,6 +20,8 @@
 180	T	N N	attention errors	attention error	11
 601	T	N N	attention layer	attention layer	4
 91	T	N N	attention mechanism	attention mechanism	18
+	T	N N	attention paradigm	attention paradigm	
+	T	N N N	attention RNN cell	attention RNN cell	
 466	T	N N	attention weights	attention weight	5
 	T	A	attention-based	attention-based	
 1661	T	A N N	attention-based sequence-to-sequence	attention-based sequence-to-sequence	2
@@ -63,10 +65,12 @@
 76	T	N	byte	byte	21
 3310	T	N	CART	cart	1
 117	T	N	CBHG	cbhg	15
+	T	A	CBHG-based	CBHG-based	
 426	T	A N	cepstral coefficients	cepstral coefficient	11
 538	T	A N	cepstral features	cepstral feature	9
 446	T	N	CERs	cers	5
 	T	A N N	character-base token unit	Character-base token unit	
+	T	N	character-level	character-level	
 	T	N	Character-to-Spectrogram	Character-to-Spectrogram	
 	T	N	character-to-waveform	character-to-waveform	
 2721	T	N	ClariNet	clarinet	12
@@ -81,6 +85,7 @@
 	T	A N N	conditional random fields	conditional random field	
 543	T	N N	conditioning network	conditioning network	4
 	T	N A N	connectionist temporal classification	connectionist temporal classification	
+	T	N N	context vector	context vector	
 1313	T	A A N	context-dependent acoustic	context-dependent acoustic	2
 2427	T	A N	context-dependent HMMs	context-dependent hmms	2
 1113	T	A N	context-independent phones	context-independent phone	9
@@ -158,6 +163,7 @@
 	T	N N	forward decoder	forward decoder	
 	T	A N	forward layer	forward layer	
 	T	A N	forward-backward algorithm	forward-backward algorithm	
+	T	N N	Fourier transform	Fourier transform	
 	T	N	frame-level	frame-level	
 481	T	N N N	frequency prediction	frequency prediction	5
 534	T	N	front-end	front-end	37
@@ -195,6 +201,7 @@
 338	T	N N N	ground truth samples	ground truth sample	7
 2477	T	N N	ground-truth spectrograms	ground-truth spectrograms	2
 	T	N	GRU	gru	
+	T	N	GRUs	grus	
 	T	N	GST	gst	
 	T	A N	hand-labeled boundary	hand-labeled boundary	
 	T	N	HCRF	hcrf	
@@ -256,16 +263,19 @@
 1732	T	A N	Light Supervision	light supervision	2
 1575	T	R A	lightly supervised	lightly supervised	2
 	T	N N N	Linear Discriminant Analysis	Linear Discriminant Analysis	
+	T	A	linear-scale	linear-scale	
 524	T	A N	linguistic knowledge	linguistic knowledge	5
 380	T	N	LJSpeech	ljspeech	6
 	T	N	LM-BM	lm-bm	
 152	T	N N	log likelihood	log likelihood	13
+	T	N N N	log magnitude spectrogram	log magnitude spectrogram	
 2608	T	N	log-magnitude	log-magnitude	2
 750	T	N N	log-mel spectrograms	log-mel spectrograms	14
 751	T	A A N	long short-term memory	long short-term memory	7
 733	T	N N	loss function	loss function	4
 	T	A N	low-dimensional speaker	low-dimensional speaker	
 	T	A N	low-dimensional vector	low-dimensional vector	
+	T	N N	LSP-type parameter	lsp-type parameter	
 16	T	N	LSTM	lstm	51
 379	T	N N	LSTM layers	lstm layer	6
 	T	A	LSTM-based model	Lstm-based model	
@@ -355,11 +365,11 @@
 319	T	A A N	parallel neural vocoder	parallel neural vocoder	7
 755	T	A N	parallel waveform	parallel waveform	7
 	T	N N	parametric synthesis	parametric synthesis	
+	T	A N	parametric system	parametric system	
 	T	N N	parametric TTS	parametric tts	
 24	T	N	ParaNet	paranet	46
 	T	N	part of speech	part of speech	
 331	T	N	Part-of-Speech	part-of-speech	7
-	T	N	PER	per	
 	T	N A	phone mapping	phone mapping	
 757	V[s]	N N N	phone posterior probabilities	phone posterior probability	4
 	T	N N	phone set	phone set	
@@ -373,8 +383,9 @@
 702	T	N N	phoneme recognizers	phoneme recognizer	4
 50	T	N N	phoneme sequence	phoneme sequence	26
 1738	T	A N	phoneme-based	phoneme-based	2
-	T	N	phoneme-by-phoneme	phoneme-to-phoneme	
+	T	N	phoneme-by-phoneme	phoneme-by-phoneme	
 	T	A	phoneme-independent	phoneme-independent	
+	T	N	phoneme-level	phoneme-level	
 	T	N	phoneme-set	phoneme-set	
 48	V[s]	A N N	phonemic input representation	phonemic input representation	4
 1115	T	A N	phonemic lexicon	phonemic lexicon	
@@ -393,6 +404,8 @@
 	T	A	post-processing	post-processing	
 1094	T	N N	post-processing network	post-processing network	5
 	T	N	PPER	pper	
+	T	N	pre-net	pre-net	
+	T	N N	prediction model	prediction model	
 	T	N	prefix-stem	prefix-stem	
 259	T	N N N	probability density function	probability density function	8
 	T	N N	pronunciation dictionaries	pronunciation dictionary	
@@ -466,6 +479,7 @@
 	T	N	stem	stem	
 177	T	N	STFT	stft	11
 384	T	N N	STFT loss	stft loss	6
+	T	N N	sub-word unit	sub-word unit	
 	T	A N	supervised learning	supervised learning	
 	T	N	syllabification	syllabification	
 	T	N N	syllable segmentation	syllable segmentation	
