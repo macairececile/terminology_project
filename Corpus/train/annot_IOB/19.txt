@@ -1,0 +1,255 @@
+Text (O) Preprocessing (O) for (O) [Speech (B) Synthesis (I)] 
+
+Abstract (O) 
+
+In (O) this (O) paper (O) we (O) describe (O) our (O) text (O) preprocessing (O) modules (O) for (O) English (O) [text-to-speech (B) synthesis (I)]. 
+These (O) modules (O) comprise (O) [rule-based (B) text (I) normalization (I)] subsuming (O) sentence (O) segmentation (O) and (O) normalization (O) of (O) non-standard (O) words, (O) statistical (O) [part-of-speech (B) tagging (I)], and (O) statistical (O) [syllabification (B)], [grapheme-to-phoneme (B) conversion (I)], and (O) word (O) stress (O) assignment (O) relying (O) in (O) parts (O) on (O) [rule-based (B) morphological (I) analysis (I)]. 
+
+Introduction (O) 
+
+Text (O) preprocessing (O) for (O) English (O) [text-to-speech (B) (TTS) (I) synthesis (I)] in (O) general (O) consists (O) of (O) the (O) following (O) steps (O) : [Text (B) Normalization (I)]. 
+This (O) first (O) step (O) subsumes (O) sentence (O) segmentation, (O) tokenizing, (O) and (O) normalization (O) of (O) nonstandard (O) words. (O) 
+For (O) sentence (O) segmentation (O) the (O) main (O) problem (O) is (O) the (O) ambiguity (O) of (O) the (O) period, (O) marking (O) sentence (O) boundaries (O) or (O) abbreviations, (O) sometimes (O) even (O) simultaneously (O) (it (O) is (O) 5 (O) p.m.). (O) 
+For (O) period (O) disambiguation (O) an (O) identification (O) of (O) abbreviations (O) is (O) needed (O) as (O) well (O) as (O) a (O) disambiguation (O) of (O) capitalized (O) words (O) (proper (O) names (O) vs.sentence (O) initial (O) words, (O) thus (O) words (O) following (O) a (O) sentence (O) boundary (O) period). (O) 
+Complications (O) arise (O) from (O) abbreviations (O) that (O) do (O) not (O) differ (O) from (O) ordinary (O) sentence (O) final (O) words (O) (no. (O) also (O) being (O) an (O) abbreviation (O) of (O) number) (O) and (O) from (O) the (O) fact (O) that (O) also (O) proper (O) names (O) can (O) occur (O) in (O) sentence (O) initial (O) position. (O) 
+[Rule-based (B) systems (I)] for (O) heuristic (O) period (O) disambiguation (O) operate (O) on (O) local (O) grammars (O) containing (O) abstract (O) contexts (O) for (O) within-sentence (O) periods (O) and (O) sentence (O) boundaries (O) (Cherry (O) and (O) Vesterman, (O) 1991 (O) ; Aberdeen (O) et (O) al., (O) 1995). (O) 
+Mikheev’s (O) (2002) (O) [rule-based (B) segmentation (I)] is (O) preceded (O) by (O) capitalized (O) word (O) disambiguation. (O) 
+[Machine (B) learning (I) approaches (I)] as (O) the (O) [decision (B) tree (I) classifier (I)] in (O) Riley (O) (1989) (O) use (O) [context (B) features (I)] such (O) as (O) word (O) lengths, (O) capitalization, (O) and (O) word (O) occurrence (O) probabilities (O) on (O) both (O) sides (O) of (O) the (O) period (O) in (O) question. (O) 
+Current (O) systems (O) achieve (O) an (O) error (O) rate (O) down (O) to (O) less (O) than (O) 1 (O) %. (O) 
+Tokenizing (O) in (O) its (O) simplest (O) form (O) is (O) achieved (O) by (O) splitting (O) the (O) text (O) at (O) white (O) spaces (O) and (O) at (O) punctuation (O) marks, (O) that (O) do (O) not (O) belong (O) to (O) abbreviations (O) identified (O) in (O) the (O) preceding (O) step. (O) 
+Non-standard (O) words (O) are (O) tokens (O) to (O) be (O) expanded (O) to (O) an (O) appropriate (O) orthographic (O) form (O) before (O) [grapheme-to-phoneme (B) conversion (I)]. 
+Their (O) normalization (O) includes (O) amongst (O) others (O) number (O) conversion, (O) homograph (O) disambiguation (O) (Henry, (O) Scene, (O) Mr), (O) expansion (O) of (O) abbreviations (O) and (O) symbols, (O) and (O) appropriate (O) treatment (O) of (O) acronyms (O) (some (O) have (O) to (O) be (O) spelled, (O) others (O) not), (O) and (O) email (O) and (O) URL (O) addresses. (O) 
+A (O) token (O) might (O) be (O) split (O) into (O) several (O) words (O) by (O) these (O) operations. (O) 
+Normalization (O) is (O) a (O) difficult (O) task, (O) since (O) creation (O) of (O) the (O) nonstandard (O) word (O) types (O) mentioned (O) above (O) is (O) arbitrarily (O) productive (O) and (O) therefore (O) not (O) to (O) be (O) solved (O) solely (O) by (O) table (O) lookup. (O) 
+Furthermore (O) [phonetic (B) realization (I)] is (O) highly (O) context (O) dependent, (O) examples (O) are (O) the (O) homographs (O) above (O) or (O) digit (O) strings (O) which (O) can (O) be (O) realized (O) either (O) as (O) numbers, (O) phone (O) numbers (O) or (O) years. (O) 
+While (O) most (O) of (O) the (O) normalization (O) systems (O) tackle (O) this (O) problem (O) by (O) heuristic (O) disambiguation (O) and (O) expansion (O) rules, (O) e.g. (O) Black (O) et (O) al. (O) (1999), (O) there (O) are (O) also (O) some (O) language (O) modeling (O) and (O) [machine (B) learning (I) approaches (I)] for (O) normalization (O) subtasks. (O) 
+For (O) example (O) in (O) Sproat (O) et (O) al. (O) (2001) (O) word (O) normalization (O) is (O) amongst (O) others (O) formulated (O) in (O) terms (O) of (O) maximizing (O) the (O) conditional (O) probability (O) of (O) a (O) normalized (O) word (O) sequence (O) given (O) an (O) observed (O) token (O) sequence. (O) 
+
+[Part-of-Speech (B) Tagging (I)] 
+
+[Part-of-Speech (B) tagging (I)] means (O) word (O) class (O) assignment (O) to (O) each (O) token. (O) 
+Its (O) input (O) is (O) given (O) by (O) the (O) tokenized (O) text. (O) 
+Taggers (O) have (O) to (O) cope (O) with (O) unknown (O) words (O) (OOV (O) problem) (O) and (O) ambiguous (O) [word-tag (B) mappings (I)]. 
+[Rule-based (B) approaches (I)] like (O) ENGTWOL (O) (Voutilainen, (O) 1995) (O) operate (O) on (O) a) (O) dictionaries (O) containing (O) word (O) forms (O) together (O) with (O) the (O) associated (O) POS (O) labels (O) and (O) morphologic (O) and (O) [syntactical (B) features (I)] and (O) b) (O) context (O) sensitive (O) rules (O) to (O) choose (O) the (O) appropriate (O) labels (O) during (O) application. (O) 
+In (O) [statistical (B) approaches (I)] (Jelinek, (O) 1985) (O) generally (O) the (O) most (O) probable (O) tag (O) sequence (O) given (O) the (O) observed (O) word (O) sequence (O) is (O) estimated. (O) 
+In (O) [transformation-based (B) tagging (I)] (Brill, (O) 1995) (O) a (O) [hybrid (B) approach (I)] can (O) be (O) found, (O) where (O) disambiguation (O) rules (O) are (O) derived (O) by (O) statistical (O) means. (O) 
+[Grapheme-to-Phoneme (B) Conversion (I)] Since (O) hand-crafted (O) rule (O) generation (O) for (O) language (O) processing (O) is (O) very (O) timeconsuming (O) and (O) corresponding (O) systems (O) are (O) highly (O) language (O) dependent, (O) most (O) of (O) the (O) current (O) [G2P (B) systems (I)] are (O) purely (O) data-driven (O) (see (O) e.g. (O) Yvon (O) (1994) (O) for (O) an (O) overview (O) over (O) some (O) machine (O) learning (O) approaches (O) to (O) [G2P (B) conversion (I)]). 
+Accounting (O) for (O) the (O) influence (O) of (O) [morphology (B)] and (O) syllable (O) structure (O) can (O) improve (O) performance (O) of (O) [G2P (B) conversion (I)] (Reichel (O) and (O) Schiel, (O) 2005). (O) 
+Word (O) Stress (O) The (O) assignment (O) of (O) English (O) word (O) stress (O) relies (O) on (O) [phonological (B)], morphological, (O) and (O) word (O) [class (B) features (I)]. 
+The (O) crucial (O) [phonological (B) feature (I)] is (O) syllable (O) weight (O) : heavy (O) syllables (O) rather (O) attract (O) stress (O) than (O) weak (O) ones. (O) 
+Amongst (O) the (O) [morphological (B) features (I)] are (O) affix (O) types (O) (stressed (O) vs. (O) unstressed (O) vs. (O) pre-stressed) (O) and (O) the (O) position (O) within (O) a (O) compound. (O) 
+Word (O) class (O) and (O) word (O) syllable (O) length (O) determine (O) default (O) stress (O) patterns. (O) 
+Metrical (O) [phonology (B)] (Liberman (O) and (O) Prince, (O) 1977) (O) accounts (O) for (O) lots (O) of (O) these (O) factors (O) and (O) is (O) a (O) useful (O) framework (O) for (O) [rule-based (B) approaches (I)] to (O) word (O) stress (O) assignment. (O) 
+Among (O) the (O) data-driven (O) approaches (O) are (O) [neural (B) networks (I)] (Gupta (O) and (O) Touretzky, (O) 1994) (O) predicting (O) stress (O) patterns (O) given (O) syllable (O) weight (O) patterns (O) and (O) instance-based (O) learning (O) (Daelemans (O) and (O) van (O) den (O) Bosch, (O) 1997) (O) which (O) matches (O) new (O) words (O) against (O) words (O) with (O) an (O) already (O) known (O) stress (O) pattern. (O) 
+In (O) the (O) following (O) sections (O) our (O) [TTS (B) text (I) preprocessing (I) modules (I)] are (O) presented. (O) 
+
+[Text (B) Normalization (I)] 
+
+Identification (O) of (O) Proper (O) Names, (O) Acronyms (O) and (O) Abbreviations (O) 
+
+Since (O) retrieval (O) of (O) proper (O) names, (O) acronyms (O) and (O) abbreviations (O) is (O) crucial (O) for (O) appropriate (O) sentence (O) segmentation (O) and (O) normalization (O) of (O) non-standard (O) words, (O) this (O) task (O) is (O) carried (O) out (O) prior (O) to (O) [text (B) normalization (I)]. 
+Due (O) to (O) the (O) high (O) productivity (O) of (O) these (O) word (O) classes (O) simple (O) table (O) lookup (O) is (O) insufficient (O) and (O) has (O) to (O) be (O) augmented (O) by (O) following (O) procedures. (O) 
+Proper (O) names (O) All (O) those (O) tokens (O) are (O) considered (O) as (O) proper (O) names (O) that (O) occur (O) only (O) and (O) at (O) least (O) twice (O) in (O) capitalized (O) form. (O) 
+Only (O) occurrences (O) in (O) unambiguous (O) environments (O) are (O) counted, (O) that (O) means (O) not (O) behind (O) a (O) period (O) except (O) for (O) periods (O) of (O) prepositional (O) titles (O) like (O) Mr, (O) Dr, (O) etc. (O) 
+Abbreviations (O) Token (O) t (O) is (O) identified (O) as (O) an (O) abbreviation, (O) if (O) 1) (O) it (O) has (O) not (O) been (O) classified (O) as (O) a (O) proper (O) name (O) and (O) 2) (O) it (O) ends (O) with (O) a (O) period (O) and (O) 3) (O) one (O) of (O) the (O) following (O) conditions (O) is (O) fulfilled (O) : 
+• (O) t (O) contains (O) another (O) period (O) (e.g.), (O) or (O) 
+• (O) the (O) string (O) of (O) t (O) preceding (O) the (O) period (O) consists (O) of (O) just (O) one (O) small (O) letter, (O) or (O) 
+• (O) t (O) contains (O) no (O) vowel (O) (exception (O) qu.) (O) and (O) at (O) least (O) one (O) small (O) letter (O) (vs. (O) acronyms, (O) numbers), (O) or (O) 
+• (O) the (O) letter (O) sequence (O) of (O) t (O) indicates (O) a (O) violation (O) of (O) [phonotactics (B)] (see (O) below). (O) 
+Acronyms (O) Token (O) t (O) is (O) identified (O) as (O) an (O) acronym, (O) if (O) it (O) has (O) not (O) been (O) classified (O) as (O) an (O) proper (O) name (O) or (O) abbreviation (O) and (O) has (O) not (O) been (O) classified (O) as (O) a (O) roman (O) number (O) (using (O) local (O) grammars) (O) and (O) if (O) one (O) of (O) the (O) following (O) conditions (O) holds (O) : 
+• (O) t (O) consists (O) entirely (O) of (O) consonants, (O) or (O) 
+• (O) t (O) consists (O) entirely (O) of (O) capitals (O) (except (O) I), (O) or (O) 
+• (O) t (O) is (O) preceded (O) by (O) the (O) article (O) an (O) and (O) does (O) not (O) start (O) with (O) a (O) vowel, (O) or (O) 
+• (O) t (O) is (O) preceded (O) by (O) the (O) article (O) a (O) and (O) starts (O) with (O) a (O) vowel (O) (except (O) u), (O) or (O) 
+• (O) the (O) letter (O) sequence (O) of (O) t (O) indicates (O) a (O) violation (O) of (O) [phonotactics (B)]. 
+Violation (O) of (O) [Phonotactics (B)] The (O) [phonotactics (B)] exploited (O) here (O) is (O) related (O) to (O) the (O) sonority-based (O) syllable (O) definition (O) according (O) to (O) which (O) a (O) syllable (O) is (O) characterized (O) by (O) a (O) sonority (O) peak (O) facultatively (O) preceded (O) by (O) a (O) rise (O) and (O) followed (O) by (O) a (O) decline (O) of (O) sonority (O) (in (O) case (O) of (O) presence (O) of (O) head (O) and (O) coda, (O) respectively). (O) 
+A (O) letter (O) sequence (O) of (O) a (O) token (O) indicates (O) a (O) violation (O) of (O) [phonotactics (B)] if (O) 1) (O) the (O) first (O) (resp. (O) last) (O) letter (O) can (O) be (O) associated (O) with (O) a (O) [phoneme (B)] of (O) higher (O) sonority (O) than (O) that (O) of (O) a (O) fricative (O) (which (O) can (O) occur (O) as (O) a (O) syllable (O) appendix), (O) and (O) 2) (O) the (O) sonority (O) of (O) that (O) [phoneme (B)] is (O) higher (O) than (O) the (O) [phoneme (B)] associated (O) with (O) the (O) following (O) (resp. (O) preceding) (O) letter, (O) and (O) 3) (O) none (O) of (O) the (O) two (O) letters (O) in (O) focus (O) can (O) be (O) associated (O) with (O) a (O) syllable (O) nucleus. (O) 
+For (O) word (O) beginnings (O) vowel (O) letters (O) are (O) associated (O) with (O) syllable (O) nuclei, (O) for (O) word (O) endings (O) also (O) < m (O) >, (O) < n (O) > ; < l (O) > is (O) not (O) treated (O) as (O) a (O) nucleus (O) associate (O) since (O) syllabic (O) /l/ (O) is (O) represented (O) by (O) le (O) in (O) English (O) orthography. (O) 
+Examples (O) : incl. (O) is (O) identified (O) as (O) an (O) abbreviation (O) while (O) wrists. (O) and (O) fascism. (O) are (O) treated (O) as (O) standard (O) words (O) followed (O) by (O) a (O) period. (O) 
+
+Sentence (O) Segmentation (O) 
+
+The (O) hand-crafted (O) binary (O) [decision (B) tree (I)] in (O) Figure (O) 1 (O) guides (O) the (O) decision (O) whether (O) or (O) not (O) token (O) t (O) i (O) is (O) followed (O) by (O) a (O) sentence (O) boundary. (O) 
+i (O) is (O) ranging (O) over (O) the (O) tokens (O) of (O) the (O) present (O) tokenization (O) of (O) the (O) text (O) at (O) white (O) spaces (O) and (O) unambiguous (O) punctuation. (O) 
+The (O) sentence (O) segmentation (O) completes (O) the (O) tokenization (O) process. (O) 
+
+Normalization (O) of (O) non-standard (O) words (O) 
+
+For (O) space (O) reasons (O) we (O) present (O) just (O) a (O) selection (O) of (O) our (O) normalization (O) procedures (O) here. (O) 
+Numbers (O) In (O) general (O) the (O) following (O) number (O) transformations (O) are (O) carried (O) out (O) : roman (O) numbers (O) are (O) converted (O) to (O) arabic (O) numbers (O) by (O) calculation (O) and (O) arabic (O) numbers (O) are (O) converted (O) to (O) letters (O) by (O) finite (O) state (O) [transducers (B)] for (O) cardinal (O) and (O) ordinal (O) numbers. (O) 
+The (O) identification (O) of (O) roman (O) numbers (O) and (O) the (O) distinction (O) of (O) cardinals (O) and (O) ordinals (O) is (O) guided (O) by (O) local (O) grammars. (O) 
+Cardinal (O) numbers (O) are (O) disambiguated (O) whether (O) to (O) be (O) pronounced (O) as (O) one (O) number, (O) as (O) a (O) date, (O) or (O) digit (O) by (O) digit (O) through (O) pattern (O) matching (O) and (O) examination (O) of (O) the (O) text (O) environment (O) regarding (O) e.g. (O) date-related (O) or (O) phone (O) number (O) cues. (O) 
+Dates (O) are (O) further (O) completed (O) by (O) prepositions (O) and (O) articles (O) accordingly. (O) 
+E.g. (O) 12 (O) Feb (O) becomes (O) on (O) the (O) twelve (O) of (O) February, (O) but (O) on (O) being (O) omitted (O) if (O) a (O) preposition (O) is (O) already (O) given. (O) 
+Abbreviations (O) and (O) Acronyms (O) Unknown (O) abbreviations (O) are (O) spelled. (O) 
+Unknown (O) acronyms (O) are (O) spelled (O) if (O) indicated (O) by (O) a (O) preceding (O) indefinite (O) article (O) or (O) by (O) violation (O) of (O) [phonotactics (B)] (incl. (O) lack (O) of (O) vowels (O) ; see (O) above). (O) 
+Otherwise (O) they (O) are (O) pronounced (O) as (O) standard (O) words. (O) 
+This (O) acronym (O) examination (O) also (O) takes (O) place (O) for (O) each (O) part (O) of (O) a (O) hyphenated (O) compound (O) (CD-Rom) (O) and (O) within (O) URLs (O) and (O) email (O) addresses. (O) 
+
+[Part-of-Speech (B) Tagging (I)] 
+
+Our (O) approach (O) for (O) [POS (B) tagging (I)] described (O) in (O) more (O) detail (O) in (O) Reichel (O) (2005) (O) is (O) statistical (O) and (O) can (O) be (O) seen (O) as (O) a (O) generalization (O) of (O) the (O) classical (O) [Markov (B) tagger (I)] presented (O) by (O) Jelinek (O) (1985). (O) 
+The (O) P (O) (w|t) (O) emission (O) probabilities (O) of (O) word (O) w (O) given (O) tag (O) t (O) are (O) replaced (O) by (O) a (O) linear (O) interpolation (O) of (O) tag (O) emission (O) probabilities (O) given (O) a (O) list (O) of (O) representations (O) of (O) w, (O) that (O) are (O) connected (O) to (O) automatically (O) derived (O) word (O) suffixes. (O) 
+Since (O) in (O) English (O) language (O) suffixes (O) also (O) store (O) word (O) class (O) information (O) and (O) are (O) observed (O) in (O) the (O) [training (B) data (I)] with (O) a (O) high (O) probability, (O) the (O) OOV (O) problem (O) can (O) be (O) reduced (O) this (O) way. (O) 
+However, (O) no (O) [linguistic (B) knowledge (I)] is (O) needed, (O) hence (O) our (O) approach (O) is (O) [language (B) independent (I)]. 
+
+Basic (O) Form (O) of (O) a (O) [Markov (B) POS (I) Tagger (I)] 
+
+The (O) aim (O) is (O) to (O) estimate (O) the (O) probable (O) tag (O) sequence (O) T̂ (O) given (O) word (O) sequence (O) W (O) : 
+To (O) estimate (O) P (O) (T (O) |W) (O) first (O) a (O) reformulation (O) is (O) needed (O) by (O) applying (O) Bayes (O) Formula, (O) which (O) leads (O) to (O) : 
+given (O) that (O) the (O) denominator (O) P (O) (W) (O) is (O) constant. (O) 
+Further (O) two (O) simplifying (O) assumptions (O) are (O) to (O) be (O) made (O) to (O) get (O) reliable (O) 
+counts (O) for (O) the (O) probability (O) estimations (O) : 
+• (O) Probability (O) of (O) word (O) w (O) i (O) depends (O) only (O) on (O) its (O) tag (O) t (O) i. (O) 
+• (O) Probability (O) of (O) tag (O) t (O) i (O) depends (O) only (O) on (O) a (O) limited (O) tag (O) history. (O) 
+The (O) resulting (O) formula (O) is (O) thus (O) : 
+T̂ (O) = arg (O) max (O) t (O) 1... (O) t (O) n (O) n (O) h (O) Y (O) i=1 (O) P (O) (t (O) i (O) |t-history (O) i) (O) P (O) (w (O) i (O) |t (O) i) (O) i (O) (3) (O) 
+T̂ (O) is (O) retrieved (O) using (O) the (O) [Viterbi (B) algorithm (I)] ([Viterbi (B)], 1967). (O) 
+
+Generalizations (O) of (O) the (O) basic (O) model (O) 
+
+First (O) P (O) (t (O) i (O) |t-history (O) i) (O) is (O) replaced (O) by (O) a (O) linearly (O) interpolated (O) [trigram (B) model (I)] 
+Xju (O) j (O) P (O) (t (O) i (O) |t-history (O) ij), (O) j (O) ranging (O) from (O) unigram (O) to (O) trigram (O) tag (O) history. (O) Further (O) w (O) i (O) is (O) replaced (O) by (O) a (O) list (O) of (O) word (O) representations (O) leading (O) to (O) a (O) reformulation (O) of (O) P (O) (w (O) i (O) |t (O) i): (O) 
+P (O) (w (O) i) (O) X (O) v (O) k (O) P (O) (t (O) i (O) |w-representation (O) ik) (O) 
+applying (O) again (O) Bayes (O) Formula (O) and (O) linear (O) interpolation. (O) 
+Our (O) model (O) is (O) thus (O) given (O) by (O) : 
+
+The (O) interpolation (O) weights (O) u (O) j (O) and (O) v (O) k (O) are (O) calculated (O) via (O) the (O) EM (O) algorithm (O) (Dempster (O) et (O) al., (O) 1977). (O) 
+In (O) order (O) to (O) reduce (O) calculation (O) effort (O) in (O) application, (O) just (O) for (O) unknown (O) words (O) the (O) probabilities (O) are (O) calculated (O) for (O) all (O) POS (O) tags. (O) 
+For (O) known (O) words (O) just (O) the (O) POS (O) tags (O) co-occurring (O) with (O) them (O) in (O) the (O) [training (B) corpus (I)] are (O) taken (O) into (O) consideration. (O) 
+Our (O) [training (B) data (I)] comprises (O) 620000 (O) tokens (O) (including (O) punctuation) (O) taken (O) from (O) prose (O) of (O) the (O) 20th (O) century (O) and (O) pretagged (O) by (O) the (O) TnT (O) tagger (O) (Brants, (O) 2000) (O) using (O) the (O) Penn (O) tag (O) set (O) (Marcus (O) et (O) al., (O) 1995). (O) 
+
+Word (O) representations (O) 
+
+The (O) representation (O) of (O) words (O) seen (O) in (O) the (O) [training (B) data (I)] is (O) simply (O) the (O) word (O) form. (O) 
+For (O) OOV (O) cases (O) the (O) representation (O) is (O) given (O) by (O) two (O) string (O) suffixes (O) which (O) are (O) determined (O) by (O) Normalized (O) Backward (O) Successor (O) Variety (O) (NBSV). (O) 
+The (O) Successor (O) Variety (O) (SV) (O) of (O) a (O) string (O) is (O) defined (O) as (O) the (O) number (O) of (O) different (O) characters (O) that (O) follow (O) the (O) string (O) in (O) a (O) given (O) [lexicon (B)]. 
+This (O) concept (O) is (O) adopted (O) from (O) [stemming (B)] procedures (O) like (O) the (O) Peak (O) and (O) Plateau (O) algorithm (O) of (O) Nascimento (O) and (O) da (O) Cunha (O) (1998). (O) 
+Backward (O) SV (O) means (O) that (O) the (O) SVs (O) are (O) calculated (O) from (O) reversed (O) strings (O) in (O) order (O) to (O) increase (O) the (O) probability (O) to (O) separate (O) linguistically (O) meaningful (O) suffixes. (O) 
+In (O) our (O) approach (O) the (O) SVs (O) are (O) weighted (O) with (O) respect (O) to (O) the (O) mean (O) SV (O) at (O) the (O) corresponding (O) string (O) position (O) to (O) eliminate (O) positional (O) effects. (O) 
+The (O) mean (O) SV (O) is (O) highest (O) in (O) the (O) beginning (O) and (O) declines (O) continuously (O) while (O) moving (O) forward (O) in (O) the (O) word (O) string. (O) 
+The (O) [lexicon (B)] of (O) reversed (O) words (O) is (O) represented (O) in (O) the (O) form (O) of (O) a (O) trie (O) (cf. (O) Figure (O) 2), (O) in (O) which (O) the (O) SV (O) at (O) a (O) given (O) state (O) is (O) the (O) number (O) of (O) all (O) outgoing (O) transitions. (O) 
+NBSV (O) peaks (O) are (O) treated (O) as (O) [morpheme (B) boundaries (I)]. 
+Since (O) this (O) method (O) is (O) knowledge (O) free, (O) of (O) course (O) not (O) all (O) of (O) the (O) obtained (O) segments (O) necessarily (O) correspond (O) to (O) linguistic (O) meaningful (O) entities (O) as (O) might (O) be (O) suggested (O) by (O) Figure (O) 2. (O) 
+
+[Grapheme-to-Phoneme (B) Conversion (I)] 
+
+Our (O) [G2P (B) approach (I)] is (O) data-driven (O) ; as (O) a (O) classifier (O) we (O) use (O) the (O) C4.5 (O) [decision (B) tree (I)] (Quinlan, (O) 1993). (O) 
+We (O) treat (O) the (O) conversion (O) as (O) a (O) one-to-one (O) mapping (O) from (O) the (O) set (O) of (O) [graphemes (B)] to (O) the (O) set (O) of (O) [phonemes (B)] (UK (O) [SAMPA (B)]). 
+To (O) cope (O) with (O) any (O) n-to-n (O) relation (O) the (O) [phoneme (B) set (I)] also (O) comprises (O) the (O) empty (O) [phoneme (B)] as (O) well (O) as (O) [phoneme (B) clusters (I)]. 
+A (O) canonical (O) [pronunciation (B) dictionary (I)] containing (O) 61340 (O) entries (O) is (O) used (O) for (O) training (O) and (O) lookup (O) at (O) application (O) time. (O) 
+
+Alignment (O) 
+
+The (O) first (O) step (O) for (O) creating (O) the (O) [grapheme-to-phoneme (B) converter (I)] was (O) to (O) align (O) the (O) [phoneme (B) string (I)] and (O) the (O) orthographic (O) string (O) of (O) each (O) [pronunciation (B) dictionary (I) entry (I)]. 
+Inspired (O) by (O) the (O) work (O) of (O) Daelemans (O) and (O) van (O) den (O) Bosch (O) (1997) (O) an (O) initial (O) [co-occurrence (B) matrix (I)] between (O) letters (O) and (O) [phonemes (B)] was (O) estimated. (O) 
+This (O) was (O) done (O) by (O) diagonally (O) aligning (O) the (O) letters (O) and (O) [phonemes (B)] of (O) each (O) entry (O) (see (O) Figure (O) 3). (O) 
+For (O) each (O) [phoneme (B)] a (O) triangular (O) window (O) with (O) an (O) area (O) of (O) 1 (O) and (O) a (O) width (O) of (O) 5 (O) letters (O) was (O) centered (O) at (O) the (O) diagonal (O) in (O) order (O) to (O) spread (O) the (O) probability (O) of (O) co-occurence (O) to (O) adjacent (O) letters. (O) 
+The (O) values (O) of (O) the (O) initial (O) [co-occurrence (B) matrix (I)] are (O) converted (O) into (O) probabilities (O) and (O) used (O) in (O) a (O) [Dynamic (B) Programming (I) algorithm (I)] to (O) find (O) the (O) most (O) likely (O) alignment (O) for (O) each (O) [pronunciation (B) dictionary (I) entry (I)]. 
+The (O) [DP (B) algorithm (I)] is (O) designed (O) to (O) align (O) either (O) the (O) empty (O) [phoneme (B)], ore (O) one (O) [phoneme (B)], or (O) a (O) [phoneme (B) cluster (I)] to (O) each (O) letter. (O) 
+In (O) order (O) to (O) get (O) a (O) left-aligned (O) [phoneme (B) string (I)] which (O) is (O) necessary (O) for (O) its (O) alignment (O) with (O) morphologic (O) segments (O) (see (O) below), (O) heuristic (O) [post-processing (B)] was (O) applied. (O) 
+
+[Syllable (B) Segmentation (I)] 
+
+Since (O) syllable (O) structure (O) influences (O) [G2P (B) conversion (I)] and (O) is (O) furthermore (O) needed (O) for (O) word (O) stress (O) assignment (O) (see (O) below), (O) [syllable (B) segmentation (I)] is (O) carried (O) out (O) in (O) advance. (O) 
+Also (O) for (O) [syllable (B) segmentation (I)] a (O) C4.5 (O) [decision (B) tree (I)] is (O) trained (O) deciding (O) for (O) each (O) letter (O) whether (O) or (O) not (O) a (O) syllable (O) boundary (O) follows. (O) 
+The (O) current (O) letter (O) as (O) well (O) as (O) the (O) surrounding (O) letters (O) within (O) a (O) window (O) of (O) length (O) 9 (O) are (O) used (O) as (O) features. (O) 
+For (O) model (O) development (O) the (O) same (O) dictionary (O) is (O) used (O) as (O) above, (O) 80 (O) % of (O) the (O) entries (O) taken (O) for (O) training (O) and (O) 20 (O) % for (O) testing. (O) 
+The (O) resulting (O) [decision (B) tree (I)] yields (O) a (O) letter (O) error (O) rate (O) of (O) 1.2 (O) % and (O) a (O) [word (B) error (I) rate (I)] of (O) 8.6 (O) % on (O) the (O) [test (B) data (I)]. 
+
+Features (O) 
+
+To (O) map (O) a (O) [grapheme (B)] g (O) on (O) the (O) corresponding (O) [phoneme (B)], the (O) [decision (B) tree (I)] is (O) supplied (O) with (O) 24 (O) features (O) : 
+• (O) [graphemes (B)] within (O) a (O) window (O) of (O) length (O) 9 (O) centered (O) at (O) g (O) 
+• (O) information (O) whether (O) or (O) not (O) a (O) syllable (O) boundary (O) follows (O) for (O) each (O) [grapheme (B)] within (O) that (O) window (O) 
+• (O) position (O) of (O) g (O) within (O) the (O) current (O) syllable (O) (head, (O) nucleus, (O) coda) (O) 
+• (O) type (O) of (O) the (O) current (O) syllable (O) (onset (O) / null (O) onset, (O) open (O) / closed) (O) 
+• (O) relative (O) position (O) of (O) g (O) within (O) the (O) word (O) • (O) [phoneme (B)] history (O) of (O) length (O) 3. (O) 
+
+Word (O) stress (O) assignment (O) 
+
+In (O) our (O) approach (O) word (O) stress (O) is (O) assigned (O) again (O) by (O) a (O) C4.5 (O) [decision (B) tree (I)] deciding (O) for (O) each (O) syllable (O) whether (O) or (O) not (O) being (O) stressed. (O) 
+Since (O) English (O) word (O) stress (O) is (O) governed (O) by (O) [phonology (B)], [morphology (B)], and (O) word (O) class (O) (see (O) above) (O) the (O) classifier (O) should (O) be (O) provided (O) by (O) features (O) of (O) all (O) three (O) domains. (O) 
+The (O) [phonological (B) features (I)] are (O) derived (O) from (O) [syllabification (B)] and (O) [G2P (B) conversion (I)], word (O) [class (B) features (I)] from (O) [POS (B) tagging (I)]. 
+To (O) obtain (O) [morphologic (B) features (I)] some (O) morphologic (O) analysis (O) has (O) to (O) be (O) carried (O) out. (O) 
+
+Morphologic (O) segmentation (O) 
+
+The (O) segmentation (O) algorithm (O) we (O) used (O) here (O) is (O) a (O) simplified (O) version (O) of (O) the (O) procedure (O) presented (O) in (O) Reichel (O) and (O) Weilhammer (O) (2004). (O) 
+It (O) consists (O) of (O) two (O) stages (O) : [lexicon (B)] construction (O) and (O) segmentation. (O) 
+Since (O) it (O) requires (O) some (O) knowledge (O) about (O) affixation (O) it (O) is (O) applicable (O) for (O) different (O) languages (O) just (O) in (O) combination (O) with (O) language (O) dependent (O) stemmers (O) and (O) affix (O) lexica. (O) 
+
+[Lexicon (B)] construction (O) 
+
+The (O) [lexicon (B)] initially (O) comprises (O) English (O) prefixes (O) and (O) suffixes (O) and (O) the (O) linking (O) [morpheme (B)] ‘ (O) -’. (O) 
+It (O) is (O) then (O) augmented (O) by (O) [stems (B)] and (O) [prefix-stem (B) concatenations (I)] of (O) nouns, (O) verbs, (O) adjectives, (O) and (O) adverbs (O) resulting (O) from (O) the (O) application (O) of (O) a (O) slightly (O) modified (O) [Porter (B) stemmer (I)] (Porter, (O) 1980) (O) for (O) suffix (O) separation. (O) 
+Table (O) 1 (O) shows (O) the (O) [morpheme (B) classes (I)] of (O) the (O) [lexicon (B) entries (I)]. 
+
+Table (O) : [Morpheme (B) classes (I)]. w (O) : word (O) left (O) unchanged (O) by (O) the (O) [Porter (B) stemmer (I)]. 
+
+Segmentation (O) 
+
+Each (O) word (O) w (O) is (O) [stemmed (B)] by (O) the (O) [Porter (B) stemmer (I)]. 
+Then (O) the (O) [stem (B)] and (O) the (O) suffix (O) string (O) are (O) further (O) segmented (O) by (O) the (O) function (O) segmentation (O) (see (O) Figure (O) 4) (O) the (O) following (O) way (O) : 
+Each (O) input (O) s (O) is (O) recursively (O) divided (O) into (O) string (O) prefixes (O) and (O) suffixes (O) from (O) left (O) to (O) right (O) until (O) a (O) permitted (O) segmentation (O) is (O) achieved (O) or (O) until (O) the (O) end (O) of (O) s (O) is (O) reached. (O) 
+In (O) the (O) course (O) of (O) the (O) recursion, (O) a (O) boundary (O) dividing (O) the (O) current (O) string (O) into (O) prefix (O) and (O) suffix (O) is (O) accepted (O) if (O) 1) (O) the (O) prefix (O) is (O) found (O) in (O) the (O) [lexicon (B)], 2) (O) there (O) exists (O) a (O) permitted (O) segmentation (O) for (O) the (O) suffix (O) or (O) (if (O) not) (O) the (O) suffix (O) is (O) found (O) in (O) the (O) [lexicon (B)], and (O) just (O) for (O) [stem (B)] segmentation, (O) 3) (O) the (O) sequence (O) ‘ (O) prefix (O) class (O) + class (O) of (O) first (O) suffix (O) segment’ (O) is (O) not (O) in (O) conflict (O) with (O) simplified (O) English (O) morphotactics (O) as (O) represented (O) by (O) the (O) automaton (O) in (O) Figure (O) 5. (O) 
+On (O) a (O) random (O) test (O) sample (O) of (O) 1000 (O) word (O) types (O) our (O) system (O) yields (O) a (O) word (O) accuracy (O) of (O) 79.6 (O) % for (O) completely (O) correct (O) morphologic (O) analysis. (O) 
+Future (O) improvements (O) can (O) be (O) achieved (O) by (O) modifying (O) the (O) [Porter (B) stemmer (I)] in (O) order (O) to (O) cope (O) with (O) short (O) ly-adverbs (O) and (O) comparative (O) adjectives. (O) 
+
+Features (O) 
+
+For (O) each (O) syllable (O) s (O) the (O) following (O) features (O) are (O) used (O) for (O) word (O) stress (O) assignment (O) : 
+• (O) word (O) class (O) 
+• (O) [syllable (B) features (I)] 
+– (O) syllable (O) weight (O) (reduced, (O) light, (O) heavy) (O) 
+– (O) syllable (O) type (O) (onset (O) / null (O) onset, (O) open (O) / closed) (O) 
+– (O) word (O) syllable (O) length (O) 
+• (O) [morphologic (B) features (I)] (and (O) features (O) derived (O) from (O) morphologic (O) segmentation) (O) 
+– (O) class (O) of (O) the (O) [morpheme (B)] containing (O) the (O) nucleus (O) of (O) s (O) (cf. (O) Table (O) 1). (O) 
+Prefixes (O) and (O) suffixes (O) are (O) further (O) divided (O) into (O) stressed (O) and (O) unstressed (O) affixes (O) (suffixes (O) : also (O) pre-stressed). (O) 
+– (O) index (O) of (O) current (O) compound (O) part (O) 
+– (O) absolute (O) and (O) relative (O) position (O) of (O) s (O) within (O) whole (O) word (O) and (O) respective (O) compound (O) part (O) 
+– (O) only (O) stressable (O) syllable (O) (binary (O) ; nucleus (O) in (O) stressed (O) affix (O) or (O) in (O) only (O) stressable (O) [morpheme (B)]) 
+Syllable (O) weight (O) is (O) extracted (O) within (O) a (O) 5 (O) syllable (O) window (O) centered (O) on (O) s, (O) [morpheme (B) class (I)] within (O) a (O) 3 (O) [morpheme (B)] window (O) centered (O) on (O) the (O) [morpheme (B)] containing (O) the (O) nucleus (O) of (O) s. (O) 
+
+Results (O) 
+
+[Evaluation (B) data (I)] taken (O) from (O) the (O) “ (O) European (O) Parliament (O) Plenary (O) Session (O) ” (O) (EPPS) (O) corpus (O) was (O) provided (O) by (O) ELDA. (O) 
+ELDA (O) also (O) carried (O) out (O) the (O) evaluations, (O) but (O) due (O) to (O) some (O) convention (O) differences (O) (see (O) below) (O) we (O) had (O) to (O) revise (O) the (O) results. (O) 
+
+[Text (B) Normalization (I)] 
+
+Sentence (O) Segmentation (O) [End-of (B)]-sentence detection (O) was (O) evaluated (O) for (O) 500 (O) sentences. (O) 
+Given (O) two (O) errors (O) the (O) error (O) rate (O) amounts (O) to (O) 0.4 (O) %. (O) 
+Word (O) Normalization (O) The (O) normalization (O) of (O) non-standard (O) words (O) was (O) evaluated (O) for (O) acronyms, (O) for (O) number, (O) time, (O) date, (O) year, (O) and (O) money (O) expressions, (O) as (O) well (O) as (O) for (O) hybrid (O) word (O) forms (O) like (O) e.g. (O) letter-digit (O) combinations. (O) 
+The (O) [word (B) error (I) rate (I)] for (O) non-standard (O) words (O) adds (O) up (O) to (O) 28.9 (O) %. (O) 
+
+[Part-of-Speech (B) Tagging (I)] 
+
+The (O) [evaluation (B) data (I)] comprises (O) 10000 (O) words (O) extracted (O) randomly (O) from (O) 100000 (O) running (O) words. (O) 
+Tagset (O) Mapping (O) Different (O) tagsets (O) were (O) used (O) for (O) training (O) and (O) evaluation. (O) 
+Evaluation (O) was (O) carried (O) out (O) using (O) the (O) UK (O) TC-STAR (O) Grammatical (O) POS (O) tagset, (O) but (O) since (O) no (O) appropriate (O) training (O) material (O) was (O) available (O) we (O) worked (O) with (O) the (O) standard (O) PENN (O) tagset (O) (Marcus (O) et (O) al., (O) 1995). (O) 
+The (O) problem (O) to (O) map (O) from (O) our (O) tagset (O) to (O) the (O) one (O) of (O) TC-STAR (O) was (O) not (O) solely (O) solvable (O) by (O) simple (O) table (O) lookup (O) but (O) was (O) also (O) connected (O) to (O) disambiguation (O) of (O) adjectives (O) and (O) ordinal (O) numbers, (O) of (O) prepositions (O) and (O) subordinating (O) conjunctions, (O) and (O) of (O) auxiliaries (O) and (O) full (O) verbs. (O) 
+Disambiguation (O) was (O) carried (O) out (O) by (O) local (O) grammars. (O) 
+Note (O) that (O) disambiguation (O) was (O) not (O) possible (O) in (O) some (O) cases. (O) 
+Results (O) After (O) POS (O) mapping (O) and (O) removal (O) of (O) further (O) systematic (O) tagset (O) differences (O) the (O) [word (B) error (I) rate (I)] amounts (O) 6.5 (O) %. (O) 
+Since (O) more (O) tagset (O) inconsistencies (O) are (O) likely, (O) this (O) result (O) has (O) to (O) be (O) taken (O) preliminarily. (O) 
+
+[Grapheme-to-Phoneme (B) Conversion (I)] 
+
+Evaluation (O) was (O) carried (O) out (O) for (O) common (O) words (O) (3808 (O) types), (O) geographic (O) locations (O) (1870 (O) types), (O) and (O) English (O) proper (O) names (O) (2237 (O) types). (O) 
+Due (O) to (O) different (O) treatment (O) of (O) syllabic (O) consonants (O) (marked (O) by (O) “ (O) = ” (O) by (O) ELDA) (O) we (O) recalculated (O) the (O) error (O) rates (O) after (O) having (O) marked (O) the (O) syllabic (O) consonants (O) from (O) our (O) [G2P (B) output (I)] accordingly, (O) which (O) is (O) allowed (O) due (O) to (O) the (O) redundancy (O) of (O) this (O) marking. (O) 
+The (O) overall (O) results (O) including (O) [syllable (B) segmentation (I)] and (O) word (O) stress (O) placement (O) can (O) be (O) found (O) in (O) Table (O) 2. (O) 
+
+Table (O) : Error (O) rates (O) for (O) the (O) text (O) processing (O) tasks (O) ; sentence (O) error (O) rate (O) for (O) sentence (O) segmentation, (O) [word (B) error (I) rate (I)] otherwise. (O) 
+
+Discussion (O) 
+
+Our (O) submodules (O) for (O) [TTS (B) text (I) preprocessing (I)] presented (O) here (O) are (O) partly (O) data-driven (O) as (O) for (O) [POS (B) tagging (I)], [syllable (B) segmentation (I)], and (O) [grapheme-to-phoneme (B) conversion (I)] and (O) partly (O) [rule-based (B)] as (O) for (O) [text (B) normalization (I)]. 
+For (O) word (O) stress (O) assignment (O) we (O) have (O) chosen (O) a (O) [hybrid (B) approach (I)] using (O) a (O) [statistical (B) classifier (I)] fed (O) by (O) features (O) partially (O) derived (O) by (O) a (O) rulebased (O) morphologic (O) analysis. (O) 
+In (O) order (O) to (O) improve (O) the (O) modules’ (O) adaptabilities (O) to (O) other (O) languages (O) the (O) amount (O) of (O) needed (O) [linguistic (B) knowledge (I)] should (O) be (O) reduced. (O) 
+Concerning (O) [morphology (B)] we (O) intend (O) to (O) adopt (O) the (O) automatic (O) induction (O) method (O) used (O) to (O) derive (O) word (O) representations (O) for (O) [POS (B) tagging (I)] for (O) a (O) complete (O) [morphological (B) analysis (I)]. 
+Furthermore (O) it (O) is (O) to (O) investigate (O) if (O) this (O) morphologic (O) analysis (O) could (O) be (O) helpful (O) not (O) only (O) for (O) word (O) stress (O) assignment (O) but (O) also (O) for (O) [G2P (B) conversion (I)], for (O) which (O) – (O) being (O) provided (O) with (O) morphological (O) information (O) – (O) an (O) improvement (O) had (O) already (O) been (O) shown (O) for (O) German (O) (Reichel (O) and (O) Schiel, (O) 2005). (O) 
+Special (O) effort (O) is (O) to (O) be (O) invested (O) in (O) the (O) conversion (O) of (O) geographic (O) location (O) and (O) proper (O) names, (O) for (O) which (O) the (O) results (O) are (O) far (O) away (O) from (O) satisfying. (O) 
+Due (O) to (O) the (O) tagset (O) inconsistencies, (O) the (O) [POS (B) tagging (I) results (I)] should (O) be (O) regarded (O) rather (O) as (O) preliminary (O) and (O) recalculated (O) given (O) a (O) unique (O) tagset (O) used (O) for (O) both (O) training (O) and (O) testing. (O) 
+For (O) [G2P (B) conversion (I)] it (O) should (O) also (O) be (O) tested (O) if (O) training (O) and (O) test (O) material (O) are (O) created (O) following (O) the (O) same (O) conventions, (O) which (O) is (O) not (O) clear (O) per (O) se (O) due (O) to (O) their (O) different (O) origins. (O) 

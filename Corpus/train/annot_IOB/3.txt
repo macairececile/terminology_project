@@ -1,0 +1,193 @@
+Learning (O) to (O) Speak (O) Fluently (O) in (O) a (O) Foreign (O) Language (O) : [Multilingual (B) Speech (I) Synthesis (I)] and (O) [cross-language (B) voice (I)] cloning (O) 
+
+
+Abstract (O) 
+We (O) present (O) a (O) multispeaker, (O) [multilingual (B) text-to-speech (I) (TTS) (I) synthesis (I) model (I)] based (O) on (O) [Tacotron (B)] that (O) is (O) able (O) to (O) produce (O) [high (B) quality (I) speech (I)] in (O) multiple (O) languages. (O) 
+Moreover, (O) the (O) model (O) is (O) able (O) to (O) transfer (O) voices (O) across (O) languages, (O) e.g. (O) synthesize (O) fluent (O) Spanish (O) [speech (B)] using (O) an (O) [English (B) speaker (I)]’s voice, (O) without (O) training (O) on (O) any (O) bilingual (O) or (O) parallel (O) examples. (O) 
+Such (O) transfer (O) works (O) across (O) distantly (O) related (O) languages, (O) e.g. (O) English (O) and (O) Mandarin. (O) 
+Critical (O) to (O) achieving (O) this (O) result (O) are (O) : using (O) a (O) [phonemic (B) input (I) representation (I)] to (O) encourage (O) sharing (O) of (O) model (O) capacity (O) across (O) languages, (O) and (O) incorporating (O) an (O) [adversarial (B) loss (I)] term (O) to (O) encourage (O) the (O) model (O) to (O) disentangle (O) its (O) representation (O) of (O) [speaker (B) identity (I)] (which (O) is (O) perfectly (O) correlated (O) with (O) language (O) in (O) the (O) [training (B) data (I)]) from (O) the (O) [speech (B) content (I)]. 
+Further (O) scaling (O) up (O) the (O) model (O) by (O) training (O) on (O) [multiple (B) speakers (I)] of (O) each (O) language, (O) and (O) incorporating (O) an (O) autoencoding (O) input (O) to (O) help (O) stabilize (O) attention (O) during (O) training, (O) results (O) in (O) a (O) model (O) which (O) can (O) be (O) used (O) to (O) consistently (O) synthesize (O) [intelligible (B) speech (I)] for (O) [training (B) speakers (I)] in (O) all (O) languages (O) seen (O) during (O) training, (O) and (O) in (O) native (O) or (O) foreign (O) accents. (O) 
+Index (O) Terms (O) : [speech (B) synthesis (I)], [end-to-end (B)], [adversarial (B) loss (I)] 
+
+Introduction (O) 
+Recent (O) [end-to-end (B) neural (I) TTS (I) models (I)] have (O) been (O) extended (O) to (O) enable (O) control (O) of (O) [speaker (B) identity (I)] as (O) well (O) as (O) [unlabelled (B) speech (I) attributes (I)], e.g. (O) [prosody (B)], by (O) conditioning (O) synthesis (O) on (O) latent (O) representations (O) in (O) addition (O) to (O) text. (O) 
+Extending (O) such (O) models (O) to (O) support (O) multiple, (O) unrelated (O) languages (O) is (O) nontrivial (O) when (O) using (O) [language-dependent (B) input (I) representations (I)] or (O) model (O) components, (O) especially (O) when (O) the (O) amount (O) of (O) [training (B) data (I)] per (O) language (O) is (O) imbalanced. (O) 
+For (O) example, (O) there (O) is (O) no (O) overlap (O) in (O) the (O) text (O) representation (O) between (O) languages (O) like (O) Mandarin (O) and (O) English. (O) Furthermore, (O) recordings (O) from (O) [bilingual (B) speakers (I)] are (O) expensive (O) to (O) collect. (O) It (O) is (O) therefore (O) most (O) common (O) for (O) each (O) speaker (O) in (O) the (O) training (O) set (O) to (O) speak (O) only (O) one (O) language, (O) so (O) [speaker (B) identity (I)] is (O) perfectly (O) correlated (O) with (O) language. (O) 
+This (O) makes (O) it (O) difficult (O) to (O) transfer (O) voices (O) across (O) different (O) languages, (O) a (O) [desirable (B) feature (I)] when (O) the (O) number (O) of (O) available (O) [training (B) voices (I)] for (O) a (O) particular (O) language (O) is (O) small. (O) 
+Moreover, (O) for (O) languages (O) with (O) borrowed (O) or (O) shared (O) words, (O) such (O) as (O) proper (O) nouns (O) in (O) Spanish (O) (ES) (O) and (O) English (O) (EN), (O) pronunciations (O) of (O) the (O) same (O) text (O) might (O) be (O) different. (O) 
+This (O) adds (O) more (O) ambiguity (O) when (O) a (O) naively (O) trained (O) model (O) sometimes (O) generates (O) [accented (B) speech (I)] for (O) a (O) [particular (B) speaker (I)]. 
+Zen (O) et (O) al. (O) proposed (O) a (O) speaker (O) and (O) language (O) factorization (O) for (O) [HMM-based (B) parametric (I) TTS (I) system (I)], aiming (O) to (O) transfer (O) a (O) voice (O) from (O) one (O) language (O) to (O) others. (O) 
+proposed (O) a (O) multilingual (O) parametric (O) [neural (B) TTS (I) system (I)], which (O) used (O) a (O) unified (O) [input (B) representation (I)] and (O) shared (O) parameters (O) across (O) languages, (O) however (O) the (O)   voices (O) used (O) for (O) each (O) language (O) were (O) disjoint. (O) 
+described (O) a (O) similar (O) bilingual (O) Chinese (O) and (O) English (O) [neural (B) TTS (I) system (I)] trained (O) on (O) [speech (B)] from (O) a (O) [bilingual (B) speaker (I)], allowing (O) it (O) to (O) [synthesize (B) speech (I)] in (O) both (O) languages (O) using (O) the (O) [same (B) voice (I)]. 
+studied (O) learning (O) pronunciation (O) from (O) a (O) [bilingual (B) TTS (I) model (I)]. 
+Most (O) recently, (O) presented (O) a (O) [multilingual (B) neural (I) TTS (I) model (I)] which (O) supports (O) voice (O) cloning (O) across (O) English, (O) Spanish, (O) and (O) German. (O) 
+
+                                        
+Figure (O) : Overview (O) of (O) the (O) components (O) of (O) the (O) proposed (O) model. (O) 
+Dashed (O) lines (O) denote (O) sampling (O) via (O) reparameterization (O)   during (O) training. (O) 
+The (O) prior (O) mean (O) is (O) always (O) use (O) during (O) inference. (O) 
+                                  
+It (O) used (O) [language-specific (B) text (I)] and (O) [speaker (B) encoders (I)], and (O) incorporated (O) a (O) secondary (O) fine-tuning (O) step (O) to (O) optimize (O) a (O) [speaker (B) identity-preserving (I) loss (I)], ensuring (O) that (O) the (O) model (O) could (O) output (O) a (O) [consistent (B) voice (I)] regardless (O) of (O) language. (O) 
+We (O) also (O) note (O) that (O) the (O) sound (O) quality (O) is (O) not (O) on (O) par (O) with (O) recent (O) [neural (B) TTS (I) systems (I)], potentially (O) because (O) of (O) its (O) use (O) of (O) the (O) [WORLD (B) vocoder (I)] for (O) [waveform (B) synthesis (I)]. 
+Our (O) work (O) is (O) most (O) similar (O) to, (O) which (O) describes (O) a (O) [multilingual (B) TTS (I) model (I)] based (O) on (O) [Tacotron (B) 2 (I)] which (O) uses (O) a (O) Unicode (O) encoding (O) “ (O) [byte (B)] ” (O) [input (B) representation (I)] to (O) train (O) a (O) model (O) on (O) one (O) speaker (O) of (O) each (O) of (O) English, (O) Spanish, (O) and (O) Mandarin. (O) 
+In (O) this (O) paper, (O) we (O) evaluate (O) different (O) [input (B) representations (I)], scale (O) up (O) the (O) number (O) of (O) [training (B) speakers (I)] for (O) each (O) language, (O) and (O) extend (O) the (O) model (O) to (O) support (O) [cross-lingual (B) voice (I)] cloning. (O) 
+The (O) model (O) is (O) trained (O) in (O) a (O) single (O) stage, (O) with (O) no (O) [language-specific (B) components (I)], and (O) obtains (O) naturalness (O) on (O) par (O) with (O) baseline (O) monolingual (O) models. (O) 
+Our (O) contributions (O) include (O) : 
+Evaluating (O) the (O) effect (O) of (O) using (O) different (O) text (O) [input (B) representations (I)] in (O) a (O) [multilingual (B) TTS (I) model (I)]. 
+Introducing (O) a (O) per-input (O) [token (B) speaker-adversarial (I) loss (I)] to (O) enable (O) [cross-lingual (B) voice (I) transfer (I)] when (O) only (O) one (O) [training (B) speaker (I)] is (O) available (O) for (O) each (O) language. (O) 
+Incorporating (O) an (O) explicit (O) [language (B) embedding (I)] to (O) the (O) input, (O) which (O) enables (O) moderate (O) control (O) of (O) [speech (B) accent (I)], independent (O) of (O) [speaker (B) identity (I)], when (O) the (O) [training (B) data (I)] contains (O) [multiple (B) speakers (I)] per (O) language. (O) 
+We (O) evaluate (O) the (O) contribution (O) of (O) each (O) component, (O) and (O) demonstrate (O) the (O) proposed (O) model’s (O) ability (O) to (O) disentangle (O) speakers (O) from (O) languages (O) and (O) consistently (O) synthesize (O) [high (B) quality (I) speech (I)] for (O) all (O) speakers, (O) despite (O) the (O) perfect (O) correlation (O) to (O) the (O) original (O) language (O) in (O) the (O) [training (B) data (I)]. 
+                                        
+Model (O) Structure (O) 
+We (O) base (O) our (O) [multilingual (B) TTS (I) model (I)] on (O) [Tacotron (B) 2 (I)], which (O) uses (O) an (O) [attention-based (B) sequence-to-sequence (I) model (I)] to (O) generate (O) a (O) sequence (O) of (O) [log-mel (B) spectrogram (I) frames (I)] based (O) on (O) an (O) input (O) text (O) sequence. (O) 
+The (O) architecture (O) is (O) illustrated (O) in (O) Figure. (O) 
+It (O) augments (O) the (O) base (O) [Tacotron (B) 2 (I) model (I)] with (O) [additional (B) speaker (I)] and, (O) optionally, (O) language (O) embedding (O) inputs (O) (bottom (O) right), (O) an (O) adversarially-trained (O) [speaker (B) classifier (I)] (top (O) right), (O) and (O) a (O) [variational (B) autoencoder (I)]-style [residual (B) encoder (I)] (top (O) left) (O) which (O) conditions (O) the (O) [decoder (B)] on (O) a (O) latent (O) embedding (O) computed (O) from (O) the (O) [target (B) spectrogram (I)] during (O) training (O) (top (O) left). (O) 
+Finally, (O) similar (O) to (O) [Tacotron (B) 2 (I)], we (O) separately (O) train (O) a (O) [WaveRNN (B) neural (I) vocoder (I)]. 
+
+[Input (B) representations (I)] 
+[End-to-end (B) TTS (I) models (I)] have (O) typically (O) used (O) character (O) or (O) [phoneme (B)]   [input (B) representations (I)], or (O) hybrids (O) between (O) them. (O) 
+Recently, (O) proposed (O) using (O) inputs (O) derived (O) from (O) the (O) UTF-8 (O) [byte (B)] encoding (O) in (O) [multilingual (B) settings (I)]. 
+We (O) evaluate (O) the (O) effects (O) of (O) using (O) these (O) representations (O) for (O) [multilingual (B) TTS (I)]. 
+
+Characters (O) / [Graphemes (B)] 
+Embeddings (O) corresponding (O) to (O) each (O) character (O) or (O) [grapheme (B)] are (O) the (O) default (O) inputs (O) for (O) [end-to-end (B) TTS (I) models (I)], requiring (O) the (O) model (O) to (O) implicitly (O) learn (O) how (O) to (O) pronounce (O) input (O) words (O) (i.e. (O) [grapheme-to-phoneme (B) conversion (I)]) as (O) part (O) of (O) the (O) synthesis (O) task. (O) 
+Extending (O) a (O) [grapheme-based (B) input (I) vocabulary (I)] to (O) a (O) [multilingual (B) setting (I)] is (O) straightforward, (O) by (O) simply (O) concatenating (O) 
+[grapheme (B) sets (I)] in (O) the (O) [training (B) corpus (I)] for (O) each (O) language. (O) 
+This (O) can (O) grow (O) quickly (O) for (O) languages (O) with (O) large (O) alphabets, (O) e.g. (O) our (O) Mandarin (O) vocabulary (O) contains (O) over (O) 4.5k (O) tokens. (O) 
+We (O) simply (O) concatenate (O) all (O) [graphemes (B)] appearing (O) in (O) the (O) [training (B) corpus (I)], leading (O) to (O) a (O) total (O) of (O) 4,619 (O) tokens. (O) 
+Equivalent (O) [graphemes (B)] are (O) shared (O) across (O) languages. (O) 
+During (O) inference (O) all (O) previously (O) unseen (O) characters (O) are (O) mapped (O) to (O) a (O) special (O) out-of-vocabulary (O) (OOV) (O) symbol. (O) 
+
+UTF-8 (O) Encoded (O) [Bytes (B)] 
+Following (O)   we (O) experiment (O) with (O) an (O) [input (B) representation (I)] based (O) on (O) the (O) UTF-8 (O) text (O) encoding, (O) which (O) uses (O) 256 (O) possible (O) values (O) as (O) each (O) input (O) token (O) where (O) the (O) mapping (O) from (O) [graphemes (B)] to (O) [bytes (B)] is (O) [language-dependent (B)]. 
+For (O) languages (O) with (O) single-[byte (B)] characters (O) (e.g., (O) English), (O) this (O) representation (O) is (O) equivalent (O) to (O) the (O) [grapheme (B) representation (I)]. 
+However, (O) for (O) languages (O) with (O) multi-[byte (B)] characters (O) (such (O) as (O) Mandarin) (O) the (O) [TTS (B) model (I)] must (O) learn (O) to (O) attend (O) to (O) a (O) consistent (O) [sequence (B) of (I) bytes (I)] to (O) correctly (O) generate (O) the (O) corresponding (O) [speech (B)]. 
+On (O) the (O) other (O) hand, (O) using (O) a (O) UTF-8 (O) [byte (B) representation (I)] may (O) promote (O) sharing (O) of (O) representations (O) between (O) languages (O) due (O) to (O) the (O) smaller (O) number (O) of (O) input (O) tokens. (O) 
+
+[Phonemes (B)] 
+Using (O) [phoneme (B)] inputs (O) simplifies (O) the (O) [TTS (B) task (I)], as (O) the (O) model (O) no (O) longer (O) needs (O) to (O) learn (O) complicated (O) pronunciation (O) rules (O) for (O) languages (O) such (O) as (O) English. (O) 
+Similar (O) to (O) our (O) [grapheme-based (B) model (I)], equivalent (O) [phonemes (B)] are (O) shared (O) across (O) languages. (O) We (O) concatenate (O) all (O) possible (O) [phoneme (B) symbols (I)], for (O) a (O) total (O) of (O) 88 (O) tokens. (O) 
+To (O) support (O) Mandarin, (O) we (O) include (O) tone (O) information (O) by (O) learning (O) [phoneme-independent (B) embeddings (I)] for (O) each (O) of (O) the (O) 4 (O) possible (O) tones, (O) and (O) broadcast (O) each (O) tone (O) embedding (O) to (O) all (O) [phoneme (B) embeddings (I)] inside (O) the (O) corresponding (O) syllable. (O) 
+For (O) English (O) and (O) Spanish, (O) tone (O) embeddings (O) are (O) replaced (O) by (O) stress (O) embeddings (O) which (O) include (O) primary (O) and (O) secondary (O) stresses. (O) A (O) special (O) symbol (O) is (O) used (O) when (O) there (O) is (O) no (O) tone (O) or (O) stress. (O) 
+
+[Residual (B) encoder (I)] 
+Following, (O) we (O) augment (O) the (O) [TTS (B) model (I)] by (O) incorporating (O) a (O) [variational (B) autoencoder (I)]-like [residual (B) encoder (I)] which (O) encodes (O) the (O) latent (O) factors (O) in (O) the (O) [training (B) audio (I)], e.g. (O) [prosody (B)] or (O) background (O) noise, (O) which (O) is (O) not (O) well-explained (O) by (O) the (O) conditioning (O) inputs (O) : the (O) text (O) representation, (O) speaker, (O) and (O) language (O) embeddings. (O) 
+We (O) follow (O) the (O) structure (O) from, (O) except (O) we (O) use (O) a (O) standard (O) single (O) [Gaussian (B) prior (I) distribution (I)] and (O) reduce (O) the (O) latent (O) dimension (O) to (O) 16. (O) 
+In (O) our (O) experiments, (O) we (O) observe (O) that (O) feeding (O) in (O) the (O) prior (O) mean (O) (all (O) zeros) (O) during (O) inference, (O) significantly (O) improves (O) stability (O) of (O) [cross-lingual (B) speaker (I) transfer (I)] and (O) leads (O) to (O) improved (O) naturalness (O) as (O) shown (O) by (O) [MOS (B) evaluations (I)] in (O) Section. (O) 
+
+Adversarial (O) training (O) 
+One (O) of (O) the (O) challenges (O) for (O) [multilingual (B) TTS (I)] is (O) [data (B) sparsity (I)], where (O) some (O) languages (O) may (O) only (O) have (O) [training (B) data (I)] for (O) a (O) [few (B) speakers (I)]. 
+In (O) the (O) extreme (O) case (O) where (O) there (O) is (O) only (O) one (O) speaker (O) per (O) language (O) in (O) the (O) [training (B) data (I)], the (O) [speaker (B) identity (I)] is (O) essentially (O) the (O) same (O) as (O) the (O) language (O) i (O) d. (O) 
+To (O) encourage (O) the (O) model (O) to (O) learn (O) disentangled (O) representations (O) of (O) the (O) text (O) and (O) [speaker (B) identity (I)], we (O) proactively (O) discourage (O) the (O) text (O) encoding (O) ts (O) from (O) also (O) capturing (O) [speaker (B) information (I)]. 
+We (O) employ (O) domain (O) adversarial (O) training (O) to (O) encourage (O) ti (O) to (O) encode (O) text (O) in (O) a (O) speaker-independent (O) manner (O) by (O) introducing (O) a (O) [speaker (B) classifier (I)] based (O) on (O) the (O) text (O) encoding (O) and (O) a (O) [gradient (B) reversal (I) layer (I)]. 
+Note (O) that (O) the (O) [speaker (B) classifier (I)] is (O) optimized (O) with (O) a (O) different (O) objective (O) than (O) the (O) rest (O) of (O) the (O) model (O) : Lspeaker (O) (ψs (O) ; ti) (O) = N (O) 
+Í (O) log (O) p(si (O) | ti), (O) where (O) si (O) is (O) the (O) [speaker (B) label (I)] i (O) and (O) ψs (O) are (O) the (O) parameters (O) for (O) [speaker (B) classifier (I)]. 
+To (O) train (O) the (O) full (O) model, (O) we (O) insert (O) a (O) [gradient (B) reversal (I) layer (I)]   prior (O) to (O) this (O) [speaker (B) classifier (I)], which (O) scales (O) the (O) gradient (O) by (O) −λ. (O) 
+Following, (O) we (O) also (O) explore (O) inserting (O) another (O) adversarial (O) layer (O) on (O) top (O) of (O) the (O) [variational (B) autoencoder (I)] to (O) encourage (O) it (O) to (O) learn (O) speaker-independent (O) representations. (O) 
+However, (O) we (O) found (O) that (O) this (O) layer (O) has (O) no (O) effect (O) after (O) decreasing (O) the (O) latent (O) space (O) dimension. (O) 
+                 
+We (O) impose (O) this (O) [adversarial (B) loss (I)] separately (O) on (O) each (O) element (O) of (O) the (O) encoded (O) text (O) sequence, (O) in (O) order (O) to (O) encourage (O) the (O) model (O) to (O) learn (O) a (O) speaker (O) and (O) [language-independent (B) text (I)] embedding (O) space. (O) 
+In (O) contrast (O) to, (O) which (O) disentangled (O) [speaker (B) identity (I)] from (O) background (O) noise, (O) some (O) input (O) tokens (O) are (O) highly (O) [language-dependent (B)] which (O) can (O) lead (O) to (O) unstable (O) adversarial (O) classifier (O) gradients. (O) 
+We (O) address (O) this (O) by (O) clipping (O) gradients (O) computed (O) at (O) the (O) [reversal (B) layer (I)] to (O) limit (O) the (O) impact (O) of (O) such (O) outliers. (O) 
+
+Experiments (O) 
+We (O) train (O) models (O) using (O) a (O) [proprietary (B) dataset (I)] composed (O) of (O) [high (B) quality (I) speech (I)] in (O) three (O) languages (O) : 385 (O) hours (O) of (O) English (O) (EN) (O) from (O) 84 (O) [professional (B) voice (I)] actors (O) with (O) accents (O) from (O) the (O) United (O) States, (O) Great (O) Britain, (O) Australia, (O) and (O) Singapore (O) ;   97 (O) hours (O) of (O) Spanish (O) (ES) (O) from (O) 3 (O) [female (B) speakers (I)] include (O) Castilian (O) and (O) US (O) Spanish (O) ; 68 (O) hours (O) of (O) Mandarin (O) (CN) (O) from (O) 5 (O) speakers. (O) 
+
+Model (O) and (O) training (O) setup (O) 
+The (O) [synthesizer (B) network (I)] uses (O) the (O) [Tacotron (B) 2 (I) architecture (I)], with (O) additional (O) inputs (O) consisting (O) of (O) learned (O) speaker (O) (64-dim) (O) and (O) language (O) embeddings (O) (3-dim), (O) concatenated (O) and (O) passed (O) to (O) the (O) [decoder (B)] at (O) each (O) step. (O) 
+The (O) generated (O) [speech (B)] is (O) represented (O) as (O) a (O) sequence (O) of (O) 128-dim (O) [log-mel (B) spectrogram (I) frames (I)], computed (O) from (O) 50ms (O) windows (O) shifted (O) by (O) 12.5ms. (O) 
+The (O) [variational (B) residual (I) encoder (I) architecture (I)] closely (O) follows (O) the (O) attribute (O) [encoder (B)] in. (O) 
+It (O) maps (O) a (O) variable (O) length (O) [mel (B) spectrogram (I)] to (O) two (O) [vectors (B)] parameterizing (O) the (O) mean (O) and (O) log (O) variance (O) of (O) the (O) [Gaussian (B) posterior (I)]. 
+The (O) [speaker (B) classifiers (I)] are (O) fully-connected (O) networks (O) with (O) one (O) 256 (O) unit (O) hidden (O) layer (O) followed (O) by (O) a (O) [softmax (B)] predicting (O) the (O) [speaker (B) identity (I)]. 
+The (O) synthesizer (O) and (O) [speaker (B) classifier (I)] are (O) trained (O) with (O) weight (O) 1.0 (O) and (O) 0.02 (O) respectively. (O) 
+As (O) described (O) in (O) the (O) previous (O) section (O) we (O) apply (O) gradient (O) clipping (O) with (O) factor (O) 0.5 (O) to (O) the (O) [gradient (B) reversal (I) layer (I)]. 
+
+Table (O) : [Speaker (B) similarity (I) Mean (I) Opinion (I) Score (I)] ([MOS (B)]) comparing (O) [ground (B) truth (I) audio (I)] from (O) speakers (O) of (O) different (O) languages. (O) 
+Raters (O) are (O) [native (B) speakers (I)] of (O) the (O) [target (B) language (I)]. 
+
+Table (O) : Naturalness (O) [MOS (B)] of (O) monolingual (O) and (O) [multilingual (B) models (I) synthesizing (I) speech (I)] of (O) in (O) different (O) languages. (O) 
+
+Table (O) : Naturalness (O) and (O) [speaker (B) similarity (I) MOS (I)] of (O) [cross-language (B) voice (I)] cloning (O) of (O) an (O) EN (O) [source (B) speaker (I)]. Models (O) which (O) use (O) different (O) [input (B) representations (I)] are (O) compared, (O) with (O) and (O) without (O) the (O) [speaker-adversarial (B) loss (I)]. fail (O) : raters (O) complained (O) that (O) too (O) many (O) utterances (O) were (O) spoken (O) in (O) the (O) wrong (O) language. (O) 
+                                                                          
+
+The (O) entire (O) model (O) is (O) trained (O) jointly (O) with (O) a (O) [batch (B) size (I)] of (O) 256, (O) using (O) the (O) [Adam (B) optimizer (I)] configured (O) with (O) an (O) initial (O) learning (O) rate (O) of (O) 10−3, (O) and (O) an (O) exponential (O) decay (O) that (O) halves (O) the (O) learning (O) rate (O) every (O) 12.5k (O) steps, (O) starting (O) at (O) 50k (O) steps. (O) 
+[Waveforms (B)] are (O) synthesized (O) using (O) a (O) [WaveRNN (B) vocoder (I)] which (O) generates (O) 16-bit (O) signals (O) sampled (O) at (O) 24 (O) kHz (O) conditioned (O) on (O) [spectrograms (B)] predicted (O) by (O) the (O) [TTS (B) model (I)]. 
+We (O) synthesize (O) 100 (O) samples (O) per (O) model, (O) and (O) have (O) each (O) one (O) rated (O) by (O) 6 (O) raters. (O) 
+
+Evaluation (O) 
+To (O) evaluate (O) [synthesized (B) speech (I)], we (O) rely (O) on (O) crowdsourced (O) [Mean (B) Opinion (I) Score (I) (MOS) (I) evaluations (I)] of (O) [speech (B) naturalness (I)] via (O) subjective (O) listening (O) tests. (O) 
+Ratings (O) follow (O) the (O) Absolute (O) Category (O) Rating (O) scale, (O) with (O) scores (O) from (O) 1 (O) to (O) 5 (O) in (O) 0.5 (O) point (O) increments. (O) 
+For (O) [cross-language (B) voice (I)] cloning, (O) we (O) also (O) evaluate (O) whether (O) the (O) [synthesized (B) speech (I)] resembles (O) the (O) identity (O) of (O) the (O) [reference (B) speaker (I)] by (O) pairing (O) each (O) synthesized (O) utterance (O) with (O) a (O) reference (O) utterance (O) from (O) the (O) [same (B) speaker (I)] for (O) subjective (O) [MOS (B) evaluation (I)] of (O) [speaker (B) similarity (I)], as (O) in. (O) 
+Although (O) rater (O) instructions (O) explicitly (O) asked (O) for (O) the (O) content (O) to (O) be (O) ignored, (O) note (O) that (O) this (O) similarity (O) evaluation (O) is (O) more (O) challenging (O) than (O) the (O) one (O) in (O) because (O) the (O) reference (O) and (O) target (O) examples (O) are (O) spoken (O) in (O) different (O) languages, (O) and (O) raters (O) are (O) not (O) bilingual. (O) 
+We (O) found (O) that (O) low (O) fidelity (O) [audio (B)] tended (O) to (O) result (O) in (O) high (O) variance (O) similarity (O) [MOS (B)] so (O) we (O) always (O) use (O) [WaveRNN (B) outputs (I)]. 
+For (O) each (O) language, (O) we (O) chose (O) one (O) speaker (O) to (O) use (O) for (O) similarity (O) tests. (O) 
+As (O) shown (O) in (O) Table, (O) the (O) [EN (B) speaker (I)] is (O) found (O) to (O) be (O) dissimilar (O) to (O) the (O) ES (O) and (O) [CN (B) speakers (I)] ([MOS (B)] below (O) 2.0), (O) while (O) the (O) ES (O) and (O) [CN (B) speakers (I)] are (O) slightly (O) similar (O) ([MOS (B)] around (O) 2.0). (O) 
+The (O) [CN (B) speaker (I)] has (O) more (O) natural (O) variability (O) compared (O) to (O) EN (O) and (O) ES, (O) leading (O) to (O) a (O) lower (O) self (O) similarity. (O) 
+The (O) scores (O) are (O) consistent (O) when (O) EN (O) and (O) CN (O) raters (O) evaluate (O) the (O) same (O) EN (O) and (O) CN (O) test (O) set. (O) 
+The (O) observation (O) is (O) consistent (O) with (O) : raters (O) are (O) able (O) to (O) discriminate (O) between (O) speakers (O) across (O) languages. (O) 
+However, (O) when (O) rating (O) [synthetic (B) speech (I)], we (O) observed (O) that (O) English (O) speaking (O) raters (O) often (O) considered (O) “ (O) heavy (O) accented (O) ” (O) synthetic (O) CN (O) [speech (B)] to (O) sound (O) more (O) similar (O) to (O) the (O) target (O) EN (O) speaker, (O) compared (O) to (O) more (O) [fluent (B) speech (I)] from (O) the (O) [same (B) speaker (I)]. 
+This (O) indicates (O) that (O) accent (O) and (O) [speaker (B) identity (I)] are (O) not (O) fully (O) disentangled. (O) 
+We (O) encourage (O) readers (O) to (O) listen (O) to (O) samples (O) on (O) the (O) companion (O) webpage. (O) 
+
+Comparing (O) [input (B) representations (I)] 
+We (O) first (O) build (O) and (O) evaluate (O) models (O) comparing (O) the (O) performance (O) of (O) different (O) text (O) [input (B) representations (I)]. 
+For (O) all (O) three (O) languages, (O) [byte (B)]-based models (O) always (O) use (O) a (O) 256-dim (O) [softmax (B) output (I)]. 
+Monolingual (O) character (O) and (O) [phoneme (B) models (I)] each (O) use (O) a (O) different (O) input (O) vocabulary (O) corresponding (O) to (O) the (O) training (O) language. (O) 
+
+Some (O) raters (O) gave (O) low (O) fidelity (O) [audio (B)] lower (O) scores, (O) treating (O) " blurriness (O) " as (O) a (O) property (O) of (O) the (O) speaker. (O) Others (O) gave (O) higher (O) scores (O) because (O) they (O) recognized (O) such (O) [audio (B)] as (O) synthetic (O) and (O) had (O) lower (O) expectations. (O) 
+ttp://google.github.io/tacotron/publications/multilingual (O) 
+
+Table (O) compares (O) monolingual (O) and (O) [multilingual (B) model (I)] performance (O) using (O) different (O) [input (B) representations (I)]. 
+For (O) Mandarin, (O) the (O) [phoneme-based (B) model (I)] performs (O) significantly (O) better (O) than (O) char (O) or (O) [byte (B)]-based variants (O) due (O) to (O) rare (O) and (O) OOV (O) words. (O) 
+Compared (O) to (O) the (O) monolingual (O) system, (O) [multilingual (B) phoneme-based (I) systems (I)] have (O) similar (O) performance (O) on (O) ES (O) and (O) CN (O) but (O) are (O) slightly (O) worse (O) on (O) EN. (O) 
+CN (O) has (O) a (O) larger (O) gap (O) to (O) ground (O) truth (O) (top) (O) due (O) to (O) unseen (O) word (O) segmentation (O) (for (O) simplicity, (O) we (O) did (O) n’t (O) add (O) word (O) boundary (O) during (O) training). (O) 
+The (O) multispeaker (O) model (O) (bottom) (O) performs (O) about (O) the (O) same (O) as (O) the (O) [single (B) speaker (I)] per-language (O) variant (O) (middle). (O) 
+Overall, (O) when (O) using (O) [phoneme (B) inputs (I)] all (O) the (O) languages (O) obtain (O) [MOS (B) scores (I)] above (O) 4.0. (O) 
+
+[Cross-language (B) voice (I)] cloning (O) 
+We (O) evaluate (O) how (O) well (O) the (O) multispeaker (O) models (O) can (O) be (O) used (O) to (O) clone (O) a (O) speaker’s (O) voice (O) into (O) a (O) new (O) language (O) by (O) simply (O) passing (O) in (O) [speaker (B) embeddings (I)] corresponding (O) to (O) a (O) different (O) language (O) from (O) the (O) input (O) text. (O) 
+Table (O) shows (O) voice (O) cloning (O) performance (O) from (O) an (O) [EN (B) speaker (I)] in (O) the (O) [most (B) data (I)]-poor scenario (O) (129 (O) hours), (O) where (O) only (O) a (O) [single (B) speaker (I)] is (O) available (O) for (O) each (O) training (O) language (O) (1EN (O) 1ES (O) 1CN) (O) without (O) using (O) the (O) [speaker-adversarial (B) loss (I)]. 
+Using (O) [byte (B) inputs (I)] 3 (O) it (O) was (O) possible (O) to (O) clone (O) the (O) [EN (B) speaker (I)] to (O) ES (O) with (O) high (O) similarity (O) [MOS (B)], albeit (O) with (O) significantly (O) reduced (O) naturalness. (O) 
+However, (O) cloning (O) the (O) [EN (B) voice (I)] to (O) CN (O) failed4, (O) as (O) did (O) cloning (O) to (O) ES (O) and (O) CN (O) using (O) [phoneme (B)] inputs. (O) 
+  
+Using (O) character (O) or (O) [byte (B) inputs (I)] led (O) to (O) similar (O) results. (O) 
+We (O) did (O) n’t (O) run (O) listening (O) tests (O) because (O) it (O) was (O) clear (O) that (O) synthesizing (O) EN (O) text (O) using (O) the (O) [CN (B) speaker (I) embedding (I)] did (O) n’t (O) affect (O) the (O) model (O) output. (O) 
+
+
+Table (O) : Naturalness (O) and (O) [speaker (B) similarity (I) MOS (I)] of (O) [cross-language (B) voice (I) cloning (I)] of (O) the (O) full (O) [multilingual (B) model (I)] using (O) [phoneme (B)] inputs. (O) 
+
+
+Table (O) : Effect (O) of (O) [EN (B) speaker (I)] cloning (O) with (O) no (O) [residual (B) encoder (I)]. 
+
+
+Figure (O) : Visualizing (O) the (O) effect (O) of (O) [voice (B) cloning (I)] and (O) accent (O) control, (O) using (O) 2D (O) PCA (O) of (O) [speaker (B) embeddings (I)] computed (O) from (O) [speech (B)] synthesized (O) with (O) [different (B) speaker (I)], text, (O) and (O) language (O) i (O) d (O) combinations. (O) 
+Embeddings (O) cluster (O) together (O) (bottom (O) left (O) and (O) right), (O) implying (O) high (O) similarity, (O) when (O) the (O) speaker’s (O) original (O) language (O) matches (O) the (O) language (O) embedding, (O) regardless (O) of (O) the (O) text (O) language. (O) However, (O) using (O) language (O) i (O) d (O) from (O) the (O) text (O) (squares), (O) modifying (O) the (O) speaker’s (O) accent (O) to (O) speak (O) fluently, (O) hurts (O) similarity (O) compared (O) to (O) the (O) native (O) language (O) and (O) accent (O) (circles). (O) 
+    
+Adding (O) the (O) [adversarial (B) speaker (I) classifier (I)] enabled (O) crosslanguage (O) cloning (O) of (O) the (O) [EN (B) speaker (I)] to (O) CN (O) with (O) very (O) high (O) similarity (O) [MOS (B)] for (O) both (O) [byte (B)] and (O) [phoneme (B) models (I)]. 
+However, (O) naturalness (O) [MOS (B)] remains (O) much (O) lower (O) than (O) using (O) the (O) [native (B) speaker (I)] identity, (O) with (O) the (O) naturalness (O) listening (O) test (O) failing (O) entirely (O) in (O) the (O) CN (O) case (O) with (O) [byte (B) inputs (I)] as (O) a (O) result (O) of (O) rater (O) comments (O) that (O) the (O) [speech (B)] sounded (O) like (O) a (O) foreign (O) language. (O) 
+According (O) to (O) rater (O) comments (O) on (O) the (O) [phoneme (B) system (I)], most (O) of (O) the (O) degradation (O) came (O) from (O) mismatched (O) accent (O) and (O) pronunciation, (O) not (O) fidelity. (O) 
+CN (O) raters (O) commented (O) that (O) it (O) sounded (O) like (O) “ (O) a (O) foreigner (O) speaking (O) Chinese (O) ”. (O) 
+More (O) interestingly, (O) few (O) ES (O) raters (O) commented (O) that (O) “ (O) The (O) voice (O) does (O) not (O) sound (O) robotic (O) but (O) instead (O) sounds (O) like (O) an (O) English (O) [native (B) speaker (I)] who (O) is (O) learning (O) to (O) pronounce (O) the (O) words (O) in (O) Spanish. (O) ” (O) 
+Based (O) on (O) these (O) results, (O) we (O) only (O) use (O) [phoneme (B) inputs (I)] in (O) the (O) following (O) experiments (O) since (O) this (O) guarantees (O) that (O) pronunciations (O) are (O) correct (O) and (O) results (O) in (O) more (O) [fluent (B) speech (I)]. 
+Table (O) evaluates (O) voice (O) cloning (O) performance (O) of (O) the (O) full (O) [multilingual (B) model (I)] (84EN (O) 3ES (O) 5CN), (O) which (O) is (O) trained (O) on (O) the (O) [full (B) dataset (I)] with (O) increased (O) [speaker (B) coverage (I)], and (O) uses (O) the (O) [speaker-adversarial (B) loss (I)] and (O) speaker (O) / language (O) embeddings. (O) 
+Incorporating (O) the (O) [adversarial (B) loss (I)] forces (O) the (O) text (O) representation (O) to (O) be (O) less (O) [language-specific (B)], instead (O) relying (O) on (O) the (O) [language (B) embedding (I)] to (O) capture (O) [language-dependent (B) information (I)]. 
+Across (O) all (O) language (O) pairs, (O) the (O) model (O) [synthesizes (B) speech (I)] in (O) all (O) voices (O) with (O) naturalness (O) [MOS (B)] above (O) 3.85, (O) demonstrating (O) that (O) increasing (O) [training (B) speaker (I)] diversity (O) improves (O) generalization. (O) 
+In (O) most (O) cases (O) synthesizing (O) EN (O) and (O) ES (O) [speech (B)] (except (O) EN-to-ES) (O) approaches (O) the (O) ground (O) truth (O) scores. (O) In (O) contrast, (O) naturalness (O) of (O) CN (O) [speech (B)] is (O) consistently (O) lower (O) than (O) the (O) ground (O) truth. (O) 
+
+The (O) high (O) naturalness (O) and (O) similarity (O) [MOS (B) scores (I)] in (O) the (O) top (O) row (O) of (O) Table (O) indicate (O) that (O) the (O) model (O) is (O) able (O) to (O) successfully (O) transfer (O) the (O) [EN (B) voice (I)] to (O) both (O) ES (O) and (O) CN (O) almost (O) without (O) accent. (O)             
+When (O) consistently (O) conditioning (O) on (O) the (O) EN (O) [language (B) embedding (I)] regardless (O) of (O) the (O) [target (B) language (I)] (second (O) row), (O) the (O) model (O) produces (O) more (O) English (O) accented (O) ES (O) and (O) CN (O) [speech (B)], which (O) leads (O) to (O) lower (O) naturalness (O) but (O) higher (O) similarity (O) [MOS (B) scores (I)]. 
+Also (O) see (O) Figure (O) and (O) the (O) demo (O) for (O) accent (O) transfer (O) [audio (B)] examples. (O)                                                                                            
+We (O) see (O) that (O) cloning (O) the (O) [CN (B) voice (I)] to (O) other (O) languages (O) (bottom (O) row) (O) has (O) the (O) lowest (O) similarity (O) [MOS (B)], although (O) the (O) scores (O) are (O) still (O) much (O) higher (O) than (O) different-[speaker (B) similarity (I) MOS (I)] in (O) the (O) off-diagonals (O) of (O) Table (O) indicating (O) that (O) there (O) is (O) some (O) degree (O) of (O) transfer. (O) 
+This (O) is (O) a (O) consequence (O) of (O) the (O) [low (B) speaker (I)] coverage (O) of (O) CN (O) compared (O) to (O) EN (O) in (O) the (O) [training (B) data (I)], as (O) well (O) as (O) the (O) large (O) distance (O) between (O) CN (O) and (O) other (O) languages. (O)                                                                        
+Finally, (O) Table (O) demonstrates (O) the (O) importance (O) of (O) training (O) using (O) a (O) [variational (B) residual (I) encoder (I)] to (O) stabilize (O) the (O) model (O) output. (O) 
+Naturalness (O) [MOS (B)] decreases (O) by (O) 0.4 (O) points (O) for (O) EN-to-CN (O) cloning (O) without (O) the (O) [residual (B) encoder (I)] (bottom (O) row). (O) 
+In (O) informal (O) comparisons (O) of (O) the (O) outputs (O) of (O) the (O) two (O) models (O) we (O) find (O) that (O) the (O) model (O) without (O) the (O) [residual (B) encoder (I)] tends (O) to (O) skip (O) rare (O) words (O) or (O) inserts (O) unnatural (O) pauses (O) in (O) the (O) output (O) [speech (B)]. 
+This (O) indicates (O) the (O) VAE (O) prior (O) learns (O) a (O) mode (O) which (O) helps (O) stabilize (O) attention. (O) 
+
+Conclusions (O) 
+We (O) describe (O) extensions (O) to (O) the (O) [Tacotron (B) 2 (I) neural (I) TTS (I) model (I)] which (O) allow (O) training (O) of (O) a (O) [multilingual (B) model (I)] trained (O) only (O) on (O) [monolingual (B) speakers (I)], which (O) is (O) able (O) to (O) synthesize (O) [high (B) quality (I) speech (I)] in (O) three (O) languages, (O) and (O) transfer (O) [training (B) voices (I)] across (O) languages. (O) 
+Furthermore, (O) the (O) model (O) learns (O) to (O) speak (O) foreign (O) languages (O) with (O) moderate (O) control (O) of (O) accent, (O) and, (O) as (O) demonstrated (O) on (O) the (O) companion (O) webpage, (O) has (O) rudimentary (O) support (O) for (O) code (O) switching. (O) 
+In (O) future (O) work (O) we (O) plan (O) to (O) investigate (O) methods (O) for (O) scaling (O) up (O) to (O) leverage (O) large (O) amounts (O) of (O) low (O) quality (O) [training (B) data (I)], and (O) support (O) many (O) [more (B) speakers (I)] and (O) languages. (O) 
+
+Acknowledgements (O) 
+We (O) thank (O) Ami (O) Patel, (O) Amanda (O) Ritchart-Scott, (O) Ryan (O) Li, (O) Siamak (O) Tazari, (O) Yutian (O) Chen, (O) Paul (O) McCartney, (O) Eric (O) Battenberg, (O) Toby (O) Hawker, (O) and (O) Rob (O) Clark (O) for (O) discussions (O) and (O) helpful (O) feedback. (O) 

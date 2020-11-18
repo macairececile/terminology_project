@@ -1,0 +1,227 @@
+[Deep (B) Voice (I)] 2 (O) : [Multi-Speaker (B) Neural (I) Text-to-Speech (I)] 
+
+Abstract (O) 
+
+We (O) introduce (O) a (O) technique (O) for (O) augmenting (O) [neural (B) text-to-speech (I)] ([TTS (B)]) with (O) [low-dimensional (B) trainable (I) speaker (I) embeddings (I)] to (O) generate (O) [different (B) voices (I)] from (O) a (O)   single (O) model. (O) 
+As (O) a (O) starting (O) point, (O) we (O) show (O) improvements (O) over (O) the (O) two (O) state-of-the-art (O) approaches (O) for (O) single-[speaker (B) neural (I) TTS (I)] : [Deep (B) Voice (I)] 1 (O) and (O) [Tacotron (B)]. 
+We (O) introduce (O) [Deep (B) Voice (I)] 2, (O) which (O) is (O) based (O) on (O) a (O) similar (O) pipeline (O) with (O) [Deep (B) Voice (I)] 1, (O) but (O) constructed (O) with (O) higher (O) performance (O) building (O) blocks (O) and (O) demonstrates (O) a (O) significant (O) [audio (B) quality (I) improvement (I)] over (O) [Deep (B) Voice (I)] 1. (O) 
+We (O) improve (O) [Tacotron (B)] by (O) introducing (O) a (O) [post-processing (B) neural (I) vocoder (I)], and (O) demonstrate (O) a (O) significant (O) [audio (B) quality (I) improvement (I)]. We (O) then (O) demonstrate (O) our (O) technique (O) for (O) [multi-speaker (B) speech (I) synthesis (I)] for (O) both (O) [Deep (B) Voice (I)] 2 (O) and (O) [Tacotron (B)] on (O) two (O) [multi-speaker (B) TTS (I) datasets (I)]. 
+We (O) show (O) that (O) a (O) single (O) [neural (B) TTS (I) system (I)] can (O) learn (O) hundreds (O) of (O) [unique (B) voices (I)] from (O) less (O) than (O) half (O) an (O) hour (O) of (O) data (O) per (O) speaker, (O) while (O) achieving (O) high (O) [audio (B) quality (I) synthesis (I)] and (O) preserving (O) the (O) [speaker (B) identities (I)] almost (O) perfectly. (O) 
+
+Introduction (O) 
+
+[Artificial (B) speech (I) synthesis (I)], commonly (O) known (O) as (O) [text-to-speech (B)] ([TTS (B)]), has (O) a (O) variety (O) of (O) applications (O) in (O) technology (O) interfaces, (O) accessibility, (O) media, (O) and (O) entertainment. (O) 
+Most (O) [TTS (B) systems (I)] are (O) built (O) with (O) a (O) [single (B) speaker (I) voice (I)], and (O) [multiple (B) speaker (I) voices (I)] are (O) provided (O) by (O) having (O) distinct (O) [speech (B) databases (I)] or (O) model (O) parameters. (O) 
+As (O) a (O) result, (O) developing (O) a (O) [TTS (B) system (I)] with (O) support (O) for (O) [multiple (B) voices (I)] requires (O) much (O) [more (B) data (I)] and (O) development (O) effort (O) than (O) a (O) system (O) which (O) only (O) supports (O) a (O) [single (B) voice (I)]. 
+In (O) this (O) work, (O) we (O) demonstrate (O) that (O) we (O) can (O) build (O) all-[neural (B) multi-speaker (I) TTS (I) systems (I)] which (O) share (O) the (O) vast (O) majority (O) of (O) parameters (O) between (O) [different (B) speakers (I)]. 
+We (O) show (O) that (O) not (O) only (O) can (O) a (O) single (O) model (O) generate (O) [speech (B)] from (O) multiple (O) [different (B) voices (I)], but (O) also (O) that (O) significantly (O) [less (B) data (I)] is (O) required (O) per (O) speaker (O) than (O) when (O) training (O) single-[speaker (B) systems (I)]. 
+Concretely, (O) we (O) make (O) the (O) following (O) contributions (O) : 
+1. (O) We (O) present (O) [Deep (B) Voice (I)] 2, (O) an (O) improved (O) architecture (O) based (O) on (O) [Deep (B) Voice (I)] 1 (O) (Arik (O) et (O) al., (O) 2017). (O) 
+2. (O) We (O) introduce (O) a (O) [WaveNet-based (B)] (Oord (O) et (O) al., (O) 2016) (O) [spectrogram-to-audio (B) neural (I) vocoder (I)], and (O) use (O) it (O) with (O) [Tacotron (B)] (Wang (O) et (O) al., (O) 2017) (O) as (O) a (O) replacement (O) for (O) [Griffin-Lim (B) audio (I) generation (I)]. 
+3. (O) Using (O) these (O) two (O) single-[speaker (B) models (I)] as (O) a (O) baseline, (O) we (O) demonstrate (O) [multi-speaker (B) neural (I) speech (I) synthesis (I)] by (O) introducing (O) [trainable (B) speaker (I) embeddings (I)] into (O) [Deep (B) Voice (I)] 2 (O) and (O) [Tacotron (B)]. 
+We (O) organize (O) the (O) rest (O) of (O) this (O) paper (O) as (O) follows. (O) 
+Section (O) 2 (O) discusses (O) related (O) work (O) and (O) what (O) makes (O) the (O) contributions (O) of (O) this (O) paper (O) distinct (O) from (O) prior (O) work. (O) 
+Section (O) 3 (O) presents (O) [Deep (B) Voice (I)] 2 (O) and (O) highlights (O) the (O) differences (O) from (O) [Deep (B) Voice (I)] 1. (O) Section (O) 4 (O) explains (O) our (O) speaker (O) embedding (O) technique (O) for (O) [neural (B) TTS (I) models (I)] and (O) shows (O) [multi-speaker (B) variants (I)] of (O) the (O) [Deep (B) Voice (I)] 2 (O) and (O) [Tacotron (B) architectures (I)]. 
+Section (O) 5.1 (O) quantifies (O) the (O) improvement (O) for (O) [single (B) speaker (I) TTS (I)] through (O) a (O) [mean (B) opinion (I) score (I) (MOS) (I) evaluation (I)] and (O) Section (O) 5.2 (O) presents (O) the (O) synthesized (O) [audio (B) quality (I)] of (O) [multi-speaker (B) Deep (I) Voice (I)] 2 (O) and (O) [Tacotron (B)] via (O) both (O) [MOS (B) evaluation (I)] and (O) a (O) [multi-speaker (B) discriminator (I) accuracy (I)] metric. (O) 
+Section (O) 6 (O) concludes (O) with (O) a (O) discussion (O) of (O) the (O) results (O) and (O) potential (O) future (O) work. (O) 
+
+Related (O) Work (O) 
+
+We (O) discuss (O) the (O) related (O) work (O) relevant (O) to (O) each (O) of (O) our (O) claims (O) in (O) Section (O) 1 (O) in (O) order, (O) starting (O) from (O) single-speaker (O) [neural (B) speech (I) synthesis (I)] and (O) moving (O) on (O) to (O) [multi-speaker (B) speech (I) synthesis (I)] and (O) metrics (O) for (O) generative (O) model (O) quality. (O) 
+With (O) regards (O) to (O) single-[speaker (B) speech (I) synthesis (I)], [deep (B) learning (I)] has (O) been (O) used (O) for (O) a (O) variety (O) of (O) subcomponents, (O) including (O) duration (O) prediction (O) (Zen (O) et (O) al., (O) 2016), (O) [fundamental (B) frequency (I) prediction (I)] (Ronanki (O) et (O) al., (O) 2016), (O) acoustic (O) modeling (O) (Zen (O) and (O) Sak, (O) 2015), (O) and (O) more (O) recently (O) autoregressive (O) sample-by-sample (O) [audio (B) waveform (I) generation (I)] (e.g., (O) Oord (O) et (O) al., (O) 2016 (O) ; Mehri (O) et (O) al., (O) 2016). (O) 
+Our (O) contributions (O) build (O) upon (O) recent (O) work (O) in (O) entirely (O) [neural (B) TTS (I) systems (I)], including (O) [Deep (B) Voice (I)] 1 (O) (Arik (O) et (O) al., (O) 2017), (O) [Tacotron (B)] (Wang (O) et (O) al., (O) 2017), (O) and (O) Char2Wav (O) (Sotelo (O) et (O) al., (O) 2017). (O) 
+While (O) these (O) works (O) focus (O) on (O) building (O) single-[speaker (B) TTS (I) systems (I)], our (O) paper (O) focuses (O) on (O) extending (O) [neural (B) TTS (I) systems (I)] to (O) handle (O) [multiple (B) speakers (I)] with (O) [less (B) data (I)] per (O) speaker. (O) 
+Our (O) work (O) is (O) not (O) the (O) first (O) to (O) attempt (O) a (O) [multi-speaker (B) TTS (I) system (I)]. 
+For (O) instance, (O) in (O) traditional (O) [HMM-based (B) TTS (I) synthesis (I)] (e.g., (O) Yamagishi (O) et (O) al., (O) 2009), (O) an (O) [average (B) voice (I) model (I)] is (O) trained (O) using (O) [multiple (B) speakers (I)]’ data, (O) which (O) is (O) then (O) adapted (O) to (O) [different (B) speakers (I)]. 
+[DNN-based (B) systems (I)] (e.g., (O) Yang (O) et (O) al., (O) 2016) (O) have (O) also (O) been (O) used (O) to (O) build (O) [average (B) voice (I) models (I)], with (O) [i-vectors (B) representing (I) speakers (I)] as (O) additional (O) inputs (O) and (O) separate (O) [output (B) layers (I)] for (O) each (O) [target (B) speaker (I)]. 
+Similarly, (O) Fan (O) et (O) al. (O) (2015) (O) uses (O) a (O) shared (O) hidden (O) representation (O) among (O) [different (B) speakers (I)] with (O) speaker-dependent (O) [output (B) layers (I)] predicting (O) [vocoder (B) parameters (I)] (e.g., (O) line (O) [spectral (B) pairs (I)], aperiodicity (O) parameters (O) etc.). (O) 
+For (O) further (O) context, (O) Wu (O) et (O) al. (O) (2015) (O) empirically (O) studies (O) [DNN-based (B) multi-speaker (I) modeling (I)]. 
+More (O) recently, (O) [speaker (B) adaptation (I)] has (O) been (O) tackled (O) with (O) [generative (B) adversarial (I) networks (I)] (GANs) (O) (Hsu (O) et (O) al., (O) 2017). (O) 
+We (O) instead (O) use (O) [trainable (B) speaker (I) embeddings (I)] for (O) [multi-speaker (B) TTS (I)]. 
+The (O) approach (O) was (O) investigated (O) in (O) [speech (B) recognition (I)] (Abdel-Hamid (O) and (O) Jiang, (O) 2013), (O) but (O) is (O) a (O) novel (O) technique (O) in (O) [speech (B) synthesis (I)]. 
+Unlike (O) prior (O) work (O) which (O) depends (O) on (O) fixed (O) embeddings (O) (e.g. (O) i-vectors), (O) the (O) [speaker (B) embeddings (I)] used (O) in (O) this (O) work (O) are (O) trained (O) jointly (O) with (O) the (O) rest (O) of (O) the (O) model (O) from (O) scratch, (O) and (O) thus (O) can (O) directly (O) learn (O) the (O) features (O) relevant (O) to (O) the (O) [speech (B) synthesis (I) task (I)]. 
+In (O) addition, (O) this (O) work (O) does (O) not (O) rely (O) on (O) per-[speaker (B) output (I) layers (I)] or (O) [average (B) voice (I)] modeling, (O) which (O) leads (O) to (O) [higher-quality (B) synthesized (I) samples (I)] and (O) [lower (B) data (I)] requirements (O) (as (O) there (O) are (O) fewer (O) unique (O) parameters (O) per (O) speaker (O) to (O) learn). (O) 
+In (O) order (O) to (O) evaluate (O) the (O) distinctiveness (O) of (O) the (O) generated (O) voices (O) in (O) an (O) automated (O) way, (O) we (O) propose (O) using (O) the (O) classification (O) accuracy (O) of (O) a (O) [speaker (B) discriminator (I)]. 
+Similar (O) metrics (O) such (O) as (O) an (O) “ (O) Inception (O) score (O) ” (O) have (O) been (O) used (O) for (O) quantitative (O) quality (O) evaluations (O) of (O) GANs (O) for (O) image (O) synthesis (O) (e.g., (O) Salimans (O) et (O) al., (O) 2016). (O) 
+[Speaker (B) classification (I)] has (O) been (O) studied (O) with (O) both (O) traditional (O) [GMM-based (B) methods (I)] (e.g., (O) Reynolds (O) et (O) al., (O) 2000) (O) and (O) more (O) recently (O) with (O) [deep (B) learning (I) approaches (I)] (e.g., (O) Li (O) et (O) al., (O) 2017). (O) 
+
+Single-Speaker (O) [Deep (B) Voice (I)] 2 (O) 
+
+In (O) this (O) section, (O) we (O) present (O) [Deep (B) Voice (I)] 2, (O) a (O) [neural (B) TTS (I) system (I)] based (O) on (O) [Deep (B) Voice (I)] 1 (O) (Arik (O) et (O) al.,2017). (O) 
+We (O) keep (O) the (O) general (O) structure (O) of (O) the (O) [Deep (B) Voice (I)] 1 (O) (Arik (O) et (O) al., (O) 2017), (O) as (O) depicted (O) in (O) Fig. (O) 1 (O) (the (O) corresponding (O) training (O) pipeline (O) is (O) depicted (O) in (O) Appendix (O) A). (O) Our (O) primary (O) motivation (O) for (O) presenting (O) an (O) improved (O) single-[speaker (B) model (I)] is (O) to (O) use (O) it (O) as (O) the (O) starting (O) point (O) for (O) a (O) [high-quality (B) multi-speaker (I) model (I)]. 
+One (O) major (O) difference (O) between (O) [Deep (B) Voice (I)] 2 (O) and (O) [Deep (B) Voice (I)] 1 (O) is (O) the (O) separation (O) of (O) the (O) [phoneme (B) duration (I)] and (O) frequency (O) models. (O) [Deep (B) Voice (I)] 1 (O) has (O) a (O) single (O) model (O) to (O) jointly (O) predict (O) [phoneme (B) duration (I)] and (O) frequency (O) profile (O) (voicedness (O) and (O) [time-dependent (B) fundamental (I) frequency (I)], F (O) 0). (O) 
+In (O) [Deep (B) Voice (I)] 2, (O) the (O) [phoneme (B) durations (I)] are (O) predicted (O) first (O) and (O) then (O) are (O) used (O) as (O) inputs (O) to (O) the (O) frequency (O) model. (O) 
+In (O) the (O) subsequent (O) subsections, (O) we (O) present (O) the (O) models (O) used (O) in (O) [Deep (B) Voice (I)] 2. (O) 
+All (O) models (O) are (O) trained (O) separately (O) using (O) the (O) [hyperparameters (B)] specified (O) in (O) Appendix (O) B. (O) 
+We (O) will (O) provide (O) a (O) quantitative (O) comparison (O) of (O) [Deep (B) Voice (I)] 1 (O) and (O) [Deep (B) Voice (I)] 2 (O) in (O) Section (O) 5.1. (O) 
+
+[Segmentation (B) model (I)] 
+
+Estimation (O) of (O) [phoneme (B) locations (I)] is (O) treated (O) as (O) an (O) [unsupervised (B) learning (I)] problem (O) in (O) [Deep (B) Voice (I)] 2, (O) similar (O) to (O) [Deep (B) Voice (I)] 1. (O) 
+The (O) [segmentation (B) model (I)] is (O) convolutional-recurrent (O) architecture (O) with (O) [connectionist (B) temporal (I) classification (I)] (CTC) (O) loss (O) (Graves (O) et (O) al., (O) 2006) (O) applied (O) to (O) classify (O) [phoneme (B) pairs (I)], which (O) are (O) then (O) used (O) to (O) extract (O) the (O) boundaries (O) between (O) them. (O) 
+The (O) major (O) architecture (O) changes (O) in (O) [Deep (B) Voice (I)] 2 (O) are (O) the (O) addition (O) of (O) [batch (B) normalization (I)] and (O) [residual (B) connections (I)] in (O) the (O) [convolutional (B) layers (I)]. 
+Specifically, (O) [Deep (B) Voice (I)] 1’s (O) [segmentation (B) model (I)] computes (O) the (O) output (O) of (O) each (O) layer (O) as (O)   h (O) (l) (O) = [relu (B)] W (O) (l) (O) ⇤ (O) h (O) (l (O) 1) (O) + b (O) (l), (O) (1) (O)   where (O) h (O) (l) (O) is (O) the (O) output (O) of (O) the (O) l-th (O) layer, (O) W (O) (l) (O) is (O) the (O) convolution (O) filterbank, (O) b (O) (l) (O) is (O) the (O) bias (O) [vector (B)], and (O) ⇤ (O) is (O) the (O) convolution (O) operator. (O) 
+In (O) contrast, (O) [Deep (B) Voice (I)] 2’s (O) [segmentation (B) model (I) layers (I)] instead (O) compute (O)    h (O) (l) (O) = [relu (B)] h (O) (l (O) 1) (O) + BN (O) W (O) (l) (O) ⇤ (O) h (O) (l (O) 1), (O) (2) (O)   where (O) BN (O) is (O) [batch (B) normalization (I)] (Ioffe (O) and (O) Szegedy, (O) 2015). (O) 
+In (O) addition, (O) we (O) find (O) that (O) the (O) [segmentation (B) model (I)] often (O) makes (O) mistakes (O) for (O) boundaries (O) between (O) silence (O) [phonemes (B)] and (O) other (O) [phonemes (B)], which (O) can (O) significantly (O) reduce (O) segmentation (O) accuracy (O) on (O) some (O) datasets. (O) 
+We (O) introduce (O) a (O) small (O) [post-processing (B) step (I)] to (O) correct (O) these (O) mistakes (O) : whenever (O) the (O) [segmentation (B) model (I)] decodes (O) a (O) silence (O) boundary, (O) we (O) adjust (O) the (O) location (O) of (O) the (O) boundary (O) with (O) a (O) silence (O) detection (O) heuristic. (O) 
+
+We (O) compute (O) the (O) smoothed (O) normalized (O) [audio (B)] power (O) as (O) p(n) (O) = (x(n) (O) 2 (O) /x (O) max (O) 2) (O) ⇤ (O) g(n), (O) where (O) x(n) (O) is (O) the (O) [audio (B) signal (I)], g(n) (O) is (O) the (O) impulse (O) response (O) of (O) a (O) [Gaussian (B) filter (I)], x (O) max (O) is (O) the (O) maximum (O) value (O) of (O) x(n) (O) and (O) ⇤ (O) is (O) one-dimensional (O) convolution (O) operation. (O) We (O) assign (O) the (O) silence (O) [phoneme (B) boundaries (I)] when (O) p(n) (O) exceeds (O) a (O) fixed (O) 
+threshold. (O) The (O) optimal (O) parameter (O) values (O) for (O) the (O) [Gaussian (B) filter (I)] and (O) the (O) threshold (O) depend (O) on (O) the (O) dataset (O) and (O) [audio (B) sampling (I) rate (I)]. 
+
+Duration (O) Model (O) 
+
+In (O) [Deep (B) Voice (I)] 2, (O) instead (O) of (O) predicting (O) a (O) continuous-valued (O) duration, (O) we (O) formulate (O) duration (O) prediction (O) as (O) a (O) sequence (O) labeling (O) problem. (O) 
+We (O) discretize (O) the (O) [phoneme (B) duration (I)] into (O) log-scaled (O) buckets, (O) and (O) assign (O) each (O) input (O) [phoneme (B)] to (O) the (O) bucket (O) label (O) corresponding (O) to (O) its (O) duration. (O) 
+We (O) model (O) the (O) sequence (O) by (O) a (O) [conditional (B) random (I) field (I)] ([CRF (B)]) with (O) pairwise (O) potentials (O) at (O) [output (B) layer (I)] (Lample (O) et (O) al., (O) 2016). (O) 
+During (O) inference, (O) we (O) decode (O) discretized (O) durations (O) from (O) the (O) [CRF (B)] using (O) the (O) [Viterbi (B) forward-backward (I) algorithm (I)]. 
+We (O) find (O) that (O) quantizing (O) the (O) duration (O) prediction (O) and (O) introducing (O) the (O) pairwise (O) dependence (O) implied (O) by (O) the (O) [CRF (B)] improves (O) synthesis (O) quality. (O) 
+
+Frequency (O) Model (O) 
+
+After (O) decoding (O) from (O) the (O) duration (O) model, (O) the (O) predicted (O) [phoneme (B) durations (I)] are (O) upsampled (O) from (O) a (O) per-[phoneme (B) input (I) features (I)] to (O) a (O) per-frame (O) input (O) for (O) the (O) frequency (O) model. (O) 
+[Deep (B) Voice (I)] 2 (O) frequency (O) model (O) consists (O) of (O) multiple (O) layers (O) : firstly, (O) [bidirectional (B) gated (I) recurrent (I) unit (I) (GRU) (I) layers (I)] (Cho (O) et (O) al.,2014) (O) generate (O) [hidden (B) states (I)] from (O) the (O) [input (B) features (I)]. 
+From (O) these (O) [hidden (B) states (I)], an (O) affine (O) projection (O) followed (O) by (O) a (O) [sigmoid (B) nonlinearity (I)] produces (O) the (O) probability (O) that (O) each (O) frame (O) is (O) voiced. (O) 
+[Hidden (B) states (I)] are (O) also (O) used (O) to (O) make (O) two (O) separate (O) normalized (O) F (O) 0 (O) predictions. (O) 
+The (O) first (O) prediction, (O) f (O) [GRU (B)], is (O) made (O) with (O) a (O) single-layer (O) [bidirectional (B) GRU (I)] followed (O) by (O) an (O) affine (O) projection. (O) 
+The (O) second (O) prediction, (O) f (O) conv, (O) is (O) made (O) by (O) adding (O) up (O) the (O) contributions (O) of (O) multiple (O) convolutions (O) with (O) varying (O) convolution (O) widths (O) and (O) a (O) single (O) output (O) channel. (O) 
+Finally, (O) the (O) [hidden (B) state (I)] is (O) used (O) with (O) an (O) affine (O)   projection (O) and (O) a (O) [sigmoid (B) nonlinearity (I)] to (O) predict (O) a (O) mixture (O) ratio (O) !, (O) which (O) is (O) used (O) to (O) weigh (O) the (O) two (O) normalized (O) [frequency (B) predictions (I)] and (O) combine (O) them (O) into (O) 
+The (O) normalized (O) prediction (O) f (O) is (O) then (O) converted (O) to (O) the (O) true (O) frequency (O) F0 (O) prediction (O) via (O) where (O) μ (O) F0 (O) and (O) F0 (O) are, (O) respectively, (O) the (O) mean (O) and (O) standard (O) deviation (O) of (O) F (O) 0 (O) for (O) the (O) speaker (O) the (O) model (O) is (O) trained (O) on. (O) We (O) find (O) that (O) predicting (O) F (O) 0 (O) with (O) a (O) mixture (O) of (O) convolutions (O) and (O) a (O) [recurrent (B) layer (I)] 
+performs (O) better (O) than (O) predicting (O) with (O) either (O) one (O) individually. (O) 
+We (O) attribute (O) this (O) to (O) the (O) hypothesis (O) that (O) including (O) the (O) wide (O) convolutions (O) reduces (O) the (O) burden (O) for (O) the (O) [recurrent (B) layers (I)] to (O) maintain (O) state (O) over (O) a (O) large (O) number (O) of (O) input (O) frames, (O) while (O) processing (O) the (O) entire (O) context (O) information (O) efficiently. (O) 
+
+Each (O) frame (O) is (O) ensured (O) to (O) be (O) 10 (O) milliseconds. (O) For (O) example, (O) if (O) a (O) [phoneme (B)] lasts (O) 20 (O) milliseconds, (O) the (O) [input (B) features (I)] corresponding (O) to (O) that (O) [phoneme (B)] will (O) be (O) repeated (O) in (O) 2 (O) frames. (O) If (O) it (O) lasts (O) less (O) than (O) 10 (O) milliseconds, (O) it (O) is (O) extend (O) to (O) a (O) single (O) frame. (O) 
+
+[Vocal (B) Model (I)] 
+
+The (O) [Deep (B) Voice (I)] 2 (O) [vocal (B) model (I)] is (O) based (O) on (O) a (O) [WaveNet (B) architecture (I)] (Oord (O) et (O) al., (O) 2016) (O) with (O) a (O) two-layer (O) [bidirectional (B) QRNN (I)] (Bradbury (O) et (O) al., (O) 2017) (O) conditioning (O) network, (O) similar (O) to (O) [Deep (B) Voice (I)] 1. (O) However, (O) we (O) remove (O) the (O) 1 (O) ⇥ (O) 1 (O) convolution (O) between (O) the (O) gated (O) [tanh (B) nonlinearity (I)] and (O) the (O) [residual (B) connection (I)]. In (O) addition, (O) we (O) use (O) the (O) same (O) conditioner (O) bias (O) for (O) every (O) layer (O) of (O) the (O) [WaveNet (B)], instead (O) of (O)   generating (O) a (O) separate (O) bias (O) for (O) every (O) layer (O) as (O) was (O) done (O) in (O) [Deep (B) Voice (I)] 1. (O) 
+
+We (O) find (O) that (O) these (O) changes (O) reduce (O) model (O) size (O) by (O) a (O) factor (O) of (O) ⇠ (O) 7 (O) and (O) speed (O) up (O) inference (O) by (O) ⇠ (O) 25 (O) %, (O) while (O) yielding (O) no (O) perceptual (O) change (O) in (O) quality. (O) However, (O) we (O) do (O) not (O) focus (O) on (O) demonstrating (O) these (O) claims (O) in (O) this (O) paper. (O) 
+
+[Multi-Speaker (B) Models (I)] with (O) [Trainable (B) Speaker (I) Embeddings (I)] 
+
+In (O) order (O) to (O) [synthesize (B) speech (I)] from (O) [multiple (B) speakers (I)], we (O) augment (O) each (O) of (O) our (O) models (O) with (O) a (O) single (O) [low-dimensional (B) speaker (I)] embedding (O) [vector (B)] per (O) speaker. (O) 
+Unlike (O) previous (O) work, (O) our (O) approach (O) does (O) not (O) rely (O) on (O) per-[speaker (B) weight (I)] matrices (O) or (O) layers. (O) 
+Speaker-dependent (O) parameters (O) are (O) stored (O) in (O) a (O) very (O) [low-dimensional (B) vector (I)] and (O) thus (O) there (O) is (O) near-complete (O) weight (O) sharing (O) between (O) speakers. (O) 
+We (O) use (O) [speaker (B) embeddings (I)] to (O) produce (O) [recurrent (B) neural (I) network (I)] ([RNN (B)]) initial (O) states, (O) nonlinearity (O) biases, (O) and (O) multiplicative (O) gating (O) factors, (O) used (O) throughout (O) the (O) networks. (O) 
+[Speaker (B) embeddings (I)] are (O) initialized (O) randomly (O) with (O) a (O) uniform (O) distribution (O) over (O) (0.1, (O) 0.1) (O) and (O) trained (O) jointly (O) via (O) backpropagation (O) ; each (O) model (O) has (O) its (O) own (O) set (O) of (O) [speaker (B) embeddings (I)]. 
+To (O) encourage (O) each (O) speaker’s (O) [unique (B) voice (I)] signature (O) to (O) influence (O) the (O) model, (O) we (O) incorporate (O) the (O) [speaker (B) embeddings (I)] into (O) multiple (O) portions (O) of (O) the (O) model. (O) 
+Empirically, (O) we (O) find (O) that (O) simply (O) providing (O) the (O) [speaker (B) embeddings (I)] to (O) the (O) input (O) layers (O) does (O) not (O) work (O) as (O) well (O) for (O) any (O) of (O) the (O) presented (O) models (O) besides (O) the (O) [vocal (B) model (I)], possibly (O) due (O) to (O) the (O) high (O) degree (O) of (O) [residual (B) connections (I)] present (O) in (O) the (O) [WaveNet (B)] and (O) due (O) to (O) the (O) difficulty (O) of (O) learning (O) [high-quality (B) speaker (I) embeddings (I)]. 
+We (O) observed (O) that (O) several (O) patterns (O) tend (O) to (O) yield (O) high (O) performance (O) : 
+• (O) Site-[Specific (B) Speaker (I) Embeddings (I)] : For (O) every (O) use (O) site (O) in (O) the (O) [model (B) architecture (I)], transform (O) the (O) shared (O) speaker (O) embedding (O) to (O) the (O) appropriate (O) dimension (O) and (O) form (O) through (O) an (O) affine (O) projection (O) and (O) a (O) nonlinearity. (O) 
+• (O) Recurrent (O) Initialization (O) : Initialize (O) [recurrent (B) layer (I) hidden (I) states (I)] with (O) site-[specific (B) speaker (I) embeddings (I)]. 
+• (O) Input (O) Augmentation (O) : Concatenate (O) a (O) site-[specific (B) speaker (I)] embedding (O) to (O) the (O) input (O) at (O) every (O) timestep (O) of (O) a (O) [recurrent (B) layer (I)]. 
+• (O) Feature (O) Gating (O) : Multiply (O) layer (O) activations (O) elementwise (O) with (O) a (O) site-[specific (B) speaker (I)] embedding (O) to (O) render (O) adaptable (O) information (O) flow. (O) 
+
+We (O) hypothesize (O) that (O) feature (O) gating (O) lets (O) the (O) model (O) learn (O) the (O) union (O) of (O) all (O) [necessary (B) features (I)] while (O) allowing (O) [speaker (B) embeddings (I)] to (O) determine (O) what (O) features (O) are (O) used (O) for (O) each (O) speaker (O) and (O) how (O) much (O) influence (O) they (O) will (O) have (O) on (O) the (O) activations. (O) 
+
+Next, (O) we (O) describe (O) how (O) [speaker (B) embeddings (I)] are (O) used (O) in (O) each (O) architecture. (O) 
+
+[Multi-Speaker (B) Deep (I) Voice (I)] 2 (O) 
+
+The (O) [Deep (B) Voice (I)] 2 (O) models (O) have (O) [separate (B) speaker (I) embeddings (I)] for (O) each (O) model. (O) 
+Yet, (O) they (O) can (O) be (O) viewed (O) softsign (O) BN (O) + [ReLu (B)] as (O) chunks (O) of (O) a (O) [larger (B) speaker (I) embedding (I)], which (O) are (O) trained (O) independently. (O) 
+
+[Segmentation (B) Model (I)] 
+
+In (O) [multi-speaker (B) segmentation (I) model (I)], we (O) use (O) feature (O) gating (O) in (O) the (O) [residual (B) connections (I)] of (O) the (O) convolution (O) layers. (O) Instead (O) of (O) Eq., (O) we (O) multiply (O) the (O) batch-normalized (O) activations (O) by (O) a (O) site-[specific (B) speaker (I)] embedding (O) : 
+where (O) g (O) s (O) is (O) a (O) site-[specific (B) speaker (I)] embedding. (O) The (O) same (O) site-specific (O) embedding (O) is (O) shared (O) for (O) all (O) the (O) [convolutional (B) layers (I)]. 
+In (O) addition, (O) we (O) initialize (O) each (O) of (O) the (O) [recurrent (B) layers (I)] with (O) a (O) second (O) site (O) specific (O) embedding. (O) 
+Similarly, (O) each (O) layer (O) shares (O) the (O) same (O) site-specific (O) embedding, (O) rather (O) than (O) having (O) a (O) separate (O) embedding (O) per (O) layer. (O) 
+
+Duration (O) Model (O) 
+
+The (O) [multi-speaker (B) duration (I) model (I)] uses (O) speaker-dependent (O) recurrent (O) initialization (O) and (O) input (O) augmentation. (O) A (O) site-specific (O) embedding (O) is (O) used (O) to (O) initialize (O) [RNN (B)] hidden (O) states, (O) and (O) another (O) site-specific (O) embedding (O) is (O) provided (O) as (O) input (O) to (O) the (O) first (O) [RNN (B) layer (I)] by (O) concatenating (O) it (O) to (O) the (O) [feature (B) vectors (I)]. 
+
+Frequency (O) Model (O) 
+
+The (O) [multi-speaker (B) frequency (I) model (I)] uses (O) recurrent (O) initialization, (O) which (O) initializes (O) the (O) [recurrent (B) layers (I)] (except (O) for (O) the (O) recurrent (O) [output (B) layer (I)]) with (O) a (O) single (O) site-[specific (B) speaker-embedding (I)]. 
+As (O) described (O) in (O) Section (O) 3.3, (O) the (O) recurrent (O) and (O) [convolutional (B) output (I) layers (I)] in (O) the (O) single-[speaker (B) frequency (I)] model (O) predict (O) a (O) normalized (O) frequency, (O) which (O) is (O) then (O) converted (O) into (O) the (O) true (O) F0 (O) by (O) a (O) fixed (O) linear (O) transformation. (O) 
+The (O) linear (O) transformation (O) depends (O) on (O) the (O) mean (O) and (O) standard (O) deviation (O) of (O) observed (O) F (O) 0 (O) for (O) the (O) speaker. (O) 
+These (O) values (O) vary (O) greatly (O) between (O) speakers (O) : [male (B) speakers (I)], for (O) instance, (O) tend (O) to (O) have (O) a (O) much (O) lower (O) mean (O) F (O) 0. (O) 
+To (O) better (O) adapt (O) to (O) these (O) variations, (O) we (O) make (O) the (O) mean (O) and (O) standard (O) deviation (O) trainable (O) model (O) parameters (O) and (O) multiply (O) them (O) by (O) scaling (O) terms (O) which (O) depend (O) on (O) the (O) [speaker (B) embeddings (I)]. 
+Specifically, (O) instead (O) of (O) Eq., (O) we (O) compute (O) the (O) F (O) 0 (O) prediction (O) as (O) 
+where (O) g (O) f (O) is (O) a (O) site-[specific (B) speaker (I) embedding (I)], μ (O) F (O) 0 (O) and (O) F (O) 0 (O) are (O) trainable (O) scalar (O) parameters (O) initialized (O) to (O) the (O) F (O) 0 (O) mean (O) and (O) standard (O) deviation (O) on (O) the (O) dataset, (O) and (O) V (O) μ (O) and (O) V (O) are (O) trainable (O) parameter (O) [vectors (B)]. 
+
+[Vocal (B) Model (I)] 
+
+The (O) [multi-speaker (B) vocal (I) model (I)] uses (O) only (O) input (O) augmentation, (O) with (O) the (O) site-[specific (B) speaker (I) embedding (I)] concatenated (O) onto (O) each (O) input (O) frame (O) of (O) the (O) conditioner. (O) 
+This (O) differs (O) from (O) the (O) global (O) conditioning (O) suggested (O) in (O) Oord (O) et (O) al. (O) (2016) (O) and (O) allows (O) the (O) speaker (O) embedding (O) to (O) influence (O) the (O) local (O) conditioning (O) network (O) as (O) well. (O) 
+Without (O) [speaker (B) embeddings (I)], the (O) [vocal (B) model (I)] is (O) still (O) able (O) to (O) generate (O) somewhat (O) distinct-sounding (O) voices (O) because (O) of (O) the (O) [disctinctive (B) features (I)] provided (O) by (O) the (O) frequency (O) and (O) duration (O) models. (O) 
+Yet, (O) having (O) [speaker (B) embeddings (I)] in (O) the (O) [vocal (B) model (I)] increases (O) the (O) [audio (B) quality (I)]. 
+We (O) indeed (O) observe (O) that (O) the (O) embeddings (O) converge (O) to (O) a (O) meaningful (O) latent (O) space. (O) 
+
+[Multi-Speaker (B) Tacotron (I)] 
+
+In (O) addition (O) to (O) extending (O) [Deep (B) Voice (I)] 2 (O) with (O) [speaker (B) embeddings (I)], we (O) also (O) extend (O) [Tacotron (B)] (Wang (O) et (O) al., (O) 2017), (O) a (O) [sequence-to-sequence (B) character-to-waveform (I) model (I)]. 
+When (O) training (O) [multi-speaker (B) Tacotron (I) variants (I)], we (O) find (O) that (O) model (O) performance (O) is (O) highly (O) dependent (O) on (O) model (O) [hyperparameters (B)], and (O) that (O) some (O) models (O) often (O) fail (O) to (O) learn (O) [attention (B) mechanisms (I)] for (O) a (O) small (O) subset (O) of (O) speakers. (O) 
+We (O) also (O) find (O) that (O) if (O) the (O) [speech (B)] in (O) each (O) [audio (B) clip (I)] does (O) not (O) start (O) at (O) the (O) same (O) timestep, (O) the (O) models (O) are (O) much (O) less (O) likely (O) to (O) converge (O) to (O) a (O) meaningful (O) attention (O) curve (O) and (O) recognizable (O) [speech (B)] ; thus, (O) we (O) trim (O) all (O) initial (O) and (O) final (O) silence (O) in (O) each (O) [audio (B) clip (I)]. 
+Due (O) to (O) the (O) sensitivity (O) of (O) the (O) model (O) to (O) [hyperparameters (B)] and (O) [data (B) preprocessing (I)], we (O) believe (O) that (O) additional (O) tuning (O) may (O) be (O) necessary (O) to (O) obtain (O) maximal (O) quality. (O) 
+Thus, (O) our (O) work (O) focuses (O) on (O) demonstrating (O) that (O) [Tacotron (B)], like (O) [Deep (B) Voice (I)] 2, (O) is (O) capable (O) of (O) handling (O) [multiple (B) speakers (I)] through (O) [speaker (B) embeddings (I)], rather (O) than (O) comparing (O) the (O) quality (O) of (O) the (O) two (O) architectures. (O) 
+
+[Character-to-Spectrogram (B) Model (I)] 
+
+The (O) [Tacotron (B) character-to-spectrogram (I) architecture (I)] consists (O) of (O) a (O) convolution-bank-highway-[GRU (B)] ([CBHG (B)]) [encoder (B)], an (O) [attentional (B) decoder (I)], and (O) a (O) [CBHG (B) post-processing (I) network (I)]. 
+Due (O) to (O) the (O) complexity (O) of (O) the (O) architecture, (O) we (O) leave (O) out (O) a (O) complete (O) description (O) and (O) instead (O) focus (O) on (O) our (O) modifications. (O) 
+We (O) find (O) that (O) incorporating (O) [speaker (B) embeddings (I)] into (O) the (O) [CBHG (B) post-processing (I) network (I) degrades (I) output (I)] quality, (O) whereas (O) incorporating (O) [speaker (B) embeddings (I)] into (O) the (O) character (O) [encoder (B)] is (O) necessary. (O) 
+Without (O) a (O) speaker-dependent (O) [CBHG (B) encoder (I)], the (O) model (O) is (O) incapable (O) of (O) learning (O) its (O) [attention (B) mechanism (I)] and (O) can (O) not (O) generate (O) meaningful (O) output (O) (see (O) Appendix (O) D.2 (O) for (O) speaker-dependent (O) attention (O) visualizations). (O) 
+In (O) order (O) to (O) condition (O) the (O) [encoder (B)] on (O) the (O) speaker, (O) we (O) use (O) one (O) site-specific (O) embedding (O) as (O) an (O) extra (O) input (O) to (O) each (O) highway (O) layer (O) at (O) each (O) timestep (O) and (O) initialize (O) the (O) [CBHG (B) RNN (I)] state (O) with (O) a (O) second (O) site-specific (O) embedding. (O) 
+We (O) also (O) find (O) that (O) augmenting (O) the (O) [decoder (B)] with (O) [speaker (B) embeddings (I)] is (O) helpful. (O) 
+We (O) use (O) one (O) site-specific (O) embedding (O) as (O) an (O) extra (O) input (O) to (O) the (O) [decoder (B) pre-net (I)], one (O) extra (O) site-specific (O) embedding (O) as (O) the (O) initial (O) [attention (B) context (I) vector (I)] for (O) the (O) [attentional (B) RNN (I)], one (O) site-specific (O) embedding (O) as (O) the (O) initial (O) [decoder (B) GRU (I) hidden (I) state (I)], and (O) one (O) site-specific (O) embedding (O) as (O) a (O) bias (O) to (O) the (O) [tanh (B)] in (O) the (O) content-based (O) [attention (B) mechanism (I)]. 
+
+Table (O) : [Mean (B) Opinion (I) Score (I) (MOS) (I) evaluations (I)] with (O) 95 (O) % confidence (O) intervals (O) of (O) [Deep (B) Voice (I)] 1, (O) [Deep (B) Voice (I)] 2, (O) and (O) [Tacotron (B)]. 
+Using (O) the (O) crowdMOS (O) [toolkit (B)], batches (O) of (O) samples (O) from (O) these (O) models (O) were (O) presented (O) to (O) raters (O) on (O) Mechanical (O) Turk. (O) 
+Since (O) batches (O) contained (O) samples (O) from (O) all (O) models, (O) the (O) experiment (O) naturally (O) induces (O) a (O) comparison (O) between (O) the (O) models. (O) 
+
+[Spectrogram-to-Waveform (B) Model (I)] 
+
+The (O) original (O) [Tacotron (B) implementation (I)] in (O) (Wang (O) et (O) al., (O) 2017) (O) uses (O) the (O) [Griffin-Lim (B) algorithm (I)] to (O) convert (O) [spectrograms (B)] to (O) time-domain (O) [audio (B) waveforms (I)] by (O) iteratively (O) estimating (O) the (O) unknown (O) phases. (O) 
+We (O) observe (O) that (O) minor (O) noise (O) in (O) the (O) input (O) [spectrogram (B)] causes (O) noticeable (O) estimation (O) errors (O) in (O) the (O) GriffinLim (O) algorithm (O) and (O) the (O) generated (O) [audio (B) quality (I)] is (O) degraded. (O) 
+To (O) produce (O) higher (O) quality (O) [audio (B)] using (O) [Tacotron (B)], instead (O) of (O) using (O) [Griffin-Lim (B)], we (O) train (O) a (O) [WaveNet-based (B) neural (I) vocoder (I)] to (O) convert (O) from (O) linear (O) [spectrograms (B)] to (O) [audio (B) waveforms (I)]. 
+The (O) model (O) used (O) is (O) equivalent (O) to (O) the (O) [Deep (B) Voice (I)] 2 (O) [vocal (B) model (I)], but (O) takes (O) [linear-scaled (B) log-magnitude (I) spectrograms (I)] instead (O) of (O) [phoneme (B)] identity (O) and (O) F (O) 0 (O) as (O) input. (O) 
+The (O) combined (O) [Tacotron-WaveNet (B) model (I)] is (O) shown (O) in (O) Fig. (O) 3. (O) 
+As (O) we (O) will (O) show (O) in (O) Section (O) 5.1, (O) [WaveNet-based (B) neural (I) vocoder (I)] indeed (O) significantly (O) improves (O) single-[speaker (B) Tacotron (I)] as (O) well. (O) 
+
+Results (O) 
+
+In (O) this (O) section, (O) we (O) will (O) present (O) the (O) results (O) on (O) both (O) single-speaker (O) and (O) [multi-speaker (B) speech (I) synthesis (I)] using (O) the (O) described (O) architectures. (O) 
+All (O) model (O) [hyperparameters (B)] are (O) presented (O) in (O) Appendix (O) B. (O) 
+
+Single-[Speaker (B) Speech (I) Synthesis (I)] 
+
+We (O) train (O) [Deep (B) Voice (I)] 1, (O) [Deep (B) Voice (I)] 2, (O) and (O) [Tacotron (B)] on (O) an (O) internal (O) English (O) [speech (B) database (I)] containing (O) approximately (O) 20 (O) hours (O) of (O) single-[speaker (B) data (I)]. 
+The (O) intermediate (O) evaluations (O) of (O) models (O) in (O) [Deep (B) Voice (I)] 1 (O) and (O) [Deep (B) Voice (I)] 2 (O) can (O) be (O) found (O) in (O) Table (O) 3 (O) within (O) Appendix (O) A. (O) 
+We (O) run (O) an (O) [MOS (B) evaluation (I)] using (O) the (O) crowdMOS (O) framework (O) (Ribeiro (O) et (O) al., (O) 2011) (O) to (O) compare (O) the (O) quality (O) of (O) samples (O) (Table (O) 1). (O) 
+The (O) results (O) show (O) conclusively (O) that (O) the (O) architecture (O) improvements (O) in (O) [Deep (B) Voice (I)] 2 (O) yield (O) significant (O) gains (O) in (O) quality (O) over (O) [Deep (B) Voice (I)] 1. (O) 
+They (O) also (O) demonstrate (O) that (O) converting (O) [Tacotron-generated (B) spectrograms (I)] to (O) [audio (B)] using (O) [WaveNet (B)] is (O) preferable (O) to (O) using (O) the (O) iterative (O) [Griffin-Lim (B) algorithm (I)]. 
+
+[Multi-Speaker (B) Speech (I) Synthesis (I)] 
+
+We (O) train (O) all (O) the (O) aforementioned (O) models (O) on (O) the (O) [VCTK (B) dataset (I)] with (O) 44 (O) hours (O) of (O) [speech (B)], which (O) contains (O) 108 (O) speakers (O) with (O) approximately (O) 400 (O) utterances (O) each. (O) 
+We (O) also (O) train (O) all (O) models (O) on (O) an (O) [internal (B) dataset (I)] of (O) audiobooks, (O) which (O) contains (O) 477 (O) speakers (O) with (O) 30 (O) minutes (O) of (O) [audio (B)] each (O) (for (O) a (O) total (O) of (O) ⇠ (O) 238 (O) hours). (O) 
+The (O) consistent (O) sample (O) quality (O) observed (O) from (O) our (O) models (O) indicates (O) that (O) our (O) architectures (O) can (O) easily (O) learn (O) hundreds (O) of (O) [distinct (B) voices (I)] with (O) a (O) variety (O) of (O) different (O) accents (O) and (O) cadences. (O) 
+We (O) also (O) observe (O) that (O) the (O) learned (O) embeddings (O) lie (O) in (O) a (O) meaningful (O) latent (O) space (O) (see (O) Fig. (O) 4 (O) as (O) an (O) example (O) and (O) Appendix (O) D (O) for (O) more (O) details). (O) 
+In (O) order (O) to (O) evaluate (O) the (O) quality (O) of (O) the (O) synthesized (O) [audio (B)], we (O) run (O) [MOS (B) evaluations (I)] using (O) the (O) crowdMOS (O) framework, (O) and (O) present (O) the (O) results (O) in (O) Table (O) 2. (O) 
+ We (O) purposefully (O) include (O) [ground (B) truth (I) samples (I)] in (O) the (O) set (O) being (O) evaluated, (O) because (O) the (O) accents (O) in (O) datasets (O) are (O) likely (O) to (O) be (O) unfamiliar (O) to (O) our (O) North (O) American (O) crowdsourced (O) raters (O) and (O) will (O) thus (O) be (O) rated (O) poorly (O) due (O) to (O) the (O) accent (O) rather (O) than (O) due (O) to (O) the (O) model (O) quality. (O) 
+By (O) including (O) [ground (B) truth (I) samples (I)], we (O) are (O) able (O) to (O) compare (O) the (O) [MOS (B)] of (O) the (O) models (O) with (O) the (O) ground (O) truth (O) [MOS (B)] and (O) thus (O) evaluate (O) the (O) model (O) quality (O) rather (O) than (O) the (O) [data (B) quality (I)] ; however, (O) the (O) resulting (O) [MOS (B)] may (O) be (O) lower, (O) due (O) to (O) the (O) implicit (O) comparison (O) with (O) the (O) [ground (B) truth (I) samples (I)]. 
+Overall, (O) we (O) observe (O) that (O) the (O) [Deep (B) Voice (I)] 2 (O) model (O) can (O) approach (O) an (O) [MOS (B) value (I)] that (O) is (O) close (O) to (O) the (O) ground (O) truth, (O) when (O) low (O) sampling (O) rate (O) and (O) companding (O) / expanding (O) taken (O) into (O) account. (O) 
+
+Table (O) : [MOS (B)] and (O) classification (O) accuracy (O) for (O) all (O) [multi-speaker (B) models (I)]. 
+To (O) obtain (O) [MOS (B)], we (O) use (O) crowdMOS (O) [toolkit (B)] as (O) detailed (O) in (O) Table (O) 1. (O) 
+We (O) also (O) present (O) classification (O) accuracies (O) of (O) the (O) speaker (O) discriminative (O) models (O) (see (O) Appendix (O) E (O) for (O) details) (O) on (O) the (O) samples, (O) showing (O) that (O) the (O) synthesized (O) 
+voices (O) are (O) as (O) distinguishable (O) as (O) [ground (B) truth (I) audio (I)]. 
+
+A (O) [multi-speaker (B) TTS (I) system (I)] with (O) high (O) sample (O) quality (O) but (O) [indistinguishable (B) voices (I)] would (O) result (O) in (O) high (O) [MOS (B)], but (O) fail (O) to (O) meet (O) the (O) desired (O) objective (O) of (O) reproducing (O) the (O) [input (B) voices (I)] accurately. (O) 
+To (O) show (O) that (O) our (O) models (O) not (O) only (O) generate (O) high (O) quality (O) samples, (O) but (O) also (O) generate (O) [distinguishable (B) voices (I)], we (O) also (O) measure (O) the (O) classification (O) accuracy (O) of (O) a (O) speaker (O) discriminative (O) model (O) on (O) our (O) generated (O) samples. (O) 
+The (O) [speaker (B) discriminative (I)] is (O) a (O) [convolutional (B) network (I)] trained (O) to (O) classify (O) utterances (O) to (O) their (O) speakers, (O) trained (O) on (O) the (O) [same (B) dataset (I)] as (O) the (O) [TTS (B) systems (I)] themselves. (O) 
+If (O) the (O) voices (O) were (O) indistinguishable (O) (or (O) the (O) [audio (B) quality (I)] was (O) low), (O) the (O) classification (O) accuracy (O) would (O) be (O) much (O) lower (O) for (O) synthesized (O) samples (O) than (O) it (O) is (O) for (O) the (O) [ground (B) truth (I) samples (I)]. 
+As (O) we (O) demonstrate (O) in (O) Table (O) 2, (O) classification (O) accuracy (O) demonstrates (O) that (O) samples (O) generated (O) from (O) our (O) models (O) are (O) as (O) distinguishable (O) as (O) the (O) [ground (B) truth (I) samples (I)] (see (O) Appendix (O) E (O) for (O) more (O) details). (O) 
+The (O) classification (O) accuracy (O) is (O) only (O) significantly (O) lower (O) for (O) [Tacotron (B)] with (O) [WaveNet (B)], and (O) we (O) suspect (O) that (O) generation (O) errors (O) in (O) the (O) [spectrogram (B)] are (O) exacerbated (O) by (O) the (O) [WaveNet (B)], as (O) it (O) is (O) trained (O) with (O) ground (O) truth (O) [spectrograms (B)]. 
+
+Conclusion (O) 
+
+In (O) this (O) work, (O) we (O) explore (O) how (O) entirely-[neural (B) speech (I) synthesis (I) pipelines (I)] may (O) be (O) extended (O) to (O) [multi-speaker (B) text-to-speech (I)] via (O) [low-dimensional (B) trainable (I) speaker (I) embeddings (I)]. 
+We (O) start (O) by (O) presenting (O) [Deep (B) Voice (I)] 2, (O) an (O) improved (O) single-[speaker (B) model (I)]. 
+Next, (O) we (O) demonstrate (O) the (O) applicability (O) of (O) our (O) technique (O) by (O) training (O) both (O) [multi-speaker (B) Deep (I) Voice (I)] 2 (O) and (O) [multi-speaker (B) Tacotron (I) models (I)], and (O) evaluate (O) their (O) quality (O) through (O) [MOS (B)]. 
+In (O) conclusion, (O) we (O) use (O) our (O) speaker (O) embedding (O) technique (O) to (O) create (O) high (O) quality (O) [text-to-speech (B) systems (I)] and (O) conclusively (O) show (O) that (O) [neural (B) speech (I) synthesis (I) models (I)] can (O) learn (O) effectively (O) from (O) small (O) amounts (O) of (O) data (O) spread (O) among (O) hundreds (O) of (O) [different (B) speakers (I)]. 
+The (O) results (O) presented (O) in (O) this (O) work (O) suggest (O) many (O) directions (O) for (O) future (O) research. (O) 
+Future (O) work (O) may (O) test (O) the (O) limits (O) of (O) this (O) technique (O) and (O) explore (O) how (O) [many (B) speakers (I)] these (O) models (O) can (O) generalize (O) to, (O) how (O) [little (B) data (I)] is (O) truly (O) required (O) per (O) speaker (O) for (O) high (O) quality (O) synthesis, (O) whether (O) [new (B) speakers (I)] can (O) be (O) added (O) to (O) a (O) system (O) by (O) fixing (O) model (O) parameters (O) and (O) solely (O) training (O) [new (B) speaker (I) embeddings (I)], and (O) whether (O) the (O) [speaker (B) embeddings (I)] can (O) be (O) used (O) as (O) a (O) meaningful (O) [vector (B)] space, (O) as (O) is (O) possible (O) with (O) word (O) embeddings. (O) 

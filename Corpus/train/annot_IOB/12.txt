@@ -1,0 +1,231 @@
+[FastSpeech (B)] : Fast, (O) Robust (O) and (O) Controllable (O) [Text (B) to (I) Speech (I)] 
+
+Abstract (O) 
+
+[Neural (B) network (I)] based (O) [end-to-end (B) text (I) to (I) speech (I)] ([TTS (B)]) has (O) significantly (O) improved (O) the (O) quality (O) of (O) [synthesized (B) speech (I)]. 
+Prominent (O) methods (O) (e.g., (O) [Tacotron (B) 2 (I)]) usually (O) first (O) generate (O) [mel-spectrogram (B)] from (O) text, (O) and (O) then (O) [synthesize (B) speech (I)] from (O) the (O) [mel-spectrogram (B) using (I) vocoder (I)] such (O) as (O) [WaveNet (B)]. 
+Compared (O) with (O) traditional (O) concatenative (O) and (O) [statistical (B) parametric (I) approaches (I)], [neural (B) network (I)] based (O) [end-to-end (B) models (I)] suffer (O) from (O) [slow (B) inference (I) speed (I)], and (O) the (O) [synthesized (B) speech (I)] is (O) usually (O) not (O) robust (O) (i.e., (O) some (O) words (O) are (O) skipped (O) or (O) repeated) (O) and (O) lack (O) of (O) controllability (O) ([voice (B) speed (I)] or (O) [prosody (B) control (I)]). 
+In (O) this (O) work, (O) we (O) propose (O) a (O) novel (O) [feed-forward (B) network (I)] based (O) on (O) [Transformer (B)] to (O) generate (O) [mel-spectrogram (B)] in (O) parallel (O) for (O) [TTS (B)]. 
+Specifically, (O) we (O) extract (O) [attention (B) alignments (I)] from (O) an (O) [encoder-decoder (B) based (I) teacher (I)] model (O) for (O) [phoneme (B) duration (I) prediction (I)], which (O) is (O) used (O) by (O) a (O) length (O) regulator (O) to (O) expand (O) the (O) source (O) [phoneme (B) sequence (I)] to (O) match (O) the (O) length (O) of (O) the (O) [target (B) mel-spectrogram (I) sequence (I)] for (O) parallel (O) [mel-spectrogram (B) generation (I)]. 
+Experiments (O) on (O) the (O) [LJSpeech (B) dataset (I)] show (O) that (O) our (O) parallel (O) model (O) matches (O) [autoregressive (B) models (I)] in (O) terms (O) of (O) [speech (B) quality (I)], nearly (O) eliminates (O) the (O) problem (O) of (O) word (O) skipping (O) and (O) repeating (O) in (O) particularly (O) hard (O) cases, (O) and (O) can (O) adjust (O) voice (O) speed (O) smoothly. (O) 
+Most (O) importantly, (O) compared (O) with (O) [autoregressive (B) Transformer (I) TTS (I)], our (O) model (O) speeds (O) up (O) [mel-spectrogram (B) generation (I)] by (O) 270x (O) and (O) the (O) [end-to-end (B) speech (I) synthesis (I)] by (O) 38x. (O) 
+Therefore, (O) we (O) call (O) our (O) model (O) [FastSpeech (B)]. 
+
+[Synthesized (B) speech (I) samples (I)] can (O) be (O) found (O) in (O) https://speechresearch.github.io/fastspeech/. (O) 
+
+Introduction (O) 
+
+[Text (B) to (I) speech (I)] ([TTS (B)]) has (O) attracted (O) a (O) lot (O) of (O) attention (O) in (O) recent (O) years (O) due (O) to (O) the (O) advance (O) in (O) [deep (B) learning (I)]. [Deep (B) neural (I) network (I)] based (O) systems (O) have (O) become (O) more (O) and (O) more (O) popular (O) for (O) [TTS (B)], such (O) as (O) [Tacotron (B)], [Tacotron (B) 2 (I)], [Deep (B) Voice (I)] 3, (O) and (O) the (O) fully (O) [end-to-end (B) ClariNet (I)]. 
+Those (O) models (O) usually (O) first (O) generate (O) [mel-spectrogram (B) autoregressively (I)] from (O) text (O) input (O) and (O) then (O) [synthesize (B) speech (I)] from (O) the (O) [mel-spectrogram (B) using (I) vocoder (I)] such (O) as (O) [Griffin-Lim (B)], [WaveNet (B)], Parallel (O) [WaveNet (B)], or (O) [WaveGlow (B)]. 
+[Neural (B) network (I)] based (O) [TTS (B)] has (O) outperformed (O) conventional (O) concatenative (O) and (O) [statistical (B) parametric (I) approaches (I)] in (O) terms (O) of (O) [speech (B) quality (I)]. 
+In (O) current (O) [neural (B) network (I)] based (O) [TTS (B)] systems, (O) [mel-spectrogram (B)] is (O) generated (O) [autoregressively (B)]. 
+Due (O) to (O) the (O) long (O) sequence (O) of (O) the (O) [mel-spectrogram (B)] and (O) the (O) autoregressive (O) nature, (O) those (O) systems (O) face (O) several (O) challenges (O) : 
+• (O) [Slow (B) inference (I) speed (I)] for (O) [mel-spectrogram (B) generation (I)]. 
+Although (O) [CNN (B)] and (O) [Transformer (B)] based (O) [TTS (B)] can (O) speed (O) up (O) the (O) training (O) over (O) [RNN-based (B) models (I)], all (O) models (O) generate (O) a (O) [mel-spectrogram (B)] conditioned (O) on (O) the (O) previously (O) generated (O) [mel-spectrograms (B)] and (O) suffer (O) from (O) [slow (B) inference (I) speed (I)], given (O) the (O) [mel-spectrogram (B) sequence (I)] is (O) usually (O) with (O) a (O) length (O) of (O) hundreds (O) or (O) thousands. (O) 
+• (O) [Synthesized (B) speech (I)] is (O) usually (O) not (O) robust. (O) 
+Due (O) to (O) error (O) propagation (O) and (O) the (O) wrong (O) [attention (B) alignments (I)] between (O) text (O) and (O) [speech (B)] in (O) the (O) autoregressive (O) generation, (O) the (O) generated (O) [mel-spectrogram (B)] is (O) usually (O) deficient (O) with (O) the (O) problem (O) of (O) words (O) skipping (O) and (O) repeating. (O) 
+• (O) [Synthesized (B) speech (I)] is (O) lack (O) of (O) controllability. (O) 
+Previous (O) [autoregressive (B) models (I)] generate (O) [mel-spectrograms (B)] one (O) by (O) one (O) automatically, (O) without (O) explicitly (O) leveraging (O) the (O) alignments (O) between (O) text (O) and (O) [speech (B)]. 
+As (O) a (O) consequence, (O) it (O) is (O) usually (O) hard (O) to (O) directly (O) control (O) the (O) [voice (B) speed (I)] and (O) [prosody (B)] in (O) the (O) autoregressive (O) generation. (O) 
+
+Considering (O) the (O) monotonous (O) alignment (O) between (O) text (O) and (O) [speech (B)], to (O) speed (O) up (O) [mel-spectrogram (B) generation (I)], in (O) this (O) work, (O) we (O) propose (O) a (O) novel (O) model, (O) [FastSpeech (B)], which (O) takes (O) a (O) text (O) [(phoneme) (B) sequence (I)] as (O) input (O) and (O) generates (O) [mel-spectrograms (B)] non-[autoregressively (B)]. 
+It (O) adopts (O) a (O) [feed-forward (B) network (I)] based (O) on (O) the (O) [self-attention (B)] in (O) [Transformer (B)] and (O) [1D (B) convolution (I)]. 
+Since (O) a (O) [mel-spectrogram (B) sequence (I)] is (O) much (O) longer (O) than (O) its (O) corresponding (O) [phoneme (B) sequence (I)], in (O) order (O) to (O) solve (O) the (O) problem (O) of (O) length (O) mismatch (O) between (O) the (O) two (O) sequences, (O) [FastSpeech (B)] adopts (O) a (O) length (O) regulator (O) that (O) up-samples (O) the (O) [phoneme (B) sequence (I)] according (O) to (O) the (O) [phoneme (B) duration (I)] (i.e., (O) the (O) number (O) of (O) [mel-spectrograms (B)] that (O) each (O) [phoneme (B)] corresponds (O) to) (O) to (O) match (O) the (O) length (O) of (O) the (O) [mel-spectrogram (B) sequence (I)]. 
+The (O) regulator (O) is (O) built (O) on (O) a (O) [phoneme (B) duration (I) predictor (I)], which (O) predicts (O) the (O) duration (O) of (O) each (O) [phoneme (B)]. 
+
+Our (O) proposed (O) [FastSpeech (B)] can (O) address (O) the (O) above-mentioned (O) three (O) challenges (O) as (O) follows (O) : 
+• (O) Through (O) parallel (O) [mel-spectrogram (B) generation (I)], [FastSpeech (B)] greatly (O) speeds (O) up (O) the (O) synthesis (O) process. (O) 
+• (O) [Phoneme (B) duration (I) predictor (I)] ensures (O) hard (O) alignments (O) between (O) a (O) [phoneme (B)] and (O) its (O) [mel-spectrograms (B)], which (O) is (O) very (O) different (O) from (O) soft (O) and (O) automatic (O) [attention (B) alignments (I)] in (O) the (O) [autoregressive (B) models (I)]. 
+Thus, (O) [FastSpeech (B)] avoids (O) the (O) issues (O) of (O) error (O) propagation (O) and (O) wrong (O) [attention (B) alignments (I)], consequently (O) reducing (O) the (O) ratio (O) of (O) the (O) skipped (O) words (O) and (O) repeated (O) words. (O) 
+• (O) The (O) length (O) regulator (O) can (O) easily (O) adjust (O) [voice (B) speed (I)] by (O) lengthening (O) or (O) shortening (O) the (O) [phoneme (B) duration (I)] to (O) determine (O) the (O) length (O) of (O) the (O) generated (O) [mel-spectrograms (B)], and (O) can (O) also (O) control (O) part (O) of (O) the (O) [prosody (B)] by (O) adding (O) breaks (O) between (O) adjacent (O) [phonemes (B)]. 
+
+We (O) conduct (O) experiments (O) on (O) the (O) [LJSpeech (B) dataset (I)] to (O) test (O) [FastSpeech (B)]. 
+The (O) results (O) show (O) that (O) in (O) terms (O) of (O) [speech (B) quality (I)], [FastSpeech (B)] nearly (O) matches (O) the (O) [autoregressive (B) Transformer (I) model (I)]. 
+Furthermore, (O) [FastSpeech (B)] achieves (O) 270x (O) speedup (O) on (O) [mel-spectrogram (B) generation (I)] and (O) 38x (O) speedup (O) on (O) final (O) [speech (B) synthesis (I)] compared (O) with (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)], almost (O) eliminates (O) the (O) problem (O) of (O) word (O) skipping (O) and (O) repeating, (O) and (O) can (O) adjust (O) voice (O) speed (O) smoothly. (O) 
+We (O) attach (O) some (O) [audio (B) files (I)] generated (O) by (O) our (O) method (O) in (O) the (O) supplementary (O) materials. (O) 
+
+Although (O) [ClariNet (B)] is (O) fully (O) [end-to-end (B)], it (O) still (O) first (O) generates (O) [mel-spectrogram (B) autoregressively (I)] and (O) then (O) [synthesizes (B) speech (I)] in (O) one (O) model. (O) 
+
+Background (O) 
+
+In (O) this (O) section, (O) we (O) briefly (O) overview (O) the (O) background (O) of (O) this (O) work, (O) including (O) [text (B) to (I) speech (I)], [sequence (B) to (I) sequence (I) learning (I)], and (O) [non-autoregressive (B) sequence (I) generation (I)]. 
+
+[Text (B) to (I) Speech (I)] — (O) [TTS (B)], which (O) aims (O) to (O) synthesize (O) natural (O) and (O) [intelligible (B) speech (I)] given (O) text, (O) has (O) long (O) been (O) a (O) hot (O) research (O) topic (O) in (O) the (O) field (O) of (O) artificial (O) intelligence. (O) 
+The (O) research (O) on (O) [TTS (B)] has (O) shifted (O) from (O) early (O) [concatenative (B) synthesis (I)], [statistical (B) parametric (I) synthesis (I)] to (O) [neural (B) network (I)] based (O) [parametric (B) synthesis (I)] and (O) [end-to-end (B) models (I)], and (O) the (O) quality (O) of (O) the (O) [synthesized (B) speech (I)] by (O) [end-to-end (B) models (I)] is (O) close (O) to (O) human (O) parity. (O) 
+[Neural (B) network (I)] based (O) [end-to-end (B) TTS (I) models (I)] usually (O) first (O) convert (O) the (O) text (O) to (O) [acoustic (B) features (I)] (e.g., (O) [mel (B)]-spectrograms) and (O) then (O) transform (O) [mel-spectrograms (B)] into (O) [audio (B) samples (I)]. 
+However, (O) most (O) [neural (B) TTS (I) systems (I)] generate (O) [mel-spectrograms (B) autoregressively (I)], which (O) suffers (O) from (O) [slow (B) inference (I) speed (I)], and (O) [synthesized (B) speech (I)] usually (O) lacks (O) of (O) robustness (O) (word (O) skipping (O) and (O) repeating) (O) and (O) controllability (O) ([voice (B) speed (I)] or (O) [prosody (B) control (I)]). 
+In (O) this (O) work, (O) we (O) propose (O) [FastSpeech (B)] to (O) generate (O) [mel-spectrograms (B)] non-[autoregressively (B)], which (O) sufficiently (O) handles (O) the (O) above (O) problems. (O) 
+
+[Sequence (B) to (I) Sequence (I) Learning (I)] — (O) [Sequence (B) to (I) sequence (I) learning (I)] is (O) usually (O) built (O) on (O) the (O) [encoder-decoder (B) framework (I)] : The (O) [encoder (B)] takes (O) the (O) source (O) sequence (O) as (O) input (O) and (O) generates (O) a (O) set (O) of (O) representations. (O) 
+After (O) that, (O) the (O) [decoder (B)] estimates (O) the (O) conditional (O) probability (O) of (O) each (O) target (O) element (O) given (O) the (O) source (O) representations (O) and (O) its (O) preceding (O) elements. (O) 
+The (O) [attention (B) mechanism (I)] is (O) further (O) introduced (O) between (O) the (O) [encoder (B)] and (O) [decoder (B)] in (O) order (O) to (O) find (O) which (O) source (O) representations (O) to (O) focus (O) on (O) when (O) predicting (O) the (O) current (O) element, (O) and (O) is (O) an (O) important (O) component (O) for (O) [sequence (B) to (I) sequence (I) learning (I)]. 
+In (O) this (O) work, (O) instead (O) of (O) using (O) the (O) conventional (O) [encoder-attention-decoder (B) framework (I)] for (O) [sequence (B) to (I) sequence (I) learning (I)], we (O) propose (O) a (O) [feed-forward (B) network (I)] to (O) generate (O) a (O) sequence (O) in (O) parallel. (O) 
+
+[Non-Autoregressive (B) Sequence (I) Generation (I)] — (O) Unlike (O) [autoregressive (B) sequence (I) generation (I)], [non-autoregressive (B) models (I)] generate (O) sequence (O) in (O) parallel, (O) without (O) explicitly (O) depending (O) on (O) the (O) previous (O) elements, (O) which (O) can (O) greatly (O) speed (O) up (O) the (O) inference (O) process. (O) 
+[Non-autoregressive (B) generation (I)] has (O) been (O) studied (O) in (O) some (O) sequence (O) generation (O) tasks (O) such (O) as (O) [neural (B) machine (I) translation (I)] and (O) [audio (B) synthesis (I)]. 
+Our (O) [FastSpeech (B)] differs (O) from (O) the (O) above (O) works (O) in (O) two (O) aspects (O) : 1) (O) Previous (O) works (O) adopt (O) [non-autoregressive (B) generation (I)] in (O) [neural (B) machine (I) translation (I)] or (O) [audio (B) synthesis (I)] mainly (O) for (O) inference (O) speedup, (O) while (O) [FastSpeech (B)] focuses (O) on (O) both (O) inference (O) speedup (O) and (O) improving (O) the (O) robustness (O) and (O) controllability (O) of (O) the (O) [synthesized (B) speech (I)] in (O) [TTS (B)]. 
+2) (O) For (O) [TTS (B)], although (O) Parallel (O) [WaveNet (B)], [ClariNet (B)] and (O) [WaveGlow (B)] generate (O) [audio (B)] in (O) parallel, (O) they (O) are (O) conditioned (O) on (O) [mel-spectrograms (B)], which (O) are (O) still (O) generated (O) [autoregressively (B)]. 
+Therefore, (O) they (O) do (O) not (O) address (O) the (O) challenges (O) considered (O) in (O) this (O) work. (O) 
+There (O) is (O) a (O) concurrent (O) work (O) that (O) also (O) generates (O) [mel-spectrogram (B)] in (O) parallel. (O) 
+However, (O) it (O) still (O) adopts (O) the (O) [encoder-decoder (B) framework (I)] with (O) [attention (B) mechanism (I)], which (O) 1) (O) requires (O) 2∼3x (O) model (O) parameters (O) compared (O) with (O) the (O) teacher (O) model (O) and (O) thus (O) achieves (O) slower (O) inference (O) speedup (O) than (O) [FastSpeech (B)] ; 2) (O) can (O) not (O) totally (O) solve (O) the (O) problems (O) of (O) word (O) skipping (O) and (O) repeating (O) while (O) [FastSpeech (B)] nearly (O) eliminates (O) these (O) issues. (O) 
+
+[FastSpeech (B)] 
+
+In (O) this (O) section, (O) we (O) introduce (O) the (O) architecture (O) design (O) of (O) [FastSpeech (B)]. 
+To (O) generate (O) a (O) [target (B) mel-spectrogram (I) sequence (I)] in (O) parallel, (O) we (O) design (O) a (O) novel (O) [feed-forward (B) structure (I)], instead (O) of (O) using (O) the (O) [encoder-attention-decoder (B)] based (O) architecture (O) as (O) adopted (O) by (O) most (O) [sequence (B) to (I) sequence (I)] based (O) autoregressive (O) and (O) [non-autoregressive (B) generation (I)]. 
+The (O) overall (O) [model (B) architecture (I)] of (O) [FastSpeech (B)] is (O) shown (O) in (O) Figure. (O) 
+We (O) describe (O) the (O) components (O) in (O) detail (O) in (O) the (O) following (O) subsections. (O) 
+
+[Feed-Forward (B) Transformer (I)] 
+
+The (O) architecture (O) for (O) [FastSpeech (B)] is (O) a (O) [feed-forward (B) structure (I)] based (O) on (O) [self-attention (B)] in (O) [Transformer (B)] and (O) [1D (B) convolution (I)]. 
+We (O) call (O) this (O) structure (O) as (O) [Feed-Forward (B) Transformer (I)] (FFT), (O) as (O) shown (O) in (O) Figure. (O) 
+[Feed-Forward (B)] Transformer (O) stacks (O) multiple (O) [FFT (B) blocks (I)] for (O) [phoneme (B)] to (O) [mel-spectrogram (B) transformation (I)], with (O) N (O) blocks (O) on (O) the (O) [phoneme (B)] side, (O) and (O) N (O) blocks (O) on (O) the (O) [mel-spectrogram (B) side (I)], with (O) a (O) length (O) regulator (O) (which (O) will (O) be (O) described (O) in (O) the (O) next (O) subsection) (O) in (O) between (O) to (O) bridge (O) the (O) length (O) gap (O) between (O) the (O) [phoneme (B)] and (O) [mel-spectrogram (B) sequence (I)]. 
+Each (O) [FFT (B) block (I)] consists (O) of (O) a (O) [self-attention (B)] and (O) [1D (B) convolutional (I) network (I)], as (O) shown (O) in (O) Figure. (O) 
+The (O) [self-attention (B) network (I)] consists (O) of (O) a (O) [multi-head (B) attention (I)] to (O) extract (O) the (O) cross-position (O) information. (O) 
+Different (O) from (O) the (O) 2-layer (O) dense (O) network (O) in (O) [Transformer (B)], we (O) use (O) a (O) 2-layer (O) [1D (B) convolutional (I) network (I)] with (O) [ReLU (B) activation (I)]. 
+The (O) motivation (O) is (O) that (O) the (O) adjacent (O) [hidden (B) states (I)] are (O) more (O) closely (O) related (O) in (O) the (O) character (O) / [phoneme (B)] and (O) [mel-spectrogram (B) sequence (I)] in (O) [speech (B) tasks (I)]. 
+We (O) evaluate (O) the (O) effectiveness (O) of (O) the (O) [1D (B) convolutional (I) network (I)] in (O) the (O) experimental (O) section. (O) 
+Following (O) Transformer, (O) [residual (B) connections (I)], [layer (B) normalization (I)], and (O) [dropout (B)] are (O) added (O) after (O) the (O) [self-attention (B) network (I)] and (O) [1D (B) convolutional (I) network (I)] respectively. (O) 
+
+Length (O) Regulator (O) 
+
+The (O) length (O) regulator (O) (Figure) (O) is (O) used (O) to (O) solve (O) the (O) problem (O) of (O) length (O) mismatch (O) between (O) the (O) [phoneme (B)] and (O) [spectrogram (B) sequence (I)] in (O) the (O) [Feed-Forward (B) Transformer (I)], as (O) well (O) as (O) to (O) control (O) the (O) [voice (B) speed (I)] and (O) part (O) of (O) [prosody (B)]. 
+The (O) length (O) of (O) a (O) [phoneme (B) sequence (I)] is (O) usually (O) smaller (O) than (O) that (O) of (O) its (O) [mel-spectrogram (B) sequence (I)], and (O) each (O) [phoneme (B)] corresponds (O) to (O) several (O) [mel-spectrograms (B)]. 
+We (O) refer (O) to (O) the (O) length (O) of (O) the (O) [mel-spectrograms (B)] that (O) corresponds (O) to (O) a (O) [phoneme (B)] as (O) the (O) [phoneme (B) duration (I)] (we (O) will (O) describe (O) how (O) to (O) predict (O) [phoneme (B) duration (I)] in (O) the (O) next (O) subsection). (O) 
+Based (O) on (O) the (O) [phoneme (B) duration (I)] d, (O) the (O) length (O) regulator (O) expands (O) the (O) [hidden (B) states (I)] of (O) the (O) [phoneme (B) sequence (I)] d (O) times, (O) and (O) then (O) the (O) total (O) length (O) of (O) the (O) [hidden (B) states (I)] equals (O) the (O) length (O) of (O) the (O) [mel-spectrograms (B)]. 
+Denote (O) the (O) [hidden (B) states (I)] of (O) the (O) [phoneme (B) sequence (I)] as (O) H (O) pho (O) = (h1, (O) h2,..., (O) hn), (O) where (O) n (O) is (O) the (O) length (O) of (O) the (O) sequence. (O) 
+Denote (O) the (O) [phoneme (B) duration (I) sequence (I)] as (O) D (O) = (d1, (O) d2,..., (O) dn), (O) where (O) Σni=1 (O) di (O) = m (O) and (O) m (O) is (O) the (O) length (O) of (O) the (O) [mel-spectrogram (B) sequence (I)]. 
+We (O) denote (O) the (O) length (O) regulator (O) LR (O) as (O) 
+where (O) α (O) is (O) a (O) [hyperparameter (B)] to (O) determine (O) the (O) length (O) of (O) the (O) expanded (O) sequence (O) Hmel, (O) thereby (O) controlling (O) the (O) [voice (B) speed (I)]. 
+For (O) example, (O) given (O) H (O) pho (O) = (h1, (O) h2, (O) h3, (O) h4) (O) and (O) the (O) corresponding (O) [phoneme (B) duration (I) sequence (I)] D (O) = (2, (O) 2, (O) 3, (O) 1), (O) the (O) expanded (O) sequence (O) Hmel (O) based (O) on (O) Equation (O) 1 (O) becomes (O) (h1, (O) h1, (O) h2, (O) h2, (O) h3, (O) h3, (O) h3, (O) h4) (O) if (O) α (O) = 1 (O) (normal (O) speed). (O) 
+When (O) α (O) = 1.3 (O) (slow (O) speed) (O) and (O) 0.5 (O) (fast (O) speed), (O) the (O) duration (O) sequences (O) become (O) Dα=1.3 (O) = (2.6, (O) 2.6, (O) 3.9, (O) 1.3) (O) ≈ (O) (3, (O) 3, (O) 4, (O) 1) (O) and (O) Dα=0.5 (O) = (1, (O) 1, (O) 1.5, (O) 0.5) (O) ≈ (O) (1, (O) 1, (O) 2, (O) 1), (O) and (O) the (O) expanded (O) sequences (O) become (O) (h1, (O) h1, (O) h1, (O) h2, (O) h2, (O) h2, (O) h3, (O) h3, (O) h3, (O) h3, (O) h4) (O) and (O) (h1, (O) h2, (O) h3, (O) h3, (O) h4) (O) respectively. (O) 
+We (O) can (O) also (O) control (O) the (O) break (O) between (O) words (O) by (O) adjusting (O) the (O) duration (O) of (O) the (O) space (O) characters (O) in (O) the (O) sentence, (O) so (O) as (O) to (O) adjust (O) part (O) of (O) [prosody (B)] of (O) the (O) [synthesized (B) speech (I)]. 
+
+[Duration (B) Predictor (I)] 
+
+[Phoneme (B) duration (I) prediction (I)] is (O) important (O) for (O) the (O) length (O) regulator. (O) 
+As (O) shown (O) in (O) Figure, (O) the (O) [duration (B) predictor (I)] consists (O) of (O) a (O) 2-layer (O) [1D (B) convolutional (I) network (I)] with (O) [ReLU (B) activation (I)], each (O) followed (O) by (O) the (O) [layer (B) normalization (I)] and (O) the (O) [dropout (B) layer (I)], and (O) an (O) extra (O) linear (O) layer (O) to (O) output (O) a (O) scalar, (O) which (O) is (O) exactly (O) the (O) predicted (O) [phoneme (B) duration (I)]. 
+Note (O) that (O) this (O) module (O) is (O) stacked (O) on (O) top (O) of (O) the (O) [FFT (B) blocks (I)] on (O) the (O) [phoneme (B)] side (O) and (O) is (O) jointly (O) trained (O) with (O) the (O) [FastSpeech (B) model (I)] to (O) predict (O) the (O) length (O) of (O) [mel-spectrograms (B)] for (O) each (O) [phoneme (B)] with (O) the (O) [mean (B) square (I) error (I)] ([MSE (B)]) loss. (O) 
+We (O) predict (O) the (O) length (O) in (O) the (O) logarithmic (O) domain, (O) which (O) makes (O) them (O) more (O) [Gaussian (B)] and (O) easier (O) to (O) train. (O) 
+Note (O) that (O) the (O) trained (O) [duration (B) predictor (I)] is (O) only (O) used (O) in (O) the (O) [TTS (B) inference (I)] phase, (O) because (O) we (O) can (O) directly (O) use (O) the (O) [phoneme (B) duration (I)] extracted (O) from (O) an (O) autoregressive (O) teacher (O) model (O) in (O) training (O) (see (O) following (O) discussions). (O) 
+
+In (O) order (O) to (O) train (O) the (O) [duration (B) predictor (I)], we (O) extract (O) the (O) [ground-truth (B) phoneme (I) duration (I)] from (O) an (O) autoregressive (O) teacher (O) [TTS (B) model (I)], as (O) shown (O) in (O) Figure. (O) 
+We (O) describe (O) the (O) detailed (O) steps (O) as (O) follows (O) : 
+
+• (O) We (O) first (O) train (O) an (O) [autoregressive (B) encoder-attention-decoder (I)] based (O) [Transformer (B) TTS (I) model (I)] following. (O) 
+• (O) For (O) each (O) training (O) sequence (O) pair, (O) we (O) extract (O) the (O) [decoder (B)]-to-[encoder attention (O) alignments] (O) from (O) the (O) trained (O) teacher (O) model. (O) 
+There (O) are (O) multiple (O) [attention (B) alignments (I)] due (O) to (O) the (O) [multi-head (B) self-attention (I)], and (O) not (O) all (O) attention (O) heads (O) demonstrate (O) the (O) diagonal (O) property (O) (the (O) [phoneme (B)] and (O) [mel-spectrogram (B) sequence (I)] are (O) monotonously (O) aligned). (O) 
+We (O) propose (O) a (O) focus (O) P (O) S (O) rate (O) F (O) to (O) measure (O) how (O) an (O) attention (O) head (O) is (O) close (O) to (O) diagonal (O) : F (O) = S (O) 1 (O) s=1 (O) max (O) 1≤t≤T (O) a (O) s, (O) t, (O) where (O) S (O) and (O) T (O) are (O) the (O) lengths (O) of (O) the (O) [ground-truth (B) spectrograms (I)] and (O) [phonemes (B)], a (O) s, (O) t (O) donates (O) the (O) element (O) in (O) the (O) s-th (O) row (O) and (O) t-th (O) column (O) of (O) the (O) attention (O) matrix. (O) 
+We (O) compute (O) the (O) focus (O) rate (O) for (O) each (O) head (O) and (O) choose (O) the (O) head (O) with (O) the (O) largest (O) F (O) as (O) the (O) [attention (B) alignments (I)]. 
+• (O) Finally, (O) we (O) extract (O) the (O) [phoneme (B) duration (I) sequence (I)] D (O) = (d1, (O) d2,..., (O) dn) (O) according (O) to (O) the (O) P (O) S (O) duration (O) extractor (O) d (O) i (O) = s=1 (O) (arg (O) max (O) t (O) a (O) s, (O) t (O) = i). (O) 
+That (O) is, (O) the (O) duration (O) of (O) a (O) [phoneme (B)] is (O) the (O) number (O) of (O) [mel-spectrograms (B)] attended (O) to (O) it (O) according (O) to (O) the (O) attention (O) head (O) selected (O) in (O) the (O) above (O) step. (O) 
+
+Experimental (O) Setup (O) 
+
+Datasets (O) 
+
+We (O) conduct (O) experiments (O) on (O) [LJSpeech (B) dataset (I)], which (O) contains (O) 13,100 (O) English (O) [audio (B) clips (I)] and (O) the (O) corresponding (O) text (O) transcripts, (O) with (O) the (O) total (O) [audio (B) length (I)] of (O) approximate (O) 24 (O) hours. (O) 
+We (O) randomly (O) split (O) the (O) dataset (O) into (O) 3 (O) sets (O) : 12500 (O) samples (O) for (O) training, (O) 300 (O) samples (O) for (O) validation (O) and (O) 300 (O) samples (O) for (O) testing. (O) 
+In (O) order (O) to (O) alleviate (O) the (O) mispronunciation (O) problem, (O) we (O) convert (O) the (O) text (O) sequence (O) into (O) the (O) [phoneme (B) sequence (I)] with (O) our (O) internal (O) [grapheme-to-phoneme (B) conversion (I) tool (I)], following. (O) 
+For (O) the (O) [speech (B) data (I)], we (O) convert (O) the (O) [raw (B) waveform (I)] into (O) [mel-spectrograms (B)] following. (O) 
+Our (O) frame (O) size (O) and (O) hop (O) size (O) are (O) set (O) to (O) 1024 (O) and (O) 256, (O) respectively. (O) 
+In (O) order (O) to (O) evaluate (O) the (O) robustness (O) of (O) our (O) proposed (O) [FastSpeech (B)], we (O) also (O) choose (O) 50 (O) sentences (O) which (O) are (O) particularly (O) hard (O) for (O) [TTS (B) system (I)], following (O) the (O) practice (O) in. (O) 
+
+Model (O) Configuration (O) 
+
+[FastSpeech (B) model (I)] — (O) Our (O) [FastSpeech (B) model (I)] consists (O) of (O) 6 (O) [FFT (B) blocks (I)] on (O) both (O) the (O) [phoneme (B)] side (O) and (O) the (O) [mel-spectrogram (B) side (I)]. 
+The (O) size (O) of (O) the (O) [phoneme (B)] vocabulary (O) is (O) 51, (O) including (O) punctuations. (O) 
+The (O) dimension (O) of (O) [phoneme (B) embeddings (I)], the (O) hidden (O) size (O) of (O) the (O) [self-attention (B)] and (O) [1D (B) convolution (I)] in (O) the (O) [FFT (B) block (I)] are (O) all (O) set (O) to (O) 384. (O) 
+The (O) number (O) of (O) attention (O) heads (O) is (O) set (O) to (O) 2. (O) 
+The (O) kernel (O) sizes (O) of (O) the (O) [1D (B) convolution (I)] in (O) the (O) 2-layer (O) [convolutional (B) network (I)] are (O) both (O) set (O) to (O) 3, (O) with (O) input (O) / output (O) size (O) of (O) 384/1536 (O) for (O) the (O) first (O) layer (O) and (O) 1536/384 (O) in (O) the (O) second (O) layer. (O) 
+The (O) output (O) linear (O) layer (O) converts (O) the (O) 384-dimensional (O) hidden (O) into (O) 80-dimensional (O) [mel-spectrogram (B)]. 
+In (O) our (O) [duration (B) predictor (I)], the (O) kernel (O) sizes (O) of (O) the (O) [1D (B) convolution (I)] are (O) set (O) to (O) 3, (O) with (O) input (O) / output (O) sizes (O) of (O) 384/384 (O) for (O) both (O) layers. (O) 
+
+[Autoregressive (B) Transformer (I) TTS (I) model (I)] — (O) The (O) [autoregressive (B) Transformer (I) TTS (I) model (I)] serves (O) two (O) purposes (O) in (O) our (O) work (O) : 1) (O) to (O) extract (O) the (O) [phoneme (B) duration (I)] as (O) the (O) target (O) to (O) train (O) the (O) [duration (B) predictor (I)] ; 2) (O) to (O) generate (O) [mel-spectrogram (B)] in (O) the (O) [sequence-level (B) knowledge (I) distillation (I)] (which (O) will (O) be (O) introduced (O) in (O) the (O) next (O) subsection). (O) 
+We (O) refer (O) to (O) for (O) the (O) configurations (O) of (O) this (O) model, (O) which (O) consists (O) of (O) a (O) 6-layer (O) [encoder (B)], a (O) 6-layer (O) [decoder (B)], except (O) that (O) we (O) use (O) [1D (B) convolution (I) network (I)] instead (O) of (O) position-wise (O) FFN. (O) 
+The (O) number (O) of (O) parameters (O) of (O) this (O) teacher (O) model (O) is (O) similar (O) to (O) that (O) of (O) our (O) [FastSpeech (B) model (I)]. 
+
+Training (O) and (O) Inference (O) 
+
+We (O) first (O) train (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)] on (O) 4 (O) NVIDIA (O) V100 (O) [GPUs (B)], with (O) batchsize (O) of (O) 16 (O) sentences (O) on (O) each (O) [GPU (B)]. 
+We (O) use (O) the (O) [Adam (B) optimizer (I)] with (O) β (O) 1 (O) = 0.9, (O) β (O) 2 (O) = 0.98, (O) ε (O) = 10 (O) −9 (O) and (O) follow (O) the (O) same (O) learning (O) rate (O) schedule (O) in. (O) 
+It (O) takes (O) 80k (O) steps (O) for (O) training (O) until (O) convergence. (O) 
+We (O) feed (O) the (O) text (O) and (O) [speech (B) pairs (I)] in (O) the (O) training (O) set (O) to (O) the (O) model (O) again (O) to (O) obtain (O) the (O) [encoder-decoder (B) attention (I) alignments (I)], which (O) are (O) used (O) to (O) train (O) the (O) [duration (B) predictor (I)]. 
+In (O) addition, (O) we (O) also (O) leverage (O) [sequence-level (B) knowledge (I) distillation (I)]   that (O) has (O) achieved (O) good (O) performance (O) in (O) [non-autoregressive (B) machine (I) translation (I)]   to (O) transfer (O) the (O) knowledge (O) from (O) the (O) teacher (O) model (O) to (O) the (O) student (O) model. (O) 
+For (O) each (O) source (O) text (O) sequence, (O) we (O) generate (O) the (O) [mel-spectrograms (B)] with (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)] and (O) take (O) the (O) source (O) text (O) and (O) the (O) generated (O) [mel-spectrograms (B)] as (O) the (O) paired (O) data (O) for (O) [FastSpeech (B) model (I)] training. (O) 
+We (O) train (O) the (O) [FastSpeech (B) model (I)] together (O) with (O) the (O) [duration (B) predictor (I)]. 
+The (O) optimizer (O) and (O) other (O) [hyper-parameters (B)] for (O) [FastSpeech (B)] are (O) the (O) same (O) as (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)]. 
+The (O) [FastSpeech (B) model (I)] training (O) takes (O) about (O) 80k (O) steps (O) on (O) 4 (O) NVIDIA (O) V100 (O) [GPUs (B)]. 
+In (O) the (O) inference (O) process, (O) the (O) output (O) [mel-spectrograms (B)] of (O) our (O) [FastSpeech (B) model (I)] are (O) transformed (O) into (O) [audio (B) samples (I)] using (O) the (O) pretrained (O) [WaveGlow (B)]. 
+
+https://github.com/NVIDIA/waveglow (O) 
+
+Results (O) 
+
+In (O) this (O) section, (O) we (O) evaluate (O) the (O) performance (O) of (O) [FastSpeech (B)] in (O) terms (O) of (O) [audio (B) quality (I)], inference (O) speedup, (O) robustness, (O) and (O) controllability. (O) 
+
+[Audio (B) Quality (I)] We (O) conduct (O) the (O) [MOS (B)] ([mean (B) opinion (I) score (I)]) evaluation (O) on (O) the (O) test (O) set (O) to (O) measure (O) the (O) [audio (B) quality (I)]. 
+We (O) keep (O) the (O) text (O) content (O) consistent (O) among (O) different (O) models (O) so (O) as (O) to (O) exclude (O) other (O) interference (O) factors, (O) only (O) examining (O) the (O) [audio (B) quality (I)]. 
+Each (O) [audio (B)] is (O) listened (O) by (O) at (O) least (O) 20 (O) testers, (O) who (O) are (O) all (O) native (O) [English (B) speakers (I)]. 
+We (O) compare (O) the (O) [MOS (B)] of (O) the (O) generated (O) [audio (B) samples (I)] by (O) our (O) 
+[FastSpeech (B) model (I)] with (O) other (O) systems, (O) which (O) include (O) 1) (O) GT, (O) the (O) [ground (B) truth (I) audio (I)] ; 2) (O) GT (O) ([Mel (B)] + [WaveGlow (B)]), where (O) we (O) first (O) convert (O) the (O) [ground (B) truth (I) audio (I)] into (O) [mel-spectrograms (B)], and (O) then (O) convert (O) the (O) [mel-spectrograms (B)] back (O) to (O) [audio (B)] using (O) [WaveGlow (B)] ; 3) (O) [Tacotron (B) 2 (I)] ([Mel (B)] + [WaveGlow (B)]) ; 4) (O) [Transformer (B) TTS (I)] ([Mel (B)] + [WaveGlow (B)]). 
+5) (O) [Merlin (B)] (WORLD), (O) a (O) popular (O) [parametric (B) TTS (I) system (I)] with (O) WORLD (O) as (O) the (O) [vocoder (B)]. 
+The (O) results (O) are (O) shown (O) in (O) Table. (O) 
+It (O) can (O) be (O) seen (O) that (O) our (O) [FastSpeech (B)] can (O) nearly (O) match (O) the (O) quality (O) of (O) the (O) [Transformer (B) TTS (I) model (I)] and (O) [Tacotron (B) 2 (I)]. 
+
+Table (O) : The (O) [MOS (B)] with (O) 95 (O) % confidence (O) intervals. (O) 
+
+Inference (O) Speedup (O) We (O) evaluate (O) the (O) inference (O) latency (O) of (O) [FastSpeech (B)] compared (O) with (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)], which (O) has (O) similar (O) number (O) of (O) model (O) parameters (O) with (O) [FastSpeech (B)]. 
+We (O) first (O) show (O) the (O) inference (O) speedup (O) for (O) [mel-spectrogram (B) generation (I)] in (O) Table. (O) 
+It (O) can (O) be (O) seen (O) that (O) [FastSpeech (B)] speeds (O) up (O) the (O) [mel-spectrogram (B) generation (I)] by (O) 269.40x, (O) compared (O) with (O) the (O) [Transformer (B) TTS (I) model (I)]. 
+We (O) then (O) show (O) the (O) [end-to-end (B) speedup (I)] when (O) using (O) [WaveGlow (B)] as (O) the (O) [vocoder (B)]. 
+It (O) can (O) be (O) seen (O) that (O) [FastSpeech (B)] can (O) still (O) achieve (O) 38.30x (O) speedup (O) for (O) [audio (B) generation (I)]. 
+
+According (O) to (O) our (O) further (O) comprehensive (O) experiments (O) on (O) our (O) [internal (B) datasets (I)], the (O) [voice (B) quality (I)] of (O) [FastSpeech (B)] can (O) always (O) match (O) that (O) of (O) the (O) teacher (O) model (O) on (O) multiple (O) languages (O) and (O) [multiple (B) voices (I)], if (O) we (O) use (O) more (O) unlabeled (O) text (O) for (O) knowledge (O) distillation. (O) 
+
+Table (O) : The (O) comparison (O) of (O) inference (O) latency (O) with (O) 95 (O) % confidence (O) intervals. (O) 
+The (O) evaluation (O) is (O) conducted (O) on (O) a (O) server (O) with (O) 12 (O) Intel (O) Xeon (O) [CPU (B)], 256 (O) GB (O) memory, (O) 1 (O) NVIDIA (O) V100 (O) [GPU (B)] and (O) [batch (B) size (I)] of (O) 1. (O) 
+The (O) average (O) length (O) of (O) the (O) generated (O) [mel-spectrograms (B)] for (O) the (O) two (O) systems (O) are (O) both (O) about (O) 560. (O) 
+
+We (O) also (O) visualize (O) the (O) relationship (O) between (O) the (O) inference (O) latency (O) and (O) the (O) length (O) of (O) the (O) predicted (O) [mel-spectrogram (B) sequence (I)] in (O) the (O) test (O) set. (O) 
+Figure (O)   shows (O) that (O) the (O) inference (O) latency (O) barely (O) increases (O) with (O) the (O) length (O) of (O) the (O) predicted (O) [mel-spectrogram (B)] for (O) [FastSpeech (B)], while (O) increases (O) largely (O) in (O) [Transformer (B) TTS (I)]. 
+This (O) indicates (O) that (O) the (O) inference (O) speed (O) of (O) our (O) method (O) is (O) not (O) sensitive (O) to (O) the (O) length (O) of (O) generated (O) [audio (B)] due (O) to (O) parallel (O) generation. (O) 
+
+Robustness (O) The (O) [encoder-decoder (B) attention (I) mechanism (I)] in (O) the (O) [autoregressive (B) model (I)] may (O) cause (O) wrong (O) [attention (B) alignments (I)] between (O) [phoneme (B)] and (O) [mel-spectrogram (B)], resulting (O) in (O) instability (O) with (O) word (O) repeating (O) and (O) word (O) skipping. (O) 
+To (O) evaluate (O) the (O) robustness (O) of (O) [FastSpeech (B)], we (O) select (O) 50 (O) sentences (O) which (O) are (O) particularly (O) hard (O) for (O) [TTS (B) system (I)]. 
+Word (O) error (O) counts (O) are (O) listed (O) in (O) Table. (O) 
+It (O) can (O) be (O) seen (O) that (O) [Transformer (B) TTS (I)] is (O) not (O) robust (O) to (O) these (O) hard (O) cases (O) and (O) gets (O) 34 (O) % error (O) rate, (O) while (O) [FastSpeech (B)] can (O) effectively (O) eliminate (O) word (O) repeating (O) and (O) skipping (O) to (O) improve (O) intelligibility. (O) 
+
+Table (O) : The (O) comparison (O) of (O) robustness (O) between (O) [FastSpeech (B)] and (O) other (O) systems (O) on (O) the (O) 50 (O) particularly (O) hard (O) sentences. (O) 
+Each (O) kind (O) of (O) word (O) error (O) is (O) counted (O) at (O) most (O) once (O) per (O) sentence. (O) 
+
+These (O) cases (O) include (O) single (O) letters, (O) spellings, (O) repeated (O) numbers, (O) and (O) long (O) sentences. (O) We (O) list (O) the (O) cases (O) in (O) the (O) supplementary (O) materials. (O) 
+
+Length (O) Control (O) As (O) mentioned (O) in (O) Section, (O) [FastSpeech (B)] can (O) control (O) the (O) [voice (B) speed (I)] as (O) well (O) as (O) part (O) of (O) the (O) [prosody (B)] by (O) adjusting (O) the (O) [phoneme (B) duration (I)], which (O) can (O) not (O) be (O) supported (O) by (O) other (O) [end-to-end (B) TTS (I) systems (I)]. 
+We (O) show (O) the (O) [mel-spectrograms (B)] before (O) and (O) after (O) the (O) length (O) control, (O) and (O) also (O) put (O) the (O) [audio (B) samples (I)] in (O) the (O) supplementary (O) material (O) for (O) reference. (O) 
+Voice (O) Speed (O) The (O) generated (O) [mel-spectrograms (B)] with (O) [different (B) voice (I)] speeds (O) by (O) lengthening (O) or (O) shortening (O) the (O) [phoneme (B) duration (I)] are (O) shown (O) in (O) Figure. (O) 
+We (O) also (O) attach (O) several (O) [audio (B) samples (I)] in (O) the (O) supplementary (O) material (O) for (O) reference. (O) As (O) demonstrated (O) by (O) the (O) samples, (O) [FastSpeech (B)] can (O) adjust (O) the (O) [voice (B) speed (I)] from (O) 0.5x (O) to (O) 1.5x (O) smoothly, (O) with (O) stable (O) and (O) almost (O) unchanged (O) [pitch (B)]. 
+
+Breaks (O) Between (O) Words (O) [FastSpeech (B)] can (O) add (O) breaks (O) between (O) adjacent (O) words (O) by (O) lengthening (O) the (O) duration (O) of (O) the (O) space (O) characters (O) in (O) the (O) sentence, (O) which (O) can (O) improve (O) the (O) [prosody (B)] of (O) voice. (O) 
+We (O) show (O) an (O) example (O) in (O) Figure, (O) where (O) we (O) add (O) breaks (O) in (O) two (O) positions (O) of (O) the (O) sentence (O) to (O) improve (O) the (O) [prosody (B)]. 
+
+Ablation (O) Study (O) We (O) conduct (O) ablation (O) studies (O) to (O) verify (O) the (O) effectiveness (O) of (O) several (O) components (O) in (O) [FastSpeech (B)], including (O) [1D (B) Convolution (I)] and (O) [sequence-level (B) knowledge (I) distillation (I)]. 
+We (O) conduct (O) CMOS (O) evaluation (O) for (O) these (O) ablation (O) studies. (O) 
+
+Table (O) : [CMOS (B)] comparison (O) in (O) the (O) ablation (O) studies. (O) 
+
+[1D (B) Convolution (I)] in (O) [FFT (B) Block (I)] We (O) propose (O) to (O) replace (O) the (O) original (O) fully (O) connected (O) layer (O) (adopted (O) in (O) [Transformer (B)]) with (O) [1D (B) convolution (I)] in (O) [FFT (B) block (I)], as (O) described (O) in (O) Section. (O) 
+Here (O) we (O) conduct (O) experiments (O) to (O) compare (O) the (O) performance (O) of (O) [1D (B) convolution (I)] to (O) the (O) fully (O) connected (O) layer (O) with (O) similar (O) number (O) of (O) parameters. (O) 
+As (O) shown (O) in (O) Table (O) 4, (O) replacing (O) [1D (B) convolution (I)] with (O) fully (O) connected (O) layer (O) results (O) in (O) -0.113 (O) CMOS, (O) which (O) demonstrates (O) the (O) effectiveness (O) of (O) [1D (B) convolution (I)]. 
+[Sequence-Level (B) Knowledge (I) Distillation (I)] As (O) described (O) in (O) Section, (O) we (O) leverage (O) [sequence-level (B) knowledge (I) distillation (I)] for (O) [FastSpeech (B)]. 
+We (O) conduct (O) CMOS (O) evaluation (O) to (O) compare (O) the (O) performance (O) of (O) [FastSpeech (B)] with (O) and (O) without (O) [sequence-level (B) knowledge (I) distillation (I)], as (O) shown (O) in (O) Table. (O) 
+We (O) find (O) that (O) removing (O) [sequence-level (B) knowledge (I) distillation (I) results (I)] in (O) -0.325 (O) [CMOS (B)], which (O) demonstrates (O) the (O) effectiveness (O) of (O) [sequence-level (B) knowledge (I) distillation (I)]. 
+
+Conclusions (O) 
+
+In (O) this (O) work, (O) we (O) have (O) proposed (O) [FastSpeech (B)] : a (O) fast, (O) robust (O) and (O) controllable (O) [neural (B) TTS (I) system (I)]. 
+[FastSpeech (B)] has (O) a (O) novel (O) [feed-forward (B) network (I)] to (O) generate (O) [mel-spectrogram (B)] in (O) parallel, (O) which (O) consists (O) of (O) several (O) key (O) components (O) including (O) [feed-forward (B) Transformer (I) blocks (I)], a (O) length (O) regulator (O) and (O) a (O) [duration (B) predictor (I)]. 
+Experiments (O) on (O) [LJSpeech (B) dataset (I)] demonstrate (O) that (O) our (O) proposed (O) [FastSpeech (B)] can (O) nearly (O) match (O) the (O) [autoregressive (B) Transformer (I) TTS (I) model (I)] in (O) terms (O) of (O) [speech (B) quality (I)], speed (O) up (O) the (O) [mel-spectrogram (B) generation (I)] by (O) 270x (O) and (O) the (O) [end-to-end (B) speech (I) synthesis (I)] by (O) 38x, (O) almost (O) eliminate (O) the (O) problem (O) of (O) word (O) skipping (O) and (O) repeating, (O) and (O) can (O) adjust (O) [voice (B) speed (I)] (0.5x-1.5x) (O) smoothly. (O) 
+For (O) future (O) work, (O) we (O) will (O) continue (O) to (O) improve (O) the (O) quality (O) of (O) the (O) [synthesized (B) speech (I)], and (O) apply (O) [FastSpeech (B)] to (O) [multi-speaker (B)] and (O) low-resource (O) settings. (O) 
+We (O) will (O) also (O) train (O) [FastSpeech (B)] jointly (O) with (O) a (O) [parallel (B) neural (I) vocoder (I)] to (O) make (O) it (O) fully (O) [end-to-end (B)] and (O) parallel. (O) 

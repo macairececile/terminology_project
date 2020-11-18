@@ -1,0 +1,129 @@
+
+[TEXT-TO-SPEECH (B) CONVERSION (I)] WITH (O) [NEURAL (B) NETWORKS (I)] : A (O) RECURRENT (O) TDNN (O) APPROACH (O) 
+
+
+ABSTRACT (O) 
+This (O) paper (O) describes (O) the (O) design (O) of (O) a (O) [neural (B) network (I)] that (O) performs (O) the (O) [phonetic-to-acoustic (B) mapping (I)] in (O) a (O) [speech (B) synthesis (I) system (I)]. 
+The (O) use (O) of (O) a (O) time-domain (O) [neural (B) network (I) architecture (I)] limits (O) discontinuities (O) that (O) occur (O) at (O) phone (O) boundaries. (O) [Recurrent (B) data (I)] input (O) also (O) helps (O) smooth (O) the (O) output (O) parameter (O) tracks. (O) 
+Independent (O) testing (O) has (O) demonstrated (O) that (O) the (O) [voice (B) quality (I)] produced (O) by (O) this (O) system (O) compares (O) favorably (O) with (O) [speech (B)] from (O) existing (O) commercial (O) [text-to-speech (B) systems (I)]. 
+
+INTRODUCTION (O) 
+The (O) notion (O) of (O) using (O) a (O) [neural (B) network (I)], or (O) other (O) [machine (B) learning (I) system (I)], to (O) implement (O) components (O) in (O) a (O) [text-to-speech (B) system (I)] is (O) an (O) attractive (O) one. (O) 
+A (O) system (O) trained (O) on (O) actual (O) [speech (B)] may (O) learn (O) subtler (O) nuances (O) of (O) variation (O) in (O) [speech (B)] than (O) can (O) presently (O) be (O) incorporated (O) into (O) [rule-based (B)] or (O) concatenation (O) [text-to-speech (B) systems (I)]. 
+The (O) [data (B) storage (I)] requirements (O) are (O) also (O) an (O) order (O) of (O) magnitude (O) smaller (O) for (O) a (O) well-designed (O) [neural (B) network (I)] than (O) for (O) a (O) concatenation (O) system. (O) 
+It (O) should (O) also (O) be (O) easier (O) to (O) train (O) a (O) [neural (B) network (I)] on (O) a (O) new (O) language (O) than (O) to (O) determine (O) a (O) rule (O) set (O) for (O) that (O) language. (O) 
+Training (O) the (O) network (O) might (O) even (O) be (O) easier (O) than (O) identifying (O) and (O) extracting (O) the (O) concatenation (O) units (O) necessary (O) for (O) a (O) new (O) language. (O) 
+
+Several (O) attempts (O) have (O) been (O) made (O) to (O) implement (O) various (O) components (O) of (O) a (O) [text-to-speech (B) system (I)] with (O) [neural (B) networks (I)], including (O) several (O) that (O) implemented (O) the (O) [phonetic (B) component (I)]. 
+This (O) is (O) the (O) component (O) that (O) converts (O) a (O) [phonetic (B)] description (O) of (O) an (O) utterance, (O) including (O) segment (O) durations (O) for (O) each (O) phone, (O) into (O) a (O) series (O) of (O) acoustic (O) descriptions (O) of (O) frames (O) of (O) [speech (B)]. 
+Most (O) of (O) these (O) prior (O) attempts (O) to (O) use (O) [neural (B) networks (I)] for (O) [phonetic (B) components (I)] described (O) the (O) [phonetic (B) context (I)] ofeach (O) [speech (B) frame (I)] using (O) input (O) sets (O) that (O) represented (O) the (O) current (O) [phoneme (B)], and (O) one (O) or (O) more (O) preceding (O) or (O) following (O) [phonemes (B)], and (O) extra (O) inputs (O) indicating (O) the (O) position (O) of (O) the (O) current (O) acoustic (O) frame (O) in (O) the (O) current (O) [phoneme (B)]. 
+When (O) two (O) adjacent (O) acoustic (O) frames (O) are (O) in (O) different (O) [phonetic (B) segments (I)], all (O) of (O) the (O) [phoneme (B) representations (I)] change (O) between (O) the (O) two (O) frames. (O) 
+These (O) input (O) discontinuities (O) are (O) reflected (O) with (O) large (O) discontinuities (O) in (O) the (O) [output (B) data (I)], which (O) are (O) heard (O) as (O) warbling (O) in (O) the (O) generated (O) [speech (B)]. 
+
+This (O) paper (O) describes (O) the (O) [phonetic (B) component (I)] of (O) a (O) [text-to-speech (B) system (I)] which (O) uses (O) a (O) recurrent (O) time-delay (O) [neural (B) network (I)] (TDNN) (O) approach (O) to (O) generate (O) [high-quality (B) speech (I)]. 
+                           
+SYSTEM (O) OVERVIEW (O) 
+The (O) complete (O) system (O) is (O) shown (O) in (O) Figure (O) 1. (O) The (O) [text-to-speech (B) system (I)] includes (O) a (O) [text-to (B)]-linguistic description (O) subsystem, (O) a (O) [neural (B) network (I)] used (O) to (O) assign (O) a (O) duration (O) to (O) each (O) [phonetic (B) segment (I)], a (O) [neural (B) network (I)] used (O) to (O) convert (O) the (O) linguistic (O) description (O) into (O) a (O) series (O) of (O) coder (O) parameter (O) [vectors (B)], and (O) the (O) synthesis (O) section (O) of (O) a (O) [speech (B)] coder. (O) 
+The (O) [text-to (B)]-linguistic description (O) subsystem (O) produces (O) a (O) description (O) of (O) the (O) [speech (B)] to (O) be (O) generated (O) that (O) includes (O) a (O) sequence (O) of (O) phones (O) along (O) with (O) prosodic (O) and (O) syntactic (O) annotations. (O) 
+The (O) details (O) of (O) this (O) subsystem (O) will (O) not (O) be (O) described (O) here, (O) except (O) to (O) note (O) that (O) it (O) generates (O) the (O) same (O) marks (O) that (O) are (O) used (O) to (O) label (O) the (O) database, (O) described (O) below, (O) and (O) that (O) the (O) timing (O) of (O) the (O) marked (O) events (O) is (O) established (O) relative (O) to (O) the (O) timing (O) of (O) the (O) [phonetic (B) segments (I)], so (O) that (O) determining (O) the (O) segment (O) durations (O) determines (O) the (O) timing (O) of (O) the (O) other (O) marked (O) events. (O) 
+                           
+The (O) segment (O) durations (O) are (O) also (O) computed (O) using (O) a (O) [neural (B) network (I)]. This (O) is (O) described (O) in. (O) 
+The (O) [speech (B)] coder (O) parameter (O) set (O) is (O) described (O) in (O) the (O) discussion (O) of (O) [training (B) data (I)] below. (O) 
+                           
+[TRAINING (B) DATA (I)] 
+In (O) order (O) to (O) train (O) a (O) [neural (B) network (I)] to (O) perform (O) the (O) [phonetic-to-acoustic (B) mapping (I)], it (O) was (O) necessary (O) to (O) prepare (O) an (O) [appropriate (B) database (I)]. 
+This (O) database, (O) consisting (O) of (O) a (O) set (O) of (O) recordings (O) of (O) [speech (B)] from (O) a (O) [single (B) speaker (I)], was (O) then (O) labeled (O) phonetically, (O) syntactically, (O) and (O) prosodically. (O) 
+The (O) recordings (O) were (O) processed (O) by (O) the (O) analysis (O) portion (O) of (O) a (O) parametric (O) [vocoder (B)], to (O) produce (O) a (O) series (O) of (O) coder (O) parameter (O) [vectors (B)] describing (O) the (O) acoustic (O) characteristics (O) of (O) 5 (O) ms. (O) frames (O) of (O) [speech (B)]. 
+The (O) [speech (B) labels (I)] were (O) also (O) processed (O) to (O) generate (O) [neural (B) network (I) input (I) vectors (I)] describing (O) the (O) [phonetic (B)] and (O) prosodic (O) ontext (O) of (O) the (O) 5ms. (O) [speech (B) frames (I)]. 
+The (O) [neural (B) network (I)] was (O) trained (O) to (O) generate (O) an (O) appropriate (O) coder (O) parameter (O) [vector (B)] in (O) response (O) to (O) each (O) [neural (B) network (I) input (I) vector (I)]. 
+
+Figure (O) : [Text-to-speech (B) system (I)] 
+
+The (O) steps (O) in (O) generating (O) these (O) [training (B) vectors (I)] is (O) described (O) in (O) more (O) detail (O) below. (O) 
+
+[Speech (B) Recordings (I)] 
+In (O) order (O) to (O) make (O) it (O) feasible (O) for (O) the (O) network (O) to (O) learn (O) the (O) [phonetic-to (B) acoustic (I) mapping (I)], a (O) [single (B) speaker (I)] was (O) used (O) for (O) all (O) of (O) the (O) [speech (B) recordings (I)]. 
+This (O) speaker (O) is (O) a (O) [male (B) speaker (I)] from (O) the (O) Chicago (O) area. (O) 
+The (O) principle (O) portion (O) of (O) the (O) database, (O) a (O) collection (O) of (O) 480 (O) sentences (O) from (O) the (O) Harvard (O) sentence (O) lists, (O) was (O) recorded (O) when (O) the (O) speaker (O) was (O) 36 (O) years (O) old. (O) 
+Additional (O) recordings (O) were (O) made (O) two (O) years (O) later (O) in (O) order (O) to (O) increase (O) the (O) prosodic (O) variety (O) of (O) the (O) recorded (O) [speech (B)]. 
+These (O) recordings (O) included (O) questions, (O) isolated (O) words, (O) paragraph-length (O) materials, (O) and (O) selections (O) from (O) dramatic (O) works. (O) 
+The (O) recordings (O) were (O) made (O) in (O) a (O) soundproof (O) room (O) with (O) a (O) close-talking (O) microphone. (O) 
+
+[Speech (B)] Labeling (O) 
+The (O) [speech (B)] was (O) phonetically (O) labeled (O) in (O) the (O) same (O) manner (O) as (O) the (O) [TIMIT (B) database (I)]. 
+In (O) order (O) to (O) allow (O) the (O) [neural (B) network (I)] to (O) learn (O) the (O) [phonetic-to-acoustic (B) mapping (I)], additional (O) information (O) was (O) provided (O) by (O) marking (O) syllable, (O) word, (O) phrase, (O) and (O) clause (O) boundaries, (O) tagging (O) each (O) word (O) as (O) a (O) content (O) or (O) function (O) word, (O) and (O) marking (O) syllables (O) with (O) primary (O) or (O) secondary (O) stress. (O) 
+
+[Voice (B) Coder (I)] 
+Much (O) of (O) the (O) current (O) research (O) in (O) [speech (B)] coding (O) uses (O) a (O) source-filter (O) model, (O) and (O) models (O) the (O) source (O) using (O) a (O) codebook (O) of (O) excitation (O) [vectors (B)]. 
+These (O) codebook (O) approaches (O) are (O) inappropriate (O) for (O) use (O) in (O) [neural (B) network (I) speech (I) synthesis (I)]. 
+The (O) codebooks (O) are (O) typically (O) quite (O) large, (O) and (O) would (O) require (O) individual (O) outputs (O) to (O) select (O) each (O) codebook (O) entry. (O) 
+This (O) would (O) make (O) the (O) [neural (B) network (I)] unwieldy. (O) 
+Binary (O) target (O) values (O) of (O) any (O) kind (O) may (O) also (O) lead (O) to (O) problems (O) when (O) mixed (O) with (O) continuous (O) targets. (O) 
+A (O) coder (O) that (O) uses (O) continuous (O) parameter (O) [vectors (B)] is, (O) therefore, (O) desirable. (O) 
+The (O) coder (O) design (O) used (O) for (O) this (O) system (O) uses (O) a (O) source-filter (O) model. (O) 
+The (O) filter (O) is (O) an (O) autoregressive (O) filter, (O) using (O) line (O) [spectral (B)] frequencies (O) to (O) describe (O) the (O) filter. (O) 
+A (O) mixed-source (O) excitation (O) model (O) was (O) used. (O) In (O) this (O) model, (O) excitation (O) consists (O) of (O) a (O) low-frequency (O) band (O) of (O) periodic (O) excitation (O) and (O) a (O) high-frequency (O) band (O) of (O) aperiodic (O) excitation. (O) 
+The (O) parameters (O) used (O) to (O) describe (O) the (O) source (O) were (O) the (O) energy (O) of (O) the (O) [speech (B) signal (I)], the (O) [pitch (B)] of (O) the (O) periodic (O) excitation, (O) and (O) the (O) boundary (O) frequency (O) between (O) the (O) bands. (O) 
+
+Input (O) Processing (O) 
+The (O) purpose (O) of (O) the (O) input (O) processing (O) is (O) to (O) provide (O) the (O) information (O) contained (O) in (O) the (O) [speech (B) labels (I)] to (O) the (O) [neural (B) network (I)] in (O) an (O) appropriate (O) format. (O) 
+Previous (O) attempts (O) to (O) use (O) [neural (B) networks (I)] in (O) [speech (B) synthesis (I)] have (O) represented (O) the (O) [phonetic (B) context (I)] for (O) each (O) frame (O) by (O) having (O) input (O) representing (O) the (O) [phonetic (B) segment (I)] containing (O) the (O) frame, (O) the (O) surrounding (O) segments, (O) and (O) the (O) position (O) of (O) the (O) frame (O) within (O) the (O) segment. (O) 
+The (O) problem (O) with (O) this (O) representation (O) is (O) that (O) all (O) of (O) the (O) input (O) changes (O) at (O) one (O) time (O) at (O) each (O) segment (O) boundary. (O) 
+This (O) can (O) produce (O) significant (O) discontinuities (O) in (O) the (O) [neural (B) network (I) output (I)] at (O) these (O) points. (O) 
+These (O) discontinuities (O) result (O) in (O) audible (O) artifacts (O) in (O) the (O) generated (O) [speech (B)]. 
+A (O) Time-Delay (O) [Neural (B) Network (I)] (TDNN) (O) does (O) not (O) have (O) this (O) problem. (O) 
+Figure (O) 2 (O) illustrates (O) the (O) TDNN (O) input (O) structure. (O) 
+For (O) each (O) 5 (O) ms. (O) frame (O) of (O) [speech (B)], there (O) is (O) an (O) input (O) identifying (O) the (O) phone (O) to (O) be (O) produced (O) during (O) the (O) [phonetic (B) segment (I)] containing (O) the (O) frame. (O) 
+The (O) input (O) to (O) the (O) [neural (B) network (I)] includes (O) inputs (O) describing (O) the (O) [phonetic (B) segment (I)] associated (O) with (O) a (O) number (O) of (O) surrounding (O) frames. (O) 
+Only (O) a (O) few (O) of (O) these (O) inputs (O) should (O) change (O) between (O) any (O) two (O) frames, (O) so (O) the (O) size (O) of (O) discontinuities (O) in (O) the (O) output (O) is (O) reduced. (O) 
+The (O) TDNN (O) window (O) introduces (O) some (O) new (O) problems. (O) 
+The (O) amount (O) of (O) context (O) used (O) in (O) computing (O) the (O) coder (O) parameters (O) for (O) a (O) frame (O) is (O) determined (O) by (O) the (O) width (O) of (O) the (O) TDNN (O) window. (O) 
+Increasing (O) number (O) of (O) frames (O) sampled (O) in (O) the (O) TDNN (O) window, (O) however, (O) increases (O) the (O) network (O) size (O) ; a (O) wide (O) enough (O) TDNN (O) window (O) may (O) make (O) the (O) network (O) unwieldy. (O) 
+This (O) problem (O) can (O) be (O) alleviated (O) by (O) non-uniform (O) sampling (O) of (O) the (O) TDNN (O) window. (O) Near (O) the (O) center (O) of (O) the (O) window, (O) every (O) frame (O) is (O) sampled (O) to (O) provide (O) an (O) input (O) to (O) the (O) [neural (B) network (I)]. Near (O) the (O) edges, (O) the (O) [phonetic (B) data (I)] isampled (O) less (O) often. (O) 
+
+Figure (O) : TDNN (O) Input (O) Structure (O) 
+
+Figure (O) : [Neural (B) Network (I) Architecture (I)] 
+
+In (O) addition (O) to (O) the (O) 5 (O) ms. (O) TDNN (O) coding (O) of (O) the (O) [phoneme (B) labels (I)] and (O) [phoneme (B) features (I)], the (O) duration (O) and (O) distance (O) from (O) the (O) current (O) frame (O) of (O) the (O) current (O) [phonetic (B) segment (I)], the (O) four (O) preceding (O) segments, (O) and (O) the (O) four (O) following (O) segments (O) are (O) coded (O) into (O) the (O) network. (O) 
+This (O) coding (O) provides (O) more (O) context (O) information (O) and (O) becomes (O) especially (O) useful (O) when (O) a (O) string (O) of (O) long (O) [phonemes (B)] occupies (O) the (O) TDNN (O) window. (O) 
+The (O) TDNN (O) window (O) is (O) 300ms. (O) wide, (O) and (O) if (O) there (O) are (O) a (O) few (O) very (O) long (O) [phonemes (B)], the (O) TDNN (O) window (O) will (O) not (O) be (O) able (O) to (O) cover (O) much (O) context (O) outside (O) of (O) these (O) long (O) [phonemes (B)]. 
+The (O) duration (O) and (O) distance (O) coding (O) of (O) nine (O) [phonemes (B)] insures (O) that (O) a (O) context (O) of (O) this (O) size (O) is (O) always (O) available (O) to (O) the (O) network. (O) 
+
+In (O) order (O) to (O) provide (O) some (O) domain-specific (O) knowledge (O) to (O) the (O) [neural (B) network (I)], the (O) [phonemes (B)] were (O) encoded (O) not (O) only (O) as (O) a (O) one-of-n (O) binary (O) [vector (B)], but (O) as (O) a (O) [vector (B)] of (O) [articulatory (B) features (I)]. 
+This (O) redundant (O) information (O) enhances (O) the (O) network’s (O) ability (O) to (O) learn (O) similarities (O) between (O) [phonemes (B)]. 
+
+In (O) order (O) to (O) generate (O) intonation, (O) the (O) labeled (O) syntax (O) and (O) stress (O) information (O) was (O) also (O) provided (O) to (O) the (O) [neural (B) network (I)]. 
+Syllable (O) and (O) word (O) characteristics (O) were (O) encoded (O) using (O) a (O) TDNN (O) representation, (O) while (O) duration (O) and (O) distance (O) coding (O) was (O) used (O) to (O) mark (O) the (O) boundaries (O) of (O) syntactic (O) elements (O) such (O) as (O) phrases (O) and (O) clauses. (O) 
+
+[NETWORK (B) ARCHITECTURE (I)] 
+The (O) [phonetic (B) neural (I) network (I) system (I)] is (O) composed (O) of (O) multiple (O) [neural (B) network (I)] subsystems (O) as (O) shown (O) in (O) Figure (O) 3, (O) where (O) all (O) the (O) rectangles (O) are (O) [neural (B) network (I)] blocks. (O) 
+The (O) blocks (O) 1, (O) 2, (O) and (O) 14 (O) are (O) the (O) I (O) / O (O) blocks (O) and (O) provide (O) an (O) interface (O) to (O) [data (B) streams (I)] 2, (O) 1, (O) and (O) 3. (O) Blocks (O) 3 (O) and (O) 4 (O) convert (O) [phoneme (B) labels (I)] to (O) [phoneme (B)] features. (O) 
+Blocks (O) 15 (O) and (O) 16 (O) provide (O) the (O) recurrent (O) buffers (O) for (O) feedback (O) paths. (O) 
+Blocks (O) 17, (O) 18, (O) and (O) 19 (O) transform (O) the (O) feedback (O) information (O) to (O) a (O) form (O) more (O) acceptable (O) to (O) their (O) target (O) blocks. (O) 
+Block (O) 5 (O) works (O) on (O) TDNN (O) [phoneme (B) labels (I)]. 
+Block (O) 6 (O) works (O) on (O) TDNN (O) [phoneme (B) features (I)]. 
+Block (O) 7 (O) works (O) on (O) duration (O) and (O) distance (O) of (O) [phoneme (B) labels (I)]. 
+Block (O) 8 (O) works (O) on (O) duration (O) and (O) distance (O) of (O) [phoneme (B) features (I)]. 
+Blocks (O) 9, (O) 10, (O) 11, (O) 12, (O) and (O) 13 (O) provide (O) higher (O) level (O) [neural (B) network (I) processing (I)]. 
+Blocks (O) 20, (O) 21, (O) 22, (O) 23, (O) and (O) 24 (O) generate (O) 10 (O) bands (O) of (O) power (O) [spectrum (B)] where (O) the (O) 
+band (O) boundary (O) frequencies (O) are (O) chosen (O) according (O) to (O) the (O) formant (O) boundaries (O) of (O) the (O) speaker. (O) 
+
+Figure (O) : [Mean (B) Opinion (I) Scores (I)] 
+Figure (O) : Percent (O) of (O) Words (O) Recognized (O)                                 
+
+EXPERIMENTAL (O) RESULTS (O) 
+The (O) performance (O) of (O) this (O) [neural (B) network (I)] based (O) system (O) was (O) compared (O) to (O) existing (O) systems (O) by (O) an (O) independent (O) tester. (O) 
+Two (O) evaluations (O) were (O) performed. (O) 
+The (O) first (O) provided (O) sentence-length (O) materials (O) to (O) listeners, (O) who (O) judged (O) the (O) acceptability (O) of (O) the (O) [speech (B)] on (O) a (O) scale (O) of (O) one (O) to (O) seven, (O) with (O) seven (O) being (O) most (O) acceptable (O) and (O) one (O) least (O) acceptable. (O) 
+The (O) results (O) of (O) this (O) evaluation (O) are (O) shown (O) in (O) Figure (O) 4. (O) Motorola (O) 1 (O) used (O) phone (O) durations (O) generated (O) by (O) a (O) [neural (B) network (I)], as (O) described (O) in, (O) while (O) Motorola (O) 2 (O) used (O) durations (O) from (O) natural (O) [speech (B)]. 
+Both (O) Motorola (O) systems (O) performed (O) significantly (O) better (O) than (O) the (O) other (O) systems. (O) 
+Figure (O) 5 (O) shows (O) the (O) results (O) of (O) a (O) segmental (O) intelligibility (O) experiment. (O) 
+In (O) this (O) experiment, (O) subjects (O) were (O) asked (O) to (O) identify (O) isolated (O) monosyllabic (O) words (O) from (O) the (O) tested (O) systems. (O) 
+Figure (O) 4 (O) illustrates (O) the (O) percent (O) of (O) the (O) words (O) the (O) subjects (O) identified (O) correctly. (O) 
+In (O) this (O) experiment, (O) the (O) Motorola (O) systems, (O) which (O) had (O) not (O) yet (O) been (O) trained (O) on (O) isolated (O) words, (O) did (O) not (O) perform (O) as (O) well (O) as (O) some (O) other (O) systems. (O) 
+
+CONCLUSION (O) 
+This (O) paper (O) presents (O) the (O) design (O) of (O) a (O) recurrent (O) TDNN (O) which (O) performs (O) the (O) [phonetic-to-acoustic (B) mapping (I)] in (O) a (O) [text-to-speech (B) system (I)]. 
+A (O) complete (O) system (O) using (O) this (O) [neural (B) network (I)] has (O) been (O) implemented (O) on (O) a (O) personal (O) computer (O) and (O) runs (O) in (O) real (O) time. (O) 
+The (O) system (O) performs (O) competitively (O) with (O) existing (O) commercial (O) [text-to-speech (B) systems (I)], as (O) demonstrated (O) in (O) independent (O) tests. (O) 

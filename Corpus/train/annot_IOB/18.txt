@@ -1,0 +1,194 @@
+[MELLOTRON (B)] : [MULTISPEAKER (B) EXPRESSIVE (I) VOICE (I) SYNTHESIS (I)] BY (O) CONDITIONING (O) ON (O) RHYTHM, (O) [PITCH (B)] AND (O) GLOBAL (O) STYLE (O) TOKENS (O) 
+
+ABSTRACT (O) 
+
+[Mellotron (B)] is (O) a (O) [multispeaker (B) voice (I) synthesis (I) model (I)] based (O) on (O) [Tacotron (B) 2 (I) GST (I)] that (O) can (O) make (O) a (O) [voice (B) emote (I)] and (O) sing (O) without (O) emotive (O) or (O) singing (O) [training (B) data (I)]. 
+By (O) explicitly (O) conditioning (O) on (O) rhythm (O) and (O) [continuous (B) pitch (I) contours (I)] from (O) an (O) [audio (B)] 
+signal (O) or (O) music (O) score, (O) [Mellotron (B)] is (O) able (O) to (O) generate (O) [speech (B)] in (O) a (O) variety (O) of (O) styles (O) ranging (O) from (O) read (O) [speech (B)] to (O) [expressive (B) speech (I)], from (O) slow (O) drawls (O) to (O) rap (O) and (O) from (O) [monotonous (B) voice (I)] to (O) singing (O) voice. (O) 
+Unlike (O) other (O) methods, (O) we (O) train (O) [Mellotron (B)] using (O) only (O) read (O) [speech (B) data (I)] without (O) alignments (O) between (O) text (O) and (O) [audio (B)]. 
+We (O) evaluate (O) our (O) models (O) using (O) the (O) [LJSpeech (B)] and (O) [LibriTTS (B) datasets (I)]. 
+We (O) provide (O) F0 (O) Frame (O) Errors (O) and (O) synthesized (O) samples (O) that (O) include (O) style (O) transfer (O) from (O) [other (B) speakers (I)], singers (O) and (O) styles (O) not (O) seen (O) during (O) training, (O) procedural (O) manipulation (O) of (O) rhythm (O) and (O) [pitch (B)] and (O) choir (O) synthesis. (O) 
+
+Index (O) Terms (O) — (O) [Text-to-Speech (B) Synthesis (I)], Singing (O) [Voice (B) Synthesis (I)], Style (O) Transfer, (O) [Deep (B) learning (I)] 
+
+INTRODUCTION (O) 
+
+[Speech (B) synthesis (I)] is (O) typically (O) formulated (O) as (O) the (O) conversion (O) of (O) [text (B) to (I) speech (I)] ([TTS (B)]). 
+This (O) formulation, (O) however, (O) leaves (O) out (O) control (O) for (O) all (O) the (O) aspects (O) of (O) [speech (B)] not (O) contained (O) in (O) the (O) text. (O) 
+Here (O) we (O) approach (O) the (O) problem (O) of (O) [expressive (B) speech (I) synthesis (I)] which (O) includes (O) not (O) just (O) text, (O) but (O) other (O) characteristics (O) such (O) as (O) [pitch (B)], rhythm (O) and (O) emphasis. (O) There (O) are (O) formulations (O) to (O) [expressive (B) speech (I) synthesis (I)] that (O) require (O) animated (O) and (O) [emotive (B) voice (I) data (I)]. 
+This (O) is (O) an (O) inconvenient (O) drawback (O) given (O) the (O) limited (O) access (O) to (O) [such (B) data (I)]. 
+In (O) our (O) approach, (O) we (O) can (O) make (O) a (O) [voice (B) emote (I)] and (O) sing (O) without (O) any (O) [such (B) data (I)]. 
+Recent (O) approaches (O) that (O) utilize (O) [deep (B) learning (I)] for (O) [expressive (B) speech (I) synthesis (I)] combine (O) text (O) and (O) a (O) learned (O) latent (O) embedding (O) for (O) [prosody (B)] or (O) global (O) style. (O) 
+While (O) these (O) approaches (O) have (O) shown (O) promise, (O) manipulating (O) such (O) latent (O) variables (O) only (O) offers (O) a (O) coarse (O) control (O) over (O) expressive (O) characteristics (O) of (O) [speech (B)]. 
+[Mellotron (B)] was (O) motivated (O) by (O) the (O) desire (O) for (O) fine (O) grained (O) control (O) over (O) these (O) expressive (O) characteristics. (O) 
+Notably, (O) we (O) show (O) that (O) it (O) is (O) easy (O) to (O) condition (O) [Mellotron (B)] on (O) [pitch (B)] and (O) rhythm (O) information (O) automatically (O) extracted (O) from (O) an (O) [audio (B) signal (I)] or (O) music (O) score. (O) 
+By (O) accounting (O) for (O) melodic (O) information (O) such (O) as (O) [pitch (B)] and (O) rhythm, (O) [expressive (B) speech (I) synthesis (I)] with (O) [Mellotron (B)] can (O) be (O) easily (O) extended (O) to (O) singing (O) [voice (B) synthesis (I)] (SVS). (O) 
+Unfortunately, (O) recent (O) attempts (O) require (O) a (O) [singing (B) voice (I) dataset (I)] and (O) heavily (O) quantized (O) [pitch (B)] and (O) [rhythm (B) data (I)] obtained (O) from (O) a (O) digital (O) representation (O) of (O) a (O) music (O) score, (O) for (O) example (O) MIDI (O) or (O) musicXML. (O) 
+[Mellotron (B)] does (O) not (O) require (O) any (O) [singing (B) voice (I)] in (O) the (O) dataset (O) nor (O) manually (O) aligned (O) [pitch (B)] and (O) text (O) in (O) order (O) to (O) synthesize (O) [singing (B) voice (I)]. 
+[Mellotron (B)] can (O) make (O) a (O) [voice (B) emote (I)] and (O) sing (O) without (O) emotion (O) or (O) [singing (B) data (I)]. 
+[Training (B) Mellotron (I)] is (O) very (O) simple (O) and (O) only (O) requires (O) read (O) [speech (B)] and (O) transcriptions. (O) 
+During (O) inference, (O) we (O) can (O) change (O) the (O) generated (O) voice’s (O) speaking (O) style, (O) make (O) it (O) emote (O) or (O) sing (O) by (O) extracting (O) [pitch (B)] and (O) rhythm (O) characteristics (O) from (O) an (O) [audio (B) file (I)] or (O) a (O) music (O) score. (O) 
+As (O) a (O) bonus, (O) with (O) [Mellotron (B)] we (O) can (O) explore (O) latent (O) characteristics (O) from (O) an (O) [audio (B) corpus (I)] by (O) sampling (O) a (O) dictionary (O) of (O) learned (O) latent (O) characteristics. (O) 
+In (O) summary, (O) [Mellotron (B)] is (O) a (O) [versatile (B) voice (I) synthesis (I) model (I)] that (O) enables (O) the (O) combination (O) of (O) characteristics (O) from (O) different (O) sources (O) and (O) generalizes (O) to (O) characteristics (O) not (O) seen (O) in (O) [training (B) data (I)]. 
+
+Includes (O) [speech (B) synthesis (I)], singing (O) [voice (B) synthesis (I)], etc. (O) 
+
+METHOD (O) 
+
+[Mellotron (B)] is (O) a (O) [voice (B) synthesis (I) model (I)] that (O) uses (O) a (O) combination (O) of (O) explicit (O) and (O) latent (O) variables. (O) 
+Whereas (O) well-established (O) signal (O) processing (O) algorithms (O) provide (O) explicit (O) variables (O) that (O) are (O) valuable (O) to (O) [expressive (B) speech (I)] such (O) as (O) [fundamental (B) frequency (I) contours (I)] and (O) [voicing (B) decisions (I)], [deep (B) learning (I)] strategies (O) can (O) be (O) used (O) to (O) learn (O) latent (O) variables (O) that (O) express (O) characteristics (O) of (O) an (O) [audio (B) corpus (I)] that (O) are (O) unknown (O) to (O) the (O) user (O) and (O) hard (O) to (O) formalize. (O) 
+We (O) factorize (O) a (O) [single (B) speaker (I) mel-spectrogram (I) M (I)] into (O) explicit (O) variables (O) such (O) as (O) text, (O) [speaker (B) identity (I)], a (O) [fundamental (B) frequency (I) contour (I)] augmented (O) with (O) voiced (O) / unvoiced (O) decisions (O) and (O) two (O) latent (O) variables (O) learned (O) by (O) the (O) model (O) during (O) training. (O) 
+The (O) first (O) latent (O) variable (O) refers (O) to (O) a (O) dictionary (O) of (O) [vectors (B)] that (O) can (O) be (O) queried (O) with (O) an (O) [audio (B) input (I)] or (O) sampled (O) directly (O) as (O) described (O) in. (O) The (O) second (O) latent (O) variable (O) is (O) the (O) learned (O) attention (O) map (O) between (O) the (O) text (O) and (O) the (O) [mel-spectrogram (B)] as (O) described (O) in. (O) 
+From (O) now (O) on (O) we (O) will (O) refer (O) to (O) the (O) augmented (O) [fundamental (B) frequency (I) contour (I)] as (O) [pitch (B) contour (I)] and (O) refer (O) to (O) the (O) first (O) and (O) second (O) latent (O) variables (O) as (O) global (O) style (O) tokens (O) ([GST (B)]) and (O) rhythm (O) respectively. (O) 
+We (O) are (O) interested (O) in (O) factorizing (O) M (O) = (T, (O) S, (O) P, (O) R, (O) Z), (O) where (O) T (O) represents (O) the (O) text, (O) S (O) represents (O) the (O) [speaker (B) identity (I)], P (O) represents (O) the (O) [pitch (B) contour (I)], R (O) represents (O) the (O) rhythm (O) and (O) Z (O) represents (O) the (O) global (O) style (O) tokens. (O) 
+Given (O) this (O) formulation, (O) during (O) training (O) we (O) maximize (O) the (O) following (O) : 
+where (O) the (O) superscript (O) i (O) represents (O) the (O) i-th (O) [mel (B)], T(i), (O) S(i) (O) and (O) P(i) (O) represent (O) the (O) text, (O) speaker, (O) and (O) [pitch (B) contour (I)] associated (O) with (O) the (O) i-th (O) [mel (B)], Ri (O) represents (O) the (O) learned (O) alignments (O) between (O) the (O) text (O) and (O) [mel-spectrogram (B) frames (I)], Zmel(i) (O) represents (O) the (O) global (O) style (O) token (O) conditioned (O) on (O) [mel (B)] (i) (O) as (O) presented (O) in, (O) and (O) θ (O) represents (O) the (O) model (O) parameters. (O) 
+The (O) explicit (O) factors (O) offers (O) two (O) advantages. (O) First, (O) by (O) providing (O) the (O) model (O) with (O) text (O) and (O) [speaker (B) information (I)], we (O) prevent (O) the (O) problem (O) of (O) entanglement (O) between (O) text (O) and (O) [speaker (B) information (I)]. Second (O) by (O) providing (O) the (O) model (O) with (O) [pitch (B) contour (I)] and (O) [voicing (B) information (I)], we (O) are (O) able (O) to (O) directly (O) control (O) [pitch (B)] and (O) [voicing (B) decisions (I)] during (O) inference. (O) 
+Similarly (O) the (O) latent (O) factors (O) offers (O) two (O) advantages. (O) 
+First, (O) by (O) learning (O) the (O) alignment (O) map (O) between (O) the (O) text (O) and (O) [mel-spectrogram (B)] during (O) training, (O) we (O) do (O) not (O) need (O) to (O) extract (O) [phoneme (B) alignments (I)] for (O) training (O) and (O) can (O) control (O) the (O) rhythm (O) during (O) inference (O) by (O) providing (O) the (O) model (O) with (O) an (O) alignment (O) map. (O) 
+Second, (O) by (O) providing (O) the (O) model (O) with (O) a (O) dictionary (O) of (O) latent (O) variables, (O) we (O) are (O) able (O) to (O) learn (O) latent (O) factors (O) that (O) are (O) harder (O) to (O) express (O) or (O) extract (O) explicitly, (O) thus (O) leveraging (O) the (O) full (O) power (O) of (O) latent (O) variables. (O) 
+Using (O) this (O) formulation (O) we (O) are (O) able (O) to (O) transfer (O) the (O) text, (O) rhythm (O) and (O) [pitch (B) contour (I)] from (O) a (O) source, (O) e. (O) g. (O) [audio (B) signal (I)] or (O) musical (O) score, (O) to (O) a (O) [target (B) speaker (I)] by (O) replacing (O) the (O) variables (O) in (O) Equation (O) (1) (O) accordingly. (O) 
+For (O) example, (O) we (O) first (O) collect (O) the (O) text, (O) [pitch (B)] and (O) rhythm (O) (Ts, (O) Ps, (O) Rs), (O) from (O) the (O) source, (O) sample (O) a (O) [GST (B)] Zquery (O) from (O) the (O) [GST (B) dictionary (I)] learned (O) by (O) [Mellotron (B)], and (O) chose (O) a (O) [target (B) speaker (I)]. 
+mel(out) (O) should (O) now (O) have (O) the (O) same (O) text, (O) [pitch (B)] and (O) rhythm (O) as (O) the (O) source, (O) latent (O) characteristics (O) obtained (O) from (O) the (O) global (O) style (O) token (O) and (O) the (O) voice (O) of (O) the (O) [target (B) speaker (I)]. 
+In (O) our (O) current (O) formulation, (O) the (O) [target (B) speaker (I)], S (O) t, (O) would (O) always (O) be (O) found (O) in (O) the (O) training (O) set, (O) while (O) the (O) source (O) text, (O) [pitch (B)] and (O) rhythm (O) (Ts, (O) Ps, (O) Rs) (O) could (O) be (O) from (O) outside (O) the (O) training (O) set. (O) 
+This (O) allows (O) us (O) to (O) train (O) a (O) model (O) that (O) makes (O) a (O) [voice (B) emote (I)] and (O) sing (O) without (O) using (O) any (O) [singing (B) voice (I)] in (O) the (O) [training (B) dataset (I)], without (O) any (O) manual (O) labelling (O) of (O) emotions (O) nor (O) [pitch (B)], and (O) without (O) any (O) manual (O) alignments (O) between (O) words (O) and (O) [audio (B)], nor (O) between (O) [pitch (B)] and (O) [audio (B)]. 
+
+IMPLEMENTATION (O) 
+
+In (O) this (O) section (O) we (O) are (O) going (O) to (O) describe (O) our (O) [model (B) architecture (I)] and (O) our (O) training (O) and (O) inference (O) setups. (O) 
+We (O) plan (O) to (O) release (O) our (O) implementation (O) and (O) pre-trained (O) models (O) on (O) github. (O) 
+
+Architecture (O) 
+
+[Mellotron (B)] extends (O) [Tacotron (B) 2 (I) GST (I)] with (O) [speaker (B) embeddings (I)] and (O) [pitch (B)] countours. (O) 
+Unlike, (O) where (O) site (O) [specific (B) speaker (I) embeddings (I)] are (O) used, (O) we (O) use (O) a (O) [single (B) speaker (I)] embedding (O) that (O) is (O) channel-wise (O) concatenated (O) with (O) the (O) [encoder (B) outputs (I)] over (O) every (O) token. (O) 
+The (O) [pitch (B) contour (I)] goes (O) through (O) a (O) single (O) convolution (O) layer (O) followed (O) by (O) a (O) [ReLU (B)] non-linearity. (O) 
+We (O) experiment (O) with (O) kernel (O) sizes (O) 1 (O) and (O) 3 (O) and (O) convolution (O) dimensions (O) 1 (O) and (O) 8. (O) 
+The (O) [pitch (B) contour (I)] is (O) channel-wise (O) concatenated (O) with (O) the (O) [decoder (B) inputs (I)]. 
+We (O) use (O) [phoneme (B) representations (I)] whenever (O) possible. (O) 
+
+Training (O) 
+
+Our (O) implementation (O) only (O) requires (O) text (O) and (O) [audio (B) pairs (I)] with (O) a (O) speaker (O) i (O) d. (O) 
+Our (O) [pitch (B) contours (I)] are (O) automatically (O) extracted (O) using (O) the (O) [Yin (B) algorithm (I)] with (O) harmonicity (O) thresholds (O) between (O) 0.1 (O) and (O) 0.25. (O) 
+Unlike, (O) during (O) training (O) our (O) model (O) does (O) not (O) require (O) manually (O) aligned (O) text, (O) [pitch (B)] and (O) [mel-spectrogram (B)]. 
+We (O) use (O) the (O) L2 (O) loss (O) between (O) ground (O) truth (O) and (O) predicted (O) [mels (B)] described (O) in (O) without (O) any (O) modifications. (O) 
+
+Inference (O) 
+
+Following (O) the (O) description (O) in (O) Section (O) 2, (O) during (O) inference (O) we (O) provide (O) Melloron (O) with (O) text, (O) rhythm (O) and (O) [pitch (B) information (I)] that (O) is (O) obtained (O) either (O) from (O) an (O) [audio (B) signal (I)] or (O) from (O) a (O) musical (O) score, (O) a (O) global (O) style (O) token (O) and (O) a (O) speaker (O) i (O) d. (O) 
+
+[Audio (B) Signal (I)] 
+
+Obtaining (O) text, (O) rhythm (O) and (O) [pitch (B) information (I)] consists (O) of (O) three (O) steps. (O) 
+First, (O) we (O) extract (O) text (O) information (O) from (O) an (O) [audio (B) file (I)] by (O) either (O) using (O) an (O) [automatic (B) speech (I) recognition (I) model (I)] or (O) by (O) manually (O) transcribing (O) the (O) text. (O) 
+The (O) text (O) information (O) is (O) pre-processed (O) with (O) our (O) text (O) cleaners (O) and (O) then (O) converted (O) from (O) [graphemes (B)] to (O) [phonemes (B)]. 
+Second, (O) we (O) extract (O) rhythm (O) information (O) by (O) using (O) a (O) forced-alignment (O) tool (O) or (O) by (O) using (O) [Mellotron (B)] as (O) a (O) forced-aligner. (O) 
+Alignment (O) maps (O) can (O) be (O) obtained (O) with (O) [Mellotron (B)] by (O) performing (O) a (O) teacher-forced (O) forward (O) pass (O) using (O) the (O) data (O) from (O) the (O) source (O) signal. (O) 
+Whenever (O) necessary, (O) we (O) fine (O) tune (O) the (O) alignment (O) maps (O) by (O) hand (O) or (O) by (O) training (O) [Mellotron (B)] on (O) the (O) source (O) signal (O) for (O) a (O) few (O) iterations (O) with (O) small (O) learning (O) rate. (O) 
+The (O) [pitch (B) data (I)] is (O) obtained (O) by (O) using (O) Yin (O) or (O) Melodia. (O) 
+In (O) our (O) quantitative (O) experiments (O) we (O) use (O) Yin (O) to (O) replicate (O) the (O) setup (O) described (O) in. (O) 
+In (O) our (O) qualitative (O) experiments (O) we (O) use (O) Melodia (O) instead (O) as (O) we (O) find (O) it (O) to (O) be (O) more (O) precise (O) than (O) Yin, (O) specially (O) with (O) regards (O) to (O) false (O) voiced (O) decisions. (O) 
+
+Music (O) Score (O) 
+
+We (O) operate (O) on (O) music (O) scores (O) in (O) XML (O) format (O) containing (O) event (O) tuples (O) with (O) [pitch (B)], note (O) duration (O) and (O) syllables (O) for (O) each (O) part (O) in (O) the (O) score. (O) 
+We (O) directly (O) convert (O) [pitch (B)] to (O) frequency (O) and (O) use (O) the (O) FFT (O) hop (O) size (O) to (O) convert (O) event (O) durations (O) from (O) seconds (O) to (O) frames. (O) 
+We (O) remind (O) the (O) reader (O) that (O) although (O) we (O) refer (O) to (O) [pitch (B)], our (O) model’s (O) representation (O) of (O) [pitch (B)] is (O) continuous. (O) 
+We (O) concatenate (O) the (O) syllables (O) into (O) words (O) and (O) convert (O) [graphemes (B)] to (O) [phonemes (B)]. 
+For (O) single (O) phone (O) events, (O) the (O) duration (O) of (O) each (O) phone (O) is (O) equal (O) to (O) the (O) duration (O) of (O) the (O) event. (O) 
+For (O) multi-phone (O) events, (O) the (O) duration (O) of (O) each (O) phone (O) is (O) dependent (O) on (O) its (O) type (O) : we (O) use (O) heuristics (O) to (O) assign (O) durations (O) between (O) 20 (O) and (O) 100ms (O) to (O) consonants (O) and (O) assign (O) the (O) remainder (O) of (O) the (O) event’s (O) duration (O) to (O) vowels. (O) 
+For (O) example, (O) consider (O) a (O) one (O) second (O) long (O) single (O) note (O) event (O) on (O) the (O) word (O) Bass (O) with (O) [phoneme (B) representation (I)] (B, (O) AE, (O) S. (O) 
+We (O) set (O) B (O) to (O) 20 (O) ms, (O) S (O) to (O) 100 (O) ms (O) and (O) the (O) remaining (O) duration (O) to (O) AE, (O) and (O) hence (O) have (O) full (O) control (O) over (O) the (O) duration (O) of (O) each (O) phone. (O) 
+
+EXPERIMENTS (O) 
+
+We (O) train (O) our (O) models (O) using (O) the (O) [LJSpeech (B)] (LJS) (O) dataset, (O) the (O) [Sally (B) dataset (I)], a (O) proprietary (O) [single (B) speaker (I) dataset (I)] with (O) 20 (O) hours, (O) and (O) a (O) subset (O) of (O) LibriTTS. (O) 
+All (O) datasets (O) used (O) in (O) our (O) experiments (O) are (O) from (O) read (O) [speech (B)]. 
+We (O) provide (O) results (O) that (O) include (O) style (O) transfer (O) from (O) [source (B) speakers (I)] seen (O) and (O) unseen (O) in (O) the (O) dataset, (O) from (O) singers, (O) procedural (O) manipulation (O) of (O) rhythm (O) and (O) choir (O) synthesis (O) from (O) music (O) scores. (O) 
+Visit (O) our (O) website (O) to (O) listen (O) to (O) [Mellotron (B) samples (I)]. 
+
+Transferring (O) text, (O) rhythm (O) and (O) [pitch (B) contour (I)] to (O) a (O) [target (B) speaker (I)]. 
+https://nv-adlr.github.io/Mellotron (O) 
+
+Training (O) Setup (O) 
+
+For (O) all (O) the (O) experiments, (O) we (O) trained (O) on (O) LJS, (O) Sally (O) and (O) the (O) train-clean-100 (O) subset (O) of (O) [LibriTTS (B)] with (O) over (O) 100 (O) speakers (O) and (O) 25 (O) minutes (O) on (O) average (O) per (O) speaker. (O) 
+Speakers (O) with (O) less (O) than (O) 5 (O) minutes (O) of (O) data (O) and (O) files (O) that (O) are (O) larger (O) than (O) 10 (O) seconds (O) were (O) filtered (O) out. (O) 
+We (O) do (O) not (O) perform (O) any (O) [data (B) augmentation (I)], hence (O) any (O) extension (O) to (O) a (O) speaker’s (O) characteristics (O) such (O) as (O) [vocal (B) range (I)] and (O) [speech (B) rate (I)] is (O) made (O) possible (O) with (O) [Mellotron (B)]. 
+We (O) use (O) a (O) sampling (O) rate (O) of (O) 22050 (O) Hz (O) and (O) [mel-spectrograms (B)] with (O) 80 (O) bins (O) using (O) librosa (O) [mel (B) filter (I)] defaults. (O) 
+We (O) apply (O) the (O) [STFT (B)] with (O) a (O) FFT (O) size (O) of (O) 1024, (O) hop (O) size (O) of (O) 256, (O) and (O) window (O) size (O) of (O) 1024 (O) samples. (O) 
+We (O) use (O) the (O) [ADAM (B) optimizer (I)] with (O) default (O) parameters, (O) start (O) with (O) a (O) 1e-3 (O) [learning (B) rate (I)] and (O) anneal (O) the (O) learning (O) rate (O) as (O) the (O) loss (O) starts (O) to (O) plateau. (O) 
+We (O) decrease (O) training (O) time (O) by (O) using (O) a (O) single (O) NVIDIA (O) DGX-1 (O) with (O) 8 (O) [GPUs (B)]. 
+For (O) decoding (O) the (O) [mel-spectrograms (B)] produced (O) by (O) [Mellotron (B)], we (O) use (O) a (O) single (O) [WaveGlow (B) model (I)] trained (O) on (O) the (O) [Sally (B) dataset (I)]. 
+Our (O) results (O) suggest (O) that (O) [Waveglow (B)] can (O) be (O) used (O) as (O) an (O) universal (O) [decoder (B)]. 
+In (O) our (O) setup, (O) we (O) find (O) it (O) easier (O) to (O) first (O) learn (O) [attention (B) alignments (I)] on (O) speakers (O) with (O) large (O) amounts (O) of (O) data (O) and (O) then (O) fine (O) tune (O) to (O) speakers (O) with (O) [less (B) data (I)]. 
+Thus, (O) we (O) first (O) train (O) [Mellotron (B)] on (O) LJS (O) and (O) Sally (O) and (O) finetune (O) it (O) with (O) a (O) [new (B) speaker (I)] embedding (O) on (O) [LibriTTS (B)], starting (O) with (O) a (O) [learning (B) rate (I)] of (O) 5e-4 (O) and (O) annealing (O) the (O) [learning (B) rate (I)] as (O) the (O) loss (O) starts (O) to (O) plateau. (O) 
+
+Quantitative (O) Results (O) 
+
+In (O) this (O) section (O) we (O) provide (O) quantitative (O) results (O) that (O) compare (O) Gross (O) [Pitch (B) Error (I)] (GPE), (O) [Voicing (B) Decision (I)] Error (O) (VDE) (O) and (O) F0 (O) Frame (O) Error (O) (FFE) (O) between (O) [Mellotron (B)] and (O) [E2E-Prosody (B)]. 
+Following, (O) all (O) [pitch (B)] and (O) [voicing (B) metrics (I)] are (O) computed (O) using (O) the (O) [Yin (B) algorithm (I)]. 
+Due (O) to (O) the (O) rhythm (O) conditioning, (O) our (O) reference (O) and (O) predicted (O) [audio (B)] have (O) the (O) same (O) length (O) and (O) does (O) not (O) require (O) padding. (O) 
+The (O) results (O) in (O) Table (O) 1 (O) below (O) show (O) that (O) by (O) conditioning (O) on (O) [pitch (B)] we (O) can (O) drastically (O) reduce (O) the (O) error (O) between (O) the (O) source (O) and (O) the (O) synthesized (O) voice. (O) 
+For (O) singing (O) voice, (O) low (O) [pitch (B) error (I)] is (O) extremely (O) important (O) otherwise (O) the (O) melody (O) might (O) lose (O) its (O) identity. (O) 
+For (O) [prosody (B) transfer (I)], a (O) lower (O) FFE (O) provides (O) evidence (O) that (O) the (O) style (O) will (O) be (O) more (O) precisely (O) transferred (O) to (O) the (O) target. (O) 
+
+Table (O) : GPE, (O) VDE, (O) FFE (O) for (O) [Mellotron (B)] and (O) [E2E-Prosody (B)]. 
+The (O) reference (O) is (O) always (O) the (O) [same (B) speaker (I)]. 
+
+Style (O) transfer (O) from (O) [Audio (B) Signal (I)] 
+
+[Mellotron (B)] is (O) able (O) to (O) emote (O) and (O) match (O) the (O) style (O) of (O) an (O) input (O) [audio (B)] by (O) replicating (O) its (O) rhythm (O) or (O) both (O) its (O) rhythm (O) and (O) [pitch (B)]. 
+Overall, (O) we (O) note (O) that (O) our (O) experiments (O) using (O) [audio (B) data (I)] are (O) directly (O) impacted (O) by (O) the (O) quality (O) of (O) the (O) rhythm (O) and (O) [pitch (B) contours (I)] provided (O) to (O) the (O) model. (O) 
+Whereas (O) Melodia (O) provides (O) rather (O) precise (O) [pitch (B) contours (I)], we (O) find (O) that (O) the (O) [rhythm (B) data (I)] obtained (O) from (O) forced-alignments (O) had (O) to (O) be (O) constantly (O) fine-tuned. (O) 
+In (O) all (O) [audio (B) experiments (I)] we (O) obtain (O) the (O) rhythm (O) by (O) fine-tuning (O) alignment (O) maps (O) obtained (O) by (O) using (O) [Mellotron (B)] as (O) a (O) forced-aligner. (O) 
+Occasionally (O) we (O) find (O) that (O) some (O) of (O) the (O) [pitch (B) contours (I)] seem (O) to (O) be (O) outside (O) of (O) a (O) speaker’s (O) [vocal (B) range (I)]. 
+When (O) this (O) happens, (O) [Mellotron (B)] defaults (O) to (O) a (O) constant (O) highest (O) or (O) lowest (O) [pitch (B) value (I)]. 
+We (O) circumvent (O) this (O) by (O) scaling (O) the (O) [pitch (B) contour (I)] by (O) a (O) constant (O) to (O) matches (O) the (O) speaker’s (O) [vocal (B) range (I)]. 
+
+Rhythm (O) Transfer (O) 
+
+In (O) this (O) experiment (O) we (O) transfer (O) the (O) rhythm (O) and (O) its (O) associated (O) text (O) from (O) a (O) source (O) [audio (B) signal (I)] to (O) a (O) [target (B) speaker (I)]. 
+Our (O) formulation (O) provides (O) procedural (O) control (O) over (O) the (O) duration (O) of (O) every (O) [phoneme (B)], hence (O) allowing (O) for (O) simple (O) manipulations (O) such (O) as (O) changing (O) the (O) [speech (B) rate (I)] or (O) complex (O) effects (O) like (O) speeding (O) up (O) or (O) slowing (O) down. (O) 
+In (O) rhythm (O) transfer, (O) we (O) provide (O) [Mellotron (B)] with (O) an (O) array (O) of (O) zeros (O) as (O) the (O) [pitch (B) contour (I)]. 
+We (O) show (O) examples (O) where (O) we (O) transfer (O) the (O) rhythm (O) from (O) an (O) excerpt (O) by (O) Nicki (O) Minaj (O) to (O) Sally. (O) 
+We (O) showcase (O) the (O) procedural (O) capabilities (O) of (O) [Mellotron (B)] by (O) processing (O) the (O) source (O) rhythm (O) with (O) a (O) function (O) that (O) produces (O) an (O) accelerando (O) starting (O) at (O) half (O) the (O) speed (O) and (O) accelerating (O) to (O) twice (O) the (O) speed. (O) 
+For (O) comparison, (O) we (O) also (O) provide (O) samples (O) conditioned (O) on (O) the (O) [pitch (B) contour (I)] from (O) Nicki’s (O) track. (O) 
+Figure (O) 1 (O) shows (O) the (O) alignment (O) maps. (O) 
+
+Rhythm (O) and (O) [Pitch (B) Transfer (I)] 
+
+By (O) conditioning (O) on (O) both (O) rhythm (O) and (O) [pitch (B)], we (O) can (O) express (O) characteristics (O) of (O) the (O) [source (B) speaker (I)]’s style. (O) 
+An (O) interesting (O) application (O) is (O) the (O) creation (O) of (O) a (O) hybrid (O) with (O) the (O) style (O) from (O) a (O) [source (B) speaker (I)] but (O) the (O) voice (O) from (O) another (O) speaker. (O) 
+We (O) show (O) an (O) example (O) where (O) we (O) transfer (O) the (O) characteristics (O) of (O) a (O) solemn (O) [speech (B)] to (O) Sally. (O) 
+We (O) see (O) that (O) [Mellotron (B)] contains (O) the (O) same (O) pauses (O) and (O) [speech (B) rate (I)] as (O) the (O) source (O) which (O) adds (O) to (O) the (O) solemnity (O) of (O) the (O) [speech (B)]. 
+For (O) comparison, (O) we (O) provide (O) the (O) same (O) phrases (O) synthesised (O) with (O) the (O) original (O) [Tacotron (B) 2 (I)] which (O) fails (O) to (O) convey (O) the (O) same (O) solemnity. (O) 
+
+Singing (O) [Voice (B) Synthesis (I)] 
+
+[Mellotron (B)] is (O) able (O) to (O) generalize (O) to (O) rhythm (O) and (O) [pitch (B)] from (O) styles (O) and (O) speakers (O) not (O) in (O) the (O) training (O) set. (O) 
+We (O) are (O) able (O) to (O) synthesize (O) [singing (B) voice (I)] from (O) a (O) wide (O) range (O) of (O) [input (B) speakers (I)] across (O) a (O) range (O) of (O) music (O) styles (O) such (O) as (O) rap, (O) pop, (O) Hindustani (O) and (O) western (O) European (O) classical (O) music. (O) 
+
+Singing (O) Voice (O) from (O) [Audio (B) Signal (I)] 
+
+Figure (O) 2 (O) shows (O) an (O) example (O) where (O) we (O) use (O) the (O) Sweet (O) Dreams (O) sample (O) from (O) the (O) [E2E-Prosody (B) paper (I)] and (O) transfer (O) its (O) text, (O) rhythm (O) and (O) scaled (O) [pitch (B)] to (O) Sally. (O) 
+Figure (O) 2 (O) shows (O) that (O) [Mellotron (B)]’s [pitch (B) contour (I)] is (O) closer (O) to (O) the (O) source (O) than (O) [E2E-Prosody (B)] is. (O) 
+
+Style (O) transfer (O) from (O) Music (O) Score (O) 
+
+Unlike (O) the (O) experiments (O) on (O) [audio (B)], the (O) rhythm (O) and (O) [pitch (B) contours (I)] provided (O) to (O) the (O) model (O) by (O) a (O) music (O) score (O) are (O) correct (O) by (O) design. (O) 
+We (O) provide (O) a (O) 4-part (O) example (O) with (O) 20 (O) voices (O) per (O) part (O) on (O) an (O) excerpt (O) of (O) Handel’s (O) Hallelujah, (O) a (O) 8-part (O) example (O) with (O) 1 (O) voice (O) per (O) part (O) on (O) Ligeti’s (O) Lux (O) Aeterna (O) and (O) a (O) [single (B) voice (I)] example (O) synthesizing (O) the (O) opening (O) flute (O) intro (O) from (O) Debussy’s (O) Prélude (O) l’après-midi (O) d’un (O) faune. (O) 
+Except (O) from (O) cases (O) where (O) the (O) [pitch (B)] is (O) beyond (O) the (O) speaker’s (O) [vocal (B) range (I)], such (O) as (O) in (O) Handel’s (O) sample, (O) [Mellotron (B)] has (O) very (O) precise (O) [pitch (B)] and (O) rhythm. (O) 
+
+CONCLUSION (O) 
+
+In (O) this (O) paper (O) we (O) described (O) [Mellotron (B)], a (O) [multispeaker (B) voice (I) synthesis (I) model (I)] that (O) allows (O) for (O) direct (O) control (O) of (O) style (O) by (O) conditioning (O) on (O) rhythm (O) and (O) [pitch (B)] obtained (O) from (O) an (O) [audio (B) signal (I)] or (O) a (O) music (O) score. (O) 
+Our (O) numerical (O) results (O) show (O) that (O) [Mellotron (B)] is (O) superior (O) to (O) other (O) models (O) with (O) respect (O) to (O) F0 (O) Frame (O) Error. (O) 
+Our (O) qualitative (O) results (O) show (O) that (O) [Mellotron (B)] is (O) able (O) to (O) generate (O) [speech (B)] in (O) a (O) variety (O) of (O) styles (O) ranging (O) from (O) read (O) [speech (B)] to (O) [expressive (B) speech (I)], from (O) slow (O) drawls (O) to (O) rap, (O) and (O) from (O) [monotonous (B) voice (I)] to (O) singing (O) voice (O) although (O) none (O) of (O) these (O) styles (O) are (O) present (O) in (O) the (O) [training (B) data (I)]. 
+Recent (O) [singing (B) voice (I) synthesis (I)] papers (O) state (O) that (O) ” (O) even (O) in (O) the (O) case (O) of (O) a (O) real (O) recording (O) sample (O) recorded (O) by (O) listening (O) to (O) the (O) original (O) midi (O) accompaniment, (O) it (O) is (O) not (O) easy (O) to (O) adjust (O) the (O) timing (O) and (O) [pitch (B)] of (O) the (O) correct (O) note (O) ” (O) indicating (O) that (O) it (O) is (O) difficult (O) for (O) professional (O) human (O) singers (O) and (O) synthesized (O) voice (O) to (O) match (O) a (O) source (O) [audio (B)] or (O) source (O) music (O) score (O) perfectly. (O) 
+Our (O) results (O) show (O) that (O) one (O) of (O) the (O) advantages (O) of (O) [Mellotron (B)] is (O) that (O) the (O) rhythm (O) and (O) [pitch (B) contour (I)] of (O) a (O) synthesized (O) sample (O) is (O) extremely (O) similar (O) to (O) the (O) source (O) [audio (B) file (I)] or (O) music (O) score, (O) under (O) the (O) assumption (O) that (O) the (O) [pitch (B)] is (O) within (O) a (O) speaker’s (O) [vocal (B) range (I)]. 
+When (O) outside (O) a (O) speaker’s (O) [vocal (B) range (I)], [Mellotron (B)] defaults (O) to (O) either (O) the (O) lowest (O) tone (O) or (O) highest (O) tone. (O) 
+For (O) future (O) work, (O) we (O) plan (O) to (O) study (O) the (O) effect (O) of (O) rhythm (O) and (O) [pitch (B) contours (I)] on (O) the (O) [audio (B) quality (I)] by (O) comparing (O) samples (O) conditioned (O) on (O) [pitch (B)] and (O) [rhythm (B) data (I)] obtained (O) from (O) [audio (B) signals (I)] versus (O) music (O) scores. (O) 
+With (O) respect (O) to (O) [pitch (B)], we (O) are (O) also (O) interested (O) in (O) understanding (O) the (O) effect (O) of (O) [multi-speaker (B) training (I)] on (O) a (O) speaker’s (O) [vocal (B) range (I)] and (O) extending (O) a (O) speaker’s (O) [vocal (B) range (I)] as (O) much (O) as (O) possible. (O) 
+Last, (O) we (O) would (O) like (O) to (O) train (O) [Mellotron (B)] on (O) a (O) animated (O) and (O) emotive (O) storytelling (O) [style (B) dataset (I)] to (O) investigate (O) the (O) contribution (O) of (O) [such (B) dataset (I)] to (O) [Mellotron (B)]. 

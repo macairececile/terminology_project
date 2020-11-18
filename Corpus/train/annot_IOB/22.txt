@@ -1,0 +1,214 @@
+[TACOTRON (B)] : TOWARDS (O) [END-TO-END (B) SPEECH (I) SYNTHESIS (I)] 
+
+ABSTRACT (O) 
+
+A (O) [text-to-speech (B) synthesis (I) system (I)] typically (O) consists (O) of (O) multiple (O) stages, (O) such (O) as (O) a (O) text (O) analysis (O) frontend, (O) an (O) [acoustic (B) model (I)] and (O) an (O) [audio (B) synthesis (I) module (I)]. 
+Building (O) these (O) components (O) often (O) requires (O) extensive (O) domain (O) expertise (O) and (O) may (O) contain (O) brittle (O) design (O) choices. (O) 
+In (O) this (O) paper, (O) we (O) present (O) [Tacotron (B)], an (O) [end-to-end (B) generative (I) text-to-speech (I) model (I)] that (O) [synthesizes (B) speech (I)] directly (O) from (O) characters. (O) 
+Given (O) < text, (O) [audio (B)] > pairs, (O) the (O) model (O) can (O) be (O) trained (O) completely (O) from (O) scratch (O) with (O) random (O) initialization. (O) 
+We (O) present (O) several (O) key (O) techniques (O) to (O) make (O) the (O) sequence-tosequence (O) framework (O) perform (O) well (O) for (O) this (O) challenging (O) task. (O) 
+[Tacotron (B)] achieves (O) a (O) 3.82 (O) subjective (O) 5-scale (O) [mean (B) opinion (I) score (I)] on (O) US (O) English, (O) outperforming (O) a (O) production (O) [parametric (B) system (I)] in (O) terms (O) of (O) naturalness. (O) 
+In (O) addition, (O) since (O) [Tacotron (B)] generates (O) [speech (B)] at (O) the (O) frame (O) level, (O) it’s (O) substantially (O) faster (O) than (O) sample-level (O) autoregressive (O) methods. (O)                                                     
+
+
+INTRODUCTION (O) 
+
+[Modern (B) text-to-speech (I) (TTS) (I) pipelines (I)] are (O) complex. (O) 
+For (O) example, (O) it (O) is (O) common (O) for (O) [statistical (B) parametric (I) TTS (I)] to (O) have (O) a (O) text (O) frontend (O) extracting (O) various (O) [linguistic (B) features (I)], a (O) duration (O) model, (O) an (O) [acoustic (B) feature (I) prediction (I) model (I)] and (O) a (O) complex (O) signal-processing-based (O) [vocoder (B)]. 
+These (O) components (O) are (O) based (O) on (O) extensive (O) domain (O) expertise (O) and (O) are (O) laborious (O) to (O) design. (O) 
+They (O) are (O) also (O) trained (O) independently, (O) so (O) errors (O) from (O) each (O) component (O) may (O) compound. (O) 
+The (O) complexity (O) of (O) [modern (B) TTS (I)] designs (O) thus (O) leads (O) to (O) substantial (O) engineering (O) efforts (O) when (O) building (O) a (O) new (O) system. (O) 
+There (O) are (O) thus (O) many (O) advantages (O) of (O) an (O) integrated (O) [end-to-end (B) TTS (I) system (I)] that (O) can (O) be (O) trained (O) on (O) < text, (O) [audio (B)] > pairs (O) with (O) minimal (O) human (O) annotation. (O) 
+First, (O) such (O) a (O) system (O) alleviates (O) the (O) need (O) for (O) [laborious (B) feature (I) engineering (I)], which (O) may (O) involve (O) heuristics (O) and (O) brittle (O) design (O) choices. (O) 
+Second, (O) it (O) more (O) easily (O) allows (O) for (O) rich (O) conditioning (O) on (O) various (O) attributes, (O) such (O) as (O) speaker (O) or (O) language, (O) or (O) high-[level (B) features (I)] like (O) sentiment. (O) 
+This (O) is (O) because (O) conditioning (O) can (O) occur (O) at (O) the (O) very (O) beginning (O) of (O) the (O) model (O) rather (O) than (O) only (O) on (O) certain (O) components. (O) 
+Similarly, (O) adaptation (O) to (O) [new (B) data (I)] might (O) also (O) be (O) easier. (O) 
+Finally, (O) a (O) single (O) model (O) is (O) likely (O) to (O) be (O) more (O) robust (O) than (O) a (O) multi-stage (O) model (O) where (O) each (O) component’s (O) errors (O) can (O) compound. (O) 
+These (O) advantages (O) imply (O) that (O) an (O) [end-to-end (B) model (I)] could (O) allow (O) us (O) to (O) train (O) on (O) huge (O) amounts (O) of (O) rich, (O) expressive (O) yet (O) often (O) [noisy (B) data (I)] found (O) in (O) the (O) real (O) world. (O) 
+[TTS (B)] is (O) a (O) large-scale (O) inverse (O) problem (O) : a (O) highly (O) compressed (O) source (O) (text) (O) is (O) “ (O) decompressed (O) ” (O) into (O) [audio (B)]. 
+Since (O) the (O) same (O) text (O) can (O) correspond (O) to (O) different (O) pronunciations (O) or (O) speaking (O) styles, (O) this (O) is (O) a (O) particularly (O) difficult (O) learning (O) task (O) for (O) an (O) [end-to-end (B) model (I)] : it (O) must (O) cope (O) with (O) large (O) variations (O) at (O) the (O) signal (O) level (O) for (O) a (O) given (O) input. (O) 
+Moreover, (O) unlike (O) [end-to-end (B) speech (I) recognition (I)] or (O) [machine (B) translation (I)], [TTS (B) outputs (I)] are (O) continuous, (O) and (O) output (O) sequences (O) are (O) usually (O) much (O) longer (O) than (O) those (O) of (O) the (O) input. (O) 
+These (O) attributes (O) cause (O) prediction (O) errors (O) to (O) accumulate (O) quickly. (O) 
+In (O) this (O) paper, (O) we (O) propose (O) [Tacotron (B)], an (O) [end-to-end (B) generative (I) TTS (I) model (I)] based (O) on (O) the (O) [sequence-to-sequence (B)] ([seq2seq (B)]) with (O) [attention (B) paradigm (I)]. 
+Our (O) model (O) takes (O) characters (O) as (O) input (O) and (O) outputs (O) [raw (B) spectrogram (I)], using (O) several (O) techniques (O) to (O) improve (O) the (O) capability (O) of (O) a (O) [vanilla (B) seq2seq (I) model (I)]. 
+Given (O) < text, (O) [audio (B)] > pairs, (O) [Tacotron (B)] can (O) be (O) trained (O) completely (O) from (O) scratch (O) with (O) random (O) initialization. (O) 
+It (O) does (O) not (O) require (O) [phoneme-level (B) alignment (I)], so (O) it (O) can (O) easily (O) scale (O) to (O) using (O) large (O) amounts (O) of (O) [acoustic (B) data (I)] with (O) transcripts. (O) 
+With (O) a (O) simple (O) [waveform (B) synthesis (I)] technique, (O) [Tacotron (B)] produces (O) a (O) 3.82 (O) [mean (B) opinion (I) score (I)] ([MOS (B)]) on (O) an (O) US (O) English (O) eval (O) set, (O) outperforming (O) a (O) production (O) [parametric (B) system (I)] in (O) terms (O) of (O) naturalness (O) 1. (O)                                        
+                                           
+                                                                                            
+Figure (O) : [Model (B) architecture (I)]. 
+The (O) model (O) takes (O) characters (O) as (O) input (O) and (O) outputs (O) the (O) corresponding (O) [raw (B) spectrogram (I)], which (O) is (O) then (O) fed (O) to (O) the (O) [Griffin-Lim (B) reconstruction (I) algorithm (I)] to (O) [synthesize (B) speech (I)]. 
+
+
+RELATED (O) WORK (O) 
+
+[WaveNet (B)] is (O) a (O) powerful (O) generative (O) model (O) of (O) [audio (B)]. 
+It (O) works (O) well (O) for (O) [TTS (B)], but (O) is (O) slow (O) due (O) to (O) its (O) sample-level (O) autoregressive (O) nature. (O) 
+It (O) also (O) requires (O) conditioning (O) on (O) [linguistic (B) features (I)] from (O) an (O) existing (O) [TTS (B) frontend (I)], and (O) thus (O) is (O) not (O) [end-to-end (B)] : it (O) only (O) replaces (O) the (O) [vocoder (B)] and (O) [acoustic (B) model (I)]. 
+Another (O) recently-developed (O) [neural (B) model (I)] is (O) [DeepVoice (B)], which (O) replaces (O) every (O) component (O) in (O) a (O) typical (O) [TTS (B) pipeline (I)] by (O) a (O) corresponding (O) [neural (B) network (I)]. 
+However, (O) each (O) component (O) is (O) independently (O) trained, (O) and (O) it’s (O) nontrivial (O) to (O) change (O) the (O) system (O) to (O) train (O) in (O) an (O) [end-to-end (B) fashion (I)]. 
+To (O) our (O) knowledge (O) is (O) the (O) earliest (O) work (O) touching (O) [end-to-end (B) TTS (I)] using (O) [seq2seq (B)] with (O) attention. (O) 
+However, (O) it (O) requires (O) a (O) pre-trained (O) [hidden (B) Markov (I) model (I) (HMM) (I) aligner (I)] to (O) help (O) the (O) [seq2seq (B) model (I)] learn (O) the (O) alignment. (O) 
+It’s (O) hard (O) to (O) tell (O) how (O) much (O) alignment (O) is (O) learned (O) by (O) the (O) [seq2seq (B)] per (O) se. (O) 
+Second, (O) a (O) few (O) tricks (O) are (O) used (O) to (O) get (O) the (O) model (O) trained, (O) which (O) the (O) authors (O) note (O) hurts (O) [prosody (B)]. 
+Third, (O) it (O) predicts (O) [vocoder (B) parameters (I)] hence (O) needs (O) a (O) [vocoder (B)]. 
+Furthermore, (O) the (O) model (O) is (O) trained (O) on (O) [phoneme (B)] inputs (O) and (O) the (O) experimental (O) results (O) seem (O) to (O) be (O) somewhat (O) limited. (O) 
+Char2Wav (O) is (O) an (O) independently-developed (O) [end-to-end (B) model (I)] that (O) can (O) be (O) trained (O) on (O) characters. (O) 
+However, (O) Char2Wav (O) still (O) predicts (O) [vocoder (B) parameters (I)] before (O) using (O) a (O) [SampleRNN (B) neural (I) vocoder (I)], whereas (O) [Tacotron (B)] directly (O) predicts (O) [raw (B) spectrogram (I)]. 
+Also, (O) their (O) [seq2seq (B)] and (O) [SampleRNN (B) models (I)] need (O) to (O) be (O) separately (O) pre-trained, (O) but (O) our (O) model (O) can (O) be (O) trained (O) from (O) scratch. (O) 
+Finally, (O) we (O) made (O) several (O) key (O) modifications (O) to (O) the (O) [vanilla (B) seq2seq (I)] paradigm. (O) 
+As (O) shown (O) later, (O) a (O) [vanilla (B) seq2seq (I) model (I)] does (O) not (O) work (O) well (O) for (O) [character-level (B) inputs (I)]. 
+
+[MODEL (B) ARCHITECTURE (I)] 
+
+The (O) backbone (O) of (O) [Tacotron (B)] is (O) a (O) [seq2seq (B) model (I)] with (O) attention. (O) 
+Figure (O) 1 (O) depicts (O) the (O) model, (O) which (O) includes (O) an (O) [encoder (B)], an (O) [attention-based (B) decoder (I)], and (O) a (O) [post-processing (B) net (I)]. 
+At (O) a (O) high-level, (O) our (O) model (O) takes (O) characters (O) as (O) input (O) and (O) produces (O) [spectrogram (B) frames (I)], which (O) are (O) then (O) converted (O) to (O) [waveforms (B)]. 
+We (O) describe (O) these (O) components (O) below. (O) 
+
+Figure (O) : The (O) [CBHG (B) module (I)] ([1D (B) convolution (I) bank (I)] + highway (O) network (O) + [bidirectional (B) GRU (I)]) adapted. (O) 
+
+[CBHG (B) MODULE (I)] 
+
+We (O) first (O) describe (O) a (O) building (O) block (O) dubbed (O) [CBHG (B)], illustrated (O) in (O) Figure (O) 2. (O) 
+[CBHG (B)] consists (O) of (O) a (O) bank (O) of (O) [1D (B) convolutional (I) filters (I)], followed (O) by (O) highway (O) networks (O) and (O) a (O) [bidirectional (B) gated (I) recurrent (I) unit (I)] ([GRU (B)]) [recurrent (B) neural (I) network (I)] ([RNN (B)]). 
+[CBHG (B)] is (O) a (O) powerful (O) module (O) for (O) extracting (O) representations (O) from (O) sequences. (O) 
+The (O) input (O) sequence (O) is (O) first (O) convolved (O) with (O) K (O) sets (O) of (O) [1D (B) convolutional (I) filters (I)], where (O) the (O) k-th (O) set (O) contains (O) C (O) k (O) filters (O) of (O) width (O) k. (O) 
+These (O) filters (O) explicitly (O) model (O) local (O) and (O) contextual (O) information (O) (akin (O) to (O) modeling (O) unigrams, (O) bigrams, (O) up (O) to (O) [K-grams (B)]). 
+The (O) convolution (O) outputs (O) are (O) stacked (O) together (O) and (O) further (O) max (O) pooled (O) along (O) time (O) to (O) increase (O) local (O) invariances. (O) 
+Note (O) that (O) we (O) use (O) a (O) stride (O) of (O) 1 (O) to (O) preserve (O) the (O) original (O) time (O) resolution. (O) 
+We (O) further (O) pass (O) the (O) processed (O) sequence (O) to (O) a (O) few (O) fixed-width (O) [1D (B) convolutions (I)], whose (O) outputs (O) are (O) added (O) with (O) the (O) original (O) input (O) sequence (O) via (O) [residual (B) connections (I)]. 
+[Batch (B) normalization (I)] is (O) used (O) for (O) all (O) [convolutional (B) layers (I)]. 
+The (O) convolution (O) outputs (O) are (O) fed (O) into (O) a (O) [multi-layer (B) highway (I) network (I)] to (O) extract (O) high-[level (B) features (I)]. 
+Finally, (O) we (O) stack (O) a (O) [bidirectional (B) GRU (I) RNN (I)] on (O) top (O) to (O) extract (O) [sequential (B) features (I)] from (O) both (O) forward (O) and (O) backward (O) context. (O) 
+[CBHG (B)] is (O) inspired (O) from (O) work (O) in (O) [machine (B) translation (I)], where (O) the (O) main (O) differences (O) include (O) using (O) non-causal (O) convolutions, (O) [batch (B) normalization (I)], [residual (B) connections (I)], and (O) stride=1 (O) max (O) pooling. (O) 
+We (O) found (O) that (O) these (O) modifications (O) improved (O) generalization. (O) 
+
+[ENCODER (B)] 
+
+The (O) goal (O) of (O) the (O) [encoder (B)] is (O) to (O) extract (O) robust (O) sequential (O) representations (O) of (O) text. (O) 
+The (O) input (O) to (O) the (O) [encoder (B)] is (O) a (O) character (O) sequence, (O) where (O) each (O) character (O) is (O) represented (O) as (O) a (O) [one-hot (B) vector (I)] and (O) embedded (O) into (O) a (O) [continuous (B) vector (I)]. 
+We (O) then (O) apply (O) a (O) set (O) of (O) non-linear (O) transformations, (O) collectively (O) called (O) a (O) “ (O) [pre-net (B)] ”, (O) to (O) each (O) embedding. (O) 
+We (O) use (O) a (O) bottleneck (O) layer (O) with (O) [dropout (B)] as (O) the (O) [pre-net (B)] in (O) this (O) work, (O) which (O) helps (O) convergence (O) and (O) improves (O) generalization. (O) 
+A (O) [CBHG (B) module (I)] transforms (O) the (O) [pre-net (B) outputs (I)] into (O) the (O) final (O) [encoder (B) representation (I)] used (O) by (O) the (O) attention (O) module. (O) 
+We (O) found (O) that (O) this (O) [CBHG-based (B) encoder (I)] not (O) only (O) reduces (O) overfitting, (O) but (O) also (O) makes (O) fewer (O) mispronunciations (O) than (O) a (O) standard (O) [multi-layer (B) RNN (I) encoder (I)] (see (O) our (O) linked (O) page (O) of (O) [audio (B) samples (I)]). 
+
+Table (O) : [Hyper-parameters (B)] and (O) [network (B) architectures (I)]. “ (O) conv-k-c-[ReLU (B)] ” (O) denotes (O) [1D (B) convolution (I)] 
+with (O) width (O) k (O) and (O) c (O) output (O) channels (O) with (O) [ReLU (B) activation (I)]. FC (O) stands (O) for (O) fully-connected. (O) 
+
+[DECODER (B)] 
+
+We (O) use (O) a (O) content-based (O) [tanh (B) attention (I) decoder (I)], where (O) a (O) stateful (O) [recurrent (B) layer (I)] produces (O) the (O) attention (O) query (O) at (O) each (O) decoder (O) time (O) step. (O) 
+We (O) concatenate (O) the (O) [context (B) vector (I)] and (O) the (O) [attention (B) RNN (I) cell (I) output (I)] to (O) form (O) the (O) input (O) to (O) the (O) [decoder (B) RNNs (I)]. 
+We (O) use (O) a (O) stack (O) of (O) [GRUs (B)] with (O) vertical (O) [residual (B) connections (I)] for (O) the (O) [decoder (B)]. 
+We (O) found (O) the (O) [residual (B) connections (I)] speed (O) up (O) convergence. (O) 
+The (O) [decoder (B) target (I)] is (O) an (O) important (O) design (O) choice. (O) 
+While (O) we (O) could (O) directly (O) predict (O) [raw (B) spectrogram (I)], it’s (O) a (O) highly (O) redundant (O) representation (O) for (O) the (O) purpose (O) of (O) learning (O) alignment (O) between (O) [speech (B) signal (I)] and (O) text (O) (which (O) is (O) really (O) the (O) motivation (O) of (O) using (O) [seq2seq (B)] for (O) this (O) task). (O) 
+Because (O) of (O) this (O) redundancy, (O) we (O) use (O) a (O) different (O) target (O) for (O) [seq2seq (B) decoding (I)] and (O) [waveform (B) synthesis (I)]. 
+The (O) [seq2seq (B) target (I)] can (O) be (O) highly (O) compressed (O) as (O) long (O) as (O) it (O) provides (O) sufficient (O) intelligibility (O) and (O) [prosody (B) information (I)] for (O) an (O) inversion (O) process, (O) which (O) could (O) be (O) fixed (O) or (O) trained. (O) 
+We (O) use (O) 80-band (O) [mel-scale (B) spectrogram (I)] as (O) the (O) target, (O) though (O) fewer (O) bands (O) or (O) more (O) concise (O) targets (O) such (O) as (O) cepstrum (O) could (O) be (O) used. (O) 
+We (O) use (O) a (O) [post-processing (B) network (I)] (discussed (O) below) (O) to (O) convert (O) from (O) the (O) [seq2seq (B) target (I)] to (O) [waveform (B)]. 
+We (O) use (O) a (O) simple (O) fully-connected (O) [output (B) layer (I)] to (O) predict (O) the (O) [decoder (B) targets (I)]. 
+An (O) important (O) trick (O) we (O) discovered (O) was (O) predicting (O) multiple, (O) non-overlapping (O) output (O) frames (O) at (O) each (O) [decoder (B) step (I)]. 
+Predicting (O) r (O) frames (O) at (O) once (O) divides (O) the (O) total (O) number (O) of (O) [decoder (B) steps (I)] by (O) r, (O) which (O) reduces (O) model (O) size, (O) training (O) time, (O) and (O) inference (O) time. (O) 
+More (O) importantly, (O) we (O) found (O) this (O) trick (O) to (O) substantially (O) increase (O) convergence (O) speed, (O) as (O) measured (O) by (O) a (O) much (O) faster (O) (and (O) more (O) stable) (O) alignment (O) learned (O) from (O) attention. (O) 
+This (O) is (O) likely (O) because (O) neighboring (O) [speech (B) frames (I)] are (O) correlated (O) and (O) each (O) character (O) usually (O) corresponds (O) to (O) multiple (O) frames. (O) 
+Emitting (O) one (O) frame (O) at (O) a (O) time (O) forces (O) the (O) model (O) to (O) attend (O) to (O) the (O) same (O) input (O) token (O) for (O) multiple (O) timesteps (O) ; emitting (O) multiple (O) frames (O) allows (O) the (O) attention (O) to (O) move (O) forward (O) early (O) in (O) training. (O) 
+A (O) similar (O) trick (O) is (O) also (O) used (O) but (O) mainly (O) to (O) speed (O) up (O) inference. (O) 
+The (O) first (O) [decoder (B) step (I)] is (O) conditioned (O) on (O) an (O) all-zero (O) frame, (O) which (O) represents (O) a (O) < GO (O) > frame. (O) 
+In (O) inference, (O) at (O) [decoder (B) step (I)] t, (O) the (O) last (O) frame (O) of (O) the (O) r (O) predictions (O) is (O) fed (O) as (O) input (O) to (O) the (O) [decoder (B)] at (O) step (O) t (O) + 1. (O) 
+Note (O) that (O) feeding (O) the (O) last (O) prediction (O) is (O) an (O) ad-hoc (O) choice (O) here (O) – (O) we (O) could (O) use (O) all (O) r (O) predictions. (O) 
+During (O) training, (O) we (O) always (O) feed (O) every (O) r-th (O) ground (O) truth (O) frame (O) to (O) the (O) [decoder (B)]. 
+The (O) input (O) frame (O) is (O) passed (O) to (O) a (O) [pre-net (B)] as (O) is (O) done (O) in (O) the (O) [encoder (B)]. 
+Since (O) we (O) do (O) not (O) use (O) techniques (O) such (O) as (O) scheduled (O) sampling (O) (we (O) found (O) it (O) to (O) hurt (O) [audio (B) quality (I)]), the (O) [dropout (B)] in (O) the (O) [pre-net (B)] is (O) critical (O) for (O) the (O) model (O) to (O) generalize, (O) as (O) it (O) provides (O) a (O) noise (O) source (O) to (O) resolve (O) the (O) multiple (O) modalities (O) in (O) the (O) output (O) distribution. (O) 
+
+[POST-PROCESSING (B) NET (I)] AND (O) [WAVEFORM (B) SYNTHESIS (I)] 
+
+As (O) mentioned (O) above, (O) the (O) [post-processing (B) net (I)]’s task (O) is (O) to (O) convert (O) the (O) [seq2seq (B) target (I)] to (O) a (O) target (O) that (O) can (O) be (O) synthesized (O) into (O) [waveforms (B)]. 
+Since (O) we (O) use (O) [Griffin-Lim (B)] as (O) the (O) synthesizer, (O) the (O) [post-processing (B) net (I) learns (I)] to (O) predict (O) [spectral (B)] magnitude (O) sampled (O) on (O) a (O) linear-frequency (O) scale. (O) 
+Another (O) motivation (O) of (O) the (O) [post-processing (B) net (I)] is (O) that (O) it (O) can (O) see (O) the (O) full (O) decoded (O) sequence. (O) 
+In (O) contrast (O) to (O) [seq2seq (B)], which (O) always (O) runs (O) from (O) left (O) to (O) right, (O) it (O) has (O) both (O) forward (O) and (O) backward (O) information (O) to (O) correct (O) the (O) prediction (O) error (O) for (O) each (O) individual (O) frame. (O) 
+In (O) this (O) work, (O) we (O) use (O) a (O) [CBHG (B) module (I)] for (O) the (O) [post-processing (B) net (I)], though (O) a (O) simpler (O) architecture (O) likely (O) works (O) as (O) well. (O) 
+The (O) concept (O) of (O) a (O) [post-processing (B) network (I)] is (O) highly (O) general. (O) 
+It (O) could (O) be (O) used (O) to (O) predict (O) alternative (O) targets (O) such (O) as (O) [vocoder (B) parameters (I)], or (O) as (O) a (O) [WaveNet (B)]-like [neural (B) vocoder (I)] that (O) synthesizes (O) [waveform (B) samples (I)] directly. (O) 
+We (O) use (O) the (O) [Griffin-Lim (B) algorithm (I)] to (O) synthesize (O) [waveform (B)] from (O) the (O) predicted (O) [spectrogram (B)]. 
+We (O) found (O) that (O) raising (O) the (O) predicted (O) magnitudes (O) by (O) a (O) power (O) of (O) 1.2 (O) before (O) feeding (O) to (O) [Griffin-Lim (B) reduces (I) artifacts (I)], likely (O) due (O) to (O) its (O) harmonic (O) enhancement (O) effect. (O) 
+We (O) observed (O) that (O) [Griffin-Lim (B) converges (I)] after (O) 50 (O) iterations (O) (in (O) fact, (O) about (O) 30 (O) iterations (O) seems (O) to (O) be (O) enough), (O) which (O) is (O) reasonably (O) fast. (O) 
+We (O) implemented (O) [Griffin-Lim (B)] in (O) TensorFlow (O) hence (O) it’s (O) also (O) part (O) of (O) the (O) model. (O) 
+While (O) [Griffin-Lim (B)] is (O) differentiable (O) (it (O) does (O) not (O) have (O) trainable (O) weights), (O) we (O) do (O) not (O) impose (O) any (O) loss (O) on (O) it (O) in (O) this (O) work. (O) 
+We (O) emphasize (O) that (O) our (O) choice (O) of (O) [Griffin-Lim (B)] is (O) for (O) simplicity (O) ; while (O) it (O) already (O) yields (O) strong (O) results, (O) developing (O) a (O) fast (O) and (O) [high-quality (B) trainable (I) spectrogram (I)] to (O) [waveform (B)] inverter (O) is (O) ongoing (O) work. (O) 
+
+MODEL (O) DETAILS (O) 
+
+Table (O) 1 (O) lists (O) the (O) [hyper-parameters (B)] and (O) [network (B) architectures (I)]. 
+We (O) use (O) [log (B) magnitude (I) spectrogram (I)] with (O) Hann (O) windowing, (O) 50 (O) ms (O) frame (O) length, (O) 12.5 (O) ms (O) frame (O) shift, (O) and (O) 2048-point (O) [Fourier (B) transform (I)]. 
+We (O) also (O) found (O) pre-emphasis (O) (0.97) (O) to (O) be (O) helpful. (O) 
+We (O) use (O) 24 (O) kHz (O) sampling (O) rate (O) for (O) all (O) experiments. (O) 
+We (O) use (O) r (O) = 2 (O) ([output (B) layer (I)] reduction (O) factor) (O) for (O) the (O) [MOS (B) results (I)] in (O) this (O) paper, (O) though (O) larger (O) r (O) values (O) (e.g. (O) r (O) = 5) (O) also (O) work (O) well. (O) 
+We (O) use (O) the (O) [Adam (B) optimizer (I)] with (O) [learning (B) rate (I)] decay, (O) which (O) starts (O) from (O) 0.001 (O) and (O) is (O) reduced (O) to (O) 0.0005, (O) 0.0003, (O) and (O) 0.0001 (O) after (O) 500000, (O) 1 (O) M (O) and (O) 2 (O) M (O) global (O) steps, (O) respectively. (O) 
+We (O) use (O) a (O) simple (O) ` 1 (O) loss (O) for (O) both (O) [seq2seq (B) decoder (I)] ([mel-scale (B) spectrogram (I)]) and (O) [post-processing (B) net (I)] ([linear-scale (B) spectrogram (I)]). 
+The (O) two (O) losses (O) have (O) equal (O) weights. (O) 
+We (O) train (O) using (O) a (O) [batch (B) size (I)] of (O) 32, (O) where (O) all (O) sequences (O) are (O) padded (O) to (O) a (O) max (O) length. (O) 
+It’s (O) a (O) common (O) practice (O) to (O) train (O) sequence (O) models (O) with (O) a (O) loss (O) mask, (O) which (O) masks (O) loss (O) on (O) zero-padded (O) frames. (O) 
+However, (O) we (O) found (O) that (O) models (O) trained (O) this (O) way (O) do (O) n’t (O) know (O) when (O) to (O) stop (O) emitting (O) outputs, (O) causing (O) repeated (O) sounds (O) towards (O) the (O) end. (O) 
+One (O) simple (O) trick (O) to (O) get (O) around (O) this (O) problem (O) is (O) to (O) also (O) reconstruct (O) the (O) zero-padded (O) frames. (O) 
+
+EXPERIMENTS (O) 
+
+We (O) train (O) [Tacotron (B)] on (O) an (O) internal (O) North (O) American (O) [English (B) dataset (I)], which (O) contains (O) about (O) 24.6 (O) hours (O) of (O) [speech (B) data (I)] spoken (O) by (O) a (O) professional (O) [female (B) speaker (I)]. 
+The (O) phrases (O) are (O) text (O) normalized, (O) e.g. (O) “ (O) 16 (O) ” (O) is (O) converted (O) to (O) “ (O) sixteen (O) ”. (O) 
+
+Figure (O) : [Attention (B) alignments (I)] on (O) a (O) test (O) phrase. (O) 
+The (O) [decoder (B) length (I)] in (O) [Tacotron (B)] is (O) shorter (O) due (O) to (O) the (O) use (O) of (O) the (O) output (O) reduction (O) factor (O) r=5. (O) 
+
+
+ABLATION (O) ANALYSIS (O) 
+
+We (O) conduct (O) a (O) few (O) ablation (O) studies (O) to (O) understand (O) the (O) key (O) components (O) in (O) our (O) model. (O) 
+As (O) is (O) common (O) for (O) generative (O) models, (O) it’s (O) hard (O) to (O) compare (O) models (O) based (O) on (O) objective (O) metrics, (O) which (O) often (O) do (O) not (O) correlate (O) well (O) with (O) perception. (O) 
+We (O) mainly (O) rely (O) on (O) visual (O) comparisons (O) instead. (O) 
+We (O) strongly (O) encourage (O) readers (O) to (O) listen (O) to (O) the (O) provided (O) samples. (O) 
+First, (O) we (O) compare (O) with (O) a (O) [vanilla (B) seq2seq (I) model (I)]. 
+Both (O) the (O) [encoder (B)] and (O) [decoder (B)] use (O) 2 (O) layers (O) of (O) residual (O) [RNNs (B)], where (O) each (O) layer (O) has (O) 256 (O) [GRU (B) cells (I)] (we (O) tried (O) [LSTM (B)] and (O) got (O) similar (O) results). (O) 
+No (O) [pre-net (B)] or (O) [post-processing (B) net (I)] is (O) used, (O) and (O) the (O) [decoder (B)] directly (O) predicts (O) [linear-scale (B) log (I) magnitude (I) spectrogram (I)]. 
+We (O) found (O) that (O) scheduled (O) sampling (O) (sampling (O) rate (O) 0.5) (O) is (O) required (O) for (O) this (O) model (O) to (O) learn (O) alignments (O) and (O) generalize. (O) 
+We (O) show (O) the (O) learned (O) [attention (B) alignment (I)] in (O) Figure (O) 3. (O) 
+Figure (O) 3(a) (O) reveals (O) that (O) the (O) [vanilla (B) seq2seq (I)] learns (O) a (O) poor (O) alignment. (O) 
+One (O) problem (O) is (O) that (O) attention (O) tends (O) to (O) get (O) stuck (O) for (O) many (O) frames (O) before (O) moving (O) forward, (O) which (O) causes (O) bad (O) [speech (B)] intelligibility (O) in (O) the (O) synthesized (O) signal. (O) 
+The (O) naturalness (O) and (O) overall (O) duration (O) are (O) destroyed (O) as (O) a (O) result. (O) 
+In (O) contrast, (O) our (O) model (O) learns (O) a (O) clean (O) and (O) smooth (O) alignment, (O) as (O) shown (O) in (O) Figure (O) 3(c). (O) 
+Second, (O) we (O) compare (O) with (O) a (O) model (O) with (O) the (O) [CBHG (B) encoder (I)] replaced (O) by (O) a (O) 2-layer (O) residual (O) [GRU (B) encoder (I)]. 
+The (O) rest (O) of (O) the (O) model, (O) including (O) the (O) [encoder (B) pre-net (I)], remain (O) exactly (O) the (O) same. (O) 
+Comparing (O) Figure (O) 3(b) (O) and (O) 3(c), (O) we (O) can (O) see (O) that (O) the (O) alignment (O) from (O) the (O) [GRU (B) encoder (I)] is (O) noisier. (O) 
+Listening (O) to (O) synthesized (O) signals, (O) we (O) found (O) that (O) noisy (O) alignment (O) often (O) leads (O) to (O) mispronunciations. (O) 
+The (O) [CBHG (B) encoder (I)] reduces (O) overfitting (O) and (O) generalizes (O) well (O) to (O) long (O) and (O) complex (O) phrases. (O) 
+Figures (O) 4(a) (O) and (O) 4(b) (O) demonstrate (O) the (O) benefit (O) of (O) using (O) the (O) [post-processing (B) net (I)]. 
+We (O) trained (O) a (O) model (O) without (O) the (O) [post-processing (B) net (I)] while (O) keeping (O) all (O) the (O) other (O) components (O) untouched (O) (except (O) that (O) the (O) [decoder (B) RNN (I)] predicts (O) [linear-scale (B) spectrogram (I)]). 
+With (O) more (O) contextual (O) information, (O) the (O) prediction (O) from (O) the (O) [post-processing (B) net (I)] contains (O) better (O) resolved (O) harmonics (O) (e.g. (O) higher (O) harmonics (O) between (O) bins (O) 100 (O) and (O) 400) (O) and (O) high (O) frequency (O) formant (O) structure, (O) which (O) reduces (O) synthesis (O) artifacts. (O) 
+
+Figure (O) : Predicted (O) [spectrograms (B)] with (O) and (O) without (O) using (O) the (O) [post-processing (B) net (I)]. 
+
+[MEAN (B) OPINION (I) SCORE (I) TESTS (I)] 
+
+We (O) conduct (O) [mean (B) opinion (I) score (I) tests (I)], where (O) the (O) subjects (O) were (O) asked (O) to (O) rate (O) the (O) naturalness (O) of (O) the (O) stimuli (O) in (O) a (O) 5-point (O) Likert (O) scale (O) score. (O) 
+The (O) [MOS (B) tests (I)] were (O) crowdsourced (O) from (O) [native (B) speakers (I)]. 
+100 (O) unseen (O) phrases (O) were (O) used (O) for (O) the (O) tests (O) and (O) each (O) phrase (O) received (O) 8 (O) ratings. (O) 
+When (O) computing (O) [MOS (B)], we (O) only (O) include (O) ratings (O) where (O) headphones (O) were (O) used. (O) 
+We (O) compare (O) our (O) model (O) with (O) a (O) parametric (O) (based (O) on (O) [LSTM (B)]) and (O) a (O) concatenative (O) system, (O) both (O) of (O) which (O) are (O) in (O) production. (O) 
+As (O) shown (O) in (O) Table (O) 2, (O) [Tacotron (B)] achieves (O) an (O) [MOS (B)] of (O) 3.82, (O) which (O) outperforms (O) the (O) [parametric (B) system (I)]. 
+Given (O) the (O) strong (O) baselines (O) and (O) the (O) artifacts (O) introduced (O) by (O) the (O) [Griffin-Lim (B) synthesis (I)], this (O) represents (O) a (O) very (O) promising (O) result. (O) 
+
+Table (O) : 5-scale (O) [mean (B) opinion (I) score (I) evaluation (I)].                                        
+
+DISCUSSIONS (O) 
+
+We (O) have (O) proposed (O) [Tacotron (B)], an (O) integrated (O) [end-to-end (B) generative (I) TTS (I) model (I)] that (O) takes (O) a (O) character (O) sequence (O) as (O) input (O) and (O) outputs (O) the (O) corresponding (O) [spectrogram (B)]. 
+With (O) a (O) very (O) simple (O) [waveform (B) synthesis (I)] module, (O) it (O) achieves (O) a (O) 3.82 (O) [MOS (B) score (I)] on (O) US (O) English, (O) outperforming (O) a (O) production (O) [parametric (B) system (I)] in (O) terms (O) of (O) naturalness. (O) 
+[Tacotron (B)] is (O) frame-based, (O) so (O) the (O) inference (O) is (O) substantially (O) faster (O) than (O) sample-level (O) autoregressive (O) methods. (O) 
+Unlike (O) previous (O) work, (O) [Tacotron (B)] does (O) not (O) need (O) handengineered (O) [linguistic (B) features (I)] or (O) complex (O) components (O) such (O) as (O) an (O) [HMM (B) aligner (I)]. 
+It (O) can (O) be (O) trained (O) from (O) scratch (O) with (O) random (O) initialization. (O) 
+We (O) perform (O) simple (O) [text (B) normalization (I)], though (O) recent (O) advancements (O) in (O) learned (O) [text (B) normalization (I)] may (O) render (O) this (O) unnecessary (O) in (O) the (O) future. (O) 
+We (O) have (O) yet (O) to (O) investigate (O) many (O) aspects (O) of (O) our (O) model (O) ; many (O) early (O) design (O) decisions (O) have (O) gone (O) unchanged. (O) 
+Our (O) [output (B) layer (I)], attention (O) module, (O) [loss (B) function (I)], and (O) [Griffin-Lim (B)]-based [waveform (B) synthesizer (I)] are (O) all (O) ripe (O) for (O) improvement. (O) 
+For (O) example, (O) it’s (O) well (O) known (O) that (O) [Griffin-Lim (B) outputs (I)] may (O) have (O) audible (O) artifacts. (O) 
+We (O) are (O) currently (O) working (O) on (O) fast (O) and (O) [high-quality (B) neural-network-based (I) spectrogram (I) inversion (I)]. 

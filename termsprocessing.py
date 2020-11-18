@@ -4,7 +4,9 @@
 ### Terminology - Project
 # Authors: Cécile MACAIRE & Ludivine ROBERT 
 
-### Librairies 
+### Librairies
+from os import listdir
+from os.path import isfile, join
 
 import pandas as pd
 import spacy
@@ -33,6 +35,11 @@ rule_4 = ['accent', 'accuracy', 'activation', 'adaptation', 'algorithm', 'aligne
           'symbol', 'synthesis', 'synthesizer', 'system', 'tagger', 'target', 'task', 'technique', 'technique',
           'technology', 'test', 'tilt', 'token', 'tool', 'toolkit', 'track', 'training', 'transcription', 'transfer',
           'transform', 'translation', 'unit', 'value', 'variation']
+
+
+def get_files_from_directory(path):
+    """Get all files from directory"""
+    return [f for f in listdir(path) if isfile(join(path, f))]
 
 
 # Read data from lexicon
@@ -270,6 +277,7 @@ def construct_annotated_text(text_dataframe):
 
 def tagging_IOB(string):
     """Tagging the terms into IOB"""
+    string = string.replace('\n', '\n ')
     is_term = False
     string_tag = string.split(' ')
     annotated = []
@@ -295,7 +303,7 @@ def tagging_IOB(string):
                 else:
                     annotated.append(l)
     iob_string = ' '.join(annotated)
-    #    print(iob_string)
+    iob_string = iob_string.replace('\n ', '\n')
     return iob_string
 
 
@@ -314,7 +322,7 @@ def POS_tags(string):
     all_tags = all_tags.replace('[ ', '[')
     all_tags = all_tags.replace(' ]', ']')
     all_tags = all_tags.replace('SPACE', '')
-    #    print(all_tags)
+    all_tags = all_tags.replace('\n  ', '\n')
     return all_tags
 
 
@@ -358,7 +366,14 @@ def annotate_iob_pos(text_file, output_file):
 
 
 if __name__ == "__main__":
-    # annotate_terms('/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/tts-articles/txt/22.txt', 'aaa.txt')
+    # path_1 = '/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/train/'
+    # path_2 = '/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/annot_IOB_POS/'
+    # files = get_files_from_directory('/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/train/')
+    # for i in files:
+    #     try:
+    #         annotate_iob_pos(path_1+i, path_2+i)
+    #     except:
+    #         print(i)
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', '--annotation_type', type=int,
                         help='choose the type of annotation: 1=terms, 2=IOB, 3=POS')

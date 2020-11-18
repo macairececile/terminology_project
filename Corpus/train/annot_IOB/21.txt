@@ -1,0 +1,136 @@
+[STATISTICAL (B) PARAMETRIC (I) SPEECH (I) SYNTHESIS (I)] 
+
+ABSTRACT (O) 
+
+This (O) paper (O) gives (O) a (O) general (O) overview (O) of (O) techniques (O) in (O) [statistical (B) parametric (I) speech (I) synthesis (I)]. 
+One (O) of (O) the (O) instances (O) of (O) these (O) techniques, (O) called (O) [HMM-based (B) generation (I) synthesis (I)] (or (O) simply (O) [HMM-based (B) synthesis (I)]), has (O) recently (O) been (O) shown (O) to (O) be (O) very (O) effective (O) in (O) generating (O) acceptable (O) [speech (B) synthesis (I)]. 
+This (O) paper (O) also (O) contrasts (O) these (O) techniques (O) with (O) the (O) more (O) conventional (O) [unit (B) selection (I) technology (I)] that (O) has (O) dominated (O) [speech (B) synthesis (I)] over (O) the (O) last (O) ten (O) years. (O) Advantages (O) and (O) disadvantages (O) of (O) [statistical (B) parametric (I) synthesis (I)] are (O) highlighted (O) as (O) well (O) as (O) identifying (O) where (O) we (O) expect (O) the (O) key (O) developments (O) to (O) appear (O) in (O) the (O) immediate (O) future. (O) 
+
+Index (O) Terms (O) — (O) [Speech (B) synthesis (I)], [hidden (B) Markov (I) models (I)] 
+
+BACKGROUND (O) 
+
+With (O) the (O) increase (O) in (O) power (O) and (O) resources (O) of (O) computer (O) technology, (O) building (O) natural (O) sounding (O) [synthetic (B) voices (I)] has (O) progressed (O) from (O) a (O) knowledge-based (O) activity (O) to (O) a (O) data-based (O) one. (O) 
+Rather (O) than (O) handcrafting (O) each (O) [phonetic (B) unit (I)] and (O) its (O) applicable (O) contexts, (O) [high-quality (B) synthetic (I) voices (I)] may (O) be (O) built (O) from (O) sufficiently (O) diverse (O) [single (B) speaker (I) databases (I)] of (O) natural (O) [speech (B)]. 
+We (O) can (O) see (O) a (O) progression (O) from (O) sxed (O) inventories, (O) found (O) in (O) diphone (O) systems (O) to (O) the (O) more (O) general, (O) but (O) more (O) resource (O) consuming, (O) techniques (O) of (O) [unit (B) selection (I) synthesis (I)] where (O) appropriate (O) [sub-word (B) units (I)] are (O) automatically (O) selected (O) from (O) [large (B) databases (I)] of (O) natural (O) [speech (B)]. 
+ATR (O) ν-talk (O) was (O) the (O) srst (O) to (O) show (O) the (O) effectiveness (O) of (O) automatic (O) selection (O) of (O) appropriate (O) units, (O) then (O) CHATR (O) generalized (O) these (O) techniques (O) to (O) multiple (O) languages (O) and (O) an (O) automatic (O) training (O) scheme. (O) 
+[Unit (B) selection (I) techniques (I)] have (O) risen (O) to (O) be (O) the (O) dominant (O) synthesis (O) technique. (O) 
+The (O) quality (O) of (O) the (O) output (O) derives (O) directly (O) from (O) the (O) quality (O) of (O) the (O) recordings, (O) and (O) it (O) appears (O) that (O) the (O) larger (O) the (O) database (O) the (O) better (O) the (O) coverage. (O) 
+Commercial (O) systems (O) have (O) exploited (O) these (O) technique (O) to (O) bring (O) us (O) a (O) new (O) level (O) of (O) [synthetic (B) speech (I)]. 
+However, (O) although (O) certainly (O) successful, (O) there (O) is (O) always (O) the (O) issue (O) of (O) spurious (O) errors. (O) 
+When (O) a (O) desired (O) sentence (O) happens (O) to (O) require (O) [phonetic (B)] and (O) [prosody (B) contexts (I)] that (O) are (O) under (O) represented (O) in (O) a (O) database, (O) the (O) quality (O) of (O) the (O) synthesizer (O) can (O) be (O) severely (O) degraded. (O) 
+Even (O) though (O) this (O) may (O) be (O) a (O) rare (O) event, (O) a (O) single (O) bad (O) join (O) in (O) an (O) utterance (O) can (O) ruin (O) the (O) listeners (O) ƀow. (O) 
+It (O) is (O) not (O) possible (O) to (O) guarantee (O) that (O) bad (O) joins (O) and/or (O) inappropriate (O) units (O) do (O) not (O) occur, (O) simply (O) because (O) of (O) the (O) vast (O) number (O) of (O) possible (O) combinations (O) that (O) could (O) occur. (O) 
+However (O) for (O) particular (O) applications (O) it (O) is (O) often (O) possible (O) to (O) almost (O) always (O) avoid (O) them. (O) 
+Limited (O) domain (O) synthesizers, (O) where (O) the (O) database (O) is (O) designed (O) for (O) the (O) particular (O) application, (O) go (O) a (O) long (O) way (O) to (O) making (O) almost (O) all (O) the (O) synthetic (O) output (O) near (O) perfect. (O) 
+However (O) in (O) spite (O) of (O) the (O) desire (O) for (O) perfect (O) synthesis (O) all (O) the (O) time, (O) there (O) are (O) limitations (O) in (O) the (O) [unit (B) selection (I) technique (I)]. 
+No (O) (or (O) little) (O) modiscation (O) of (O) the (O) selected (O) pieces (O) of (O) natural (O) [speech (B)] are (O) carried (O) out, (O) thus (O) limiting (O) the (O) output (O) [speech (B)] to (O) the (O) style (O) of (O) that (O) in (O) the (O) original (O) recordings. (O) 
+With (O) a (O) desire (O) for (O) more (O) control (O) over (O) the (O) [speech (B) variation (I)], [larger (B) databases (I)] containing (O) examples (O) of (O) different (O) styles (O) are (O) required. (O) 
+IBM’s (O) stylistic (O) synthesis (O) is (O) a (O) good (O) example (O) but (O) is (O) limited (O) by (O) the (O) amount (O) of (O) variations (O) that (O) can (O) be (O) recorded. (O) 
+In (O) direct (O) contrast (O) to (O) this (O) selecting (O) of (O) actual (O) instances (O) of (O) [speech (B)] from (O) a (O) database, (O) [statistical (B) parametric (I) speech (I) synthesis (I)] has (O) also (O) grown (O) in (O) popularity (O) over (O) the (O) last (O) few (O) years. (O) 
+[Statistical (B) parametric (I) synthesis (I)] might (O) be (O) most (O) simply (O) described (O) as (O) generating (O) the (O) average (O) of (O) some (O) set (O) of (O) similarly (O) sounding (O) [speech (B) segments (I)]. 
+This (O) contrasts (O) directly (O) with (O) the (O) desire (O) in (O) [unit (B) selection (I)] to (O) keep (O) the (O) natural (O) unmodised (O) [speech (B) units (I)], but (O) using (O) parametric (O) models (O) offers (O) other (O) benests. (O) 
+In (O) both (O) the (O) [Blizzard (B) Challenge (I)] 2005 (O) and (O) 2006 (O) where (O) a (O) common (O) [speech (B) database (I)] is (O) provided (O) to (O) participants (O) to (O) build (O) a (O) [synthetic (B) voice (I)], the (O) results (O) from (O) listening (O) tests (O) have (O) shown (O) that (O) one (O) of (O) the (O) instances (O) of (O) [statistical (B) parametric (I) synthesis (I) techniques (I)] called (O) [HMM-based (B) generation (I) synthesis (I)] (or (O) even (O) [HMM-based (B) synthesis (I)]) offers (O) more (O) preferred (O) (through (O) [MOS (B) tests (I)]) and (O) more (O) understandable (O) (through (O) [WER (B) scores (I)]) synthesis. (O) 
+Although (O) even (O) the (O) proponents (O) of (O) [statistical (B) parametric (I) synthesis (I)] feel (O) that (O) the (O) best (O) examples (O) of (O) [unit (B) selection (I)] are (O) better (O) than (O) the (O) best (O) examples (O) of (O) [statistical (B) parametric (I) synthesis (I)], overall (O) it (O) appears (O) that (O) quality (O) of (O) [statistical (B) parametric (I) synthesis (I)] has (O) already (O) reached (O) a (O) quality (O) that (O) can (O) stand (O) in (O) its (O) own (O) right. (O) 
+The (O) quality (O) issue (O) really (O) comes (O) down (O) to (O) the (O) fact (O) that (O) given (O) a (O) parametric (O) representation (O) it (O) is (O) necessary (O) to (O) reconstruct (O) the (O) [speech (B)] from (O) those (O) parameters. (O) 
+The (O) reconstruction (O) process (O) is (O) still (O) not (O) ideal. (O) 
+Although (O) modeling (O) the (O) [spectral (B)] and (O) [prosody (B) features (I)] is (O) relatively (O) well (O) desned, (O) models (O) of (O) the (O) residual (O) / excitation (O) are (O) still (O) yet (O) to (O) be (O) fully (O) developed, (O) though (O) composite (O) models (O) like (O) STRAIGHT (O) are (O) proving (O) to (O) be (O) useful. (O) 
+The (O) following (O) section (O) gives (O) a (O) more (O) formal (O) desnition (O) of (O) [unit (B) selection (I) techniques (I)] that (O) will (O) allow (O) a (O) easier (O) contrast (O) it (O) to (O) [statistical (B) parametric (I) synthesis (I)]. 
+Then (O) [statistical (B) parametric (I) speech (I) synthesis (I)] is (O) more (O) formally (O) desned, (O) speciscally (O) based (O) on (O) the (O) implementation (O) on (O) the (O) [HMM-based (B) speech (I) synthesis (I) system (I)] (HTS). (O) 
+The (O) snal (O) sections (O) discuss (O) some (O) of (O) the (O) advantages (O) in (O) a (O) [statistical (B) parametric (I) framework (I)] highlighting (O) some (O) of (O) the (O) existing (O) a (O) future (O) directions. (O) 
+
+[UNIT (B) SELECTION (I) SYNTHESIS (I)] 
+
+There (O) seems (O) to (O) be (O) two (O) basic (O) techniques (O) in (O) [unit (B) selection (I)], though (O) they (O) are (O) theoretically (O) not (O) very (O) different. (O) 
+Hunt (O) and (O) Black (O) presented (O) a (O) selection (O) model, (O) which (O) actually (O) existed (O) previously (O) in (O) ATR (O) νtalk. (O) 
+The (O) basic (O) notion (O) is (O) that (O) of (O) a (O) target (O) cost, (O) how (O) well (O) a (O) candidate (O) unit (O) from (O) the (O) database (O) matches (O) the (O) desired (O) unit, (O) and (O) a (O) concatenation (O) cost (O) which (O) desnes (O) how (O) well (O) two (O) selected (O) units (O) combine. (O) 
+[Unit (B) selection (I)] requires (O) the (O) optimization (O) of (O) both (O) these (O) costs (O) over (O) the (O) utterances. (O) 
+The (O) desnition (O) of (O) target (O) cost (O) between (O) a (O) candidate (O) unit (O) u (O) i (O) and (O) a (O) desired (O) unit, (O) 
+where (O) j (O) indexes (O) over (O) all (O) features (O) (typically (O) [phonetic (B)] and (O) prosodic (O) contexts (O) are (O) used). (O) Concatenation (O) cost (O) is (O) desned (O) as... (O) 
+
+[STATISTICAL (B) PARAMETRIC (I) SYNTHESIS (I)] 
+
+Overview (O) of (O) a (O) typical (O) system (O) 
+
+Though (O) in (O) this (O) case (O) k (O) may (O) include (O) [spectral (B)] and (O) [acoustic (B) features (I)]. 
+Weights (O) (w (O) tj (O) and (O) w (O) ck) (O) have (O) to (O) be (O) found (O) for (O) each (O) feature, (O) and (O) actually (O) implementations (O) used (O) a (O) combination (O) of (O) trained (O) and (O) hand (O) tuned (O) weights. (O) 
+The (O) second (O) direction, (O) use (O) a (O) clustering (O) method (O) that (O) allows (O) the (O) target (O) cost (O) to (O) effectively (O) be (O) precalculated. (O) 
+Units (O) of (O) the (O) same (O) type (O) are (O) clustered (O) into (O) a (O) [decision (B) tree (I)] that (O) asks (O) questions (O) about (O) features (O) available (O) at (O) synthesis (O) time (O) (e.g. (O) [phonetic (B)] and (O) [prosody (B) context (I)]). 
+All (O) of (O) these (O) techniques (O) depend (O) on (O) a (O) acoustic (O) distance (O) measure (O) which (O) should (O) be (O) correlated (O) with (O) human (O) perception. (O) 
+These (O) apparently (O) [unit (B) selection (I)] specisc (O) issues (O) are (O) mentioned (O) here (O) because (O) they (O) have (O) specisc (O) counterparts (O) in (O) [statistical (B) parametric (I) synthesis (I)]. 
+Figure (O) 1 (O) is (O) a (O) block (O) diagram (O) of (O) a (O) typical (O) [HMM-based (B) speech (I) synthesis (I) system (I)]. 
+It (O) consists (O) of (O) training (O) and (O) synthesis (O) parts. (O) 
+The (O) training (O) part (O) is (O) similar (O) to (O) those (O) used (O) in (O) [speech (B) recognition (I) systems (I)]. 
+The (O) main (O) difference (O) is (O) that (O) both (O) [spectrum (B)] (e.g., (O) [melcepstral (B) coefficients (I)] and (O) their (O) [dynamic (B) features (I)]) and (O) excitation (O) (e.g., (O) log (O) F (O) 0 (O) and (O) its (O) [dynamic (B) features (I)]) parameters (O) are (O) extracted (O) from (O) a (O) [speech (B) database (I)] and (O) modeled (O) by (O) [context-dependent (B) HMMs (I)] ([phonetic (B)], linguistic, (O) and (O) prosodic (O) contexts (O) are (O) taken (O) into (O) account). (O) 
+To (O) model (O) log (O) F0 (O) sequence (O) which (O) includes (O) unvoiced (O) regions (O) properly, (O) multi-space (O) probability (O) distributions (O) are (O) used (O) for (O) the (O) state (O) output (O) stream (O) for (O) log (O) F0. (O) 
+Each (O) [HMM (B)] has (O) state (O) duration (O) densities (O) to (O) model (O) the (O) temporal (O) structure (O) of (O) [speech (B)]. 
+As (O) a (O) result, (O) the (O) system (O) models (O) [spectrum (B)], excitation, (O) and (O) durations (O) in (O) a (O) unised (O) framework. (O) 
+The (O) synthesis (O) part (O) does (O) the (O) inverse (O) operation (O) of (O) [speech (B) recognition (I)]. 
+First, (O) an (O) arbitrarily (O) given (O) text (O) corresponding (O) an (O) utterance (O) to (O) be (O) synthesized (O) is (O) converted (O) to (O) a (O) [context-dependent (B) label (I) sequence (I)] and (O) then (O) the (O) utterance (O) [HMM (B)] is (O) constructed (O) by (O) concatenating (O) the (O) contextdependent (O) [HMMs (B)] according (O) to (O) the (O) label (O) sequence. (O) 
+Secondly, (O) state (O) durations (O) of (O) the (O) [HMM (B)] are (O) determined (O) based (O) on (O) the (O) state (O) duration (O) [probability (B) density (I) functions (I)]. 
+Thirdly, (O) the (O) [speech (B) parameter (I) generation (I) algorithm (I)] (typically, (O) case (O) 1 (O) in) (O) generates (O) the (O) [sequence (B) of (I) mel-cepstral (I) coefficients (I)] and (O) log (O) F (O) 0 (O) values (O) that (O) maximize (O) their (O) output (O) probabilities. (O) 
+Finally, (O) a (O) [speech (B) waveform (I)] is (O) synthesized (O) directly (O) from (O) the (O) generated (O) [mel-cepstral (B) coefficients (I)] and (O) F0 (O) values (O) using (O) the (O) MLSA (O) slter (O) with (O) binary (O) pulse (O) or (O) noise (O) excitation. (O) 
+
+Advantages (O) and (O) disadvantages (O) 
+
+The (O) biggest (O) disadvantage (O) of (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)] against (O) the (O) [unit (B) selection (I) approach (I)] is (O) the (O) quality (O) of (O) [synthesized (B) speech (I)]. 
+There (O) seems (O) to (O) be (O) three (O) factors (O) which (O) degrade (O) the (O) quality (O) : [vocoder (B)], modeling (O) accuracy, (O) and (O) over-smoothing. (O) 
+The (O) [synthesized (B) speech (I)] by (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)] sounds (O) buzzy (O) since (O) it (O) is (O) based (O) on (O) the (O) [vocoding (B) technique (I)]. 
+To (O) alleviate (O) this (O) problem, (O) a (O) high (O) quality (O) [vocoder (B)] such (O) as (O) multi-band (O) excitation (O) scheme (O) or (O) STRAIGHT (O) have (O) been (O) integrated. (O) 
+Several (O) groups (O) have (O) recently (O) applied (O) [LSP-type (B) parameters (I)] instead (O) of (O) [mel-cepstral (B) coefficients (I)] to (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)]. 
+The (O) basic (O) system (O) uses (O) ML-estimated (O) [HMMs (B)] as (O) its (O) [acoustic (B) models (I)]. 
+Because (O) this (O) system (O) generates (O) [speech (B) parameters (I)] from (O) its (O) [acoustic (B) models (I)], model (O) accuracy (O) highly (O) affects (O) the (O) quality (O) of (O) [synthesized (B) speech (I)]. 
+To (O) improve (O) its (O) modeling (O) accuracy, (O) a (O) number (O) of (O) advanced (O) [acoustic (B) models (I)] and (O) training (O) frameworks (O) such (O) as (O) hidden (O) semi-[Markov (B) models (I)] (HSMMs), (O) trajectory (O) [HMMs (B)], buried (O) [Markov (B) models (I)], trended (O) [HMMs (B)], stochastic (O) [Markov (B)] graphs, (O) minimum (O) generation (O) error (O) (MGE) (O) criterion, (O) and (O) variational (O) Bayesian (O) approach (O) have (O) been (O) investigated. (O) 
+In (O) the (O) basic (O) system, (O) the (O) [speech (B) parameter (I) generation (I) algorithm (I)] is (O) used (O) to (O) generate (O) [spectral (B)] and (O) excitation (O) parameters (O) from (O) [HMMs (B)]. 
+By (O) taking (O) account (O) of (O) constraints (O) between (O) the (O) static (O) and (O) [dynamic (B) features (I)], it (O) can (O) generate (O) smooth (O) [speech (B) parameter (I)] trajectories. (O) 
+However, (O) the (O) generated (O) [spectral (B)] and (O) excitation (O) parameters (O) are (O) often (O) over-smoothed. (O) 
+[Synthesized (B) speech (I)] using (O) over-smoothed (O) [spectral (B) parameters (I)] sounds (O) muffled. (O) 
+To (O) reduce (O) this (O) effect (O) and (O) enhance (O) the (O) [speech (B) quality (I)], postsltering, (O) a (O) conditional (O) [speech (B) parameter (I) generation (I) algorithm (I)], or (O) a (O) [speech (B) parameter (I) generation (I) algorithm (I)] considering (O) global (O) variance (O) have (O) been (O) used. (O) 
+Advantages (O) of (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)] are (O) 
+1) (O) its (O) [voice (B) characteristics (I)] can (O) be (O) easily (O) modised, (O) 
+2) (O) it (O) can (O) be (O) applied (O) to (O) various (O) languages (O) with (O) little (O) modiscation, (O) 
+3) (O) a (O) variety (O) of (O) speaking (O) styles (O) or (O) [emotional (B) speech (I)] can (O) be (O) synthesized (O) using (O) the (O) small (O) amount (O) of (O) [speech (B) data (I)], 
+4) (O) techniques (O) developed (O) in (O) [ASR (B)] can (O) be (O) easily (O) applied, (O) 
+5) (O) its (O) footprint (O) is (O) relatively (O) small. (O) 
+The (O) [voice (B) characteristics (I)] in (O) 1) (O) can (O) be (O) changed (O) by (O) transforming (O) [HMM (B) parameters (I)] appropriately (O) because (O) the (O) system (O) generates (O) [speech (B) waveforms (I)] from (O) the (O) [HMMs (B)] themselves. (O) 
+For (O) example, (O) either (O) a (O) [speaker (B) adaptation (I)], a (O) [speaker (B) interpolation (I)], or (O) an (O) eigenvoice (O) technique (O) was (O) applied (O) to (O) this (O) system, (O) and (O) it (O) was (O) shown (O) that (O) the (O) system (O) could (O) modify (O) [voice (B) characteristics (I)]. 
+Multilingual (O) support (O) in (O) 2) (O) can (O) be (O) easily (O) realized (O) because (O) in (O) this (O) system (O) only (O) contextual (O) factors (O) are (O) dependent (O) on (O) each (O) language. (O) 
+Japanese, (O) Mandarin, (O) Korean, (O) English, (O) German, (O) Portuguese, (O) Swedish, (O) Finnish, (O) Slovenian, (O) Croatian, (O) Arabic, (O) Farsi, (O) and (O) Polyglot (O) systems (O) have (O) already (O) been (O) developed (O) by (O) various (O) groups. (O) 
+Speaking (O) styles (O) and (O) [emotional (B) voices (I)] in (O) 3) (O) can (O) be (O) constructed (O) by (O) re-estimating (O) existing (O) [average (B) voice (I) models (I)] with (O) only (O) a (O) few (O) utterances (O) using (O) adaptation (O) techniques. (O) 
+As (O) for (O) 4), (O) we (O) can (O) employ (O) a (O) number (O) of (O) useful (O) technologies (O) developed (O) for (O) the (O) [HMM-based (B) speech (I) recognition (I)]. 
+For (O) example, (O) structured (O) precision (O) matrix (O) models, (O) which (O) can (O) approximate (O) full (O) covariance (O) models (O) well (O) using (O) the (O) small (O) number (O) of (O) parameters, (O) have (O) successfully (O) been (O) applied (O) to (O) the (O) system. (O) 
+Small (O) footprints (O) in (O) 5) (O) can (O) be (O) realized (O) by (O) storing (O) statistics (O) of (O) [HMMs (B)] rather (O) than (O) multi-templates (O) of (O) [speech (B) units (I)]. 
+For (O) example, (O) footprints (O) of (O) the (O) Nitech’s (O) [Blizzard (B) Challenge (I)] 2005 (O) voices (O) were (O) less (O) than (O) 2 (O) MBytes (O) with (O) no (O) compression. (O) 
+
+RELATION (O) AND (O) [HYBRID (B) APPROACHES (I)] 
+
+Relation (O) between (O) two (O) approaches (O) 
+
+Some (O) of (O) clustering-based (O) [unit (B) selection (I) approaches (I)] uses (O) [HMM-based (B) state (I) clustering (I)]. 
+In (O) this (O) case, (O) the (O) structure (O) is (O) very (O) similar (O) to (O) that (O) of (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)]. 
+The (O) essential (O) difference (O) between (O) the (O) clustering-based (O) [unit-selection (B) approach (I)] and (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)] is (O) that (O) each (O) cluster (O) in (O) the (O) generation (O) approach (O) is (O) represented (O) by (O) statistics (O) of (O) the (O) cluster (O) instead (O) of (O) multi-templates (O) of (O) [speech (B) units (I)]. 
+In (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)], distributions (O) for (O) [spectrum (B)], F0, (O) and (O) duration (O) are (O) clustered (O) independently. (O) 
+Accordingly, (O) it (O) has (O) different (O) [decision (B) trees (I)] for (O) each (O) of (O) [spectrum (B)], F0, (O) and (O) duration. (O) 
+On (O) the (O) other (O) hand, (O) [unit (B) selection (I) systems (I)] often (O) use (O) regression (O) trees (O) (or (O) [CART (B)]) for (O) [prosody (B) prediction (I)]. 
+The (O) [decision (B) trees (I)] for (O) F (O) 0 (O) and (O) duration (O) in (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)] are (O) essentially (O) equivalent (O) to (O) the (O) regression (O) trees (O) in (O) the (O) [unit (B) selection (I) systems (I)]. 
+However, (O) in (O) the (O) [unit (B) selection (I) systems (I)], leaves (O) of (O) one (O) of (O) trees (O) must (O) have (O) [speech (B) waveforms (I)] : other (O) trees (O) are (O) used (O) to (O) calculate (O) target (O) costs, (O) to (O) prune (O) [waveform (B)] candidates, (O) or (O) to (O) give (O) features (O) for (O) constructing (O) the (O) trees (O) for (O) [speech (B) waveforms (I)]. 
+It (O) is (O) noted (O) that (O) in (O) the (O) [HMM-based (B) generation (I) synthesis (I) approach (I)], likelihoods (O) of (O) [static (B) feature (I)] parameters (O) and (O) [dynamic (B) feature (I)] parameters (O) corresponds (O) to (O) the (O) target (O) costs (O) and (O) concatenation (O) costs, (O) respectively. (O) 
+It (O) is (O) easy (O) to (O) understand, (O) if (O) we (O) approximate (O) each (O) state (O) output (O) distribution (O) by (O) a (O) discrete (O) distribution (O) or (O) instances (O) of (O) frame (O) samples (O) in (O) the (O) cluster (O) : when (O) the (O) [dynamic (B) feature (I)] is (O) calculated (O) as (O) the (O) difference (O) between (O) neighboring (O) [static (B) features (I)], the (O) ML-based (O) generation (O) results (O) in (O) a (O) frame-wise (O) DP (O) search (O) like (O) [unit (B) selection (I)]. 
+Thus (O) [HMM-based (B) parameter (I) generation (I)] can (O) be (O) viewed (O) as (O) an (O) analogue (O) version (O) of (O) [unit (B) selection (I)]. 
+
+[Hybrid (B) approaches (I)] 
+
+As (O) a (O) natural (O) consequence (O) of (O) the (O) above (O) viewpoints, (O) there (O) are (O) also (O) [hybrid (B) approaches (I)]. 
+Some (O) of (O) these (O) approaches (O) use (O) [spectrum (B) parameters (I)], F (O) 0 (O) values, (O) and (O) durations (O) (or (O) a (O) part (O) of (O) them) (O) generated (O) from (O) [HMM (B)] to (O) calculate (O) acoustic (O) target (O) costs (O) for (O) [unit (B) selection (I)]. 
+Similarly, (O) [HMM (B) likelihoods (I)] are (O) used (O) as (O) “ (O) costs (O) ” (O) for (O) [unit (B) selection (I)]. 
+Among (O) of (O) these (O) approaches, (O) use (O) frame-sized (O) units, (O) and (O) use (O) generated (O) longer (O) trajectories (O) to (O) provide (O) “ (O) costs (O) ” (O) for (O) [unit (B) selection (I)]. 
+Another (O) type (O) of (O) [hybrid (B) approaches (I)] uses (O) [statistical (B) models (I)] as (O) a (O) probabilistic (O) smoother (O) for (O) [unit (B) selection (I)]. 
+Unifying (O) [unit (B) selection (I)] and (O) [HMM-based (B) generation (I) synthesis (I)] is (O) also (O) investigated. (O) 
+In (O) the (O) future, (O) we (O) may (O) converge (O) at (O) an (O) optimal (O) form (O) of (O) corpusbased (O) [speech (B) synthesis (I)] fusing (O) generation (O) and (O) selection (O) approaches. (O) 
+
+CONCLUSION (O) 
+
+We (O) can (O) see (O) that (O) [statistical (B) parametric (I) speech (I) synthesis (I)] offers (O) a (O) wide (O) range (O) of (O) techniques (O) to (O) improve (O) spoken (O) output. (O) 
+Its (O) more (O) complex (O) models, (O) when (O) compared (O) to (O) standard (O) [unit (B) selection (I)], allow (O) for (O) general (O) solutions, (O) without (O) necessarily (O) requiring (O) recording (O) [speech (B)] in (O) all (O) [phonetic (B)] and (O) prosodic (O) contexts. (O) 
+The (O) pure (O) [unit (B) selection (I)] view (O) requires (O) very (O) [large (B) databases (I)] to (O) cover (O) examples (O) of (O) all (O) desired (O) prosodic, (O) [phonetic (B)] and (O) stylistic (O) variation. (O) 
+In (O) contrast (O) [statistical (B) parametric (I) synthesis (I)] allows (O) for (O) models (O) to (O) be (O) combined (O) and (O) adapted (O) thus (O) not (O) requiring (O) instances (O) of (O) all (O) possible (O) combinations (O) of (O) contexts. (O) 

@@ -1,0 +1,407 @@
+[Grapheme-to-Phoneme (B) Conversion (I)] with (O) [Convolutional (B) Neural (I) Networks (I)] 
+         
+
+
+Abstract (O) : [Grapheme-to-phoneme (B) (G2P) (I) conversion (I)] is (O) the (O) process (O) of (O) generating (O) pronunciation (O) for (O) words (O) based (O) on (O) their (O) written (O) form. (O) 
+It (O) has (O) a (O) highly (O) essential (O) role (O) for (O) [natural (B) language (I) processing (I)], [text-to-speech (B) synthesis (I)] and (O) [automatic (B) speech (I) recognition (I) systems (I)]. 
+In (O) this (O) paper, (O) we (O) investigate (O) [convolutional (B) neural (I) networks (I)] ([CNN (B)]) for (O) [G2P (B) conversion (I)]. 
+We (O) propose (O) a (O) novel (O) [CNN-based (B) sequence-to-sequence (I) (seq2seq) (I) architecture (I)] for (O) [G2P (B) conversion (I)]. 
+Our (O) approach (O) includes (O) an (O) [end-to-end (B) CNN (I) G2P (I) conversion (I)] with (O) [residual (B) connections (I)] and, (O) furthermore, (O) a (O) model (O) that (O) utilizes (O) a (O) [convolutional (B) neural (I) network (I)] (with (O) and (O) without (O) [residual (B) connections (I)]) as (O) [encoder (B)] and (O) [Bi-LSTM (B)] as (O) a (O) [decoder (B)]. 
+We (O) compare (O) our (O) approach (O) with (O) state-of-the-art (O) methods, (O) including (O) [Encoder-Decoder (B) LSTM (I)] and (O) [Encoder-Decoder (B) Bi-LSTM (I)]. 
+Training (O) and (O) inference (O) times, (O) [phoneme (B)] and (O) [word (B) error (I) rates (I)] were (O) evaluated (O) on (O) the (O) public (O) [CMUDict (B) dataset (I)] for (O) US (O) English, (O) and (O) the (O) best (O) performing (O) [convolutional (B) neural (I) network-based (I) architecture (I)] was (O) also (O) evaluated (O) on (O) the (O) [NetTalk (B) dataset (I)]. 
+Our (O) method (O) approaches (O) the (O) accuracy (O) of (O) previous (O) state-of-the-art (O) results (O) in (O) terms (O) of (O) [phoneme (B) error (I) rate (I)]. 
+Keywords (O) : [grapheme-to-phoneme (B)] ([G2P (B)]) ; [encoder-decoder (B)] ; [LSTM (B)] ; [1D (B) convolution (I)] ; [Bi-LSTM (B)] ; residual (O) architecture (O) 
+
+
+
+Introduction (O) 
+    
+The (O) process (O) of (O) [grapheme-to-phoneme (B) (G2P) (I) conversion (I)] generates (O) a (O) [phonetic (B) transcription (I)] from (O) the (O) written (O) form (O) of (O) words. (O) 
+The (O) spelling (O) of (O) a (O) word (O) is (O) called (O) a (O) [grapheme (B) sequence (I)] (or (O) [graphemes (B)]), the (O) [phonetic (B) form (I)] is (O) called (O) a (O) [phoneme (B) sequence (I)] (or (O) [phonemes (B)]). 
+It (O) is (O) essential (O) to (O) develop (O) a (O) [phonemic (B) lexicon (I)] in (O) [text-to-speech (B)] ([TTS (B)]) and (O) [automatic (B) speech (I) recognition (I) (ASR) (I) systems (I)]. 
+For (O) this (O) purpose, (O) [G2P (B) techniques (I)] are (O) used, (O) and (O) getting (O) state-of-the-art (O) performance (O) in (O) these (O) systems (O) depends (O) on (O) the (O) accuracy (O) of (O) [G2P (B) conversion (I)]. 
+For (O) instance, (O) in (O) [ASR (B) acoustic (I) models (I)], the (O) [pronunciation (B) lexicons (I)] and (O) language (O) models (O) are (O) critical (O) components. (O) 
+Acoustic (O) and (O) language (O) models (O) are (O) built (O) automatically (O) from (O) large (O) corpora. (O) 
+[Pronunciation (B) lexicons (I)] are (O) the (O) middle (O) layer (O) between (O) acoustic (O) and (O) language (O) models. (O) 
+For (O) a (O) new (O) [speech (B) recognition (I) task (I)], the (O) performance (O) of (O) the (O) overall (O) system (O) depends (O) on (O) the (O) quality (O) of (O) the (O) pronunciation (O) component. (O) 
+In (O) other (O) words, (O) the (O) system’s (O) performance (O) depends (O) on (O) [G2P (B) accuracy (I)]. 
+For (O) example, (O) the (O) [G2P (B) conversion (I)] of (O) word (O) ‘ (O) speaker’ (O) is (O) ‘S (O) P (O) IY (O) K (O) ER’. (O) 
+In (O) [TTS (B)] systems, (O) a (O) [high-quality (B) G2P (I) model (I)] is (O) also (O) an (O) essential (O) part (O) and (O) has (O) a (O) great (O) influence (O) on (O) the (O) overall (O) quality. (O) 
+Inaccurate (O) [G2P (B) conversion (I)] results (O) in (O) unnatural (O) pronunciation (O) or (O) even (O) incomprehensible (O) [synthetic (B) speech (I)]. 
+
+Previous (O) Works (O) 
+
+[G2P (B) conversion (I)] has (O) been (O) studied (O) for (O) a (O) long (O) time. (O) 
+[Rule-based (B) G2P (I) systems (I)] use (O) a (O) wide (O) set (O) of (O) [grapheme-to-phoneme (B) rules (I)]. 
+Developing (O) such (O) a (O) [G2P (B) system (I)] requires (O) linguistic (O) expertise. (O) 
+Additionally, (O) some (O) languages (O) (such (O) as (O) Chinese (O) and (O) Japanese) (O) have (O) complex (O) writing (O) systems, (O) and (O) building (O) the (O) rules (O) is (O) labor-intensive (O) and (O) it (O) is (O) extremely (O) difficult (O) to (O) cover (O) most (O) possible (O) situations. (O) 
+Furthermore, (O) these (O) systems (O) are (O) sensitive (O) to (O) out (O) of (O) vocabulary (O) (OOV) (O) events. (O) 
+Other (O) previous (O) solutions (O) used (O) joint (O) sequence (O) models. (O) 
+These (O) models (O) create (O) an (O) initial (O) [grapheme-phoneme (B) sequence (I) alignment (I)], and (O) by (O) using (O) this (O) alignment, (O) it (O) calculates (O) a (O) joint (O) [n-gram (B) language (I) model (I)] over (O) sequences. (O) 
+The (O) method (O) proposed (O) by (O) is (O) implemented (O) in (O) the (O) publicly (O) available (O) tool (O) Sequitur (O) (https://www-i6.informatik.rwth-aachen.de (O) / web (O) / Software (O) / g2p.html, (O) Access (O) date (O) : 9th (O) August (O) 2018). (O) 
+In (O) one-to-one (O) alignment, (O) each (O) [grapheme (B)] corresponds (O) to (O) only (O) one (O) [phoneme (B)], and (O) vice (O) versa. (O) 
+An (O) “ (O) empty (O) ” (O) symbol (O) is (O) introduced (O) to (O) match (O) [grapheme (B) and (I) phoneme (I) sequences (I)]. 
+For (O) example, (O) the (O) [grapheme (B) sequence (I)] of (O) ‘ (O) CAKE’ (O) matches (O) the (O) [phoneme (B) sequence (I)] of (O) ‘ (O) K (O) EY (O) K’, (O) and (O) one-to-one (O) alignment (O) of (O) these (O) sequences (O) is (O) C (O) → (O) K, (O) A (O) → (O) EY, (O) K (O) → (O) K, (O) and (O) the (O) last (O) [grapheme (B)] ‘ (O) E’ (O) matches (O) the (O) “ (O) empty (O) ” (O) symbol. (O) 
+Conditional (O) and (O) joint (O) maximum (O) entropy (O) models (O) use (O) this (O) approach. (O) 
+Later, (O) Hidden (O) [Conditional (B) Random (I) Field (I) (HCRF) (I) models (I)] were (O) introduced (O) in (O) which (O) the (O) alignment (O) between (O) [grapheme (B) and (I) phoneme (I) sequence (I)] is (O) modelled (O) with (O) hidden (O) variables. (O) 
+The (O) [HCRF (B) models (I)] usually (O) lead (O) to (O) very (O) competitive (O) results (O) ; however, (O) the (O) training (O) of (O) such (O) models (O) is (O) very (O) memory (O) and (O) computationally (O) intensive. (O) 
+A (O) further (O) approach (O) utilizes (O) [conditional (B) random (I) fields (I)] ([CRF (B)]) and (O) Segmentation (O) / Tagging (O) models (O) (such (O) as (O) linear (O) [finite-state (B) automata (I)] or (O) [transducers (B)], [FSTs (B)]), then (O) use (O) them (O) in (O) two (O) different (O) compositions. (O) 
+The (O) first (O) composition (O) is (O) a (O) joint-multigram (O) combined (O) with (O) [CRF (B)] ; the (O) second (O) one (O) is (O) a (O) joint-multigram (O) combined (O) with (O) Segmentation (O) / Tagging. (O) 
+The (O) first (O) approach (O) achieved (O) 5.5 (O) % [phoneme (B) error (I) rate (I)] (PER) (O) on (O) [CMUDict (B)]. 
+Recently, (O) [neural (B) networks (I)] have (O) been (O) applied (O) for (O) [G2P (B) conversion (I)]. 
+[Neural (B) network-based (I) G2P (I) conversion (I)] is (O) robust (O) against (O) spelling (O) mistakes (O) and (O) OOV (O) words (O) ; it (O) generalizes (O) well. (O) 
+Also, (O) it (O) can (O) be (O) seamlessly (O) integrated (O) into (O) [end-to-end (B) TTS (I)] / [ASR (B)] systems (O) (that (O) are (O) constructed (O) entirely (O) of (O) [deep (B) neural (I) networks (I)]). 
+In (O) this (O) paper, (O) a (O) [TTS (B) system (I)] ([Deep (B) Voice (I)]) is (O) presented (O) which (O) was (O) constructed (O) entirely (O) from (O) [deep (B) neural (I) networks (I)]. 
+[Deep (B) Voice (I)] lays (O) the (O) groundwork (O) for (O) truly (O) [end-to-end (B) neural (I) speech (I) synthesis (I)]. 
+Thus, (O) the (O) [G2P (B) model (I)] is (O) jointly (O) trained (O) with (O) further (O) essential (O) parts (O) of (O) the (O) [speech (B) synthesizer (I)] and (O) recognizer, (O) which (O) increase (O) the (O) overall (O) quality (O) of (O) the (O) system. (O) 
+[LSTM (B)] has (O) shown (O) competitive (O) performance (O) in (O) various (O) fields, (O) like (O) acoustic (O) modelling (O) and (O) language (O) understanding. (O) 
+One (O) of (O) the (O) early (O) neural (O) approaches (O) investigates (O) unidirectional (O) Long (O) Short-Term (O) Memory (O) (ULSTM) (O) with (O) full (O) output (O) delays, (O) which (O) achieved (O) 9.1 (O) % [phoneme (B) error (I) rate (I)]. 
+In (O) the (O) same (O) paper, (O) a (O) deep (O) [bidirectional (B) LSTM (I)] ([DBLSTM (B)]) was (O) combined (O) with (O) [connectionist (B) temporal (I) classification (I)] (CTC) (O) and (O) joint (O) [n-gram (B) models (I)] for (O) better (O) accuracy (O) (21.3 (O) % [word (B) error (I) rate (I)]). 
+Please (O) note (O) that (O) CTC (O) objective (O) function (O) was (O) introduced (O) to (O) infer (O) [speech (B)]-label alignments (O) automatically (O) without (O) any (O) intermediate (O) process, (O) leading (O) to (O) an (O) [end-to-end (B) approach (I)] for (O) [ASR (B)]. 
+CTC (O) technique (O) has (O) combined (O) with (O) [CNN (B)], [LSTM (B)] for (O) the (O) various (O) [speech-related (B) tasks (I)]. 
+Due (O) to (O) utilizing (O) an (O) [encoder-decoder (B) approach (I)] for (O) the (O) [G2P (B) task (I)], a (O) separate (O) alignment (O) between (O) [grapheme (B)] sequences (O) and (O) [phoneme (B) sequences (I)] became (O) unnecessary. (O) 
+Alignment-based (O) models (O) of (O) unidirectional (O) [LSTM (B)] with (O) one (O) layer (O) and (O) [bi-directional (B) LSTM (I)] ([Bi-LSTM (B)]) with (O) one, (O) two (O) and (O) three (O) layers (O) have (O) also (O) previously (O) been (O) investigated. (O) 
+In (O) this (O) work, (O) alignment (O) was (O) explicitly (O) modelled (O) in (O) the (O) [G2P (B) conversion (I)] process (O) by (O) the (O) context (O) of (O) the (O) [grapheme (B)]. 
+A (O) further (O) work, (O) which (O) applies (O) deep (O) [bi-directional (B) LSTM (I)] with (O) [hyperparameter (B) optimization (I)] (including (O) the (O) number (O) of (O) hidden (O) layers, (O) optional (O) linear (O) projection (O) layers, (O) optional (O) splicing (O) window (O) at (O) the (O) input) (O) considered (O) various (O) alignment (O) schemes. (O) 
+The (O) best (O) model (O) with (O) [hyperparameter (B) optimization (I)] achieved (O) a (O) 5.37 (O) % [phoneme (B) error (I) rate (I)] (PER) (O) and (O) a (O) 23.23 (O) % [word (B) error (I) rate (I)] ([WER (B)]). 
+[Multi-layer (B) bidirectional (I) encoder (I)] with (O) [gated (B) recurrent (I) units (I)] ([GRU (B)]) and (O) deep (O) unidirectional (O) [GRU (B)] as (O) a (O) [decoder (B)] achieved (O) 5.8 (O) % PER (O) and (O) 28.7 (O) % [WER (B)] on (O) [CMUDict (B)]. 
+[Convolutional (B) neural (I) networks (I)] have (O) achieved (O) superior (O) performance (O) compared (O) to (O) previous (O) methods (O) in (O) large-scale (O) image (O) recognition. (O) 
+Recently, (O) these (O) architectures (O) were (O) also (O) applied (O) to (O) [Natural (B) Language (I) Processing (I) (NLP) (I) tasks (I)], including (O) sentence (O) classifications (O) and (O) [neural (B) machine (I) translation (I)]. 
+Nowadays, (O) completely (O) [convolutional (B) neural (I) networks (I)] may (O) achieve (O) superior (O) results (O) compared (O) to (O) recurrent (O) solutions. (O) 
+[Sequence-to-sequence (B) (seq2seq) (I) learning (I)], or (O) [encoder-decoder (B) type (I) neural (I) networks (I)] have (O) achieved (O) remarkable (O) success (O) in (O) various (O) tasks, (O) such (O) as (O) [speech (B) recognition (I)], [text-to-speech (B) synthesis (I)], [machine (B) translation (I)]. 
+This (O) type (O) of (O) network (O) is (O) used (O) for (O) several (O) tasks, (O) and (O) its (O) performance (O) has (O) also (O) been (O) enhanced (O) with (O) [attention (B) mechanisms (I)]. 
+In (O) this (O) structure, (O) the (O) [encoder (B)] computes (O) a (O) representation (O) of (O) each (O) input (O) sequence, (O) and (O) the (O) [decoder (B)] generates (O) an (O) output (O) sequence (O) based (O) on (O) the (O) learned (O) representation. (O) 
+In (O) (28), (O) [bidirectional (B) multi-layer (I) recurrent (I) neural (I) network-based (I) seq2seq (I) learning (I)] was (O) investigated (O) in (O) two (O) architectures (O) : a (O) single (O) [Bi-LSTM (B)] / [Bidirectional (B) Gated (I) Recurrent (I) Unit (I)] ([Bi-GRU) (B) layer (I)] and (O) two (O) [Bi-LSTM (B)] / [Bi-GRU (B) layers (I)]. 
+Both (O) [Bi-LSTM (B)] and (O) [Bi-GRU (B)] uses (O) both (O) past (O) and (O) future (O) contexts. (O) 
+Moreover, (O) a (O) [bidirectional (B) decoder (I)] was (O) proposed (O) for (O) [neural (B) machine (I) translation (I)] ([NMT (B)]) in. (O) 
+Both (O) [encoder (B)] and (O) [decoder (B)] are (O) [Bi-GRU (B)], but (O) this (O) model (O) is (O) applicable (O) to (O) other (O) [RNNs (B)], such (O) as (O) [LSTM (B)]. 
+By (O) introducing (O) a (O) [backward (B) decoder (I)], the (O) purpose (O) of (O) which (O) is (O) to (O) exploit (O) reverse (O) target-side (O) contexts, (O) the (O) results (O) of (O) [NMT (B) task (I)] was (O) improved. (O) 
+For (O) [speech (B) recognition (I)], several (O) [sequence-to-sequence (B) models (I)], including (O) [connectionist (B) temporal (I) classification (I)] (CTC), (O) the (O) [recurrent (B) neural (I) network (I)] ([RNN (B)]) [transducer (B)], and (O) an (O) [attention-based (B) model (I)], have (O) been (O) analyzed. (O) 
+The (O) basics (O) of (O) sequence (O) modelling (O) with (O) [convolutional (B) networks (I)] are (O) summarized (O) in. (O) 
+Furthermore, (O) the (O) key (O) components (O) of (O) the (O) [temporal (B) convolution (I) network (I)] ([TCN (B)]) have (O) also (O) been (O) introduced, (O) and (O) some (O) vital (O) advantages (O) and (O) disadvantages (O) of (O) using (O) [TCN (B)] for (O) sequence (O) predictions (O) instead (O) of (O) [RNNs (B)] were (O) analyzed (O) as (O) well. (O) 
+The (O) [encoder-decoder (B) structure (I)] has (O) been (O) studied (O) for (O) the (O) [G2P (B) task (I)] before, (O) but (O) usually, (O) [LSTM (B)] and (O) [GRU (B) networks (I)] have (O) been (O) involved. (O) 
+For (O) example, (O) Baidu’s (O) [end-to-end (B) text-to-speech (I) synthesizer (I)], called (O) [Deep (B) Voice (I)], uses (O) the (O) [multi-layer (B) bidirectional (I) encoder (I)] with (O) [GRU (B)]’s non-linearity (O) and (O) an (O) equally (O) [deep (B) unidirectional (I) GRU (I) decoder (I)]. 
+Until (O) now, (O) the (O) best (O) result (O) for (O) [G2P (B) conversion (I)] was (O) introduced (O) by, (O) which (O) applied (O) an (O) [attention-enabled (B) encoder-decoder (I) model (I)] and (O) achieved (O) 4.69 (O) % PER (O) and (O) 20.24 (O) % [WER (B)] on (O) [CMUDict (B)]. 
+Furthermore, (O) [G2P-seq2seq (B)] (https://github.com/cmusphinx/g2p-seq2seq, (O) Access (O) date (O) : 9th (O) August (O) 2018) (O) is (O) based (O) on (O) [neural (B) networks (I)] implemented (O) in (O) the (O) TensorFlow (O) framework (O) with (O) 20.6 (O) % [WER (B)]. 
+To (O) the (O) best (O) of (O) our (O) knowledge, (O) our (O) approach (O) is (O) the (O) first (O) that (O) uses (O) [convolutional (B) neural (I) networks (I)] for (O) [G2P (B) conversion (I)]. 
+In (O) this (O) paper, (O) we (O) present (O) one (O) general (O) [sequence-to-sequence (B)] and (O) four (O) [encoder-decoder (B) models (I)]. 
+These (O) are (O) introduced (O) in (O) Section. (O) 
+Our (O) goal (O) was (O) to (O) achieve (O) and (O) surpass (O) (if (O) possible) (O) the (O) accuracy (O) of (O) previous (O) models (O) and (O) to (O) reduce (O) the (O) training (O) times (O) (which (O) is (O) quite (O) high (O) in (O) the (O) case (O) of (O) [LSTM (B)] / [GRU (B)]). 
+The (O) remaining (O) parts (O) of (O) this (O) paper (O) are (O) structured (O) as (O) follows (O) : Section (O) discusses (O) the (O) possibility (O) of (O) applying (O) [convolutional (B) neural (I) networks (I)] for (O) [sequence-to-sequence (B) grapheme-to-phoneme (I) conversion (I)]. 
+Datasets, (O) training (O) processes, (O) and (O) evaluation (O) of (O) the (O) proposed (O) models (O) are (O) presented (O) in (O) Section. (O) 
+Section (O) analyzes (O) the (O) results (O) of (O) the (O) models, (O) and (O) finally, (O) the (O) conclusion (O) is (O) drawn (O) in (O) Section. (O) 
+
+[Convolutional (B) Neural (I) Networks (I)] for (O) [Grapheme (B) to (I) Phoneme (I) Conversion (I)] 
+
+[Convolutional (B) neural (I) networks (I)] are (O) used (O) in (O) various (O) fields, (O) including (O) image, (O) object (O) and (O) handwriting (O) recognition, (O) face (O) verification, (O) [natural (B) language (I) processing (I)] and (O) [machine (B) translation (I)]. 
+The (O) architecture (O) of (O) an (O) ordinary (O) [CNN (B)] is (O) composed (O) of (O) many (O) layer (O) types (O) (such (O) as (O) the (O) [convolutional (B) layers (I)], pooling (O) layers, (O) fully (O) connecting (O) layers, (O) etc.), (O) where (O) each (O) layer (O) carries (O) out (O) a (O) specific (O) function. (O) 
+The (O) convolutional (O) and (O) pooling (O) layers (O) are (O) for (O) representation (O) learning, (O) while (O) the (O) fully (O) connected (O) layers (O) on (O) the (O) top (O) of (O) the (O) network (O) are (O) for (O) modelling (O) a (O) classification (O) or (O) regression (O) problem. (O) 
+One (O) of (O) the (O) main (O) reasons (O) that (O) make (O) [convolutional (B) neural (I) networks (I)] superior (O) to (O) previous (O) methods (O) is (O) that (O) [CNNs (B)] perform (O) representation (O) learning (O) and (O) modelling (O) jointly (O) ; thus, (O) a (O) quasi-optimal (O) representation (O) is (O) extracted (O) from (O) the (O) [input (B) data (I)] for (O) the (O) [machine (B) learning (I) model (I)]. 
+Weight (O) sharing (O) in (O) the (O) [convolutional (B) layers (I)] is (O) also (O) a (O) key (O) element. (O) 
+Thus, (O) the (O) model (O) becomes (O) spatially (O) tolerant (O) ; similar (O) representations (O) are (O) learned (O) in (O) different (O) regions (O) of (O) the (O) input, (O) and (O) the (O) total (O) number (O) of (O) parameters (O) can (O) also (O) be (O) reduced (O) drastically. (O) 
+[Deep (B) Learning (I)] refers (O) to (O) the (O) increased (O) depth (O) of (O) [neural (B) networks (I)]. 
+Intuitively, (O) it (O) is (O) expected (O) that (O) [neural (B) networks (I)] with (O) many (O) hidden (O) layers (O) are (O) more (O) powerful (O) than (O) shallow (O) ones (O) with (O) a (O) single (O) hidden (O) layer. (O) 
+However, (O) as (O) the (O) number (O) of (O) layers (O) increases, (O) the (O) training (O) may (O) become (O) surprisingly (O) hard, (O) partly (O) because (O) the (O) gradients (O) are (O) unstable. (O) 
+[Batch (B) normalization (I)] is (O) a (O) technique (O) to (O) overcome (O) this (O) problem (O) ; it (O) reduces (O) internal (O) covariance (O) shift (O) and (O) helps (O) to (O) smooth (O) learning. (O) 
+The (O) main (O) idea (O) of (O) [batch (B) normalization (I)] is (O) to (O) bring (O) back (O) the (O) benefits (O) of (O) normalization (O) at (O) each (O) layer. (O) 
+[Batch (B) normalization (I) results (I)] in (O) faster (O) convergence (O) as (O) well. (O) 
+For (O) example, (O) with (O) [batch (B) normalization (I)], 7 (O) % of (O) the (O) training (O) steps (O) were (O) enough (O) to (O) achieve (O) similar (O) accuracy (O) in (O) an (O) image (O) classification (O) task. (O) 
+Moreover, (O) an (O) additional (O) advantage (O) of (O) [batch (B) normalization (I)] is (O) that (O) it (O) regularizes (O) the (O) training (O) and (O) thus (O) reduces (O) the (O) need (O) for (O) [dropout (B)] and (O) other (O) regularization (O) techniques. (O) 
+However, (O) [batch (B) normalization (I)] and (O) [dropout (B)] are (O) often (O) simultaneously (O) applied. (O) 
+[Convolutional (B) neural (I) networks (I)] have (O) been (O) successfully (O) applied (O) to (O) various (O) [NLP (B) tasks (I)]. 
+These (O) results (O) suggest (O) investigating (O) the (O) possibility (O) of (O) applying (O) [CNN-based (B) sequence-to-sequence (I) models (I)] for (O) [G2P (B)]. 
+We (O) expected (O) that (O) the (O) advantage (O) of (O) [convolutional (B) neural (I) networks (I)] enhances (O) the (O) performance (O) of (O) [G2P (B) conversion (I)]. 
+As (O) is (O) known, (O) [LSTMs (B)] read (O) input (O) sequentially, (O) and (O) the (O) output (O) for (O) further (O) inputs (O) depends (O) on (O) the (O) previous (O) ones. (O) 
+Thus, (O) we (O) can (O) not (O) parallelize (O) these (O) networks. (O) 
+Applying (O) [CNN (B)] also (O) reduces (O) computational (O) load (O) by (O) using (O) large (O) receptive (O) fields. (O) 
+[Deep (B) neural (I) networks (I)] with (O) a (O) sequential (O) architecture (O) have (O) many (O) typical (O) building (O) blocks, (O) such (O) as (O) convolutional (O) or (O) fully (O) connected (O) layers, (O) stacked (O) on (O) each (O) other. (O) 
+Increasing (O) the (O) number (O) of (O) layers (O) in (O) these (O) kinds (O) of (O) networks (O) does (O) not (O) implicitly (O) mean (O) improved (O) accuracy (O) (in (O) our (O) case (O) PER (O) or (O) [WER (B)]), and (O) some (O) issues, (O) such (O) as (O) vanishing (O) gradient (O) and (O) degradation (O) problems, (O) can (O) arise (O) as (O) well. (O) 
+Introducing (O) residual (O) and (O) highway (O) connections (O) can (O) improve (O) performance (O) significantly. (O) 
+These (O) connection (O) alternatives (O) allow (O) the (O) information (O) to (O) flow (O) more (O) into (O) the (O) deeper (O) layers, (O) increase (O) the (O) convergence (O) speed (O) and (O) decrease (O) the (O) vanishing (O) gradient (O) problem. (O) 
+
+Models (O) 
+
+[Encoder-decoder (B) structures (I)] have (O) shown (O) state-of-the-art (O) results (O) in (O) different (O) [NLP (B) tasks (I)]. 
+The (O) main (O) idea (O) of (O) these (O) approaches (O) has (O) two (O) steps (O) : the (O) first (O) step (O) is (O) mapping (O) the (O) input (O) sequence (O) to (O) a (O) [vector (B)] ; the (O) second (O) step (O) is (O) to (O) generate (O) the (O) output (O) sequence (O) based (O) on (O) the (O) learned (O) [vector (B) representation (I)]. 
+[Encoder-decoder (B) models (I)] generate (O) an (O) output (O) after (O) the (O) complete (O) input (O) sequence (O) is (O) processed (O) by (O) the (O) [encoder (B)], which (O) enables (O) the (O) [decoder (B)] to (O) learn (O) from (O) any (O) part (O) of (O) the (O) input (O) without (O) being (O) limited (O) to (O) fixed (O) context (O) windows. (O) 
+Figure (O) shows (O) an (O) example (O) of (O) an (O) [encoder-decoder (B) architecture (I)]. 
+
+Figure. (O) The (O) input (O) of (O) the (O) [encoder (B)] is (O) the (O) “ (O) CAKE (O) ” (O) [grapheme (B) sequence (I)], and (O) the (O) [decoder (B)] produces (O) “ (O) KEY (O) K (O) ” (O) as (O) the (O) [phoneme (B) sequences (I)]. 
+The (O) left (O) side (O) is (O) the (O) [encoder (B)] ; the (O) right (O) side (O) is (O) the (O) [decoder (B)]. 
+The (O) model (O) stops (O) making (O) predictions (O) after (O) generating (O) the (O) [end-of-phonemes (B)] tag. (O) 
+As (O) distinct (O) from, (O) [input (B) data (I)] for (O) the (O) [encoder (B)] is (O) not (O) reversed (O) in (O) any (O) of (O) our (O) models. (O) 
+
+In (O) our (O) experiments, (O) we (O) used (O) [encoder-decoder (B) architectures (I)]. 
+Several (O) models (O) with (O) different (O) [hyperparameters (B)] were (O) developed (O) and (O) tested. (O) 
+From (O) a (O) large (O) number (O) of (O) experiments, (O) the (O) five (O) models (O) with (O) the (O) highest (O) accuracy (O) and (O) diverse (O) architectures (O) were (O) selected. (O) 
+Our (O) first (O) two (O) models (O) were (O) based (O) on (O) existing (O) solutions (O) for (O) comparison (O) purposes. (O) 
+We (O) used (O) these (O) models (O) as (O) a (O) baseline. (O) 
+In (O) the (O) following (O) paragraphs, (O) the (O) five (O) models (O) are (O) introduced (O) :      
+The (O) first (O) model (O) uses (O) [LSTMs (B)] for (O) both (O) the (O) [encoder (B)] and (O) the (O) [decoder (B)]. 
+The (O) [LSTM (B) encoder (I)] reads (O) the (O) input (O) sequence (O) and (O) creates (O) a (O) fixed-dimensional (O) [vector (B) representation (I)]. 
+The (O) second (O) [LSTM (B)] is (O) the (O) [decoder (B)], and (O) it (O) generates (O) the (O) output. (O) 
+Figurea (O) shows (O) the (O) structure (O) of (O) the (O) first (O) model. (O) 
+It (O) can (O) be (O) seen (O) that (O) both (O) [LSTMs (B)] have (O) 1024 (O) units (O) ; [softmax (B) activation (I)] function (O) is (O) used (O) to (O) obtain (O) model (O) predictions. (O) 
+This (O) architecture (O) is (O) the (O) same (O) as (O) a (O) previous (O) solution, (O) while (O) the (O) parameters (O) of (O) training (O) (optimization (O) method, (O) regularization, (O) etc.) (O) are (O) identical (O) to (O) the (O) settings (O) used (O) in (O) case (O) of (O) the (O) other (O) four (O) models. (O) 
+In (O) this (O) way (O) we (O) try (O) to (O) ensure (O) a (O) fair (O) comparison (O) among (O) the (O) models. (O) 
+
+Figure. (O) [G2P (B) conversion (I)] model (O) based (O) on (O) [encoder-decoder (B)] (a) (O) [LSTMs (B)] (first (O) model) (O) ; (b) (O) [Bi-LSTMs (B)] (second (O) model) (O) ; (c) (O) [encoder (B) CNN (I)], [decoder (B) Bi-LSTM (I)] (third (O) model). (O) 
+f, (O) d, (O) s (O) are (O) the (O) number (O) of (O) the (O) filters, (O) length (O) of (O) the (O) filters (O) and (O) stride, (O) respectively, (O) in (O) the (O) [convolutional (B) layer (I)]. 
+
+Although (O) the (O) [encoder-decoder (B) architecture (I)] achieves (O) competitive (O) results (O) on (O) a (O) wide (O) range (O) of (O) problems, (O) it (O) suffers (O) from (O) the (O) constraint (O) that (O) all (O) input (O) sequences (O) are (O) forced (O) to (O) be (O) encoded (O) to (O) a (O) fixed-size (O) latent (O) space. (O) 
+To (O) overcome (O) this (O) limitation, (O) we (O) investigated (O) the (O) effects (O) of (O) the (O) [attention (B) mechanism (I)] proposed (O) by (O) in (O) Model (O) 1 (O) and (O) Model (O) 2. (O) 
+We (O) applied (O) an (O) [attention (B) layer (I)] between (O) the (O) [encoder (B)] and (O) [decoder (B) LSTMs (I)] in (O) the (O) case (O) of (O) Model (O) 1, (O) and (O) [Bi-LSTMs (B)] for (O) Model (O) 2. (O) 
+The (O) introduced (O) [attention (B) layers (I)] are (O) based (O) on (O) global (O) attention. (O) 
+In (O) the (O) second (O) model, (O) both (O) the (O) [encoder (B)] and (O) the (O) [decoder (B)] are (O) [Bi-LSTMs (B)]. 
+The (O) structure (O) of (O) this (O) model (O) is (O) presented (O) in (O) Figureb. (O) 
+The (O) input (O) is (O) fed (O) to (O) the (O) first (O) [Bi-LSTM (B)] ([encoder (B)]), which (O) combines (O) two (O) unidirectional (O) [LSTM (B) layers (I)] that (O) process (O) the (O) input (O) from (O) left-to-right (O) and (O) right-to-left. (O) 
+The (O) output (O) of (O) the (O) [encoder (B)] is (O) given (O) as (O) the (O) input (O) for (O) the (O) second (O) [Bi-LSTM (B)] ([decoder (B)]). 
+Finally, (O) the (O) [softmax (B) function (I)] is (O) applied (O) to (O) generate (O) the (O) output (O) of (O) [one-hot (B) vectors (I)] ([phonemes (B)]). 
+During (O) the (O) inference, (O) the (O) complete (O) input (O) sequence (O) is (O) processed (O) by (O) the (O) [encoder (B)], and (O) after (O) that, (O) the (O) [decoder (B)] generates (O) the (O) output. (O) 
+For (O) predicting (O) a (O) [phoneme (B)], both (O) the (O) left (O) and (O) the (O) right (O) contexts (O) are (O) considered. (O) 
+This (O) model (O) was (O) also (O) inspired (O) by (O) an (O) existing (O) solution. (O) 
+In (O) the (O) third (O) model, (O) a (O) [convolutional (B) neural (I) network (I)] is (O) introduced (O) as (O) the (O) [encoder (B)], and (O) a (O) [Bi-LSTM (B)] as (O) the (O) [decoder (B)]. 
+This (O) architecture (O) is (O) presented (O) in (O) Figurec. (O) 
+As (O) this (O) figure (O) shows, (O) the (O) number (O) of (O) filters (O) is (O) 524, (O) the (O) length (O) of (O) the (O) filter (O) is (O) 23, (O) the (O) stride (O) is (O) 1, (O) and (O) the (O) number (O) of (O) cells (O) in (O) the (O) [Bi-LSTM (B)] is (O) 1024. (O) 
+In (O) this (O) model, (O) the (O) [CNN (B) layer (I)] takes (O) [graphemes (B)] as (O) input (O) and (O) performs (O) convolution (O) operations. (O) 
+For (O) regularization (O) purpose, (O) we (O) also (O) introduced (O) [batch (B) normalization (I)] in (O) this (O) model. (O) 
+The (O) fourth (O) model (O) contains (O) [convolutional (B) layers (I)] only, (O) with (O) [residual (B) connections (I)] (blocks). (O) 
+These (O) [residual (B) connections (I)] have (O) two (O) rules (O) : 
+if (O) [feature (B) maps (I)] have (O) the (O) same (O) size, (O) then (O) the (O) blocks (O) share (O) the (O) same (O) [hyperparameters (B)]. 
+each (O) time (O) when (O) the (O) [feature (B) map (I)] is (O) halved, (O) the (O) number (O) of (O) filters (O) is (O) doubled. (O) 
+First, (O) we (O) apply (O) one (O) [convolutional (B) layer (I)] with (O) 64 (O) filters (O) to (O) the (O) input (O) layer, (O) followed (O) by (O) a (O) stack (O) of (O) residual (O) blocks. (O) 
+Through (O) [hyperparameter (B) optimization (I)], the (O) best (O) result (O) was (O) achieved (O) by (O) 4 (O) residual (O) blocks, (O) as (O) shown (O) in (O) Figurea, (O) and (O) the (O) number (O) of (O) filters (O) in (O) each (O) residual (O) block (O) is (O) 64, (O) 128, (O) 256, (O) 512, (O) respectively. (O) 
+Each (O) residual (O) block (O) contains (O) a (O) sequence (O) of (O) two (O) [convolutional (B) layers (I)] followed (O) by (O) a (O) [batch (B) normalization (I) layer (I)] and (O) [ReLU (B) activation (I)]. 
+The (O) filter (O) size (O) of (O) all (O) [convolutional (B) layers (I)] is (O) three. (O) 
+After (O) these (O) blocks, (O) one (O) more (O) [batch (B) normalization (I) layer (I)] and (O) [ReLU (B) activation (I)] are (O) applied. (O) 
+The (O) architecture (O) ends (O) with (O) a (O) fully (O) connected (O) layer, (O) which (O) uses (O) the (O) [softmax (B) activation (I)] function. (O) 
+
+Figure. (O) [G2P (B) conversion (I)] based (O) on (O) (a) (O) [convolutional (B) neural (I) network (I)] with (O) [residual (B) connections (I)] (fourth (O) model) (O) ; and (O) (b) (O) [encoder (B) convolutional (I) neural (I) network (I)] with (O) [residual (B) connections (I)] and (O) [decoder (B) Bi-LSTM (I)] (fifth (O) model). (O) 
+f, (O) d, (O) s (O) are (O) the (O) number (O) of (O) the (O) filters, (O) length (O) of (O) the (O) filters (O) and (O) stride, (O) respectively. (O) 
+
+We (O) carried (O) out (O) experiments (O) with (O) the (O) same (O) fully (O) convolutional (O) models (O) without (O) [residual (B) connections (I)] ; however, (O) the (O) [phoneme (B)] and (O) [word (B) error (I) rates (I)] were (O) worse (O) than (O) with (O) [residual (B) connections (I)], as (O) expected. (O) 
+The (O) fifth (O) model (O) combines (O) Models (O) 3 (O) and (O) 4 (O) : the (O) [encoder (B)] has (O) the (O) same (O) [convolutional (B) neural (I) network (I) architecture (I)] with (O) [residual (B) connections (I)] and (O) [batch (B) normalization (I)] that (O) was (O) introduced (O) in (O) model (O) four. (O) 
+The (O) [decoder (B)] is (O) a (O) [Bi-LSTM (B)], as (O) in (O) model (O) three. (O) 
+The (O) structure (O) of (O) this (O) model (O) is (O) presented (O) in (O) Figureb. (O) 
+In (O) all (O) models (O) except (O) Model (O) 4, (O) we (O) used (O) stateless (O) [LSTM (B)] (or (O) [Bi-LSTM (B)]) configurations (O) ; the (O) internal (O) state (O) is (O) reset (O) after (O) each (O) batch (O) for (O) predictions. (O) 
+
+Details (O) of (O) the (O) [Bidirectional (B) Decoder (I)] 
+
+The (O) details (O) of (O) the (O) [bidirectional (B) decoder (I)], which (O) was (O) used (O) in (O) Model (O) 2, (O) are (O) presented (O) in (O) this (O) section. (O) 
+Given (O) an (O) input (O) sequence (O) x (O) = (x1, (O) x2,..., (O) x (O) N), (O) the (O) [LSTM (B) network (I)] computes (O) the (O) hidden (O) [vector (B) sequence (I)] h (O) = (h1, (O) h2,..., (O) h (O) N) (O) and (O) output (O) [vector (B) sequence (I)] y (O) = (y1, (O) y2,..., (O) y (O) N). (O) 
+Initially, (O) [one-hot (B) character (I) vectors (I)] for (O) [graphemes (B) and (I) phonemes (I) sequences (I)] were (O) created. (O) 
+Character (O) vocabularies, (O) which (O) contain (O) all (O) the (O) elements (O) that (O) are (O) present (O) in (O) the (O) input (O) and (O) [output (B) data (I)], are (O) separately (O) calculated. (O) 
+In (O) other (O) words, (O) neither (O) a (O) [grapheme (B) vector (I)] in (O) the (O) output (O) vocabulary, (O) nor (O) a (O) [phoneme (B) vector (I)] in (O) the (O) input (O) vocabulary, (O) was (O) used. (O) 
+These (O) were (O) the (O) inputs (O) to (O) the (O) [encoder (B)] and (O) the (O) [decoder (B)]. 
+Padding (O) was (O) applied (O) to (O) make (O) all (O) input (O) and (O) output (O) sequences (O) to (O) have (O) the (O) same (O) length, (O) which (O) was (O) set (O) to (O) 22. (O) 
+This (O) number (O) (22) (O) was (O) chosen (O) based (O) on (O) the (O) maximum (O) length (O) in (O) the (O) [training (B) database (I)]. 
+For (O) [G2P (B)], x (O) = (x1, (O) x2,..., (O) x (O) N) (O) are (O) [one-hot (B) character (I) vectors (I)] of (O) [grapheme (B)] sequences (O) ; y (O) = (y1, (O) y2,..., (O) y (O) N) (O) are (O) [one-hot (B) character (I) vectors (I)] of (O) [phoneme (B) sequences (I)]. 
+In (O) the (O) proposed (O) Model (O) 2, (O) [Bi-LSTM (B)] was (O) used (O) as (O) an (O) [encoder (B)], and (O) it (O) consists (O) of (O) two (O) [LSTMs (B)] : one (O) that (O) processes (O) the (O) sequence (O) from (O) left-to-right (O) (forward (O) [encoder (B)]), and (O) one (O) that (O) does (O) it (O) in (O) reverse (O) ([backward (B) encoder (I)]). 
+This (O) was (O) applied (O) to (O) learn (O) the (O) semantic (O) representation (O) of (O) the (O) input (O) sequences (O) in (O) both (O) directions. (O) 
+One (O) [LSTM (B)] looks (O) at (O) the (O) sequence (O) from (O) left-to-right (O) (forward (O) [encoder (B)]), and (O) so (O) reads (O) an (O) input (O) sequence (O) in (O) left-to-right (O) order (O) ; and (O) another (O) [LSTM (B)] looks (O) at (O) it (O) in (O) reverse (O) ([backward (B) encoder (I)]), and (O) so (O) reads (O) an (O) input (O) sequence (O) in (O) a (O) right-to-left (O) order. (O) 
+At (O) each (O) of (O) the (O) time (O) steps, (O) the (O) forward (O) hidden (O) ← (O) sequence (O) ~h (O) and (O) the (O) backward (O) hidden (O) sequence (O) h (O) are (O) iterated (O) by (O) the (O) following (O) equations (O) : 
+In (O) Equation, (O) the (O) [forward (B) layer (I)] is (O) iterated (O) from (O) t (O) = 1 (O) to (O) N (O) ; in (O) Equation, (O) the (O) backward (O) layer (O) is (O) iterated (O) from (O) t (O) = N (O) to (O) 1 (O) ; H (O) is (O) an (O) element-wise (O) [sigmoid (B) function (I)]. 
+As (O) the (O) next (O) step, (O) the (O) [hidden (B) states (I)] of (O) these (O) two (O) [LSTMs (B)] were (O) concatenated (O) to (O) form (O) an (O) annotation (O) → (O) ← (O) sequence (O) h (O) = { h1, (O) h2,..., (O) h (O) N (O) }, (O) where (O) ht (O) = (ht, (O) ht) (O) encodes (O) information (O) about (O) the (O) t (O) − (O) th (O) [grapheme (B)] with (O) respect (O) to (O) all (O) the (O) other (O) surrounding (O) [graphemes (B)] in (O) the (O) input. (O) 
+ W (O) →, (O) W (O) ←, (O) W←← (O) and (O) W→→ (O) are (O) weight (O) xh (O)      xh (O)        hh (O)       hh (O) matrixes (O) ; b→, (O) b← (O) denotes (O) the (O) bias (O) [vectors (B)]. 
+Generally, (O) in (O) all (O) parameters, (O) the (O) arrows (O) pointing (O) left (O) to (O) right (O)             h (O)     h (O) and (O) right (O) to (O) left (O) refer (O) to (O) the (O) forward (O) and (O) backward (O) layers, (O) respectively. (O) 
+The (O) forward (O) [LSTM (B)] unrolls (O) the (O) sequences (O) until (O) it (O) reaches (O) the (O) end (O) of (O) sequence (O) for (O) that (O) input. (O) 
+The (O) backward (O) [LSTM (B)] unrolls (O) the (O) sequences (O) until (O) it (O) reaches (O) the (O) start (O) of (O) the (O) sequence. (O) 
+For (O) the (O) [decoder (B)], we (O) used (O) [bidirectional (B) LSTM (I)]. 
+These (O) [LSTMs (B)] can (O) be (O) called (O) forward (O) and (O) backward (O) → (O) ([decoders (B)], and (O) described (O) as (O) d, (O) d. (O) 
+After (O) concatenating (O) the (O) forward (O) and (O) [backward (B) encoder (I) LSTMs (I)], the (O) [backward (B) decoder (I)] performs (O) decoding (O) in (O) a (O) right-to-left (O) way. (O) 
+It (O) was (O) initialized (O) with (O) a (O) final (O) encoded (O) state (O) and (O) a (O) reversed (O) output (O) ([phonemes (B)]). 
+The (O) [forward (B) decoder (I)] is (O) trained (O) to (O) sequentially (O) predict (O) the (O) next (O) [phoneme (B)] given (O) the (O) [phoneme (B) sequence (I)]. 
+This (O) part (O) was (O) initialized (O) with (O) the (O) final (O) state (O) of (O) the (O) [encoder (B)] and (O) all (O) [phoneme (B) sequences (I)]. 
+Each (O) [decoder (B) output (I)] is (O) passed (O) through (O) the (O) [softmax (B) layer (I)] that (O) will (O) learn (O) to (O) classify (O) the (O) correct (O) [phonemes (B)]. 
+For (O) training, (O) given (O) the (O) previous (O) [phonemes (B)], the (O) model (O) factorizes (O) the (O) conditional (O) into (O) a (O) summation (O) of (O) individual (O) log (O) conditional (O) probabilities (O) from (O) both (O) directions, (O) 
+where (O) log (O) P (O) yt (O) y(1:(t−1)) (O) and (O) log (O) P (O) yt (O) y((t+1):N) (O) are (O) the (O) left-to-right (O) (forward), (O) the (O) right-to-left (O) (backward) (O) conditional (O) probability (O) in (O) Equation, (O) and (O) calculated (O) as (O) per (O) the (O) equations (O) below (O) : 
+
+The (O) prediction (O) is (O) performed (O) on (O) [test (B) data (I)] as (O) follows (O) : 
+According (O) to (O) Equation, (O) future (O) output (O) is (O) not (O) used (O) during (O) inference. (O) 
+The (O) architecture (O) is (O) shown (O) in (O) Figure. (O) 
+
+Figure. (O) The (O) architecture (O) of (O) the (O) proposed (O) [bidirectional (B) decoder (I) model (I)] for (O) [G2P (B) task (I)]. 
+
+Experiments (O) 
+
+Datasets (O) 
+
+We (O) used (O) the (O) CMU (O) pronunciation (O) (http://www.speech.cs.cmu.edu (O) / cgi-bin (O) / [cmudict (B)]) and (O) [NetTalk (B)] (we (O) are (O) grateful (O) to (O) Stan (O) Chen (O) for (O) providing (O) the (O) data) (O) datasets, (O) which (O) have (O) frequently (O) been (O) chosen (O) by (O) various (O) researchers (O) (3,16,32). (O) 
+The (O) training (O) and (O) testing (O) splits (O) are (O) the (O) same (O) as (O) those (O) found (O) in (O) (4,5,8,12) (O) ;   thus, (O) the (O) results (O) are (O) comparable. (O) 
+[CMUDict (B)] contains (O) a (O) 106,837-word (O) training (O) set (O) and (O) a (O) 12,000-word (O) test (O) set (O) ([reference (B) data (I)]). 
+2670 (O) words (O) are (O) used (O) as (O) development (O) set. (O) 
+There (O) are (O) 27 (O) [graphemes (B)] (uppercase (O) alphabet (O) symbols (O) plus (O) the (O) apostrophe) (O) and (O) 41 (O) [phonemes (B)] (AA, (O) AE, (O) AH, (O) AO, (O) AW, (O) AY, (O) B, (O) CH, (O) D, (O) DH, (O)   EH, (O) ER, (O) EY, (O) F, (O) G, (O) HH, (O) IH, (O) IY, (O) JH, (O) K, (O) L, (O) M, (O) N, (O) NG, (O) OW, (O) OY, (O) P, (O) R, (O) S, (O) SH, (O) T, (O) TH, (O) UH, (O) UW, (O) V, (O) W, (O) Y, (O) Z, (O) ZH, (O) < EP (O) >, (O) < /EP (O) >) (O) in (O) this (O) dataset. (O) 
+[NetTalk (B)] contains (O) 14,851 (O) words (O) for (O) training, (O) 4,951 (O) words (O) for (O) testing (O) and (O) does (O) not (O) have (O) a (O) predefined (O) validation (O) set. (O) 
+There (O) are (O) 26 (O) [graphemes (B)] (lowercase (O) alphabet (O) symbols) (O) and (O) 52 (O) [phonemes (B)] (‘ (O) !’, (O) ‘ (O) #’, (O) ‘ (O) *’, (O) ‘ (O) +’, (O) ‘ (O) @’, (O) ‘ (O) A’, (O) ‘ (O) C’, (O) ‘ (O) D’, (O) ‘ (O) E’, (O) ‘ (O) G’, (O) ‘ (O) I’, (O) ‘ (O) J’, (O) ‘ (O) K’, (O) ‘ (O) L’, (O) ‘ (O) M’, (O) ‘ (O) N’, (O) ‘ (O) O’, (O) ‘ (O) R’, (O) ‘ (O) S’, (O) ‘ (O) T’, (O) ‘ (O) U’, (O) ‘ (O) W’, (O) ‘ (O) X’, (O) ‘ (O) Y’, (O) ‘ (O) Z’, (O) ‘ (O) ˆ’, (O) ‘ (O) a’, (O) ‘ (O) b’, (O) ‘ (O) c’, (O) ‘ (O) d’, (O) ‘ (O) e’, (O) ‘ (O) f’, (O) ‘ (O) g’, (O) ‘ (O) h’, (O) ‘ (O) i’, (O) ‘ (O) k’, (O) ‘ (O) l’, (O) ‘ (O) m’, (O) ‘ (O) n’, (O) ‘ (O) o’, (O) ‘ (O) p’, (O) ‘ (O) r’, (O) ‘ (O) s’, (O) ‘ (O) t’, (O) ‘ (O) u’, (O) ‘ (O) v’, (O) ‘ (O) w’, (O) ‘ (O) x’, (O) ‘ (O) y’, (O) ‘ (O) z’,<EP (O) >, (O) < /EP (O) >) (O) in (O) this (O) dataset. (O) 
+We (O) use (O) < EP (O) > and (O) < /EP (O) > tokens (O) as (O) [beginning-of-graphemes (B)] and (O) [end-of-graphemes (B) tokens (I)] in (O) both (O) datasets. (O) 
+For (O) inference, (O) the (O) [decoder (B)] uses (O) the (O) past (O) [phoneme (B) sequence (I)] to (O) predict (O) the (O) next (O) [phoneme (B)], and (O) it (O) stops (O) predicting (O) after (O) token (O) < /EP (O) >. (O) 
+
+Training (O) 
+    
+For (O) the (O) [CMUDict (B) experiments (I)], in (O) all (O) models, (O) the (O) size (O) of (O) the (O) input (O) layers (O) is (O) equal (O) to (O) the (O) input (O) : { length (O) of (O) the (O) longest (O) input (O) (22) (O) × (O) number (O) of (O) [graphemes (B)] (27) (O) } and (O) the (O) size (O) of (O) the (O) [output (B) layers (I)] is (O) equal (O) to (O) the (O) output (O) : { length (O) of (O) the (O) longest (O) output (O) (22) (O) × (O) number (O) of (O) [phonemes (B)] (41) (O) }. (O) 
+To (O) transform (O) [graphemes (B)] and (O) [phonemes (B)] for (O) [neural (B) networks (I)], we (O) convert (O) inputs (O) into (O) 27-dimensional (O) and (O) outputs (O) to (O) 41-dimensional (O) [one-hot (B) vector (I) representations (I)]. 
+For (O) example, (O) the (O) [phoneme (B) sequences (I)] of (O) the (O) word (O) ‘ (O) ARREST’ (O) is (O) ‘ (O) ER (O) EH (O) S (O) T’ (O) ; the (O) input (O) and (O) output (O) [vectors (B)] of (O) the (O) [grapheme (B) and (I) phoneme (I) sequences (I)] are (O) as (O) below (O) : 
+
+
+In (O) the (O) case (O) of (O) [LSTMs (B)], we (O) applied (O) the (O) [Adam (B) optimization (I) algorithm (I)] with (O) a (O) starting (O) learning (O) rate (O) of (O) 0.001, (O) and (O) with (O) baseline (O) values (O) of (O) β1, (O) β2 (O) and (O) ε (O) (0.9, (O) 0.999 (O) and (O) 1 (O) × (O) 10−8, (O) respectively). (O) 
+For (O) [batch (B) size (I)], 128 (O) was (O) chosen. (O) 
+Weights (O) were (O) saved (O) when (O) the (O) PER (O) on (O) the (O) [validation (B) dataset (I)] achieved (O) a (O) lower (O) value (O) than (O) before. (O) 
+When (O) the (O) PER (O) did (O) not (O) decrease (O) further (O) for (O) 100 (O) [epochs (B)], the (O) best (O) model (O) was (O) chosen, (O) and (O) it (O) was (O) trained (O) with (O) stochastic (O) gradient (O) descent (O) (SGD) (O) further. (O) 
+In (O) the (O) case (O) of (O) the (O) first, (O) second (O) and (O) third (O) models (O) for (O) SGD, (O) we (O) used (O) 0.005 (O) as (O) the (O) learning (O) rate, (O) and (O) 0.8 (O) for (O) momentum. (O) 
+For (O) the (O) fourth (O) (convolutional (O) with (O) [residual (B) connections (I)]) model, (O) 0.05 (O) ([learning (B) rate (I)]) and (O) 0.8 (O) (momentum) (O) were (O) applied, (O) and (O) it (O) was (O) trained (O) for (O) 142 (O) when (O) early (O) stopping (O) was (O) called. (O) 
+In (O) the (O) fifth (O) model, (O) 0.5 (O) ([learning (B) rate (I)]) of (O) SGD (O) and (O) 0.8 (O) (momentum) (O) was (O) set, (O) and (O) when (O) PER (O) stopped (O) improving (O) for (O) about (O) 50 (O) [epochs (B)], the (O) learning (O) rate (O) was (O) multiplied (O) by (O) 4/5. (O) 
+The (O) numbers (O) of (O) [epochs (B)] for (O) this (O) model (O) reached (O) 147 (O) and (O) 135 (O) for (O) [CMUDict (B)] and (O) [NetTalk (B)], respectively. (O) 
+In (O) all (O) proposed (O) models, (O) the (O) patience (O) of (O) early (O) stopping (O) was (O) set (O) to (O) 50 (O) in (O) the (O) [Adam (B) optimizer (I)] and (O) 30 (O) in (O) the (O) SGD (O) optimizer. (O) 
+For (O) [NetTalk (B) experiments (I)], the (O) sizes (O) of (O) the (O) input (O) and (O) [output (B) layers (I)] are (O) as (O) follows (O) : input—{(length (O) of (O) the (O) longest (O) input (O) (19) (O) × (O) number (O) of (O) [graphemes (B)] (26) (O) }) (O) ; and (O) output—{length (O) of (O) the (O) longest (O) output (O) (19) (O) × (O) number (O) of (O) [phonemes (B)] (52) (O) }. (O) 
+We (O) converted (O) inputs (O) to (O) 26-dimensional (O) and (O) outputs (O) to (O) 52-dimensional (O) [one-hot (B) vector (I) representations (I)] as (O) in (O) case (O) of (O) [CMUDict (B)]. 
+The (O) same (O) model (O) structure (O) was (O) used (O) as (O) with (O) the (O) [CMUDict (B) experiments (I)]. 
+Moreover, (O) the (O) implementation (O) of (O) a (O) single (O) [convolutional (B) layer (I)] on (O) [input (B) data (I)] is (O) presented (O) in (O) Figure. (O) 
+The (O) input (O) is (O) a (O) [one-hot (B) vector (I)] of (O) ‘ (O) ARREST’ (O) ; 64 (O) filters (O) of (O) (input (O) length) (O) ×3 (O) are (O) applied (O) to (O) the (O) input. (O) 
+In (O) other (O) words, (O) the (O) input (O) is (O) convolved (O) with (O) 64 (O) [feature (B) maps (I)], which (O) produce (O) the (O) output (O) of (O) the (O) [convolutional (B) layer (I)]. 
+Zero (O) padding (O) was (O) used (O) to (O) ensure (O) that (O) the (O) output (O) of (O) the (O) convolution (O) layer (O) has (O) the (O) same (O) dimension (O) as (O) the (O) input. (O) 
+During (O) training, (O) the (O) filter (O) weights (O) are (O) optimized (O) to (O) produce (O) lower (O) loss (O) values. (O) 
+
+Figure. (O) Implementation (O) of (O) a (O) single (O) [convolutional (B) layer (I)] with (O) 64 (O) filters (O) of (O) size (O) (input (O) length) (O) ×3 (O) to (O) the (O) [input (B) data (I)]. 
+
+During (O) inference, (O) prediction (O) of (O) the (O) graphemes (O) sequence (O) is (O) decoded (O) until (O) < /EP (O) >, (O) and (O) the (O) length (O) of (O) input (O) and (O) output (O) are (O) not (O) considered. (O) 
+
+Evaluation (O) and (O) Results (O) 
+     
+NVidia (O) Titan (O) Xp (O) (12 (O) GB) (O) and (O) NVidia (O) Titan (O) X (O) (12 (O) GB) (O) [GPU (B)] cards (O) hosted (O) in (O) two (O) i7 (O) workstations (O) with (O) 32 (O) GB (O) RAM (O) served (O) for (O) training (O) and (O) inference. (O) 
+Ubuntu (O) 14.04 (O) with (O) [Cuda (B)] 8.0 (O) and (O) cuDNN (O) 5.0 (O) was (O) used (O) as (O) a (O) general (O) software (O) architecture. (O) 
+For (O) training (O) and (O) evaluation, (O) the (O) Keras (O) deep (O) learning (O) framework (O) with (O) Theano (O) backend (O) was (O) our (O) environment. (O) 
+For (O) evaluation, (O) the (O) standard (O) and (O) commonly (O) used (O) measurements (O) of (O) [phoneme (B) error (I) rate (I)] (PER) (O) and (O) [word (B) error (I) rate (I)] ([WER (B)]) were (O) calculated. (O) 
+PER (O) was (O) used (O) to (O) measure (O) the (O) distance (O) between (O) the (O) predicted (O) [phoneme (B) sequence (I)] and (O) reference (O) pronunciation (O) divided (O) by (O) the (O) number (O) of (O) [phonemes (B)] in (O) the (O) reference (O) pronunciation. (O) 
+Edit (O) distance (O) (also (O) known (O) as (O) Levenshtein (O) distance) (O) is (O) the (O) minimum (O) number (O) of (O) insertions (O) (I), (O) deletions (O) (D) (O) and (O) substitutions (O) (S), (O) that (O) are (O) required (O) to (O) transform (O) one (O) sequence (O) into (O) the (O) other. (O) 
+If (O) there (O) are (O) multiple (O) pronunciation (O) variants (O) for (O) a (O) word (O) in (O) the (O) [reference (B) data (I)], the (O) variant (O) that (O) has (O) the (O) smallest (O) Levenshtein (O) distance (O) to (O) the (O) candidate (O) is (O) used. (O) 
+Levenshtein (O) distance (O) can (O) be (O) calculated (O) by (O) dynamic (O) programming (O) method. (O) 
+For (O) [WER (B)] computation, (O) which (O) is (O) only (O) counted (O) if (O) the (O) predicted (O) pronunciation (O) does (O) not (O) match (O) any (O) reference (O) pronunciation, (O) the (O) number (O) of (O) word (O) errors (O) is (O) divided (O) by (O) the (O) total (O) number (O) of (O) unique (O) words (O) in (O) the (O) reference. (O) 
+After (O) training (O) the (O) model, (O) predictions (O) were (O) run (O) on (O) the (O) [test (B) dataset (I)]. 
+The (O) results (O) of (O) evaluation (O) on (O) the (O) [CMUDict (B) dataset (I)] are (O) shown (O) in (O) Table. (O) 
+The (O) first (O) and (O) second (O) columns (O) show (O) the (O) model (O) number (O) and (O) the (O) applied (O) architecture, (O) respectively. (O) 
+The (O) third (O) and (O) fourth (O) columns (O) show (O) the (O) PER (O) and (O) [WER (B) values (I)]. 
+The (O) fifth (O) column (O) of (O) Table (O) contains (O) the (O) average (O) sum (O) of (O) training (O) and (O) validation (O) time (O) of (O) one (O) epoch. (O) 
+The (O) last (O) two (O) columns (O) present (O) information (O) about (O) the (O) size (O) of (O) models, (O) which (O) shows (O) the (O) number (O) of (O) parameters (O) (weights) (O) and (O) the (O) number (O) of (O) [epochs (B)] to (O) reach (O) minimum (O) validation (O) loss. (O) 
+According (O) to (O) the (O) results, (O) the (O) [encoder-decoder (B) Bi-LSTM (I) architecture (I)] (Model (O) 2) (O) outperforms (O) the (O) first (O) model, (O) as (O) expected. (O) 
+However, (O) [attention-based (B) Model (I)] 1 (O) (called (O) Model (O) 1A (O) in (O) Table) (O) outperforms (O) Model (O) 2 (O) in (O) terms (O) of (O) PER. (O) 
+The (O) best (O) [WER (B)] and (O) PER (O) values (O) are (O) achieved (O) by (O) the (O) fifth (O) model (O) : PER (O) is (O) 4.81 (O) %, (O) and (O) [WER (B)] is (O) 25.13 (O) %. (O) 
+[Attention-based (B) Model (I)] 2 (O) (called (O) Model (O) 2A (O) in (O) Table) (O) approaches (O) the (O) best (O) results (O) in (O) terms (O) of (O) both (O) PER (O) and (O) [WER (B)]. 
+However, (O) the (O) number (O) of (O) parameters (O) of (O) Model (O) 2A (O) is (O) twice (O) as (O) high (O) as (O) for (O) Model (O) 5. (O) 
+Although (O) the (O) fourth (O) model (O) was (O) faster (O) than (O) all (O) of (O) the (O) other (O) models, (O) both (O) the (O) PER (O) and (O) [WER (B)] of (O) this (O) model (O) were (O) the (O) highest (O) ; however, (O) they (O) are (O) still (O) competitive. (O) 
+Moreover, (O) this (O) model (O) also (O) has (O) the (O) fewest (O) parameters. (O) 
+
+Table. (O) Results (O) on (O) the (O) [CMUDict (B) dataset (I)]. 
+
+
+
+We (O) compared (O) the (O) performance (O) of (O) the (O) fifth (O) model (O) on (O) both (O) [CMUDict (B)] and (O) [NetTalk (B)] with (O) previously (O) achieved (O) state-of-the-art (O) results. (O) 
+These (O) comparisons (O) are (O) presented (O) in (O) Table. (O) 
+The (O) first (O) column (O) shows (O) the (O) dataset, (O) the (O) second (O) column (O) presents (O) the (O) method (O) used (O) in (O) previous (O) solutions (O) with (O) references, (O) PER (O) and (O) [WER (B)] columns (O) tell (O) the (O) results (O) of (O) the (O) referred (O) models. (O) 
+Table (O) clearly (O) shows (O) that (O) our (O) fifth (O) model (O) outperforms (O) the (O) previous (O) solutions (O) by (O) PER (O) on (O) each (O) dataset, (O) except (O) for. (O) 
+For (O) [NetTalk (B)], we (O) were (O) able (O) to (O) significantly (O) surpass (O) the (O) previous (O) state-of-the-art, (O) but (O) a (O) better (O) [WER (B)] was (O) obtained (O) by (O) with (O) an (O) [encoder-decoder (B) network (I)] based (O) on (O) an (O) [attention (B) mechanism (I)]. 
+We (O) should (O) point (O) out (O) that (O) the (O) results (O) of (O) the (O) fifth (O) model (O) are (O) very (O) close (O) to (O) those (O) obtained (O) by. (O) 
+
+Table. (O) Comparison (O) of (O) best (O) previous (O) results (O) of (O) [G2P (B) models (I)] with (O) our (O) fifth (O) model (O) ([encoder (B)] is (O) a (O) [CNN (B)] with (O) [residual (B) connections (I)], [Bi-LSTM (B) decoder (I)]) on (O) [CMUDict (B)] and (O) [NetTalk (B)]. 
+
+
+The (O) proposed (O) best (O) model (O) in (O) consists (O) of (O) the (O) combination (O) of (O) the (O) sequitur (O) [G2P (B)] (model (O) order (O) 8) (O) and (O) [seq2seq-attention (B)] ([Bi-LSTM (B)] 512 (O) × (O) 3) (O) and (O) multitask (O) learning (O) (ARPAbet (O) / [IPA (B)]), and (O) although (O) the (O) [WER (B)] in (O) their (O) case (O) is (O) better, (O) Model (O) 5 (O) has (O) a (O) smaller (O) PER. (O) 
+Although (O) the (O) [encoder-decoder (B) LSTM (I)] by (O) is (O) similar (O) to (O) our (O) first (O) model, (O) the (O) PER (O) is (O) better (O) in (O) our (O) case (O) ; the (O) [WER (B)] of (O) both (O) models (O) is (O) almost (O) the (O) same. (O) 
+Our (O) second (O) model (O) is (O) comparable (O) with, (O) in (O) which (O) the (O) [Bi-LSTM (B) method (I)] was (O) implemented, (O) alignment (O) was (O) also (O) applied. (O) 
+
+Discussion (O) 
+
+In (O) this (O) section, (O) we (O) discuss (O) the (O) results (O) of (O) the (O) previous (O) section (O) and (O) analyze (O) the (O) connection (O) between (O) PER (O) values (O) and (O) word (O) length, (O) furthermore (O) the (O) position (O) of (O) the (O) error (O) within (O) the (O) word. (O) 
+
+We (O) categorize (O) the (O) word (O) length (O) into (O) 3 (O) classes (O) : short (O) (shorter (O) than (O) 6 (O) characters), (O) medium (O) (between (O) 6 (O) and (O) 10 (O) characters), (O) long (O) (more (O) than (O) 10 (O) characters). (O) 
+According (O) to (O) this (O) categorization, (O) there (O) were (O) 4306 (O) short, (O) 5993 (O) medium (O) and (O) 1028 (O) long (O) words (O) in (O) the (O) [CMUDict (B) dataset (I)]. 
+In (O) this (O) analysis, (O) we (O) ignored (O) approximately (O) 600 (O) words (O) that (O) have (O) multiple (O) pronunciation (O) variants (O) in (O) the (O) [reference (B) data (I)]. 
+The (O) results (O) of (O) this (O) comparison (O) are (O) presented (O) in (O) Figurea. (O) 
+For (O) short (O) words, (O) all (O) models (O) show (O) similar (O) PERs (O) ; for (O) medium (O) length (O) words, (O) except (O) the (O) [end-to-end (B) CNN (I) model (I)] (fourth (O) model), (O) the (O) other (O) models (O) resulted (O) in (O) similar (O) error (O) ; for (O) long (O) words, (O) [encoder (B) CNN (I)] with (O) [residual (B) connection (I)], [decoder (B) Bi-LSTM (I)] (fourth (O) model) (O) and (O) [encoder (B) CNN (I)], [decoder (B) Bi-LSTM (I)] (third (O) model) (O) got (O) similar (O) minimum (O) errors. (O) 
+The (O) fourth (O) model (O) showed (O) the (O) highest (O) error (O) in (O) both (O) medium (O) and (O) long (O) length (O) words. (O) 
+According (O) to (O) Figurea, (O) the (O) advantage (O) of (O) [Bi-LSTM-based (B) models (I)] is (O) clearly (O) shown (O) for (O) learning (O) long (O) sequences. (O) 
+Moreover, (O) errors (O) occurring (O) in (O) the (O) first (O) half (O) of (O) the (O) pronunciation (O) (in (O) the (O) reference) (O) increases (O) the (O) probability (O) of (O) predicting (O) incorrect (O) [phonemes (B)] in (O) the (O) second (O) half. (O) 
+Still, (O) a (O) correctly (O) predicted (O) first (O) half (O) can (O) not (O) guarantee (O) a (O) correctly (O) predicted (O) second (O) half. (O) 
+In (O) our (O) experiments, (O) convolutional (O) architectures (O) also (O) performed (O) well (O) on (O) short (O) and (O) on (O) long-range (O) dependencies. (O) 
+Our (O) intuition (O) is (O) that (O) the (O) [residual (B) connections (I)] enable (O) the (O) network (O) to (O) consider (O) features (O) learned (O) by (O) lower (O) and (O) higher (O) layers (O) — (O) which (O) represents (O) shorter (O) and (O) longer (O) dependencies. (O) 
+We (O) also (O) analyzed (O) the (O) position (O) of (O) the (O) errors (O) in (O) the (O) reference (O) pronunciation (O) : we (O) investigated (O) whether (O) the (O) error (O) occurred (O) in (O) the (O) first (O) or (O) in (O) the (O) second (O) half (O) of (O) the (O) word. (O) 
+The (O) type (O) of (O) error (O) can (O) be (O) insertion (O) (I), (O) deletion (O) (D) (O) and (O) substitution (O) (S). (O) 
+By (O) using (O) this (O) position (O) information, (O) we (O) can (O) analyze (O) the (O) distribution (O) of (O) these (O) errors (O) across (O) the (O) first (O) or (O) second (O) half (O) of (O) the (O) word. (O) 
+The (O) position (O) of (O) error (O) was (O) calculated (O) by (O) enumerating (O) [graphemes (B)] in (O) the (O) reference. (O) 
+For (O) insertion (O) error (O) (I), (O) the (O) position (O) of (O) the (O) previous (O) [grapheme (B)] was (O) taken (O) into (O) account. (O) 
+The (O) example (O) below (O) describes (O) the (O) process (O) details (O) : 
+Word (O) : Acknowledgement (O) 
+Enumeration (O) : 0 (O) 1 (O) 2 (O) 3 (O) 4 (O) 5 (O) 6 (O) 7 (O) 8 (O) 9 (O) 10 (O) 11 (O) 12 (O) 
+Reference (O) : (EP (O) AE (O) K (O) N (O) AA (O) L (O) IH (O) JH (O) M (O) AH (O) N (O) T (O) /EP) (O) 
+Prediction (O) : (EP (O) IH (O) K (O) N (O) AA (O) L (O) IH (O) JH (O) IH (O) JH (O) AH (O) N (O) T (O) /EP) (O) 
+Types (O) of (O) errors (O) : S (O) S (O) S (O) I (O) S (O) I (O) 
+Position (O) : (1,8,8) (O) 
+As (O) example (O) the (O) example (O) shows, (O) two (O) substitutions (O) substitutions (O) (S) (O) and (O) (I) (O) occurred (O) in (O) our (O) fifth (O) model (O) output. (O) 
+
+Figure (O) shows (O) position (O) errors (O) calculated (O) the (O) models (O) models (O) on (O) on (O) the (O) the (O) reference (O) [reference (B) dataset (I)]. 
+
+Furthermore, (O) in (O) all (O) models (O) presented (O) here, (O) PER (O) is (O) better (O) than (O) the (O) previous (O) results (O) on (O) [CMUDict (B)] except (O) the (O) first (O) four (O) models (O) in, (O) while (O) [WER (B)] is (O) still (O) reasonable. (O) 
+This (O) means (O) that (O) even (O) most (O) of (O) the (O) incorrect (O) predictions (O) are (O) very (O) close (O) to (O) the (O) reference (O) ; therefore, (O) they (O) have (O) small (O) PER. (O) 
+Accordingly, (O) we (O) need (O) to (O) analyze (O) the (O) incorrect (O) predictions (O) (outputs) (O) for (O) each (O) model (O) to (O) see (O) how (O) many (O) [phonemes (B)] are (O) correct (O) in (O) the (O) reference. (O) 
+In (O) the (O) fifth (O) model, (O) 25.3 (O) % of (O) the (O) [test (B) data (I)] are (O) not (O) correct (O) (about (O) 3000 (O) test (O) samples). (O) 
+After (O) the (O) analysis (O) of (O) these (O) predictions, (O) more (O) than (O) half (O) of (O) them (O) have (O) 1 (O) incorrect (O) [phoneme (B)]. 
+In (O) particular, (O) the (O) PER (O) for (O) 59 (O) test (O) samples (O) is (O) higher (O) than (O) 50 (O) % (11 (O) test (O) samples (O) are (O) greater (O) than (O) 60 (O) %, (O) and (O) only (O) 1 (O) test (O) sample (O) is (O) more (O) than (O) 70 (O) %). (O) 
+These (O) percentages (O) in (O) the (O) other (O) presented (O) models (O) are (O) more (O) or (O) less (O) the (O) same. (O) 
+Generally, (O) the (O) same (O) 1000 (O) words (O) are (O) incorrectly (O) predicted (O) by (O) all (O) presented (O) models. (O) 
+We (O) can (O) see (O) different (O) types (O) of (O) error (O) when (O) generating (O) [phoneme (B) sequences (I)]. 
+One (O) of (O) these (O) errors (O) is (O) that (O) some (O) [phonemes (B)] are (O) unnecessarily (O) generated (O) multiple (O) times. (O) 
+For (O) example, (O) for (O) the (O) word (O) YELLOWKNIFE, (O) reference (O) is (O) (Y (O) EH (O) L (O) OWN (O) AY (O) F), (O) the (O) prediction (O) of (O) Model (O) 5 (O) for (O) this (O) word (O) is (O) (Y (O) EH (O) L (O) OW (O) K (O) N (O) N (O) F), (O) where (O) the (O) character (O) N (O) was (O) generated (O) twice. (O) 
+Another (O) error (O) type (O) regards (O) [sequences (B) of (I) graphemes (I)] that (O) are (O) rarely (O) represented (O) in (O) the (O) training (O) process. (O) 
+For (O) example, (O) for (O) the (O) word (O) ZANGHI (O) Model (O) 5 (O) output (O) is (O) (Z (O) AE (O) N (O) G), (O) while (O) the (O) reference (O) is (O) (Z (O) AA (O) N (O) G (O) IY). (O) 
+The (O) [graphemes (B)] ‘ (O) NGHI’ (O) appeared (O) only (O) 7 (O) times (O) in (O) the (O) [training (B) data (I)]. 
+Furthermore, (O) many (O) words (O) are (O) of (O) foreign (O) origin, (O) for (O) example, (O) GDANSK (O) is (O) Polish (O) a (O) city, (O) SCICCHITANO (O) is (O) an (O) Italian (O) name, (O) KOVACIK (O) is (O) a (O) Turkish (O) surname. (O) 
+Generating (O) [phoneme (B) sequences (I)] of (O) abbreviations (O) is (O) one (O) of (O) the (O) hard (O) challenges. (O) 
+For (O) example, (O) LPN, (O) INES (O) are (O) shown (O) with (O) their (O) references (O) and (O) the (O) prediction (O) form (O) of (O) Model (O) 5 (O) in (O) Table (O) :     
+
+Table. (O) Examples (O) of (O) errors (O) predicted (O) by (O) Model (O) 5. (O) 
+
+In (O) the (O) proposed (O) models, (O) we (O) were (O) able (O) to (O) achieve (O) smaller (O) PERs (O) with (O) different (O) [hyperparameter (B) settings (I)], but (O) [WERs (B)] showed (O) different (O) behavior, (O) in (O) contrast (O) with (O) what (O) we (O) expected. (O) 
+To (O) calculate (O) [WER (B)], the (O) number (O) of (O) word (O) errors (O) is (O) divided (O) by (O) the (O) total (O) number (O) of (O) unique (O) words (O) in (O) the (O) reference. (O) 
+These (O) word (O) errors (O) are (O) counted (O) only (O) if (O) the (O) predicted (O) pronunciation (O) does (O) not (O) match (O) any (O) reference (O) pronunciation. (O) 
+Therefore, (O) in (O) the (O) generated (O) [phoneme (B) sequences (I)] of (O) words (O) that (O) contained (O) errors, (O) there (O) is (O) at (O) least (O) one (O) [phoneme (B) error (I)]. 
+For (O) that (O) reason, (O) we (O) calculated (O) the (O) number (O) of (O) word (O) errors (O) depending (O) on (O) the (O) number (O) of (O) [phoneme (B) errors (I)] for (O) all (O) proposed (O) models (O) on (O) [CMUDict (B)], as (O) presented (O) in (O) Figure. (O) 
+
+Figure. (O) Number (O) of (O) word (O) errors (O) depending (O) on (O) the (O) number (O) of (O) [phoneme (B) errors (I)] for (O) all (O) models. (O) 
+
+In (O) the (O) case (O) of (O) each (O) model, (O) there (O) are (O) twice (O) as (O) many (O) words (O) with (O) only (O) one (O) [phoneme (B) error (I)] than (O) words (O) with (O) two (O) [phoneme (B) errors (I)]. 
+Words (O) with (O) one (O) [phoneme (B) error (I)] significantly (O) effect (O) the (O) [WER (B)]. 
+The (O) number (O) of (O) words (O) with (O) two (O) [phoneme (B) errors (I)] was (O) the (O) greatest (O) in (O) Model (O) 4 (O) (908), (O) and (O) the (O) lowest (O) in (O) Model (O) 5 (O) (739). (O) 
+The (O) number (O) of (O) words (O) with (O) three (O) [phoneme (B) errors (I)] was (O) the (O) lowest (O) (230) (O) in (O) Model (O) 5. (O) 
+There (O) was (O) approximately (O) the (O) same (O) number (O) of (O) words (O) with (O) four (O) [phoneme (B) errors (I)] in (O) Model (O) 2 (O) and (O) Model (O) 5 (O) (84 (O) in (O) Model (O) 2 (O) and (O) 86 (O) in (O) Model (O) 5). (O) 
+There (O) were (O) very (O) few (O) words (O) with (O) five (O) or (O) more (O) [phoneme (B) errors (I)] in (O) any (O) of (O) the (O) models. (O) 
+Model (O) 1 (O) and (O) Model (O) 3 (O) have (O) only (O) 1 (O) word (O) which (O) has (O) seven (O) [phoneme (B) errors (I)] ; Model (O) 5 (O) has (O) 2 (O) words (O) ; Model (O) 4 (O) has (O) 6 (O) words. (O) 
+The (O) number (O) of (O) words (O) with (O) eight (O) [phoneme (B) errors (I)] was (O) 0 (O) in (O) Model (O) 3 (O) and (O) Model (O) 5 (O) ; 1 (O) in (O) Model (O) 4. (O) 
+Figure (O) helps (O) to (O) understand (O) why (O) PER (O) in (O) our (O) models (O) can (O) be (O) smaller (O) while (O) [WER (B)] is (O) higher. (O)    
+
+Conclusions (O) 
+    
+In (O) this (O) paper, (O) [convolutional (B) neural (I) networks (I)] for (O) [grapheme-to-phoneme (B) conversion (I)] are (O) introduced. (O) 
+Five (O) different (O) models (O) for (O) the (O) [G2P (B) task (I)] are (O) described, (O) and (O) the (O) results (O) are (O) compared (O) to (O) previously (O) reported (O) state-of-the-art (O) research. (O) 
+Our (O) models (O) are (O) based (O) on (O) the (O) [seq2seq (B) architecture (I)], and (O) in (O) the (O) fourth (O) and (O) fifth (O) models, (O) we (O) applied (O) [CNNs (B)] with (O) [residual (B) connections (I)]. 
+The (O) fifth (O) model, (O) which (O) uses (O) [convolutional (B) layers (I)] with (O) [residual (B) connections (I)] as (O) [encoder (B)] and (O) [Bi-LSTM (B)] as (O) [decoder (B)] outperformed (O) most (O) the (O) previous (O) solutions (O) on (O) the (O) [CMUDict (B)] and (O) [NetTalk (B) datasets (I)] in (O) terms (O) of (O) PER. (O) 
+Furthermore, (O) the (O) fourth (O) model, (O) which (O) contains (O) [convolutional (B) layers (I)] only, (O) is (O) significantly (O) faster (O) than (O) other (O) models (O) and (O) still (O) has (O) competitive (O) accuracy. (O) 
+Our (O) solution (O) achieved (O) these (O) results (O) without (O) explicit (O) alignments. (O) 
+The (O) experiments (O) were (O) conducted (O) on (O) a (O) test (O) set (O) corresponding (O) to (O) 9.8 (O) % and (O) 24.9 (O) % of (O) the (O) whole (O) [CMUDict (B)] and (O) [NetTalk (B) databases (I)], respectively. (O) 
+The (O) same (O) test (O) set (O) was (O) used (O) in (O) all (O) cases, (O) so (O) we (O) consider (O) the (O) results (O) to (O) be (O) comparable. (O) 
+To (O) draw (O) conclusions (O) on (O) whether (O) one (O) model (O) is (O) better (O) than (O) another, (O) the (O) goal (O) must (O) be (O) defined. (O) 
+If (O) inference (O) time (O) is (O) crucial, (O) then (O) smaller (O) model (O) sizes (O) are (O) favorable (O) (e.g., (O) Model (O) 4), (O) but (O) if (O) lower (O) [WER (B)] and (O) PER (O) are (O) the (O) main (O) factors, (O) then (O) Model (O) 5 (O) outperforms (O) the (O) others. (O) 
+The (O) results (O) presented (O) in (O) this (O) paper (O) can (O) be (O) applied (O) in (O) [TTS (B) systems (I)] ; however, (O) because (O) of (O) the (O) rapid (O) development (O) of (O) deep (O) learning (O) further (O) aspects (O) will (O) be (O) investigated, (O) like (O) dilated (O) [convolutional (B) networks (I)] and (O) neural (O) architecture (O) search. (O) 
+These (O) are (O) possible (O) further (O) extensions (O) of (O) the (O) current (O) research. (O) 
+Author (O) Contributions (O) : All (O) authors (O) have (O) read (O) and (O) approved (O) the (O) final (O) manuscript. (O) 
+
+Acknowledgments (O) : The (O) research (O) presented (O) in (O) this (O) paper (O) has (O) been (O) supported (O) by (O) the (O) European (O) Union, (O) co-financed (O) by (O) the (O) European (O) Social (O) Fund (O) (EFOP-3.6.2-16-2017-00013), (O) by (O) the (O) BME-Artificial (O) Intelligence (O) FIKP (O) grant (O) of (O) Ministry (O) of (O) Human (O) Resources (O) (BME (O) FIKP-MI (O) / SC), (O) by (O) Doctoral (O) Research (O) Scholarship (O) of (O) Ministry (O) of (O) Human (O) Resources (O) (ÚNKP-18-4-BME-394) (O) in (O) the (O) scope (O) of (O) New (O) National (O) Excellence (O) Program, (O) by (O) János (O) Bolyai (O) Research (O) Scholarship (O) of (O) the (O) Hungarian (O) Academy (O) of (O) Sciences, (O) by (O) the (O) VUK (O) project (O) (AAL (O) 2014-183), (O) and (O) the (O) DANSPLAT (O) project (O) (Eureka (O) 9944). (O) 
+We (O) gratefully (O) acknowledge (O) the (O) support (O) of (O) NVIDIA (O) Corporation (O) with (O) the (O) donation (O) of (O) the (O) Titan (O) Xp (O) [GPU (B)] used (O) for (O) this (O) research. (O) 
+
+Conflicts (O) of (O) Interest (O) : The (O) authors (O) declare (O) that (O) they (O) have (O) no (O) competing (O) interests. (O) 
+
+Abbreviations (O) 
+[G2P (B)]             [Grapheme-to-phoneme (B)] 
+[ASR (B)]             [Automatic (B) Speech (I) Recognition (I)] 
+[CNN (B)]             [Convolutional (B) neural (I) network (I)] 
+PER (O)             [Phoneme (B) error (I) rate (I)] 
+[WER (B)]             [Word (B) error (I) rate (I)] 
+[Bi-LSTM (B)]         [bi-directional (B)] Long (O) Short (O) Term (O) Memory (O) 

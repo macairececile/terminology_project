@@ -1,0 +1,228 @@
+One (O) Model, (O) Many (O) Languages (O) : Meta-learning (O) for (O) [Multilingual (B) Text-to-Speech (I)] 
+
+
+Abstract (O) 
+We (O) introduce (O) an (O) approach (O) to (O) [multilingual (B) speech (I) synthesis (I)] which (O) uses (O) the (O) meta-learning (O) concept (O) of (O) contextual (O) parameter (O) generation (O) and (O) produces (O) natural-sounding (O) [multilingual (B) speech (I)] using (O) more (O) languages (O) and (O) less (O) [training (B) data (I)] than (O) previous (O) approaches. (O) 
+Our (O) model (O) is (O) based (O) on (O) [Tacotron (B) 2 (I)] with (O) a (O) fully (O) convolutional (O) input (O) text (O) [encoder (B)] whose (O) weights (O) are (O) predicted (O) by (O) a (O) separate (O) parameter (O) generator (O) network. (O) 
+To (O) boost (O) voice (O) cloning, (O) the (O) model (O) uses (O) an (O) [adversarial (B) speaker (I) classifier (I)] with (O) a (O) [gradient (B) reversal (I) layer (I)] that (O) removes (O) speaker-specific (O) information (O) from (O) the (O) [encoder (B)]. 
+
+We (O) arranged (O) two (O) experiments (O) to (O) compare (O) our (O) model (O) with (O) baselines (O) using (O) various (O) levels (O) of (O) [cross-lingual (B) parameter (I) sharing (I)], in (O) order (O) to (O) evaluate (O) : stability (O) and (O) performance (O) when (O) training (O) on (O) low (O) amounts (O) of (O) data, (O) pronunciation (O) accuracy (O) and (O) [voice (B) quality (I)] of (O) code-switching (O) synthesis. (O) 
+For (O) training, (O) we (O) used (O) the (O) [CSS10 (B) dataset (I)] and (O) our (O) new (O) [small (B) dataset (I)] based (O) on (O) [Common (B) Voice (I)] recordings (O) in (O) five (O) languages. (O) 
+Our (O) model (O) is (O) shown (O) to (O) effectively (O) share (O) information (O) across (O) languages (O) and (O) according (O) to (O) a (O) subjective (O) evaluation (O) test, (O) it (O) produces (O) more (O) natural (O) and (O) accurate (O) code-switching (O) [speech (B)] than (O) the (O) baselines. (O)                                   
+Index (O) Terms (O) : [text-to-speech (B)], [speech (B) synthesis (I)], multilinguality, (O) code-switching, (O) meta-learning, (O) domain-adversarial (O) training (O) 
+
+Introduction (O) 
+Contemporary (O) [end-to-end (B) speech (I) synthesis (I) systems (I)] achieve (O) great (O) results (O) and (O) produce (O) natural-sounding (O) human-like (O) [speech (B)] even (O) in (O) real (O) time. (O) 
+They (O) make (O) possible (O) an (O) efficient (O) training (O) that (O) does (O) not (O) put (O) high (O) demands (O) on (O) quality, (O) amount, (O) and (O) preprocessing (O) of (O) [training (B) data (I)]. Based (O) on (O) these (O) advances, (O) researchers (O) aim (O) at, (O) for (O) example, (O) expressiveness, (O) controllability, (O) or (O) few-[shot (B) voice (I)] cloning. (O) 
+When (O) extending (O) these (O) models (O) to (O) support (O) multiple (O) languages, (O) one (O) may (O) encounter (O) obstacles (O) such (O) as (O) different (O) [input (B) representations (I)] or (O) pronunciations, (O) and (O) imbalanced (O) amounts (O) of (O) [training (B) data (I)] per (O) language. (O) 
+In (O) this (O) work, (O) we (O) examine (O) [cross-lingual (B) knowledge (I)]-sharing aspects (O) of (O) [multilingual (B) text-to-speech (I)] ([TTS (B)]). 
+We (O) experiment (O) with (O) more (O) languages (O) simultaneously (O) than (O) most (O) previous (O) [TTS (B)] work (O) known (O) to (O) us. (O) 
+We (O) can (O) summarize (O) our (O) contributions (O) as (O) follows (O) : 
+We (O) propose (O) a (O) scalable (O) [grapheme-based (B) model (I)] that (O) utilizes (O) the (O) idea (O) of (O) contextual (O) parameter (O) generator (O) network (O) and (O) we (O) compare (O) it (O) with (O) baseline (O) models (O) using (O) different (O) levels (O) of (O) parameter (O) sharing. (O) 
+We (O) introduce (O) a (O) new (O) [small (B) dataset (I)] based (O) on (O) [Common (B) Voice (I)] that (O) includes (O) data (O) in (O) five (O) languages (O) from (O) 84 (O) speakers. (O) 
+We (O) evaluate (O) effectiveness (O) of (O) the (O) compared (O) models (O) on (O) ten (O) languages (O) with (O) three (O) different (O) scripts (O) and (O) we (O) show (O) their (O) code-switching (O) abilities (O) on (O) five (O) languages. (O) 
+For (O) the (O) purposes (O) of (O) the (O) evaluation, (O) we (O) created (O) a (O) new (O) test (O) set (O) of (O) 400 (O) bilingual (O) code-switching (O) sentences. (O) 
+Our (O) source (O) code, (O) [hyper-parameters (B)], training (O) and (O) [evaluation (B) data (I)], samples, (O) pre-trained (O) models, (O) and (O) interactive (O) demos (O) are (O) freely (O) available (O) on (O) GitHub. (O) 
+
+https://github.com/Tomiinek/Multilingual_Text_to_Speech (O) 
+
+
+Figure (O) : Diagram (O) of (O) our (O) model. (O) The (O) meta-network (O) generates (O) parameters (O) of (O) [language-specific (B) convolutional (I) text (I) encoders (I)]. 
+Encoded (O) text (O) inputs (O) enhanced (O) with (O) [speaker (B) embeddings (I)] are (O) read (O) by (O) the (O) [decoder (B)]. 
+The (O) adversarial (O) classifier (O) suppresses (O) speaker-dependent (O) information (O) in (O) [encoder (B) outputs (I)]. 
+
+Related (O) Work (O) 
+So (O) far, (O) several (O) works (O) explored (O) training (O) joint (O) [multilingual (B) models (I)] in (O) [text-to-speech (B)], following (O) similar (O) experiments (O) in (O) the (O) field (O) of (O) [neural (B) machine (I) translation (I)]. 
+[Multilingual (B) models (I)] offer (O) a (O) ew (O) key (O) benefits (O) : 
+• (O) Transfer (O) learning (O) : We (O) can (O) try (O) to (O) make (O) use (O) of (O) high-resource (O) languages (O) for (O) training (O) [TTS (B) systems (I)] for (O) low-resource (O) lan, (O) e.g., (O) via (O) transfer (O) learning (O) approaches. (O) 
+• (O) Knowledge (O) sharing (O) : We (O) may (O) think (O) of (O) using (O) [multilingual (B) data (I)] for (O) joint (O) training (O) of (O) a (O) single (O) shared (O) [text-to-speech (B) model (I)]. 
+Inuitively, (O) this (O) enables (O) [cross-lingual (B) sharing (I)] of (O) patterns (O) learned (O) from (O) data. (O) 
+The (O) only (O) work (O) in (O) this (O) area (O) to (O) our (O) knowledge (O) is (O) Prakash (O) et (O) al.’s (O) study (O)   on (O) [TTS (B)] for (O) related (O) Indian (O) languages (O) using (O) hand-built (O) unified (O) [phoneme (B) representations (I)]. 
+[• (B) Voice (I)] cloning (O) : Under (O) certain (O) circumstances, (O) producing (O) [speech (B)] in (O) multiple (O) languages (O) with (O) the (O) [same (B) voice (I)], i.e., (O) [crosslingual (B) voice (I)] cloning, (O) is (O) desired. (O) 
+However, (O) [audio (B) data (I)] where (O) a (O) [single (B) speaker (I)] speaks (O) several (O) languages (O) is (O) scarce. (O) 
+That (O) is (O) why (O) [multilingual (B) voice (I)]-cloning systems (O) should (O) be (O) trainable (O) using (O) mixtures (O) of (O) [monolingual (B) data (I)]. Here, (O) used (O) [Tacotron (B) 2 (I)] conditioned (O) on (O) [phonemes (B)] and (O) showed (O) voice-cloning (O) abilities (O) on (O) English, (O) Spanish, (O) and (O) Chinese. (O) 
+Nachmani (O) and (O) Wolf (O) extended (O) [Voice (B) Loop (I)]   and (O) enabled (O) [voice (B) conversion (I)] for (O) English, (O) Spanish, (O) and (O) German. (O) Chen (O) et (O) al. (O) 
+used (O) a (O) [phoneme-based (B) Tacotron (I) 2 (I)] with (O) a (O) ResCNN (O) based (O) [speaker (B) encoder (I)]   that (O) enables (O) a (O) massively (O) [multi-speaker (B) speech (I) synthesis (I)], even (O) with (O) [fictitious (B) voices (I)]. 
+• (O) Code (O) switching (O) : In (O) this (O) task (O) closely (O) related (O) to (O) [cross-lingual (B) voice (I)] cloning, (O) we (O) would (O) like (O) to (O) alternate (O) languages (O) within (O) sentences. (O) 
+This (O) is (O) useful (O) for (O) foreign (O) names (O) in (O) navigation (O) systems (O) or (O) news (O) readers. (O) In (O) view (O) of (O) that, (O) Cao (O) et (O) al. (O) modified (O) [Tacotron (B)] ; their (O) model (O) uses (O) [language-specific (B) encoders (I)]. 
+Code-switching (O) itself (O) is (O) done (O) by (O) combining (O) of (O) their (O) outputs. (O) 
+Overall, (O) all (O) recent (O) [multilingual (B) text-to-speech (I) systems (I)] were (O) only (O) tested (O) in (O) 2-3 (O) languages (O) simultaneously, (O) or (O) required (O) vast (O) amounts (O) of (O) data (O) to (O) be (O) trained. (O) 
+
+[Model (B) Architecture (I)] 
+We (O) base (O) our (O) experiments (O) on (O) [Tacotron (B) 2 (I)]. We (O) focus (O) on (O) the (O) [spectrogram (B) generation (I)] part (O) here (O) ; for (O) [vocoding (B)], we (O) use (O) [WaveRNN (B)] in (O) all (O) our (O) configurations. (O) 
+We (O) first (O) explain (O) our (O) new (O) model (O) that (O) uses (O) meta-learning (O) for (O) multilingual (O) knowledge (O) sharing (O) in (O) Sec., (O) then (O) describe (O) contrastive (O) baseline (O) models (O) which (O) are (O) based (O) on (O) recent (O) [multilingual (B) TTS (I) architectures (I)] (Sec.). (O) 
+
+Table (O) : [Total (B) data (I)] sizes (O) per (O) language (O) (hours (O) of (O) [audio (B) data (I)]) in (O) our (O) cleaned (O) [CSS10 (B)] (CSS) (O) and (O) [Common (B) Voice (I)] (CV) (O) subsets. (O) 
+
+Our (O) Model (O) : Generated (O) (GEN) (O) 
+We (O) introduce (O) a (O) scalable (O) [multilingual (B) text-to-speech (I) model (I)] that (O) follows (O) a (O) meta-learning (O) approach (O) of (O) contextual (O) parameter (O) generation (O) proposed (O) by (O) for (O) [NMT (B)] (see (O) Fig.). (O) 
+We (O) call (O) the (O) model (O) generated (O) (G (O) EN) (O) further (O) in (O) this (O) text. (O) The (O) backbone (O) of (O) our (O) model (O) is (O) built (O) on (O) our (O) own (O) implementation (O) of (O) [Tacotron (B) 2 (I)], composed (O) of (O) these (O) main (O) components (O) : 
+an (O) input (O) text (O) [encoder (B)] that (O) includes (O) a (O) stack (O) of (O) [convolutional (B) layers (I)] and (O) a (O) [bidirectional (B) LSTM (I)], 
+a (O) location-sensitive (O) [attention (B) mechanism (I)] with (O) the (O) guided (O) attention (O) loss (O) term (O) that (O) supports (O) faster (O) convergence, (O) 
+a (O) [decoder (B)] with (O) two (O) stacked (O) [LSTM (B) layers (I)] where (O) the (O) first (O) queries (O) the (O) [attention (B) mechanism (I)] and (O) the (O) second (O) generates (O) outputs. (O) 
+We (O) increase (O) tolerance (O) of (O) the (O) guided (O) attention (O) loss (O) exponentially (O) during (O) training. (O) 
+We (O) propose (O) the (O) following (O) changes (O) to (O) this (O) basic (O) architecture (O) : 
+[Convolutional (B) Encoders (I)] : We (O) use (O) multiple (O) [language-specific (B) input (I) text (I) encoders (I)]. 
+However, (O) having (O) a (O) separate (O) [encoder (B)] with (O) [recurrent (B) layers (I)] for (O) each (O) language (O) is (O) not (O) practical (O) as (O) it (O) involves (O) passing (O) the (O) training (O) batches (O) (which (O) should (O) be (O) balanced (O) with (O) respect (O) to (O) languages) (O) through (O) multiple (O) [encoders (B)] sequentially. (O) 
+Therefore, (O) we (O) use (O) a (O) fully (O) [convolutional (B) encoder (I)] from (O) DCTTS. (O) 
+The (O) [encoders (B)] use (O) grouped (O) layers (O) and (O) are (O) thus (O) processed (O) effectively. (O) 
+We (O) enhance (O) the (O) [encoders (B)] with (O) [batch (B) normalization (I)] and (O) [dropout (B)] with (O) a (O) very (O) low (O) rate. (O) 
+The (O) normalization (O) layers (O) are (O) situated (O) before (O) activations (O) and (O) [dropouts (B)] after (O) them. (O) 
+
+[Encoder (B) parameter (I)] generation (O) : To (O) enable (O) [cross-lingual (B) knowledge (I)]-sharing, parameters (O) of (O) the (O) [encoders (B)] are (O) generated (O) using (O) a (O) separate (O) network (O) conditioned (O) on (O) language (O) embeddings. (O) 
+The (O) parameter (O) generator (O) is (O) composed (O) of (O) multiple (O) site-specific (O) generators, (O) each (O) of (O) which (O) takes (O) a (O) [language (B) embedding (I)] on (O) the (O) input (O) and (O) produces (O) parameters (O) for (O) one (O) layer (O) of (O) the (O) [convolutional (B) encoder (I)] for (O) the (O) given (O) language. (O) 
+The (O) generators (O) enable (O) a (O) controllable (O) [cross-lingual (B) parameter (I)] sharing (O) because (O) reduction (O) of (O) their (O) size (O) prevents (O) generation (O) of (O) highly (O) [language-specific (B) parameters (I)]. 
+We (O) implement (O) them (O) as (O) fully (O) connected (O) layers. (O) 
+
+Training (O) with (O) multilingual (O) batches (O) : We (O) construct (O) unusual (O) training (O) batches (O) to (O) fully (O) utilize (O) the (O) potential (O) of (O) this (O) architecture. (O) 
+We (O) would (O) like (O) to (O) have (O) a (O) batch (O) of (O) B (O) examples (O) that (O) can (O) be (O) reshaped (O) into (O) a (O) batch (O) of (O) size (O) B (O) / L (O) where (O) L (O) is (O) the (O) number (O) of (O) [encoder (B)] groups (O) or (O) languages. (O) 
+This (O) new (O) batch (O) should (O) have (O) a (O) new (O) dimension (O) that (O) groups (O) all (O) examples (O) with (O) the (O) same (O) language. (O) 
+Thus (O) we (O) use (O) a (O) batch (O) sampler (O) that (O) creates (O) batches (O) where (O) for (O) each (O) l (O) < L (O) and (O) i (O) < B (O) / L, (O) all (O) (l (O) + iL)-th (O) examples (O) are (O) of (O) the (O) same (O) language. (O) 
+
+Speaker (O) embedding (O) : We (O) extend (O) the (O) model (O) with (O) a (O) [speaker (B) embedding (I)] which (O) is (O) concatenated (O) with (O) each (O) element (O) of (O) the (O) encoded (O) sequence (O) that (O) is (O) attended (O) by (O) the (O) [decoder (B)] while (O) generating (O) [spectrogram (B) frames (I)]. 
+This (O) makes (O) the (O) model (O) [multi-speaker (B)] and (O) allows (O) [cross-lingual (B) voice (I) cloning (I)]. 
+
+[Adversarial (B) speaker (I) classifier (I)] : We (O) combine (O) the (O) model (O) with (O) an (O) [adversarial (B) speaker (I) classifier (I)] to (O) boost (O) voice (O) cloning. (O) 
+The (O) classifier (O) follows (O) principles (O) of (O) domain (O) adversarial (O) training (O) and (O) is (O) used (O) to (O) proactively (O) remove (O) speaker-specific (O) information (O) from (O) the (O) [encoders (B)]. 
+It (O) includes (O) a (O) single (O) [hidden (B) layer (I)], a (O) [softmax (B) layer (I)], and (O) a (O) [gradient (B) reversal (I) layer (I)] that (O) scales (O) the (O) gradient (O) flowing (O) to (O) the (O) [encoders (B)] by (O) a (O) factor (O) – (O) λ. (O) 
+The (O) gradients (O) are (O) clipped (O) to (O) stabilize (O) training. (O) 
+It (O) is (O) optimized (O) to (O) reduce (O) the (O) cross-entropy (O) of (O) [speaker (B) predictions (I)]. 
+The (O) predictions (O) are (O) done (O) separately (O) for (O) each (O) element (O) of (O) the (O) [encoders (B)]’ outputs. (O) 
+    
+Baselines (O) : Shared, (O) Separate (O) & Single (O) 
+We (O) compare (O) GEN (O) with (O) baseline (O) models (O) called (O) shared (O) (SHA), (O) separate (O) (SEP), (O) and (O) single (O) (SGL). (O) 
+SGL (O) is (O) a (O) basic (O) [Tacotron (B) 2 (I) model (I)], SHA (O) and (O) SEP (O) follow (O) the (O) recent (O) [multilingual (B) TTS (I)] works (O) of (O) Zhang (O) et (O) al. (O) 
+ respectively, (O) but (O) were (O) slightly (O) adapted (O) to (O) our (O) tasks (O) for (O) a (O) fairer (O) comparison (O) to (O) GEN (O) – (O) we (O) use (O) more (O) languages (O) and (O) [less (B) data (I)] than (O) the (O) original (O) works. (O) 
+In (O) the (O) following, (O) we (O) only (O) describe (O) their (O) differences (O) from (O) G (O) EN. (O) 
+Single (O) (SGL) (O) represents (O) a (O) set (O) of (O) monolingual (O) models (O) that (O) follow (O) [vanilla (B) Tacotron (I) 2 (I)] with (O) the (O) original (O) recurrent (O) [encoder (B)] and (O) default (O) settings. (O) 
+SGL (O) can (O) not (O) be (O) used (O) for (O) [code-switching (B)]. 
+Shared (O) (SHA) (O) : Unlike (O) G (O) EN, (O) S (O) HA (O) has (O) a (O) single (O) [encoder (B)] with (O) the (O) original (O) [Tacotron (B) 2 (I) architecture (I)], so (O) it (O) fully (O) shares (O) all (O) [encoder (B) parameters (I)]. 
+This (O) sharing (O) implicitly (O) leads (O) to (O) [language-independent (B) encoder (I) outputs (I)]. 
+The (O) [language-dependent (B) processing (I)] happens (O) in (O) the (O) [decoder (B)], so (O) the (O) [speaker (B) embeddings (I)] are (O) explicitly (O) factorized (O) into (O) speaker (O) and (O) language (O) parts. (O) 
+Separate (O) (SEP) (O) uses (O) multiple (O) [language-specific (B) convolutional (I) encoders (I)] too, (O) but (O) their (O) parameters (O) are (O) not (O) generated. (O) 
+It (O) also (O) does (O) not (O) include (O) the (O) [adversarial (B) speaker (I) classifier (I)]. 
+
+Dataset (O) 
+We (O) created (O) a (O) [new (B) dataset (I)] for (O) our (O) experiments, (O) based (O) on (O) carefully (O) cleaning (O) and (O) preprocessing (O) freely (O) available (O) [audio (B)] sources (O) : 
+[CSS10 (B)] and (O) a (O) small (O) fraction (O) of (O) [Common (B) Voice (I)]. Table (O) shows (O) total (O) durations (O) of (O) the (O) used (O) [audio (B) data (I)] per (O) language. (O) 
+
+[CSS10 (B)] 
+[CSS10 (B)] consists (O) of (O) mono-[speaker (B) data (I)] in (O) German, (O) Greek, (O) Spanish, (O) Finnish, (O) French, (O) Hungarian, (O) Japanese, (O) Dutch, (O) Russian, (O) and (O) Chinese. (O) 
+It (O) was (O) created (O) from (O) audiobooks (O) and (O) contains (O) various (O) punctuation (O) styles. (O) 
+We (O) applied (O) an (O) automated (O) cleaning (O) to (O) normalize (O) transcripts (O) across (O) languages, (O) including (O) punctuation (O) and (O) some (O) spelling (O) variants (O) (e.g., (O) “ (O) œ (O) ” (O) → (O) “ (O) oe (O) ”). (O) 
+We (O) romanized (O) Japanese (O) with (O) MeCab (O) and (O) Romkan, (O) Chinese (O) using (O) Pinyin. (O) 
+We (O) further (O) filtered (O) the (O) data (O) to (O) remove (O) any (O) potentially (O) problematic (O) transcripts (O) : we (O) preserved (O) just (O) examples (O) with (O) 0.5-10. (O) 
+1s (O) of (O) [audio (B)] and (O) 3-190 (O) transcript (O) characters. (O) 
+We (O) computed (O) means (O) µ (O) and (O) variances (O) σ (O) of (O) [audio (B)] durations (O) of (O) groups (O) corresponding (O) to (O) examples (O) with (O) the (O) same (O) transcript (O) lengths. (O) 
+Then (O) we (O) removed (O) those (O) with (O) durations (O) outside (O) the (O) interval (O) (µ (O) – (O) 3σ, (O) µ (O) + 3σ). (O) 
+In (O) total, (O) the (O) resulting (O) dataset (O) includes (O) 125.26 (O) hours (O) of (O) recordings. (O) 
+
+
+Table (O) : Left (O) : CERs (O) of (O) [ground-truth (B) recordings (I)] (GT) (O) and (O) recordings (O) produced (O) by (O) monolingual (O) and (O) the (O) three (O) examined (O) [multilingual (B) models (I)]. 
+Right (O) : CERs (O) of (O) the (O) recordings (O) synthesized (O) by (O) G (O) EN (O) and (O) S (O) HA (O) trained (O) on (O) just (O) 600 (O) or (O) 900 (O) training (O) examples (O) per (O) language. (O) 
+Best (O) results (O) for (O) the (O) given (O) language (O) are (O) shown (O) in (O) bold (O) ; “ (O) * ” (O) denotes (O) statistical (O) significance (O) (established (O) using (O) paired (O) t-test (O) ; p (O) < 0.05). (O) 
+
+
+
+[Common (B) Voice (I)] 
+To (O) train (O) code-switching (O) models, (O) [multi-speaker (B) data (I)] is (O) required (O) to (O) disentangle (O) the (O) connection (O) between (O) languages (O) and (O) speakers. (O) 
+We (O) thus (O) enhanced (O) [CSS10 (B)] with (O) data (O) from (O) [Common (B) Voice (I)] (CV) (O) for (O) languages (O) included (O) in (O) both (O) sets (O) – (O) the (O) intersection (O) covers (O) German, (O) French, (O) Chinese, (O) Dutch, (O) Russian, (O) Japanese, (O) and (O) Spanish. (O) 
+Since (O) CV (O) is (O) mainly (O) aimed (O) at (O) [speech (B) recognition (I)] and (O) rather (O) noisy, (O) we (O) performed (O) extensive (O) filtering (O) : We (O) removed (O) recordings (O) with (O) a (O) negative (O) rating (O) (as (O) provided (O) by (O) CV (O) for (O) each (O) example) (O) and (O) excluded (O) any (O) speakers (O) with (O) less (O) than (O) 50 (O) recordings. (O) 
+We (O) checked (O) a (O) sample (O) of (O) recordings (O) for (O) each (O) speaker, (O) and (O) we (O) removed (O) all (O) their (O) data (O) if (O) we (O) considered (O) the (O) sample (O) to (O) have (O) poor (O) quality. (O) 
+This (O) resulted (O) in (O) a (O) [small (B) dataset (I)] of (O) 39 (O) German, (O) 22 (O) French, (O) 11 (O) Dutch, (O) 6 (O) Chinese, (O) and (O) 6 (O) [Russian (B) speakers (I)]. 
+Japanese (O) and (O) [Spanish (B) data (I)] were (O) removed (O) completely. (O) 
+A (O) lot (O) of (O) recordings (O) in (O) CV (O) contain (O) artifacts (O) at (O) the (O) beginning (O) or (O) end. (O) 
+Thus (O) we (O) semi-automatically (O) cleaned (O) leading (O) and (O) trailing (O) segments (O) of (O) all (O) recordings. (O) 
+The (O) dataset (O) has (O) 13.7 (O) hours (O) of (O) [audio (B) data (I)] in (O) total. (O) 
+
+Experiments (O) 
+We (O) compare (O) our (O) models (O) described (O) in (O) Section. (O) 
+The (O) experiment (O) in (O) Section (O) was (O) designed (O) to (O) show (O) stability (O) and (O) ability (O) to (O) train (O) on (O) lower (O) amounts (O) of (O) data. (O) 
+We (O) conclude (O) that (O) character (O) error (O) rate (O) (CER) (O) evaluation (O) is (O) sufficient (O) for (O) this (O) experiment. (O) In (O) Section, (O) we (O) test (O) pronunciation (O) accuracy (O) and (O) [voice (B) quality (I)] of (O) code-switching (O) synthesis. (O) 
+We (O) used (O) a (O) subjective (O) evaluation (O) test (O) as (O) there (O) are (O) no (O) straightforward (O) objective (O) metrics (O) for (O) this (O) task. (O) 
+We (O) used (O) the (O) same (O) [vocoder (B)] for (O) all (O) models, (O) i.e., (O) the (O) [WaveRNN (B) model (I)] trained (O) on (O) a (O) training (O) subset (O) of (O) the (O) cleaned (O) [CSS10 (B) dataset (I)]. 
+
+Multilingual (O) training (O) 
+Training (O) setup (O) : We (O) used (O) our (O) cleaned (O) [CSS10 (B) dataset (I)] for (O) training (O) ; 64 (O) randomly (O) selected (O) samples (O) per (O) language (O) were (O) reserved (O) for (O) validation (O) and (O) another (O) 64 (O) for (O) testing. (O) 
+We (O) did (O) not (O) have (O) an (O) ambition (O) to (O) [clone (B) voices (I)] in (O) this (O) experiment, (O) so (O) we (O) switched (O) off (O) [speaker (B) classifiers (I)] for (O) SHA (O) and (O) GEN (O) (i.e., (O) SHA (O) was (O) reduced (O) to (O) the (O) [vanilla (B) Tacotron (I) 2 (I) model (I)] with (O) a (O) language (O) embedding). (O) 
+We (O) trained (O) the (O) three (O) models (O) for (O) 50k (O) steps (O) with (O) the (O) Adam (O) optimizer.2 (O) We (O) used (O) a (O) stepped (O) learning (O) rate (O) that (O) starts (O) from (O) 10–3 (O) and (O) halves (O) every (O) 10k (O) steps. (O) 
+In (O) the (O) case (O) of (O) S (O) EP, (O) we (O) used (O) a (O) lower (O) initial (O) learning (O) rate (O) 10–4. (O) 
+For (O) SGL, (O) the (O) learning (O) rate (O) schedule (O) was (O) tuned (O) individually (O) per (O) language. (O) 
+We (O) stopped (O) training (O) early (O) after (O) [validation (B) data (I)] loss (O) started (O) increasing. (O) 
+SHA, (O) SEP, (O) and (O) GEN (O) used (O) [speaker (B) embeddings (I)] of (O) size (O) 32 (O) and (O) G (O) EN (O) used (O) language (O) embeddings (O) and (O) parameter (O) generators (O) of (O) size (O) 10 (O) and (O) 8, (O) respectively. (O) 
+We (O) used (O) language-balanced (O) batches (O) of (O) size (O) 60 (O) for (O) all (O) models. (O) 
+
+With (O)    β1 (O) = 0.9, (O) β2 (O) = 0.999, (O) =10–6, (O) and (O) weight (O) decay (O) of (O) 10–6 (O) 
+
+Evaluation (O) : We (O) synthesized (O) [evaluation (B) data (I)] using (O) all (O) the (O) models (O) followed (O) by (O) [WaveRNN (B)] and (O) we (O) sent (O) the (O) synthesized (O) recordings (O) to (O) Google (O) Cloud (O) Platform (O) [ASR (B)]. 
+Then (O) we (O) computed (O) CERs (O) between (O) [ground-truth (B)] and (O) [ASR (B)]-produced transcripts (O) (we (O) used (O) the (O) native (O) symbols (O) for (O) Chinese (O) and (O) Japanese). (O) 
+
+Results (O) : Table (O) summarizes (O) the (O) obtained (O) CERs. (O) The (O) first (O) column (O) gives (O) us (O) a (O) notion (O) about (O) the (O) performance (O) of (O) the (O) [ASR (B)] engine. (O) 
+The (O) rates (O) stay (O) below (O) 20 (O) % for (O) all (O) languages (O) ; higher (O) CERs (O) are (O) mostly (O) caused (O) by (O) noisy (O) [CSS10 (B)] recordings. (O) 
+We (O) were (O) not (O) able (O) to (O) train (O) the (O) Greek (O) S (O) GL (O) model (O) due (O) to (O) low (O) amount (O) of (O) [training (B) data (I)]. 
+The (O) [decoder (B)] started (O) to (O) overfit (O) soon (O) before (O) the (O) attention (O) could (O) have (O) been (O) established. (O) 
+The (O) performance (O) of (O) SGL (O) is (O) similar (O) to (O) SHA (O) except (O) for (O) Chinese, (O) Finnish, (O) and (O) Greek. (O) SEP (O) performed (O) noticeably (O) worse (O) than (O) S (O) HA (O) or (O) even (O) S (O) GL. (O) 
+This (O) may (O) be (O) caused (O) by (O) the (O) imbalance (O) between (O) the (O) [batch (B) size (I)] of (O) the (O) [encoder (B)] and (O) the (O) [decoder (B)] as (O) the (O) [encoder (B)]’s effective (O) [batch (B) size (I)] is (O) just (O) B (O) / L.4 (O) Sharing (O) of (O) the (O) data (O) probably (O) regularized (O) the (O) [decoder (B)], so (O) the (O) attention (O) was (O) established (O) even (O) in (O) the (O) case (O) of (O) Greek. (O) 
+GEN (O) seems (O) to (O) be (O) significantly (O) better (O) than (O) S (O) HA (O) on (O) most (O) languages. (O) It (O) fulfills (O) our (O) expectations (O) as (O) G (O) EN (O) should (O) be (O) more (O) flexible. (O) 
+
+Manual (O) error (O) analysis (O) : We (O) manually (O) inspected (O) the (O) outputs (O) in (O) German, (O) French, (O) Spanish, (O) and (O) Russian. (O) In (O) the (O) case (O) of (O) Spanish, (O) all (O) the (O) models (O) work (O) well (O) ; we (O) noticed (O) just (O) differences (O) in (O) the (O) treatment (O) of (O) punctuation. (O) 
+German (O) outputs (O) by (O) G (O) EN (O) seem (O) to (O) be (O) the (O) best. (O) 
+Other (O) models (O) sometimes (O) do (O) unnatural (O) pauses (O) when (O) reaching (O) a (O) punctuation (O) mark. (O) 
+Right (O) after (O) the (O) pauses, (O) they (O) often (O) skip (O) a (O) few (O) words. (O) G (O) EN (O) is (O) noticeably (O) better (O) on (O) French (O) and (O) Russian, (O) others (O) produce (O) obvious (O) mispronunciations. (O) 
+
+Data-stress (O) training (O) : To (O) further (O) test (O) the (O) models (O) in (O) data-stress (O) situations, (O) we (O) chose (O) random (O) subsets (O) of (O) 600 (O) and (O) 900 (O) examples (O) per (O) language (O) from (O) the (O) training (O) set (O) (i.e., (O) about (O) 80 (O) or (O) 120 (O) minutes (O) of (O) recordings, (O) respectively). (O) 
+We (O) trained (O) all (O) models (O) on (O) both (O) reduced (O) datasets, (O) but (O) accomplished (O) training (O) just (O) for (O) S (O) HA (O) and (O) G (O) EN. (O) 
+While (O) training (O) on (O) the (O) bigger (O) and (O) [smaller (B) dataset (I)], we (O) decayed (O) the (O) learning (O) rate (O) every (O) 7.5k (O) and (O) 5k (O) training (O) steps, (O) respectively. (O) 
+The (O) right (O) half (O) of (O) Table (O) shows (O) that (O) G (O) EN (O) can (O) work (O) better (O) even (O) in (O) data-stress (O) situations. (O) GEN (O) models (O) have, (O) compared (O) to (O) SHA (O) models, (O) significantly (O) better (O) CER (O) values (O) on (O) six (O) languages. (O) 
+
+https://cloud.google.com/speech-to-text (O) 
+
+Our (O) attempts (O) to (O) compensate (O) for (O) this (O) using (O) different (O) [encoder (B)] and (O) [decoder (B) learning (I)] rates (O) were (O) not (O) successful. (O) 
+
+Table (O) : Mean (O) (with (O) std. (O) dev.) (O) ratings (O) of (O) fluency, (O) naturalness, (O) [voice (B) stability (I)] (top) (O) and (O) pronunciation (O) accuracy (O) (middle). (O) 
+The (O) bottom (O) row (O) shows (O) the (O) number (O) of (O) sentences (O) with (O) word (O) skips. (O) 
+
+
+Figure (O) : Language (O) abilities (O) of (O) participants (O) of (O) our (O) survey. (O) 
+
+Code-switching (O) 
+Training (O) setup (O) : In (O) this (O) experiment, (O) we (O) only (O) used (O) the (O) five (O) languages (O) where (O) both (O) [CSS10 (B)] and (O) [CV (B) data (I)] are (O) available (O) (Table), (O) and (O) trained (O) on (O) all (O) data (O) in (O) our (O) cleaned (O) sets (O) ; 64 (O) and (O) 4 (O) randomly (O) selected (O) samples (O) for (O) each (O) speaker (O) from (O) [CSS10 (B)] and (O) CV, (O) respectively, (O) were (O) reserved (O) for (O) validation. (O) 
+The (O) S (O) GL (O) models (O) are (O) not (O) applicable (O) to (O) the (O) code-switching (O) scenario. (O) 
+SHA, (O) SEP, (O) and (O) GEN (O) models (O) were (O) trained (O) for (O) 50k (O) steps (O) with (O) the (O) same (O) learning (O) rate (O) and (O) schedule (O) settings (O) as (O) in (O) Section, (O) this (O) time (O) with (O) the (O) [adversarial (B) speaker (I) classifiers (I)] enabled.5 (O) We (O) set (O) the (O) size (O) of (O) [speaker (B) embeddings (I)] to (O) 32 (O) and (O) used (O) a (O) language (O) embedding (O) of (O) size (O) 4 (O) in (O) S (O) HA. (O) 
+GEN (O) uses (O) language (O) embeddings (O) of (O) size (O) 10 (O) and (O) generator (O) layers (O) of (O) size (O) 4. (O) We (O) used (O) mini-batches (O) of (O) size (O) 50 (O) for (O) all (O) models. (O)             
+                                                                             
+Code-switching (O) [evaluation (B) dataset (I)] : We (O) created (O) a (O) new (O) small-[scale (B) dataset (I)] especially (O) for (O) code-switching (O) evaluation. (O) 
+We (O) used (O) bilingual (O) sentences (O) scraped (O) from (O) Wikipedia. (O) For (O) each (O) language, (O) we (O) picked (O) 80 (O) sentences (O) with (O) a (O) few (O) foreign (O) words (O) (20 (O) sentences (O) for (O) each (O) of (O) the (O) 4 (O) other (O) languages) (O) ; Chinese (O) was (O) romanized. (O) 
+We (O) replaced (O) foreign (O) names (O) with (O) their (O) native (O) forms (O) (see (O) Fig.). (O) 
+
+Figure (O) : Examples (O) of (O) code-switching (O) evaluation (O) sentences. (O) 
+
+Subjective (O) evaluation (O) : We (O) synthesized (O) all (O) evaluation (O) sentences (O) using (O) [speaker (B) embedding (I)] of (O) the (O) [CSS10 (B) speaker (I)] for (O) the (O) base (O) language (O) of (O) the (O) sentence. (O) We (O) arranged (O) a (O) subjective (O) evaluation (O) test (O) and (O) used (O) a (O) rating (O) method (O) that (O) combines (O) five-point (O) [mean (B) opinion (I) score (I)] ([MOS (B)]) with (O) [MUSHRA (B)]. For (O) each (O) sample, (O) its (O) transcript (O) and (O) systems’ (O) outputs (O) were (O) shown (O) at (O) the (O) same (O) time. (O) 
+Participants (O) were (O) asked (O) to (O) rate (O) them (O) on (O) a (O) scale (O) from (O) 1 (O) to (O) 5 (O) with (O) 0.1 (O) increments (O) and (O) with (O) labels (O) “ (O) Bad (O) ”, (O) “ (O) Poor (O) ”, (O) “ (O) Fair (O) ”, (O) “ (O) Good (O) ”, (O) “ (O) Excellent (O) ”. (O) To (O) distinguish (O) different (O) error (O) types, (O) we (O) asked (O) for (O) two (O) ratings (O) : fluency, (O) naturalness, (O) and (O) stability (O) of (O) the (O) voice (O) ([speaker (B) similarity (I)]) – (O) to (O) check (O) if (O) foreign (O) words (O) cause (O) any (O) change (O) to (O) the (O) speaker’s (O) voice, (O) and (O) accuracy (O) – (O) testing (O) if (O) all (O) words (O) are (O) pronounced (O) and (O) the (O) foreign (O) word (O) pronunciation (O) is (O) correct. (O)                 
+Participants (O) could (O) leave (O) a (O) textual (O) note (O) at (O) the (O) end (O) of (O) the (O) survey. (O) 
+For (O) each (O) language, (O) we (O) recruited (O) ten (O) [native (B) speakers (I)] that (O) spoke (O) at (O) least (O) one (O) other (O) language (O) fluently (O) via (O) the (O) Prolific (O) platform (O) (Fig.) (O) They (O) were (O) given (O) twelve (O) sentences (O) with (O) the (O) base (O) language (O) matching (O) their (O) native (O) language (O) where (O) each (O) of (O) the (O) other (O) languages (O) was (O) represented (O) by (O) three (O) sentences. (O) 
+                                                                             
+Results (O) : Table (O) summarizes (O) results (O) of (O) the (O) survey. (O) The (O) rows (O) marked (O) “ (O) All (O) ” (O) show (O) means (O) and (O) variances (O) of (O) the (O) ratings (O) of (O) all (O) 50 (O) participants. (O) 
+Fig. (O) visualizes (O) quantiles (O) of (O) the (O) ratings (O) (grouped (O) by (O) dominant (O) languages). (O) 
+G (O) EN (O) has (O) significantly (O) higher (O) mean (O) ratings (O) on (O) both (O) scales. (O) 
+Unlike (O) S (O) HA (O) or (O) S (O) EP, (O) it (O) allows (O) [cross-lingual (B) mixing (I)] of (O) the (O) [encoder (B) outputs (I)] and (O) enables (O) smooth (O) control (O) over (O) pronunciation. (O) 
+S (O) EP (O) scores (O) consistently (O) worst. (O) 
+The (O) accuracy (O) ratings (O) are (O) overall (O) slightly (O) higher (O) than (O) the (O) fluency (O) ratings (O) ; this (O) might (O) be (O) caused (O) by (O) improper (O) word (O) stress, (O) which (O) several (O) participants (O) commented (O) on. (O) 
+
+Based (O) on (O) preliminary (O) experiments (O) on (O) [validation (B) data (I)], we (O) set (O) λ=1 (O) and (O) weighted (O) the (O) loss (O) of (O) the (O) classifier (O) by (O) 0.125 (O) and (O) 0.5 (O) for (O) G (O) EN (O) and (O) S (O) HA, (O) respectively. (O) The (O) classifiers (O) include (O) a (O) hidden (O) layer (O) of (O) size (O) 256. (O)                       
+https://www.prolific.co (O) ; 4 (O) participants (O) who (O) reported (O) as (O) Chinese (O) [native (B) speakers (I)] on (O) Prolific (O) only (O) reported (O) non-native (O) fluency (O) in (O) our (O) survey. (O)   
+ In (O) 3 (O) sentences, (O) a (O) random (O) model (O) output (O) was (O) distorted (O) and (O) used (O) as (O) sanity (O) check (O) (expected (O) to (O) be (O) rated (O) lowest). (O) All (O) participants (O) passed. (O) 
+
+Figure (O) : Graphs (O) showing (O) distributions (O) of (O) fluency (O) and (O) accuracy (O) ratings (O) grouped (O) by (O) the (O) dominant (O) language (O) of (O) rated (O) sentences. (O) 
+
+Manual (O) error (O) analysis (O) : We (O) found (O) that (O) the (O) models (O) sometimes (O) skip (O) words, (O) especially (O) when (O) reaching (O) foreign (O) words (O) in (O) Chinese (O) sentences. (O) 
+Therefore, (O) we (O) manually (O) inspected (O) all (O) 400 (O) outputs (O) of (O) all (O) models (O) and (O) counted (O) sentences (O) where (O) any (O) word (O) skip (O) occurred, (O) see (O) the (O) “ (O) Word (O) skips (O) ” (O) row (O) in (O) Table. (O) 
+We (O) found (O) that (O) the (O) G (O) EN (O) model (O) makes (O) much (O) fewer (O) of (O) these (O) errors (O) than (O) S (O) HA (O) and (O) S (O) EP. (O) 
+
+Conclusion (O) 
+We (O) presented (O) a (O) new (O) [grapheme-based (B) model (I)] that (O) uses (O) metalearning (O) for (O) [multilingual (B) TTS (I)] 
+We (O) showed (O) that (O) it (O) significantly (O) outperforms (O) multiple (O) strong (O) baselines (O) on (O) two (O) tasks (O) : data-stress (O) training (O) and (O) [code-switching (B)], where (O) our (O) model (O) was (O) favored (O) in (O) oth (O) [voice (B) fluency (I)] as (O) well (O) as (O) pronunciation (O) accuracy. (O) 
+Our (O) code (O) is (O) available (O) on (O) GitHub.1 (O) For (O) future (O) work, (O) we (O) consider (O) changes (O) to (O) our (O) model’s (O) attention (O) module (O) to (O) further (O) improve (O) accuracy. (O) 
+
+Acknowledgements (O) 
+This (O) research (O) was (O) supported (O) by (O) the (O) Charles (O) University (O) grant (O) PRIMUS/19 (O) / SCI/10. (O) 

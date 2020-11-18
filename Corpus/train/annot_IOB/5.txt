@@ -1,0 +1,303 @@
+Non-[Autoregressive (B) Neural (I) Text-to-Speech (I)] 
+
+
+Abstract (O) 
+In (O) this (O) work, (O) we (O) propose (O) [ParaNet (B)], a (O) [non-autoregressive (B) seq2seq (I) model (I)] that (O) converts (O) text (O) to (O) [spectrogram (B)]. 
+It (O) is (O) fully (O) convolutional (O) and (O) brings (O) 46.7 (O) times (O) speed-up (O) over (O) the (O) lightweight (O) [Deep (B) Voice (I)] 3 (O) at (O) synthesis, (O) while (O) obtaining (O) reasonably (O) good (O) [speech (B) quality (I)]. 
+[ParaNet (B)] also (O) produces (O) stable (O) alignment (O) between (O) text (O) and (O) [speech (B)] on (O) the (O) challenging (O) test (O) sentences (O) by (O) iteratively (O) improving (O) the (O) attention (O) in (O) a (O) layer-by-layer (O) manner. (O) 
+Furthermore, (O) we (O) build (O) the (O) parallel (O) [text-to-speech (B) system (I)] and (O) test (O) various (O) [parallel (B) neural (I) vocoders (I)], which (O) can (O) [synthesize (B) speech (I)] from (O) text (O) through (O) a (O) single (O) [feed-forward (B) pass (I)]. 
+We (O) also (O) explore (O) a (O) novel (O) VAE-based (O) approach (O) to (O) train (O) the (O) inverse (O) autoregressive (O) flow (O) (IAF) (O) based (O) parallel (O) [vocoder (B)] from (O) scratch, (O) which (O) avoids (O) the (O) need (O) for (O) distillation (O) from (O) a (O) separately (O) trained (O) [WaveNet (B)] as (O) previ-ous (O) work. (O) 
+
+Introduction (O) 
+[Text-to-speech (B)] ([TTS (B)]), also (O) called (O) [speech (B) synthesis (I)], has (O) long (O) been (O) a (O) vital (O) tool (O) in (O) a (O) variety (O) of (O) applications, (O) such (O) as (O) human-computer (O) interactions, (O) virtual (O) assistant, (O) and (O) content (O) creation. (O) 
+Traditional (O) [TTS (B) systems (I)] are (O) based (O) on (O) multi-stage (O) hand-engineered (O) pipelines. (O) 
+In (O) recent (O) years, (O) [deep (B) neural (I) networks (I)] based (O) [autoregressive (B) models (I)] have (O) attained (O) state-of-the-art (O) results, (O) including (O) high-fidelity (O) [audio (B) synthesis (I)], and (O) much (O) simpler (O) [seq2seq (B) pipelines (I)]. 
+In (O) particular, (O) one (O) of (O) the (O) most (O) popular (O) [neural (B) TTS (I) pipeline (I)] (a.k.a. (O) “ (O) [end-to-end (B)] ") (O) consists (O) of (O) two (O) components (O) : (i) (O) an (O) [autoregressive (B) seq2seq (I) model (I)] that (O) generates (O) [mel (B) spectrogram (I)] from (O) text, (O) and (O) (ii) (O) an (O) [autoregressive (B) neural (I) vocoder (I)] (e.g., (O) [WaveNet (B)]) that (O) synthesizes (O) [raw (B) waveform (I)] from (O) [mel (B) spectrogram (I)]. 
+
+Equal (O) contribution. (O) Baidu (O) Research, (O) 1195 (O) Bordeaux (O) Dr, (O) Sunnyvale, (O) CA. (O) [Speech (B) samples (I)] can (O) be (O) found (O) in (O) : https://parallel-neural-tts-demo.github.io/. (O) Correspondence (O) to (O) : Wei (O) Ping (O) < weiping.thu@gmail.com (O) >. (O) 
+
+This (O) pipeline (O) requires (O) much (O) less (O) expert (O) knowledge (O) and (O) only (O) needs (O) pairs (O) of (O) [audio (B)] and (O) transcript (O) as (O) [training (B) data (I)]. 
+However, (O) the (O) autoregressive (O) nature (O) of (O) these (O) models (O) makes (O) them (O) quite (O) slow (O) at (O) synthesis, (O) because (O) they (O) operate (O) sequentially (O) at (O) a (O) high (O) temporal (O) resolution (O) of (O) [waveform (B) samples (I)] and (O) [spectrogram (B)]. 
+Most (O) recently, (O) several (O) models (O) are (O) proposed (O) for (O) [parallel (B) waveform (I) generation (I)]. 
+In (O) the (O) [end-to-end (B) pipeline (I)], the (O) models (O) (e.g., (O) [ClariNet (B)], WaveFlow) (O) still (O) rely (O) on (O) autoregressive (O) component (O) to (O) predict (O) [spectrogram (B) features (I)] (e.g., (O) 100 (O) frames (O) per (O) second). (O) 
+In (O) the (O) [linguistic (B) feature (I)]-based pipeline, (O) the (O) models (O) (e.g., (O) Parallel (O) [WaveNet (B)], GAN-[TTS (B)]) are (O) conditioned (O) on (O) aligned (O) [linguistic (B) features (I)] from (O) [phoneme (B) duration (I) model (I)] and (O) F0 (O) from (O) frequency (O) model, (O) which (O) are (O) recurrent (O) or (O) [autoregressive (B) models (I)]. 
+Both (O) of (O) these (O) [TTS (B) pipelines (I)] can (O) be (O) slow (O) at (O) synthesis (O) on (O) modern (O) hardware (O) optimized (O) for (O) parallel (O) execution. (O) 
+    
+In (O) this (O) work, (O) we (O) present (O) a (O) [fully (B) parallel (I) neural (I) TTS (I) system (I)] by (O) proposing (O) a (O) [non-autoregressive (B) text-to-spectrogram (I) model (I)]. 
+Our (O) major (O) contributions (O) are (O) as (O) follows (O) : 
+We (O) propose (O) [ParaNet (B)], a (O) [non-autoregressive (B) attention-based (I) architecture (I)] for (O) [text-to-speech (B)], which (O) is (O) fully (O) convolutional (O) and (O) converts (O) text (O) to (O) [mel (B) spectrogram (I)]. 
+It (O) runs (O) 254.6 (O) times (O) faster (O) than (O) real-time (O) at (O) synthesis (O) on (O) a (O) 1080 (O) Ti (O) [GPU (B)], and (O) brings (O) 46.7 (O) times (O) speed-up (O) over (O) its (O) [autoregressive (B) counterpart (I)], while (O) obtaining (O) reasonably (O) good (O) [speech (B) quality (I)] using (O) [neural (B) vocoders (I)]. 
+[ParaNet (B)] distills (O) the (O) attention (O) from (O) the (O) [autoregressive (B) text-to-spectrogram (I) model (I)], and (O) iteratively (O) refines (O) the (O) alignment (O) between (O) text (O) and (O) [spectrogram (B)] in (O) a (O) layer-by-layer (O) manner. (O) 
+It (O) can (O) produce (O) more (O) stable (O) attentions (O) than (O) [autoregressive (B) Deep (I) Voice (I)] 3 (O)   on (O) the (O) challenging (O) test (O) sentences, (O) because (O) it (O) does (O) not (O) have (O) the (O) discrepancy (O) between (O) the (O) teacher-forced (O) training (O) and (O) autoregressive (O) inference. (O) 
+We (O) build (O) the (O) [fully (B) parallel (I) neural (I) TTS (I) system (I)] by (O) combining (O) [ParaNet (B)] with (O) [parallel (B) neural (I) vocoder (I)], thus (O) it (O) can (O) generate (O) [speech (B)] from (O) text (O) through (O) a (O) single (O) [feed-forward (B) pass (I)]. 
+We (O) investigate (O) several (O) parallel (O) [vocoders (B)], including (O) the (O) distilled (O) [IAF (B) vocoder (I)] and (O) Wave-Glow. (O) To (O) explore (O) the (O) possibility (O) of (O) training (O) [IAF (B) vocoder (I)] without (O) distillation, (O) we (O) also (O) propose (O) an (O) alternative (O) approach, (O) [WaveVAE (B)], which (O) can (O) be (O) trained (O) from (O) scratch (O) within (O) the (O) [variational (B) autoencoder (I)] (VAE) (O) framework (O) ([Kingma (B)] & Welling, (O) 2014). (O) 
+
+We (O) organize (O) the (O) rest (O) of (O) paper (O) as (O) follows. (O) Section (O) discusses (O) related (O) work. (O) We (O) introduce (O) the (O) [non-autoregressive (B) ParaNet (I) architecture (I)] in (O) Section. (O) 
+We (O) discuss (O) [parallel (B) neural (I) vocoders (I)] in (O) Section, (O) and (O) report (O) experimental (O) settings (O) and (O)   results (O) in (O) Section. (O) We (O) conclude (O) the (O) paper (O) in (O) Section. (O) 
+
+Related (O) work (O) 
+[Neural (B) speech (I) synthesis (I)] has (O) obtained (O) the (O) state-of-the-art (O) results (O) and (O) gained (O) a (O) lot (O) of (O) attention. (O) 
+Several (O) [neural (B) TTS (I) systems (I)] were (O) proposed, (O) including (O) [WaveNet (B)], [Deep (B) Voice (I)], 
+[Deep (B) Voice (I)] 2, (O) 
+[Deep (B) Voice (I)] 3, (O) [Tacotron (B)], 
+[Tacotron (B) 2 (I)], Char2Wav, (O) 
+VoiceLoop, (O) [WaveRNN (B)], 
+[ClariNet (B)], and (O) [Transformer (B) TTS (I)]. 
+In (O) particular, (O) [Deep (B) Voice (I)] 3, (O) [Tacotron (B)] and (O) Char2Wav (O) employ (O) [seq2seq (B) framework (I)] with (O) the (O) [attention (B) mechanism (I)], yielding (O) much (O) simpler (O) pipeline (O) compared (O) to (O) traditional (O) multi-stage (O) pipeline. (O) 
+Their (O) excellent (O) extensibility (O) leads (O) to (O) promising (O) results (O) for (O) several (O) challenging (O) tasks, (O) such (O) as (O) [voice (B) cloning (I)]. 
+All (O) of (O) these (O) state-of-the-art (O) systems (O) are (O) based (O) on (O) [autoregressive (B) models (I)]. 
+
+[RNN-based (B) autoregressive (I) models (I)], such (O) as (O) [Tacotron (B)] and (O) [WaveRNN (B)], lack (O) parallelism (O) at (O) both (O) training (O) and (O) synthesis. (O) 
+[CNN-based (B) autoregressive (I) models (I)], such (O) as (O) [Deep (B) Voice (I)] 3 (O) and (O) [WaveNet (B)], enable (O) parallel (O) processing (O) at (O) training, (O) but (O) they (O) still (O) operate (O) sequentially (O) at (O) synthesis (O) since (O) each (O) output (O) element (O) must (O) be (O) generated (O) before (O) it (O) can (O) be (O) passed (O) in (O) as (O) input (O) at (O) the (O) next (O) time-step. (O) 
+Recently, (O) there (O) are (O) some (O) [non-autoregressive (B) models (I)] proposed (O) for (O) [neural (B) machine (I) translation (I)]. trains (O) a (O) [feed-forward (B) neural (I) network (I)] conditioned (O) on (O) fertility (O) values, (O) which (O) are (O) obtained (O) from (O) an (O) external (O) alignment (O) system. (O) 
+ proposes (O) a (O) latent (O) variable (O) model (O) for (O) fast (O) decoding, (O) while (O) it (O) remains (O) autoregressiveness (O) between (O) latent (O) variables. (O) 
+ iteratively (O) refines (O) the (O) output (O) sequence (O) through (O) a (O) denoising (O) autoencoder (O) framework. (O) 
+Arguably, (O) [non-autoregressive (B) model (I)] plays (O) a (O) more (O) important (O) role (O) in (O) [text-to-speech (B)], where (O) the (O) output (O) [speech (B) spectrogram (I)] usually (O) consists (O) of (O) hundreds (O) of (O) time-steps (O) for (O) a (O) short (O) text (O) input (O) with (O) a (O) few (O) words. (O) 
+Our (O) work (O) is (O) one (O) of (O) the (O) first (O) [non-autoregressive (B) seq2seq (I) model (I)] for (O) [TTS (B)] and (O) provides (O) as (O) much (O) as (O) 46.7 (O) times (O) speed-up (O) at (O) synthesis (O) over (O) its (O) [autoregressive (B) counterpart (I)]. 
+There (O) is (O) a (O) concurrent (O) work, (O) which (O) is (O) based (O) on (O) the (O) [autoregressive (B) transformer (I) TTS (I)]   and (O) can (O) generate (O) [mel (B) spectrogram (I)] in (O) parallel. (O) 
+Our (O) [ParaNet (B)] is (O) fully (O) convolutional (O) and (O) lightweight. (O) 
+In (O) contrast (O) to (O) Fast-[Speech (B)], it (O) has (O) half (O) of (O) model (O) parameters, (O) requires (O) smaller (O) [batch (B) size (I)]   for (O) training (O) and (O) provides (O) faster (O) speed (O) at (O) synthesis (O) (see (O) Table (O) for (O) detailed (O) comparison). (O) 
+
+Flow-based (O) generative (O) models (O)   transform (O) a (O) simple (O) initial (O) distribution (O) into (O) a (O) more (O) complex (O) one (O) by (O) applying (O) a (O) series (O) of (O) invertible (O) transformations. (O) 
+In (O) previous (O) work, (O) flow-based (O) models (O) have (O) obtained (O) state-of-the-art (O) results (O) for (O) [parallel (B) waveform (I) synthesis (I)]. 
+[Variational (B) autoencoder (I)] (VAE) (O)   has (O) been (O) applied (O) for (O) representation (O) learning (O) of (O) natural (O) [speech (B)] for (O) years. (O) 
+It (O) models (O) either (O) the (O) generative (O) process (O) of (O) [raw (B) waveform (I)]. 
+In (O) previous (O) work, (O) autoregressive (O) or (O) [recurrent (B) neural (I) networks (I)] are (O) employed (O) as (O) the (O) [decoder (B)] of (O) VAE, (O) but (O) they (O) can (O) be (O) quite (O) slow (O) at (O) synthesis. (O) 
+In (O) this (O) work, (O) we (O) employ (O) a (O) [feed-forward (B)] IAF (O) as (O) the (O) [decoder (B)], which (O) enables (O) [parallel (B) waveform (I) synthesis (I)]. 
+
+[Text-to-spectrogram (B) model (I)] 
+Our (O) parallel (O) [TTS (B) system (I)] has (O) two (O) components (O) : a (O) [feed-forward (B) text-to-spectrogram (I) model (I)], and (O) a (O) parallel (O) wave-form (O) synthesizer (O) conditioned (O) on (O) [mel (B) spectrogram (I)]. 
+In (O) this (O) section, (O) we (O) first (O) present (O) an (O) [autoregressive (B) model (I)] derived (O) from (O) [Deep (B) Voice (I)] 3 (O) (DV3). (O) 
+We (O) then (O) introduce (O) [ParaNet (B)], a (O) [non-autoregressive (B) text-to-spectrogram (I) model (I)] (see (O) Figure). (O) 
+
+[Autoregressive (B) architecture (I)] 
+Our (O) [autoregressive (B) model (I)] is (O) based (O) on (O) DV3, (O) a (O) convolutional (O) [text-to-spectrogram (B) architecture (I)], which (O) consists (O) of (O) three (O) components (O) : 
+• (O) [Encoder (B)] : A (O) [convolutional (B) encoder (I)], which (O) takes (O) text (O) inputs (O) and (O) encodes (O) them (O) into (O) internal (O) hidden (O) representation. (O) 
+• (O) [Decoder (B)] : A (O) causal (O) convolutional (O) [decoder (B)], which (O) decodes (O) the (O) [encoder (B) representation (I)] with (O) an (O) [attention (B) mechanism (I)] to (O) [log-mel (B) spectragrams (I)] in (O) an (O) autoregressive (O) manner (O) with (O) an (O) ` 1 (O) loss. (O) 
+It (O) starts (O) with (O) a (O) 1 (O) × (O) 1 (O) convolution (O) to (O) preprocess (O) the (O) input (O) [log-mel (B) spectrograms (I)]. 
+• (O) Converter (O) : A (O) non-causal (O) convolutional (O) post (O) processing (O) network, (O) which (O) processes (O) the (O) hidden (O) representation (O) from (O) the (O) [decoder (B)] using (O) both (O) past (O) and (O) future (O) context (O) information (O) and (O) predicts (O) the (O) log-linear (O) [spectrograms (B)] with (O) an (O) ` 1 (O) loss. (O) 
+It (O) enables (O) bidirectional (O) processing. (O) 
+All (O) these (O) components (O) use (O) the (O) same (O) 1-D (O) [convolution (B) block (I)] with (O) a (O) gated (O) linear (O) unit (O) as (O) in (O) DV3 (O) (see (O) Figure (O) (b) (O) for (O) more (O) details). (O) 
+The (O) major (O) difference (O) between (O) our (O) model (O) and (O) DV3 (O) is (O) the (O) [decoder (B) architecture (I)]. 
+The (O) [decoder (B)] of (O) DV3 (O) has (O) multiple (O) [attention-based (B) layers (I)], where (O) each (O) layer (O) consists (O) of (O) a (O) causal (O) [convolution (B) block (I)] followed (O) by (O) an (O) [attention (B) block (I)]. 
+To (O) simplify (O) the (O) [attention (B) distillation (I)] described (O) in (O) Section, (O) our (O) [autoregressive (B) decoder (I)] has (O) only (O) one (O) [attention (B) block (I)] at (O) its (O) first (O) layer. (O) 
+We (O) find (O) that (O) reducing (O) the (O) number (O) of (O) [attention (B) blocks (I)] does (O) not (O) hurt (O) the (O) generated (O) [speech (B) quality (I)] in (O) general. (O) 
+
+
+Figure. (O) (a) (O) [Autoregressive (B) seq2seq (I) model (I)]. The (O) dashed (O) line (O) depicts (O) the (O) autoregressive (O) decoding (O) of (O) [mel (B) spectrogram (I)] at (O) inference. (O) 
+(b) (O) [Non-autoregressive (B) ParaNet (I) model (I)], which (O) distills (O) the (O) attention (O) from (O) a (O) pretrained (O) [autoregressive (B) model (I)]. 
+
+Figure. (O) (a) (O) Architecture (O) of (O) [ParaNet (B)]. Its (O) [encoder (B)] provides (O) key (O) and (O) value (O) as (O) the (O) textual (O) representation. (O) The (O) first (O) [attention (B) block (I)] in (O) [decoder (B)] 
+gets (O) positional (O) encoding (O) as (O) the (O) query (O) and (O) is (O) followed (O) by (O) non-causal (O) [convolution (B) blocks (I)] and (O) [attention (B) blocks (I)]. 
+(b) (O) [Convolution (B) block (I)] appears (O) in (O) both (O) [encoder (B)] and (O) [decoder (B)]. It (O) consists (O) of (O) a (O) 1-D (O) convolution (O) with (O) a (O) gated (O) linear (O) unit (O) (GLU) (O) and (O) a (O) [residual (B) connection (I)]. 
+
+[Non-autoregressive (B) architecture (I)] 
+The (O) proposed (O) [ParaNet (B)] (see (O) Figure) (O) uses (O) the (O) same (O) [encoder (B) architecture (I)] as (O) the (O) [autoregressive (B) model (I)]. 
+The (O) [decoder (B)] of (O) [ParaNet (B)], conditioned (O) solely (O) on (O) the (O) hidden (O) representation (O) from (O) the (O) [encoder (B)], predicts (O) the (O) entire (O) sequence (O) of (O) [log-mel (B) spectrograms (I)] in (O) a (O) [feed-forward (B) manner (I)]. 
+As (O) a (O) result, (O) both (O) its (O) training (O) and (O) synthesis (O) can (O) be (O) done (O) in (O) parallel. (O) 
+Specially, (O) we (O) make (O) the (O) following (O) major (O) architecture (O) modifications (O) from (O) the (O) [autoregressive (B) text-to-spectrogram (I) model (I)] to (O) the (O) [non-autoregressive (B) model (I)] : 
+[Non-autoregressive (B) decoder (I)] : Without (O) the (O) autoregressive (O) generative (O) constraint, (O) the (O) [decoder (B)] can (O) use (O) non-causal (O) [convolution (B) blocks (I)] to (O) take (O) advantage (O) of (O) future (O) context (O) information (O) and (O) to (O) improve (O) model (O) performance. (O) 
+In (O) addition (O) to (O) [log-mel (B) spectrograms (I)], it (O) also (O) predicts (O) log-linear (O) [spectrograms (B)] with (O) an (O) ` 1 (O) loss (O) for (O) slightly (O) better (O) performance. (O) We (O) also (O) remove (O) the (O) 1 (O) × (O) 1 (O) convolution (O) at (O) the (O) beginning, (O) because (O) the (O) [decoder (B)] does (O) not (O) take (O) [log-mel (B) spectrograms (I)] as (O) input. (O) 
+No (O) converter (O) : [Non-autoregressive (B) model (I)] removes (O) the (O) non-causal (O) converter (O) since (O) it (O) already (O) employs (O) a (O) non-causal (O) [decoder (B)]. 
+Note (O) that, (O) the (O) major (O) motivation (O) of (O) introducing (O) non-causal (O) converter (O) in (O) DV3 (O) is (O) to (O) refine (O) the (O) [decoder (B) predictions (I)] based (O) on (O) bidirectional (O) context (O) information (O) provided (O) by (O) non-causal (O) convolutions. (O) 
+
+Parallel (O) [attention (B) mechanism (I)] 
+It (O) is (O) challenging (O) for (O) the (O) [feed-forward (B) model (I)] to (O) learn (O) the (O) accurate (O) alignment (O) between (O) the (O) input (O) text (O) and (O) output (O) [spectrogram (B)]. 
+In (O) particular, (O) we (O) need (O) the (O) full (O) parallelism (O) within (O) the (O) [attention (B) mechanism (I)]. 
+For (O) example, (O) the (O) location-sensitive (O) attention (O)   improves (O) attention (O) stability, (O) but (O) it (O) performs (O) sequentially (O) at (O) both (O) training (O) and (O) synthesis, (O) because (O) it (O) uses (O) the (O) cumulative (O) [attention (B) weights (I)] from (O) previous (O) [decoder (B)] time (O) steps (O) as (O) an (O) [additional (B) feature (I)] for (O) the (O) next (O) time (O) step. (O) 
+Previous (O) [non-autoregressive (B) decoders (I)] rely (O) on (O) an (O) external (O) alignment (O) system, (O) or (O) an (O) autoregressive (O) latent (O) variable (O) model. (O) 
+
+Figure. (O) Our (O) [ParaNet (B)] iteratively (O) refines (O) the (O) [attention (B) alignment (I)] in (O) a (O) layer-by-layer (O) way. (O) One (O) can (O) see (O) the (O) 1st (O) layer (O) attention (O) is (O) mostly (O) 
+dominated (O) by (O) the (O) positional (O) encoding (O) prior. (O) It (O) becomes (O) more (O) and (O) more (O) confident (O) about (O) the (O) alignment (O) in (O) the (O) subsequent (O) layers. (O) 
+
+In (O) this (O) work, (O) we (O) present (O) several (O) simple (O) & effective (O) techniques, (O) which (O) could (O) obtain (O) accurate (O) and (O) stable (O) [attention (B) alignment (I)]. 
+In (O) particular, (O) our (O) [non-autoregressive (B) decoder (I)] can (O) iteratively (O) refine (O) the (O) [attention (B) alignment (I)] between (O) text (O) and (O) [mel (B) spectrogram (I)] in (O) a (O) layer-by-layer (O) manner (O) as (O) illustrated (O) in (O) Figure. (O) 
+Specially, (O) the (O) [decoder (B)] adopts (O) a (O) dot-product (O) [attention (B) mechanism (I)] and (O) consists (O) of (O) K (O) [attention (B) blocks (I)] (see (O) Figure (O) (a)), (O) where (O) each (O) [attention (B) block (I)] uses (O) the (O) per-time-step (O) query (O) [vectors (B)] from (O) [convolution (B) block (I)] and (O) per-time-step (O) key (O) [vectors (B)] from (O) [encoder (B)] to (O) compute (O) the (O) [attention (B) weights (I)] (Ping (O) et (O) al., (O) 2018b). (O) 
+The (O) [attention (B) block (I)] computes (O) [context (B) vectors (I)] as (O) the (O) weighted (O) average (O) of (O) the (O) value (O) [vectors (B)] from (O) the (O) [encoder (B)]. 
+The (O) [non-autoregressive (B) decoder (I)] starts (O) with (O) an (O) [attention (B) block (I)], in (O) which (O) the (O) query (O) [vectors (B)] are (O) solely (O) positional (O) encoding (O) (see (O) Section (O) for (O) details). (O) 
+The (O) first (O) [attention (B) block (I)] then (O) provides (O) the (O) input (O) for (O) the (O) [convolution (B) block (I)] at (O) the (O) next (O) [attention-based (B) layer (I)]. 
+
+[ATTENTION (B) DISTILLATION (I)]                                         
+We (O) use (O) the (O) [attention (B) alignments (I)] from (O) a (O) pretrained (O) [autoregressive (B) model (I)] to (O) guide (O) the (O) training (O) of (O) [non-autoregressive (B) model (I)]. 
+Specifically, (O) we (O) minimize (O) the (O) cross (O) entropy (O) between (O) the (O) [attention (B) distributions (I)] from (O) the (O) [non-autoregressive (B) ParaNet (I)] and (O) a (O) pretrained (O) autoregressive (O) teacher. (O) 
+We (O) denote (O) the (O) [attention (B) weights (I)] from (O) the (O) [non-autoregressive (B) ParaNet (I)] (k) (O) as (O) Wi, (O) j, (O) where (O) i (O) and (O) j (O) index (O) the (O) time-step (O) of (O) [encoder (B)] and (O) [decoder (B)] respectively, (O) and (O) k (O) refers (O) to (O) the (O) k-th (O) [attention (B) block (I)] within (O) the (O) [decoder (B)]. 
+Note (O) that, (O) the (O) [attention (B) weights (I)] (k) (O) { Wi, (O) j (O) } M (O) i=1 (O) form (O) a (O) valid (O) distribution. (O) We (O) compute (O) the (O) attention (O) loss (O) as (O) the (O) average (O) cross (O) entropy (O) between (O) the (O) [ParaNet (B)] and (O) teacher’s (O) [attention (B) distributions (I)] :                                    
+K (O) N (O) M (O) 1 (O) XXX (O) (k) (O) latten (O) = − (O) Wi, (O) jt (O) log (O) Wi, (O) j, (O) (1) (O)   KN (O)    j=1 (O) i=1 (O) k=1 (O) 
+where (O) Wi, (O) jt (O) are (O) the (O) [attention (B) weights (I)] from (O) the (O) autoregressive (O) teacher, (O) M (O) and (O) N (O) are (O) the (O) lengths (O) of (O) [encoder (B)] and (O) [decoder (B)], respectively. (O) 
+Our (O) final (O) [loss (B) function (I)] is (O) a (O) linear (O) combination (O) of (O) latten (O) and (O) ` 1 (O) losses (O) from (O) [spectrogram (B) predictions (I)]. We (O) set (O) the (O) coefficient (O) of (O) latten (O) as, (O) and (O) other (O) coefficients (O) as (O) 1 (O) in (O) all (O) experiments. (O) 
+
+POSITIONAL (O) ENCODING (O) 
+We (O) use (O) a (O) similar (O) positional (O) encoding (O) as (O) in (O) DV3 (O) at (O) every (O) [attention (B) block (I)]. 
+The (O) positional (O) encoding (O) is (O) added (O) to (O) both (O) key (O) and (O) query (O) [vectors (B)] in (O) the (O) [attention (B) block (I)], which (O) forms (O) an (O) inductive (O) bias (O) for (O) monotonic (O) atten-tion. (O) 
+Note (O) that, (O) the (O) [non-autoregressive (B) model (I)] solely (O) relies (O) on (O) its (O) [attention (B) mechanism (I)] to (O) decode (O) [mel (B) spectrograms (I)] from (O) the (O) encoded (O) [textual (B) features (I)], without (O) any (O) autoregressive (O) input. (O) 
+This (O) makes (O) the (O) positional (O) encoding (O) even (O) more (O) crucial (O) in (O) guiding (O) the (O) attention (O) to (O) follow (O) a (O) monotonic (O) progression (O) over (O) time (O) at (O) the (O) beginning (O) of (O) training. (O) 
+The (O) positional (O) encodings (O) hp (O) (i, (O) k) (O) = sin (O) (ωs (O) i/10000k (O) / d) (O) (for (O) even (O) i), (O) and (O) cos (O) (ωs (O) i/10000k (O) / d) (O) (for (O) odd (O) i), (O) where (O) i (O) is (O) the (O) time-step (O) index, (O) k (O) is (O) the (O) channel (O) index, (O) d (O) is (O) the (O) total (O) number (O) of (O) channels (O) in (O) the (O) positional (O) encoding, (O) and (O) ωs (O) is (O) the (O) position (O) rate (O) which (O) indicates (O) the (O) average (O) slope (O) of (O) the (O) line (O) in (O) the (O) [attention (B) distribution (I)] and (O) roughly (O) corresponds (O) to (O) the (O) speed (O) of (O) [speech (B)]. 
+We (O) set (O) ωs (O) in (O) the (O) following (O) ways (O) : 
+• (O) For (O) the (O) autoregressive (O) teacher, (O) ωs (O) is (O) set (O) to (O) one (O) for (O) the (O) positional (O) encoding (O) of (O) query. (O) For (O) the (O) key, (O) it (O) is (O) set (O) to (O) the (O) averaged (O) ratio (O) of (O) the (O) time-steps (O) of (O) [spectrograms (B)] to (O) the (O) time-steps (O) of (O) [textual (B) features (I)], which (O) is (O) around (O) 6.3 (O) across (O) our (O) [training (B) dataset (I)]. 
+Taking (O) into (O) account (O) that (O) a (O) reduction (O) factor (O) of (O) 4 (O) is (O) used (O) to (O) simplify (O) the (O) learning (O) of (O) [attention (B) mechanism (I)]  , ωs (O) is (O) simply (O) set (O) as (O) 6.3/4 (O) for (O) the (O) key (O) at (O) both (O) training (O) and (O) synthesis. (O) 
+• (O) For (O) [ParaNet (B)], ωs (O) is (O) also (O) set (O) to (O) one (O) for (O) the (O) query, (O) while (O) ωs (O) for (O) the (O) key (O) is (O) calculated (O) differently. (O) At (O) training, (O) ωs (O) is (O) set (O) to (O) the (O) ratio (O) of (O) the (O) lengths (O) of (O) [spectrograms (B)] and (O) text (O) for (O) each (O) individual (O) training (O) instance, (O) which (O) is (O) also (O) divided (O) by (O) a (O) reduction (O) factor (O) of (O) 4. (O) 
+At (O) synthesis, (O) we (O) need (O) to (O) specify (O) the (O) length (O) of (O) output (O) [spectrogram (B)] and (O) the (O) corresponding (O) ωs, (O) which (O) actually (O) controls (O) the (O) [speech (B) rate (I)] of (O) the (O) generated (O) [audios (B)] (see (O) Section (O) II (O) on (O) demo (O) website). (O) 
+In (O) all (O) of (O) our (O) experiments, (O) we (O) simply (O) set (O) ωs (O) to (O) be (O) 6.3/4 (O) as (O) in (O) [autoregressive (B) model (I)], and (O) the (O) length (O) of (O) output (O) [spectrogram (B)] as (O) 6.3/4 (O) times (O) the (O) length (O) of (O) input (O) text. (O) 
+
+Such (O) a (O) setup (O) yields (O) an (O) initial (O) attention (O) in (O) the (O) form (O) of (O) a (O) diagonal (O) line (O) and (O) guides (O) the (O) [non-autoregressive (B) decoder (I)] to (O) refine (O) its (O) [attention (B) layer (I)] by (O) layer (O) (see (O) Figure). (O) 
+
+ATTENTION (O) MASKING (O) 
+Inspired (O) by (O) the (O) attention (O) masking (O) in (O) [Deep (B) Voice (I)] 3, (O) we (O) propose (O) an (O) attention (O) masking (O) scheme (O) for (O) the (O) [non-autoregressive (B) ParaNet (I)] at (O) synthesis (O) :                                                      
+• (O) For (O) each (O) query (O) from (O) [decoder (B)], instead (O) of (O) computing (O) the (O) [softmax (B)] over (O) the (O) entire (O) set (O) of (O) [encoder (B)] key (O) [vectors (B)], we (O) compute (O) the (O) [softmax (B)] only (O) over (O) a (O) fixed (O) window (O) centered (O) around (O) the (O) target (O) position (O) and (O) going (O) forward (O) and (O) backward (O) several (O) time-steps. (O) 
+The (O) target (O) position (O) is (O) calculated (O) as (O) biquery (O) × (O) 4/6.3e, (O) where (O) iquery (O) is (O) the (O) time-step (O) index (O) of (O) the (O) query (O) [vector (B)], and (O) be (O) is (O) the (O) rounding (O) operator. (O) 
+We (O) observe (O) that (O) this (O) strategy (O) reduces (O) serious (O) [attention (B) errors (I)] such (O) as (O) repeating (O) or (O) skipping (O) words, (O) and (O) also (O) yields (O) clearer (O) pronunciations, (O) thanks (O) to (O) its (O) more (O) condensed (O) [attention (B) distribution (I)]. 
+Note (O) that, (O) this (O) attention (O) masking (O) is (O) shared (O) across (O) all (O) [attention (B) blocks (I)] once (O) it (O) is (O) generated, (O) and (O) does (O) not (O) prevent (O) the (O) parallel (O) synthesis (O) of (O) the (O) [non-autoregressive (B) model (I)]. 
+
+[Parallel (B) waveform (I) model (I)] 
+As (O) an (O) indispensable (O) component (O) in (O) our (O) parallel (O) [neural (B) TTS (I) system (I)], the (O) [parallel (B) waveform (I) model (I)] converts (O) the (O) [mel (B) spectrogram (I)] predicted (O) from (O) [ParaNet (B)] into (O) the (O) [raw (B) waveform (I)]. 
+In (O) this (O) section, (O) we (O) discuss (O) several (O) existing (O) [parallel (B) waveform (I) models (I)], and (O) explore (O) a (O) new (O) alternative (O) in (O) the (O) system. (O) 
+
+Flow-based (O) [waveform (B) models (I)] 
+Inverse (O) autoregressive (O) flow (O) (IAF) (O) is (O) a (O) special (O) type (O) of (O) normalizing (O) flow (O) where (O) each (O) invertible (O) transformation (O) is (O) based (O) on (O) an (O) [autoregressive (B) neural (I) network (I)]. 
+IAF (O) performs (O) synthesis (O) in (O) parallel (O) and (O) can (O) easily (O) reuse (O) the (O) expressive (O) [autoregressive (B) architecture (I)], such (O) as (O) [WaveNet (B)], which (O) leads (O) to (O) the (O) state-of-the-art (O) results (O) for (O) [speech (B) synthesis (I)]. 
+However, (O) the (O) likelihood (O) evaluation (O) in (O) IAF (O) is (O) autoregressive (O) and (O) slow, (O) thus (O) previous (O) training (O) methods (O) rely (O) on (O) probability (O) density (O) distillation (O) from (O) a (O) pretrained (O) [autoregressive (B) WaveNet (I)]. 
+This (O) two-stage (O) distillation (O) process (O) complicates (O) the (O) training (O) pipeline (O) and (O) may (O) introduce (O) pathological (O) optimization. (O) 
+RealNVP (O)   and (O) Glow (O) are (O) different (O) types (O) of (O) normalizing (O) flows, (O) where (O) both (O) synthesis (O) and (O) likelihood (O) evaluation (O) can (O) be (O) performed (O) in (O) parallel (O) by (O) enforcing (O) bipartite (O) architecture (O) constraints. (O) 
+Most (O) recently, (O) both (O) of (O) them (O) were (O) applied (O) as (O) [parallel (B) neural (I) vocoders (I)] and (O) can (O) be (O) trained (O) from (O) scratch. (O) However, (O) these (O) models (O) are (O) less (O) expressive (O) than (O) their (O) autoregressive (O) and (O) IAF (O) counterparts (O) 
+One (O) can (O) find (O) a (O) detailed (O) analysis (O) in (O) WaveFlow (O) paper. (O) 
+In (O) general, (O) these (O) bipartite (O) flows (O) require (O) larger (O) number (O) of (O) layers (O) and (O) hidden (O) units, (O) which (O) lead (O) to (O) huge (O) number (O) of (O) parameters. (O) For (O) example, (O) a (O) [WaveGlow (B) vocoder (I)]   has (O) 87.88 (O) M (O) parameters, (O) whereas (O) [IAF (B) vocoder (I)] has (O) much (O) smaller (O) footprint (O) with (O) only (O) 2.17 (O) M (O) parameters, (O) making (O) it (O) more (O) preferred (O) in (O) production (O) deployment. (O) 
+
+[WaveVAE (B)] 
+Given (O) the (O) advantage (O) of (O) [IAF (B) vocoder (I)], it (O) is (O) interesting (O) to (O) investigate (O) whether (O) it (O) can (O) be (O) trained (O) without (O) the (O) density (O) distillation. (O) 
+One (O) related (O) work (O) trains (O) IAF (O) within (O) an (O) autoencoder. (O) 
+Our (O) method (O) uses (O) the (O) VAE (O) framework, (O) thus (O) it (O) is (O) termed (O) as (O) [WaveVAE (B)]. 
+In (O) contrast (O) to, (O) [WaveVAE (B)] can (O) be (O) trained (O) from (O) scratch (O) by (O) jointly (O) optimizing (O) the (O) [encoder (B)] qφ (O) (z|x, (O) c) (O) and (O) [decoder (B)] pθ (O) (x|z, (O) c), (O) where (O) z (O) is (O) latent (O) variables (O) and (O) c (O) is (O) the (O) [mel (B) spectrogram (I)] conditioner. (O) 
+We (O) omit (O) c (O) for (O) concise (O) notation (O) hereafter. (O) 
+
+[ENCODER (B)] 
+The (O) [encoder (B)] of (O) [WaveVAE (B)] qφ (O) (z|x) (O) is (O) parameterized (O) by (O) a (O) [Gaussian (B) autoregressive (I) WaveNet (I)] that (O) maps (O) the (O) [ground (B) truth (I) audio (I)] x (O) into (O) the (O) same (O) length (O) latent (O) representation (O) z. (O) 
+Specifically, (O) the (O) [Gaussian (B) WaveNet (I) models (I)] xt (O) given (O) the (O) previous (O) samples (O) x (O) < t (O) as (O) xt (O) ∼ (O) 
+
+
+Note (O) that, (O) the (O) mean (O) µ(x (O) < t (O) ; φ) (O) and (O) scale (O) σ(x (O) < t) (O) are (O) applied (O) for (O) “ (O) whitening (O) ” (O) the (O) posterior (O) distribution. (O) 
+We (O) introduce (O) a (O) trainable (O) scalar (O) ε (O) > 0 (O) to (O) decouple (O) the (O) global (O) variation, (O) which (O) will (O) make (O) optimization (O) process (O) easier. (O) 
+Given (O) the (O) observed (O) x, (O) the (O) qφ (O) (z|x) (O) admits (O) parallel (O) sampling (O) of (O) latents (O) z. (O) 
+One (O) can (O) build (O) the (O) connection (O) between (O) the (O) [encoder (B)] of (O) [WaveVAE (B)] and (O) the (O) teacher (O) model (O) of (O) [ClariNet (B)], as (O) both (O) of (O) them (O) use (O) a (O) [Gaussian (B) WaveNet (I)] to (O) guide (O) the (O) training (O) of (O) IAF (O) for (O) parallel (O) wave (O) generation. (O) 
+
+[DECODER (B)] 
+Our (O) [decoder (B)] pθ (O) (x|z) (O) is (O) parameterized (O) by (O) the (O) one-step-ahead (O) predictions (O) from (O) an (O) IAF. (O) 
+We (O) let (O) z (O) (0) (O) = z (O) and (O) apply (O) a (O) stack (O) of (O) IAF (O) transformations (O) from (O) z (O) (0) (O) →... (O) z (O) (i) (O) →... (O) z (O) (n), (O) and (O) each (O) transformation (O) 
+
+where (O) µt (O) = µ(z (O) < t (O) ; θ) (O) and (O) σt (O) = σ(z (O) < t (O) ; θ) (O) are (O) shifting (O) and (O) scaling (O) variables (O) modeled (O) by (O) a (O) [Gaussian (B) WaveNet (I)]. 
+One (O) can (O) show (O) that, (O) given (O) z (O) (0) (O) ∼ (O) N (O) (µ(0), (O) σ (O) (0)) (O) from (O) the (O) 
+
+[Gaussian (B)] prior (O) or (O) [encoder (B)], the (O) per-step (O) p(zt (O) | z (O) < t) (O) also (O) follows (O) [Gaussian (B)] with (O) scale (O) and (O) mean (O) as, (O) 
+
+
+Lastly, (O) we (O) set (O) x (O) =  (O) · (O) σ (O) tot (O) + µtot, (O) where (O)  (O) ∼ (O) N (O) (0, (O) I). (O) Thus, (O) pθ (O) (x (O) | z) (O) = N (O) (µtot, (O) σ (O) tot). (O) For (O) the (O) generative (O) process, (O) we (O) use (O) the (O) standard (O) [Gaussian (B)] prior (O) p(z) (O) = N (O) (0, (O) I). (O) 
+                       
+TRAINING (O) OBJECTIVE (O) 
+We (O) maximize (O) the (O) evidence (O) lower (O) bound (O) (ELBO) (O) for (O) observed (O) x (O) in (O) VAE, (O) 
+       
+                                                                  
+where (O) the (O) KL (O) divergence (O) can (O) be (O) calculated (O) in (O) closed-form (O) as (O) both (O) qφ (O) (z|x) (O) and (O) p(z) (O) are (O) [Gaussians (B)], 
+
+
+                                                                             
+The (O) reconstruction (O) term (O) in (O) Eq. (O) is (O) intractable (O) to (O) compute (O) exactly. (O) 
+We (O) do (O) stochastic (O) optimization (O) by (O) drawing (O) a (O) sample (O) z (O) from (O) the (O) [encoder (B)] qφ (O) (z|x) (O) through (O) the (O) reparameterization (O) trick, (O) and (O) evaluating (O) the (O) likelihood (O) log (O) pθ (O) (x|z). (O) 
+To (O) avoid (O) the (O) “ (O) posterior (O) collapse (O) ”, (O) in (O) which (O) the (O) posterior (O) distribution (O) qφ (O) (z|x) (O) quickly (O) collapses (O) to (O) the (O) white (O) noise (O) prior (O) p(z) (O) at (O) the (O) early (O) stage (O) of (O) training, (O) we (O) apply (O) the (O) annealing (O) strategy (O) for (O) KL (O) divergence, (O) where (O) its (O) weight (O) is (O) gradually (O) increased (O) from (O) 0 (O) to (O) 1, (O) via (O) a (O) [sigmoid (B) function (I)].                    
+Through (O) it, (O) the (O) [encoder (B)] can (O) encode (O) sufficient (O) information (O) into (O) the (O) latent (O) representations (O) at (O) the (O) early (O) training, (O) and (O) then (O) gradually (O) regularize (O) the (O) latent (O) representation (O) by (O) increasing (O) the (O) weight (O) of (O) the (O) KL (O) divergence. (O)                                              
+[STFT (B) loss (I)] : Similar (O) to, (O) we (O) also (O) add (O) a (O) short-term (O) [Fourier (B) transform (I)] ([STFT (B)]) loss (O) to (O) improve (O) the (O) quality (O) of (O) [synthesized (B) speech (I)]. 
+We (O) define (O) the (O) [STFT (B) loss (I)] as (O) the (O) summation (O) of (O) ` 2 (O) loss (O) on (O) the (O) magnitudes (O) of (O) [STFT (B)] and (O) ` 1 (O) loss (O) on (O) the (O) [log-magnitudes (B)] of (O) [STFT (B)] between (O) the (O) output (O) [audio (B)] and (O) [ground (B) truth (I) audio (I)]. 
+For (O) [STFT (B)], we (O) use (O) a (O) 12.5ms (O) frame-shift, (O) 50ms (O) Hanning (O) window (O) length, (O) and (O) we (O) set (O) the (O) FFT (O) size (O) to (O) 2048. (O) 
+We (O) consider (O) two (O) [STFT (B) losses (I)] in (O) our (O) objective (O) : (i) (O) the (O) [STFT (B) loss (I)] between (O) [ground (B) truth (I) audio (I)] and (O) reconstructed (O) [audio (B)] using (O) [encoder (B)] qφ (O) (z|x) (O) ; (ii) (O) the (O) [STFT (B) loss (I)] between (O) [ground (B) truth (I) audio (I)] and (O) synthesized (O) [audio (B)] using (O) the (O) prior (O) p(z), (O) with (O) the (O) purpose (O) of (O) reducing (O) the (O) ap (O) between (O) reconstruction (O) and (O) synthesis. (O) 
+Our (O) final (O) loss (O) is (O) a (O) linear (O) combination (O) of (O) VAE (O) objective (O) in (O) Eq. (O) (4) (O) and (O) the (O) [STFT (B) losses (I)]. 
+The (O) corresponding (O) coefficients (O) are (O) simply (O) set (O) to (O) be (O) one (O) in (O) all (O) of (O) our (O) experiments. (O) 
+
+Experiment (O) 
+In (O) this (O) section, (O) we (O) present (O) several (O) experiments (O) to (O) evaluate (O) the (O) proposed (O) [ParaNet (B)] and (O) [WaveVAE (B)]. 
+Settings (O) 
+Data (O) : In (O) our (O) experiment, (O) we (O) use (O) an (O) internal (O) English (O) [speech (B) dataset (I)] containing (O) about (O) 20 (O) hours (O) of (O) [speech (B) data (I)] from (O) a (O) [female (B) speaker (I)] with (O) a (O) sampling (O) rate (O) of (O) 48 (O) kHz. (O) 
+We (O) downsample (O) the (O) [audios (B)] to (O) 24 (O) kHz. (O) 
+[Text-to-spectrogram (B) models (I)] : For (O) both (O) [ParaNet (B)] and (O) [Deep (B) Voice (I)] 3 (O) (DV3), (O) we (O) use (O) the (O) mixed (O) representation (O) of (O) characters (O) and (O) [phonemes (B)]. 
+The (O) default (O) [hyperparameters (B)] of (O) [ParaNet (B)] and (O) DV3 (O) are (O) provided (O) in (O)   Table. (O) 
+Both (O) [ParaNet (B)] and (O) DV3 (O) are (O) trained (O) for (O) 500000 (O) steps (O) using (O) [Adam (B) optimizer (I)]. 
+We (O) find (O) that (O) larger (O) kernel (O) width (O) and (O) deeper (O) layers (O) generally (O) help (O) improve (O) the (O) performance (O) of (O) [ParaNet (B)]. 
+In (O) terms (O) of (O) the (O) number (O) of (O) parameters, (O) our (O) [ParaNet (B)] (17.61 (O) M (O) params) (O) is (O) 2.57× (O) larger (O) than (O) the (O) [Deep (B) Voice (I)] 3 (O) (6.85 (O) M (O) params) (O) and (O) 1.71× (O) smaller (O) than (O) the (O) [FastSpeech (B)] (30.1 (O) M (O) params). (O) 
+We (O) use (O) an (O) [open (B) source (I)] reimplementation (O) of (O) [FastSpeech (B)] 1 (O) by (O) adapting (O) the (O) [hyperparameters (B)] for (O) handling (O) the (O) [24kHz (B) dataset (I)]. 
+[Neural (B) vocoders (I)] : In (O) this (O) work, (O) we (O) compare (O) various (O) [neural (B) vocoders (I) paired (I)] with (O) [text-to-spectrogram (B) models (I)], including (O) [WaveNet (B)], [ClariNet (B)], [WaveVAE (B)], and (O) [WaveGlow (B)]. 
+We (O) train (O) all (O) [neural (B) vocoders (I)] on (O) 8 (O) Nvidia (O) 1080Ti (O) [GPUs (B)] using (O) randomly (O) chosen (O) 0.5s (O) [audio (B) clips (I)]. 
+We (O) train (O) two (O) 20-layer (O) [WaveNets (B)] with (O) residual (O) channel (O) 256 (O) conditioned (O) on (O) the (O) predicted (O) [mel (B) spectrogram (I)] from (O) [ParaNet (B)] and (O) DV3, (O) respectively. (O) 
+We (O) apply (O) two (O) layers (O) of (O) [convolution (B) block (I)] to (O) process (O) the (O) predicted (O) [mel (B) spectrogram (I)], and (O) use (O) two (O) layers (O) of (O) transposed (O) 2-D (O) convolution (O) (in (O) time (O) and (O) frequency) (O) interleaved (O) with (O) leaky (O) [ReLU (B)] (α (O) = 0.4) (O) to (O) upsample (O) the (O) outputs (O) from (O) [frame-level (B)] to (O) sample-level. (O) 
+We (O) use (O) the (O) [Adam (B) optimizer (I)] ([Kingma (B)] & Ba, (O) 2015) (O) with (O) a (O) [batch (B) size (I)] of (O) 8 (O) and (O) a (O) [learning (B) rate (I)] of (O) 0.001 (O) at (O) the (O) beginning, (O) which (O) is (O) annealed (O) by (O) half (O) every (O) 200000 (O) steps. (O) We (O) train (O) the (O) models (O) for (O) 1 (O) M (O) steps. (O) 
+We (O) use (O) the (O) same (O) IAF (O) architecture (O) as (O) [ClariNet (B)] (Ping (O) et (O) al., (O) 2018a). (O) 
+
+https://github.com/xcmyz/FastSpeech (O) 
+
+ Table. (O) [Hyperparameters (B)] of (O) [autoregressive (B) text-to-spectrogram (I) model (I)] and (O) [non-autoregressive (B) ParaNet (I)] in (O) the (O) experiment. (O) 
+
+
+
+ Table. (O) The (O) model (O) footprint, (O) synthesis (O) time (O) for (O) 1 (O) second (O) [speech (B)] (on (O) 1080Ti (O) with (O) FP32), (O) and (O) the (O) 5-scale (O) [Mean (B) Opinion (I) Score (I)] ([MOS (B)]) ratings (O) with (O) 95 (O) % confidence (O) intervals (O) for (O) comparison. (O) 
+
+
+
+
+It (O) consists (O) of (O) four (O) stacked (O) [Gaussian (B)] IAF (O) blocks, (O) which (O) are (O) parameterized (O) by (O) 10, (O) 10, (O) 10, (O) 30-layer (O) [WaveNets (B)] respectively, (O) with (O) the (O) 64 (O) residual (O) & skip (O) channels (O) and (O) filter (O) size (O) 3 (O) in (O) dilated (O) convolutions. (O) 
+The (O) IAF (O) is (O) conditioned (O) on (O) [log-mel (B) spectrograms (I)] with (O) two (O) layers (O) of (O) transposed (O) 2-D (O) convolution (O) as (O) in (O) [ClariNet (B)]. We (O) use (O) the (O) same (O) teacher-student (O) setup (O) for (O) [ClariNet (B)] as (O) in (O)   and (O) we (O) train (O) a (O) 20-layer (O) [Gaussian (B) autoregressive (I) WaveNet (I)] as (O) the (O) teacher (O) model. (O) 
+For (O) the (O) [encoder (B)] in (O) [WaveVAE (B)], we (O) also (O) use (O) a (O) 20-layers (O) [Gaussian (B) WaveNet (I)] conditioned (O) on (O) [log-mel (B) spectrograms (I)]. 
+For (O) the (O) [decoder (B)], we (O) use (O) the (O) same (O) architecture (O) as (O) the (O) distilled (O) IAF. (O) 
+Both (O) the (O) [encoder (B)] and (O) [decoder (B)] of (O) [WaveVAE (B)] share (O) the (O) same (O) conditioner (O) network. (O) Both (O) of (O) the (O) distilled (O) IAF (O) and (O) [WaveVAE (B)] are (O) trained (O) on (O) [ground-truth (B) mel (I) spectrogram (I)]. 
+We (O) use (O) [Adam (B) optimizer (I)] with (O) 1000000 (O) steps (O) for (O) distilled (O) IAF. (O) 
+For (O) [WaveVAE (B)], we (O) train (O) it (O) for (O) 400000 (O) because (O) it (O) converges (O) much (O) faster. (O) 
+The (O) learning (O) rate (O) is (O) set (O) to (O) 0.001 (O) at (O) the (O) beginning (O) and (O) annealed (O) by (O) half (O) every (O) 200000 (O) steps (O) for (O) both (O) models. (O) 
+We (O) use (O) the (O) [open (B) source (I) implementation (I)] of (O) [WaveGlow (B)] with (O) default (O) [hyperparameters (B)] (residual (O) channel (O) 256) (O) 2, (O) except (O) change (O) the (O) sampling (O) rate (O) from (O) 22.05kHz (O) to (O) 24kHz, (O) FFT (O) window (O) length (O) from (O) 1024 (O) to (O) 1200, (O) and (O) FFT (O) window (O) shift (O) from (O) 256 (O) to (O) 300 (O) for (O) handling (O) the (O) [24kHz (B) dataset (I)]. 
+The (O) model (O) is (O) trained (O) for (O) 2 (O) M (O) steps. (O) 
+
+Results (O) 
+[Speech (B) quality (I)] : We (O) use (O) the (O) crowdMOS (O) [toolkit (B)] for (O) subjective (O) [Mean (B) Opinion (I) Score (I) (MOS) (I) evaluation (I)]. We (O) report (O) the (O) [MOS (B) results (I)] in (O)   Table. (O) The (O) [ParaNet (B)] can (O) provide (O) comparable (O) quality (O) of (O) [speech (B)] as (O) the (O) autoregressive (O) DV3 (O) using (O) [WaveNet (B) vocoder (I)] ([MOS (B)] : 4.09 (O) vs. (O) 4.01). (O) 
+
+https://github.com/NVIDIA/waveglow (O) 
+
+ Table. (O) [Attention (B) error (I)] counts (O) for (O) [text-to-spectrogram (B) models (I)] on (O) the (O) 100-sentence (O) test (O) set. (O) One (O) or (O) more (O) mispronunciations, (O) skips, (O) and (O) repeats (O) count (O) as (O) a (O) single (O) mistake (O) per (O) utterance. (O) 
+The (O) [non-autoregressive (B) ParaNet (I)] (17-layer (O) [decoder (B)]) with (O) attention (O) mask (O) obtains (O) the (O) fewest (O) [attention (B) errors (I)] in (O) total. (O) 
+For (O) ablation (O) study, (O) we (O) include (O) the (O) results (O) for (O) two (O) additional (O) [ParaNet (B) models (I)]. They (O) have (O) 6 (O) and (O) 12 (O) [decoder (B) layers (I)] and (O) are (O) denoted (O) as (O) ParaNet-6 (O) and (O) ParaNet-12, (O) respectively. (O) 
+
+
+When (O) we (O) use (O) the (O) [ClariNet (B) vocoder (I)], [ParaNet (B)] can (O) still (O) provide (O) reasonably (O) good (O) [speech (B) quality (I)] ([MOS (B)] : 3.62) (O) as (O) a (O) fully (O) [feed-forward (B) TTS (I) system (I)]. [WaveVAE (B)] obtains (O) worse (O) results (O) than (O) distilled (O) [IAF (B) vocoder (I)], but (O) it (O) can (O) be (O) trained (O) from (O) scratch (O) and (O) simplifies (O) the (O) training (O) pipeline. (O) 
+When (O) conditioned (O) on (O) predicted (O) [mel (B) spectrogram (I)], [WaveGlow (B)] tends (O) to (O) produce (O) constant (O) frequency (O) artifacts. (O) 
+To (O) remedy (O) this, (O) we (O) applied (O) the (O) denoising (O) function (O) with (O) strength (O) 0.1, (O) as (O) recommended (O) in (O) the (O) repository (O) of (O) [WaveGlow (B)]. 
+It (O) is (O) effective (O) when (O) the (O) predicted (O) [mel (B) spectrograms (I)] are (O) from (O) DV3, (O) but (O) not (O) effective (O) when (O) the (O) predicted (O) [mel (B) spectrograms (I)] are (O) from (O) [ParaNet (B)]. As (O) a (O) result, (O) the (O) [MOS (B) score (I)] degrades (O) seriously. (O) 
+We (O) add (O) the (O) comparison (O) with (O) [FastSpeech (B)] after (O) the (O) paper (O) submission. (O) Because (O) it (O) is (O) costly (O) to (O) relaunch (O) the (O) [MOS (B) evaluations (I)] of (O) all (O) the (O) models, (O) we (O) perform (O) a (O) separate (O) [MOS (B) evaluation (I)] for (O) [FastSpeech (B)]. 
+Note (O) that, (O) the (O) group (O) of (O) human (O) raters (O) can (O) be (O) different (O) on (O) Mechanical (O) Turk, (O) and (O) the (O) subjective (O) scores (O) may (O) not (O) be (O) directly (O) comparable. (O) 
+One (O) can (O) find (O) the (O) [synthesized (B) speech (I) samples (I)] in (O) : https://parallel-neural-tts-demo.github.io/. (O)                                
+                                                                      
+Synthesis (O) speed (O) : We (O) test (O) synthesis (O) speed (O) of (O) all (O) models (O) on (O) NVIDIA (O) GeForce (O) GTX (O) 1080 (O) Ti (O) with (O) 32-bit (O) floating (O) point(FP32) (O) arithmetic. (O) 
+We (O) compare (O) the (O) [ParaNet (B)] with (O) the (O) autoregressive (O) DV3 (O) in (O) terms (O) of (O) inference (O) latency. (O) 
+We (O) construct (O) a (O) custom (O) 15-sentence (O) test (O) set (O) (see (O) Appendix (O) A) (O) and (O) run (O) inference (O) for (O) 50 (O) runs (O) on (O) each (O) of (O) the (O) 15 (O) sentences (O) ([batch (B) size (I)] is (O) set (O) to (O) 1). (O) 
+The (O) average (O) [audio (B)] duration (O) of (O) the (O) utterances (O) is (O) 6.11 (O) seconds. (O) The (O) average (O) inference (O) latencies (O) over (O) 50 (O) runs (O) and (O) 15 (O) sentences (O) are (O) 0.024 (O) and (O) 1.12 (O) seconds (O) for (O) [ParaNet (B)] and (O) DV3, (O) respectively. (O) 
+Hence, (O) our (O) [ParaNet (B)] runs (O) 254.6 (O) times (O) faster (O) than (O) real-time (O) and (O) brings (O) about (O) 46.7 (O) times (O) speed-up (O) over (O) its (O) small-footprint (O) [autoregressive (B) counterpart (I)] at (O) synthesis. (O) 
+It (O) also (O) runs (O) 1.58 (O) times (O) faster (O) than (O) [FastSpeech (B)]. 
+We (O) summarize (O) synthesis (O) speed (O) of (O) [TTS (B) systems (I)] in (O)   Table. (O) 
+One (O) can (O) observe (O) that (O) the (O) latency (O) bottleneck (O) is (O) the (O) [autoregressive (B) text-to-spectrogram (I) model (I)], when (O) the (O) system (O) uses (O) [parallel (B) neural (I) vocoder (I)]. 
+The (O) [ClariNet (B)] and (O) [WaveVAE (B) vocoders (I)] have (O) much (O) smaller (O) footprint (O) and (O) faster (O) synthesis (O) speed (O) than (O) [WaveGlow (B)]. 
+
+[Attention (B) error (I)] analysis (O) : In (O) [autoregressive (B) models (I)], there (O) is (O) a (O) noticeable (O) discrepancy (O) between (O) the (O) teacher-forced (O) training (O) and (O) autoregressive (O) inference, (O) which (O) can (O) yield (O) accumulated (O) errors (O) along (O) the (O) generated (O) sequence (O) at (O) synthesis. (O) 
+In (O) [neural (B) TTS (I)], this (O) discrepancy (O) leads (O) to (O) miserable (O) [attention (B) errors (I)] at (O) autoregressive (O) inference, (O) including (O) (i) (O) repeated (O) words, (O) (ii) (O) mispronunciations, (O) and (O) (iii) (O) skipped (O) words (O) for (O) detailed (O) examples), (O) which (O) is (O) a (O) critical (O) problem (O) for (O) online (O) deployment (O) of (O) [attention-based (B) neural (I) TTS (I) systems (I)]. 
+We (O) perform (O) an (O) [attention (B) error (I)] analysis (O) for (O) our (O) [non-autoregressive (B) ParaNet (I)] on (O) a (O) 100-sentence (O) test (O) set (O) (see (O) Appendix (O) B), (O) which (O) includes (O) particularly-challenging (O) cases (O) from (O) deployed (O) [TTS (B)] systems (O) (e.g. (O) dates, (O) acronyms, (O) URLs, (O) repeated (O) words, (O) proper (O) nouns, (O) and (O) foreign (O) words). (O) 
+In (O)   Table, (O) we (O) find (O) that (O) the (O) [non-autoregressive (B) ParaNet (I)] has (O) much (O) fewer (O) [attention (B) errors (I)] than (O) its (O) [autoregressive (B) counterpart (I)] at (O) synthesis (O) (12 (O) vs. (O) 37) (O) without (O) attention (O) mask. (O) 
+Although (O) our (O) [ParaNet (B)] distills (O) the (O) (teacher-forced) (O) attentions (O) from (O) an (O) [autoregressive (B) model (I)], it (O) only (O) takes (O) textual (O) inputs (O) at (O) both (O) training (O) and (O) synthesis (O) and (O) does (O) not (O) have (O) the (O) similar (O) discrepancy (O) as (O) in (O) [autoregressive (B) model (I)]. 
+In (O) previous (O) work, (O) attention (O) masking (O) was (O) applied (O) to (O) enforce (O) the (O) monotonic (O) attentions (O) and (O) reduce (O) [attention (B) errors (I)], and (O) was (O) demonstrated (O) to (O) be (O) effective (O) in (O) [Deep (B) Voice (I)] 3. (O) 
+We (O) find (O) that (O) our (O) [non-autoregressive (B) ParaNet (I)] still (O) can (O) have (O) fewer (O) [attention (B) errors (I)] than (O) autoregressive (O) DV3 (O) (6 (O) vs. (O) 8), (O) when (O) both (O) of (O) them (O) use (O) the (O) attention (O) masking. (O) 
+
+Ablation (O) study (O) 
+We (O) perform (O) ablation (O) studies (O) to (O) verify (O) the (O) effectiveness (O) of (O) several (O) techniques (O) used (O) in (O) [ParaNet (B)], including (O) [attention (B) distillation (I)], positional (O) encoding, (O) and (O) stacking (O) [decoder (B) layers (I)] to (O) refine (O) the (O) [attention (B) alignment (I)] in (O) a (O) layer-by-layer (O) manner. (O) 
+We (O) evaluate (O) the (O) performance (O) of (O) a (O) [non-autoregressive (B) ParaNet (I) model (I)] trained (O) without (O) [attention (B) distillation (I)] and (O) find (O) that (O) it (O) fails (O) to (O) learn (O) meaningful (O) [attention (B) alignment (I)]. 
+The (O) synthesized (O) [audios (B)] are (O) unintelligible (O) and (O) mostly (O) pure (O) noise. (O) 
+Similarly, (O) we (O) train (O) another (O) [non-autoregressive (B) ParaNet (I) model (I)] without (O) adding (O) positional (O) encoding (O) in (O) the (O) [attention (B) block (I)]. 
+The (O) resulting (O) model (O) only (O) learns (O) very (O) blurry (O) [attention (B) alignment (I)] and (O) can (O) not (O) synthesize (O) [intelligible (B) speech (I)]. 
+Finally, (O) we (O) train (O) two (O) [non-autoregressive (B) ParaNet (I) models (I)] with (O) 6 (O) and (O) 12 (O) [decoder (B) layers (I)], respectively, (O) and (O) compare (O) them (O) with (O) the (O) default (O) [non-autoregressive (B) ParaNet (I) model (I)] which (O) has (O) 17 (O) [decoder (B) layers (I)]. 
+We (O) conduct (O) the (O) same (O) [attention (B) error (I)] analysis (O) on (O) the (O) 100-sentence (O) test (O) set (O) and (O) the (O) results (O) are (O) shown (O) in (O)   Table. (O) 
+We (O) find (O) that (O) increasing (O) the (O) number (O) of (O) [decoder (B) layers (I)] for (O) [non-autoregressive (B) ParaNet (I)] can (O) reduce (O) the (O) total (O) number (O) of (O) [attention (B) errors (I)], in (O) both (O) cases (O) with (O) and (O) without (O) applying (O) attention (O) mask (O) at (O) synthesis. (O) 
+
+Conclusion (O) 
+In (O) this (O) work, (O) we (O) build (O) a (O) [feed-forward (B) neural (I) TTS (I) system (I)] by (O) proposing (O) a (O) [non-autoregressive (B) text-to-spectrogram (I) model (I)]. 
+The (O) proposed (O) [ParaNet (B)] obtains (O) reasonably (O) good (O) [speech (B) quality (I)] and (O) brings (O) 46.7 (O) times (O) speed-up (O) over (O) its (O) [autoregressive (B) counterpart (I)] at (O) synthesis. (O) 
+We (O) also (O) compare (O) various (O) [neural (B) vocoders (I)] within (O) the (O) [TTS (B) system (I)]. 
+Our (O) results (O) suggest (O) that (O) the (O) parallel (O) [vocoder (B)] is (O) generally (O) less (O) robust (O) than (O) [WaveNet (B) vocoder (I)], when (O) the (O) [front-end (B) acoustic (I) model (I)] is (O) [non-autoregressive (B)]. As (O) a (O) result, (O) it (O) is (O) interesting (O) to (O) investigate (O) small-footprint (O) and (O) robust (O) [parallel (B) neural (I) vocoder (I)] (e.g., (O) WaveFlow) (O) in (O) future (O) study. (O) 

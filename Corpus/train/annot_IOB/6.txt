@@ -1,0 +1,130 @@
+DIRECTLY (O) MODELING (O) [SPEECH (B) WAVEFORMS (I)] BY (O) [NEURAL (B) NETWORKS (I)] FOR (O) [STATISTICAL (B) PARAMETRIC (I) SPEECH (I) SYNTHESIS (I)] 
+
+
+ABSTRACT (O) 
+This (O) paper (O) proposes (O) a (O) novel (O) approach (O) for (O) directly-modeling (O) [speech (B)] at (O) the (O) [waveform (B)] level (O) using (O) a (O) [neural (B) network (I)]. 
+This (O) approach (O) uses (O) the (O) [neural (B) network-based (I) statistical (I) parametric (I) speech (I) synthesis (I) framework (I)] with (O) a (O) specially (O) designed (O) [output (B) layer (I)]. 
+As (O) [acoustic (B) feature (I)] extraction (O) is (O) integrated (O) to (O) [acoustic (B) model (I) training (I)], it (O) can (O) overcome (O) the (O) limitations (O) of (O) conventional (O) approaches, (O) such (O) as (O) two-step (O) ([feature (B) extraction (I)] and (O) acoustic (O) modeling) (O) optimization, (O) use (O) of (O) spectra (O) rather (O) than (O) [waveforms (B)] as (O) targets, (O) use (O) of (O) overlapping (O) and (O) shifting (O) frames (O) as (O) unit, (O) and (O) fixed (O) [decision (B) tree (I)] structure. (O) Experimental (O) results (O) show (O) that (O) the (O) proposed (O) approach (O) can (O) directly (O) maximize (O) the (O) likelihood (O) defined (O) at (O) the (O) [waveform (B)] domain. (O) 
+Index (O) Terms (O) — (O) [Statistical (B) parametric (I) speech (I) synthesis (I)] ; [neural (B) network (I)] ; [adaptive (B) cepstral (I) analysis (I)]. 
+
+INTRODUCTION (O) 
+While (O) training (O) an (O) [acoustic (B) model (I)] for (O) [statistical (B) parametric (I) speech (I) synthesis (I)] (SPSS), (O) a (O) set (O) of (O) parametric (O) representation (O) of (O) [speech (B)] (e.g. (O) cepstral, (O) line (O) [spectrum (B) pairs (I)], [fundamental (B) frequency (I)], and (O) aperiodicity.) (O) at (O) every (O) 5 (O) ms (O) is (O) first (O) extracted (O) then (O) relationships (O) between (O) [linguistic (B) features (I)] associated (O) with (O) the (O) [speech (B) waveform (I)] and (O) the (O) extracted (O) parameters (O) are (O) modeled (O) by (O) an (O) [acoustic (B) model (I)] (e.g. (O) [hidden (B) Markov (I) models (I)], [neural (B) networks (I)]). 
+Typically, (O) a (O) minimum (O) mean (O) squared (O) error (O) (MMSE) (O) or (O) a (O) [maximum (B) likelihood (I)] (ML) (O) criterion (O) is (O) used (O) to (O) estimate (O) the (O) model (O) parameters. (O) 
+Extracting (O) a (O) parametric (O) representation (O) of (O) [speech (B)] can (O) also (O) be (O) viewed (O) as (O) ML (O) estimation (O) of (O) the (O) model (O) parameters (O) given (O) the (O) [waveform (B)]. 
+Linear (O) predictive (O) analysis (O) assumes (O) that (O) the (O) generative (O) model (O) of (O) [speech (B) waveform (I)] is (O) autoregressive (O) (AR) (O) then (O) fit (O) the (O) model (O) to (O) the (O) [waveform (B)] based (O) on (O) the (O) ML (O) criterion. (O) In (O) this (O) sense, (O) training (O) of (O) an (O) [acoustic (B) model (I)] can (O) be (O) viewed (O) as (O) a (O) two-step (O) optimization (O) : extract (O) parametric (O) representation (O) of (O) [speech (B)] based (O) on (O) the (O) ML (O) criterion, (O) then (O) model (O) trajectories (O) of (O) the (O) extracted (O) parameters (O) with (O) an (O) [acoustic (B) model (I)]. Therefore, (O) the (O) current (O) framework (O) could (O) be (O) sub-optimal. (O) 
+It (O) is (O) desirable (O) to (O) combine (O) these (O) two (O) steps (O) in (O) a (O) single (O) one (O) and (O) jointly (O) optimize (O) both (O) [feature (B) extraction (I)] and (O) acoustic (O) modeling. (O) 
+There (O) are (O) a (O) couple (O) of (O) attempts (O) to (O) integrate (O) [feature (B) extraction (I)] and (O)   [acoustic (B) model (I) training (I)] into (O) a (O) single (O) framework, (O) e.g. (O) the (O) log (O) [spectral (B)] distortion-version (O) of (O) minimum (O) generation (O) error (O) training (O) (MGE-LSD), (O) statistical (O) [vocoder (B)] (STAVOCO), (O) [waveform-level (B) statistical (I) model (I)], and (O) [mel-cepstral (B) analysis (I)]-integrated [hidden (B) Markov (I) models (I)] ([HMMs (B)]). 
+However, (O) there (O) are (O) limitations (O) in (O) these (O) approaches, (O) such (O) as (O) the (O) use (O) of (O) spectra (O) rather (O) than (O) [waveforms (B)], the (O) use (O) of (O) overlapping (O) and (O) shifting (O) frames (O) as (O) unit, (O) and (O) fixing (O) [decision (B) trees (I)], which (O) represent (O) the (O) mapping (O) from (O) [linguistic (B) features (I)] to (O) acoustic (O) ones. (O) 
+
+This (O) paper (O) aims (O) to (O) fully (O) integrate (O) [acoustic (B) feature (I)] extraction (O) into (O) [acoustic (B) model (I) training (I)] and (O) overcome (O) the (O) limitations (O) of (O) the (O) existing (O) frameworks, (O) using (O) the (O) recently (O) proposed (O) [neural (B) network-based (I) speech (I) synthesis (I) framework (I)] with (O) a (O) specially (O) designed (O) [output (B) layer (I)] which (O) includes (O) inverse (O) filtering (O) of (O) the (O) [speech (B)] to (O) define (O) the (O) likelihood (O) at (O) the (O) [waveform (B)] level. (O) 
+An (O) efficient (O) training (O) algorithm (O) based (O) on (O) this (O) framework (O) which (O) can (O) run (O) sequentially (O) in (O) a (O) sample-by-sample (O) manner (O) is (O) also (O) derived. (O) 
+The (O) rest (O) of (O) the (O) paper (O) is (O) organized (O) as (O) follows. (O) Section (O) defines (O) the (O) [waveform-level (B) probability (I) density (I) function (I)]. 
+Section (O) gives (O) the (O) training (O) algorithm. (O) Preliminary (O) experimental (O) results (O) are (O) presented (O) in (O) Section. (O) 
+Concluding (O) remarks (O) are (O) given (O) in (O) the (O) final (O) section. (O) 
+
+[WAVEFORM-LEVEL (B) DEFINITION (I)] OF (O) [PROBABILITY (B) DENSITY (I) FUNCTION (I)] OF (O) [SPEECH (B)] 
+Cepstral (O) representation (O) 
+A (O) discrete-time (O) [speech (B) signal (I)] x (O) = x(0), (O) x(1),..., (O) x(T (O) − (O) 1)⊤ (O) corresponding (O) to (O) an (O) utterance (O) or (O) whole (O) [speech (B) database (I)] is (O) assumed (O) to (O) be (O) a (O) zero-mean (O) stationary (O) [Gaussian (B) process (I)]. 
+The (O) [probability (B) density (I) function (I)] of (O) a (O) zero-mean (O) stationary (O) [Gaussian (B) process (I)] can (O) be (O) written (O) as (O) 
+
+
+
+and (O) H(ejω) (O) is (O) the (O) power (O) [spectrum (B)] of (O) the (O) [Gaussian (B) process (I)]. 
+This (O) paper (O) assumes (O) that (O) the (O) corresponding (O) minimum-phase (O) system (O) function (O) H(ejω) (O) is (O) parameterized (O) by (O) [cepstral (B) coefficients (I)] c (O) as (O) 
+
+lthough (O) x (O) should (O) be (O) an (O) infinite (O) sequence, (O) it (O) is (O) described (O) as (O) a (O) finite (O) sequence (O) for (O) notation (O) simplicity. (O) 
+
+By (O) assuming (O) x (O) is (O) an (O) infinite (O) sequence, (O) the (O) covariance (O) matrix (O) Σc (O) can (O) be (O) decomposed (O) as (O) follows (O) : 
+
+where (O) I (O) is (O) an (O) identity (O) matrix. (O)                                                           
+                                                                                       
+Nonstationarity (O) modeling (O) 
+To (O) model (O) the (O) nonstationary (O) nature (O) of (O) the (O) [speech (B) signal (I)], x (O) is (O) assumed (O) to (O) be (O) segment-by-segment (O) piecewise-stationary, (O) i.e. (O) Ac (O) in (O) Eq. (O) (9) (O) is (O) assumed (O) to (O) be (O) 
+                  
+and (O) I (O) is (O) the (O) number (O) of (O) segments (O) in (O) x (O) corresponding (O) to (O) an (O) utterance (O) or (O) whole (O) [speech (B) database (I)] and (O) thus (O) T (O) = L (O) × (O) I. (O)                                            
+
+TRAINING (O) ALGORITHM (O) 
+Derivative (O) of (O) the (O) [log (B) likelihood (I)] 
+With (O) some (O) elaboration, (O) the (O) partial (O) derivative (O) of (O) Eq. (O) w.r.t. (O) c(i) (O) can (O) be (O) derived (O) as (O) 
+
+where (O) 
+
+and (O) δ(m) (O) is (O) the (O) unit (O) impulse (O) function. (O) 
+
+Sequential (O) algorithm (O) 
+For (O) calculating (O) the (O) impulse (O) response (O) a(i) (O) (n) (O) using (O) a (O) recursive (O) formula, (O) O(M (O) N) (O) operations (O) are (O) required (O) at (O) each (O) segment (O) i, (O) even (O) if (O) it (O) is (O) truncated (O) with (O) a (O) sufficiently (O) large (O) number (O) of (O) N. (O) 
+Furthermore, (O) for (O) calculating (O) Eq., (O) O(N (O) (M (O) + L)) (O) operations (O) are (O) required (O) for (O) each (O) segment (O) i. (O) 
+To (O) reduce (O) the (O) computational (O) burden, (O) the (O) following (O) two (O) approximations (O) are (O) applied (O) ; 
+By (O) assuming (O) 
+
+where (O) 
+
+
+As (O) an (O) approximation, (O) inverse (O) filtering (O) in (O) Eq.can (O) be (O) efficiently (O) calculated (O) by (O) the (O) log (O) magnitude (O) approximation (O) (LMA) (O) filterwhose (O) coefficients (O) are (O) given (O) by (O) 
+
+
+Similarderivation (O) can (O) be (O) found (O) in (O) Eqs. (O) 
+The (O) LMA (O) filter (O) is (O) a (O) special (O) type (O) of (O) digital (O) filter (O) which (O) can (O) approximate (O) the (O) system (O) function (O) of (O) Eq. (O) 
+
+Fig. (O) Block (O) diagram (O) of (O) the (O) proposed (O) [waveform (B)]-based framework (O) (L (O) = 1, (O) M (O) = 3). (O) 
+For (O) notation (O) simplicity, (O) here (O) [acoustic (B) model (I)] is (O) illustrated (O) as (O) a (O) [feed-forward (B) neural (I) network (I)] rather (O) than (O) [LSTM-RNN (B)]. 
+
+With (O) these (O) approximations, (O) a (O) simple (O) structure (O) for (O) training (O) a (O) [neural (B) network-based (I) acoustic (I) model (I)], which (O) represents (O) a (O) mapping (O) from (O) [linguistic (B) features (I)] to (O) [speech (B) signals (I)], can (O) be (O) derived. (O) 
+It (O) can (O) run (O) in (O) a (O) sequential (O) manner (O) as (O) shown (O) in (O)   Fig. (O) (a). (O) This (O) [neural (B) network (I)] out (O) puts (O) [cepstral (B) coefficients (I)] c (O) given (O) [linguistic (B) feature (I) vector (I) sequence (I)] l (O) = l(0),..., (O) l(I−1), (O) which (O) in (O) turn (O) gives (O) a (O) [probability (B) density (I) function (I)] of (O) [speech (B) signals (I)] x, (O) which (O) corresponds (O) to (O) an (O) utterance (O) or (O) whole (O) [speech (B) database (I)], conditioned (O) on (O) l, (O) p (O) (x (O) | l, (O) M) (O) as (O) 
+
+where (O) M (O) denotes (O) a (O) set (O) of (O) network (O) weights, (O) c(l) (O) is (O) given (O) by (O) activations (O) at (O) the (O) [output (B) layer (I)] of (O) the (O) network (O) given (O) input (O) [linguistic (B) features (I)], and (O) the (O) RHS (O) is (O) given (O) by (O) Eq. (O) (14). (O) By (O) back-propagating (O) the (O) derivative (O) of (O) the (O) [log (B) likelihood (I) function (I)] through (O) the (O) network, (O) the (O) network (O) weights (O) can (O) be (O) updated (O) to (O) maximize (O) the (O) [log (B) likelihood (I)].                                                                 
+It (O) should (O) be (O) noted (O) that (O) although (O) the (O) optimization (O) problem (O) at (O) each (O) segment (O) becomes (O) an (O) underdetermined (O) problem (O) when (O) L (O) < M, (O) it (O) is (O) expected (O) that (O) the (O) finite (O) number (O) of (O) weights (O) in (O) the (O) [neural (B) network (I)] an (O) work (O) as (O) a (O) regularizer (O) for (O) the (O) optimization (O) problem. (O) 
+Thus, (O) L (O) = 1 (O) (t (O) = i, (O) ct (O) = c(i), (O) lt (O) = l(i)) (O) is (O) assumed (O) in (O) the (O) figure (O) and (O) the (O) following (O) discussion. (O) As (O) a (O) result, (O) the (O) training (O) algorithm (O) can (O) run (O) sequentially (O) in (O) a (O) sample-by-sample (O) manner, (O) rather (O) than (O) conventional (O) frame-by-frame (O) manner. (O) 
+The (O) structure (O) of (O) the (O) training (O) algorithm (O) is (O) quite (O) similar (O) to (O) that (O) in (O) the (O) [adaptive (B) cepstral (I) analysis (I) algorithm (I)]. The (O) difference (O) is (O) that (O) the (O) [adaptive (B) cepstral (I) analysis (I) algorithm (I)] updates (O) [cepstral (B) coefficients (I)] of (O) the (O) [neural (B) network (I)] which (O) predicts (O) the (O) [cepstral (B) coefficients (I)]. 
+                                                                                                                              
+It (O) is (O) also (O) noted (O) that (O) the (O) [log (B) likelihood (I)] can (O) be (O) calculated (O) by (O) 
+
+                                                                                                           
+where (O) e (O) = e(0),..., (O) e(T (O) − (O) 1)⊤ (O) and (O) the (O) third (O) term (O) of (O) Eq.corresponds (O) to (O) the (O) sum (O) of (O) squares (O) of (O) the (O) inverse (O) system (O) output. (O)                                                                                                      
+
+Fig. (O) [Log (B) likelihoods (I)] of (O) trained (O) [LSTM-RNNs (B)] over (O) both (O) training (O) and (O) development (O) subsets (O) (60,000 (O) samples). (O) 
+Note (O) that (O) the (O) initialization (O) stage (O) using (O) the (O) [MMSE (B) criterion (I)] was (O) not (O) included. (O) 
+
+Synthesis (O) structure (O) 
+The (O) synthesis (O) structure (O) is (O) given (O) by (O)   Fig. (O) (b). (O) 
+The (O) [synthesized (B) speech (I)] (x(t) (O) in (O)   Fig. (O) (b)) (O) can (O) be (O) generated (O) by (O) sampling (O) x (O) from (O) the (O) [probability (B) density (I) function (I)] p(x (O) | l, (O) M). (O) It (O) can (O) be (O) done (O) by (O) exciting (O) the (O) LMA (O) filter (O) using (O) a (O) zero-mean (O) white (O) [Gaussian (B)] noise (O) with (O) unity (O) variance (O) as (O) source (O) excitation (O) signal (O) (e(t) (O) in (O)   Fig. (O) (b)). (O) 
+It (O) is (O) possible (O) to (O) substitute (O) e(t) (O) with (O) the (O) excitation (O) signal (O) used (O) in (O) standard (O) 
+directly (O) whereas (O) the (O) training (O) algorithm (O) in (O)   Fig. (O) (a) (O) updates (O) weights (O) [statistical (B) parametric (I) speech (I) synthesis (I) systems (I)], such (O) as (O) outputs (O) from (O) pulse (O) / noise (O) or (O) mixed (O) excitation (O) generators. (O) 
+
+The (O) definition (O) of (O) the (O) [linguistic (B) feature (I) vector (I)] used (O) in (O) this (O) paper (O) can (O) be (O) found (O) in. (O)   
+
+EXPERIMENTS (O) 
+Experimental (O) conditions (O) 
+[Speech (B) data (I)] in (O) US (O) English (O) from (O) a (O) female (O) [professional (B) speaker (I)] was (O) used (O) for (O) the (O) experiments. (O) 
+The (O) training (O) and (O) [development (B) data (I)] sets (O) consisted (O) of (O) 34,632 (O) and (O) 100 (O) utterances, (O) respectively. (O) A (O) speaker-dependent (O) unidirectional (O) [LSTM-RNN (B)] was (O) trained. (O) 
+
+Fig. (O) Inverse (O) system (O) output (O) for (O) a (O) sentence (O) “ (O) Two (O) elect (O) only (O) two (O) ” (O) by (O) cepstra (O) predicted (O) by (O) [LSTM-RNNs (B)] before (O) (a) (O) and (O) after (O) (b) (O) training. (O) 
+
+Fig. (O) Synthesized (O) [speech (B)] spectra (O) for (O) a (O) sentence (O) “ (O) Two (O) elect (O) only (O) two (O) ”. (O) Note (O) that (O) spectra (O) were (O) sampled (O) at (O) every (O) 5 (O) ms. (O) 
+
+From (O) the (O) [speech (B) data (I)], its (O) associated (O) transcriptions, (O) and (O) automatically (O) derived (O) [phonetic (B) alignments (I)], sample-level (O) [linguistic (B) features (I)] included (O) 535 (O) linguistic (O) contexts, (O) 50 (O) [numerical (B) features (I)] for (O) coarse-coded (O) position (O) of (O) the (O) current (O) sample (O) in (O) the (O) current (O) [phoneme (B)], and (O) one (O) [numerical (B) feature (I)] for (O) duration (O) of (O) the (O) current (O) [phoneme (B)].                                    
+The (O) [speech (B) data (I)] was (O) downsampled (O) from (O) 48 (O) kHz (O) to (O) 16 (O) kHz, (O) 24 (O) [cepstral (B) coefficients (I)] were (O) extracted (O) at (O) each (O) sample (O) using (O) the (O) [adaptive (B) cepstral (I) analysis (I)]. 
+The (O) [output (B) features (I)] of (O) the (O) [LSTM-RNN (B)] consisted (O) of (O) 24 (O) [cepstral (B) coefficients (I)]. 
+Both (O) the (O) input (O) and (O) [output (B) features (I)] were (O) normalized (O) ; the (O) [input (B) features (I)] were (O) normalized (O) to (O) have (O) zero-mean (O) unit-variance, (O) whereas (O) the (O) [output (B) features (I)] were (O) normalized (O) to (O) be (O) within (O) 0.01–0.99 (O) based (O) on (O) their (O) minimum (O) and (O) maximum (O) values (O) in (O) the (O) [training (B) data (I)]. 
+The (O) architecture (O) of (O) the (O) [LSTM-RNN (B)] was (O) 1 (O) forward-directed (O) hidden (O) [LSTM (B) layer (I)] with (O) 256 (O) memory (O) blocks. (O) 
+To (O) reduce (O) the (O) training (O) time (O) and (O) impact (O) of (O) having (O) many (O) silences, (O) 80 (O) % of (O) silence (O) regions (O) were (O) removed. (O) 
+After (O) setting (O) the (O) network (O) weights (O) randomly, (O) they (O) were (O) first (O) updated (O) to (O) minimize (O) the (O) mean (O) squared (O) error (O) between (O) the (O) extracted (O) and (O) predicted (O) [cepstral (B) coefficients (I)]. 
+Then (O) they (O) were (O) used (O) as (O) initial (O) values (O) to (O) start (O) the (O) proposed (O) training (O) algorithm (O) ; the (O) weights (O) were (O) further (O) optimized (O) to (O) maximize (O) the (O) [waveform-level (B) log (I) likelihood (I)]. 
+A (O) distributed (O) [CPU (B) implementation (I)] of (O) mini-batch (O) ASGD (O) based (O) back (O) propagation (O) through (O) time (O) (BPTT) (O) algorithm (O) was (O) used. (O)                                                          
+                                                                                             
+Experimental (O) results (O)                                                                                         
+First (O) the (O) proposed (O) training (O) algorithm (O) was (O) verified (O) with (O) the (O) [log (B) likelihoods (I)]. 
+Figure (O) plots (O) the (O) [log (B) likelihoods (I)] of (O) the (O) trained (O) [LSTM-RNN (B)] over (O) training (O) and (O) development (O) subsets (O) against (O) the (O) number (O) of (O) training (O) samples. (O) 
+Both (O) of (O) them (O) consisted (O) of (O) 60,000 (O) samples. (O) 
+It (O) can (O) be (O) seen (O) from (O) the (O) figure (O) that (O) the (O) log (O) likelihoods (O) w.r.t. (O) the (O) training (O) and (O) development (O) subsets (O) improved (O) and (O) converged (O) after (O) training. (O) The (O) log (O) likelihoods (O) w.r.t. (O) the (O) development (O) subset (O) became (O) better (O) than (O) the (O) training (O) one. (O) 
+It (O) may (O) be (O) due (O) to (O) the (O) use (O) of (O) small (O) subsets (O) from (O) both (O) training (O) and (O) development (O) sets. (O) As (O) discussed (O) in, (O) maximizing (O) the (O) likelihood (O) corresponds (O) to (O) minimizing (O) prediction (O) error. (O) 
+Thus, (O) it (O) is (O) expected (O) that (O) the (O) proposed (O) training (O) algorithm (O) reduces (O) the (O) energy (O) of (O) the (O) [waveform-level (B) prediction (I) errors (I)]. 
+When (O) the (O) [neural (B) network (I)] predicts (O) the (O) true (O) [cepstral (B) coefficients (I)], the (O) inverse (O) filter (O) output (O) e (O) becomes (O) a (O) zero-mean (O) white (O) [Gaussian (B)] noise (O) with (O) unity (O) variance. (O)   Figure (O) shows (O) inverse (O) system (O) outputs (O) e (O) from (O) the (O) [LSTM-RNNs (B)] before (O) and (O) after (O) updating (O) the (O) weights (O) using (O) the (O) proposed (O) training (O) algorithm. (O) 
+Note (O) that (O) the (O) [LSTM-RNN (B)] before (O) updating (O) was (O) trained (O) by (O) the (O) [MMSE (B) criterion (I)] using (O) the (O) sample-level (O) cepstra (O) as (O) targets. (O) It (O) can (O) be (O) seen (O) from (O) the (O) figure (O) that (O) the (O) energy (O) of (O) the (O) inverse (O) filter (O) outputs (O) are (O) reduced (O) towards (O) unity (O) variance. (O) 
+Figure (O) shows (O) the (O) predicted (O) spectra (O) for (O) a (O) sentence (O) not (O) included (O) in (O) the (O) [training (B) data (I)]. It (O) can (O) be (O) seen (O) from (O) the (O) figure (O) that (O) smoothly (O) varying (O) [speech (B)] spectra (O) were (O) generated. (O) 
+It (O) indicates (O) that (O) the (O) [neural (B) network (I)] structure (O) could (O) work (O) as (O) a (O) regularizer (O) and (O) the (O) proposed (O) framework (O) could (O) be (O) used (O) for (O) [text-to-speech (B) applications (I)]. 
+
+CONCLUSIONS (O) 
+A (O) new (O) [neural (B) network (I)] structure (O) with (O) a (O) specially (O) designed (O) [output (B) layer (I)] for (O) directly (O) modeling (O) [speech (B)] at (O) the (O) [waveform (B)] level (O) was (O) proposed (O) and (O) its (O) training (O) algorithm (O) which (O) can (O) run (O) sequentially (O) in (O) a (O) sample-by-sample (O) manner (O) was (O) derived. (O) 
+[Acoustic (B) feature (I)] extraction (O) can (O) be (O) fully (O) integrated (O) into (O) training (O) of (O) [neural (B) network-based (I) acoustic (I) model (I)] and (O) can (O) remove (O) the (O) limitations (O) in (O) the (O) conventional (O) approaches (O) such (O) as (O) two-stage (O) optimization (O) and (O) the (O) use (O) of (O) overlapping (O) frames. (O) 
+Future (O) work (O) includes (O) introducing (O) a (O) model (O) structure (O) for (O) generating (O) periodic (O) components (O) and (O) evaluating (O) the (O) performance (O) in (O) practical (O) onditions (O) as (O) a (O) [text-to-speech (B) synthesis (I) application (I)]. 

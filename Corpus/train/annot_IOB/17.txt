@@ -1,0 +1,148 @@
+[MULTILINGUAL (B) TEXT-TO-SPEECH (I) SYNTHESIS (I)] 
+
+ABSTRACT (O) 
+
+This (O) paper (O) presents (O) a (O) framework (O) for (O) building (O) [multilingual (B) text-to-speech (I) systems (I)]. 
+It (O) addresses (O) the (O) issue (O) at (O) three (O) levels. (O) 
+First (O) it (O) discusses (O) the (O) necessary (O) steps (O) required (O) to (O) build (O) a (O) [synthetic (B) voice (I)] from (O) scratch (O) in (O) a (O) new (O) language. (O) 
+The (O) second (O) concerns (O) the (O) building (O) of (O) a (O) [new (B) voice (I)] without (O) recording (O) any (O) new (O) [acoustic (B) data (I)], and (O) the (O) restrictions (O) that (O) imposes. (O) 
+The (O) third (O) more (O) speculative (O) part (O) discusses (O) the (O) steps (O) that (O) would (O) be (O) necessary (O) to (O) allow (O) high (O) quality (O) synthesis (O) of (O) new (O) languages (O) by (O) recording (O) only (O) minimal (O) amounts (O) in (O) that (O) language. (O) 
+
+BACKGROUND (O) 
+
+The (O) construction (O) of (O) high (O) quality (O) [synthetic (B) voices (I)] is (O) still (O) very (O) hard. (O) 
+However, (O) with (O) better (O) tools, (O) the (O) advancement (O) of (O) faster (O) computers (O) and (O) more (O) disk, (O) the (O) job (O) of (O) building (O) new (O) [synthetic (B) voices (I)] now (O) requires (O) substantially (O) less (O) resources (O) both (O) in (O) expertise (O) and (O) computation. (O) 
+But (O) at (O) the (O) same (O) time (O) as (O) tools (O) and (O) techniques (O) made (O) it (O) easier (O) to (O) build (O) concatenative (O) [speech (B) synthesizers (I)], the (O) expectation (O) for (O) higher (O) [quality (B) voices (I)] has (O) also (O) increased. (O) 
+The (O) FestVox (O) system (O) provides (O) tools (O) and (O) documentation (O) for (O) [building (B) voices (I)] in (O) new (O) languages (O) for (O) the (O) University (O) of (O) Edinburgh’s (O) Festival (O) [Speech (B) Synthesis (I) System (I)]. 
+The (O) project (O) was (O) designed (O) to (O) specifically (O) address (O) the (O) issues (O) of (O) building (O) [synthetic (B) voices (I)] for (O) minority (O) languages (O) as (O) well (O) as (O) major (O) ones. (O) 
+The (O) work (O) of (O) documenting (O) the (O) process (O) of (O) [building (B) voices (I)] in (O) new (O) languages (O) rose (O) out (O) of (O) a (O) number (O) of (O) student (O) projects (O) carried (O) out (O) at (O) Edinburgh (O) University (O) and (O) elsewhere (O) including (O) the (O) German (O) [diphone (B) voices (I)] created (O) at (O) a (O) summer (O) workshop (O) at (O) OGI, (O) in (O) 1998. (O) 
+Although (O) the (O) initial (O) tools (O) emphasized (O) [diphone (B) voices (I)], the (O) tools (O) have (O) matured (O) to (O) support (O) generalized (O) [unit (B) selection (I) voices (I)] too. (O) 
+The (O) projects (O) that (O) have (O) used (O) these (O) tools (O) have (O) varied (O) drastically (O) in (O) size (O) and (O) effort (O) involving (O) large (O) commercial (O) entities (O) as (O) well (O) as (O) individual (O) students. (O) 
+The (O) quality (O) of (O) voices (O) built (O) equally (O) varies, (O) and (O) many (O) find (O) that (O) to (O) build (O) a (O) usable (O) [synthetic (B) voice (I)] in (O) a (O) new (O) language (O) is (O) still (O) a (O) substantial (O) task (O) even (O) if (O) it (O) is (O) easier (O) than (O) it (O) was. (O) 
+We (O) are (O) aware (O) of (O) at (O) least (O) 40 (O) different (O) languages (O) that (O) this (O) work (O) has (O) been (O) used (O) for (O) including, (O) major (O) European (O) languages (O) such (O) as (O) English., (O) German, (O) French, (O) Italian (O) and (O) Spanish, (O) European (O) minority (O) languages (O) such (O) as (O) Scots (O) and (O) Irish (O) Gaelic, (O) Basque, (O) etc., (O) Asian (O) languages (O) including (O) Chinese, (O) Thai, (O) Korean, (O) Japanese, (O) many (O) of (O) the (O) Indian (O) sub-continent (O) languages (O) as (O) well (O) as (O) Nepali (O) and (O) Pashtu, (O) and (O) other (O) languages (O) from (O) different (O) linguistic (O) groups (O) such (O) as (O) Arabic, (O) Turkish, (O) Finnish, (O) Maori (O) and (O) even (O) Klingon. (O) 
+It (O) seems (O) building (O) a (O) [new (B) voice (I)] in (O) a (O) new (O) language (O) is (O) understood (O) well (O) enough (O) to (O) be (O) set (O) as (O) a (O) student (O) project. (O) 
+
+BUILDING (O) A (O) VOICE (O) 
+
+To (O) build (O) a (O) voice (O) one (O) must (O) address (O) the (O) following (O) issues (O) : 
+
+Define (O) a (O) [phoneme (B) set (I)] 
+Create (O) a (O) [lexicon (B)] and/or (O) letter (O) to (O) sounds (O) rules (O) 
+Provide (O) text (O) analysis (O) 
+Build (O) prosodic (O) models (O) 
+Build (O) a (O) [waveform (B) synthesizer (I)] 
+
+All (O) of (O) these (O) basic (O) processes (O) can (O) be (O) fairly (O) mechanistic. (O) 
+Although (O) adequate (O) solutions (O) can (O) be (O) found (O) for (O) most (O) languages (O) it (O) is (O) very (O) hard (O) in (O) general (O) to (O) find (O) excellent (O) solutions. (O) 
+Many (O) languages (O) have (O) had (O) significant (O) [phonological (B) study (I)] and (O) a (O) [phoneme (B) set (I)] is (O) well (O) defined. (O) 
+However, (O) in (O) practice (O) it (O) is (O) typical (O) to (O) find (O) a (O) number (O) of (O) different (O) [phoneme (B) sets (I)] defined (O) with (O) some (O) ambiguity (O) and (O) even (O) within (O) a (O) [phoneme (B) set (I)] there (O) may (O) be (O) different (O) choices (O) in (O) particular (O) uses. (O) 
+For (O) example, (O) even (O) in (O) US (O) English (O) there (O) are (O) choices, (O) should (O) /dx/ (O) (a (O) tap) (O) be (O) [phonetic (B)] ? Or, (O) should (O) /axr/ (O) be (O) distinct (O) from (O) unstressed (O) /er/ (O) ? A (O) first (O) approximation (O) is (O) usually (O) relatively (O) easy, (O) but (O) there (O) are (O) always (O) harder (O) questions (O) about (O) the (O) best (O) set, (O) eventually (O) we (O) would (O) like (O) some (O) acoustically (O) derived (O) method (O) that (O) is (O) correlated (O) with (O) the (O) particular (O) idiolect (O) of (O) the (O) speaker (O) being (O) modeled. (O) 
+[Lexicon (B)] construction (O) is (O) hard, (O) and (O) as (O) consistency (O) in (O) the (O) entries (O) is (O) very (O) important (O) we (O) have (O) provided (O) techniques (O) that (O) aid (O) in (O) the (O) construction (O) of (O) new (O) [lexicons (B)]. 
+For (O) some (O) languages (O) a (O) hand (O) written (O) set (O) of (O) letter (O) to (O) sound (O) rules (O) is (O) possible (O) especially (O) where (O) the (O) relationship (O) between (O) orthography (O) and (O) [phonetics (B)] is (O) close. (O) 
+We (O) also (O) provide (O) automatic (O) learning (O) techniques (O) for (O) building (O) letter (O) to (O) sound (O) rules (O) from (O) existing (O) words (O) with (O) pronunciations. (O) 
+The (O) relative (O) success (O) of (O) these (O) methods (O) are (O) both (O) a (O) measure (O) of (O) the (O) consistency (O) of (O) the (O) [lexicons (B)] and (O) the (O) relative (O) difficulty (O) of (O) pronunciation (O) in (O) a (O) language. (O) 
+A (O) more (O) general (O) technique (O) that (O) may (O) be (O) adequate (O) when (O) no (O) [lexicon (B)] is (O) available (O) and (O) the (O) orthography (O) is (O) believed (O) to (O) be (O) close (O) to (O) the (O) [phonology (B)] is (O) to (O) use (O) the (O) letters (O) directly (O) as (O) [phonemes (B)]. 
+showed (O) how (O) a (O) [letter-based (B) phoneme (I) set (I)] worked (O) adequately (O) for (O) Spanish (O) and (O) could (O) even (O) capture (O) dialectal (O) variation (O) in (O) Castillian (O) and (O) Colombian (O) Spanish, (O) such (O) as (O) letter (O) “ (O) c (O) ” (O) as (O) /th/ (O) or (O) /s/. (O) 
+Even (O) for (O) English (O) this (O) technique (O) works (O) to (O) some (O) degree. (O) 
+For (O) some (O) languages, (O) we (O) believe (O) a (O) workable (O) [letter-based (B) phone (I) set (I)] may (O) be (O) successful. (O) 
+However (O) in (O) our (O) experience (O) with (O) building (O) a (O) Pashtu (O) synthesizer, (O) where (O) no (O) standardized (O) orthography (O) exists, (O) confusion (O) between (O) the (O) writing (O) system (O) and (O) the (O) many (O) varied (O) dialects (O) of (O) the (O) language (O) lead (O) to (O) more (O) problems (O) than (O) the (O) orthography (O) / [phonetic (B)] relationship (O) itself. (O) 
+[Statistical (B) data-driven (I) approaches (I)] to (O) prosodic (O) models, (O) for (O) phrasing, (O) intonation (O) and (O) duration, (O) can (O) be (O) build (O) fairly (O) easily (O) for (O) at (O) least (O) “ (O) neutral (O) ” (O) sentences. (O) 
+Within (O) a (O) [unit (B) selection (I) framework (I)] it (O) is (O) common (O) not (O) to (O) explicitly (O) model (O) [prosody (B)] but (O) rely (O) on (O) the (O) implicit (O) modeling (O) provided (O) by (O) the (O) [unit (B) selection (I) process (I)]. 
+
+[UNIT (B) SELECTION (I) SYNTHESIS (I)] IN (O) ANY (O) LANGUAGE (O) 
+
+[Unit (B) selection (I) synthesis (I)], can (O) offer (O) high (O) quality (O) synthesis (O) without (O) the (O) expert (O) work (O) that (O) would (O) be (O) required (O) to (O) build (O) a (O) formant (O) synthesizer. (O) 
+Although (O) [unit (B) selection (I)] can (O) produce (O) high (O) quality (O) synthesis, (O) the (O) database (O) must (O) be (O) properly (O) designed (O) to (O) have (O) the (O) right (O) coverage (O) for (O) the (O) language (O) or (O) domain (O) so (O) that (O) the (O) quality (O) is (O) reasonable. (O) 
+discusses (O) the (O) limitations (O) and (O) optimizations (O) that (O) can (O) help (O) in (O) achieving (O) high (O) [quality (B) databases (I)] for (O) [unit (B) selection (I)]. 
+In (O) our (O) present (O) set-up (O) a (O) [reasonable (B) database (I)] can (O) be (O) found (O) by (O) first (O) selecting (O) a (O) large (O) body (O) of (O) text (O) in (O) the (O) [target (B) language (I)] (millions (O) of (O) words (O) or (O) more (O) is (O) good). (O) 
+Then (O) using (O) a (O) synthesizer (O) front (O) end, (O) that (O) can (O) segment (O) the (O) text (O) into (O) sentences (O) and (O) then (O) convert (O) the (O) text (O) to (O) [phoneme (B) strings (I)]. 
+We (O) can (O) then (O) select (O) sentences (O) that (O) will (O) best (O) cover (O) the (O) desired (O) [phonetic (B)] space (O) of (O) the (O) language, (O) optimizing (O) for (O) diphone (O) / syllable (O) coverage (O) depending (O) on (O) the (O) language. (O) 
+The (O) object (O) of (O) the (O) exercise (O) is (O) to (O) 
+find (O) a (O) relatively (O) small (O) set (O) of (O) utterances (O) that (O) are (O) both (O) natural (O) and (O) phonetically (O) balanced. (O) 
+We (O) typically (O) put (O) other (O) restrictions (O) on (O) the (O) selection (O) such (O) as (O) ensure (O) all (O) words (O) are (O) in (O) the (O) [lexicon (B)], and (O) limit (O) sentences (O) to (O) under (O) 20 (O) words (O) in (O) length. (O) 
+This (O) makes (O) the (O) utterances (O) easier (O) to (O) say, (O) reducing (O) the (O) effort (O) required (O) from (O) the (O) [voice (B) talent (I)] and (O) minimizing (O) errors (O) in (O) their (O) performance. (O) 
+Having (O) around (O) 1000 (O) sentences (O) (perhaps (O) around (O) 40,000 (O) [phonemes (B)]) seems (O) to (O) be (O) reasonable. (O) 
+We (O) have (O) also (O) experimented (O) with (O) a (O) more (O) elaborate (O) selection (O) technique, (O) where (O) we (O) first (O) model (O) a (O) [particular (B) speaker (I)]’s acoustic (O) variation (O) and (O) [select (B) data (I)] based (O) on (O) their (O) actual (O) usage (O) rather (O) than (O) just (O) general (O) [phonemes (B)]. 
+This (O) may (O) perform (O) better (O) but (O) it (O) is (O) more (O) computationally (O) expensive, (O) and (O) requires (O) an (O) existing (O) model (O) of (O) the (O) speaker, (O) which (O) may (O) not (O) be (O) available (O) when (O) building (O) a (O) new (O) language. (O) 
+We (O) used (O) the (O) simpler (O) technique (O) in (O) building (O) the (O) CMU (O) [ARCTIC (B) voices (I)], and (O) have (O) successfully (O) used (O) very (O) similar (O) techniques (O) for (O) a (O) wide (O) range (O) of (O) languages (O) including (O) as (O) Croatian, (O) Thai (O) and (O) Spanish. (O) 
+Also (O) we (O) note (O) that (O) given (O) a (O) suitably (O) balanced (O) set (O) of (O) utterances (O) we (O) can (O) more (O) accurately (O) automatically (O) label (O) the (O) data (O) using (O) acoustic (O) modeling (O) [HMM (B) tools (I)] such (O) as. (O) 
+The (O) quality (O) and (O) ease (O) with (O) which (O) a (O) synthesizer (O) can (O) be (O) built (O) is (O) still (O) very (O) dependent (O) on (O) the (O) quality (O) of (O) the (O) [voice (B) talent (I)] and (O) of (O) the (O) recording (O) set (O) up. (O) 
+Even (O) with (O) [professional (B) voice (I)] actors (O) we (O) have (O) found (O) that (O) speakers (O) who (O) have (O) recorded (O) for (O) [speech (B) synthesizers (I)] before (O) perform (O) better. (O) 
+Thus (O) there (O) is (O) a (O) consistency (O) and (O) style (O) of (O) delivery (O) which (O) leads (O) to (O) a (O) better (O) synthesizer. (O) 
+Perhaps (O) one (O) should (O) always (O) throw (O) away (O) the (O) first (O) recordings (O) and (O) make (O) the (O) speaker (O) do (O) it (O) a (O) second (O) time. (O) 
+
+EVALUATION (O) 
+
+Evaluation (O) of (O) [text-to-speech (B)] is (O) very (O) hard (O) as (O) the (O) ultimate (O) quality (O) is (O) based (O) on (O) the (O) perception (O) of (O) the (O) listener. (O) 
+The (O) more (O) the (O) listener (O) listens (O) to (O) the (O) voice (O) the (O) more (O) accustomed (O) they (O) are (O) to (O) its (O) irregularities. (O) 
+This (O) is, (O) perhaps, (O) why (O) ones (O) own (O) synthesizer (O) always (O) sounds (O) better (O) than (O) others. (O) 
+It (O) is (O) very (O) important (O) to (O) understand (O) that (O) synthesis (O) in (O) languages (O) you (O) are (O) less (O) familiar (O) with, (O) always (O) sounds (O) better (O) than (O) those (O) that (O) you (O) are (O) fluent (O) in. (O) 
+In (O) building (O) [synthetic (B) voice (I)] for (O) new (O) languages, (O) it (O) is (O) important (O) to (O) include (O) a (O) formal (O) method (O) for (O) evaluation (O) to (O) ensure (O) that (O) the (O) [voice (B) quality (I)] is (O) as (O) required. (O) 
+Just (O) because (O) it (O) “ (O) sounds (O) Chinese (O) ” (O) to (O) the (O) Western (O) listener (O) does (O) not (O) mean (O) it (O) does (O) so (O) to (O) Chinese (O) [native (B) speakers (I)]. 
+We (O) have (O) defined (O) 5 (O) levels (O) of (O) diagnostic (O) evaluation (O) : 
+
+1. (O) Text (O) analysis (O) 
+2. (O) Lexical (O) and (O) [letter-to-sound (B) rule (I) coverage (I)] 
+3. (O) Prosodic (O) / style (O) 
+4. (O) [Phonetic (B)] / metrical (O) coverage (O) 
+5. (O) Word (O) / sentence (O) coverage (O) 
+
+The (O) first (O) two (O) can (O) be (O) quantitatively (O) measured, (O) and (O) good (O) front (O) ends (O) and (O) lexical (O) components (O) can (O) be (O) expected (O) to (O) be (O) making (O) less (O) 1 (O) % error (O) per (O) token (O) type. (O) 
+[Phonetic (B) coverage (I)] can (O) be (O) explicitly (O) checked (O) through (O) DRT (O) and (O) MRT (O) tests (O) and (O) [MOS (B)] listening (O) tests. (O) 
+Though, (O) it (O) should (O) be (O) noted (O) that (O) high (O) accuracy (O) in (O) isolated (O) confusable (O) words (O) in (O) [unit (B) selection (I) synthesizers (I)] does (O) not (O) guarantee (O) the (O) same (O) accuracy (O) in (O) fluent (O) text. (O) 
+In (O) [unit (B) selection (I) synthesizers (I)] we (O) find (O) that (O) in-domain (O) sentences (O) (where (O) there (O) is (O) a (O) target (O) application), (O) and (O) SUS (O) (semantically (O) unpredictable (O) sentences) (O) stress (O) the (O) [unit (B) selection (I) system (I)] well (O) and (O) improvements (O) for (O) such (O) sentences (O) make (O) a (O) difference (O) to (O) the (O) overall (O) quality. (O) 
+Prosodic (O) measures (O) are (O) harder, (O) although (O) there (O) are (O) objective (O) measures (O) it (O) is (O) well (O) known (O) that (O) they (O) only (O) partially (O) correlate (O) to (O) human (O) perception. (O) 
+The (O) purpose (O) of (O) providing (O) evaluation (O) strategies, (O) is (O) to (O) make (O) it (O) easier (O) for (O) less (O) experienced (O) people (O) to (O) find (O) where (O) the (O) problems (O) are. (O) 
+
+[MULTILINGUAL (B) VOICES (I)] 
+
+The (O) above (O) build (O) process (O) works, (O) and (O) to (O) a (O) large (O) extent (O) documented, (O) and (O) we (O) are (O) aware (O) of (O) many (O) users. (O) 
+Although (O) it (O) is (O) possible (O) to (O) get (O) a (O) voice (O) in (O) a (O) new (O) language (O) in (O) as (O) little (O) as (O) a (O) few (O) days, (O) realistically (O) to (O) produce (O) a (O) [good (B) voice (I)] you (O) need (O) to (O) spend (O) much (O) longer (O) on (O) it (O) than (O) that. (O) 
+But (O) this (O) is (O) only (O) one (O) of (O) the (O) problems. (O) 
+We (O) would (O) like (O) to (O) build (O) voices (O) that (O) are (O) capable (O) of (O) multiple (O) languages. (O) 
+[Individual (B) voices (I)] that (O) cover (O) multiple (O) languages (O) can (O) be (O) built (O) by (O) recording (O) speakers (O) who (O) are (O) (reasonably) (O) fluent (O) in (O) multiple (O) languages. (O) 
+In (O) the (O) simple (O) case (O) where (O) the (O) speaker (O) is (O) not (O) fully (O) bilingual (O) the (O) resulting (O) synthesizers (O) are (O) accented. (O) 
+This (O) is (O) also (O) true (O) whenever (O) we (O) build (O) voices (O) in (O) a (O) language (O) other (O) than (O) the (O) speaker’s (O) native (O) language. (O) 
+It (O) is (O) worth (O) pointing (O) out (O) that (O) [accented (B) speech (I)] is (O) not (O) necessarily (O) a (O) bad (O) thing (O) in (O) [speech (B) synthesis (I)]. We (O) have (O) run (O) simple (O) tests (O) with (O) US (O) English (O) synthesizers (O) built (O) from (O) a (O) Scottish (O) [English (B) speaker (I)] and (O) a (O) Chinese (O) [English (B) speaker (I)]. 
+US (O) listeners (O) are (O) more (O) accepting (O) of (O) errors (O) in (O) the (O) accented (O) voices (O) even (O) when (O) there (O) are (O) [unit (B) selection (I) errors (I)]. 
+We (O) must (O) also (O) consider (O) mixed-lingual (O) synthesis (O) where (O) multiple (O) languages (O) are (O) contained (O) within (O) the (O) one (O) utterance (O) as (O) words (O) or (O) phrases. (O) 
+[Phonetic (B) coverage (I)] can (O) be (O) achieve (O) with (O) [multilingual (B) speech (I) data (I)], but (O) specialized (O) text (O) analysis (O) is (O) also (O) required. (O) 
+gives (O) a (O) good (O) overview (O) of (O) the (O) problems (O) and (O) solutions. (O) 
+
+NEW (O) LANGUAGES (O) WITHOUT (O) RECORDING (O) 
+
+At (O) present (O) to (O) support (O) any (O) new (O) languages (O) well (O) it (O) is (O) necessary (O) to (O) record (O) some (O) [phonetic (B)] examples (O) in (O) the (O) [target (B) language (I)]. 
+Recording (O) data (O) may (O) not (O) be (O) an (O) option (O) when (O) rapid (O) deployment (O) of (O) a (O) system (O) is (O) required. (O) 
+Cross (O) language (O) synthesizers (O) are (O) possible. (O) 
+We (O) have (O) done (O) this (O) in (O) a (O) number (O) of (O) cases. (O) 
+One (O) of (O) the (O) early (O) non-[English (B) voices (I)] in (O) Festival (O) was (O) Basque (O) and (O) we (O) used (O) an (O) existing (O) Spanish (O) diphone (O) synthesizer (O) for (O) [waveform (B) synthesis (I)]. 
+This (O) is (O) not (O) as (O) ridiculous (O) as (O) it (O) might (O) first (O) appear, (O) although (O) the (O) resulting (O) synthesizer (O) was (O) Spanish (O) accented, (O) it (O) is (O) not (O) unusual (O) for (O) [Basque (B) speakers (I)] to (O) also (O) be (O) native (O) [Spanish (B) speakers (I)]. 
+This (O) allowed (O) us (O) to (O) have (O) a (O) speaking (O) Basque (O) synthesizer (O) much (O) earlier (O) in (O) development. (O) 
+We (O) include (O) support (O) to (O) map (O) native (O) phones (O) in (O) the (O) [target (B) language (I)] into (O) phones (O) within (O) an (O) existing (O) language (O) so (O) that (O) a (O) working (O) system (O) can (O) be (O) more (O) quickly (O) built. (O) Although (O) when (O) these (O) mapping (O) are (O) used (O) between (O) unrelated (O) languages (O) the (O) result (O) can (O) sound (O) almost (O) silly, (O) such (O) as (O) using (O) English (O) for (O) Chinese. (O) 
+This (O) method (O) has (O) primarily (O) been (O) supported (O) to (O) allow (O) the (O) ability (O) to (O) label (O) recordings (O) in (O) the (O) [target (B) language (I)]. 
+For (O) example, (O) in (O) building (O) a (O) Korean (O) diphone (O) synthesizer (O) we (O) map (O) Korean (O) phones (O) to (O) English (O) ones, (O) a (O) process (O) that (O) will (O) loose (O) information, (O) as (O) for (O) example (O) our (O) English (O) diphone (O) synthesizer (O) does (O) not (O) distinguish (O) between (O) aspirated (O) and (O) non-aspirated (O) stops (O) which (O) are (O) [phonetic (B)] in (O) Korean. (O) 
+We (O) used (O) a (O) DTW (O) (dynamic (O) time (O) warping) (O) algorithm (O) to (O) align (O) the (O) synthesized (O) prompt (O) with (O) English (O) phones (O) with (O) the (O) spoken (O) Korean (O) prompts. (O) 
+The (O) following (O) table (O) compares (O) how (O) the (O) DTW (O) results (O) match (O) with (O) [hand-labeled (B) boundaries (I)], this (O) table (O) also (O) compares (O) labeling (O) within (O) language (O) and (O) across (O) dialect (O) (UK (O) to (O) US (O) English). (O) 
+
+We (O) have (O) used (O) this (O) [cross-lingual (B) labeling (I) technique (I)] for (O) many (O) languages. (O) 
+It (O) is (O) quite (O) adequate (O) when (O) applied (O) to (O) short (O) words (O) and (O) sentences. (O) 
+This (O) method (O) works (O) because (O) even (O) though (O) there (O) may (O) be (O) variations (O) in (O) the (O) [target (B) language (I)] that (O) are (O) not (O) in (O) the (O) source (O) language, (O) in (O) almost (O) all (O) cases, (O) a (O) vowel (O) in (O) one (O) language (O) is (O) more (O) like (O) a (O) vowel (O) than (O) a (O) consonant (O) in (O) another (O) language. (O) 
+Availability (O) of (O) existing (O) diphone (O) and (O) [unit (B) selection (I) synthesizers (I)] as (O) in (O) the (O) [MBROLA (B) databases (I)], can (O) make (O) bootstrapping (O) voices (O) in (O) new (O) languages (O) much (O) quicker. (O) 
+Although (O) there (O) are (O) many (O) existing (O) databases (O) available (O) there (O) has (O) not (O) yet (O) been (O) an (O) organized (O) effort (O) to (O) try (O) to (O) cover (O) major (O) language (O) groups (O) in (O) the (O) world (O) that (O) would (O) make (O) the (O) use (O) of (O) existing (O) databases (O) for (O) related (O) languages (O) more (O) practical. (O) 
+
+NEW (O) LANGUAGES (O) WITHOUT (O) (MUCH) (O) RECORDING (O) 
+
+The (O) next (O) level (O) is (O) to (O) use (O) [voice (B) conversion (I)] techniques (O) to (O) try (O) to (O) modify (O) some (O) existing (O) database (O) toward (O) the (O) [target (B) language (I)]. 
+This (O) would (O) require (O) at (O) least (O) some (O) examples (O) in (O) the (O) [target (B) language (I)] but (O) not (O) as (O) much (O) as (O) would (O) be (O) required (O) to (O) build (O) a (O) whole (O) diphone (O) or (O) [unit (B) selection (I) voice (I)]. 
+There (O) has (O) been (O) work (O) in (O) the (O) area, (O) e.g., (O) but (O) it (O) currently (O) requires (O) a (O) least (O) one (O) [bilingual (B) database (I)], from (O) which (O) to (O) pre-build (O) a (O) mapping (O) for (O) a (O) [new (B) speaker (I)]. 
+Rather (O) than (O) supporting (O) new (O) languages, (O) this (O) work (O) is (O) [targeting (B) cross-lingual (I) modification (I)] of (O) voices. (O) 
+This (O) technique (O) is (O) very (O) useful (O) in (O) [speech-to-speech (B) translation (I)] where (O) [speaker (B) style (I)], (e.g. (O) command (O) vs (O) compassionate) (O) should (O) be (O) translated (O) from (O) the (O) source (O) to (O) the (O) [target (B) speaker (I)]. 
+We (O) are (O) still (O) substantially (O) far (O) way (O) from (O) being (O) able (O) to (O) build (O) synthesizers (O) in (O) new (O) languages (O) without (O) recording (O) [substantial (B) phonetic (I)] and (O) prosodic (O) examples (O) in (O) that (O) language. (O) 
+
+DISCUSSION (O) 
+
+Although (O) we (O) now (O) have (O) a (O) defined (O) method (O) for (O) building (O) [new (B) voices (I)] in (O) new (O) languages, (O) it (O) still (O) requires (O) a (O) substantial (O) degree (O) of (O) skill, (O) expertise (O) and (O) care (O) to (O) build (O) high (O) [quality (B) voices (I)] in (O) new (O) languages. (O) 
+As (O) researchers (O) and (O) [speech (B)] technologists (O) we (O) may (O) feel (O) we (O) have (O) solved (O) this (O) problem (O) but (O) there (O) are (O) still (O) many (O) languages (O) in (O) the (O) world (O) that (O) do (O) not (O) have (O) support (O) for (O) [synthetic (B) voices (I)], and (O) given (O) the (O) lack (O) of (O) literacy (O) outside (O) the (O) top (O) languages (O) these (O) may (O) particularly (O) benefit (O) more (O) from (O) [speech (B) technology (I)]. 
+To (O) make (O) this (O) task (O) easier (O) we (O) still (O) need (O) to (O) develop (O) better (O) methods (O) to (O) answer (O) such (O) questions (O) as (O) “ (O) how (O) can (O) be (O) find (O) the (O) most (O) appropriate (O) [phoneme (B) set (I)] from (O) data (O) ”, (O) “ (O) what (O) are (O) the (O) speaker-specific (O) pronunciation (O) rules (O) ? ”. (O) 
+We (O) also (O) need (O) to (O) better (O) understand (O) [cross-lingual (B) voice (I) conversion (I)] if (O) we (O) are (O) to (O) build (O) voices (O) in (O) new (O) languages (O) more (O) easily. (O) 
+Improvements (O) in (O) [building (B) voices (I)] are (O) continuing (O) and (O) are (O) likely (O) to (O) involve (O) automatic (O) adaptation (O) of (O) some (O) “ (O) close (O) ” (O) language (O) as (O) well (O) as (O) improving (O) tools (O) and (O) evaluation (O) techniques (O) to (O) make (O) the (O) building (O) of (O) voices (O) easier. (O) 

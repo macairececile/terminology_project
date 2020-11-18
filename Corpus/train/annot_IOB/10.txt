@@ -1,0 +1,209 @@
+[Merlin (B)] : An (O) [Open (B) Source (I) Neural (I) Network (I) Speech (I) Synthesis (I) System (I)] 
+
+
+Abstract (O) 
+We (O) introduce (O) the (O) [Merlin (B) speech (I) synthesis (I) toolkit (I)] for (O) [neural (B) network-based (I) speech (I) synthesis (I)]. 
+The (O) system (O) takes (O) [linguistic (B) features (I)] as (O) input, (O) and (O) employs (O) [neural (B) networks (I)] to (O) predict (O) [acoustic (B) features (I)], which (O) are (O) then (O) passed (O) to (O) a (O) [vocoder (B)] to (O) produce (O) the (O) [speech (B) waveform (I)]. 
+Various (O) [neural (B) network (I) architectures (I)] are (O) implemented, (O) including (O) a (O) standard (O) [feedforward (B) neural (I) network (I)], mixture (O) density (O) [neural (B) network (I)], [recurrent (B) neural (I) network (I)] ([RNN (B)]), long (O) short-term (O) memory (O) ([LSTM (B)]) [recurrent (B) neural (I) network (I)], amongst (O) others. (O) 
+The (O) [toolkit (B)] is (O) [Open (B) Source (I)], written (O) in (O) Python, (O) and (O) is (O) extensible. (O) 
+This (O) paper (O) briefly (O) describes (O) the (O) system, (O) and (O) provides (O) some (O) benchmarking (O) results (O) on (O) a (O) freely-[available (B) corpus (I)]. 
+
+Index (O) Terms (O) : [Speech (B) synthesis (I)], [deep (B) learning (I)], [neural (B) network (I)], [Open (B) Source (I)], [toolkit (B)] 
+
+Introduction (O) 
+[Text-to-speech (B) (TTS) (I) synthesis (I)] involves (O) generating (O) a (O) [speech (B) waveform (I)], given (O) textual (O) input. (O) 
+Freely-available (O) [toolkits (B)] are (O) available (O) for (O) two (O) of (O) the (O) most (O) widely (O) used (O) methods (O) : [waveform (B) concatenation (I)], and (O) [HMM-based (B) statistical (I) parametric (I) speech (I) synthesis (I)], or (O) simply (O) SPSS. (O) 
+Even (O) though (O) the (O) naturalness (O) of (O) good (O) [waveform (B) concatenation (I) speech (I)] continues (O) to (O) be (O) generally (O) significantly (O) better (O) than (O) that (O) of (O) [waveforms (B)] generated (O) via (O) SPSS (O) using (O) a (O) [vocoder (B)], the (O) advantages (O) of (O) flexibility, (O) control, (O) and (O) small (O) footprint (O) mean (O) that (O) SPSS (O) remains (O) an (O) attractive (O) proposition. (O) 
+
+In (O) SPSS, (O) one (O) of (O) the (O) most (O) important (O) factors (O) that (O) limits (O) the (O) naturalness (O) of (O) the (O) synthesised (O) [speech (B)] is (O) the (O) so-called (O) [acoustic (B) model (I)], which (O) learns (O) the (O) relationship (O) between (O) linguistic (O) and (O) [acoustic (B) features (I)] : this (O) is (O) a (O) complex (O) and (O) non-linear (O) regression (O) problem. (O) 
+For (O) the (O) past (O) decade, (O) [hidden (B) Markov (I) models (I)] ([HMMs (B)]) have (O) dominated (O) acoustic (O) modelling. (O) 
+The (O) way (O) that (O) the (O) [HMMs (B)] are (O) parametrised (O) is (O) critical, (O) and (O) almost (O) universally (O) this (O) entails (O) clustering (O) (or (O) ‘ (O) tying’) (O) groups (O) of (O) models (O) for (O) acoustically (O) and (O) linguistically-related (O) contexts, (O) using (O) a (O) regression (O) tree. (O) 
+However, (O) the (O) necessary (O) across-context (O) averaging (O) considerably (O) degrades (O) the (O) quality (O) of (O) synthesised (O) [speech (B)]. 
+One (O) might (O) reasonably (O) say (O) that (O) [HMM-based (B) SPSS (I)] would (O) be (O) more (O) accurately (O) called (O) regression (O) tree-based (O) SPSS, (O) and (O) then (O) the (O) obvious (O) question (O) to (O) ask (O) is (O) : why (O) not (O) use (O) a (O) more (O) powerful (O) regression (O) model (O) than (O) a (O) tree (O) ? 
+Recently, (O) [neural (B) networks (I)] have (O) been (O) ‘ (O) rediscovered’ (O) as (O) [acoustic (B) models (I)] for (O) SPSS. (O) 
+In (O) the (O) 1990s, (O) [neural (B) networks (I)] had (O) already (O) been (O) used (O) to (O) learn (O) the (O) relationship (O) between (O) linguistic (O) and (O) [acoustic (B) features (I)], as (O) duration (O) models (O) to (O) predict (O) segment (O) durations, (O) and (O) to (O) extract (O) [linguistic (B) features (I)] from (O) raw (O) text (O) input. (O) 
+The (O) main (O) differences (O) between (O) today (O) and (O) the (O) 1990s (O) are (O) : more (O) [hidden (B) layers (I)], more (O) [training (B) data (I)], more (O) advanced (O) computational (O) resource, (O) more (O) advanced (O) training (O) algorithms, (O) and (O) significant (O) advancements (O) in (O) the (O) various (O) other (O) techniques (O) needed (O) for (O) a (O) complete (O) parametric (O) [speech (B) synthesiser (I)] : the (O) [vocoder (B)], and (O) parameter (O) compensation (O) / enhancement (O) / postfiltering (O) techniques. (O) 
+
+Recent (O) work (O) [neural (B) network (I) speech (I) synthesis (I)] 
+In (O) the (O) recent (O) studies, (O) restricted (O) Boltzmann (O) machines (O) (RBMs) (O) were (O) used (O) to (O) replace (O) [Gaussian (B)] mixture (O) models (O) to (O) model (O) the (O) distribution (O) of (O) [acoustic (B) features (I)]. 
+The (O) work (O) claims (O) that (O) RBMs (O) can (O) model (O) [spectral (B)] details, (O) and (O) result (O) in (O) better (O) quality (O) of (O) synthesised (O) [speech (B)]. 
+In, (O) deep (O) belief (O) networks (O) (DBNs) (O) as (O) eep (O) generative (O) model (O) were (O) employed (O) to (O) model (O) the (O) relationship (O) between (O) linguistic (O) and (O) [acoustic (B) features (I)] jointly. (O) 
+Deep (O) mixturedensity (O) networks (O) and (O) trajectory (O) real-valued (O) neural (O) autoregressive (O) density (O) estimators (O) were (O) also (O) employed (O) to (O) predict (O) the (O) [probability (B) density (I) function (I)] over (O) [acoustic (B) features (I)]. 
+                    
+Deep (O) [feedforward (B) neural (I) networks (I)] (DNNs) (O) as (O) a (O) deep (O) conditional (O) model (O) are (O) the (O) model (O) popular (O) model (O) in (O) the (O) literature (O) to (O) map (O) [linguistic (B) features (I)] to (O) [acoustic (B) features (I)] directly. (O) 
+The (O) [DNNs (B)] can (O) be (O) viewed (O) as (O) replacement (O) for (O) the (O) [decision (B) tree (I)] used (O) in (O) the (O) [HMM-based (B) speech (I)] as (O) detailed (O) in. (O) 
+It (O) can (O) also (O) be (O) used (O) to (O) model (O) high-dimensional (O) spectra (O) directly. (O) 
+In (O) the (O) feedforward (O) framework, (O) several (O) techniques, (O) such (O) multitask (O) learning, (O) minimum (O) generation (O) error, (O) have (O) been (O) applied (O) to (O) improve (O) the (O) performance. (O) 
+However, (O) [DNNs (B)] perform (O) the (O) mapping (O) frame (O) by (O) frame (O) without (O) considering (O) contextual (O) constraints, (O) even (O) though (O) stacked (O) [bottleneck (B) features (I)] can (O) include (O) some (O) short-term (O) contextual (O) information. (O) 
+
+To (O) include (O) contextual (O) constraints, (O) a (O) bidirectional (O) long (O) short-term (O) memory (O) ([LSTM (B)]) based (O) [recurrent (B) neural (I) network (I)] ([RNN (B)]) was (O) employed (O) in (O) to (O) formulate (O) [TTS (B)] as (O) a (O) [sequence (B) to (I) sequence (I) mapping (I)] problem, (O) that (O) is (O) to (O) map (O) a (O) sequence (O) of (O) [linguistic (B) features (I)] to (O) the (O) corresponding (O) sequence (O) of (O) [acoustic (B) features (I)]. 
+In, (O) [LSTM (B)] with (O) a (O) recurrent (O) [output (B) layer (I)] was (O) proposed (O) to (O) include (O) contextual (O) constraints. (O) 
+In, (O) [LSTM (B)] and (O) [gated (B) recurrent (I) unit (I)] ([GRU (B)]) based (O) [RNNs (B)] are (O) combined (O) with (O) mixture (O) density (O) model (O) to (O) predict (O) a (O) sequence (O) of (O) [probability (B) density (I) functions (I)]. 
+In, (O) a (O) systematic (O) analysis (O) of (O) [LSTM-based (B) RNN (I)] was (O) presented (O) to (O) provide (O) a (O) better (O) understanding (O) of (O) [LSTM (B)]. 
+
+The (O) need (O) for (O) a (O) new (O) [toolkit (B)] 
+Recently, (O) even (O) though (O) there (O) has (O) been (O) an (O) explosion (O) in (O) the (O) use (O) of (O) [neural (B) networks (I)] for (O) [speech (B) synthesis (I)], a (O) truly (O) [Open (B) Source (I) toolkit (I)] is (O) missing. (O) 
+Such (O) a (O) [toolkit (B)] would (O) underpin (O) reproducible (O) research (O) and (O) allow (O) for (O) more (O) accurate (O) cross-comparisons (O) of (O) competing (O) techniques, (O) in (O) very (O) much (O) the (O) same (O) way (O) that (O) the (O) HTS (O) [toolkit (B)] has (O) done (O) for (O) [HMM-based (B) work (I)]. 
+In (O) this (O) paper, (O) we (O) introduce (O) Merlin1, (O) which (O) is (O) an (O) [Open (B) Source (I) neural (I) network (I)] based (O) [speech (B) synthesis (I) system (I)]. 
+The (O) system (O) has (O) already (O) been (O) extensively (O) used (O) for (O) the (O) work (O) reported (O) in (O) a (O) number (O) of (O) recent (O) research (O) papers. (O) 
+This (O) paper (O) will (O) briefly (O) introduce (O) the (O) design (O) and (O) implementation (O) of (O) the (O) [toolkit (B)] and (O) provide (O) benchmarking (O) results (O) on (O) a (O) freely-available (O) [speech (B) corpus (I)]. 
+
+In (O) addition (O) to (O) the (O) results (O) here (O) and (O) in (O) the (O) above (O) list (O) of (O) previously-published (O) papers, (O) [Merlin (B)] is (O) the (O) [DNN (B)] benchmark (O) system (O) for (O) the (O) 2016 (O) [Blizzard (B) Challenge (I)]. 
+There, (O) it (O) is (O) used (O) in (O) combination (O) with (O) the (O) Ossian (O) [front-end (B)] 2 (O) and (O) the (O) [WORLD (B) vocoder (I)], both (O) of (O) which (O) are (O) also (O) [Open (B) Source (I)] and (O) can (O) be (O) used (O) without (O) restriction, (O) to (O) provide (O) an (O) easily-reproducible (O) system. (O) 
+
+Figure (O) : An (O) illustration (O) of (O) [feedforward (B) neural (I) network (I)] with (O) four (O) [hidden (B) layers (I)]. 
+
+Design (O) and (O) Implementation (O)                                                        
+Like (O) HTS, (O) [Merlin (B)] is (O) not (O) a (O) complete (O) [TTS (B) system (I)]. It (O) provides (O) the (O) core (O) acoustic (O) modelling (O) functions (O) : [linguistic (B) feature (I)] vectorisation, (O) acoustic (O) and (O) [linguistic (B) feature (I)] normalisation, (O) [neural (B) network (I) acoustic (I) model (I) training (I)], and (O) generation. (O) 
+Currently, (O) the (O) [waveform (B) generation (I)] module (O) supports (O) two (O) [vocoders (B)] : 
+STRAIGHT (O) and (O) WORLD (O) but (O) the (O) [toolkit (B)] is (O) easily (O) extensible (O) to (O) other (O) [vocoders (B)] in (O) the (O) future. (O) It (O) is (O) equally (O) easy (O) to (O) interface (O) to (O) different (O) [front-end (B) text (I) processors (I)]. 
+
+[Merlin (B)] is (O) written (O) in (O) Python, (O) based (O) on (O) the (O) theano (O) library. (O) 
+It (O) comes (O) with (O) documentation (O) for (O) the (O) source (O) code (O) and (O) a (O) set (O) of (O) ‘ (O) recipes’ (O) for (O) various (O) system (O) configurations. (O) 
+
+[Front-End (B)] 
+[Merlin (B)] requires (O) an (O) external (O) [front-end (B)], such (O) as (O) Festival (O) or (O) Ossian. (O) 
+The (O) [front-end (B) output (I)] must (O) currently (O) be (O) formatted (O) as (O) HTS-style (O) labels (O) with (O) state-level (O) alignment. (O) 
+The (O) [toolkit (B)] converts (O) such (O) labels (O) into (O) [vectors (B)] of (O) binary (O) and (O) [continuous (B) features (I)] for (O) [neural (B) network (I) input (I)]. The (O) features (O) are (O) derived (O) from (O) the (O) label (O) files (O) using (O) HTS-style (O) questions. (O) 
+It (O) is (O) also (O) possible (O) to (O) directly (O) provide (O) already-vectorised (O) [input (B) features (I)] if (O) this (O) HTS-like (O) workflow (O) is (O) not (O) convenient. (O) 
+
+[Vocoder (B)] 
+Currently, (O) the (O) system (O) supports (O) two (O) [vocoders (B)] : 
+TRAIGHT (O) (the (O) C (O) language (O) version) (O) and (O) WORLD. (O) STRAIGHT (O) can (O) not (O) be (O) included (O) in (O) the (O) distribution (O) because (O) it (O) is (O) not (O) [Open (B) Source (I)], but (O) the (O) [Merlin (B)] distribution (O) does (O) include (O) a (O) modified (O) version (O) of (O) the (O) [WORLD (B) vocoder (I)]. 
+The (O) modifications (O) add (O) separate (O) analysis (O) and (O) synthesis (O) executables, (O) as (O) is (O) necessary (O) for (O) SPSS. (O) 
+It (O) is (O) not (O) difficult (O) to (O) support (O) some (O) other (O) [vocoder (B)], and (O) details (O) on (O) how (O) to (O) do (O) this (O) can (O) be (O) found (O) in (O) the (O) included (O) documentation. (O) 
+
+[Feature (B) normalisation (I)] 
+Before (O) training (O) a (O) [neural (B) network (I)], it (O) is (O) important (O) to (O) [normalise (B) features (I)]. The (O) [toolkit (B)] supports (O) two (O) normalisation (O) methods (O) : min-max, (O) and (O) mean-variance. (O) 
+The (O) min-max (O) normalisation (O) will (O) normalise (O) features (O) to (O) the (O) range (O) of, (O) while (O) the (O) mean-variance (O) normalisation (O) will (O) normalise (O) features (O) to (O) zero (O) mean (O) and (O) unit (O) variance. (O) 
+Currently, (O) by (O) default (O) the (O) [linguistic (B) features (I)] undergo (O) min-max (O) normalisation, (O) while (O) output (O) [acoustic (B) features (I)] have (O) mean-variance (O) normalisation (O) applied. (O) 
+
+[Acoustic (B) modelling (I)] 
+[Merlin (B)] includes (O) implementations (O) of (O) several (O) currently-popular (O) [acoustic (B) models (I)], each (O) of (O) which (O) comes (O) with (O) an (O) example (O) ‘ (O) recipe’ (O) to (O) demonstrate (O) its (O) use. (O) 
+
+[Feedforward (B) neural (I) network (I)] 
+A (O) [feedforward (B) neural (I) network (I)] is (O) the (O) simplest (O) type (O) of (O) network. (O) 
+With (O) enough (O) layers, (O) this (O) architecture (O) is (O) usually (O) called (O) a (O) [Deep (B) Neural (I) Network (I)] ([DNN (B)]). The (O) input (O) is (O) used (O) to (O) predict (O) the (O) output (O) via (O) several (O) layers (O) of (O) [hidden (B) units (I)], each (O) of (O) which (O) performs (O) a (O) nonlinear (O) function, (O) as (O) follows (O) : 
+
+where (O) H (O) (·) (O) is (O) a (O) nonlinear (O) activation (O) function (O) in (O) a (O) hidden (O) layer, (O) 
+ Wxh (O) and (O) Why (O) are (O) the (O) weight (O) matrices, (O) bh (O) and (O) by (O) are (O) bias (O) [vectors (B)], and (O) Why (O) ht (O) is (O) a (O) linear (O) regression (O) to (O) predict (O) [target (B) features (I)] from (O) the (O) activations (O) in (O) the (O) preceding (O) [hidden (B) layer (I)]. 
+ Fig. (O) is (O) an (O) illustration (O) of (O) a (O) [feedforward (B) neural (I) network (I)]. It (O) takes (O) [linguistic (B) features (I)] as (O) input (O) and (O) predicts (O) the (O) [vocoder (B) parameters (I)] through (O) several (O) hidden (O) layers (O) (in (O) the (O) figure, (O) four (O) [hidden (B) layers (I)]). 
+ In (O) the (O) remainder (O) of (O) this (O) paper, (O) we (O) will (O) use (O) [DNN (B)] to (O) indicate (O) a (O) [feedforward (B) neural (I) network (I)] of (O) this (O) general (O) type. (O) 
+ In (O) the (O) [toolkit (B)], [sigmoid (B)] and (O) hyperbolic (O) tangent (O) activation (O) functions (O) are (O) supported (O) for (O) the (O) hidden (O) layers. (O) 
+                                                                      
+The (O) [toolkit (B)] can (O) be (O) checked (O) out (O) anonymously (O) from (O) the (O) Github (O) repository (O) : https://github.com/CSTR-Edinburgh/ (O) [merlin (B)] 
+
+http://simple4all.org/product/ossian (O)                                  
+
+Long (O) short-term (O) memory (O) ([LSTM (B)]) based (O) [RNN (B)] 
+In (O) a (O) [DNN (B)], [linguistic (B) features (I)] are (O) mapped (O) to (O) [vocoder (B) parameters (I) frame (I)] by (O) frame (O) without (O) considering (O) the (O) sequential (O) nature (O) of (O) [speech (B)]. 
+In (O) contrast, (O) [recurrent (B) neural (I) networks (I)] ([RNNs (B)]) are (O) designed (O) for (O) [sequence-to-sequence (B) mapping (I)]. 
+The (O) use (O) of (O) long (O) short-term (O) memory (O) [(LSTM) (B) units (I)] is (O) a (O) popular (O) way (O) to (O) realise (O) an (O) [RNN (B)]. 
+
+
+The (O) basic (O) idea (O) of (O) the (O) [LSTM (B)] was (O) proposed (O) in, (O) and (O) is (O) a (O) commonly (O) used (O) architecture (O) for (O) [speech (B) recognition (I)]. 
+It (O) is (O) formulated (O) as (O) : 
+
+where (O) it, (O) ft, (O) and (O) ot (O) are (O) the (O) input, (O) forget, (O) and (O) output (O) gates, (O) respectively (O) ; 
+ct (O) is (O) the (O) so-called (O) memory (O) cell (O) ; ht (O) is (O) the (O) hidden (O) 
+activation (O) at (O) time (O) t (O) ; xt (O) is (O) the (O) input (O) signal (O) ; W∗, (O) and (O) R∗ (O) are (O) the (O) weight (O) matrices (O) applied (O) on (O) input (O) and (O) recurrent (O) hidden (O) units, (O) respectively (O) ; p∗ (O) and (O) b∗ (O) are (O) the (O) peep-hole (O) connections (O) and (O) biases, (O) respectively (O) ; δ (O) (·) (O) and (O) g (O) (·) (O) are (O) the (O) [sigmoid (B)] and (O) hyperbolic (O) tangent (O) activation (O) functions, (O) respectively (O) ; means (O) element-wise (O) product. (O) 
+
+Figure (O) presents (O) an (O) illustration (O) of (O) a (O) standard (O) [LSTM (B) unit (I)]. 
+It (O) passes (O) the (O) input (O) signal (O) and (O) hidden (O) activation (O) of (O) the (O) previous (O) and (O) output (O) gate (O) to (O) produce (O) the (O) activation. (O) 
+In (O) our (O) implementation, (O) the (O) several (O) variants (O) described (O) in (O)   are (O) also (O) available. (O) 
+
+[Bidirectional (B) RNN (I)] 
+In (O) a (O) uni-directional (O) [RNNs (B)], only (O) contextual (O) information (O) from (O) past (O) time (O) instances (O) are (O) taken (O) into (O) account, (O) whilst (O) in (O) a (O) [bidirectional (B) RNNs (I)] can (O) learn (O) from (O) information (O) propagated (O) both (O) forwards (O) and (O) backwards (O) in (O) time. (O) A (O) [bidirectional (B) RNN (I)] can (O) be (O) defined (O) as, (O) 
+
+where (O) h (O) t (O) and (O) h (O) t (O) are (O) [hidden (B) activations (I)] from (O) positive (O) and (O) negative (O) directions, (O) respectively (O) ; Wx (O) h (O) and (O) Wx (O) h (O) are (O) weight (O) matrices (O) for (O) input (O) signal (O) ; and (O) R (O) h (O) h (O) and (O) R (O) h (O) h (O) are (O) the (O) recurrent (O) matrices (O) for (O) forward (O) and (O) backward (O) directions, (O) respectively. (O) 
+
+In (O) [bidirectional (B) RNNs (I)], the (O) hidden (O) units (O) can (O) be (O) without (O) gating, (O) or (O) gated (O) units (O) such (O) as (O) [LSTM (B)]. We (O) will (O) use (O) [BLSTM (B)] to (O) denote (O) a (O) [bidirectional (B) LSTM-based (I) RNN (I)]. 
+
+Other (O) variants (O) 
+In (O) [Merlin (B)], other (O) variants (O) of (O) [neural (B) networks (I)] are (O) also (O) implemented, (O) such (O) as (O) [gated (B) recurrent (I) units (I)] ([GRUs (B)]), simplified (O) [LSTM (B)], and (O) the (O) other (O) variants (O) on (O) [LSTMs (B)] and (O) [GRUs (B)] described (O) in. (O) 
+All (O) these (O) basic (O) units (O) can (O) be (O) assembled (O) together (O) to (O) create (O) a (O) new (O) architecture (O) by (O) simply (O) changing (O) a (O) configuration (O) file. (O) 
+For (O) example, (O) to (O) implement (O) a (O) 4-layer (O) [feedforward (B) neural (I) network (I)] using (O) hyperbolic (O) tangent (O) units, (O) one (O) can (O) simply (O) specify (O) the (O) following (O) architecture (O) in (O) the (O) configuration (O) file (O) : 
+([TANH (B)], [TANH (B)], [TANH (B)], [TANH (B)]) 
+Similarly, (O) a (O) hybrid (O) [bidirectional (B) LSTM-based (I) RNN (I)] can (O) be (O) specified (O) as (O) : 
+([TANH (B)], [TANH (B)], [TANH (B)], [BLSTM (B)]) 
+in (O) the (O) configuration (O) file. (O) More (O) details (O) of (O) the (O) supported (O) unit (O) type (O) can (O) be (O) found (O) in (O) the (O) documentation (O) of (O) the (O) system. (O) 
+                                                                                                    
+Figure (O) : An (O) illustration (O) of (O) a (O) long (O) short-term (O) memory (O) unit. (O) The (O) inputs (O) to (O) the (O) unit (O) are (O) the (O) input (O) signal (O) and (O) the (O) [hidden (B) activation (I)] of (O) the (O) previous (O) time (O) instance. (O)                                                                          
+
+Benchmarking (O) performance (O) 
+
+Experimental (O) setup (O) 
+To (O) demonstrate (O) the (O) performance (O) of (O) the (O) [toolkit (B)], we (O) report (O) benchmarking (O) experiments (O) for (O) several (O) architectures (O) implemented (O) in (O) [Merlin (B)]. A (O) freely-available (O) corpus3 (O) from (O) a (O) British (O) male (O) [professional (B) speaker (I)] was (O) used (O) in (O) the (O) experiments. (O) 
+The (O) [speech (B) signal (I)] was (O) used (O) at (O) a (O) sampling (O) rate (O) of (O) 48 (O) kHz. (O) 
+2400 (O) utterances (O) were (O) used (O) for (O) training, (O) 70 (O) as (O) a (O) development (O) set, (O) and (O) 72 (O) as (O) the (O) evaluation (O) set. (O) All (O) sets (O) are (O) disjoint. (O) 
+The (O) [front-end (B)] for (O) all (O) experiments (O) is (O) Festival. (O) The (O) [input (B) features (I)] for (O) all (O) [neural (B) networks (I)] consisted (O) of (O) 491 (O) features. (O) 
+482 (O) of (O) these (O) were (O) derived (O) from (O) linguistic (O) context, (O) inlcuding (O) [quinphone (B)] identity, (O) [part-of-speech (B)], and (O) positional (O) information (O) within (O) a (O) syllable, (O) word (O) and (O) phrase, (O) etc. (O) 
+The (O) remaining (O) 9 (O) are (O) within-phone (O) positional (O) information (O) : frame (O) position (O) within (O) [HMM (B)] state (O) and (O) phone, (O) state (O) position (O) within (O) phone (O) both (O) forward (O) and (O) backward, (O) and (O) state (O) and (O) phone (O) durations. (O) 
+The (O) frame (O) alignment (O) and (O) state (O) information (O) was (O) obtained (O) from (O) forced (O) alignment (O) using (O) a (O) monophone (O) [HMM-based (B) system (I)] with (O) 5 (O) emitting (O) states (O) per (O) phone. (O) 
+                                 
+We (O) used (O) two (O) [vocoders (B)] in (O) these (O) experiments (O) : 
+STRAIGHT (O) and (O) WORLD. (O) 
+STRAIGHT (O) (C (O) language (O) version), (O) which (O) is (O) not (O) [Open (B) Source (I)], was (O) used (O) to (O) extract (O) 60-dimensional (O) [Mel-Cepstral (B) Coefficients (I)] ([MCCs (B)]), 25 (O) band (O) aperiodicities (O) (BAPs), (O) and (O) [fundamental (B) frequency (I)] on (O) log (O) scale (O) (log (O) F0) (O) at (O) 5 (O) msec (O) frame (O) intervals. (O) Similar, (O) WORLD4, (O) which (O) is (O) [Open (B) Source (I)], was (O) also (O) used (O) to (O) extract (O) 60-dimensional (O) [MCCs (B)], 5-dimensional (O) BAPs, (O) and (O) log (O) F0 (O) at (O) 5 (O) msec (O) frame (O) intervals. (O) 
+The (O) [output (B) features (I)] of (O) [neural (B) networks (I)] thus (O) consisted (O) of (O) [MCCs (B)], BAPs, (O) and (O) log (O) F0 (O) with (O) their (O) deltas (O) and (O) delta-deltas, (O) plus (O) a (O) voiced (O) / unvoiced (O) [binary (B) feature (I)]. 
+
+http://dx.doi.org/10.7488/ds/140 (O) 
+
+The (O) modified (O) version (O) mentioned (O) earlier, (O) and (O) included (O) in (O) the (O) [Merlin (B)] distribution. (O) 
+
+Table (O) : Comparison (O) of (O) objective (O) results (O) using (O) the (O) STRAIGHT (O) [vocoder (B)]. 
+MCD (O) : [Mel-Cepstral (B) Distortion (I)]. BAP (O) : distortion (O) of (O) band (O) aperiodicities. (O) F0 (O) RMSE (O) is (O) calculated (O) on (O) a (O) linear (O) scale. (O) V (O) / UV (O) : voiced (O) / unvoiced (O) error. (O)                                                
+                    
+
+Table (O) : Comparison (O) of (O) objective (O) results (O) using (O) the (O) [WORLD (B) vocoder (I)]. 
+MCD (O) : [Mel-Cepstral (B) Distortion (I)]. BAP (O) : distortion (O) of (O) band (O) aperiodicities. (O) F0 (O) RMSE (O) is (O) calculated (O) on (O) a (O) linear (O) scale. (O) V (O) / UV (O) : voiced (O) / unvoiced (O) error. (O) 
+
+    
+Before (O) training, (O) the (O) [input (B) features (I)] were (O) normalised (O) using (O) min-max (O) to (O) the (O) range (O) (0.01, (O) 0.99) (O) and (O) [output (B) features (I)] were (O) normalised (O) to (O) zero (O) mean (O) and (O) unit (O) variance. (O) 
+At (O) synthesis (O) time, (O) [Maximum (B) likelihood (I) parameter (I)] generation (O) ([MLPG (B)]) was (O) applied (O) to (O) generate (O) smooth (O) parameter (O) trajectories (O) from (O) the (O) denormalised (O) [neural (B) network (I) outputs (I)], then (O) [spectral (B)] enhancement (O) in (O) the (O) cepstral (O) domain (O) was (O) applied (O) to (O) the (O) [MCCs (B)] to (O) enhance (O) naturalness. (O) 
+[Speech (B) Signal (I)] Processing (O) [Toolkit (B)] (SPTK5) (O) was (O) used (O) to (O) implement (O) the (O) [spectral (B)] enhancement. (O) 
+                                                                          
+    We (O) report (O) four (O) benchmark (O) systems (O) here (O) :                       
+    • (O) [DNN (B)] : 6 (O) feedforward (O) hidden (O) layers (O) ; each (O) hidden (O) layer (O) has (O) 1024 (O) hyperbolic (O) tangent (O) units. (O) 
+    • (O) [LSTM (B)] : a (O) hybrid (O) architecture (O) with (O) four (O) feedforward (O) hidden (O) layers (O) of (O) 1024 (O) hyperbolic (O) tangent (O) units (O) each, (O) followed (O) by (O) a (O) single (O) [LSTM (B) layer (I)] with (O) 512 (O) units. (O)                     
+    • (O) [BLSTM (B)] : a (O) hybrid (O) architecture (O) similar (O) to (O) the (O) [LSTM (B)], but (O) replacing (O) the (O) [LSTM (B) layer (I)] with (O) a (O) [BLSTM (B) layer (I)] of (O) 384 (O) units. (O)                                                                
+    • (O) [BLSTM-S (B)] : the (O) architecture (O) is (O) the (O) same (O) as (O) [BLSTM (B)] ; the (O) delta (O) and (O) delta-[delta (B) features (I)] are (O) omitted (O) from (O) the (O) [output (B) feature (I) vectors (I)], and (O) no (O) [MLPG (B)] is (O) applied (O) ; theoretically, (O) the (O) [BLSTM (B) architecture (I)] should (O) be (O) able (O) to (O) learn (O) to (O) derive (O) [delta (B) features (I)] during (O) training, (O) and (O) should (O) generate (O) trajectories (O) that (O) are (O) already (O) smooth. (O)                                 
+                                                                           
+Objective (O) Results (O)                         
+The (O) objective (O) results (O) of (O) the (O) four (O) systems (O) using (O) the (O) STRAIGHT (O) [vocoder (B)] are (O) presented (O) in (O) Table (O) 1. (O) It (O) is (O) observed (O) that (O) [LSTM (B)] and (O) [BLSTM (B)] achieve (O) better (O) objective (O) results (O) than (O) [DNN (B)], as (O) expected. (O)               
+The (O) [BLSTM-S (B)] that (O) does (O) not (O) use (O) [dynamic (B) features (I)] during (O) training (O) and (O) does (O) not (O) employ (O) [MLPG (B)] at (O) generation (O) exhibits (O) much (O) higher (O) objective (O) error (O) than (O) all (O) other (O) architectures. (O)                                             
+The (O) objective (O) results (O) of (O) the (O) same (O) four (O) architectures, (O) but (O) this (O) picture (O) is (O) similar (O) to (O) when (O) using (O) the (O) STRAIGHT (O) [vocoder (B)]. 
+Note (O) that (O) F0 (O) RMSE (O) and (O) V (O) / UV (O) are (O) not (O) directly (O) comparable (O) between (O) Table (O) 1 (O) and (O) 2, (O) as (O) they (O) use (O) different (O) F0 (O) extractors. (O) 
+For (O) both (O) [vocoders (B)], we (O) simply (O) use (O) the (O) default (O) settings (O) provided (O) by (O) the (O) respective (O) tools’ (O) creators. (O)                                                 
+In (O) general, (O) the (O) objective (O) results (O) confirm (O) that (O) [LSTM (B)] and (O) [BLSTM (B)] can (O) achieve (O) better (O) objective (O) results (O) than (O) [DNN (B)] (as (O) expected), (O) but (O) that (O) [dynamic (B) features (I)] and (O) [MLPG (B)] are (O) still (O) useful (O) for (O) [BLSTM (B)], even (O) though (O) it (O) has (O) a (O) theoretical (O) ability (O) to (O) model (O) the (O) necessary (O) trajectory (O) information. (O) 
+
+Available (O)    at (O) : http://sp-tk.sourceforge.net/ (O) 
+
+Subjective (O) Results (O) 
+We (O) conducted (O) [MUSHRA (B)] (MUltiple (O) Stimuli (O) with (O) Hidden (O) Reference (O) and (O) Anchor) (O) listening (O) tests (O) to (O) subjectively (O) evaluate (O) the (O) naturalness (O) of (O) the (O) synthesised (O) [speech (B)]. We (O) evaluated (O) all (O) the (O) four (O) benchmark (O) systems (O) in (O) two (O) separate (O) [MUSHRA (B) tests (I)] : one (O) for (O) STRAIGHT (O) and (O) a (O) separate (O) test (O) for (O) the (O) [WORLD (B) vocoder (I)]. 
+
+In (O) each (O) [MUSHRA (B) test (I)], there (O) were (O) 30 (O) native (O) British (O) English (O) listeners, (O) and (O) each (O) listeners (O) rated (O) 20 (O) sets (O) that (O) were (O) randomly (O) selected (O) from (O) the (O) evaluation (O) set. (O) 
+In (O) each (O) set, (O) a (O) natural (O) [speech (B)] with (O) the (O) same (O) linguistic (O) content (O) was (O) also (O) included (O) as (O) the (O) hidden (O) reference. (O) 
+The (O) listeners (O) were (O) instructed (O) to (O) give (O) each (O) stimulus (O) a (O) score (O) between (O) 0 (O) and (O) 100, (O) and (O) to (O) rate (O) one (O) of (O) them (O) in (O) each (O) set (O) as (O) 100, (O) which (O) means (O) natural. (O) 
+
+The (O) [MUSHRA (B) scores (I)] for (O) systems (O) using (O) STRAIGHT (O) are (O) presented (O) in (O) Fig. (O) 
+It (O) is (O) observed (O) that (O) [LSTM (B)] and (O) [BLSTM (B)] are (O) significantly (O) better (O) than (O) [DNN (B)] (p-value (O) below (O) 0.01). (O) 
+[BLSTM (B)] produces (O) slightly (O) more (O) natural (O) [speech (B)] than (O) [LSTM (B)], but (O) the (O) difference (O) is (O) not (O) significant. (O) 
+It (O) is (O) also (O) found (O) that (O) [BLSTM (B)] is (O) significantly (O) more (O) natural (O) than (O) [BLSTM-S (B)], consistent (O) with (O) the (O) objective (O) errors (O) reported (O) above. (O) 
+
+The (O) [MUSHRA (B) scores (I)] for (O) systems (O) using (O) WORLD (O) are (O) presented (O) in (O) Fig. (O) The (O) relative (O) differences (O) across (O) systems (O) are (O) similar (O) to (O) the (O) STRAIGHT (O) case. (O) 
+
+In (O) general, (O) subjective (O) results (O) are (O) consistent (O) with (O) objective (O) results, (O) and (O) there (O) are (O) similar (O) trends (O) regardeless (O) of (O) [vocoder (B)]. 
+Both (O) objective (O) and (O) and (O) subjective (O) results (O) confirm (O) that (O) [LSTM (B)] and (O) [BLSTM (B)] offer (O) better (O) performance (O) than (O) [DNN (B)], and (O) that (O) [MLPG (B)] is (O) still (O) useful (O) for (O) [BLSTM (B)]. 
+
+Conclusions (O) 
+In (O) this (O) paper, (O) we (O) have (O) introduced (O) the (O) [Open (B) Source (I) Merlin (I)] time (O) using (O) the (O) [WORLD (B) vocoder (I)], are (O) presented (O) in (O) Table. (O) 
+The (O) [speech (B) synthesis (I) toolkit (I)], and (O) provided (O) reproducible (O) benchmark (O) results (O) on (O) a (O) corpus. (O) 
+We (O) hope (O) the (O) availability (O) of (O) this (O) system (O) will (O) promote (O) open (O) research (O) on (O) [neural (B) network (I) speech (I) synthesis (I)], make (O) comparisons (O) between (O) different (O) [neural (B) network (I)] configurations (O) easier, (O) and (O) allow (O) researchers (O) to (O) report (O) reproducible (O) results. (O) 
+The (O) [toolkit (B)], as (O) released, (O) includes (O) the (O) recipes (O) necessary (O) to (O) reproduce (O) all (O) results (O) in (O) this (O) paper, (O) and (O) results (O) in (O) some (O) of (O) our (O) recent (O) publications. (O) 
+The (O) intention (O) is (O) that (O) future (O) results (O) published (O) (by (O) ourselves (O) or (O) others) (O) using (O) this (O) [toolkit (B)] will (O) also (O) be (O) accompanied (O) by (O) recipe. (O) 
+
+
+Figure (O) : [MUSHRA (B) scores (I)] for (O) [DNN (B)], [LSTM (B)], [BLSTM (B)], and (O) [BLSTM-S (B)] using (O) the (O) STRAIGHT (O) [vocoder (B)]. [LSTM (B)] and (O) [BLSTM (B)] are (O) both (O) significantly (O) better (O) than (O) [DNN (B)]. 
+Figure (O) : [MUSHRA (B) scores (I)] for (O) [DNN (B)], [LSTM (B)], [BLSTM (B)], and (O) [BLSTM-S (B)] using (O) the (O) [WORLD (B) vocoder (I)]. 
+
+Acknowledgement (O) : This (O) work (O) was (O) supported (O) by (O) EPSRC (O) Programme (O) Grant (O) EP (O) / I031022/1 (O) (Natural (O) [Speech (B) Technology (I)]). 
