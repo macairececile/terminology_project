@@ -1,0 +1,5 @@
+[Multilingual speech-to-speech translation System] in Mobile Off-line Environment 
+
+ABSTRACT 
+The process of translating [speech-to-speech] denotes the conversion of [speech signals] specifically from the original source language into a distinctive [speech signal]-bearing identical meaning or resolve into the [target language]. To achieve such, there is a need to adopt coordinated cooperation of the separate Human Language Technology components. In particular, the most significant elements in a [speech translation system] encompass the [automatic speech recognition], [machine translation] as well as [text to speech]. With this understanding, the current paper explores the design as well as architectural building blocks linked to the “ Translator ” [speech-to-speech translation system]. In addition, the current paper explores their interactions with each other to ease [speech-to-speech translation] in terms of reliability, scalability, and potentially distribution. 
+Keywords [Speech-to]-SpeechTranslation;Automatic [Speech] Recognition;Machine Translation;Text-to-Speech;Multilingual.
