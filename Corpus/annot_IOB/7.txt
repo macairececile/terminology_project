@@ -62,7 +62,7 @@ The (O) [speaker (B) encoder (I)] is (O) used (O) to (O) condition (O) the (O) s
 Critical (O) to (O) good (O) generalization (O) is (O) the (O) use (O) of (O) a (O) representation (O) which (O) captures (O) the (O) characteristics (O) of (O) [different (B) speakers (I)], and (O) the (O) ability (O) to (O) identify (O) these (O) characteristics (O) using (O) only (O) a (O) short (O) adaptation (O) signal, (O) independent (O) of (O) its (O) [phonetic (B) content (I)] and (O) background (O) noise. (O) 
 These (O) requirements (O) are (O) satisfied (O) using (O) a (O) speaker-discriminative (O) model (O) trained (O) on (O) a (O) text-[independent (B) speaker (I)] verification (O) task. (O) 
 We (O) follow, (O) which (O) proposed (O) a (O) highly (O) scalable (O) and (O) accurate (O) [neural (B) network (I) framework (I)] for (O) [speaker (B) verification (I)]. 
-The (O) network (O) maps (O) a (O) sequence (O) of (O) [log-mel (B) spectrogram (I) frames (I)] computed (O) from (O) a (O) [speech (B)] utterance (O) of (O) arbitrary (O) length, (O) to (O) a (O) fixed-dimensional (O) embedding (O) [vector (B)], known (O) as (O) d-[vector (B)]. 
+The (O) network (O) maps (O) a (O) sequence (O) of (O) [log-mel (B) spectrogram (I) frames (I)] computed (O) from (O) a (O) [speech (B) utterance (I)] of (O) arbitrary (O) length, (O) to (O) a (O) fixed-dimensional (O) embedding (O) [vector (B)], known (O) as (O) d-[vector (B)]. 
 The (O) network (O) is (O) trained (O) to (O) optimize (O) a (O) generalized (O) [end-to-end (B) speaker (I) verification (I)] loss, (O) so (O) that (O) embeddings (O) of (O) utterances (O) from (O) the (O) [same (B) speaker (I)] have (O) high (O) cosine (O) similarity, (O) while (O) those (O) of (O) utterances (O) from (O) [different (B) speakers (I)] are (O) far (O) apart (O) in (O) the (O) embedding (O) space. (O) 
 The (O) [training (B) dataset (I)] consists (O) of (O) [speech (B) audio (I)] examples (O) segmented (O) into (O) 1.6 (O) seconds (O) and (O) [associated (B) speaker (I)] identity (O) labels (O) ; no (O) transcripts (O) are (O) used. (O) 
 Input (O) 40-channel (O) [log-mel (B) spectrograms (I)] are (O) passed (O) to (O) a (O) network (O) consisting (O) of (O) a (O) stack (O) of (O) 3 (O) [LSTM (B) layers (I)] of (O) 768 (O) cells, (O) each (O) followed (O) by (O) a (O) projection (O) to (O) 256 (O) dimensions. (O) 
@@ -213,7 +213,7 @@ However, (O) synthetic (O) utterances (O) are (O) still (O) easily (O) distingui
 Speakers (O) appear (O) to (O) be (O) well (O) separated (O) by (O) gender (O) in (O) both (O) the (O) PCA (O) and (O) t-SNE (O) visualizations, (O) with (O) all (O) [female (B) speakers (I)] appearing (O) on (O) the (O) left, (O) and (O) all (O) [male (B) speakers (I)] appearing (O) on (O) the (O) right. (O) 
 This (O) is (O) an (O) indication (O) that (O) the (O) [speaker (B) encoder (I)] has (O) learned (O) a (O) reasonable (O) representation (O) of (O) [speaker (B) space (I)]. 
 
-Figure (O) : Visualization (O) of (O) [speaker (B) embeddings (I)] extracted (O) from (O) [LibriSpeech (B)] utterances. (O) 
+Figure (O) : Visualization (O) of (O) [speaker (B) embeddings (I)] extracted (O) from (O) [LibriSpeech (B) utterances (I)]. 
 Each (O) color (O) corresponds (O) to (O) a (O) [different (B) speaker (I)]. 
 Real (O) and (O) synthetic (O) utterances (O) appear (O) nearby (O) when (O) they (O) are (O) from (O) the (O) [same (B) speaker (I)], however (O) real (O) and (O) synthetic (O) utterances (O) consistently (O) form (O) distinct (O) clusters. (O) 
 

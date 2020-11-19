@@ -2,12 +2,12 @@ Text Preprocessing for [Speech Synthesis]
 
 Abstract 
 
-In this paper we describe our [text preprocessing modules] for English [text-to-speech synthesis]. 
+In this paper we describe our text preprocessing modules for English [text-to-speech synthesis]. 
 These modules comprise [rule-based text normalization] subsuming sentence segmentation and normalization of non-standard words, statistical [part-of-speech tagging], and statistical [syllabification], [grapheme-to-phoneme conversion], and word stress assignment relying in parts on [rule-based morphological analysis]. 
 
 Introduction 
 
-[Text preprocessing] for English [text-to-speech (TTS) synthesis] in general consists of the following steps : [Text Normalization]. 
+Text preprocessing for English [text-to-speech (TTS) synthesis] in general consists of the following steps : [Text Normalization]. 
 This first step subsumes sentence segmentation, tokenizing, and normalization of nonstandard words. 
 For sentence segmentation the main problem is the ambiguity of the period, marking sentence boundaries or abbreviations, sometimes even simultaneously (it is 5 p.m.). 
 For period disambiguation an identification of abbreviations is needed as well as a disambiguation of capitalized words (proper names vs.sentence initial words, thus words following a sentence boundary period). 
@@ -25,22 +25,22 @@ Furthermore [phonetic realization] is highly context dependent, examples are the
 While most of the normalization systems tackle this problem by heuristic disambiguation and expansion rules, e.g. Black et al. (1999), there are also some language modeling and [machine learning approaches] for normalization subtasks. 
 For example in Sproat et al. (2001) word normalization is amongst others formulated in terms of maximizing the conditional probability of a normalized word sequence given an observed token sequence. 
 
-[Part-of-Speech] Tagging 
+[Part-of-Speech Tagging] 
 
 [Part-of-Speech tagging] means word class assignment to each token. 
 Its input is given by the tokenized text. 
 Taggers have to cope with unknown words (OOV problem) and ambiguous [word-tag mappings]. 
-[Rule-based approaches] like ENGTWOL (Voutilainen, 1995) operate on a) dictionaries containing word forms together with the associated POS labels and morphologic and [syntactical features] and b) context sensitive rules to choose the appropriate labels during application. 
+[Rule-based approaches] like ENGTWOL (Voutilainen, 1995) operate on a) dictionaries containing word forms together with the associated [POS labels] and morphologic and [syntactical features] and b) context sensitive rules to choose the appropriate labels during application. 
 In [statistical approaches] (Jelinek, 1985) generally the most probable tag sequence given the observed word sequence is estimated. 
 In [transformation-based tagging] (Brill, 1995) a [hybrid approach] can be found, where disambiguation rules are derived by statistical means. 
-[Grapheme-to-Phoneme Conversion] Since hand-crafted rule generation for language processing is very timeconsuming and corresponding systems are highly language dependent, most of the current [G2P systems] are purely data-driven (see e.g. Yvon (1994) for an overview over some machine learning approaches to [G2P conversion]). 
+[Grapheme-to-Phoneme Conversion] Since hand-crafted rule generation for [language processing] is very timeconsuming and corresponding systems are highly language dependent, most of the current [G2P systems] are purely data-driven (see e.g. Yvon (1994) for an overview over some machine learning approaches to [G2P conversion]). 
 Accounting for the influence of [morphology] and syllable structure can improve performance of [G2P conversion] (Reichel and Schiel, 2005). 
 Word Stress The assignment of English word stress relies on [phonological], morphological, and word [class features]. 
 The crucial [phonological feature] is syllable weight : heavy syllables rather attract stress than weak ones. 
 Amongst the [morphological features] are affix types (stressed vs. unstressed vs. pre-stressed) and the position within a compound. 
 Word class and word syllable length determine default stress patterns. 
 Metrical [phonology] (Liberman and Prince, 1977) accounts for lots of these factors and is a useful framework for [rule-based approaches] to word stress assignment. 
-Among the data-driven approaches are neural networks (Gupta and Touretzky, 1994) predicting stress patterns given syllable weight patterns and instance-based learning (Daelemans and van den Bosch, 1997) which matches new words against words with an already known stress pattern. 
+Among the data-driven approaches are [neural networks] (Gupta and Touretzky, 1994) predicting stress patterns given syllable weight patterns and instance-based learning (Daelemans and van den Bosch, 1997) which matches new words against words with an already known stress pattern. 
 In the following sections our [TTS text preprocessing modules] are presented. 
 
 [Text Normalization] 
@@ -88,7 +88,7 @@ This acronym examination also takes place for each part of a hyphenated compound
 
 [Part-of-Speech Tagging] 
 
-Our approach for POS tagging described in more detail in Reichel (2005) is statistical and can be seen as a generalization of the classical [Markov tagger] presented by Jelinek (1985). 
+Our approach for [POS tagging] described in more detail in Reichel (2005) is statistical and can be seen as a generalization of the classical [Markov tagger] presented by Jelinek (1985). 
 The P (w|t) emission probabilities of word w given tag t are replaced by a linear interpolation of tag emission probabilities given a list of representations of w, that are connected to automatically derived word suffixes. 
 Since in English language suffixes also store word class information and are observed in the [training data] with a high probability, the OOV problem can be reduced this way. 
 However, no [linguistic knowledge] is needed, hence our approach is [language independent]. 
@@ -115,8 +115,8 @@ applying again Bayes Formula and linear interpolation.
 Our model is thus given by : 
 
 The interpolation weights u j and v k are calculated via the EM algorithm (Dempster et al., 1977). 
-In order to reduce calculation effort in application, just for unknown words the probabilities are calculated for all [POS tags]. 
-For known words just the [POS tags] co-occurring with them in the [training corpus] are taken into consideration. 
+In order to reduce calculation effort in application, just for unknown words the probabilities are calculated for all [POS] tags. 
+For known words just the [POS] tags co-occurring with them in the [training corpus] are taken into consideration. 
 Our [training data] comprises 620000 tokens (including punctuation) taken from prose of the 20th century and pretagged by the TnT tagger (Brants, 2000) using the Penn tag set (Marcus et al., 1995). 
 
 Word representations 
@@ -170,7 +170,7 @@ Word stress assignment
 
 In our approach word stress is assigned again by a C4.5 [decision tree] deciding for each syllable whether or not being stressed. 
 Since English word stress is governed by [phonology], [morphology], and word class (see above) the classifier should be provided by features of all three domains. 
-The [phonological features] are derived from [syllabification] and [G2P conversion], word [class features] from POS tagging. 
+The [phonological features] are derived from [syllabification] and [G2P conversion], word [class features] from [POS tagging]. 
 To obtain [morphologic features] some morphologic analysis has to be carried out. 
 
 Morphologic segmentation 
@@ -228,11 +228,11 @@ The [word error rate] for non-standard words adds up to 28.9 %.
 
 The [evaluation data] comprises 10000 words extracted randomly from 100000 running words. 
 Tagset Mapping Different tagsets were used for training and evaluation. 
-Evaluation was carried out using the UK TC-STAR Grammatical POS tagset, but since no appropriate training material was available we worked with the standard PENN tagset (Marcus et al., 1995). 
+Evaluation was carried out using the UK TC-STAR Grammatical [POS] tagset, but since no appropriate training material was available we worked with the standard PENN tagset (Marcus et al., 1995). 
 The problem to map from our tagset to the one of TC-STAR was not solely solvable by simple table lookup but was also connected to disambiguation of adjectives and ordinal numbers, of prepositions and subordinating conjunctions, and of auxiliaries and full verbs. 
 Disambiguation was carried out by local grammars. 
 Note that disambiguation was not possible in some cases. 
-Results After POS mapping and removal of further systematic tagset differences the [word error rate] amounts 6.5 %. 
+Results After [POS mapping] and removal of further systematic tagset differences the [word error rate] amounts 6.5 %. 
 Since more tagset inconsistencies are likely, this result has to be taken preliminarily. 
 
 [Grapheme-to-Phoneme Conversion] 
@@ -248,7 +248,7 @@ Discussion
 Our submodules for [TTS text preprocessing] presented here are partly data-driven as for [POS tagging], [syllable segmentation], and [grapheme-to-phoneme conversion] and partly [rule-based] as for [text normalization]. 
 For word stress assignment we have chosen a [hybrid approach] using a [statistical classifier] fed by features partially derived by a rulebased morphologic analysis. 
 In order to improve the modules’ adaptabilities to other languages the amount of needed [linguistic knowledge] should be reduced. 
-Concerning [morphology] we intend to adopt the automatic induction method used to derive word representations for POS tagging for a complete [morphological analysis]. 
+Concerning [morphology] we intend to adopt the automatic induction method used to derive word representations for [POS tagging] for a complete [morphological analysis]. 
 Furthermore it is to investigate if this morphologic analysis could be helpful not only for word stress assignment but also for [G2P conversion], for which – being provided with morphological information – an improvement had already been shown for German (Reichel and Schiel, 2005). 
 Special effort is to be invested in the conversion of geographic location and proper names, for which the results are far away from satisfying. 
 Due to the tagset inconsistencies, the [POS tagging results] should be regarded rather as preliminary and recalculated given a unique tagset used for both training and testing. 

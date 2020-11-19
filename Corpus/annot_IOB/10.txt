@@ -25,7 +25,7 @@ In (O) the (O) 1990s, (O) [neural (B) networks (I)] had (O) already (O) been (O)
 The (O) main (O) differences (O) between (O) today (O) and (O) the (O) 1990s (O) are (O) : more (O) [hidden (B) layers (I)], more (O) [training (B) data (I)], more (O) advanced (O) computational (O) resource, (O) more (O) advanced (O) training (O) algorithms, (O) and (O) significant (O) advancements (O) in (O) the (O) various (O) other (O) techniques (O) needed (O) for (O) a (O) complete (O) parametric (O) [speech (B) synthesiser (I)] : the (O) [vocoder (B)], and (O) parameter (O) compensation (O) / enhancement (O) / postfiltering (O) techniques. (O) 
 
 Recent (O) work (O) [neural (B) network (I) speech (I) synthesis (I)] 
-In (O) the (O) recent (O) studies, (O) restricted (O) Boltzmann (O) machines (O) (RBMs) (O) were (O) used (O) to (O) replace (O) [Gaussian (B)] mixture (O) models (O) to (O) model (O) the (O) distribution (O) of (O) [acoustic (B) features (I)]. 
+In (O) the (O) recent (O) studies, (O) restricted (O) Boltzmann (O) machines (O) (RBMs) (O) were (O) used (O) to (O) replace (O) [Gaussian (B) mixture (I) models (I)] to (O) model (O) the (O) distribution (O) of (O) [acoustic (B) features (I)]. 
 The (O) work (O) claims (O) that (O) RBMs (O) can (O) model (O) [spectral (B)] details, (O) and (O) result (O) in (O) better (O) quality (O) of (O) synthesised (O) [speech (B)]. 
 In, (O) deep (O) belief (O) networks (O) (DBNs) (O) as (O) eep (O) generative (O) model (O) were (O) employed (O) to (O) model (O) the (O) relationship (O) between (O) linguistic (O) and (O) [acoustic (B) features (I)] jointly. (O) 
 Deep (O) mixturedensity (O) networks (O) and (O) trajectory (O) real-valued (O) neural (O) autoregressive (O) density (O) estimators (O) were (O) also (O) employed (O) to (O) predict (O) the (O) [probability (B) density (I) function (I)] over (O) [acoustic (B) features (I)]. 
@@ -124,7 +124,7 @@ In (O) [Merlin (B)], other (O) variants (O) of (O) [neural (B) networks (I)] are
 All (O) these (O) basic (O) units (O) can (O) be (O) assembled (O) together (O) to (O) create (O) a (O) new (O) architecture (O) by (O) simply (O) changing (O) a (O) configuration (O) file. (O) 
 For (O) example, (O) to (O) implement (O) a (O) 4-layer (O) [feedforward (B) neural (I) network (I)] using (O) hyperbolic (O) tangent (O) units, (O) one (O) can (O) simply (O) specify (O) the (O) following (O) architecture (O) in (O) the (O) configuration (O) file (O) : 
 ([TANH (B)], [TANH (B)], [TANH (B)], [TANH (B)]) 
-Similarly, (O) a (O) hybrid (O) [bidirectional (B) LSTM-based (I) RNN (I)] can (O) be (O) specified (O) as (O) : 
+Similarly, (O) a (O) [hybrid (B) bidirectional (I) LSTM-based (I) RNN (I)] can (O) be (O) specified (O) as (O) : 
 ([TANH (B)], [TANH (B)], [TANH (B)], [BLSTM (B)]) 
 in (O) the (O) configuration (O) file. (O) More (O) details (O) of (O) the (O) supported (O) unit (O) type (O) can (O) be (O) found (O) in (O) the (O) documentation (O) of (O) the (O) system. (O) 
                                                                                                     

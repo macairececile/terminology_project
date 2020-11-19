@@ -13,9 +13,9 @@ BACKGROUND
 The construction of high quality [synthetic voices] is still very hard. 
 However, with better tools, the advancement of faster computers and more disk, the job of building new [synthetic voices] now requires substantially less resources both in expertise and computation. 
 But at the same time as tools and techniques made it easier to build concatenative [speech synthesizers], the expectation for higher [quality voices] has also increased. 
-The FestVox system provides tools and documentation for building voices in new languages for the University of Edinburgh’s Festival [Speech Synthesis System]. 
+The FestVox system provides tools and documentation for [building voices] in new languages for the University of Edinburgh’s Festival [Speech Synthesis System]. 
 The project was designed to specifically address the issues of building [synthetic voices] for minority languages as well as major ones. 
-The work of documenting the process of building voices in new languages rose out of a number of student projects carried out at Edinburgh University and elsewhere including the German [diphone voices] created at a summer workshop at OGI, in 1998. 
+The work of documenting the process of [building voices] in new languages rose out of a number of student projects carried out at Edinburgh University and elsewhere including the German [diphone voices] created at a summer workshop at OGI, in 1998. 
 Although the initial tools emphasized [diphone voices], the tools have matured to support generalized [unit selection voices] too. 
 The projects that have used these tools have varied drastically in size and effort involving large commercial entities as well as individual students. 
 The quality of voices built equally varies, and many find that to build a usable [synthetic voice] in a new language is still a substantial task even if it is easier than it was. 
@@ -46,7 +46,7 @@ showed how a [letter-based phoneme set] worked adequately for Spanish and could 
 Even for English this technique works to some degree. 
 For some languages, we believe a workable [letter-based phone set] may be successful. 
 However in our experience with building a Pashtu synthesizer, where no standardized orthography exists, confusion between the writing system and the many varied dialects of the language lead to more problems than the orthography / [phonetic] relationship itself. 
-[Statistical data]-driven approaches to prosodic models, for phrasing, intonation and duration, can be build fairly easily for at least “ neutral ” sentences. 
+[Statistical data-driven approaches] to prosodic models, for phrasing, intonation and duration, can be build fairly easily for at least “ neutral ” sentences. 
 Within a [unit selection framework] it is common not to explicitly model [prosody] but rely on the implicit modeling provided by the [unit selection process]. 
 
 [UNIT SELECTION SYNTHESIS] IN ANY LANGUAGE 
@@ -65,7 +65,7 @@ Having around 1000 sentences (perhaps around 40,000 [phonemes]) seems to be reas
 We have also experimented with a more elaborate selection technique, where we first model a [particular speaker]’s acoustic variation and [select data] based on their actual usage rather than just general [phonemes]. 
 This may perform better but it is more computationally expensive, and requires an existing model of the speaker, which may not be available when building a new language. 
 We used the simpler technique in building the CMU [ARCTIC voices], and have successfully used very similar techniques for a wide range of languages including as Croatian, Thai and Spanish. 
-Also we note that given a suitably balanced set of utterances we can more accurately automatically label the data using [acoustic modeling HMM tools] such as. 
+Also we note that given a suitably balanced set of utterances we can more accurately automatically label the data using acoustic modeling [HMM tools] such as. 
 The quality and ease with which a synthesizer can be built is still very dependent on the quality of the [voice talent] and of the recording set up. 
 Even with [professional voice] actors we have found that speakers who have recorded for [speech synthesizers] before perform better. 
 Thus there is a consistency and style of delivery which leads to a better synthesizer. 
@@ -104,7 +104,7 @@ We would like to build voices that are capable of multiple languages.
 In the simple case where the speaker is not fully bilingual the resulting synthesizers are accented. 
 This is also true whenever we build voices in a language other than the speaker’s native language. 
 It is worth pointing out that [accented speech] is not necessarily a bad thing in [speech synthesis]. We have run simple tests with US English synthesizers built from a Scottish [English speaker] and a Chinese [English speaker]. 
-US listeners are more accepting of errors in the [accented voices] even when there are [unit selection errors]. 
+US listeners are more accepting of errors in the accented voices even when there are [unit selection errors]. 
 We must also consider mixed-lingual synthesis where multiple languages are contained within the one utterance as words or phrases. 
 [Phonetic coverage] can be achieve with [multilingual speech data], but specialized text analysis is also required. 
 gives a good overview of the problems and solutions. 
@@ -145,4 +145,4 @@ Although we now have a defined method for building [new voices] in new languages
 As researchers and [speech] technologists we may feel we have solved this problem but there are still many languages in the world that do not have support for [synthetic voices], and given the lack of literacy outside the top languages these may particularly benefit more from [speech technology]. 
 To make this task easier we still need to develop better methods to answer such questions as “ how can be find the most appropriate [phoneme set] from data ”, “ what are the speaker-specific pronunciation rules ? ”. 
 We also need to better understand [cross-lingual voice conversion] if we are to build voices in new languages more easily. 
-Improvements in building voices are continuing and are likely to involve automatic adaptation of some “ close ” language as well as improving tools and evaluation techniques to make the building of voices easier. 
+Improvements in [building voices] are continuing and are likely to involve automatic adaptation of some “ close ” language as well as improving tools and evaluation techniques to make the building of voices easier. 

@@ -9,6 +9,8 @@
 676	T	A A N	adaptive cepstral analysis	adaptive cepstral analysis	4
 279	T	N N	adversarial loss	adversarial loss	8
 334	T	N N N	adversarial speaker classifier	adversarial speaker classifier	7
+	T	N	ANN	ann	
+	T	N	ANNs	anns	
 	T	A N N	artificial human speech	artificial human speech	
 1345	T	N	ASR	asr	
 438	T	N N	ASR performance	asr performance	5
@@ -34,6 +36,7 @@
 	T	N A N	audio sampling rate	audio sampling rate	
 428	T	A N N	audio synthesis	audio synthesis	11
 229	T	N N	audiobook data	audiobook datum	9
+	T	N N N	automatic language recognition	automatic language recognition	
 231	T	A N	automatic speech	automatic speech	9
 2015	T	N N	autoregressive architecture	autoregressive architecture	2
 441	T	N N	autoregressive counterpart	autoregressive counterpart	5
@@ -175,6 +178,7 @@
 2978	T	N	GALE	gale	7
 	T	A A N	gate recurrent unit	gate recurrent unit	
 303	T	A	Gaussian	gaussian	31
+	T	N N N	Gaussian mixture models	gaussian mixture model	
 	T	N A N	Gaussian prior distribution	Gaussian prior distribution	
 	T	A N N	generative adversarial network	generative adversarial network	
 172	T	N	GlobalPhone	globalphone	35
@@ -182,6 +186,7 @@
 	T	N	GMM	gmm	
 	T	A	GMM-based	GMM-based	
 	T	A N	GMMbased VAD	GMMbased VAD	
+	T	N	GMMs	gmms	
 	T	N	GPU	gpu	
 164	T	N	GPUs	gpus	12
 269	T	A N N	gradient reversal layer	gradient reversal layer	8
@@ -208,6 +213,7 @@
 716	T	A N	hidden activation	hidden activation	4
 8526	T	A A N N	Hidden Conditional Random Field	hide conditional random field	
 104	T	A N	hidden layers	hidden layer	17
+	T	N N	hidden Markov	hidden markov	
 321	T	A N N	hidden Markov models	hidden markov model	7
 	T	A N	hidden state	hidden state	
 113	T	A N	hidden states	hidden state	15
@@ -245,6 +251,7 @@
 	T	N N	language embed	language embed	
 	T	N A	language independent	language independent	
 2586	T	N N N	language model transducers	language model transducer	2
+	T	N N	language processing	language processing	
 850	T	A	language-dependent	language-dependent	12
 818	T	A	language-independent	language-independent	12
 2502	T	A A N	language-specific convolutional encoders	language-specific convolutional encoder	2
@@ -271,6 +278,7 @@
 	T	N N N	log magnitude spectrogram	log magnitude spectrogram	
 2608	T	N	log-magnitude	log-magnitude	2
 750	T	N N	log-mel spectrograms	log-mel spectrograms	14
+	T	N N	Log-Mel spectrograms	log-mel spectrogram	
 751	T	A A N	long short-term memory	long short-term memory	7
 733	T	N N	loss function	loss function	4
 	T	A N	low-dimensional speaker	low-dimensional speaker	
@@ -306,6 +314,7 @@
 472	T	N	MLP	mlp	
 	T	NN	MLP adaptation	mlp adaptation	
 1377	T	N N	MLP features	mlp feature	2
+	T	A	MLP-based	MLP-based	
 462	T	N	MLPG	mlpg	5
 157	T	N	MLPs	mlps	12
 52	T	N	MLSP	mlsp	25
@@ -398,6 +407,7 @@
 	T	N	pitch	pitch	
 1109	T	A A N	PLP cepstral features	plp cepstral feature	5
 	T	N	Porter stemmer	Porter stemmer	
+	T	N	POS	pos	
 1636	T	N N	POS tagger	po tagger	2
 	T	N N	POS tagging	POS tagging	
 632	T	N N	POS tags	po tag	4
@@ -458,7 +468,9 @@
 2682	T	N	speech	speech	616
 643	T	N C N N	speech and language technology	speech and language technology	4
 642	T	N C N N	speech and text data	speech and text datum	4
+	T	N N N	speech modelling units	speech modelling unit	
 652	T	N N N	speech parameter generation	speech parameter generation	4
+	T	N N	speech pre-processing	speech pre-processing	
 191	T	N N N	speech processing	speech processing	11
 718	T	N N	speech rate	speech rate	4
 17	T	N N	speech recognition	speech recognition	51
@@ -467,9 +479,11 @@
 736	T	N N	speech technology	speech technology	4
 2008	T	N N	Speech Translation	speech translation	2
 254	T	N N	speech waveform	speech waveform	9
+	T	A	speech-based	speech-based	
 	T	A	speech-enabled	speech-enabled	
 	T	A N	speech-related tasks	speech-related task	
 138	T	N N	speech-to-speech translation	speech-to-speech translation	13
+	T	N	speech-to-text	speech-to-text	
 	T	N N N	SRI Language Model	sri language model	
 2092	T	A N	statistical approaches	statistical approach	2
 	T	A N	statistical classifier	statistical classifier	
@@ -556,5 +570,3 @@
 265	T	N N	WORLD vocoder	world vocoder	8
 	T	N	x-vector	x-vector	
 	T	N N	Yin algorithm	Yin algorithm	
-	T	N N	Log-Mel spectrograms	log-mel spectrogram	
-	T	N N	hidden Markov	hidden markov	

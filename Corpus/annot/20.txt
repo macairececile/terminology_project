@@ -2,12 +2,12 @@ Unsupervised and [lightly-supervised learning] for rapid construction of [TTS sy
 
 Abstract 
 
-This paper presents techniques for building [text-to-speech frontends] in a way that avoids the need for [language-specific expert knowledge], but instead relies on universal resources (such as the Unicode [character database]) and unsupervised learning from [unannotated data] to ease system development. 
-The acquisition of expert [language-specific knowledge] and expert annotated data is a major bottleneck in the development of corpusbased [TTS systems] in new languages. 
+This paper presents techniques for building [text-to-speech frontends] in a way that avoids the need for [language-specific expert knowledge], but instead relies on universal resources (such as the Unicode [character database]) and [unsupervised learning] from [unannotated data] to ease system development. 
+The acquisition of expert [language-specific knowledge] and expert [annotated data] is a major bottleneck in the development of corpusbased [TTS systems] in new languages. 
 The methods presented here side-step the need for such resources as [pronunciation lexicons], [phonetic feature] sets, [part of speech] tagged data, etc. 
-The paper explains how the techniques introduced are applied to the 14 languages of a corpus of ‘ found’ [audiobook data]. 
+The paper explains how the techniques introduced are applied to the 14 languages of a corpus of ‘ found’ audiobook data. 
 Results of an evaluation of the intelligibility of the systems resulting from applying these novel techniques to this data are presented. 
-Index Terms : [multilingual speech synthesis], unsupervised learning, [vector space model], [text-to-speech], [audiobook data]   
+Index Terms : [multilingual speech synthesis], [unsupervised learning], [vector space model], [text-to-speech], [audiobook data]   
 
 Introduction 
 
@@ -21,7 +21,7 @@ However, the problems associated with [TTS data-collection] do not stop when we 
 [TTS systems] also require a [front-end] (or text analysis module), which accepts input text and outputs a representation of an utterance suitable for input into the [back-end]. 
 [TTS systems] generally represent utterances in terms of units and features based on [linguistic knowledge], such as [phonemes], syllables, lexical stress, phrase boundaries etc. 
 The components of the [front-end] that predict these from input text are either made up of hand-written rules or statistical modules ; acquiring the expert knowledge required either to manually specify those rules, or to annotate a learning sample on which to train the [statistical models], represents a major obstacle to creating a [TTS system] for a new [target language] and requires highly specialised knowledge. 
-Such non-trivial tasks include, for example, specifying a [phoneme-set] or [part of speech] (POS) [tag-set] for a language where one has not already been defined ; annotating plain text with [POS tags], as required to train a [POS tagger] and annotating the surface forms of words with [phonemes] to build a [pronunciation lexicon]. 
+Such non-trivial tasks include, for example, specifying a [phoneme-set] or [part of speech] ([POS]) [tag-set] for a language where one has not already been defined ; annotating plain text with [POS] tags, as required to train a [POS tagger] and annotating the surface forms of words with [phonemes] to build a [pronunciation lexicon]. 
 The [toolkit] we are developing in [Simple4All] includes tools for constructing [TTS front-ends] which make as few implicit assumptions about the [target language] as possible, and which can be configured with minimal effort and expert knowledge to suit arbitrary new [target languages]. 
 To this end, the modules rely on resources which are intended to be universal, such as the Unicode [character database], and employ [unsupervised learning] so that unlabelled text resources can be exploited without the need for costly annotation. 
 The current paper presents these tools and explains how they were applied to the data of the [Tundra corpus] to produce [TTS systems] in 14 languages. 
@@ -75,7 +75,7 @@ That is, the user was asked to provide 15 labels at the outset, and presented wi
 The stopping criterion we used in this work was to limit the number of iterations to 15 – in the present, utterance selection time was limited to approximately 20 minutes per language, and 15 was found to be a reasonable number of iterations in that time. 
 Informal comparison suggested the approach outlined is beneficial for this task, but in ongoing work we are testing this rigorously and comparing uncertainty sampling with random sampling, as well as applying our active learning tool to other [TTS tasks]. 
 
-[Front-end construction] with unsupervised learning 
+[Front-end construction] with [unsupervised learning] 
 
 The [TTS front-end building tools] used for this work are based on ideas outlined in and applied to Spanish [TTS] in. 
 Input to the system consists of the [audio] of utterances selected as described in Section 3.1, together with their text transcription (aligned at the utterance level) : in the present case, these are taken from the [Tundra corpus], and had been obtained as summarised in Section 2. 
@@ -89,14 +89,14 @@ The 3 lines bisecting the space represent the 3 questions actually asked in the 
 Unicode character properties are used to tokenise the text and characterise tokens as words, whitespace, punctuation etc. 
 Our modules have so far been successfully applied to a variety of alphabetic (Latin-based, Cyrillic) and alphasyllabic (Brahmic) scripts. 
 Our [front-ends] currently expect text without abbreviations, numerals, and symbols (e.g. for currency) which require expansion ; however, the [lightly supervised learning] of modules to expand such non-standard words is an active topic of research, and we hope to integrate such modules into our [toolkit] in the near future. 
-A [letter-based approach] is used, in which the names of letters are used directly as the names of [speech] modelling units (in place of the [phonemes] of a conventional [front-end]). 
+A [letter-based approach] is used, in which the names of letters are used directly as the names of [speech modelling units] (in place of the [phonemes] of a conventional [front-end]). 
 This has given good results for languages with transparent alphabetic orthographies such as Romanian, Spanish and Finnish, and can give acceptable results even for languages with less transparent orthographies, such as English. 
 The induced [front-ends make use] of no expert-specified categories of letter and word, such as [phonetic categories] (vowel, nasal, approximant, etc.) and [part of speech categories] (noun, verb, adjective, etc.). 
 Instead, features that are designed to stand in for such expert knowledge but which are derived fully automatically from the distributional analysis of unannotated text ([speech transcriptions] and Wikipedia text) are used. 
 The distributional analysis is conducted via [vector space models] (VSMs) ; the VSM was originally applied to the characterisation of documents for purposes of Information Retrieval. 
 VSMs are applied to [TTS] in, where models are built at various levels of analysis (letter, word and utterance) from large bodies of unlabelled text. 
 To build these models, [co-occurrence statistics] are gathered in matrix form to produce high-dimensional representations of the distributional behaviour of e.g. word and letter types in the corpus. 
-Lower-dimensional representations are obtained by approximately factorising the matrix of raw cooccurrence counts by the application of slim singular value decomposition. 
+[Lower-dimensional representations] are obtained by approximately factorising the matrix of raw cooccurrence counts by the application of slim singular value decomposition. 
 This distributional analysis places textual objects in a continuous-valued space, which is then partitioned by [decision tree] questions during the training of [TTS system] components such as [acoustic models] for synthesis or [decision trees] for pause prediction. 
 For the [present voices], a VSM of letters was constructed by producing a matrix of counts of immediate left and right [co-occurrences] of each letter type, and from this matrix a 5-dimensional space was produced to characterise letters. 
 Token [co-occurrence] was counted with the nearest left and right neighbour tokens (excluding whitespace tokens) ; [co-occurrence] was counted with the most frequent 250 tokens in the corpus. 
@@ -104,7 +104,7 @@ A 10-dimensional space was produced to characterise tokens.
 Two dimensions of the letter space induced in training the Romanian system are shown in Figure 1. 
 It can be seen that in these dimensions of the space, vowel and consonant symbols are clearly separable. 
 When a [decision tree] for clustering [acoustic model] states is built and allowed to query items’ positions in these 2 dimensions, it can use all partitions of the space orthogonal to its axes. 
-A [decision tree] question such as Is the letter’s value in VSM dimension 3 < -0.03 ? is very nearly equivalent to a question based on [linguistic knowledge] such as Is the letter a consonant ? The categories of vowel and consonant are useful for clustering [acoustic models], and so [decision trees] actually built using this space use such partitions of the space : the 3 lines shown bisecting the space in the figure represent the 3 questions actually asked in the uppermost fragment (first three ‘ generations’) of the state-tying [decision tree] for the central state of the model for [spectral envelope] features. 
+A [decision tree] question such as Is the letter’s value in VSM dimension 3 < -0.03 ? is very nearly equivalent to a question based on [linguistic knowledge] such as Is the letter a consonant ? The categories of vowel and consonant are useful for clustering [acoustic models], and so [decision trees] actually built using this space use such partitions of the space : the 3 lines shown bisecting the space in the figure represent the 3 questions actually asked in the uppermost fragment (first three ‘ generations’) of the state-tying [decision tree] for the central state of the model for [spectral envelope features]. 
 Distributional analysis places linguistic or textual units in a continuous space which is then partitioned on acoustic evidence. 
 The space constrains the possible groupings of objects that can be considered during [decision tree] growing. 
 Distributional analysis also allows splits made to generalise to items that are ‘ seen’ by the system in [text data] but not ‘ heard’ in the [audio data]. 

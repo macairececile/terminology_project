@@ -4,7 +4,7 @@ ABSTRACT
 
 [Mellotron] is a [multispeaker voice synthesis model] based on [Tacotron 2 GST] that can make a [voice emote] and sing without emotive or singing [training data]. 
 By explicitly conditioning on rhythm and [continuous pitch contours] from an [audio] 
-signal or music score, [Mellotron] is able to generate [speech] in a variety of styles ranging from read [speech] to [expressive speech], from slow drawls to rap and from [monotonous voice] to [singing voice]. 
+signal or music score, [Mellotron] is able to generate [speech] in a variety of styles ranging from read [speech] to [expressive speech], from slow drawls to rap and from [monotonous voice] to singing voice. 
 Unlike other methods, we train [Mellotron] using only read [speech data] without alignments between text and [audio]. 
 We evaluate our models using the [LJSpeech] and [LibriTTS datasets]. 
 We provide F0 Frame Errors and synthesized samples that include style transfer from [other speakers], singers and styles not seen during training, procedural manipulation of rhythm and [pitch] and choir synthesis. 
@@ -25,11 +25,11 @@ Notably, we show that it is easy to condition [Mellotron] on [pitch] and rhythm 
 By accounting for melodic information such as [pitch] and rhythm, [expressive speech synthesis] with [Mellotron] can be easily extended to singing [voice synthesis] (SVS). 
 Unfortunately, recent attempts require a [singing voice dataset] and heavily quantized [pitch] and [rhythm data] obtained from a digital representation of a music score, for example MIDI or musicXML. 
 [Mellotron] does not require any [singing voice] in the dataset nor manually aligned [pitch] and text in order to synthesize [singing voice]. 
-[Mellotron] can make a [voice emote] and sing without emotion or singing data. 
+[Mellotron] can make a [voice emote] and sing without emotion or [singing data]. 
 [Training Mellotron] is very simple and only requires read [speech] and transcriptions. 
-During inference, we can change the [generated voice]’s speaking style, make it emote or sing by extracting [pitch] and rhythm characteristics from an [audio file] or a music score. 
+During inference, we can change the generated voice’s speaking style, make it emote or sing by extracting [pitch] and rhythm characteristics from an [audio file] or a music score. 
 As a bonus, with [Mellotron] we can explore latent characteristics from an [audio corpus] by sampling a dictionary of learned latent characteristics. 
-In summary, [Mellotron] is a [versatile voice synthesis model] that enables the combination of characteristics from different sources and generalizes to characteristics not seen in training data. 
+In summary, [Mellotron] is a [versatile voice synthesis model] that enables the combination of characteristics from different sources and generalizes to characteristics not seen in [training data]. 
 
 Includes [speech synthesis], singing [voice synthesis], etc. 
 
@@ -61,7 +61,7 @@ We plan to release our implementation and pre-trained models on github.
 Architecture 
 
 [Mellotron] extends [Tacotron 2 GST] with [speaker embeddings] and [pitch] countours. 
-Unlike, where site [specific speaker] embeddings are used, we use a [single speaker embedding] that is channel-wise concatenated with the [encoder outputs] over every token. 
+Unlike, where site [specific speaker embeddings] are used, we use a [single speaker] embedding that is channel-wise concatenated with the [encoder outputs] over every token. 
 The [pitch contour] goes through a single convolution layer followed by a [ReLU] non-linearity. 
 We experiment with kernel sizes 1 and 3 and convolution dimensions 1 and 8. 
 The [pitch contour] is channel-wise concatenated with the [decoder inputs]. 
@@ -85,7 +85,7 @@ First, we extract text information from an [audio file] by either using an [auto
 The text information is pre-processed with our text cleaners and then converted from [graphemes] to [phonemes]. 
 Second, we extract rhythm information by using a forced-alignment tool or by using [Mellotron] as a forced-aligner. 
 Alignment maps can be obtained with [Mellotron] by performing a teacher-forced forward pass using the data from the source signal. 
-Whenever necessary, we fine tune the alignment maps by hand or by training [Mellotron] on the source signal for a few iterations with small [learning rate]. 
+Whenever necessary, we fine tune the alignment maps by hand or by training [Mellotron] on the source signal for a few iterations with small learning rate. 
 The [pitch data] is obtained by using Yin or Melodia. 
 In our quantitative experiments we use Yin to replicate the setup described in. 
 In our qualitative experiments we use Melodia instead as we find it to be more precise than Yin, specially with regards to false voiced decisions. 
@@ -103,7 +103,7 @@ We set B to 20 ms, S to 100 ms and the remaining duration to AE, and hence have 
 
 EXPERIMENTS 
 
-We train our models using the [LJSpeech] (LJS) dataset, the [Sally dataset], a proprietary [single speaker dataset] with 20 hours, and a subset of [LibriTTS]. 
+We train our models using the [LJSpeech] (LJS) dataset, the [Sally dataset], a proprietary [single speaker dataset] with 20 hours, and a subset of LibriTTS. 
 All datasets used in our experiments are from read [speech]. 
 We provide results that include style transfer from [source speakers] seen and unseen in the dataset, from singers, procedural manipulation of rhythm and choir synthesis from music scores. 
 Visit our website to listen to [Mellotron samples]. 
@@ -118,12 +118,12 @@ Speakers with less than 5 minutes of data and files that are larger than 10 seco
 We do not perform any [data augmentation], hence any extension to a speaker’s characteristics such as [vocal range] and [speech rate] is made possible with [Mellotron]. 
 We use a sampling rate of 22050 Hz and [mel-spectrograms] with 80 bins using librosa [mel filter] defaults. 
 We apply the [STFT] with a FFT size of 1024, hop size of 256, and window size of 1024 samples. 
-We use the [ADAM optimizer] with default parameters, start with a 1e-3 [learning rate] and anneal the [learning rate] as the loss starts to plateau. 
+We use the [ADAM optimizer] with default parameters, start with a 1e-3 [learning rate] and anneal the learning rate as the loss starts to plateau. 
 We decrease training time by using a single NVIDIA DGX-1 with 8 [GPUs]. 
 For decoding the [mel-spectrograms] produced by [Mellotron], we use a single [WaveGlow model] trained on the [Sally dataset]. 
 Our results suggest that [Waveglow] can be used as an universal [decoder]. 
 In our setup, we find it easier to first learn [attention alignments] on speakers with large amounts of data and then fine tune to speakers with [less data]. 
-Thus, we first train [Mellotron] on LJS and Sally and finetune it with a [new speaker embedding] on [LibriTTS], starting with a [learning rate] of 5e-4 and annealing the [learning rate] as the loss starts to plateau. 
+Thus, we first train [Mellotron] on LJS and Sally and finetune it with a [new speaker] embedding on [LibriTTS], starting with a [learning rate] of 5e-4 and annealing the [learning rate] as the loss starts to plateau. 
 
 Quantitative Results 
 
@@ -141,7 +141,7 @@ Style transfer from [Audio Signal]
 
 [Mellotron] is able to emote and match the style of an input [audio] by replicating its rhythm or both its rhythm and [pitch]. 
 Overall, we note that our experiments using [audio data] are directly impacted by the quality of the rhythm and [pitch contours] provided to the model. 
-Whereas Melodia provides rather precise [pitch] contours, we find that the [rhythm data] obtained from forced-alignments had to be constantly fine-tuned. 
+Whereas Melodia provides rather precise [pitch contours], we find that the [rhythm data] obtained from forced-alignments had to be constantly fine-tuned. 
 In all [audio experiments] we obtain the rhythm by fine-tuning alignment maps obtained by using [Mellotron] as a forced-aligner. 
 Occasionally we find that some of the [pitch contours] seem to be outside of a speaker’s [vocal range]. 
 When this happens, [Mellotron] defaults to a constant highest or lowest [pitch value]. 

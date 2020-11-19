@@ -7,9 +7,9 @@ Our model is based on [Tacotron 2] with a fully convolutional input text [encode
 To boost voice cloning, the model uses an [adversarial speaker classifier] with a [gradient reversal layer] that removes speaker-specific information from the [encoder]. 
 
 We arranged two experiments to compare our model with baselines using various levels of [cross-lingual parameter sharing], in order to evaluate : stability and performance when training on low amounts of data, pronunciation accuracy and [voice quality] of code-switching synthesis. 
-For training, we used the [CSS10] dataset and our new [small dataset] based on [Common Voice] recordings in five languages. 
+For training, we used the [CSS10 dataset] and our new [small dataset] based on [Common Voice] recordings in five languages. 
 Our model is shown to effectively share information across languages and according to a subjective evaluation test, it produces more natural and accurate code-switching [speech] than the baselines.                                   
-Index Terms : [text-to-speech], [speech synthesis], multilinguality, [code-switching], meta-learning, domain-adversarial training 
+Index Terms : [text-to-speech], [speech synthesis], multilinguality, code-switching, meta-learning, domain-adversarial training 
 
 Introduction 
 Contemporary [end-to-end speech synthesis systems] achieve great results and produce natural-sounding human-like [speech] even in real time. 
@@ -21,7 +21,7 @@ We can summarize our contributions as follows :
 We propose a scalable [grapheme-based model] that utilizes the idea of contextual parameter generator network and we compare it with baseline models using different levels of parameter sharing. 
 We introduce a new [small dataset] based on [Common Voice] that includes data in five languages from 84 speakers. 
 We evaluate effectiveness of the compared models on ten languages with three different scripts and we show their code-switching abilities on five languages. 
-For the purposes of the evaluation, we created a new test set of 400 [bilingual code-switching sentences]. 
+For the purposes of the evaluation, we created a new test set of 400 bilingual code-switching sentences. 
 Our source code, [hyper-parameters], training and [evaluation data], samples, pre-trained models, and interactive demos are freely available on GitHub. 
 
 https://github.com/Tomiinek/Multilingual_Text_to_Speech 
@@ -29,7 +29,7 @@ https://github.com/Tomiinek/Multilingual_Text_to_Speech
 
 Figure : Diagram of our model. The meta-network generates parameters of [language-specific convolutional text encoders]. 
 Encoded text inputs enhanced with [speaker embeddings] are read by the [decoder]. 
-The adversarial classifier [suppresses speaker]-dependent information in [encoder outputs]. 
+The adversarial classifier suppresses speaker-dependent information in [encoder outputs]. 
 
 Related Work 
 So far, several works explored training joint [multilingual models] in [text-to-speech], following similar experiments in the field of [neural machine translation]. 
@@ -45,7 +45,7 @@ Nachmani and Wolf extended [Voice Loop]   and enabled [voice conversion] for Eng
 used a [phoneme-based Tacotron 2] with a ResCNN based [speaker encoder]   that enables a massively [multi-speaker speech synthesis], even with [fictitious voices]. 
 • Code switching : In this task closely related to [cross-lingual voice] cloning, we would like to alternate languages within sentences. 
 This is useful for foreign names in navigation systems or news readers. In view of that, Cao et al. modified [Tacotron] ; their model uses [language-specific encoders]. 
-[Code-switching] itself is done by combining of their outputs. 
+Code-switching itself is done by combining of their outputs. 
 Overall, all recent [multilingual text-to-speech systems] were only tested in 2-3 languages simultaneously, or required vast amounts of data to be trained. 
 
 [Model Architecture] 
@@ -71,7 +71,7 @@ The normalization layers are situated before activations and [dropouts] after th
 
 [Encoder parameter] generation : To enable [cross-lingual knowledge]-sharing, parameters of the [encoders] are generated using a separate network conditioned on language embeddings. 
 The parameter generator is composed of multiple site-specific generators, each of which takes a [language embedding] on the input and produces parameters for one layer of the [convolutional encoder] for the given language. 
-The generators enable a controllable [cross-lingual parameter sharing] because reduction of their size prevents generation of highly [language-specific parameters]. 
+The generators enable a controllable [cross-lingual parameter] sharing because reduction of their size prevents generation of highly [language-specific parameters]. 
 We implement them as fully connected layers. 
 
 Training with multilingual batches : We construct unusual training batches to fully utilize the potential of this architecture. 
@@ -79,7 +79,7 @@ We would like to have a batch of B examples that can be reshaped into a batch of
 This new batch should have a new dimension that groups all examples with the same language. 
 Thus we use a batch sampler that creates batches where for each l < L and i < B / L, all (l + iL)-th examples are of the same language. 
 
-[Speaker embedding] : We extend the model with a [speaker embedding] which is concatenated with each element of the encoded sequence that is attended by the [decoder] while generating [spectrogram frames]. 
+Speaker embedding : We extend the model with a [speaker embedding] which is concatenated with each element of the encoded sequence that is attended by the [decoder] while generating [spectrogram frames]. 
 This makes the model [multi-speaker] and allows [cross-lingual voice cloning]. 
 
 [Adversarial speaker classifier] : We combine the model with an [adversarial speaker classifier] to boost voice cloning. 
@@ -125,7 +125,7 @@ Best results for the given language are shown in bold ; “ * ” denotes statis
 
 
 [Common Voice] 
-To train [code-switching models], [multi-speaker data] is required to disentangle the connection between languages and speakers. 
+To train code-switching models, [multi-speaker data] is required to disentangle the connection between languages and speakers. 
 We thus enhanced [CSS10] with data from [Common Voice] (CV) for languages included in both sets – the intersection covers German, French, Chinese, Dutch, Russian, Japanese, and Spanish. 
 Since CV is mainly aimed at [speech recognition] and rather noisy, we performed extensive filtering : We removed recordings with a negative rating (as provided by CV for each example) and excluded any speakers with less than 50 recordings. 
 We checked a sample of recordings for each speaker, and we removed all their data if we considered the sample to have poor quality. 
@@ -140,14 +140,14 @@ We compare our models described in Section.
 The experiment in Section was designed to show stability and ability to train on lower amounts of data. 
 We conclude that character error rate (CER) evaluation is sufficient for this experiment. In Section, we test pronunciation accuracy and [voice quality] of code-switching synthesis. 
 We used a subjective evaluation test as there are no straightforward objective metrics for this task. 
-We used the same [vocoder] for all models, i.e., the [WaveRNN model] trained on a training subset of the cleaned [CSS10] dataset. 
+We used the same [vocoder] for all models, i.e., the [WaveRNN model] trained on a training subset of the cleaned [CSS10 dataset]. 
 
 Multilingual training 
-Training setup : We used our cleaned [CSS10] dataset for training ; 64 randomly selected samples per language were reserved for validation and another 64 for testing. 
+Training setup : We used our cleaned [CSS10 dataset] for training ; 64 randomly selected samples per language were reserved for validation and another 64 for testing. 
 We did not have an ambition to [clone voices] in this experiment, so we switched off [speaker classifiers] for SHA and GEN (i.e., SHA was reduced to the [vanilla Tacotron 2 model] with a language embedding). 
-We trained the three models for 50k steps with the Adam optimizer.2 We used a stepped [learning rate] that starts from 10–3 and halves every 10k steps. 
-In the case of S EP, we used a lower initial [learning rate] 10–4. 
-For SGL, the [learning rate] schedule was tuned individually per language. 
+We trained the three models for 50k steps with the Adam optimizer.2 We used a stepped learning rate that starts from 10–3 and halves every 10k steps. 
+In the case of S EP, we used a lower initial learning rate 10–4. 
+For SGL, the learning rate schedule was tuned individually per language. 
 We stopped training early after [validation data] loss started increasing. 
 SHA, SEP, and GEN used [speaker embeddings] of size 32 and G EN used language embeddings and parameter generators of size 10 and 8, respectively. 
 We used language-balanced batches of size 60 for all models. 
@@ -172,12 +172,12 @@ Right after the pauses, they often skip a few words. G EN is noticeably better o
 
 Data-stress training : To further test the models in data-stress situations, we chose random subsets of 600 and 900 examples per language from the training set (i.e., about 80 or 120 minutes of recordings, respectively). 
 We trained all models on both reduced datasets, but accomplished training just for S HA and G EN. 
-While training on the bigger and [smaller dataset], we decayed the [learning rate] every 7.5k and 5k training steps, respectively. 
+While training on the bigger and [smaller dataset], we decayed the learning rate every 7.5k and 5k training steps, respectively. 
 The right half of Table shows that G EN can work better even in data-stress situations. GEN models have, compared to SHA models, significantly better CER values on six languages. 
 
 https://cloud.google.com/speech-to-text 
 
-Our attempts to compensate for this using different [encoder] and [decoder learning rates] were not successful. 
+Our attempts to compensate for this using different [encoder] and [decoder learning] rates were not successful. 
 
 Table : Mean (with std. dev.) ratings of fluency, naturalness, [voice stability] (top) and pronunciation accuracy (middle). 
 The bottom row shows the number of sentences with word skips. 
@@ -185,10 +185,10 @@ The bottom row shows the number of sentences with word skips.
 
 Figure : Language abilities of participants of our survey. 
 
-[Code-switching] 
-Training setup : In this experiment, we only used the five languages where both [CSS10] and CV data are available (Table), and trained on all data in our cleaned sets ; 64 and 4 randomly selected samples for each speaker from [CSS10] and CV, respectively, were reserved for validation. 
+Code-switching 
+Training setup : In this experiment, we only used the five languages where both [CSS10] and [CV data] are available (Table), and trained on all data in our cleaned sets ; 64 and 4 randomly selected samples for each speaker from [CSS10] and CV, respectively, were reserved for validation. 
 The S GL models are not applicable to the code-switching scenario. 
-SHA, SEP, and GEN models were trained for 50k steps with the same [learning rate] and schedule settings as in Section, this time with the [adversarial speaker classifiers] enabled.5 We set the size of [speaker embeddings] to 32 and used a language embedding of size 4 in S HA. 
+SHA, SEP, and GEN models were trained for 50k steps with the same learning rate and schedule settings as in Section, this time with the [adversarial speaker classifiers] enabled.5 We set the size of [speaker embeddings] to 32 and used a language embedding of size 4 in S HA. 
 GEN uses language embeddings of size 10 and generator layers of size 4. We used mini-batches of size 50 for all models.             
                                                                              
 Code-switching [evaluation dataset] : We created a new small-[scale dataset] especially for code-switching evaluation. 
@@ -209,7 +209,7 @@ Unlike S HA or S EP, it allows [cross-lingual mixing] of the [encoder outputs] a
 S EP scores consistently worst. 
 The accuracy ratings are overall slightly higher than the fluency ratings ; this might be caused by improper word stress, which several participants commented on. 
 
-Based on preliminary experiments on [validation data], we set λ=1 and weighted the loss of the classifier by 0.125 and 0.5 for G EN and S HA, respectively. The classifiers include a [hidden layer] of size 256.                       
+Based on preliminary experiments on [validation data], we set λ=1 and weighted the loss of the classifier by 0.125 and 0.5 for G EN and S HA, respectively. The classifiers include a hidden layer of size 256.                       
 https://www.prolific.co ; 4 participants who reported as Chinese [native speakers] on Prolific only reported non-native fluency in our survey.   
  In 3 sentences, a random model output was distorted and used as sanity check (expected to be rated lowest). All participants passed. 
 
@@ -221,7 +221,7 @@ We found that the G EN model makes much fewer of these errors than S HA and S EP
 
 Conclusion 
 We presented a new [grapheme-based model] that uses metalearning for [multilingual TTS] 
-We showed that it significantly outperforms multiple strong baselines on two tasks : data-stress training and [code-switching], where our model was favored in [oth voice] fluency as well as pronunciation accuracy. 
+We showed that it significantly outperforms multiple strong baselines on two tasks : data-stress training and [code-switching], where our model was favored in oth [voice fluency] as well as pronunciation accuracy. 
 Our code is available on GitHub.1 For future work, we consider changes to our model’s attention module to further improve accuracy. 
 
 Acknowledgements 

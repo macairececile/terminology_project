@@ -8,7 +8,7 @@ For example, [discriminative features] are seeing wide application by the [speec
 Another example is the apparent convergence of [speech recognition] and [speech synthesis technologies] in the form of [statistical parametric] methodologies. 
 This convergence enables the investigation of new approaches to unified modelling for [automatic speech recognition] and [text-to-speech synthesis] ([TTS]) as well as [cross-lingual speaker adaptation] for [TTS]. 
 The second driving force is the impetus being provided by both government and industry for technologies to help break down domestic and international language barriers, these also being barriers to the expansion of policy and commerce. 
-[Speech-to-speech] and [speech-to]-text translation are thus emerging as key technologies at the heart of which lies [multilingual speech processing]. 
+[Speech-to-speech] and [speech-to-text translation] are thus emerging as key technologies at the heart of which lies [multilingual speech processing]. 
 
 Keywords. [Multilingual speech processing] ; [speech synthesis] ; [speech recognition] ; [speech-to-speech translation] ; language identification. 
 
@@ -65,21 +65,21 @@ Such advances have, however, translated easily to different languages, largely o
 State-of-the-art [ASR systems] are stochastic in nature and are typically based on [HMM]. 
 Figure   illustrates a typical [HMM-based ASR system] for English language. 
 From a spoken language perspective, the different components of the [HMM-based ASR system] are as follows. 
-(i) [Feature extractor] that extracts the relevant information from the [speech signal] yielding a sequence of [feature observations] / [vectors]. 
+(i) [Feature extractor] that extracts the relevant information from the [speech signal] yielding a sequence of [feature observations / vectors]. 
 [Feature extraction] is typically considered a [language independent process] (i.e., [common feature] extraction algorithms are used in most systems regardless of language), although in some cases (such as tonal languages) specific processing should be explored. 
 (ii) [Acoustic model] that models the relation between the [feature vector] and units of spoken form (sound units such as phones). 
 (iii) [Lexicon] that integrates lexical constraints on top of spoken unit level representation yielding a unit representation that is typically common to both spoken form and written form such as, word or [morpheme]. 
 (iv) Language model that tends to model syntactical / grammatical constraints of the spoken language using the unit representation resulting after integrating lexical constraints. 
 
-http://www.phon.ucl.ac.uk/home/sampa/ 
-http://www.phon.ucl.ac.uk/home/sampa/samprosa.htm 
+http://www.phon.ucl.ac.uk / home / sampa/ 
+http://www.phon.ucl.ac.uk / home / [sampa] / samprosa.htm 
 http://en.wikipedia.org/wiki/Arpabet 
 http://www.nist.gov/index.html 
 
 Figure. Illustration of a typical [HMM-based ASR system]. 
 
-The [HMM-based ASR system] using [Gaussians] to model the [feature observations] is referred to as [HMM] / [GMM system]. 
-Similarly, hybrid [HMM] / ANN systems refer to the case where [artificial neural networks] (ANNs), typically, [MLPs], are used to model the [feature observations] and estimate phone posteriors based on the [input features] within some temporal context (typically 90 ms). 
+The [HMM-based ASR system] using Gaussians to model the [feature observations] is referred to as [HMM / GMM system]. 
+Similarly, [hybrid HMM / ANN systems] refer to the case where [artificial neural networks] ([ANNs]), typically, [MLPs], are used to model the [feature observations] and estimate phone posteriors based on the [input features] within some temporal context (typically 90 ms). 
 In [ASR], we are generally attempting to address one of two issues in [MLSP]. 
 The first issue is that of building [multilingual models] ; that is, models that can recognize [speech] of multiple languages. 
 In building such [multilingual systems], a major issue is the availability of resources. 
@@ -99,13 +99,13 @@ Along the direction of multilingual acoustic modelling, the emphasis has been to
 In the literature, a popular approach towards this is the creation of a ‘ universal / global’ [phone set] by first pooling the [phone sets] of different languages together and then merging them (i) based on heuristics / knowledge such as [IPA-based] (Köhler 1996) or [SAMPA-based] (Ackermann et al 1996), [articulatory features], (ii) in a data-driven manner by clustering (Köhler 1999) or by measuring [phoneme] similarity such as using confusion matrix (Andersen et al 1993), or (iii) both i.e., knowledge-based merging followed by datadriven clustering (Schultz & Waibel 1998 ; Köhler 1999). 
 The underlying assumption here is that the articulatory representations of phones are similar across languages, and thus their acoustic realizations can be considered [language independent]. 
 These studies were mostly done in the framework of modelling [context-independent phones]. 
-The approach of knowledge-based merging followed by data-driven clustering for [context-dependent phone models] was further investigated by. 
-In the literature, different studies have been reported for [cross-language transfer], where an [acoustic model] trained on a different language or many different languages (excluding [target language]) is (i) used directly when no data from the [target language] is available, (ii) adapted when [limited data] from [target language] is available, or (iii) used as seed model and then trained with large amount of data. 
+The approach of knowledge-based merging followed by [data-driven clustering] for [context-dependent phone models] was further investigated by. 
+In the literature, different studies have been reported for [cross-language transfer], where an [acoustic model] trained on a different language or many different languages (excluding [target language]) is (i) used directly when no data from the [target language] is available, (ii) adapted when limited data from [target language] is available, or (iii) used as seed model and then trained with large amount of data. 
 When compared to the use of [monolingual acoustic models], it has been typically observed that [multilingual acoustic models] yield a better starting point for such [cross-language transfer]. 
 From the above brief literature overview, it is clear that there has been reasonable success in constructing [multilingual acoustic models]. 
 However, developing multilingual language models is still an open issue. 
-Standard [ASR systems] typically use [N-gram language models], where word sequences are modelled by a N th order [Markov] chain, i.e., the model consists of probability to transit to a word given a word sequence of length N8. 
-When estimating [N-gram language models] for different languages, the [language-specific characteristic] plays a greater role. 
+Standard [ASR systems] typically use [N-gram language models], where word sequences are modelled by a N th order [Markov chain], i.e., the model consists of probability to transit to a word given a word sequence of length N8. 
+When estimating [N-gram language models] for different languages, the [language-specific] characteristic plays a greater role. 
 For instance, at the word level, the perplexity of the language can vary greatly depending on the degree of morphological inflection. 
 As a result, morphologically rich languages can have many more words, thus leading to morphological-level rather than word-level representations. 
 Also, some morphologically rich languages tend to allow free word ordering, which is clearly not well handled by simple [N-gram models]. 
@@ -129,32 +129,32 @@ A second area of research that has a more evident emphasis on multilingual capab
 In polyglot synthesis, the goal is the synthesis of mixed language utterances, hence, a major challenge is in proper text parsing that enables correct pronunciation and intonation of such [speech]. 
 Given appropriate text parsing, the main concern of [unit selection synthesis] is the efficient design of a mixed-language inventory of [speech]. 
 A related field of research, [voice conversion], has helped overcome some of the limitations of [unit selection methods] with respect to [MLSP]. 
-In particular, the application of [voice conversion] to [cross-lignual scenarios] has been investigated, especially in the context of [speech-to-speech translation]. Drawbacks of [voice conversion] techniques lie in their limited ability to modify supra-segmental [speech] characteristics and the requirement of [parallel data] for learning the conversion, although some progress in this direction has been made. 
+In particular, the application of [voice conversion] to [cross-lignual scenarios] has been investigated, especially in the context of [speech-to-speech translation]. Drawbacks of [voice conversion] techniques lie in their limited ability to modify supra-segmental [speech characteristics] and the requirement of [parallel data] for learning the conversion, although some progress in this direction has been made. 
 
 refers to unigram, bigram, trigram, respectively. 
 Code switching refers to the case where the user switches from one language to another language. 
 The switch can happen within an utterance or across utterances. 
 
-Automatic language recognition 
+[Automatic language recognition] 
 
-The objective of automatic language recognition is to recognize the spoken language by automatic analysis of [speech data]. 
-Automatic language recognition can be classified into two tasks (i) automatic language identification and (ii) automatic language detection. 
+The objective of [automatic language recognition] is to recognize the spoken language by automatic analysis of [speech data]. 
+[Automatic language recognition] can be classified into two tasks (i) automatic language identification and (ii) automatic language detection. 
 In principle, this classification is similar to [speaker identification] and [speaker verification] in [speaker recognition] research. 
-The goal of automatic language identification (LID) is to classify a given input [speech] utterance as belonging to one out of L languages. 
+The goal of automatic language identification (LID) is to classify a given input [speech utterance] as belonging to one out of L languages. 
 Various possible applications of LID can be found in [multilingual speech processing], call routing, [interactive voice] response applications, and [front-end processing] for [speech translation translation]. 
 There are a variety of cues, including [phonological], morphological, syntactical or prosodic cues, that can be exploited by an LID system. 
-In the literature, different approaches have been proposed to perform LID, such as using only low-level [spectral information], using [phoneme recognizers] in conjunction with [phonotactic constraints] or using mediumto high-level information (e.g. lexical constraints, language models) through [speech recognition]. 
-Among these, the most common approach is to use [phoneme recognizers] along with [phonotactic constraints]. 
-The [phoneme recognizer] can be [language-dependent] (using a [language-specific phoneme set]) or [language-independent]   (using a [multilingual phoneme set]). 
+In the literature, different approaches have been proposed to perform LID, such as using only low-level [spectral information], using [phoneme] recognizers in conjunction with [phonotactic constraints] or using mediumto high-level information (e.g. lexical constraints, language models) through [speech recognition]. 
+Among these, the most common approach is to use [phoneme] recognizers along with [phonotactic constraints]. 
+The [phoneme] recognizer can be [language-dependent] (using a [language-specific phoneme set]) or [language-independent]   (using a [multilingual phoneme set]). 
 The [phonotactic constraints] are typically modelled by a [phoneme] bigram estimated on phonetically labelled data. 
 Given a segment of [speech signal] and associated claimed language, the goal of automatic language detection is to verify the claim or, in other words, choose one of the two possible hypotheses. 
 A null hypothesis that the given [speech segment] belongs to the claimed language or the alternative hypothesis that the given segment does not belong to the claimed language. 
 Usually, this is achieved by training a model corresponding to the null hypothesis using data from the [target language], and a separate model corresponding to the alternate hypothesis using data from different languages. 
 
-Recent trends in [speech] and language processing 
+Recent trends in [speech] and [language processing] 
 
-We can identify a number of advances in [speech] and language processing that have significantly impacted [MLSP]. 
-One of the most important developments has been the rise of statistical [machine translation] that has resulted in substantial funding and, consequently, research activity being directed towards [machine translation] and its related multilingual applications ([speech-to-speech], [speech-to]-text translation, etc.). 
+We can identify a number of advances in [speech] and [language processing] that have significantly impacted [MLSP]. 
+One of the most important developments has been the rise of statistical [machine translation] that has resulted in substantial funding and, consequently, research activity being directed towards [machine translation] and its related multilingual applications ([speech-to-speech], [speech-to-text translation], etc.). 
 Several notable projects have been pursued in recent years, to mention only a few : Spoken Language Communication and Translation System for Tactical Use (TRANSTAC DARPA initiative), Technology and Corpora for [Speech] to [Speech Translation] (TC-STAR FP6 European project), and the Global Autonomous Language Exploitation ([GALE] DARPA initiative10). 
 Research in these projects not only needs to focus on the optimization of individual components, but also on how the components can be integrated together effectively to provide overall improved output. 
 This is not a trivial task. 
@@ -170,7 +170,7 @@ There has also been increasing effort in the use of [lightly supervised] and uns
 Methods that use ‘ found’ data from the internet have also been shown to be useful. 
 Such approaches have the potential to have a great impact on efforts in [MLSP] for poorer resourced languages or languages with little transcribed material, as has been demonstrated by. 
 There have also been efforts in [cross-lingual language modelling], where [cross-lingual information retrieval] and [machine translation] have been used with (i) sentence-aligned [parallel corpus], (ii) document-aligned corpus, and (iii) latent semantic analysis to improve language modelling for resource-deficient language. 
-Finally, relatively recent efforts have been introduced to integrate more appropriate training criteria in [machine learning algorithms] that provide more discriminative models in the case of [ASR] and better quality synthesis for [TTS]. 
+Finally, relatively recent efforts have been introduced to integrate more appropriate training criteria in machine learning algorithms that provide more discriminative models in the case of [ASR] and better quality synthesis for [TTS]. 
 This has not only been restricted to the estimation of model parameters, but has also been applied to [feature extraction], such as [MLP features]. 
 These methods have been shown to provide significant improvements for [monolingual ASR systems], but generalization to the multilingual case has not been extensively investigated. 
 There are different ways for improvement of these methods, such as use of hierarchical methods based on [MLP] or [conditional random fields], [MLP] regularization approach to handle resource (data) differences across languages through [cross-language transfer]. 
@@ -181,12 +181,12 @@ Recent and ongoing [MLSP research] at Idiap Research Institute
 
 At Idiap, [multilingual speech processing] is an important research objective given Switzerland’s location within Europe, at the intersection of three major linguistic cultures, and Swiss society itself being inherently multilingual. Towards this end, we have been conducting research in [MLSP] as part of several internationally and nationally funded projects, including for instance : 
   (i) EMIME11 (Effective Multilingual Interaction in Mobile Environments) : This FP7 EU project commenced in March 2008 and is investigating the personalization of [speech-to-speech translation systems]. 
-The EMIME project aims to achieve its goal through the use of [HMM-based ASR] and [TTS], more specifically, the main research goal is the development of techniques that enable unsupervised [cross-lingual speaker adaptation] for [TTS]. 
+The EMIME project aims to achieve its goal through the use of [HMM-based ASR] and [TTS], more specifically, the main research goal is the development of techniques that enable [unsupervised cross-lingual speaker adaptation] for [TTS]. 
  (ii) GALE12 (Global Autonomous Language Exploitation) : Idiap was involved in this DARPA-funded project as part of the SRI-lead team. The project primarily involved [machine translation] and information distillation. 
-We have mostly studied the development of new discriminative [MLP]-based features and [MLP] combination methods for the [ASR components]. 
+We have mostly studied the development of new discriminative [MLP-based features] and [MLP] combination methods for the [ASR components]. 
 Despite cessation of the project, we have continued our research of this topic. 
 (iii) MULTI (MULTImodal Interaction and [MULTImedia Data] Mining) is a Swiss National Science Foundation (SNSF) project carrying out fundamental research in several related fields of multimodal interaction and [multimedia data] mining. 
-A recently initiated MULTI sub-project is conducting research in [MLP]-based methods for language identification and [multilingual speech recognition] with a focus on Swiss languages. 
+A recently initiated MULTI sub-project is conducting research in [MLP-based methods] for language identification and [multilingual speech recognition] with a focus on Swiss languages. 
 (iv) COMTIS13 (Improving the coherence of [machine translation output] by modelling intersentential relations) is a new [machine translation] project funded by the SNSF that was started on March 2010. 
 The project is concerned with modelling the coherency between sentences in [machine translation output], thereby improving overall translation performance. 
 In the remainder of the paper, we present three case studies conducted in MSLP at Idiap that have resulted from participation in the above-mentioned research projects. 
@@ -214,7 +214,7 @@ English always comprises one of the languages in each SST language pair.
 At Idiap, our research has primarily focused on the English – Mandarin language pair. 
 English – Mandarin is arguably the most disparate of the language pairs under consideration. 
 Although, this poses a greater challenge, it may better enable us to ascertain and analyse differences between the different approaches under investigation. 
-In performing unsupervised [cross-lingual speaker adaptation] within a [speech-to-speech translation framework], we consider two possible approaches : a ‘ pipeline’ framework, in which individual components operate largely independent of one another ; and a ‘ unified’ framework in which [ASR] and [TTS] modules share common components such as [feature extraction] and acoustic   models. 
+In performing [unsupervised cross-lingual speaker adaptation] within a [speech-to-speech translation framework], we consider two possible approaches : a ‘ pipeline’ framework, in which individual components operate largely independent of one another ; and a ‘ unified’ framework in which [ASR] and [TTS] modules share common components such as [feature extraction] and acoustic   models. 
 It should be clear that, while the pipeline framework contains a great deal of redundancy, it allows each component to be separately optimized, whereas the unified framework minimizes redundancy, but possibly at a cost to performance. 
 Figure   illustrates these two frameworks. 
 
@@ -244,7 +244,7 @@ In the unified approach, [acoustic models] and features also link the two and ad
 As noted previously, paradigms for [ASR] and [TTS] have undergone a degree of convergence in recent years and now the [HMM-based approach] is commonly employed for both. 
 As part of our initial studies, we conducted a comparison of [feature extraction], acoustic modelling and adaptation for [ASR] and [TTS]. 
 Although fully unified [ASR] and [TTS models] may be sub-optimal, our goal was to quantify the differences between the two that would enable us to better determine where and by how much these approaches differ. 
-We did this by taking [ASR] and [TTS] baselines built on a [common corpus] and then systematically interchanged [ASR] and [TTS components] related to [lexicon] and [phone set], [feature extraction], model topology and [speaker adaptation]. 
+We did this by taking [ASR] and [TTS] baselines built on a [common corpus] and then systematically interchanged [ASR] and [TTS] components related to [lexicon] and [phone set], [feature extraction], model topology and [speaker adaptation]. 
 Our findings showed that many of the techniques used in [ASR] and [TTS] can not be simply applied to [TTS] and [ASR], respectively without negative consequences. 
 Despite this, we are still interested in unified modelling – not necessarily as a means to explicitly model [speech] jointly for both [ASR] and [TTS], but rather as a means to transfer knowledge and approaches between the two. 
 We present two examples of this study which relate to [feature extraction] and acoustic modelling. 
@@ -317,12 +317,12 @@ Summary
 We have presented work being conducted at Idiap as part of the EMIME [speech-to-speech translation] project. 
 In this work we are not only having to deal with the challenges of multilingual modelling for [ASR] and [TTS], but are addressing more fundamental issues concerning unified modelling. 
 Our results so far indicate that direct attempts at unified modelling do not necessarily present themselves as a realistic alternative to separate [ASR] and [TTS] modelling, but several promising directions have emerged when unified modelling has been considered as a means to port knowledge and approaches between [ASR] and [TTS]. 
-Furthermore, our efforts towards unsupervised [cross-lingual adaptation] have shown that good results can be achieved by using largely conventional approaches. 
+Furthermore, our efforts towards [unsupervised cross-lingual adaptation] have shown that good results can be achieved by using largely conventional approaches. 
 
 [MLP features] and [multilingual ASR] 
 
 There have been shortcomings in the current approaches but efforts are underway to overcome these issues. 
-There has been sustained interest in using [MLP]-based [discriminative features] for [automatic speech recognition] for several reasons. 
+There has been sustained interest in using [MLP-based discriminative features] for [automatic speech recognition] for several reasons. 
 (i) Discriminative nature of the features  
 (ii) Ability of [MLP] to handle different types of features and long temporal context at the input. 
 (iii) Robustness towards speaker   and environmental variation   (iv) Ability to combine [multiple feature] streams at [MLP output] level using probabilistic methods (v) Performance improvements obtained are scalable across different training criteria, as well as with amount of data. 
@@ -330,7 +330,7 @@ Figure   depicts a typical [MLP feature]-based [ASR system].
 The main components of [MLP feature] extraction are (i) an [MLP] trained to classify [phonemes] / phones and (ii) Karhunen Loeve transformation (KLT) matrix (estimated on a data other than [test data]) to decorrelate the [feature vectors]. 
 Optionally, during KLT dimensionality, reduction could be done. 
 This helps in controlling the dimensionality of the [feature space], especially when the [MLP features] are concatenated with the standard [spectral features]. 
-Traditionally, a [HMM] / [GMM system] models [acoustic features] that are extracted from shortterm [spectrum] (usually 20–30 ms) of [speech signal]. 
+Traditionally, a [HMM / GMM system] models [acoustic features] that are extracted from shortterm [spectrum] (usually 20–30 ms) of [speech signal]. 
 The extraction of these [acoustic features] is assumed to be [language-independent]. 
 When compared to [GMM-based modelling], [MLPs] have the capability to model higher [dimensional feature vector] (e.g., standard [spectral features] with temporal context). 
 Furthermore, [MLPs] avoid the need to make assumption about parametric distribution of [input features]. 
@@ -354,7 +354,7 @@ KL transform refers to Karhunen Loeve transform, which can be either applied to 
 
 [MLP features] 
 
-In this section, we present a study using multi-resolution RASTA ([MRASTA]) feature and hiearchical [MRASTA feature] (hier-[MRASTA]). 
+In this section, we present a study using multi-resolution RASTA ([MRASTA]) feature and hiearchical [MRASTA feature] ([hier-MRASTA]). 
 These features were first investigated for English language [ASR system], and then extended to Mandarin language [ASR system]. 
 These studies were originally conducted as part of the DARPA [GALE] project. 
 More description and details can be found in. 
@@ -375,23 +375,23 @@ The first part extracting high modulation frequencies (above 10 Hz), and the sec
 The higher and lower modulation frequencies are then processed in a sequential fashion using a hierarchy of [MLPs]. 
 More specifically, the first stage [MLP processes] high modulation frequencies, and the second stage [MLP] jointly processes low modulation frequencies along with [MLP features] extracted using first stage [MLP]. 
 For details, the reader is referred to. 
-The [MRASTA] and hier-[MRASTA features] were first studied for English language. 
-The [training data] consisted of 112 hours of meeting data from different sites. 
+The [MRASTA] and [hier-MRASTA features] were first studied for English language. 
+The [training data] consisted of 112 hours of [meeting data] from different sites. 
 Thirty-nine-dimensional [PLP cepstral features] consisting of 13 static coefficients, their approximate first-order and second-order derivatives was used as [baseline feature]. 
-The [MLP] of [MRASTA feature] extractor and [MLPs] of hier-[MRASTA feature] extractor were trained to classify 45 [context-independent phonemes]. 
-The [HMM] / [GMM system] was trained using HTK with [maximum likelihood] criterion. 
+The [MLP] of [MRASTA feature] extractor and [MLPs] of [hier-MRASTA feature extractor] were trained to classify 45 [context-independent phonemes]. 
+The [HMM / GMM system] was trained using HTK with [maximum likelihood] criterion. 
 The [ASR systems] were tested using NIST RT05 [evaluation data]. 
-The resulting [WER] for the systems using [PLP feature], [MRASTA feature] and hier-[MRASTA feature] are shown in table. 
-For Mandarin language [ASR] studies, we used 100 hours [training data] setup consisting of broadcast news and broadcast [conversation data]. 
-The [spectral feature] baseline system was trained with 39-dimensional [MFCC15 feature vector] consisting of 13 static coefficients (extracted after vocal tract length normalization), their approximate first-order and second-order time derivatives. 
-The [MRASTA MLP] and hier-[MRASTA MLPs] were trained to classify 71 contextindependent [phonemes] (with tone). 
+The resulting [WER] for the systems using [PLP feature], [MRASTA feature] and [hier-MRASTA feature] are shown in table. 
+For Mandarin language [ASR studies], we used 100 hours [training data] setup consisting of broadcast news and broadcast [conversation data]. 
+The [spectral feature] baseline system was trained with 39-dimensional MFCC15 [feature vector] consisting of 13 static coefficients (extracted after vocal tract length normalization), their approximate first-order and second-order time derivatives. 
+The [MRASTA MLP] and [hier-MRASTA MLPs] were trained to classify 71 contextindependent [phonemes] (with tone). 
 During [MLP feature] extraction (i.e., during KLT), the dimension of [MLP feature] was reduced to 35. 
 The studies were conducted using SRI / UW / ICSI Mandarin system with [maximum likelihood training] criteria. 
 The [ASR systems] were tested using [GALE] Mandarin 2006 [evaluation data]. 
 Table 1 presents the the performance of the three systems in terms of CER. 
-It can be observed that [MRASTA features] consistently yield the lowest recognition performance across both the languages, while hier-[MRASTA features] consistently yield a better system compared to the standard [spectral feature] PLP (in the case of English) and MFCC (in the case of Mandarin). 
-These results tend to show that the trends of [MLP features MRASTA] and hier-[MRASTA], which span longer temporal context, can generalize across languages. 
-The observation about generalization to other languages is further supported by studies reported in   the literature for languages such as English, Mandarin and Arabic ; where it has been observed that [MLP features] (including [MRASTA], hier-[MRASTA], and similar processing techniques) are complementary to standard short-term [spectral]-based features. 
+It can be observed that [MRASTA features] consistently yield the lowest recognition performance across both the languages, while [hier-MRASTA features] consistently yield a better system compared to the standard [spectral feature] PLP (in the case of English) and MFCC (in the case of Mandarin). 
+These results tend to show that the trends of [MLP features MRASTA] and [hier-MRASTA], which span longer temporal context, can generalize across languages. 
+The observation about generalization to other languages is further supported by studies reported in   the literature for languages such as English, Mandarin and Arabic ; where it has been observed that [MLP features] (including [MRASTA], [hier-MRASTA], and similar processing techniques) are complementary to standard short-term [spectral]-based features. 
 In other words, a system trained with standard [cepstral features] concatenated with [MLP features] consistently yield a better performance than a system trained with only standard [cepstral feature]. 
 It has to be noted that while [multilingual ASR systems] aim to use the [feature set] that is most [language-independent], this [feature set] may not be the best set for an individual language, i.e., there may be features that are more specific to a language or more specifically applicable to a language. 
 For instance, Mandarin is a tonal language ; in this case, it has been observed that using [pitch frequency features] in addition to [cepstral feature] usually leads to better performance. 
@@ -418,7 +418,7 @@ This could be because Mandarin and English are very different languages, i.e., E
 Further, it should be noted that the Mandarin [MLP] was trained with [speech signal] of bandwidth 8 kHz whereas the English [MLP] was trained with [speech signal] of bandwidth 4 kHz. 
 Nevertheless, these results suggest that through [MLP features], [speech data] of other languages could be effectively utilized to improve [ASR performance] of another language. 
 In the literature, similar [cross-lingual studies] have been reported. 
-In, it was shown that using [MLP]-based features extracted from English-trained [MLP] could improve Mandarin and Arabic [ASR performance] over the [spectral feature] baseline system. 
+In, it was shown that using [MLP-based features] extracted from English-trained [MLP] could improve Mandarin and Arabic [ASR performance] over the [spectral feature] baseline system. 
 
 Table. Performance of Mandarin [ASR systems] investigated in the [cross-lingual feature study]. Monolingual tandem refers to [MLP feature] extracted using [MLP] trained on [Mandarin data]. [Cross-lingual tandem] refers to [MLP feature] extracted using [MLP] trained on [English data]. The performance is measured in terms of CER. 
 
@@ -430,10 +430,10 @@ The [ASR studies] showed that [cross-lingual adaptation approach] often yields t
 Although, the studies on [cross-lingual MLP features] are limited, it has been typically found (including the study presented here) that using [MLPs] trained on a different language ‘ directly’ may not yield a system better than [MLP] trained on [target language data] (if available). 
 In other words, to make better use of the [MLPs] trained on a different language, [cross-lingual adaptation] or some kind of training on the [target language] may be necessary. 
 The [cross-lingual adaptation approach] discussed earlier is one way this could be achieved. 
-Another way would be to use the recently proposed hierarchical [MLP]-based phone posterior estimation approach, where two stages (hierarchy) of [MLPs] are trained to classify [context-independent phones]. 
+Another way would be to use the recently proposed hierarchical [MLP-based phone posterior estimation] approach, where two stages (hierarchy) of [MLPs] are trained to classify [context-independent phones]. 
 In the first stage, the [input feature] to the [MLPs] is a standard [spectral]-based feature. 
 The input to the second stage [MLP] is [phone posterior probabilities] estimated by the first stage [MLP] with temporal context of around 150–230 ms. 
-This approach has been shown to yield better [phoneme recognition] performance as well as [ASR performance] than the single [MLP]-based approach. 
+This approach has been shown to yield better [phoneme recognition] performance as well as [ASR performance] than the single [MLP-based approach]. 
 In the context of [cross-lingual adaptation], the first [MLP] can be trained on a resource rich language(s) and the second [MLP] can be trained on the [target language] with the [available data]. 
 
 [Multilingual MLP features] 
@@ -474,7 +474,7 @@ The recognizer dependent bias was estimated on the development set.
 In table 5, we show the performances for the different systems and tasks. 
 The performance of each system is expressed as the average word accuracy computed across the five languages. 
 The results show that [multilingual MLP features] yield the best performance in terms of relative loss in performance between mono and mixed tasks. 
-Although, the [shared-tandem system yields] slightly inferior performance compared to other systems on the mono task, it yields significantly better performance on the mixed task. 
+Although, the [shared-tandem system] yields slightly inferior performance compared to other systems on the mono task, it yields significantly better performance on the mixed task. 
 A similar trend has been previously reported in the context of [language independent] acoustic modelling. 
 In summary, the superiority of the [shared-tandem system] on the mixed task can be attributed to the combination of two factors : (i) sharing of data across languages which results in better [acoustic model], and (ii) use of [multilingual MLP features]. 
 
@@ -507,17 +507,17 @@ Our studies indicate that shared [multilingual MLP feature] extraction yields be
 
 Language identification / detection 
 
-In section, we briefly described that language identification systems use different levels of abstraction related to spoken language processing, including the use of [phonotactic constraints], lexical constraints, or both lexical and language constraints through [ASR system]. 
-Section   presents a preliminary study on hierarchical [MLP]-based LID system. 
+In section, we briefly described that language identification systems use different levels of abstraction related to spoken [language processing], including the use of [phonotactic constraints], lexical constraints, or both lexical and language constraints through [ASR system]. 
+Section   presents a preliminary study on hierarchical [MLP-based LID system]. 
 This system tries to capture implicitly [phonotactic constraints] and acoustic confusions present at the output of a [multilingual MLP] to achieve language identification. 
 Another way of framing the language detection (LD) problem is in terms of out-of-vocabulary (OOV) detection. 
 [Monolingual automatic speech recognition systems] assume that the test utterances contain only words from the [target language]. 
 However, it is possible that segments of test utterances can contain words from foreign language(s), especially in natural conversations. 
 In section, we present an approach to detect such out-of-language segments using confidence measures. 
 
-Hierarchical [MLP]-based language identification 
+Hierarchical [MLP-based language identification] 
 
-In section, we briefly described the recently proposed hierarchical [MLP]-based [phoneme posterior] estimation approach and discussed about the potential of applying it for [cross-lingual MLP feature extraction]. 
+In section, we briefly described the recently proposed hierarchical [MLP-based phoneme posterior estimation] approach and discussed about the potential of applying it for [cross-lingual MLP feature extraction]. 
 In, we have studied the role of the second [MLP layer] in such hierarchical arrangements using Volterra series and have found that it is predominantly responsible for learning [phonetic]-temporal patterns present in the [posterior features]. 
 The learned [phonetic]-temporal patterns consist of acoustic confusions among [phonemes] and [phonotactic constraints] of the language. 
 
@@ -527,19 +527,19 @@ The System Hier performance was obtained with a temporal context of 290 ms at th
 
 In the context of LID, such [phonetic]-temporal patterns could possibly be exploited by first training an [MLP] to classify the previously described universal [phoneme set] ([multilingual speech units]), and then modelling a larger temporal context of the resulting [posterior features] by a second [MLP] to classify languages. 
 It can be expected that information related to [phonotactic]   constraints and acoustic confusion among [phonemes] (present in the [posterior features] spanning a long temporal context) is [language-specific]. 
-We performed a preliminary study on hierarchical [MLP]-based LID system using the five European language setup and the [multilingual MLP] described earlier in section. 
-The second stage [MLP] of the hierarchical [MLP]-based LID system was trained with the [posterior features] (universal [phone posterior probabilities]) estimated at the output of the [multilingual MLP]. 
+We performed a preliminary study on hierarchical [MLP-based LID system] using the five European language setup and the [multilingual MLP] described earlier in section. 
+The second stage [MLP] of the hierarchical [MLP-based LID system] was trained with the [posterior features] (universal [phone posterior probabilities]) estimated at the output of the [multilingual MLP]. 
 The temporal context at the input of the second [MLP] was varied from 130–310 ms. 
 During testing, the decision about the language identity was made by choosing the language that scores the highest log posterior probability over the whole test utterance. 
 We refer to this system as Hier. 
-We compared the hierarchical [MLP]-based LID system against two different reference systems. 
+We compared the hierarchical [MLP-based LID system] against two different reference systems. 
 In both these systems, the [phone posterior probabilities] estimated at the output of the [multilingual MLP] are used as a local score. 
 In the first system, the [language-specific phoneme recognizers] are run in parallel with their respective bigram [phonotactic] language model. 
 The LID is achieved by selecting the [decoder output] that yields the [maximum likelihood]. 
 This system is referred to as PC. 
 In the second system, the language identity is inferred through [speech recognition]. 
 The second system is similar to the [shared-tandem system] described earlier in section   where the [acoustic model] is shared across languages. 
-However, the recognition is done by using hybrid [HMM] / [MLP]-based isolated word recognition system. 
+However, the recognition is done by using [hybrid HMM / MLP-based isolated word] recognition system. 
 This system is referred to as SR. 
 Table 6 shows the performance (measured in terms of percentage accuracy) of the different LID systems investigated. 
 In the case of System Hier, the performance is reported for the temporal context of 290 ms. 
@@ -547,7 +547,7 @@ For further details on the effect of temporal context, the reader is referred to
 It can be seen that the hierarchical LID system, i.e., Hier system yields the best performance. 
 When comparing the performance of SR and PC systems, the trend is similar to what has been previously reported in the literature. 
 More specifically, higher LID performance has been typically reported (although for fewer number of language classes) using the large vocabulary [continuous speech recognition (LVCSR) system] when compared to [acoustic-phonotactic based systems]. 
-Overall, the study shows that there is good potential in exploiting the hierarchial [MLP]-based approach for language identification. 
+Overall, the study shows that there is good potential in exploiting the hierarchial [MLP-based approach] for language identification. 
 
 Out-of-language detection 
 
@@ -577,7 +577,7 @@ Median filter with a length of 3 s yield relative improvement of about 62 % with
 
 Summary 
 
-In this section, we first presented a LID system based on hierarchical [MLP]-based approach. 
+In this section, we first presented a LID system based on hierarchical [MLP-based approach]. 
 Through preliminary studies, we demonstrated that this system could yield better performance than standard approaches, such as modelling [phonotactic constraints]. 
 We next presented an outof-language detection approach using confidence measures similar to out-of-vocabulary word detection, and showed its application on real [word data]. 
 

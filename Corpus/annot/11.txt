@@ -38,19 +38,19 @@ Additionally, some languages (such as Chinese and Japanese) have complex writing
 Furthermore, these systems are sensitive to out of vocabulary (OOV) events. 
 Other previous solutions used joint sequence models. 
 These models create an initial [grapheme-phoneme sequence alignment], and by using this alignment, it calculates a joint [n-gram language model] over sequences. 
-The method proposed by is implemented in the publicly available tool Sequitur (https://www-i6.informatik.rwth-aachen.de/web/Software/g2p.html, Access date : 9th August 2018). 
+The method proposed by is implemented in the publicly available tool Sequitur (https://www-i6.informatik.rwth-aachen.de / web / Software / g2p.html, Access date : 9th August 2018). 
 In one-to-one alignment, each [grapheme] corresponds to only one [phoneme], and vice versa. 
 An “ empty ” symbol is introduced to match [grapheme and phoneme sequences]. 
 For example, the [grapheme sequence] of ‘ CAKE’ matches the [phoneme sequence] of ‘ K EY K’, and one-to-one alignment of these sequences is C → K, A → EY, K → K, and the last [grapheme] ‘ E’ matches the “ empty ” symbol. 
 Conditional and joint maximum entropy models use this approach. 
-Later, Hidden [Conditional Random Field (HCRF) models] were introduced in which the alignment between [grapheme] and [phoneme sequence] is modelled with hidden variables. 
+Later, Hidden [Conditional Random Field (HCRF) models] were introduced in which the alignment between [grapheme and phoneme sequence] is modelled with hidden variables. 
 The [HCRF models] usually lead to very competitive results ; however, the training of such models is very memory and computationally intensive. 
 A further approach utilizes [conditional random fields] ([CRF]) and Segmentation / Tagging models (such as linear [finite-state automata] or [transducers], [FSTs]), then use them in two different compositions. 
 The first composition is a joint-multigram combined with [CRF] ; the second one is a joint-multigram combined with Segmentation / Tagging. 
 The first approach achieved 5.5 % [phoneme error rate] (PER) on [CMUDict]. 
 Recently, [neural networks] have been applied for [G2P conversion]. 
 [Neural network-based G2P conversion] is robust against spelling mistakes and OOV words ; it generalizes well. 
-Also, it can be seamlessly integrated into [end-to-end TTS] / [ASR] systems (that are constructed entirely of [deep neural networks]). 
+Also, it can be seamlessly integrated into [end-to-end TTS / ASR] systems (that are constructed entirely of [deep neural networks]). 
 In this paper, a [TTS system] ([Deep Voice]) is presented which was constructed entirely from [deep neural networks]. 
 [Deep Voice] lays the groundwork for truly [end-to-end neural speech synthesis]. 
 Thus, the [G2P model] is jointly trained with further essential parts of the [speech synthesizer] and recognizer, which increase the overall quality of the system. 
@@ -71,7 +71,7 @@ Nowadays, completely [convolutional neural networks] may achieve superior result
 [Sequence-to-sequence (seq2seq) learning], or [encoder-decoder type neural networks] have achieved remarkable success in various tasks, such as [speech recognition], [text-to-speech synthesis], [machine translation]. 
 This type of network is used for several tasks, and its performance has also been enhanced with [attention mechanisms]. 
 In this structure, the [encoder] computes a representation of each input sequence, and the [decoder] generates an output sequence based on the learned representation. 
-In (28), [bidirectional multi-layer recurrent neural network-based seq2seq learning] was investigated in two architectures : a single [Bi-LSTM] / [Bidirectional Gated Recurrent Unit] ([Bi-GRU) layer] and two [Bi-LSTM] / [Bi-GRU layers]. 
+In (28), [bidirectional multi-layer recurrent neural network-based seq2seq learning] was investigated in two architectures : a single [Bi-LSTM / Bidirectional Gated Recurrent Unit] ([Bi-GRU) layer] and two [Bi-LSTM / Bi-GRU layers]. 
 Both [Bi-LSTM] and [Bi-GRU] uses both past and future contexts. 
 Moreover, a [bidirectional decoder] was proposed for [neural machine translation] ([NMT]) in. 
 Both [encoder] and [decoder] are [Bi-GRU], but this model is applicable to other [RNNs], such as [LSTM]. 
@@ -86,7 +86,7 @@ Furthermore, [G2P-seq2seq] (https://github.com/cmusphinx/g2p-seq2seq, Access dat
 To the best of our knowledge, our approach is the first that uses [convolutional neural networks] for [G2P conversion]. 
 In this paper, we present one general [sequence-to-sequence] and four [encoder-decoder models]. 
 These are introduced in Section. 
-Our goal was to achieve and surpass (if possible) the accuracy of previous models and to reduce the training times (which is quite high in the case of [LSTM] / [GRU]). 
+Our goal was to achieve and surpass (if possible) the accuracy of previous models and to reduce the training times (which is quite high in the case of [LSTM / GRU]). 
 The remaining parts of this paper are structured as follows : Section discusses the possibility of applying [convolutional neural networks] for [sequence-to-sequence grapheme-to-phoneme conversion]. 
 Datasets, training processes, and evaluation of the proposed models are presented in Section. 
 Section analyzes the results of the models, and finally, the conclusion is drawn in Section. 
@@ -100,7 +100,7 @@ One of the main reasons that make [convolutional neural networks] superior to pr
 Weight sharing in the [convolutional layers] is also a key element. 
 Thus, the model becomes spatially tolerant ; similar representations are learned in different regions of the input, and the total number of parameters can also be reduced drastically. 
 [Deep Learning] refers to the increased depth of [neural networks]. 
-Intuitively, it is expected that [neural networks] with many hidden layers are more powerful than shallow ones with a single [hidden layer]. 
+Intuitively, it is expected that [neural networks] with many hidden layers are more powerful than shallow ones with a single hidden layer. 
 However, as the number of layers increases, the training may become surprisingly hard, partly because the gradients are unstable. 
 [Batch normalization] is a technique to overcome this problem ; it reduces internal covariance shift and helps to smooth learning. 
 The main idea of [batch normalization] is to bring back the benefits of normalization at each layer. 
@@ -189,13 +189,13 @@ Details of the [Bidirectional Decoder]
 
 The details of the [bidirectional decoder], which was used in Model 2, are presented in this section. 
 Given an input sequence x = (x1, x2,..., x N), the [LSTM network] computes the hidden [vector sequence] h = (h1, h2,..., h N) and output [vector sequence] y = (y1, y2,..., y N). 
-Initially, [one-hot character vectors] for [graphemes] and [phonemes sequences] were created. 
+Initially, [one-hot character vectors] for [graphemes and phonemes sequences] were created. 
 Character vocabularies, which contain all the elements that are present in the input and [output data], are separately calculated. 
 In other words, neither a [grapheme vector] in the output vocabulary, nor a [phoneme vector] in the input vocabulary, was used. 
 These were the inputs to the [encoder] and the [decoder]. 
 Padding was applied to make all input and output sequences to have the same length, which was set to 22. 
 This number (22) was chosen based on the maximum length in the [training database]. 
-For [G2P], x = (x1, x2,..., x N) are [one-hot character vectors] of [grapheme] sequences ; y = (y1, y2,..., y N) are [one-hot character vectors] of [phoneme] sequences. 
+For [G2P], x = (x1, x2,..., x N) are [one-hot character vectors] of [grapheme] sequences ; y = (y1, y2,..., y N) are [one-hot character vectors] of [phoneme sequences]. 
 In the proposed Model 2, [Bi-LSTM] was used as an [encoder], and it consists of two [LSTMs] : one that processes the sequence from left-to-right (forward [encoder]), and one that does it in reverse ([backward encoder]). 
 This was applied to learn the semantic representation of the input sequences in both directions. 
 One [LSTM] looks at the sequence from left-to-right (forward [encoder]), and so reads an input sequence in left-to-right order ; and another [LSTM] looks at it in reverse ([backward encoder]), and so reads an input sequence in a right-to-left order. 
@@ -226,7 +226,7 @@ Experiments
 
 Datasets 
 
-We used the CMU pronunciation (http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and [NetTalk] (we are grateful to Stan Chen for providing the data) datasets, which have frequently been chosen by various researchers (3,16,32). 
+We used the CMU pronunciation (http://www.speech.cs.cmu.edu / cgi-bin / [cmudict]) and [NetTalk] (we are grateful to Stan Chen for providing the data) datasets, which have frequently been chosen by various researchers (3,16,32). 
 The training and testing splits are the same as those found in (4,5,8,12) ;   thus, the results are comparable. 
 [CMUDict] contains a 106,837-word training set and a 12,000-word test set ([reference data]). 
 2670 words are used as development set. 
@@ -240,16 +240,16 @@ Training
     
 For the [CMUDict experiments], in all models, the size of the input layers is equal to the input : { length of the longest input (22) × number of [graphemes] (27) } and the size of the [output layers] is equal to the output : { length of the longest output (22) × number of [phonemes] (41) }. 
 To transform [graphemes] and [phonemes] for [neural networks], we convert inputs into 27-dimensional and outputs to 41-dimensional [one-hot vector representations]. 
-For example, the [phoneme sequences] of the word ‘ ARREST’ is ‘ ER EH S T’ ; the input and output [vectors] of the [grapheme] and [phoneme sequences] are as below : 
+For example, the [phoneme sequences] of the word ‘ ARREST’ is ‘ ER EH S T’ ; the input and output [vectors] of the [grapheme and phoneme sequences] are as below : 
 
 
-In the case of [LSTMs], we applied the [Adam optimization algorithm] with a starting [learning rate] of 0.001, and with baseline values of β1, β2 and ε (0.9, 0.999 and 1 × 10−8, respectively). 
+In the case of [LSTMs], we applied the [Adam optimization algorithm] with a starting learning rate of 0.001, and with baseline values of β1, β2 and ε (0.9, 0.999 and 1 × 10−8, respectively). 
 For [batch size], 128 was chosen. 
 Weights were saved when the PER on the [validation dataset] achieved a lower value than before. 
 When the PER did not decrease further for 100 [epochs], the best model was chosen, and it was trained with stochastic gradient descent (SGD) further. 
-In the case of the first, second and third models for SGD, we used 0.005 as the [learning rate], and 0.8 for momentum. 
+In the case of the first, second and third models for SGD, we used 0.005 as the learning rate, and 0.8 for momentum. 
 For the fourth (convolutional with [residual connections]) model, 0.05 ([learning rate]) and 0.8 (momentum) were applied, and it was trained for 142 when early stopping was called. 
-In the fifth model, 0.5 (learning rate) of SGD and 0.8 (momentum) was set, and when PER stopped improving for about 50 [epochs], the [learning rate] was multiplied by 4/5. 
+In the fifth model, 0.5 ([learning rate]) of SGD and 0.8 (momentum) was set, and when PER stopped improving for about 50 [epochs], the learning rate was multiplied by 4/5. 
 The numbers of [epochs] for this model reached 147 and 135 for [CMUDict] and [NetTalk], respectively. 
 In all proposed models, the patience of early stopping was set to 50 in the [Adam optimizer] and 30 in the SGD optimizer. 
 For [NetTalk experiments], the sizes of the input and [output layers] are as follows : input—{(length of the longest input (19) × number of [graphemes] (26) }) ; and output—{length of the longest output (19) × number of [phonemes] (52) }. 
@@ -269,7 +269,7 @@ Evaluation and Results
      
 NVidia Titan Xp (12 GB) and NVidia Titan X (12 GB) [GPU] cards hosted in two i7 workstations with 32 GB RAM served for training and inference. 
 Ubuntu 14.04 with [Cuda] 8.0 and cuDNN 5.0 was used as a general software architecture. 
-For training and evaluation, the Keras [deep learning framework] with Theano backend was our environment. 
+For training and evaluation, the Keras deep learning framework with Theano backend was our environment. 
 For evaluation, the standard and commonly used measurements of [phoneme error rate] (PER) and [word error rate] ([WER]) were calculated. 
 PER was used to measure the distance between the predicted [phoneme sequence] and reference pronunciation divided by the number of [phonemes] in the reference pronunciation. 
 Edit distance (also known as Levenshtein distance) is the minimum number of insertions (I), deletions (D) and substitutions (S), that are required to transform one sequence into the other. 
@@ -280,7 +280,7 @@ After training the model, predictions were run on the [test dataset].
 The results of evaluation on the [CMUDict dataset] are shown in Table. 
 The first and second columns show the model number and the applied architecture, respectively. 
 The third and fourth columns show the PER and [WER values]. 
-The fifth column of Table contains the average sum of training and validation time of one [epoch]. 
+The fifth column of Table contains the average sum of training and validation time of one epoch. 
 The last two columns present information about the size of models, which shows the number of parameters (weights) and the number of [epochs] to reach minimum validation loss. 
 According to the results, the [encoder-decoder Bi-LSTM architecture] (Model 2) outperforms the first model, as expected. 
 However, [attention-based Model] 1 (called Model 1A in Table) outperforms Model 2 in terms of PER. 
@@ -354,7 +354,7 @@ Another error type regards [sequences of graphemes] that are rarely represented 
 For example, for the word ZANGHI Model 5 output is (Z AE N G), while the reference is (Z AA N G IY). 
 The [graphemes] ‘ NGHI’ appeared only 7 times in the [training data]. 
 Furthermore, many words are of foreign origin, for example, GDANSK is Polish a city, SCICCHITANO is an Italian name, KOVACIK is a Turkish surname. 
-Generating [phoneme] sequences of abbreviations is one of the hard challenges. 
+Generating [phoneme sequences] of abbreviations is one of the hard challenges. 
 For example, LPN, INES are shown with their references and the prediction form of Model 5 in Table :     
 
 Table. Examples of errors predicted by Model 5. 

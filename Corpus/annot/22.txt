@@ -48,11 +48,11 @@ It also requires conditioning on [linguistic features] from an existing [TTS fro
 Another recently-developed [neural model] is [DeepVoice], which replaces every component in a typical [TTS pipeline] by a corresponding [neural network]. 
 However, each component is independently trained, and it’s nontrivial to change the system to train in an [end-to-end fashion]. 
 To our knowledge is the earliest work touching [end-to-end TTS] using [seq2seq] with attention. 
-However, it requires a pre-trained hidden [Markov model (HMM) aligner] to help the [seq2seq model] learn the alignment. 
+However, it requires a pre-trained [hidden Markov model (HMM) aligner] to help the [seq2seq model] learn the alignment. 
 It’s hard to tell how much alignment is learned by the [seq2seq] per se. 
 Second, a few tricks are used to get the model trained, which the authors note hurts [prosody]. 
 Third, it predicts [vocoder parameters] hence needs a [vocoder]. 
-Furthermore, the model is trained on [phoneme inputs] and the experimental results seem to be somewhat limited. 
+Furthermore, the model is trained on [phoneme] inputs and the experimental results seem to be somewhat limited. 
 Char2Wav is an independently-developed [end-to-end model] that can be trained on characters. 
 However, Char2Wav still predicts [vocoder parameters] before using a [SampleRNN neural vocoder], whereas [Tacotron] directly predicts [raw spectrogram]. 
 Also, their [seq2seq] and [SampleRNN models] need to be separately pre-trained, but our model can be trained from scratch. 
@@ -98,7 +98,7 @@ with width k and c output channels with [ReLU activation]. FC stands for fully-c
 
 [DECODER] 
 
-We use a content-based [tanh attention decoder], where a stateful [recurrent layer] produces the attention query at each [decoder] time step. 
+We use a content-based [tanh attention decoder], where a stateful [recurrent layer] produces the attention query at each decoder time step. 
 We concatenate the [context vector] and the [attention RNN cell output] to form the input to the [decoder RNNs]. 
 We use a stack of [GRUs] with vertical [residual connections] for the [decoder]. 
 We found the [residual connections] speed up convergence. 
@@ -122,7 +122,7 @@ During training, we always feed every r-th ground truth frame to the [decoder].
 The input frame is passed to a [pre-net] as is done in the [encoder]. 
 Since we do not use techniques such as scheduled sampling (we found it to hurt [audio quality]), the [dropout] in the [pre-net] is critical for the model to generalize, as it provides a noise source to resolve the multiple modalities in the output distribution. 
 
-POST-PROCESSING NET AND [WAVEFORM SYNTHESIS] 
+[POST-PROCESSING NET] AND [WAVEFORM SYNTHESIS] 
 
 As mentioned above, the [post-processing net]’s task is to convert the [seq2seq target] to a target that can be synthesized into [waveforms]. 
 Since we use [Griffin-Lim] as the synthesizer, the [post-processing net learns] to predict [spectral] magnitude sampled on a linear-frequency scale. 
@@ -141,7 +141,7 @@ We emphasize that our choice of [Griffin-Lim] is for simplicity ; while it alrea
 MODEL DETAILS 
 
 Table 1 lists the [hyper-parameters] and [network architectures]. 
-We use [log magnitude spectrogram] with Hann windowing, 50 ms frame length, 12.5 ms frame shift, and 2048-point Fourier transform. 
+We use [log magnitude spectrogram] with Hann windowing, 50 ms frame length, 12.5 ms frame shift, and 2048-point [Fourier transform]. 
 We also found pre-emphasis (0.97) to be helpful. 
 We use 24 kHz sampling rate for all experiments. 
 We use r = 2 ([output layer] reduction factor) for the [MOS results] in this paper, though larger r values (e.g. r = 5) also work well. 

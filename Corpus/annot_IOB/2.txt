@@ -8,7 +8,7 @@ For (O) example, (O) [discriminative (B) features (I)] are (O) seeing (O) wide (
 Another (O) example (O) is (O) the (O) apparent (O) convergence (O) of (O) [speech (B) recognition (I)] and (O) [speech (B) synthesis (I) technologies (I)] in (O) the (O) form (O) of (O) [statistical (B) parametric (I)] methodologies. (O) 
 This (O) convergence (O) enables (O) the (O) investigation (O) of (O) new (O) approaches (O) to (O) unified (O) modelling (O) for (O) [automatic (B) speech (I) recognition (I)] and (O) [text-to-speech (B) synthesis (I)] ([TTS (B)]) as (O) well (O) as (O) [cross-lingual (B) speaker (I) adaptation (I)] for (O) [TTS (B)]. 
 The (O) second (O) driving (O) force (O) is (O) the (O) impetus (O) being (O) provided (O) by (O) both (O) government (O) and (O) industry (O) for (O) technologies (O) to (O) help (O) break (O) down (O) domestic (O) and (O) international (O) language (O) barriers, (O) these (O) also (O) being (O) barriers (O) to (O) the (O) expansion (O) of (O) policy (O) and (O) commerce. (O) 
-[Speech-to-speech (B)] and (O) [speech-to (B)]-text translation (O) are (O) thus (O) emerging (O) as (O) key (O) technologies (O) at (O) the (O) heart (O) of (O) which (O) lies (O) [multilingual (B) speech (I) processing (I)]. 
+[Speech-to-speech (B)] and (O) [speech-to-text (B) translation (I)] are (O) thus (O) emerging (O) as (O) key (O) technologies (O) at (O) the (O) heart (O) of (O) which (O) lies (O) [multilingual (B) speech (I) processing (I)]. 
 
 Keywords. (O) [Multilingual (B) speech (I) processing (I)] ; [speech (B) synthesis (I)] ; [speech (B) recognition (I)] ; [speech-to-speech (B) translation (I)] ; language (O) identification. (O) 
 
@@ -65,7 +65,7 @@ Such (O) advances (O) have, (O) however, (O) translated (O) easily (O) to (O) di
 State-of-the-art (O) [ASR (B) systems (I)] are (O) stochastic (O) in (O) nature (O) and (O) are (O) typically (O) based (O) on (O) [HMM (B)]. 
 Figure (O)   illustrates (O) a (O) typical (O) [HMM-based (B) ASR (I) system (I)] for (O) English (O) language. (O) 
 From (O) a (O) spoken (O) language (O) perspective, (O) the (O) different (O) components (O) of (O) the (O) [HMM-based (B) ASR (I) system (I)] are (O) as (O) follows. (O) 
-(i) (O) [Feature (B) extractor (I)] that (O) extracts (O) the (O) relevant (O) information (O) from (O) the (O) [speech (B) signal (I)] yielding (O) a (O) sequence (O) of (O) [feature (B) observations (I)] / [vectors (B)]. 
+(i) (O) [Feature (B) extractor (I)] that (O) extracts (O) the (O) relevant (O) information (O) from (O) the (O) [speech (B) signal (I)] yielding (O) a (O) sequence (O) of (O) [feature (B) observations (I) / (I) vectors (I)]. 
 [Feature (B) extraction (I)] is (O) typically (O) considered (O) a (O) [language (B) independent (I) process (I)] (i.e., (O) [common (B) feature (I)] extraction (O) algorithms (O) are (O) used (O) in (O) most (O) systems (O) regardless (O) of (O) language), (O) although (O) in (O) some (O) cases (O) (such (O) as (O) tonal (O) languages) (O) specific (O) processing (O) should (O) be (O) explored. (O) 
 (ii) (O) [Acoustic (B) model (I)] that (O) models (O) the (O) relation (O) between (O) the (O) [feature (B) vector (I)] and (O) units (O) of (O) spoken (O) form (O) (sound (O) units (O) such (O) as (O) phones). (O) 
 (iii) (O) [Lexicon (B)] that (O) integrates (O) lexical (O) constraints (O) on (O) top (O) of (O) spoken (O) unit (O) level (O) representation (O) yielding (O) a (O) unit (O) representation (O) that (O) is (O) typically (O) common (O) to (O) both (O) spoken (O) form (O) and (O) written (O) form (O) such (O) as, (O) word (O) or (O) [morpheme (B)]. 
@@ -78,8 +78,8 @@ http://www.nist.gov/index.html (O)
 
 Figure. (O) Illustration (O) of (O) a (O) typical (O) [HMM-based (B) ASR (I) system (I)]. 
 
-The (O) [HMM-based (B) ASR (I) system (I)] using (O) Gaussians (O) to (O) model (O) the (O) [feature (B) observations (I)] is (O) referred (O) to (O) as (O) [HMM (B)] / [GMM (B) system (I)]. 
-Similarly, (O) hybrid (O) [HMM (B)] / ANN (O) systems (O) refer (O) to (O) the (O) case (O) where (O) [artificial (B) neural (I) networks (I)] (ANNs), (O) typically, (O) [MLPs (B)], are (O) used (O) to (O) model (O) the (O) [feature (B) observations (I)] and (O) estimate (O) phone (O) posteriors (O) based (O) on (O) the (O) [input (B) features (I)] within (O) some (O) temporal (O) context (O) (typically (O) 90 (O) ms). (O) 
+The (O) [HMM-based (B) ASR (I) system (I)] using (O) Gaussians (O) to (O) model (O) the (O) [feature (B) observations (I)] is (O) referred (O) to (O) as (O) [HMM (B) / (I) GMM (I) system (I)]. 
+Similarly, (O) [hybrid (B) HMM (I) / (I) ANN (I) systems (I)] refer (O) to (O) the (O) case (O) where (O) [artificial (B) neural (I) networks (I)] ([ANNs (B)]), typically, (O) [MLPs (B)], are (O) used (O) to (O) model (O) the (O) [feature (B) observations (I)] and (O) estimate (O) phone (O) posteriors (O) based (O) on (O) the (O) [input (B) features (I)] within (O) some (O) temporal (O) context (O) (typically (O) 90 (O) ms). (O) 
 In (O) [ASR (B)], we (O) are (O) generally (O) attempting (O) to (O) address (O) one (O) of (O) two (O) issues (O) in (O) [MLSP (B)]. 
 The (O) first (O) issue (O) is (O) that (O) of (O) building (O) [multilingual (B) models (I)] ; that (O) is, (O) models (O) that (O) can (O) recognize (O) [speech (B)] of (O) multiple (O) languages. (O) 
 In (O) building (O) such (O) [multilingual (B) systems (I)], a (O) major (O) issue (O) is (O) the (O) availability (O) of (O) resources. (O) 
@@ -104,7 +104,7 @@ In (O) the (O) literature, (O) different (O) studies (O) have (O) been (O) repor
 When (O) compared (O) to (O) the (O) use (O) of (O) [monolingual (B) acoustic (I) models (I)], it (O) has (O) been (O) typically (O) observed (O) that (O) [multilingual (B) acoustic (I) models (I)] yield (O) a (O) better (O) starting (O) point (O) for (O) such (O) [cross-language (B) transfer (I)]. 
 From (O) the (O) above (O) brief (O) literature (O) overview, (O) it (O) is (O) clear (O) that (O) there (O) has (O) been (O) reasonable (O) success (O) in (O) constructing (O) [multilingual (B) acoustic (I) models (I)]. 
 However, (O) developing (O) multilingual (O) language (O) models (O) is (O) still (O) an (O) open (O) issue. (O) 
-Standard (O) [ASR (B) systems (I)] typically (O) use (O) [N-gram (B) language (I) models (I)], where (O) word (O) sequences (O) are (O) modelled (O) by (O) a (O) N (O) th (O) order (O) [Markov (B)] chain, (O) i.e., (O) the (O) model (O) consists (O) of (O) probability (O) to (O) transit (O) to (O) a (O) word (O) given (O) a (O) word (O) sequence (O) of (O) length (O) N8. (O) 
+Standard (O) [ASR (B) systems (I)] typically (O) use (O) [N-gram (B) language (I) models (I)], where (O) word (O) sequences (O) are (O) modelled (O) by (O) a (O) N (O) th (O) order (O) [Markov (B) chain (I)], i.e., (O) the (O) model (O) consists (O) of (O) probability (O) to (O) transit (O) to (O) a (O) word (O) given (O) a (O) word (O) sequence (O) of (O) length (O) N8. (O) 
 When (O) estimating (O) [N-gram (B) language (I) models (I)] for (O) different (O) languages, (O) the (O) [language-specific (B)] characteristic (O) plays (O) a (O) greater (O) role. (O) 
 For (O) instance, (O) at (O) the (O) word (O) level, (O) the (O) perplexity (O) of (O) the (O) language (O) can (O) vary (O) greatly (O) depending (O) on (O) the (O) degree (O) of (O) morphological (O) inflection. (O) 
 As (O) a (O) result, (O) morphologically (O) rich (O) languages (O) can (O) have (O) many (O) more (O) words, (O) thus (O) leading (O) to (O) morphological-level (O) rather (O) than (O) word-level (O) representations. (O) 
@@ -129,18 +129,18 @@ A (O) second (O) area (O) of (O) research (O) that (O) has (O) a (O) more (O) ev
 In (O) polyglot (O) synthesis, (O) the (O) goal (O) is (O) the (O) synthesis (O) of (O) mixed (O) language (O) utterances, (O) hence, (O) a (O) major (O) challenge (O) is (O) in (O) proper (O) text (O) parsing (O) that (O) enables (O) correct (O) pronunciation (O) and (O) intonation (O) of (O) such (O) [speech (B)]. 
 Given (O) appropriate (O) text (O) parsing, (O) the (O) main (O) concern (O) of (O) [unit (B) selection (I) synthesis (I)] is (O) the (O) efficient (O) design (O) of (O) a (O) mixed-language (O) inventory (O) of (O) [speech (B)]. 
 A (O) related (O) field (O) of (O) research, (O) [voice (B) conversion (I)], has (O) helped (O) overcome (O) some (O) of (O) the (O) limitations (O) of (O) [unit (B) selection (I) methods (I)] with (O) respect (O) to (O) [MLSP (B)]. 
-In (O) particular, (O) the (O) application (O) of (O) [voice (B) conversion (I)] to (O) [cross-lignual (B) scenarios (I)] has (O) been (O) investigated, (O) especially (O) in (O) the (O) context (O) of (O) [speech-to-speech (B) translation (I)]. Drawbacks (O) of (O) [voice (B) conversion (I)] techniques (O) lie (O) in (O) their (O) limited (O) ability (O) to (O) modify (O) supra-segmental (O) [speech (B)] characteristics (O) and (O) the (O) requirement (O) of (O) [parallel (B) data (I)] for (O) learning (O) the (O) conversion, (O) although (O) some (O) progress (O) in (O) this (O) direction (O) has (O) been (O) made. (O) 
+In (O) particular, (O) the (O) application (O) of (O) [voice (B) conversion (I)] to (O) [cross-lignual (B) scenarios (I)] has (O) been (O) investigated, (O) especially (O) in (O) the (O) context (O) of (O) [speech-to-speech (B) translation (I)]. Drawbacks (O) of (O) [voice (B) conversion (I)] techniques (O) lie (O) in (O) their (O) limited (O) ability (O) to (O) modify (O) supra-segmental (O) [speech (B) characteristics (I)] and (O) the (O) requirement (O) of (O) [parallel (B) data (I)] for (O) learning (O) the (O) conversion, (O) although (O) some (O) progress (O) in (O) this (O) direction (O) has (O) been (O) made. (O) 
 
 refers (O) to (O) unigram, (O) bigram, (O) trigram, (O) respectively. (O) 
 Code (O) switching (O) refers (O) to (O) the (O) case (O) where (O) the (O) user (O) switches (O) from (O) one (O) language (O) to (O) another (O) language. (O) 
 The (O) switch (O) can (O) happen (O) within (O) an (O) utterance (O) or (O) across (O) utterances. (O) 
 
-Automatic (O) language (O) recognition (O) 
+[Automatic (B) language (I) recognition (I)] 
 
-The (O) objective (O) of (O) automatic (O) language (O) recognition (O) is (O) to (O) recognize (O) the (O) spoken (O) language (O) by (O) automatic (O) analysis (O) of (O) [speech (B) data (I)]. 
-Automatic (O) language (O) recognition (O) can (O) be (O) classified (O) into (O) two (O) tasks (O) (i) (O) automatic (O) language (O) identification (O) and (O) (ii) (O) automatic (O) language (O) detection. (O) 
+The (O) objective (O) of (O) [automatic (B) language (I) recognition (I)] is (O) to (O) recognize (O) the (O) spoken (O) language (O) by (O) automatic (O) analysis (O) of (O) [speech (B) data (I)]. 
+[Automatic (B) language (I) recognition (I)] can (O) be (O) classified (O) into (O) two (O) tasks (O) (i) (O) automatic (O) language (O) identification (O) and (O) (ii) (O) automatic (O) language (O) detection. (O) 
 In (O) principle, (O) this (O) classification (O) is (O) similar (O) to (O) [speaker (B) identification (I)] and (O) [speaker (B) verification (I)] in (O) [speaker (B) recognition (I)] research. (O) 
-The (O) goal (O) of (O) automatic (O) language (O) identification (O) (LID) (O) is (O) to (O) classify (O) a (O) given (O) input (O) [speech (B)] utterance (O) as (O) belonging (O) to (O) one (O) out (O) of (O) L (O) languages. (O) 
+The (O) goal (O) of (O) automatic (O) language (O) identification (O) (LID) (O) is (O) to (O) classify (O) a (O) given (O) input (O) [speech (B) utterance (I)] as (O) belonging (O) to (O) one (O) out (O) of (O) L (O) languages. (O) 
 Various (O) possible (O) applications (O) of (O) LID (O) can (O) be (O) found (O) in (O) [multilingual (B) speech (I) processing (I)], call (O) routing, (O) [interactive (B) voice (I)] response (O) applications, (O) and (O) [front-end (B) processing (I)] for (O) [speech (B) translation (I) translation (I)]. 
 There (O) are (O) a (O) variety (O) of (O) cues, (O) including (O) [phonological (B)], morphological, (O) syntactical (O) or (O) prosodic (O) cues, (O) that (O) can (O) be (O) exploited (O) by (O) an (O) LID (O) system. (O) 
 In (O) the (O) literature, (O) different (O) approaches (O) have (O) been (O) proposed (O) to (O) perform (O) LID, (O) such (O) as (O) using (O) only (O) low-level (O) [spectral (B) information (I)], using (O) [phoneme (B)] recognizers (O) in (O) conjunction (O) with (O) [phonotactic (B) constraints (I)] or (O) using (O) mediumto (O) high-level (O) information (O) (e.g. (O) lexical (O) constraints, (O) language (O) models) (O) through (O) [speech (B) recognition (I)]. 
@@ -151,10 +151,10 @@ Given (O) a (O) segment (O) of (O) [speech (B) signal (I)] and (O) associated (O
 A (O) null (O) hypothesis (O) that (O) the (O) given (O) [speech (B) segment (I)] belongs (O) to (O) the (O) claimed (O) language (O) or (O) the (O) alternative (O) hypothesis (O) that (O) the (O) given (O) segment (O) does (O) not (O) belong (O) to (O) the (O) claimed (O) language. (O) 
 Usually, (O) this (O) is (O) achieved (O) by (O) training (O) a (O) model (O) corresponding (O) to (O) the (O) null (O) hypothesis (O) using (O) data (O) from (O) the (O) [target (B) language (I)], and (O) a (O) separate (O) model (O) corresponding (O) to (O) the (O) alternate (O) hypothesis (O) using (O) data (O) from (O) different (O) languages. (O) 
 
-Recent (O) trends (O) in (O) [speech (B)] and (O) language (O) processing (O) 
+Recent (O) trends (O) in (O) [speech (B)] and (O) [language (B) processing (I)] 
 
-We (O) can (O) identify (O) a (O) number (O) of (O) advances (O) in (O) [speech (B)] and (O) language (O) processing (O) that (O) have (O) significantly (O) impacted (O) [MLSP (B)]. 
-One (O) of (O) the (O) most (O) important (O) developments (O) has (O) been (O) the (O) rise (O) of (O) statistical (O) [machine (B) translation (I)] that (O) has (O) resulted (O) in (O) substantial (O) funding (O) and, (O) consequently, (O) research (O) activity (O) being (O) directed (O) towards (O) [machine (B) translation (I)] and (O) its (O) related (O) multilingual (O) applications (O) ([speech-to-speech (B)], [speech-to (B)]-text translation, (O) etc.). (O) 
+We (O) can (O) identify (O) a (O) number (O) of (O) advances (O) in (O) [speech (B)] and (O) [language (B) processing (I)] that (O) have (O) significantly (O) impacted (O) [MLSP (B)]. 
+One (O) of (O) the (O) most (O) important (O) developments (O) has (O) been (O) the (O) rise (O) of (O) statistical (O) [machine (B) translation (I)] that (O) has (O) resulted (O) in (O) substantial (O) funding (O) and, (O) consequently, (O) research (O) activity (O) being (O) directed (O) towards (O) [machine (B) translation (I)] and (O) its (O) related (O) multilingual (O) applications (O) ([speech-to-speech (B)], [speech-to-text (B) translation (I)], etc.). (O) 
 Several (O) notable (O) projects (O) have (O) been (O) pursued (O) in (O) recent (O) years, (O) to (O) mention (O) only (O) a (O) few (O) : Spoken (O) Language (O) Communication (O) and (O) Translation (O) System (O) for (O) Tactical (O) Use (O) (TRANSTAC (O) DARPA (O) initiative), (O) Technology (O) and (O) Corpora (O) for (O) [Speech (B)] to (O) [Speech (B) Translation (I)] (TC-STAR (O) FP6 (O) European (O) project), (O) and (O) the (O) Global (O) Autonomous (O) Language (O) Exploitation (O) ([GALE (B)] DARPA (O) initiative10). (O) 
 Research (O) in (O) these (O) projects (O) not (O) only (O) needs (O) to (O) focus (O) on (O) the (O) optimization (O) of (O) individual (O) components, (O) but (O) also (O) on (O) how (O) the (O) components (O) can (O) be (O) integrated (O) together (O) effectively (O) to (O) provide (O) overall (O) improved (O) output. (O) 
 This (O) is (O) not (O) a (O) trivial (O) task. (O) 
@@ -183,10 +183,10 @@ At (O) Idiap, (O) [multilingual (B) speech (I) processing (I)] is (O) an (O) imp
   (i) (O) EMIME11 (O) (Effective (O) Multilingual (O) Interaction (O) in (O) Mobile (O) Environments) (O) : This (O) FP7 (O) EU (O) project (O) commenced (O) in (O) March (O) 2008 (O) and (O) is (O) investigating (O) the (O) personalization (O) of (O) [speech-to-speech (B) translation (I) systems (I)]. 
 The (O) EMIME (O) project (O) aims (O) to (O) achieve (O) its (O) goal (O) through (O) the (O) use (O) of (O) [HMM-based (B) ASR (I)] and (O) [TTS (B)], more (O) specifically, (O) the (O) main (O) research (O) goal (O) is (O) the (O) development (O) of (O) techniques (O) that (O) enable (O) [unsupervised (B) cross-lingual (I) speaker (I) adaptation (I)] for (O) [TTS (B)]. 
  (ii) (O) GALE12 (O) (Global (O) Autonomous (O) Language (O) Exploitation) (O) : Idiap (O) was (O) involved (O) in (O) this (O) DARPA-funded (O) project (O) as (O) part (O) of (O) the (O) SRI-lead (O) team. (O) The (O) project (O) primarily (O) involved (O) [machine (B) translation (I)] and (O) information (O) distillation. (O) 
-We (O) have (O) mostly (O) studied (O) the (O) development (O) of (O) new (O) discriminative (O) [MLP (B)]-based features (O) and (O) [MLP (B)] combination (O) methods (O) for (O) the (O) [ASR (B) components (I)]. 
+We (O) have (O) mostly (O) studied (O) the (O) development (O) of (O) new (O) discriminative (O) [MLP-based (B) features (I)] and (O) [MLP (B)] combination (O) methods (O) for (O) the (O) [ASR (B) components (I)]. 
 Despite (O) cessation (O) of (O) the (O) project, (O) we (O) have (O) continued (O) our (O) research (O) of (O) this (O) topic. (O) 
 (iii) (O) MULTI (O) (MULTImodal (O) Interaction (O) and (O) [MULTImedia (B) Data (I)] Mining) (O) is (O) a (O) Swiss (O) National (O) Science (O) Foundation (O) (SNSF) (O) project (O) carrying (O) out (O) fundamental (O) research (O) in (O) several (O) related (O) fields (O) of (O) multimodal (O) interaction (O) and (O) [multimedia (B) data (I)] mining. (O) 
-A (O) recently (O) initiated (O) MULTI (O) sub-project (O) is (O) conducting (O) research (O) in (O) [MLP (B)]-based methods (O) for (O) language (O) identification (O) and (O) [multilingual (B) speech (I) recognition (I)] with (O) a (O) focus (O) on (O) Swiss (O) languages. (O) 
+A (O) recently (O) initiated (O) MULTI (O) sub-project (O) is (O) conducting (O) research (O) in (O) [MLP-based (B) methods (I)] for (O) language (O) identification (O) and (O) [multilingual (B) speech (I) recognition (I)] with (O) a (O) focus (O) on (O) Swiss (O) languages. (O) 
 (iv) (O) COMTIS13 (O) (Improving (O) the (O) coherence (O) of (O) [machine (B) translation (I) output (I)] by (O) modelling (O) intersentential (O) relations) (O) is (O) a (O) new (O) [machine (B) translation (I)] project (O) funded (O) by (O) the (O) SNSF (O) that (O) was (O) started (O) on (O) March (O) 2010. (O) 
 The (O) project (O) is (O) concerned (O) with (O) modelling (O) the (O) coherency (O) between (O) sentences (O) in (O) [machine (B) translation (I) output (I)], thereby (O) improving (O) overall (O) translation (O) performance. (O) 
 In (O) the (O) remainder (O) of (O) the (O) paper, (O) we (O) present (O) three (O) case (O) studies (O) conducted (O) in (O) MSLP (O) at (O) Idiap (O) that (O) have (O) resulted (O) from (O) participation (O) in (O) the (O) above-mentioned (O) research (O) projects. (O) 
@@ -322,7 +322,7 @@ Furthermore, (O) our (O) efforts (O) towards (O) [unsupervised (B) cross-lingual
 [MLP (B) features (I)] and (O) [multilingual (B) ASR (I)] 
 
 There (O) have (O) been (O) shortcomings (O) in (O) the (O) current (O) approaches (O) but (O) efforts (O) are (O) underway (O) to (O) overcome (O) these (O) issues. (O) 
-There (O) has (O) been (O) sustained (O) interest (O) in (O) using (O) [MLP (B)]-based [discriminative (B) features (I)] for (O) [automatic (B) speech (I) recognition (I)] for (O) several (O) reasons. (O) 
+There (O) has (O) been (O) sustained (O) interest (O) in (O) using (O) [MLP-based (B) discriminative (I) features (I)] for (O) [automatic (B) speech (I) recognition (I)] for (O) several (O) reasons. (O) 
 (i) (O) Discriminative (O) nature (O) of (O) the (O) features (O)  
 (ii) (O) Ability (O) of (O) [MLP (B)] to (O) handle (O) different (O) types (O) of (O) features (O) and (O) long (O) temporal (O) context (O) at (O) the (O) input. (O) 
 (iii) (O) Robustness (O) towards (O) speaker (O)   and (O) environmental (O) variation (O)   (iv) (O) Ability (O) to (O) combine (O) [multiple (B) feature (I)] streams (O) at (O) [MLP (B) output (I)] level (O) using (O) probabilistic (O) methods (O) (v) (O) Performance (O) improvements (O) obtained (O) are (O) scalable (O) across (O) different (O) training (O) criteria, (O) as (O) well (O) as (O) with (O) amount (O) of (O) data. (O) 
@@ -330,7 +330,7 @@ Figure (O)   depicts (O) a (O) typical (O) [MLP (B) feature (I)]-based [ASR (B) 
 The (O) main (O) components (O) of (O) [MLP (B) feature (I)] extraction (O) are (O) (i) (O) an (O) [MLP (B)] trained (O) to (O) classify (O) [phonemes (B)] / phones (O) and (O) (ii) (O) Karhunen (O) Loeve (O) transformation (O) (KLT) (O) matrix (O) (estimated (O) on (O) a (O) data (O) other (O) than (O) [test (B) data (I)]) to (O) decorrelate (O) the (O) [feature (B) vectors (I)]. 
 Optionally, (O) during (O) KLT (O) dimensionality, (O) reduction (O) could (O) be (O) done. (O) 
 This (O) helps (O) in (O) controlling (O) the (O) dimensionality (O) of (O) the (O) [feature (B) space (I)], especially (O) when (O) the (O) [MLP (B) features (I)] are (O) concatenated (O) with (O) the (O) standard (O) [spectral (B) features (I)]. 
-Traditionally, (O) a (O) [HMM (B)] / [GMM (B) system (I)] models (O) [acoustic (B) features (I)] that (O) are (O) extracted (O) from (O) shortterm (O) [spectrum (B)] (usually (O) 20–30 (O) ms) (O) of (O) [speech (B) signal (I)]. 
+Traditionally, (O) a (O) [HMM (B) / (I) GMM (I) system (I)] models (O) [acoustic (B) features (I)] that (O) are (O) extracted (O) from (O) shortterm (O) [spectrum (B)] (usually (O) 20–30 (O) ms) (O) of (O) [speech (B) signal (I)]. 
 The (O) extraction (O) of (O) these (O) [acoustic (B) features (I)] is (O) assumed (O) to (O) be (O) [language-independent (B)]. 
 When (O) compared (O) to (O) [GMM-based (B) modelling (I)], [MLPs (B)] have (O) the (O) capability (O) to (O) model (O) higher (O) [dimensional (B) feature (I) vector (I)] (e.g., (O) standard (O) [spectral (B) features (I)] with (O) temporal (O) context). (O) 
 Furthermore, (O) [MLPs (B)] avoid (O) the (O) need (O) to (O) make (O) assumption (O) about (O) parametric (O) distribution (O) of (O) [input (B) features (I)]. 
@@ -379,7 +379,7 @@ The (O) [MRASTA (B)] and (O) [hier-MRASTA (B) features (I)] were (O) first (O) s
 The (O) [training (B) data (I)] consisted (O) of (O) 112 (O) hours (O) of (O) [meeting (B) data (I)] from (O) different (O) sites. (O) 
 Thirty-nine-dimensional (O) [PLP (B) cepstral (I) features (I)] consisting (O) of (O) 13 (O) static (O) coefficients, (O) their (O) approximate (O) first-order (O) and (O) second-order (O) derivatives (O) was (O) used (O) as (O) [baseline (B) feature (I)]. 
 The (O) [MLP (B)] of (O) [MRASTA (B) feature (I)] extractor (O) and (O) [MLPs (B)] of (O) [hier-MRASTA (B) feature (I) extractor (I)] were (O) trained (O) to (O) classify (O) 45 (O) [context-independent (B) phonemes (I)]. 
-The (O) [HMM (B)] / [GMM (B) system (I)] was (O) trained (O) using (O) HTK (O) with (O) [maximum (B) likelihood (I)] criterion. (O) 
+The (O) [HMM (B) / (I) GMM (I) system (I)] was (O) trained (O) using (O) HTK (O) with (O) [maximum (B) likelihood (I)] criterion. (O) 
 The (O) [ASR (B) systems (I)] were (O) tested (O) using (O) NIST (O) RT05 (O) [evaluation (B) data (I)]. 
 The (O) resulting (O) [WER (B)] for (O) the (O) systems (O) using (O) [PLP (B) feature (I)], [MRASTA (B) feature (I)] and (O) [hier-MRASTA (B) feature (I)] are (O) shown (O) in (O) table. (O) 
 For (O) Mandarin (O) language (O) [ASR (B) studies (I)], we (O) used (O) 100 (O) hours (O) [training (B) data (I)] setup (O) consisting (O) of (O) broadcast (O) news (O) and (O) broadcast (O) [conversation (B) data (I)]. 
@@ -418,7 +418,7 @@ This (O) could (O) be (O) because (O) Mandarin (O) and (O) English (O) are (O) v
 Further, (O) it (O) should (O) be (O) noted (O) that (O) the (O) Mandarin (O) [MLP (B)] was (O) trained (O) with (O) [speech (B) signal (I)] of (O) bandwidth (O) 8 (O) kHz (O) whereas (O) the (O) English (O) [MLP (B)] was (O) trained (O) with (O) [speech (B) signal (I)] of (O) bandwidth (O) 4 (O) kHz. (O) 
 Nevertheless, (O) these (O) results (O) suggest (O) that (O) through (O) [MLP (B) features (I)], [speech (B) data (I)] of (O) other (O) languages (O) could (O) be (O) effectively (O) utilized (O) to (O) improve (O) [ASR (B) performance (I)] of (O) another (O) language. (O) 
 In (O) the (O) literature, (O) similar (O) [cross-lingual (B) studies (I)] have (O) been (O) reported. (O) 
-In, (O) it (O) was (O) shown (O) that (O) using (O) [MLP (B)]-based features (O) extracted (O) from (O) English-trained (O) [MLP (B)] could (O) improve (O) Mandarin (O) and (O) Arabic (O) [ASR (B) performance (I)] over (O) the (O) [spectral (B) feature (I)] baseline (O) system. (O) 
+In, (O) it (O) was (O) shown (O) that (O) using (O) [MLP-based (B) features (I)] extracted (O) from (O) English-trained (O) [MLP (B)] could (O) improve (O) Mandarin (O) and (O) Arabic (O) [ASR (B) performance (I)] over (O) the (O) [spectral (B) feature (I)] baseline (O) system. (O) 
 
 Table. (O) Performance (O) of (O) Mandarin (O) [ASR (B) systems (I)] investigated (O) in (O) the (O) [cross-lingual (B) feature (I) study (I)]. Monolingual (O) tandem (O) refers (O) to (O) [MLP (B) feature (I)] extracted (O) using (O) [MLP (B)] trained (O) on (O) [Mandarin (B) data (I)]. [Cross-lingual (B) tandem (I)] refers (O) to (O) [MLP (B) feature (I)] extracted (O) using (O) [MLP (B)] trained (O) on (O) [English (B) data (I)]. The (O) performance (O) is (O) measured (O) in (O) terms (O) of (O) CER. (O) 
 
@@ -430,10 +430,10 @@ The (O) [ASR (B) studies (I)] showed (O) that (O) [cross-lingual (B) adaptation 
 Although, (O) the (O) studies (O) on (O) [cross-lingual (B) MLP (I) features (I)] are (O) limited, (O) it (O) has (O) been (O) typically (O) found (O) (including (O) the (O) study (O) presented (O) here) (O) that (O) using (O) [MLPs (B)] trained (O) on (O) a (O) different (O) language (O) ‘ (O) directly’ (O) may (O) not (O) yield (O) a (O) system (O) better (O) than (O) [MLP (B)] trained (O) on (O) [target (B) language (I) data (I)] (if (O) available). (O) 
 In (O) other (O) words, (O) to (O) make (O) better (O) use (O) of (O) the (O) [MLPs (B)] trained (O) on (O) a (O) different (O) language, (O) [cross-lingual (B) adaptation (I)] or (O) some (O) kind (O) of (O) training (O) on (O) the (O) [target (B) language (I)] may (O) be (O) necessary. (O) 
 The (O) [cross-lingual (B) adaptation (I) approach (I)] discussed (O) earlier (O) is (O) one (O) way (O) this (O) could (O) be (O) achieved. (O) 
-Another (O) way (O) would (O) be (O) to (O) use (O) the (O) recently (O) proposed (O) hierarchical (O) [MLP (B)]-based phone (O) posterior (O) estimation (O) approach, (O) where (O) two (O) stages (O) (hierarchy) (O) of (O) [MLPs (B)] are (O) trained (O) to (O) classify (O) [context-independent (B) phones (I)]. 
+Another (O) way (O) would (O) be (O) to (O) use (O) the (O) recently (O) proposed (O) hierarchical (O) [MLP-based (B) phone (I) posterior (I) estimation (I)] approach, (O) where (O) two (O) stages (O) (hierarchy) (O) of (O) [MLPs (B)] are (O) trained (O) to (O) classify (O) [context-independent (B) phones (I)]. 
 In (O) the (O) first (O) stage, (O) the (O) [input (B) feature (I)] to (O) the (O) [MLPs (B)] is (O) a (O) standard (O) [spectral (B)]-based feature. (O) 
 The (O) input (O) to (O) the (O) second (O) stage (O) [MLP (B)] is (O) [phone (B) posterior (I) probabilities (I)] estimated (O) by (O) the (O) first (O) stage (O) [MLP (B)] with (O) temporal (O) context (O) of (O) around (O) 150–230 (O) ms. (O) 
-This (O) approach (O) has (O) been (O) shown (O) to (O) yield (O) better (O) [phoneme (B) recognition (I)] performance (O) as (O) well (O) as (O) [ASR (B) performance (I)] than (O) the (O) single (O) [MLP (B)]-based approach. (O) 
+This (O) approach (O) has (O) been (O) shown (O) to (O) yield (O) better (O) [phoneme (B) recognition (I)] performance (O) as (O) well (O) as (O) [ASR (B) performance (I)] than (O) the (O) single (O) [MLP-based (B) approach (I)]. 
 In (O) the (O) context (O) of (O) [cross-lingual (B) adaptation (I)], the (O) first (O) [MLP (B)] can (O) be (O) trained (O) on (O) a (O) resource (O) rich (O) language(s) (O) and (O) the (O) second (O) [MLP (B)] can (O) be (O) trained (O) on (O) the (O) [target (B) language (I)] with (O) the (O) [available (B) data (I)]. 
 
 [Multilingual (B) MLP (I) features (I)] 
@@ -507,17 +507,17 @@ Our (O) studies (O) indicate (O) that (O) shared (O) [multilingual (B) MLP (I) f
 
 Language (O) identification (O) / detection (O) 
 
-In (O) section, (O) we (O) briefly (O) described (O) that (O) language (O) identification (O) systems (O) use (O) different (O) levels (O) of (O) abstraction (O) related (O) to (O) spoken (O) language (O) processing, (O) including (O) the (O) use (O) of (O) [phonotactic (B) constraints (I)], lexical (O) constraints, (O) or (O) both (O) lexical (O) and (O) language (O) constraints (O) through (O) [ASR (B) system (I)]. 
-Section (O)   presents (O) a (O) preliminary (O) study (O) on (O) hierarchical (O) [MLP (B)]-based LID (O) system. (O) 
+In (O) section, (O) we (O) briefly (O) described (O) that (O) language (O) identification (O) systems (O) use (O) different (O) levels (O) of (O) abstraction (O) related (O) to (O) spoken (O) [language (B) processing (I)], including (O) the (O) use (O) of (O) [phonotactic (B) constraints (I)], lexical (O) constraints, (O) or (O) both (O) lexical (O) and (O) language (O) constraints (O) through (O) [ASR (B) system (I)]. 
+Section (O)   presents (O) a (O) preliminary (O) study (O) on (O) hierarchical (O) [MLP-based (B) LID (I) system (I)]. 
 This (O) system (O) tries (O) to (O) capture (O) implicitly (O) [phonotactic (B) constraints (I)] and (O) acoustic (O) confusions (O) present (O) at (O) the (O) output (O) of (O) a (O) [multilingual (B) MLP (I)] to (O) achieve (O) language (O) identification. (O) 
 Another (O) way (O) of (O) framing (O) the (O) language (O) detection (O) (LD) (O) problem (O) is (O) in (O) terms (O) of (O) out-of-vocabulary (O) (OOV) (O) detection. (O) 
 [Monolingual (B) automatic (I) speech (I) recognition (I) systems (I)] assume (O) that (O) the (O) test (O) utterances (O) contain (O) only (O) words (O) from (O) the (O) [target (B) language (I)]. 
 However, (O) it (O) is (O) possible (O) that (O) segments (O) of (O) test (O) utterances (O) can (O) contain (O) words (O) from (O) foreign (O) language(s), (O) especially (O) in (O) natural (O) conversations. (O) 
 In (O) section, (O) we (O) present (O) an (O) approach (O) to (O) detect (O) such (O) out-of-language (O) segments (O) using (O) confidence (O) measures. (O) 
 
-Hierarchical (O) [MLP (B)]-based language (O) identification (O) 
+Hierarchical (O) [MLP-based (B) language (I) identification (I)] 
 
-In (O) section, (O) we (O) briefly (O) described (O) the (O) recently (O) proposed (O) hierarchical (O) [MLP (B)]-based [phoneme (B) posterior (I)] estimation (O) approach (O) and (O) discussed (O) about (O) the (O) potential (O) of (O) applying (O) it (O) for (O) [cross-lingual (B) MLP (I) feature (I) extraction (I)]. 
+In (O) section, (O) we (O) briefly (O) described (O) the (O) recently (O) proposed (O) hierarchical (O) [MLP-based (B) phoneme (I) posterior (I) estimation (I)] approach (O) and (O) discussed (O) about (O) the (O) potential (O) of (O) applying (O) it (O) for (O) [cross-lingual (B) MLP (I) feature (I) extraction (I)]. 
 In, (O) we (O) have (O) studied (O) the (O) role (O) of (O) the (O) second (O) [MLP (B) layer (I)] in (O) such (O) hierarchical (O) arrangements (O) using (O) Volterra (O) series (O) and (O) have (O) found (O) that (O) it (O) is (O) predominantly (O) responsible (O) for (O) learning (O) [phonetic (B)]-temporal patterns (O) present (O) in (O) the (O) [posterior (B) features (I)]. 
 The (O) learned (O) [phonetic (B)]-temporal patterns (O) consist (O) of (O) acoustic (O) confusions (O) among (O) [phonemes (B)] and (O) [phonotactic (B) constraints (I)] of (O) the (O) language. (O) 
 
@@ -527,19 +527,19 @@ The (O) System (O) Hier (O) performance (O) was (O) obtained (O) with (O) a (O) 
 
 In (O) the (O) context (O) of (O) LID, (O) such (O) [phonetic (B)]-temporal patterns (O) could (O) possibly (O) be (O) exploited (O) by (O) first (O) training (O) an (O) [MLP (B)] to (O) classify (O) the (O) previously (O) described (O) universal (O) [phoneme (B) set (I)] ([multilingual (B) speech (I) units (I)]), and (O) then (O) modelling (O) a (O) larger (O) temporal (O) context (O) of (O) the (O) resulting (O) [posterior (B) features (I)] by (O) a (O) second (O) [MLP (B)] to (O) classify (O) languages. (O) 
 It (O) can (O) be (O) expected (O) that (O) information (O) related (O) to (O) [phonotactic (B)]   constraints (O) and (O) acoustic (O) confusion (O) among (O) [phonemes (B)] (present (O) in (O) the (O) [posterior (B) features (I)] spanning (O) a (O) long (O) temporal (O) context) (O) is (O) [language-specific (B)]. 
-We (O) performed (O) a (O) preliminary (O) study (O) on (O) hierarchical (O) [MLP (B)]-based LID (O) system (O) using (O) the (O) five (O) European (O) language (O) setup (O) and (O) the (O) [multilingual (B) MLP (I)] described (O) earlier (O) in (O) section. (O) 
-The (O) second (O) stage (O) [MLP (B)] of (O) the (O) hierarchical (O) [MLP (B)]-based LID (O) system (O) was (O) trained (O) with (O) the (O) [posterior (B) features (I)] (universal (O) [phone (B) posterior (I) probabilities (I)]) estimated (O) at (O) the (O) output (O) of (O) the (O) [multilingual (B) MLP (I)]. 
+We (O) performed (O) a (O) preliminary (O) study (O) on (O) hierarchical (O) [MLP-based (B) LID (I) system (I)] using (O) the (O) five (O) European (O) language (O) setup (O) and (O) the (O) [multilingual (B) MLP (I)] described (O) earlier (O) in (O) section. (O) 
+The (O) second (O) stage (O) [MLP (B)] of (O) the (O) hierarchical (O) [MLP-based (B) LID (I) system (I)] was (O) trained (O) with (O) the (O) [posterior (B) features (I)] (universal (O) [phone (B) posterior (I) probabilities (I)]) estimated (O) at (O) the (O) output (O) of (O) the (O) [multilingual (B) MLP (I)]. 
 The (O) temporal (O) context (O) at (O) the (O) input (O) of (O) the (O) second (O) [MLP (B)] was (O) varied (O) from (O) 130–310 (O) ms. (O) 
 During (O) testing, (O) the (O) decision (O) about (O) the (O) language (O) identity (O) was (O) made (O) by (O) choosing (O) the (O) language (O) that (O) scores (O) the (O) highest (O) log (O) posterior (O) probability (O) over (O) the (O) whole (O) test (O) utterance. (O) 
 We (O) refer (O) to (O) this (O) system (O) as (O) Hier. (O) 
-We (O) compared (O) the (O) hierarchical (O) [MLP (B)]-based LID (O) system (O) against (O) two (O) different (O) reference (O) systems. (O) 
+We (O) compared (O) the (O) hierarchical (O) [MLP-based (B) LID (I) system (I)] against (O) two (O) different (O) reference (O) systems. (O) 
 In (O) both (O) these (O) systems, (O) the (O) [phone (B) posterior (I) probabilities (I)] estimated (O) at (O) the (O) output (O) of (O) the (O) [multilingual (B) MLP (I)] are (O) used (O) as (O) a (O) local (O) score. (O) 
 In (O) the (O) first (O) system, (O) the (O) [language-specific (B) phoneme (I) recognizers (I)] are (O) run (O) in (O) parallel (O) with (O) their (O) respective (O) bigram (O) [phonotactic (B)] language (O) model. (O) 
 The (O) LID (O) is (O) achieved (O) by (O) selecting (O) the (O) [decoder (B) output (I)] that (O) yields (O) the (O) [maximum (B) likelihood (I)]. 
 This (O) system (O) is (O) referred (O) to (O) as (O) PC. (O) 
 In (O) the (O) second (O) system, (O) the (O) language (O) identity (O) is (O) inferred (O) through (O) [speech (B) recognition (I)]. 
 The (O) second (O) system (O) is (O) similar (O) to (O) the (O) [shared-tandem (B) system (I)] described (O) earlier (O) in (O) section (O)   where (O) the (O) [acoustic (B) model (I)] is (O) shared (O) across (O) languages. (O) 
-However, (O) the (O) recognition (O) is (O) done (O) by (O) using (O) hybrid (O) [HMM (B)] / [MLP (B)]-based isolated (O) word (O) recognition (O) system. (O) 
+However, (O) the (O) recognition (O) is (O) done (O) by (O) using (O) [hybrid (B) HMM (I) / (I) MLP-based (I) isolated (I) word (I)] recognition (O) system. (O) 
 This (O) system (O) is (O) referred (O) to (O) as (O) SR. (O) 
 Table (O) 6 (O) shows (O) the (O) performance (O) (measured (O) in (O) terms (O) of (O) percentage (O) accuracy) (O) of (O) the (O) different (O) LID (O) systems (O) investigated. (O) 
 In (O) the (O) case (O) of (O) System (O) Hier, (O) the (O) performance (O) is (O) reported (O) for (O) the (O) temporal (O) context (O) of (O) 290 (O) ms. (O) 
@@ -547,7 +547,7 @@ For (O) further (O) details (O) on (O) the (O) effect (O) of (O) temporal (O) co
 It (O) can (O) be (O) seen (O) that (O) the (O) hierarchical (O) LID (O) system, (O) i.e., (O) Hier (O) system (O) yields (O) the (O) best (O) performance. (O) 
 When (O) comparing (O) the (O) performance (O) of (O) SR (O) and (O) PC (O) systems, (O) the (O) trend (O) is (O) similar (O) to (O) what (O) has (O) been (O) previously (O) reported (O) in (O) the (O) literature. (O) 
 More (O) specifically, (O) higher (O) LID (O) performance (O) has (O) been (O) typically (O) reported (O) (although (O) for (O) fewer (O) number (O) of (O) language (O) classes) (O) using (O) the (O) large (O) vocabulary (O) [continuous (B) speech (I) recognition (I) (LVCSR) (I) system (I)] when (O) compared (O) to (O) [acoustic-phonotactic (B) based (I) systems (I)]. 
-Overall, (O) the (O) study (O) shows (O) that (O) there (O) is (O) good (O) potential (O) in (O) exploiting (O) the (O) hierarchial (O) [MLP (B)]-based approach (O) for (O) language (O) identification. (O) 
+Overall, (O) the (O) study (O) shows (O) that (O) there (O) is (O) good (O) potential (O) in (O) exploiting (O) the (O) hierarchial (O) [MLP-based (B) approach (I)] for (O) language (O) identification. (O) 
 
 Out-of-language (O) detection (O) 
 
@@ -577,7 +577,7 @@ Median (O) filter (O) with (O) a (O) length (O) of (O) 3 (O) s (O) yield (O) rel
 
 Summary (O) 
 
-In (O) this (O) section, (O) we (O) first (O) presented (O) a (O) LID (O) system (O) based (O) on (O) hierarchical (O) [MLP (B)]-based approach. (O) 
+In (O) this (O) section, (O) we (O) first (O) presented (O) a (O) LID (O) system (O) based (O) on (O) hierarchical (O) [MLP-based (B) approach (I)]. 
 Through (O) preliminary (O) studies, (O) we (O) demonstrated (O) that (O) this (O) system (O) could (O) yield (O) better (O) performance (O) than (O) standard (O) approaches, (O) such (O) as (O) modelling (O) [phonotactic (B) constraints (I)]. 
 We (O) next (O) presented (O) an (O) outof-language (O) detection (O) approach (O) using (O) confidence (O) measures (O) similar (O) to (O) out-of-vocabulary (O) word (O) detection, (O) and (O) showed (O) its (O) application (O) on (O) real (O) [word (B) data (I)]. 
 

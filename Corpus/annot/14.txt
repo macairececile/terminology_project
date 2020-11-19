@@ -35,10 +35,10 @@ This paper summarizes the resources and systems available in 20 languages, and d
 The [GlobalPhone Corpus] 
 
 [GlobalPhone] is a [multilingual data corpus] developed in collaboration with the Karlsruhe Institute of Technology (KIT). 
-The [complete data corpus] comprises (1) [audio] / [speech data], i.e. [high-quality recordings] of spoken utterances read by [native speakers], (2) corresponding transcriptions, (3) [pronunciation dictionaries] covering the vocabulary of the transcripts, and (4) baseline [n-gram language models]. 
+The [complete data corpus] comprises (1) [audio / speech data], i.e. [high-quality recordings] of spoken utterances read by [native speakers], (2) corresponding transcriptions, (3) [pronunciation dictionaries] covering the vocabulary of the transcripts, and (4) baseline [n-gram language models]. 
 The first two are referred to as [GlobalPhone Speech] and [Text Database] (GP-ST), the third as [GlobalPhone Dictionaries] (GP-Dict), and the latter as [GlobalPhone Language Models] (GP-LM). GP-ST is distributed under a research or commercial license by two authorized distributors, the European Language Resources Association (ELRA) and Appen Butler Hill Pty Ltd GP-Dict is distributed by ELRA, while the GP-LMs are freely available for download from our website. 
 
-The entire [GlobalPhone corpus] provides a [multilingual database] of word-level transcribed [high-quality speech] for the development and evaluation of large vocabulary [speech processing] systems in the most widespread languages of the world. 
+The entire [GlobalPhone corpus] provides a [multilingual database] of word-level transcribed [high-quality speech] for the development and evaluation of large vocabulary [speech processing systems] in the most widespread languages of the world. 
 [GlobalPhone] is designed to be uniform across languages with respect to the amount of data per language, the [audio quality] (microphone, noise, channel), the collection scenario (task, setup, speaking style), as well as the transcription and [phone set] conventions ([IPA-based naming] of phones in all [pronunciation dictionaries]). 
 Thus, [GlobalPhone] supplies an excellent basis for research in the areas of (1) [multilingual speech recognition], (2) rapid deployment of [speech processing systems] to yet unsupported languages, (3) language identification tasks, (4) [speaker recognition] in multiple languages, (5) [multilingual speech synthesis], as well as (6) [monolingual speech recognition] in a large variety of languages. 
 
@@ -48,7 +48,7 @@ To date, the [GlobalPhone corpus] covers 20 languages, i.e. Arabic (Modern Stand
 This selection covers a broad variety of language peculiarities relevant for [Speech] and Language research and development. 
 It comprises [wide-spread languages] (e.g. Arabic, Chinese, Spanish, Russian), contains economically and politically important languages, and spans wide geographical areas (Europe, Africa, America, Asia). 
 
-The spoken [speech] covers a broad selection of [phonetic] characteristics, e.g. tonal sounds (Mandarin, Shanghai, Thai, Vietnamese), pharyngeal sounds (Arabic), consonantal clusters (German), nasals (French, Portuguese), and palatized sounds (Russian). 
+The spoken [speech] covers a broad selection of [phonetic characteristics], e.g. tonal sounds (Mandarin, Shanghai, Thai, Vietnamese), pharyngeal sounds (Arabic), consonantal clusters (German), nasals (French, Portuguese), and palatized sounds (Russian). 
 The written language contains all types of writing systems, i.e. logographic scripts (Chinese Hanzi and Japanese Kanji), phonographic segmental scripts (Roman, Cyrillic), phonographic consonantal scripts (Arabic), phonographic syllabic scripts (Japanese Kana, Thai), and phonographic featural scripts (Korean Hangul). 
 The languages cover many morphological variations, e.g. agglutinative languages (Turkish, Korean), compounding languages (German), and also include scripts that completely lack word segmentation (Chinese, Thai). 
 
@@ -86,7 +86,7 @@ The project SPICE (NSF, 2004-2008) performed at the Language Technologies Instit
 For this purpose RLAT provides innovative methods and interactive web-based tools to enable users to develop [speech processing models], to collect appropriate [speech and text data] to build these models, as well as to evaluate the results allowing for iterative improvements. 
 The [toolkit] significantly reduces the amount of time and effort involved in building [speech processing systems] for unsupported languages. 
 In particular, the [toolkit] allows the user to (1) [design databases] for new languages at low cost by enabling users to record appropriate [speech data] along with transcriptions, (2) to continuously harvest, normalize, and process massive amounts of [text data] from the web, (3) to select appropriate [phone sets] for new languages efficiently, (4) to create vocabulary lists, (5) to automatically generate [pronunciation dictionaries], (6) to apply these resources by developing acoustic and language models for [speech recognition], (7) to develop models for [text-to-speech synthesis], and (8) to finally integrate the built components into an application and evaluate the results using online [speech recognition] and synthesis in a talk-back function. 
-RLAT and SPICE leverage off the two projects [GlobalPhone] and FestVox to implement bootstrapping techniques that are based on extensive knowledge and [data sharing] across languages, as well as sharing across system components. 
+RLAT and SPICE leverage off the two projects [GlobalPhone] and FestVox to implement bootstrapping techniques that are based on extensive knowledge and data sharing across languages, as well as sharing across system components. 
 Examples for [data sharing] techniques are the training of [multilingual acoustic models] across languages based on the definition of global [phone sets]. 
 Sharing across components happens on all levels between recognition and synthesis, including [phone sets], [pronunciation dictionaries], [acoustic models], and text resources. 
 RLAT and SPICE are a freely available online service which provides an interface to the web-based tools and has been designed to accommodate all potential users, ranging from novices to experts. 
@@ -126,7 +126,7 @@ In some cases (Croatian, Japanese, Korean, Thai) the crawling process finished p
 In those cases we selected additional websites to harvest more diverse [text data]. 
 The final best language model were then built based on the interpolation of the language models from a variety of websites. 
 Since some scripts lack a segmentation into words or do not provide a suitable definition of’ word units’ (Chinese, Korean, Japanese, Tamil, Thai, and Vietnamese) we defined syllables or characters as token units for the purpose of [speech recognition]. 
-Table 3 gives an overview of the amount of crawled [text data], the [trigram perplexities] (PPL), out-of-vocabulary (OOV) rates, and the vocabulary sizes of the [GlobalPhone language models], for both the full (LM) and the pruned [benchmark language models] ([LM-BM]), which are available for download from our website. 
+Table 3 gives an overview of the amount of crawled [text data], the trigram perplexities (PPL), out-of-vocabulary (OOV) rates, and the vocabulary sizes of the [GlobalPhone language models], for both the full (LM) and the pruned [benchmark language models] ([LM-BM]), which are available for download from our website. 
 The symbols in parantheses after the language name indicate the token units used, i.e. (w) for [word-based], (s) for [syllable-based], and (c) for [character-based token units]. 
 
 Table : [GlobalPhone] Text Resources and Language Models 
@@ -144,7 +144,7 @@ All weights from the [ML-MLP] were taken and only the output biases from the sel
 To rapidly bootstrap the system, the phone models were seeded by the closest matches of the multilingual phone inventory MM7 derived from an [IPA-based phone mapping]. 
 The [acoustic model] uses a fully-continuous 3-state left-to-right [Hidden-Markov-Model]. 
 The emission probabilities are modeled by [Gaussian] Mixtures with diagonal covariances. 
-For [context-dependent acoustic models], we trained a quintphone system and stopped the [decision tree] splitting process at a specified language dependent threshold (varies between 500 and 3,000 leaves depending on the available amount of training data). 
+For [context-dependent acoustic models], we trained a quintphone system and stopped the [decision tree] splitting process at a specified language dependent threshold (varies between 500 and 3,000 leaves depending on the available amount of [training data]). 
 After context clustering, a merge-and-split training was applied, which selects the number of [Gaussians] according to the amount of data. 
 For all models, we used one global semi-tied covariance (STC) matrix after [Linear Discriminant Analysis] ([LDA]). 
 

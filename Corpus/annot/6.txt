@@ -8,12 +8,12 @@ As [acoustic feature] extraction is integrated to [acoustic model training], it 
 Index Terms — [Statistical parametric speech synthesis] ; [neural network] ; [adaptive cepstral analysis]. 
 
 INTRODUCTION 
-While training an [acoustic model] for [statistical parametric speech synthesis] (SPSS), a set of parametric representation of [speech] (e.g. cepstral, line [spectrum] pairs, [fundamental frequency], and aperiodicity.) at every 5 ms is first extracted then relationships between [linguistic features] associated with the [speech waveform] and the extracted parameters are modeled by an [acoustic model] (e.g. [hidden Markov models], [neural networks]). 
-Typically, a minimum [mean squared error] (MMSE) or a [maximum likelihood] (ML) criterion is used to estimate the model parameters. 
+While training an [acoustic model] for [statistical parametric speech synthesis] (SPSS), a set of parametric representation of [speech] (e.g. cepstral, line [spectrum pairs], [fundamental frequency], and aperiodicity.) at every 5 ms is first extracted then relationships between [linguistic features] associated with the [speech waveform] and the extracted parameters are modeled by an [acoustic model] (e.g. [hidden Markov models], [neural networks]). 
+Typically, a minimum mean squared error (MMSE) or a [maximum likelihood] (ML) criterion is used to estimate the model parameters. 
 Extracting a parametric representation of [speech] can also be viewed as ML estimation of the model parameters given the [waveform]. 
 Linear predictive analysis assumes that the generative model of [speech waveform] is autoregressive (AR) then fit the model to the [waveform] based on the ML criterion. In this sense, training of an [acoustic model] can be viewed as a two-step optimization : extract parametric representation of [speech] based on the ML criterion, then model trajectories of the extracted parameters with an [acoustic model]. Therefore, the current framework could be sub-optimal. 
 It is desirable to combine these two steps in a single one and jointly optimize both [feature extraction] and acoustic modeling. 
-There are a couple of attempts to integrate [feature extraction] and   [acoustic model training] into a single framework, e.g. the log [spectral] distortion-version of minimum generation error training (MGE-LSD), statistical [vocoder] (STAVOCO), [waveform-level statistical model], and [mel-cepstral analysis]-integrated hidden [Markov models] ([HMMs]). 
+There are a couple of attempts to integrate [feature extraction] and   [acoustic model training] into a single framework, e.g. the log [spectral] distortion-version of minimum generation error training (MGE-LSD), statistical [vocoder] (STAVOCO), [waveform-level statistical model], and [mel-cepstral analysis]-integrated [hidden Markov models] ([HMMs]). 
 However, there are limitations in these approaches, such as the use of spectra rather than [waveforms], the use of overlapping and shifting frames as unit, and fixing [decision trees], which represent the mapping from [linguistic features] to acoustic ones. 
 
 This paper aims to fully integrate [acoustic feature] extraction into [acoustic model training] and overcome the limitations of the existing frameworks, using the recently proposed [neural network-based speech synthesis framework] with a specially designed [output layer] which includes inverse filtering of the [speech] to define the likelihood at the [waveform] level. 
@@ -100,7 +100,7 @@ The training and [development data] sets consisted of 34,632 and 100 utterances,
 
 Fig. Inverse system output for a sentence “ Two elect only two ” by cepstra predicted by [LSTM-RNNs] before (a) and after (b) training. 
 
-Fig. [Synthesized speech] spectra for a sentence “ Two elect only two ”. Note that spectra were sampled at every 5 ms. 
+Fig. Synthesized [speech] spectra for a sentence “ Two elect only two ”. Note that spectra were sampled at every 5 ms. 
 
 From the [speech data], its associated transcriptions, and automatically derived [phonetic alignments], sample-level [linguistic features] included 535 linguistic contexts, 50 [numerical features] for coarse-coded position of the current sample in the current [phoneme], and one [numerical feature] for duration of the current [phoneme].                                    
 The [speech data] was downsampled from 48 kHz to 16 kHz, 24 [cepstral coefficients] were extracted at each sample using the [adaptive cepstral analysis]. 
@@ -108,7 +108,7 @@ The [output features] of the [LSTM-RNN] consisted of 24 [cepstral coefficients].
 Both the input and [output features] were normalized ; the [input features] were normalized to have zero-mean unit-variance, whereas the [output features] were normalized to be within 0.01–0.99 based on their minimum and maximum values in the [training data]. 
 The architecture of the [LSTM-RNN] was 1 forward-directed hidden [LSTM layer] with 256 memory blocks. 
 To reduce the training time and impact of having many silences, 80 % of silence regions were removed. 
-After setting the network weights randomly, they were first updated to minimize the [mean squared error] between the extracted and predicted [cepstral coefficients]. 
+After setting the network weights randomly, they were first updated to minimize the mean squared error between the extracted and predicted [cepstral coefficients]. 
 Then they were used as initial values to start the proposed training algorithm ; the weights were further optimized to maximize the [waveform-level log likelihood]. 
 A distributed [CPU implementation] of mini-batch ASGD based back propagation through time (BPTT) algorithm was used.                                                          
                                                                                              

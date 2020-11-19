@@ -25,7 +25,7 @@ In the 1990s, [neural networks] had already been used to learn the relationship 
 The main differences between today and the 1990s are : more [hidden layers], more [training data], more advanced computational resource, more advanced training algorithms, and significant advancements in the various other techniques needed for a complete parametric [speech synthesiser] : the [vocoder], and parameter compensation / enhancement / postfiltering techniques. 
 
 Recent work [neural network speech synthesis] 
-In the recent studies, restricted Boltzmann machines (RBMs) were used to replace [Gaussian] mixture models to model the distribution of [acoustic features]. 
+In the recent studies, restricted Boltzmann machines (RBMs) were used to replace [Gaussian mixture models] to model the distribution of [acoustic features]. 
 The work claims that RBMs can model [spectral] details, and result in better quality of synthesised [speech]. 
 In, deep belief networks (DBNs) as eep generative model were employed to model the relationship between linguistic and [acoustic features] jointly. 
 Deep mixturedensity networks and trajectory real-valued neural autoregressive density estimators were also employed to predict the [probability density function] over [acoustic features]. 
@@ -51,7 +51,7 @@ This paper will briefly introduce the design and implementation of the [toolkit]
 In addition to the results here and in the above list of previously-published papers, [Merlin] is the [DNN] benchmark system for the 2016 [Blizzard Challenge]. 
 There, it is used in combination with the Ossian [front-end] 2 and the [WORLD vocoder], both of which are also [Open Source] and can be used without restriction, to provide an easily-reproducible system. 
 
-Figure : An illustration of [feedforward neural network] with four hidden layers. 
+Figure : An illustration of [feedforward neural network] with four [hidden layers]. 
 
 Design and Implementation                                                        
 Like HTS, [Merlin] is not a complete [TTS system]. It provides the core acoustic modelling functions : [linguistic feature] vectorisation, acoustic and [linguistic feature] normalisation, [neural network acoustic model training], and generation. 
@@ -74,22 +74,22 @@ The modifications add separate analysis and synthesis executables, as is necessa
 It is not difficult to support some other [vocoder], and details on how to do this can be found in the included documentation. 
 
 [Feature normalisation] 
-Before training a [neural network], it is important to normalise features. The [toolkit] supports two normalisation methods : min-max, and mean-variance. 
+Before training a [neural network], it is important to [normalise features]. The [toolkit] supports two normalisation methods : min-max, and mean-variance. 
 The min-max normalisation will normalise features to the range of, while the mean-variance normalisation will normalise features to zero mean and unit variance. 
 Currently, by default the [linguistic features] undergo min-max normalisation, while output [acoustic features] have mean-variance normalisation applied. 
 
-Acoustic modelling 
+[Acoustic modelling] 
 [Merlin] includes implementations of several currently-popular [acoustic models], each of which comes with an example ‘ recipe’ to demonstrate its use. 
 
 [Feedforward neural network] 
 A [feedforward neural network] is the simplest type of network. 
 With enough layers, this architecture is usually called a [Deep Neural Network] ([DNN]). The input is used to predict the output via several layers of [hidden units], each of which performs a nonlinear function, as follows : 
 
-where H (·) is a nonlinear activation function in a [hidden layer], 
- Wxh and Why are the weight matrices, bh and by are bias [vectors], and Why ht is a linear regression to predict [target features] from the activations in the preceding hidden layer. 
- Fig. is an illustration of a [feedforward neural network]. It takes [linguistic features] as input and predicts the [vocoder parameters] through several hidden layers (in the figure, four hidden layers). 
+where H (·) is a nonlinear activation function in a hidden layer, 
+ Wxh and Why are the weight matrices, bh and by are bias [vectors], and Why ht is a linear regression to predict [target features] from the activations in the preceding [hidden layer]. 
+ Fig. is an illustration of a [feedforward neural network]. It takes [linguistic features] as input and predicts the [vocoder parameters] through several hidden layers (in the figure, four [hidden layers]). 
  In the remainder of this paper, we will use [DNN] to indicate a [feedforward neural network] of this general type. 
- In the [toolkit], [sigmoid] and hyperbolic tangent activation functions are supported for the [hidden layers]. 
+ In the [toolkit], [sigmoid] and hyperbolic tangent activation functions are supported for the hidden layers. 
                                                                       
 The [toolkit] can be checked out anonymously from the Github repository : https://github.com/CSTR-Edinburgh/ [merlin] 
 
@@ -106,10 +106,10 @@ It is formulated as :
 
 where it, ft, and ot are the input, forget, and output gates, respectively ; 
 ct is the so-called memory cell ; ht is the hidden 
-activation at time t ; xt is the input signal ; W∗, and R∗ are the weight matrices applied on input and recurrent [hidden units], respectively ; p∗ and b∗ are the peep-hole connections and biases, respectively ; δ (·) and g (·) are the [sigmoid] and hyperbolic tangent activation functions, respectively ; means element-wise product. 
+activation at time t ; xt is the input signal ; W∗, and R∗ are the weight matrices applied on input and recurrent hidden units, respectively ; p∗ and b∗ are the peep-hole connections and biases, respectively ; δ (·) and g (·) are the [sigmoid] and hyperbolic tangent activation functions, respectively ; means element-wise product. 
 
 Figure presents an illustration of a standard [LSTM unit]. 
-It passes the input signal and [hidden activation] of the previous and output gate to produce the activation. 
+It passes the input signal and hidden activation of the previous and output gate to produce the activation. 
 In our implementation, the several variants described in   are also available. 
 
 [Bidirectional RNN] 
@@ -117,14 +117,14 @@ In a uni-directional [RNNs], only contextual information from past time instance
 
 where h t and h t are [hidden activations] from positive and negative directions, respectively ; Wx h and Wx h are weight matrices for input signal ; and R h h and R h h are the recurrent matrices for forward and backward directions, respectively. 
 
-In [bidirectional RNNs], the [hidden units] can be without gating, or gated units such as [LSTM]. We will use [BLSTM] to denote a [bidirectional LSTM-based RNN]. 
+In [bidirectional RNNs], the hidden units can be without gating, or gated units such as [LSTM]. We will use [BLSTM] to denote a [bidirectional LSTM-based RNN]. 
 
 Other variants 
 In [Merlin], other variants of [neural networks] are also implemented, such as [gated recurrent units] ([GRUs]), simplified [LSTM], and the other variants on [LSTMs] and [GRUs] described in. 
 All these basic units can be assembled together to create a new architecture by simply changing a configuration file. 
 For example, to implement a 4-layer [feedforward neural network] using hyperbolic tangent units, one can simply specify the following architecture in the configuration file : 
 ([TANH], [TANH], [TANH], [TANH]) 
-Similarly, a hybrid [bidirectional LSTM-based RNN] can be specified as : 
+Similarly, a [hybrid bidirectional LSTM-based RNN] can be specified as : 
 ([TANH], [TANH], [TANH], [BLSTM]) 
 in the configuration file. More details of the supported unit type can be found in the documentation of the system. 
                                                                                                     

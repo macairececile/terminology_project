@@ -30,7 +30,7 @@ It runs 254.6 times faster than real-time at synthesis on a 1080 Ti [GPU], and b
 [ParaNet] distills the attention from the [autoregressive text-to-spectrogram model], and iteratively refines the alignment between text and [spectrogram] in a layer-by-layer manner. 
 It can produce more stable attentions than [autoregressive Deep Voice] 3   on the challenging test sentences, because it does not have the discrepancy between the teacher-forced training and autoregressive inference. 
 We build the [fully parallel neural TTS system] by combining [ParaNet] with [parallel neural vocoder], thus it can generate [speech] from text through a single [feed-forward pass]. 
-We investigate several parallel [vocoders], including the distilled [IAF vocoder] and Wave-Glow. To explore the possibility of [training IAF vocoder] without distillation, we also propose an alternative approach, [WaveVAE], which can be trained from scratch within the [variational autoencoder] (VAE) framework ([Kingma] & Welling, 2014). 
+We investigate several parallel [vocoders], including the distilled [IAF vocoder] and Wave-Glow. To explore the possibility of training [IAF vocoder] without distillation, we also propose an alternative approach, [WaveVAE], which can be trained from scratch within the [variational autoencoder] (VAE) framework ([Kingma] & Welling, 2014). 
 
 We organize the rest of paper as follows. Section discusses related work. We introduce the [non-autoregressive ParaNet architecture] in Section. 
 We discuss [parallel neural vocoders] in Section, and report experimental settings and   results in Section. We conclude the paper in Section. 
@@ -63,7 +63,7 @@ In previous work, flow-based models have obtained state-of-the-art results for [
 [Variational autoencoder] (VAE)   has been applied for representation learning of natural [speech] for years. 
 It models either the generative process of [raw waveform]. 
 In previous work, autoregressive or [recurrent neural networks] are employed as the [decoder] of VAE, but they can be quite slow at synthesis. 
-In this work, we employ a [feed-forward IAF] as the [decoder], which enables [parallel waveform synthesis]. 
+In this work, we employ a [feed-forward] IAF as the [decoder], which enables [parallel waveform synthesis]. 
 
 [Text-to-spectrogram model] 
 Our parallel [TTS system] has two components : a [feed-forward text-to-spectrogram model], and a parallel wave-form synthesizer conditioned on [mel spectrogram]. 
@@ -160,7 +160,7 @@ This two-stage distillation process complicates the training pipeline and may in
 RealNVP   and Glow are different types of normalizing flows, where both synthesis and likelihood evaluation can be performed in parallel by enforcing bipartite architecture constraints. 
 Most recently, both of them were applied as [parallel neural vocoders] and can be trained from scratch. However, these models are less expressive than their autoregressive and IAF counterparts 
 One can find a detailed analysis in WaveFlow paper. 
-In general, these bipartite flows require larger number of layers and [hidden units], which lead to huge number of parameters. For example, a [WaveGlow vocoder]   has 87.88 M parameters, whereas [IAF vocoder] has much smaller footprint with only 2.17 M parameters, making it more preferred in production deployment. 
+In general, these bipartite flows require larger number of layers and hidden units, which lead to huge number of parameters. For example, a [WaveGlow vocoder]   has 87.88 M parameters, whereas [IAF vocoder] has much smaller footprint with only 2.17 M parameters, making it more preferred in production deployment. 
 
 [WaveVAE] 
 Given the advantage of [IAF vocoder], it is interesting to investigate whether it can be trained without the density distillation. 
@@ -203,7 +203,7 @@ The reconstruction term in Eq. is intractable to compute exactly.
 We do stochastic optimization by drawing a sample z from the [encoder] qφ (z|x) through the reparameterization trick, and evaluating the likelihood log pθ (x|z). 
 To avoid the “ posterior collapse ”, in which the posterior distribution qφ (z|x) quickly collapses to the white noise prior p(z) at the early stage of training, we apply the annealing strategy for KL divergence, where its weight is gradually increased from 0 to 1, via a [sigmoid function].                    
 Through it, the [encoder] can encode sufficient information into the latent representations at the early training, and then gradually regularize the latent representation by increasing the weight of the KL divergence.                                              
-[STFT loss] : Similar to, we also add a short-term Fourier transform ([STFT]) loss to improve the quality of [synthesized speech]. 
+[STFT loss] : Similar to, we also add a short-term [Fourier transform] ([STFT]) loss to improve the quality of [synthesized speech]. 
 We define the [STFT loss] as the summation of ` 2 loss on the magnitudes of [STFT] and ` 1 loss on the [log-magnitudes] of [STFT] between the output [audio] and [ground truth audio]. 
 For [STFT], we use a 12.5ms frame-shift, 50ms Hanning window length, and we set the FFT size to 2048. 
 We consider two [STFT losses] in our objective : (i) the [STFT loss] between [ground truth audio] and reconstructed [audio] using [encoder] qφ (z|x) ; (ii) the [STFT loss] between [ground truth audio] and synthesized [audio] using the prior p(z), with the purpose of reducing the ap between reconstruction and synthesis. 
@@ -246,7 +246,7 @@ For the [decoder], we use the same architecture as the distilled IAF.
 Both the [encoder] and [decoder] of [WaveVAE] share the same conditioner network. Both of the distilled IAF and [WaveVAE] are trained on [ground-truth mel spectrogram]. 
 We use [Adam optimizer] with 1000000 steps for distilled IAF. 
 For [WaveVAE], we train it for 400000 because it converges much faster. 
-The [learning rate] is set to 0.001 at the beginning and annealed by half every 200000 steps for both models. 
+The learning rate is set to 0.001 at the beginning and annealed by half every 200000 steps for both models. 
 We use the [open source implementation] of [WaveGlow] with default [hyperparameters] (residual channel 256) 2, except change the sampling rate from 22.05kHz to 24kHz, FFT window length from 1024 to 1200, and FFT window shift from 256 to 300 for handling the [24kHz dataset]. 
 The model is trained for 2 M steps. 
 
@@ -274,12 +274,12 @@ We construct a custom 15-sentence test set (see Appendix A) and run inference fo
 The average [audio] duration of the utterances is 6.11 seconds. The average inference latencies over 50 runs and 15 sentences are 0.024 and 1.12 seconds for [ParaNet] and DV3, respectively. 
 Hence, our [ParaNet] runs 254.6 times faster than real-time and brings about 46.7 times speed-up over its small-footprint [autoregressive counterpart] at synthesis. 
 It also runs 1.58 times faster than [FastSpeech]. 
-We summarize synthesis speed of [TTS] systems in   Table. 
+We summarize synthesis speed of [TTS systems] in   Table. 
 One can observe that the latency bottleneck is the [autoregressive text-to-spectrogram model], when the system uses [parallel neural vocoder]. 
 The [ClariNet] and [WaveVAE vocoders] have much smaller footprint and faster synthesis speed than [WaveGlow]. 
 
 [Attention error] analysis : In [autoregressive models], there is a noticeable discrepancy between the teacher-forced training and autoregressive inference, which can yield accumulated errors along the generated sequence at synthesis. 
-In [neural TTS], this discrepancy leads to miserable [attention errors] at autoregressive inference, including (i) repeated words, (ii) mispronunciations, and (iii) skipped words for detailed examples), which is a critical problem for online deployment of [attention-based neural TTS] systems. 
+In [neural TTS], this discrepancy leads to miserable [attention errors] at autoregressive inference, including (i) repeated words, (ii) mispronunciations, and (iii) skipped words for detailed examples), which is a critical problem for online deployment of [attention-based neural TTS systems]. 
 We perform an [attention error] analysis for our [non-autoregressive ParaNet] on a 100-sentence test set (see Appendix B), which includes particularly-challenging cases from deployed [TTS] systems (e.g. dates, acronyms, URLs, repeated words, proper nouns, and foreign words). 
 In   Table, we find that the [non-autoregressive ParaNet] has much fewer [attention errors] than its [autoregressive counterpart] at synthesis (12 vs. 37) without attention mask. 
 Although our [ParaNet] distills the (teacher-forced) attentions from an [autoregressive model], it only takes textual inputs at both training and synthesis and does not have the similar discrepancy as in [autoregressive model]. 

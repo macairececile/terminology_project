@@ -2,7 +2,7 @@
 
 Abstract        
 [Simple4All Tundra] (version 1.0) is the first release of a standardised [multilingual corpus] designed for [text-to-speech research] with imperfect or found data. 
-The corpus consists of approximately 60 hours of [speech data] from audiobooks in 14 languages, as well as [utterance-level alignments] obtained with a lightly-supervised process. 
+The corpus consists of approximately 60 hours of [speech data] from audiobooks in 14 languages, as well as [utterance-level alignments] obtained with a [lightly-supervised process]. 
 Future versions of the corpus will include finer-grained alignment and prosodic annotation, all of which will be made freely available. 
 This paper gives a general outline of the data collected so far, as well as a detailed description of how this has been done, emphasizing the minimal [language-specific knowledge] and manual intervention used to compile the corpus. 
 To demonstrate its potential use, [text-to-speech systems] have been built for all languages using unsupervised or [lightly supervised methods], also briefly presented in the paper. 
@@ -11,10 +11,10 @@ Index Terms : [multilingual corpus], [light supervision], [imperfect data], foun
 Introduction 
 Building a [text-to-speech (TTS) conversion system] for a new language has in the past been an expensive and time-consuming activity. 
 Using data-driven methods to build, for example, a [statistical parametric waveform generation] module or [TTS back-end], can alleviate to some extent the lack of expert [linguistic knowledge]. 
-Even then, however, a recording script must be prepared, a [voice talent] recruited and [high-quality speech recording] carefully supervised. 
+Even then, however, a recording script must be prepared, a [voice talent] recruited and [high-quality speech] recording carefully supervised. 
 Also problematic is the text-processing component of the system, i.e. the [TTS front-end], if none is available for the [target language]. 
 A [front-end] is made up of [rule-based] or statistical modules ; acquiring the expert knowledge required either to manually specify those rules, or to annotate a learning sample on which to train the [statistical models], represents a major obstacle to creating a [TTS system] for a new [target language] and requires highly specialised knowledge. 
-Such non-trivial tasks include, for example, specifying a [phoneme-set] or [part of speech] (POS) [tag-set] for a language where one has not already been defined ; annotating plain text with [POS tags], as required to train a [POS tagger] and annotating the surface forms of words with [phonemes] to build a [pronunciation lexicon]. 
+Such non-trivial tasks include, for example, specifying a [phoneme-set] or [part of speech] ([POS]) [tag-set] for a language where one has not already been defined ; annotating plain text with [POS] tags, as required to train a [POS tagger] and annotating the surface forms of words with [phonemes] to build a [pronunciation lexicon]. 
 One of the primary goals of the project Simple4All1 is to produce freely available tools for building [TTS systems] with little or no expert supervision from freely available existing data. 
 These tools enable us to sidestep the expense associated with engineering a [speech corpus] in each new [target language] from scratch, in the case where data is not readily available. 
 Our [toolkit] includes modules for handling imperfect recording conditions, segmenting [audio] into manageable chunks, and aligning those chunks with a chapter or book-level text transcription. 
@@ -52,22 +52,22 @@ The small length of the [training data] is also a limitation of the forced align
 Although several algorithms have been proposed to enable the use of longer [speech segments], we still consider that sentence-length utterances are the building blocks of [TTS], and longer segments can be easily obtained by concatenating the former, thus ensuring a paragraph or maybe chapter level analysis or training. 
 presents a [lightly supervised method] for the segmentation of [speech] into sentences. The method uses a small amount of manually labelled data, in which the silence between sentences is marked for around 5 to 10 minutes of [speech]. 
 Silence marking is a trivial task and requires no technical knowledge. 
-Using the initial [training data], standard [Gaussian] mixture models (GMMs) with 16 components are trained for [speech] and silence respectively. 
+Using the initial [training data], standard [Gaussian mixture models] ([GMMs]) with 16 components are trained for [speech] and silence respectively. 
 The observation [vectors] consist of energy, 12 dimensional MFCCs, their [delta features], and the number of zero crossings in a frame. 
 The distinction between [speech] and silence is made by calculating the [log likelihood] ratio (LLR) of each frame. 
 The framewise LLR is smoothed using a moving median filter. 
 While doing sentence level segmentation, an important aspect is to discriminate between within-sentence breaks, and sentence boundary breaks. 
-Therefore, the trained GMMs likelihood scores are evaluated on the [training data], and the durations of the sentence boundary silence segments and the durations of within-sentence silence segments are computed. 
+Therefore, the trained [GMMs likelihood] scores are evaluated on the [training data], and the durations of the sentence boundary silence segments and the durations of within-sentence silence segments are computed. 
 Two [Gaussian] PDFs are then fitted to the two model durations. 
 The intersection point of the two PDFs is used as a duration threshold to classify silent segments as either sentence-internal or sentence boundary breaks. 
 Results presented in showed that this method when applied to an English audiobook, successfully identified most of the sentence boundaries. 
-We also evaluate it in this paper by comparing [speech]-based segmentation results against the text based ones. 
+We also evaluate it in this paper by comparing [speech-based segmentation results] against the text based ones. 
 
 Audiobooks are usually distributed in chapter-size chunks which correspond to one recording session. 
 
 [Lightly-supervised Speech] and Text Alignment 
 In   we first introduced a method for the automatic alignment of [speech data] with unsynchronised, imperfect transcripts, for a domain where no initial [acoustic models] are available. 
-As opposed to, where existing [high-quality] acoustic and language models are used, our method requires only relatively low-quality [grapheme-based acoustic models] trained solely on the [speech] resource to be aligned. 
+As opposed to, where existing [high-quality] acoustic and language models are used, our method requires only relatively low-quality [grapheme-based acoustic models] trained solely on the [speech resource] to be aligned. 
 To overcome the lack of good [acoustic models], the [ASR] decoding network is limited to a sequence of words derived from the approximate transcript, similar to. 
 This sequence is called a skip network. 
 The confidence of the alignment is ranked based on the acoustic scores obtained in the decoding process with different degrees of freedom included in the skip network. 
@@ -89,7 +89,7 @@ The standard [TTS corpora] are : a subset of the database called ‘ Nina’ in,
 http://librivox.org/a-tramp-abroad-by-mark-twain/ 
 
 
-Table : [Simple4All Tundra Corpus] overview 
+Table : [Simple4All Tundra Corpus overview] 
 
 Figure : logF0 comparison of conventional [TTS corpora] versus [audiobook data] in four languages : English (EN), Spanish (ES), Finnish (FI) and Romanian (RM). 
 A denotes the [audiobook data], and S denotes the standard [TTS database]. 
@@ -113,7 +113,7 @@ Audiobook chapters were converted from mp3 to wav format and then cleaned if the
 The first 10 minutes of [speech] were then annotated with silence segments and manually transcribed. 
 Manual transcription proved to be a trivial task, and based on the book text, the authors were able to perform it, although they do not speak most of the languages included in the corpus. 
 For the Cyrillic writing system languages (i.e. Bulgarian and Russian), [native speakers] were asked to correct an initial transcription provided by the authors. 
-Data was then segmented using the VAD algorithm, and the resulting number of [speech] utterances is presented in Table alongside the text-based segmentation. 
+Data was then segmented using the VAD algorithm, and the resulting number of [speech utterances] is presented in Table alongside the text-based segmentation. 
 
 For example, the Spanish and [Romanian data] are professional recordings which did not require any pre-processing. 
 We currently decide whether to pre-process recordings based on informal listening, but aim to automate this with an objective measure of [speech quality] in future versions of our [toolkit].               
@@ -129,8 +129,8 @@ SER and [WER values] for the aligned audiobooks could not be exactly determined,
 However, one chapter from each audiobook in the languages spoken by the authors was evaluated, and the errors tend to be similar to those in, meaning a less than 1 % [WER] and a 8 % SER. 
 Higher error rates were reported for the noisier [speech data] (see Table for general signal-to-noise ratios). 
 To be useful as a standardised [TTS corpus], [Tundra] is also partitioned into training and test sets. 
-To ensure a satisfactory amount of testing data even for the shortest audiobook, the [test data] were selected from the final chapters / parts of the audiobooks, so that they amount to at least 10 % of the aligned duration of it. 
-The entire segmented and aligned corpus, along with the chapter-wise time alignment and training / test set division of can be downloaded from http://tundra.simple4all.org 
+To ensure a satisfactory amount of [testing data] even for the shortest audiobook, the [test data] were selected from the final chapters / parts of the audiobooks, so that they amount to at least 10 % of the aligned duration of it. 
+The entire segmented and [aligned corpus], along with the chapter-wise time alignment and training / test set division of can be downloaded from http://tundra.simple4all.org 
 
 Spanish and Romanian also have very simple [G2P] rules, but the speakers’ greater expressivity limits the alignner’s performance. 
 This being a subjective measure, we encourage readers to listen to samples of the audiobooks. 
@@ -143,7 +143,7 @@ To build these voices we first select a subset of utterances spoken in a homogen
 We then employ a [toolkit] which has been specifically designed to construct [TTS front-ends] while making as few implicit assumptions about the [target language] as possible, and to be configurable with minimal effort and expert knowledge to suit arbitrary new [target languages]. 
 The modules of our [toolkit] therefore rely where possible on resources which are intended to be universal. 
 For example, to tokenise input text we rely on character properties given in the Unicode [character database] – a regular expression defined over these properties has so far produced sensible tokenisations in a variety of alphabetic (Latin-based, Cyrillic) and alphasyllabic (Brahmic) scripts.) 
-A [letter-based approach] is used, in which the names of letters are used directly as the names of [speech] modelling units (in place of the [phonemes] of a conventional [front-end]). 
+A [letter-based approach] is used, in which the names of letters are used directly as the names of [speech modelling units] (in place of the [phonemes] of a conventional [front-end]). 
 This has given good results for languages with transparent alphabetic orthographies such as Romanian, Spanish and Finnish, and can give acceptable results even for languages with less transparent orthographies, such as English. 
 Furthermore, our tools make no use of expert-specified categories of letter and word, such as [phonetic categories] (vowel, nasal, approximant, etc.) and [part of speech categories] (noun, verb, adjective, etc.). 
 Instead, we use features that are designed to stand in for such expert knowledge but which are derived fully automatically from the distributional analysis of plain text in the [target language]. 

@@ -50,7 +50,7 @@ The (O) first (O) composition (O) is (O) a (O) joint-multigram (O) combined (O) 
 The (O) first (O) approach (O) achieved (O) 5.5 (O) % [phoneme (B) error (I) rate (I)] (PER) (O) on (O) [CMUDict (B)]. 
 Recently, (O) [neural (B) networks (I)] have (O) been (O) applied (O) for (O) [G2P (B) conversion (I)]. 
 [Neural (B) network-based (I) G2P (I) conversion (I)] is (O) robust (O) against (O) spelling (O) mistakes (O) and (O) OOV (O) words (O) ; it (O) generalizes (O) well. (O) 
-Also, (O) it (O) can (O) be (O) seamlessly (O) integrated (O) into (O) [end-to-end (B) TTS (I)] / [ASR (B)] systems (O) (that (O) are (O) constructed (O) entirely (O) of (O) [deep (B) neural (I) networks (I)]). 
+Also, (O) it (O) can (O) be (O) seamlessly (O) integrated (O) into (O) [end-to-end (B) TTS (I) / (I) ASR (I)] systems (O) (that (O) are (O) constructed (O) entirely (O) of (O) [deep (B) neural (I) networks (I)]). 
 In (O) this (O) paper, (O) a (O) [TTS (B) system (I)] ([Deep (B) Voice (I)]) is (O) presented (O) which (O) was (O) constructed (O) entirely (O) from (O) [deep (B) neural (I) networks (I)]. 
 [Deep (B) Voice (I)] lays (O) the (O) groundwork (O) for (O) truly (O) [end-to-end (B) neural (I) speech (I) synthesis (I)]. 
 Thus, (O) the (O) [G2P (B) model (I)] is (O) jointly (O) trained (O) with (O) further (O) essential (O) parts (O) of (O) the (O) [speech (B) synthesizer (I)] and (O) recognizer, (O) which (O) increase (O) the (O) overall (O) quality (O) of (O) the (O) system. (O) 
@@ -71,7 +71,7 @@ Nowadays, (O) completely (O) [convolutional (B) neural (I) networks (I)] may (O)
 [Sequence-to-sequence (B) (seq2seq) (I) learning (I)], or (O) [encoder-decoder (B) type (I) neural (I) networks (I)] have (O) achieved (O) remarkable (O) success (O) in (O) various (O) tasks, (O) such (O) as (O) [speech (B) recognition (I)], [text-to-speech (B) synthesis (I)], [machine (B) translation (I)]. 
 This (O) type (O) of (O) network (O) is (O) used (O) for (O) several (O) tasks, (O) and (O) its (O) performance (O) has (O) also (O) been (O) enhanced (O) with (O) [attention (B) mechanisms (I)]. 
 In (O) this (O) structure, (O) the (O) [encoder (B)] computes (O) a (O) representation (O) of (O) each (O) input (O) sequence, (O) and (O) the (O) [decoder (B)] generates (O) an (O) output (O) sequence (O) based (O) on (O) the (O) learned (O) representation. (O) 
-In (O) (28), (O) [bidirectional (B) multi-layer (I) recurrent (I) neural (I) network-based (I) seq2seq (I) learning (I)] was (O) investigated (O) in (O) two (O) architectures (O) : a (O) single (O) [Bi-LSTM (B)] / [Bidirectional (B) Gated (I) Recurrent (I) Unit (I)] ([Bi-GRU) (B) layer (I)] and (O) two (O) [Bi-LSTM (B)] / [Bi-GRU (B) layers (I)]. 
+In (O) (28), (O) [bidirectional (B) multi-layer (I) recurrent (I) neural (I) network-based (I) seq2seq (I) learning (I)] was (O) investigated (O) in (O) two (O) architectures (O) : a (O) single (O) [Bi-LSTM (B) / (I) Bidirectional (I) Gated (I) Recurrent (I) Unit (I)] ([Bi-GRU) (B) layer (I)] and (O) two (O) [Bi-LSTM (B) / (I) Bi-GRU (I) layers (I)]. 
 Both (O) [Bi-LSTM (B)] and (O) [Bi-GRU (B)] uses (O) both (O) past (O) and (O) future (O) contexts. (O) 
 Moreover, (O) a (O) [bidirectional (B) decoder (I)] was (O) proposed (O) for (O) [neural (B) machine (I) translation (I)] ([NMT (B)]) in. (O) 
 Both (O) [encoder (B)] and (O) [decoder (B)] are (O) [Bi-GRU (B)], but (O) this (O) model (O) is (O) applicable (O) to (O) other (O) [RNNs (B)], such (O) as (O) [LSTM (B)]. 
@@ -86,7 +86,7 @@ Furthermore, (O) [G2P-seq2seq (B)] (https://github.com/cmusphinx/g2p-seq2seq, (O
 To (O) the (O) best (O) of (O) our (O) knowledge, (O) our (O) approach (O) is (O) the (O) first (O) that (O) uses (O) [convolutional (B) neural (I) networks (I)] for (O) [G2P (B) conversion (I)]. 
 In (O) this (O) paper, (O) we (O) present (O) one (O) general (O) [sequence-to-sequence (B)] and (O) four (O) [encoder-decoder (B) models (I)]. 
 These (O) are (O) introduced (O) in (O) Section. (O) 
-Our (O) goal (O) was (O) to (O) achieve (O) and (O) surpass (O) (if (O) possible) (O) the (O) accuracy (O) of (O) previous (O) models (O) and (O) to (O) reduce (O) the (O) training (O) times (O) (which (O) is (O) quite (O) high (O) in (O) the (O) case (O) of (O) [LSTM (B)] / [GRU (B)]). 
+Our (O) goal (O) was (O) to (O) achieve (O) and (O) surpass (O) (if (O) possible) (O) the (O) accuracy (O) of (O) previous (O) models (O) and (O) to (O) reduce (O) the (O) training (O) times (O) (which (O) is (O) quite (O) high (O) in (O) the (O) case (O) of (O) [LSTM (B) / (I) GRU (I)]). 
 The (O) remaining (O) parts (O) of (O) this (O) paper (O) are (O) structured (O) as (O) follows (O) : Section (O) discusses (O) the (O) possibility (O) of (O) applying (O) [convolutional (B) neural (I) networks (I)] for (O) [sequence-to-sequence (B) grapheme-to-phoneme (I) conversion (I)]. 
 Datasets, (O) training (O) processes, (O) and (O) evaluation (O) of (O) the (O) proposed (O) models (O) are (O) presented (O) in (O) Section. (O) 
 Section (O) analyzes (O) the (O) results (O) of (O) the (O) models, (O) and (O) finally, (O) the (O) conclusion (O) is (O) drawn (O) in (O) Section. (O) 

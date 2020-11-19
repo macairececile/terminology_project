@@ -30,10 +30,10 @@ For (O) example (O) in (O) Sproat (O) et (O) al. (O) (2001) (O) word (O) normali
 [Part-of-Speech (B) tagging (I)] means (O) word (O) class (O) assignment (O) to (O) each (O) token. (O) 
 Its (O) input (O) is (O) given (O) by (O) the (O) tokenized (O) text. (O) 
 Taggers (O) have (O) to (O) cope (O) with (O) unknown (O) words (O) (OOV (O) problem) (O) and (O) ambiguous (O) [word-tag (B) mappings (I)]. 
-[Rule-based (B) approaches (I)] like (O) ENGTWOL (O) (Voutilainen, (O) 1995) (O) operate (O) on (O) a) (O) dictionaries (O) containing (O) word (O) forms (O) together (O) with (O) the (O) associated (O) POS (O) labels (O) and (O) morphologic (O) and (O) [syntactical (B) features (I)] and (O) b) (O) context (O) sensitive (O) rules (O) to (O) choose (O) the (O) appropriate (O) labels (O) during (O) application. (O) 
+[Rule-based (B) approaches (I)] like (O) ENGTWOL (O) (Voutilainen, (O) 1995) (O) operate (O) on (O) a) (O) dictionaries (O) containing (O) word (O) forms (O) together (O) with (O) the (O) associated (O) [POS (B) labels (I)] and (O) morphologic (O) and (O) [syntactical (B) features (I)] and (O) b) (O) context (O) sensitive (O) rules (O) to (O) choose (O) the (O) appropriate (O) labels (O) during (O) application. (O) 
 In (O) [statistical (B) approaches (I)] (Jelinek, (O) 1985) (O) generally (O) the (O) most (O) probable (O) tag (O) sequence (O) given (O) the (O) observed (O) word (O) sequence (O) is (O) estimated. (O) 
 In (O) [transformation-based (B) tagging (I)] (Brill, (O) 1995) (O) a (O) [hybrid (B) approach (I)] can (O) be (O) found, (O) where (O) disambiguation (O) rules (O) are (O) derived (O) by (O) statistical (O) means. (O) 
-[Grapheme-to-Phoneme (B) Conversion (I)] Since (O) hand-crafted (O) rule (O) generation (O) for (O) language (O) processing (O) is (O) very (O) timeconsuming (O) and (O) corresponding (O) systems (O) are (O) highly (O) language (O) dependent, (O) most (O) of (O) the (O) current (O) [G2P (B) systems (I)] are (O) purely (O) data-driven (O) (see (O) e.g. (O) Yvon (O) (1994) (O) for (O) an (O) overview (O) over (O) some (O) machine (O) learning (O) approaches (O) to (O) [G2P (B) conversion (I)]). 
+[Grapheme-to-Phoneme (B) Conversion (I)] Since (O) hand-crafted (O) rule (O) generation (O) for (O) [language (B) processing (I)] is (O) very (O) timeconsuming (O) and (O) corresponding (O) systems (O) are (O) highly (O) language (O) dependent, (O) most (O) of (O) the (O) current (O) [G2P (B) systems (I)] are (O) purely (O) data-driven (O) (see (O) e.g. (O) Yvon (O) (1994) (O) for (O) an (O) overview (O) over (O) some (O) machine (O) learning (O) approaches (O) to (O) [G2P (B) conversion (I)]). 
 Accounting (O) for (O) the (O) influence (O) of (O) [morphology (B)] and (O) syllable (O) structure (O) can (O) improve (O) performance (O) of (O) [G2P (B) conversion (I)] (Reichel (O) and (O) Schiel, (O) 2005). (O) 
 Word (O) Stress (O) The (O) assignment (O) of (O) English (O) word (O) stress (O) relies (O) on (O) [phonological (B)], morphological, (O) and (O) word (O) [class (B) features (I)]. 
 The (O) crucial (O) [phonological (B) feature (I)] is (O) syllable (O) weight (O) : heavy (O) syllables (O) rather (O) attract (O) stress (O) than (O) weak (O) ones. (O) 
@@ -115,8 +115,8 @@ applying (O) again (O) Bayes (O) Formula (O) and (O) linear (O) interpolation. (
 Our (O) model (O) is (O) thus (O) given (O) by (O) : 
 
 The (O) interpolation (O) weights (O) u (O) j (O) and (O) v (O) k (O) are (O) calculated (O) via (O) the (O) EM (O) algorithm (O) (Dempster (O) et (O) al., (O) 1977). (O) 
-In (O) order (O) to (O) reduce (O) calculation (O) effort (O) in (O) application, (O) just (O) for (O) unknown (O) words (O) the (O) probabilities (O) are (O) calculated (O) for (O) all (O) POS (O) tags. (O) 
-For (O) known (O) words (O) just (O) the (O) POS (O) tags (O) co-occurring (O) with (O) them (O) in (O) the (O) [training (B) corpus (I)] are (O) taken (O) into (O) consideration. (O) 
+In (O) order (O) to (O) reduce (O) calculation (O) effort (O) in (O) application, (O) just (O) for (O) unknown (O) words (O) the (O) probabilities (O) are (O) calculated (O) for (O) all (O) [POS (B)] tags. (O) 
+For (O) known (O) words (O) just (O) the (O) [POS (B)] tags (O) co-occurring (O) with (O) them (O) in (O) the (O) [training (B) corpus (I)] are (O) taken (O) into (O) consideration. (O) 
 Our (O) [training (B) data (I)] comprises (O) 620000 (O) tokens (O) (including (O) punctuation) (O) taken (O) from (O) prose (O) of (O) the (O) 20th (O) century (O) and (O) pretagged (O) by (O) the (O) TnT (O) tagger (O) (Brants, (O) 2000) (O) using (O) the (O) Penn (O) tag (O) set (O) (Marcus (O) et (O) al., (O) 1995). (O) 
 
 Word (O) representations (O) 
@@ -228,11 +228,11 @@ The (O) [word (B) error (I) rate (I)] for (O) non-standard (O) words (O) adds (O
 
 The (O) [evaluation (B) data (I)] comprises (O) 10000 (O) words (O) extracted (O) randomly (O) from (O) 100000 (O) running (O) words. (O) 
 Tagset (O) Mapping (O) Different (O) tagsets (O) were (O) used (O) for (O) training (O) and (O) evaluation. (O) 
-Evaluation (O) was (O) carried (O) out (O) using (O) the (O) UK (O) TC-STAR (O) Grammatical (O) POS (O) tagset, (O) but (O) since (O) no (O) appropriate (O) training (O) material (O) was (O) available (O) we (O) worked (O) with (O) the (O) standard (O) PENN (O) tagset (O) (Marcus (O) et (O) al., (O) 1995). (O) 
+Evaluation (O) was (O) carried (O) out (O) using (O) the (O) UK (O) TC-STAR (O) Grammatical (O) [POS (B)] tagset, (O) but (O) since (O) no (O) appropriate (O) training (O) material (O) was (O) available (O) we (O) worked (O) with (O) the (O) standard (O) PENN (O) tagset (O) (Marcus (O) et (O) al., (O) 1995). (O) 
 The (O) problem (O) to (O) map (O) from (O) our (O) tagset (O) to (O) the (O) one (O) of (O) TC-STAR (O) was (O) not (O) solely (O) solvable (O) by (O) simple (O) table (O) lookup (O) but (O) was (O) also (O) connected (O) to (O) disambiguation (O) of (O) adjectives (O) and (O) ordinal (O) numbers, (O) of (O) prepositions (O) and (O) subordinating (O) conjunctions, (O) and (O) of (O) auxiliaries (O) and (O) full (O) verbs. (O) 
 Disambiguation (O) was (O) carried (O) out (O) by (O) local (O) grammars. (O) 
 Note (O) that (O) disambiguation (O) was (O) not (O) possible (O) in (O) some (O) cases. (O) 
-Results (O) After (O) POS (O) mapping (O) and (O) removal (O) of (O) further (O) systematic (O) tagset (O) differences (O) the (O) [word (B) error (I) rate (I)] amounts (O) 6.5 (O) %. (O) 
+Results (O) After (O) [POS (B) mapping (I)] and (O) removal (O) of (O) further (O) systematic (O) tagset (O) differences (O) the (O) [word (B) error (I) rate (I)] amounts (O) 6.5 (O) %. (O) 
 Since (O) more (O) tagset (O) inconsistencies (O) are (O) likely, (O) this (O) result (O) has (O) to (O) be (O) taken (O) preliminarily. (O) 
 
 [Grapheme-to-Phoneme (B) Conversion (I)] 

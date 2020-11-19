@@ -18,7 +18,7 @@ ATR ν-talk was the srst to show the effectiveness of automatic selection of app
 The quality of the output derives directly from the quality of the recordings, and it appears that the larger the database the better the coverage. 
 Commercial systems have exploited these technique to bring us a new level of [synthetic speech]. 
 However, although certainly successful, there is always the issue of spurious errors. 
-When a desired sentence happens to require [phonetic] and [prosody] contexts that are under represented in a database, the quality of the synthesizer can be severely degraded. 
+When a desired sentence happens to require [phonetic] and [prosody contexts] that are under represented in a database, the quality of the synthesizer can be severely degraded. 
 Even though this may be a rare event, a single bad join in an utterance can ruin the listeners ƀow. 
 It is not possible to guarantee that bad joins and/or inappropriate units do not occur, simply because of the vast number of possible combinations that could occur. 
 However for particular applications it is often possible to almost always avoid them. 

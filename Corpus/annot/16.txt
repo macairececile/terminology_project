@@ -6,7 +6,7 @@ We introduce a technique for augmenting [neural text-to-speech] ([TTS]) with [lo
 As a starting point, we show improvements over the two state-of-the-art approaches for single-[speaker neural TTS] : [Deep Voice] 1 and [Tacotron]. 
 We introduce [Deep Voice] 2, which is based on a similar pipeline with [Deep Voice] 1, but constructed with higher performance building blocks and demonstrates a significant [audio quality improvement] over [Deep Voice] 1. 
 We improve [Tacotron] by introducing a [post-processing neural vocoder], and demonstrate a significant [audio quality improvement]. We then demonstrate our technique for [multi-speaker speech synthesis] for both [Deep Voice] 2 and [Tacotron] on two [multi-speaker TTS datasets]. 
-We show that a single [neural TTS system] can learn hundreds of [unique voices] from less than half an hour of data per speaker, while achieving high [audio quality synthesis] and preserving the speaker identities almost perfectly. 
+We show that a single [neural TTS system] can learn hundreds of [unique voices] from less than half an hour of data per speaker, while achieving high [audio quality synthesis] and preserving the [speaker identities] almost perfectly. 
 
 Introduction 
 
@@ -21,8 +21,8 @@ Concretely, we make the following contributions :
 3. Using these two single-[speaker models] as a baseline, we demonstrate [multi-speaker neural speech synthesis] by introducing [trainable speaker embeddings] into [Deep Voice] 2 and [Tacotron]. 
 We organize the rest of this paper as follows. 
 Section 2 discusses related work and what makes the contributions of this paper distinct from prior work. 
-Section 3 presents [Deep Voice] 2 and highlights the differences from [Deep Voice] 1. Section 4 explains our [speaker embedding technique] for [neural TTS models] and shows [multi-speaker variants] of the [Deep Voice] 2 and [Tacotron architectures]. 
-Section 5.1 quantifies the improvement for [single speaker TTS] through a [mean opinion score (MOS) evaluation] and Section 5.2 presents the synthesized [audio quality] of [multi-speaker Deep Voice] 2 and [Tacotron] via both [MOS evaluation] and a [multi-speaker discriminator accuracy metric]. 
+Section 3 presents [Deep Voice] 2 and highlights the differences from [Deep Voice] 1. Section 4 explains our speaker embedding technique for [neural TTS models] and shows [multi-speaker variants] of the [Deep Voice] 2 and [Tacotron architectures]. 
+Section 5.1 quantifies the improvement for [single speaker TTS] through a [mean opinion score (MOS) evaluation] and Section 5.2 presents the synthesized [audio quality] of [multi-speaker Deep Voice] 2 and [Tacotron] via both [MOS evaluation] and a [multi-speaker discriminator accuracy] metric. 
 Section 6 concludes with a discussion of the results and potential future work. 
 
 Related Work 
@@ -30,7 +30,7 @@ Related Work
 We discuss the related work relevant to each of our claims in Section 1 in order, starting from single-speaker [neural speech synthesis] and moving on to [multi-speaker speech synthesis] and metrics for generative model quality. 
 With regards to single-[speaker speech synthesis], [deep learning] has been used for a variety of subcomponents, including duration prediction (Zen et al., 2016), [fundamental frequency prediction] (Ronanki et al., 2016), acoustic modeling (Zen and Sak, 2015), and more recently autoregressive sample-by-sample [audio waveform generation] (e.g., Oord et al., 2016 ; Mehri et al., 2016). 
 Our contributions build upon recent work in entirely [neural TTS systems], including [Deep Voice] 1 (Arik et al., 2017), [Tacotron] (Wang et al., 2017), and Char2Wav (Sotelo et al., 2017). 
-While these works focus on building single-[speaker TTS] systems, our paper focuses on extending [neural TTS systems] to handle [multiple speakers] with [less data] per speaker. 
+While these works focus on building single-[speaker TTS systems], our paper focuses on extending [neural TTS systems] to handle [multiple speakers] with [less data] per speaker. 
 Our work is not the first to attempt a [multi-speaker TTS system]. 
 For instance, in traditional [HMM-based TTS synthesis] (e.g., Yamagishi et al., 2009), an [average voice model] is trained using [multiple speakers]’ data, which is then adapted to [different speakers]. 
 [DNN-based systems] (e.g., Yang et al., 2016) have also been used to build [average voice models], with [i-vectors representing speakers] as additional inputs and separate [output layers] for each [target speaker]. 
@@ -80,11 +80,11 @@ Frequency Model
 
 After decoding from the duration model, the predicted [phoneme durations] are upsampled from a per-[phoneme input features] to a per-frame input for the frequency model. 
 [Deep Voice] 2 frequency model consists of multiple layers : firstly, [bidirectional gated recurrent unit (GRU) layers] (Cho et al.,2014) generate [hidden states] from the [input features]. 
-From these hidden states, an affine projection followed by a [sigmoid nonlinearity] produces the probability that each frame is voiced. 
+From these [hidden states], an affine projection followed by a [sigmoid nonlinearity] produces the probability that each frame is voiced. 
 [Hidden states] are also used to make two separate normalized F 0 predictions. 
 The first prediction, f [GRU], is made with a single-layer [bidirectional GRU] followed by an affine projection. 
 The second prediction, f conv, is made by adding up the contributions of multiple convolutions with varying convolution widths and a single output channel. 
-Finally, the hidden state is used with an affine   projection and a [sigmoid nonlinearity] to predict a mixture ratio !, which is used to weigh the two normalized [frequency predictions] and combine them into 
+Finally, the [hidden state] is used with an affine   projection and a [sigmoid nonlinearity] to predict a mixture ratio !, which is used to weigh the two normalized [frequency predictions] and combine them into 
 The normalized prediction f is then converted to the true frequency F0 prediction via where μ F0 and F0 are, respectively, the mean and standard deviation of F 0 for the speaker the model is trained on. We find that predicting F 0 with a mixture of convolutions and a [recurrent layer] 
 performs better than predicting with either one individually. 
 We attribute this to the hypothesis that including the wide convolutions reduces the burden for the [recurrent layers] to maintain state over a large number of input frames, while processing the entire context information efficiently. 
@@ -93,13 +93,13 @@ Each frame is ensured to be 10 milliseconds. For example, if a [phoneme] lasts 2
 
 [Vocal Model] 
 
-The [Deep Voice] 2 [vocal model] is based on a [WaveNet architecture] (Oord et al., 2016) with a two-layer [bidirectional QRNN] (Bradbury et al., 2017) [conditioning network], similar to [Deep Voice] 1. However, we remove the 1 ⇥ 1 convolution between the gated [tanh nonlinearity] and the [residual connection]. In addition, we use the same conditioner bias for every layer of the [WaveNet], instead of   generating a separate bias for every layer as was done in [Deep Voice] 1. 
+The [Deep Voice] 2 [vocal model] is based on a [WaveNet architecture] (Oord et al., 2016) with a two-layer [bidirectional QRNN] (Bradbury et al., 2017) conditioning network, similar to [Deep Voice] 1. However, we remove the 1 ⇥ 1 convolution between the gated [tanh nonlinearity] and the [residual connection]. In addition, we use the same conditioner bias for every layer of the [WaveNet], instead of   generating a separate bias for every layer as was done in [Deep Voice] 1. 
 
 We find that these changes reduce model size by a factor of ⇠ 7 and speed up inference by ⇠ 25 %, while yielding no perceptual change in quality. However, we do not focus on demonstrating these claims in this paper. 
 
 [Multi-Speaker Models] with [Trainable Speaker Embeddings] 
 
-In order to [synthesize speech] from [multiple speakers], we augment each of our models with a single [low-dimensional speaker embedding vector] per speaker. 
+In order to [synthesize speech] from [multiple speakers], we augment each of our models with a single [low-dimensional speaker] embedding [vector] per speaker. 
 Unlike previous work, our approach does not rely on per-[speaker weight] matrices or layers. 
 Speaker-dependent parameters are stored in a very [low-dimensional vector] and thus there is near-complete weight sharing between speakers. 
 We use [speaker embeddings] to produce [recurrent neural network] ([RNN]) initial states, nonlinearity biases, and multiplicative gating factors, used throughout the networks. 
@@ -107,10 +107,10 @@ We use [speaker embeddings] to produce [recurrent neural network] ([RNN]) initia
 To encourage each speaker’s [unique voice] signature to influence the model, we incorporate the [speaker embeddings] into multiple portions of the model. 
 Empirically, we find that simply providing the [speaker embeddings] to the input layers does not work as well for any of the presented models besides the [vocal model], possibly due to the high degree of [residual connections] present in the [WaveNet] and due to the difficulty of learning [high-quality speaker embeddings]. 
 We observed that several patterns tend to yield high performance : 
-• Site-[Specific Speaker] Embeddings : For every use site in the [model architecture], transform the [shared speaker embedding] to the appropriate dimension and form through an affine projection and a nonlinearity. 
-• Recurrent Initialization : Initialize [recurrent layer hidden states] with site-[specific speaker] embeddings. 
-• Input Augmentation : Concatenate a site-[specific speaker embedding] to the input at every timestep of a [recurrent layer]. 
-[• Feature] Gating : Multiply layer activations elementwise with a site-[specific speaker embedding] to render adaptable information flow. 
+• Site-[Specific Speaker Embeddings] : For every use site in the [model architecture], transform the shared speaker embedding to the appropriate dimension and form through an affine projection and a nonlinearity. 
+• Recurrent Initialization : Initialize [recurrent layer hidden states] with site-[specific speaker embeddings]. 
+• Input Augmentation : Concatenate a site-[specific speaker] embedding to the input at every timestep of a [recurrent layer]. 
+• Feature Gating : Multiply layer activations elementwise with a site-[specific speaker] embedding to render adaptable information flow. 
 
 We hypothesize that feature gating lets the model learn the union of all [necessary features] while allowing [speaker embeddings] to determine what features are used for each speaker and how much influence they will have on the activations. 
 
@@ -118,34 +118,34 @@ Next, we describe how [speaker embeddings] are used in each architecture.
 
 [Multi-Speaker Deep Voice] 2 
 
-The [Deep Voice] 2 models have [separate speaker] embeddings for each model. 
-Yet, they can be viewed softsign BN + [ReLu] as chunks of a [larger speaker] embedding, which are trained independently. 
+The [Deep Voice] 2 models have [separate speaker embeddings] for each model. 
+Yet, they can be viewed softsign BN + [ReLu] as chunks of a [larger speaker embedding], which are trained independently. 
 
 [Segmentation Model] 
 
-In [multi-speaker segmentation model], we use feature gating in the [residual connections] of the convolution layers. Instead of Eq., we multiply the batch-normalized activations by a site-[specific speaker embedding] : 
+In [multi-speaker segmentation model], we use feature gating in the [residual connections] of the convolution layers. Instead of Eq., we multiply the batch-normalized activations by a site-[specific speaker] embedding : 
 where g s is a site-[specific speaker] embedding. The same site-specific embedding is shared for all the [convolutional layers]. 
 In addition, we initialize each of the [recurrent layers] with a second site specific embedding. 
 Similarly, each layer shares the same site-specific embedding, rather than having a separate embedding per layer. 
 
 Duration Model 
 
-The [multi-speaker duration model] uses speaker-dependent recurrent initialization and input augmentation. A site-specific embedding is used to initialize [RNN hidden states], and another site-specific embedding is provided as input to the first [RNN layer] by concatenating it to the [feature vectors]. 
+The [multi-speaker duration model] uses speaker-dependent recurrent initialization and input augmentation. A site-specific embedding is used to initialize [RNN] hidden states, and another site-specific embedding is provided as input to the first [RNN layer] by concatenating it to the [feature vectors]. 
 
 Frequency Model 
 
-The [multi-speaker frequency model] uses recurrent initialization, which initializes the [recurrent layers] (except for the recurrent [output layer]) with a single site-[specific speaker]-embedding. 
+The [multi-speaker frequency model] uses recurrent initialization, which initializes the [recurrent layers] (except for the recurrent [output layer]) with a single site-[specific speaker-embedding]. 
 As described in Section 3.3, the recurrent and [convolutional output layers] in the single-[speaker frequency] model predict a normalized frequency, which is then converted into the true F0 by a fixed linear transformation. 
 The linear transformation depends on the mean and standard deviation of observed F 0 for the speaker. 
 These values vary greatly between speakers : [male speakers], for instance, tend to have a much lower mean F 0. 
 To better adapt to these variations, we make the mean and standard deviation trainable model parameters and multiply them by scaling terms which depend on the [speaker embeddings]. 
 Specifically, instead of Eq., we compute the F 0 prediction as 
-where g f is a site-[specific speaker] embedding, μ F 0 and F 0 are trainable scalar parameters initialized to the F 0 mean and standard deviation on the dataset, and V μ and V are trainable parameter [vectors]. 
+where g f is a site-[specific speaker embedding], μ F 0 and F 0 are trainable scalar parameters initialized to the F 0 mean and standard deviation on the dataset, and V μ and V are trainable parameter [vectors]. 
 
 [Vocal Model] 
 
 The [multi-speaker vocal model] uses only input augmentation, with the site-[specific speaker embedding] concatenated onto each input frame of the conditioner. 
-This differs from the global conditioning suggested in Oord et al. (2016) and allows the [speaker embedding] to influence the local [conditioning network] as well. 
+This differs from the global conditioning suggested in Oord et al. (2016) and allows the speaker embedding to influence the local conditioning network as well. 
 Without [speaker embeddings], the [vocal model] is still able to generate somewhat distinct-sounding voices because of the [disctinctive features] provided by the frequency and duration models. 
 Yet, having [speaker embeddings] in the [vocal model] increases the [audio quality]. 
 We indeed observe that the embeddings converge to a meaningful latent space. 
@@ -162,7 +162,7 @@ Thus, our work focuses on demonstrating that [Tacotron], like [Deep Voice] 2, is
 
 The [Tacotron character-to-spectrogram architecture] consists of a convolution-bank-highway-[GRU] ([CBHG]) [encoder], an [attentional decoder], and a [CBHG post-processing network]. 
 Due to the complexity of the architecture, we leave out a complete description and instead focus on our modifications. 
-We find that incorporating [speaker embeddings] into the [CBHG] post-processing network degrades output quality, whereas incorporating [speaker embeddings] into the character [encoder] is necessary. 
+We find that incorporating [speaker embeddings] into the [CBHG post-processing network degrades output] quality, whereas incorporating [speaker embeddings] into the character [encoder] is necessary. 
 Without a speaker-dependent [CBHG encoder], the model is incapable of learning its [attention mechanism] and can not generate meaningful output (see Appendix D.2 for speaker-dependent attention visualizations). 
 In order to condition the [encoder] on the speaker, we use one site-specific embedding as an extra input to each highway layer at each timestep and initialize the [CBHG RNN] state with a second site-specific embedding. 
 We also find that augmenting the [decoder] with [speaker embeddings] is helpful. 
@@ -222,6 +222,6 @@ Conclusion
 In this work, we explore how entirely-[neural speech synthesis pipelines] may be extended to [multi-speaker text-to-speech] via [low-dimensional trainable speaker embeddings]. 
 We start by presenting [Deep Voice] 2, an improved single-[speaker model]. 
 Next, we demonstrate the applicability of our technique by training both [multi-speaker Deep Voice] 2 and [multi-speaker Tacotron models], and evaluate their quality through [MOS]. 
-In conclusion, we use our [speaker embedding technique] to create high quality [text-to-speech systems] and conclusively show that [neural speech synthesis models] can learn effectively from small amounts of data spread among hundreds of [different speakers]. 
+In conclusion, we use our speaker embedding technique to create high quality [text-to-speech systems] and conclusively show that [neural speech synthesis models] can learn effectively from small amounts of data spread among hundreds of [different speakers]. 
 The results presented in this work suggest many directions for future research. 
-Future work may test the limits of this technique and explore how [many speakers] these models can generalize to, how [little data] is truly required per speaker for high quality synthesis, whether [new speakers] can be added to a system by fixing model parameters and solely training [new speaker] embeddings, and whether the [speaker embeddings] can be used as a meaningful [vector] space, as is possible with word embeddings. 
+Future work may test the limits of this technique and explore how [many speakers] these models can generalize to, how [little data] is truly required per speaker for high quality synthesis, whether [new speakers] can be added to a system by fixing model parameters and solely training [new speaker embeddings], and whether the [speaker embeddings] can be used as a meaningful [vector] space, as is possible with word embeddings. 

@@ -47,11 +47,11 @@ The complexity, of course, arises because the written form ‘ %’ gives no ind
 Furthermore, there is no way to correctly expand this form without doing a substantial amount of analysis of the context, including some analysis of the morphological properties of the surrounding words, as well as an analysis of the relationship of the percentage expression to those words. 
 The obvious solution to this problem is to delay the decision on how exactly to transduce symbols like ‘ $’ in English or ‘ %’ in Russian until one has enough information to make the decision in an informed manner. 
 This suggests a model where, say, an expression like ‘ 20 %’ in Russian is transduced into all possible renditions, and the correct form selected from the lattice of possibilities by filtering out the illegal forms. 
-An obvious computational mechanism for accomplishing this is the [finite-state transducer(FST]). 
+An obvious computational mechanism for accomplishing this is the [finite-state] transducer(FST). 
 Indeed, since it is well-known that [FSTs] can also be used to model (most) [morphology] and [phonology], as well as to segment words in Chinese text, and (as we shall argue below) for performing other text-analysis operations such as numeral expansion, this suggests a model of text-analysis that is entirely based on regular relations. 
 We present such a model below. More specifically we present a model of text analysis for [TTS] based on weighted [FSTs] ([WFSTs]), which serves as the text-analysis module of the multilingual Bell Labs [TTS system]. 
 To date, the model has been applied to eight languages : Spanish, Italian, Romanian, French, German, Russian, Mandarin and Japanese. 
-One property of this model which distinguishes it from most text-analyzers used in [TTS systems] is that there is no sense in which such tasks as numeral expansion or word-segmentation are logically prior to other aspects of linguistic analysis, and there is therefore no distinguished ‘ [text-normalization]’ phase. 
+One property of this model which distinguishes it from most text-analyzers used in [TTS] systems is that there is no sense in which such tasks as numeral expansion or word-segmentation are logically prior to other aspects of linguistic analysis, and there is therefore no distinguished ‘ [text-normalization]’ phase. 
 
 Overall Architecture 
 Let us start with the example of the [lexical analysis] and pronunciation of ordinary words, taking again an example from Russian. 
@@ -110,7 +110,7 @@ The first stage of the expansion is language or at least language-area dependent
 The full numeral expansion [transducer] is constructed by composing the Factorization [transducer] with the transitive closure of the Number [Lexicon transducer]. 
 In some languages, additional manipulations are necessary, and these involve the insertion of a special ‘ filter’ [transducer] between the Factorization and Number [Lexicon transducers]. 
 In German, for example, the words for decades come after the words for units : so 34 = 3  101 + 4 becomes vierunddreißig (four+and+thirty), thus suggesting the order 4 +3 101. 
-This reversal can be accomplished by a filter [transducer], which for lack of a better name we will call Decade Flop. 
+This reversal can be accomplished by a filter [transducer], which for lack of a better name we will call Decade [Flop]. 
 The construction of the numeral expander for German is shown schematically in Figure. 
 (Note that the insertion of und in examples like vierunddreißig ‘ thirty four’ is not actually accomplished by numbuilder : such ‘ clean up’ operations can be handled using rewrite rules.) 
 

@@ -19,7 +19,7 @@ spacy_nlp = spacy.load('en_core_web_sm')
 rule_adj = ['accented', 'acoustic', 'artificial', 'attentional', 'autoregressive', 'bidirectional', 'bilingual',
             'continuous', 'cross-lingual', 'emotional', 'fluent', 'gated', 'generated', 'intelligible', 'labelled',
             'modern', 'monolingual', 'multilingual', 'multispeaker', 'neural', 'phonetic', 'substantial', 'supervised',
-            'target', 'training', 'unlabelled', 'untranscribed', 'unsupervised', 'vanilla']
+            'target', 'training', 'unlabelled', 'untranscribed', 'unsupervised', 'vanilla', 'hybrid']
 
 rule_4 = ['accent', 'accuracy', 'activation', 'adaptation', 'algorithm', 'aligner', 'alignment', 'approach',
           'architecture', 'attention', 'attribute', 'bank', 'boundary', 'category', 'cell', 'class', 'classifier',
@@ -34,7 +34,8 @@ rule_4 = ['accent', 'accuracy', 'activation', 'adaptation', 'algorithm', 'aligne
           'result', 'sample', 'score', 'segment', 'sequence', 'set', 'setting', 'signal', 'step', 'string', 'study',
           'symbol', 'synthesis', 'synthesizer', 'system', 'tagger', 'target', 'task', 'technique', 'technique',
           'technology', 'test', 'tilt', 'token', 'tool', 'toolkit', 'track', 'training', 'transcription', 'transfer',
-          'transform', 'translation', 'unit', 'value', 'variation']
+          'transform', 'translation', 'unit', 'value', 'variation', 'resource', 'utterance', 'chain', 'characteristic',
+          'pattern']
 
 
 def get_files_from_directory(path):
@@ -271,6 +272,7 @@ def construct_annotated_text(text_dataframe):
     string = string.replace(' )', ')')
     string = string.replace(']-[', '-')
     string = string.replace('.]', '].')
+    string = string.replace('] / [', ' / ')
     string = string.replace('\n ', '\n')
     return string
 
@@ -366,14 +368,6 @@ def annotate_iob_pos(text_file, output_file):
 
 
 if __name__ == "__main__":
-    # path_1 = '/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/train/'
-    # path_2 = '/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/annot_IOB_POS/'
-    # files = get_files_from_directory('/home/macaire/Bureau/M2_NLP/Terminology/terminology_project/Corpus/train/')
-    # for i in files:
-    #     try:
-    #         annotate_iob_pos(path_1+i, path_2+i)
-    #     except:
-    #         print(i)
     parser = argparse.ArgumentParser()
     parser.add_argument('-n', '--annotation_type', type=int,
                         help='choose the type of annotation: 1=terms, 2=IOB, 3=POS')

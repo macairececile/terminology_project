@@ -28,7 +28,7 @@ The [text-to]-linguistic description subsystem produces a description of the [sp
 The details of this subsystem will not be described here, except to note that it generates the same marks that are used to label the database, described below, and that the timing of the marked events is established relative to the timing of the [phonetic segments], so that determining the segment durations determines the timing of the other marked events. 
                            
 The segment durations are also computed using a [neural network]. This is described in. 
-The [speech] coder parameter set is described in the discussion of training data below. 
+The [speech] coder parameter set is described in the discussion of [training data] below. 
                            
 [TRAINING DATA] 
 In order to train a [neural network] to perform the [phonetic-to-acoustic mapping], it was necessary to prepare an [appropriate database]. 
