@@ -1,8 +1,8 @@
 # terminology_project
 
+Created by Cécile MACAIRE & Ludivine ROBERT
 
 ## Aim
-
 Python script which extracts and annotates terms from a corpus of articles about "Text-to-Speech System".
 
 
@@ -16,6 +16,7 @@ It has been realized under the _Terminology_ course, as part of the _Natural lan
 ### Requirements 
 
 Pandas
+
 Scapy
 
 ### Running process
@@ -29,4 +30,6 @@ The script to run is termsprocessing.py. The following instructions need to be f
  * name of your output file (also in _.txt_ format) 
 
 Finally, enter the following command in your terminal:
-> python termsprocessing.py -n 1  -i input.txt -o output.txt
+```bash 
+python termsprocessing.py -n 1  -i input.txt -o output.txt
+```
