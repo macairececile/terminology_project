@@ -17,7 +17,7 @@ It has been realized under the _Terminology_ course, as part of the _Natural lan
 
 Pandas
 
-Scapy
+Spacy
 
 ### Running process
 
